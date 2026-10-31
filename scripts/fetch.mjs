@@ -110,6 +110,11 @@ const dropLeadPhoto = (body, hero) => {
   return (cap && clean(cap[1]) ? m[1].replace(img[0], "") : "") + body.slice(m[0].length);
 };
 
+// WordPress adds "The post <title> appeared first on <site>." as the last paragraph of a feed's full text. It is not part of the story, so it is removed.
+// Only the final paragraph is touched; a sentence that happens to start with "The post" earlier in the story stays.
+const dropFooter = body => String(body ?? "").replace(/\s*<p\b[^>]*>\s*(?:<(?:em|i|strong|b|span)\b[^>]*>\s*)*The post\b(?:(?!<\/p>)[\s\S])*?\bappeared first on\b(?:(?!<\/p>)[\s\S])*?<\/p>\s*$/i, "");
+const tidyBody = (body, hero) => dropFooter(dropLeadPhoto(body, hero));
+
 async function getText(url, accept) {
   const res = await fetch(url, { headers: { "user-agent": "AAPIWire/1.0 (open-source news index)", ...(accept ? { accept } : {}) }, signal: AbortSignal.timeout(20000) });
   if (!res.ok) throw new Error("HTTP " + res.status);
@@ -208,7 +213,7 @@ async function pull(src) {
     const full = src.fullText ? cleanBody(tx(it["content:encoded"] ?? it.content)) : "";
     // a .gov statement can also be in the Policy tracker, so it gets an id of its own here
     const item = { id: createHash("sha1").update(isOrg(src.kind) && isGov(u) ? "statement:" + u : u).digest("hex").slice(0, 12), d: d.toISOString(), s, h, m, u, g: src.google ? 1 : 0, k: src.kind ?? kindOf(s), ...(rl ? { rl } : {}), ...TG.all(h, raw + " " + clean(full).slice(0, 4000), d, gov ? "GOVERNMENT" : undefined) };
-    if (full) { const img = heroOf(it, full); item.v = 1; item.art = { by: clean(it["dc:creator"] ?? it.author?.name), img, body: dropLeadPhoto(full, img) }; }
+    if (full) { const img = heroOf(it, full); item.v = 1; item.art = { by: clean(it["dc:creator"] ?? it.author?.name), img, body: tidyBody(full, img) }; }
     out.push(item);
   }
   return out;
@@ -423,7 +428,7 @@ const keepIds = new Set(out.filter(i => i.v).map(i => i.id));
 for (const f of await readdir(adir)) { // articles stored before this rule existed
   const id = f.slice(0, -5);
   if (!f.endsWith(".json") || arts.has(id) || !keepIds.has(id)) continue;
-  const a = JSON.parse(await readFile(join(adir, f), "utf8")), b = dropLeadPhoto(a.body, a.img);
+  const a = JSON.parse(await readFile(join(adir, f), "utf8")), b = tidyBody(a.body, a.img);
   if (b !== a.body) await writeFile(join(adir, f), JSON.stringify({ ...a, body: b }));
 }
 for (const f of await readdir(adir)) if (f.endsWith(".json") && !keepIds.has(f.slice(0, -5))) await unlink(join(adir, f));

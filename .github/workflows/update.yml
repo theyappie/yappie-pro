@@ -1,0 +1,28 @@
+name: update-feed
+on:
+  schedule: [{ cron: "*/30 * * * *" }]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency: update-feed
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20, cache: npm }
+      - run: npm ci
+      - name: Collect news and policy records
+        run: node scripts/fetch.mjs
+        env:
+          # optional: one free api.data.gov key (api.congress.gov/sign-up) for Congress.gov, Regulations.gov and GovInfo; without it the Policy tab skips those three
+          API_DATA_GOV_KEY: ${{ secrets.API_DATA_GOV_KEY }}
+          CONGRESS_API_KEY: ${{ secrets.CONGRESS_API_KEY }}
+      - run: node scripts/build-outputs.mjs
+      - name: Commit feed
+        run: |
+          git config user.name "aapi-wire-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data
+          git diff --cached --quiet || (git commit -m "feed: $(date -u +%FT%TZ)" && git push)

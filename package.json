@@ -1,0 +1,19 @@
+{
+  "name": "aapi-wire",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Free, open-source news terminal for AAPI communities",
+  "scripts": {
+    "fetch": "node scripts/fetch.mjs",
+    "outputs": "node scripts/build-outputs.mjs",
+    "digest": "node scripts/digest.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "fast-xml-parser": "^5.11.2",
+    "nodemailer": "^10.3.1"
+  }
+}

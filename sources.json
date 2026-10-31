@@ -1,0 +1,455 @@
+{
+  "keepDays": 30,
+  "maxItems": 400,
+  "sources": [
+    {
+      "name": "AsAmNews",
+      "home": "https://asamnews.com",
+      "feed": "https://asamnews.com/feed/"
+    },
+    {
+      "name": "The Yappie",
+      "home": "https://theyappie.com",
+      "feed": "https://theyappie.com/feed/",
+      "fullText": true
+    },
+    {
+      "name": "Rafu Shimpo",
+      "home": "https://rafu.com",
+      "feed": "https://rafu.com/feed/"
+    },
+    {
+      "name": "NextShark",
+      "home": "https://nextshark.com",
+      "feed": "https://nextshark.com/feed"
+    },
+    {
+      "name": "Maui Now",
+      "home": "https://mauinow.com",
+      "feed": "https://mauinow.com/feed/",
+      "filter": true
+    },
+    {
+      "name": "Civil Beat",
+      "home": "https://www.civilbeat.org",
+      "feed": "https://www.civilbeat.org/feed/",
+      "filter": true
+    },
+    {
+      "name": "RNZ Pacific",
+      "home": "https://www.rnz.co.nz/news/pacific",
+      "feed": "https://www.rnz.co.nz/rss/pacific.xml",
+      "filter": true
+    },
+    {
+      "name": "AP-NORC",
+      "home": "https://apnorc.org/topics/aapi-data/",
+      "feed": "https://apnorc.org/topics/aapi-data/feed/"
+    },
+    {
+      "name": "Civil Beat",
+      "home": "https://www.civilbeat.org/category/native-hawaiian/",
+      "feed": "https://www.civilbeat.org/category/native-hawaiian/feed/"
+    },
+    {
+      "name": "Hawaii Public Radio",
+      "home": "https://www.hawaiipublicradio.org/tags/native-hawaiian",
+      "feed": "https://www.hawaiipublicradio.org/tags/native-hawaiian.rss"
+    },
+    {
+      "name": "South China Morning Post",
+      "home": "https://www.scmp.com/topics/asian-americans",
+      "page": "https://www.scmp.com/topics/asian-americans",
+      "embedded": { "title": "headline", "link": "urlAlias", "date": "publishedDate" }
+    },
+    {
+      "name": "The New York Times",
+      "home": "https://www.nytimes.com/topic/subject/asianamericans",
+      "google": true,
+      "asName": "The New York Times",
+      "filter": true,
+      "feed": "https://news.google.com/rss/search?q=site%3Anytimes.com+%28%22Asian+American%22+OR+%22Asian+Americans%22+OR+AAPI%29+when%3A30d&hl=en-US&gl=US&ceid=US:en"
+    },
+    {
+      "name": "AP News",
+      "home": "https://apnews.com/hub/asian-americans",
+      "google": true,
+      "asName": "AP News",
+      "filter": true,
+      "feed": "https://news.google.com/rss/search?q=site%3Aapnews.com+%28%22Asian+American%22+OR+%22Asian+Americans%22+OR+AAPI%29+when%3A30d&hl=en-US&gl=US&ceid=US:en"
+    },
+    {
+      "name": "The Juggernaut",
+      "home": "https://www.thejuggernaut.com",
+      "feed": "https://www.thejuggernaut.com/feed"
+    },
+    {
+      "name": "Mochi Magazine",
+      "home": "https://www.mochimag.com",
+      "feed": "https://www.mochimag.com/feed/"
+    },
+    {
+      "name": "Angry Asian Man",
+      "home": "https://blog.angryasianman.com",
+      "feed": "https://blog.angryasianman.com/feeds/posts/default?alt=rss&redirect=false"
+    },
+    {
+      "name": "HuffPost",
+      "home": "https://www.huffpost.com/voices/asian-voices",
+      "page": "https://www.huffpost.com/voices/asian-voices",
+      "link": "^/entry/[^/]+_n_[0-9a-f]{24}$",
+      "attr": "data-vars-unit-name=\"main\"",
+      "idDate": "_n_([0-9a-f]{24})$"
+    },
+    {
+      "name": "Red, White and Brown",
+      "home": "https://redwhiteandbrown.substack.com/archive",
+      "feed": "https://redwhiteandbrown.substack.com/feed"
+    },
+    {
+      "name": "Pacific Citizen",
+      "home": "https://www.pacificcitizen.org",
+      "wp": "https://www.pacificcitizen.org/wp-json/wp/v2/posts?per_page=20&_fields=link,title,date_gmt,excerpt"
+    },
+    {
+      "name": "Nichi Bei",
+      "home": "https://www.nichibei.org",
+      "google": true,
+      "asName": "Nichi Bei",
+      "skipTitle": "^\\S+( \\S+)?$",
+      "feed": "https://news.google.com/rss/search?q=site%3Anichibei.org+when%3A30d&hl=en-US&gl=US&ceid=US:en"
+    },
+    {
+      "name": "Google News: AAPI",
+      "google": true,
+      "feed": "https://news.google.com/rss/search?q=%22Asian+American%22+OR+AAPI+when%3A7d&hl=en-US&gl=US&ceid=US:en"
+    },
+    {
+      "name": "Google News: Pacific Islander",
+      "google": true,
+      "feed": "https://news.google.com/rss/search?q=%22Pacific+Islander%22+OR+%22Native+Hawaiian%22+OR+%22American+Samoa%22+OR+Guam+when%3A7d&hl=en-US&gl=US&ceid=US:en"
+    },
+    {
+      "name": "Google News: Anti-Asian hate",
+      "google": true,
+      "feed": "https://news.google.com/rss/search?q=%22anti-Asian%22+OR+%22Stop+AAPI+Hate%22+when%3A7d&hl=en-US&gl=US&ceid=US:en"
+    },
+    {
+      "name": "Google News: Immigration",
+      "google": true,
+      "feed": "https://news.google.com/rss/search?q=%22Asian+American%22+%28immigration+OR+ICE+OR+deportation%29+when%3A7d&hl=en-US&gl=US&ceid=US:en"
+    },
+    {
+      "name": "The Rebel Yellow",
+      "home": "https://www.therebelyellow.com",
+      "feed": "https://www.therebelyellow.com/feed"
+    },
+    {
+      "name": "Joysauce",
+      "home": "https://joysauce.com",
+      "feed": "https://joysauce.com/feed/"
+    },
+    {
+      "name": "NBC Asian America",
+      "home": "https://www.nbcnews.com/asian-america",
+      "google": true,
+      "asName": "NBC Asian America",
+      "feed": "https://news.google.com/rss/search?q=site%3Anbcnews.com%2Fnews%2Fasian-america+when%3A30d&hl=en-US&gl=US&ceid=US:en"
+    },
+    {
+      "name": "TAAF",
+      "home": "https://taaf.org/newsroom",
+      "google": true,
+      "asName": "TAAF",
+      "feed": "https://news.google.com/rss/search?q=site%3Ataaf.org%2Fblog+when%3A30d&hl=en-US&gl=US&ceid=US:en",
+      "kind": "statement"
+    },
+    {
+      "name": "TAAF",
+      "home": "https://taaf.org/newsroom",
+      "page": "https://taaf.org/newsroom/press-releases",
+      "link": "^/news/[^/]+$",
+      "kind": "statement"
+    },
+    {
+      "name": "Stop AAPI Hate",
+      "home": "https://stopaapihate.org",
+      "feed": "https://stopaapihate.org/category/press-releases/feed/",
+      "kind": "statement"
+    },
+    {
+      "name": "Stop AAPI Hate",
+      "home": "https://stopaapihate.org",
+      "feed": "https://stopaapihate.org/category/commentary/feed/",
+      "kind": "statement"
+    },
+    {
+      "name": "Asian Americans Advancing Justice",
+      "home": "https://www.advancingjustice-aajc.org",
+      "page": "https://www.advancingjustice-aajc.org/news-media/press-releases",
+      "link": "^/press-release/[^/]+$",
+      "kind": "statement"
+    },
+    {
+      "name": "AAJA",
+      "home": "https://www.aaja.org",
+      "feed": "https://www.aaja.org/category/press-release-statements/feed/",
+      "kind": "statement"
+    },
+    {
+      "name": "CAPAC",
+      "home": "https://capac.house.gov",
+      "page": "https://capac.house.gov/press-releases",
+      "link": "^/press-release/[^/]+$",
+      "kind": "statement"
+    },
+    {
+      "name": "OCA National",
+      "home": "https://www.ocanational.org",
+      "feed": "https://www.ocanational.org/press-releases?format=rss",
+      "kind": "statement"
+    },
+    {
+      "name": "AALDEF",
+      "home": "https://www.aaldef.org",
+      "feed": "https://news.google.com/rss/search?q=site%3Aaaldef.org%2Fpress-release+when%3A30d&hl=en-US&gl=US&ceid=US:en",
+      "google": true,
+      "asName": "AALDEF",
+      "kind": "statement"
+    },
+    {
+      "name": "NCAPA",
+      "home": "https://www.ncapaonline.org",
+      "feed": "https://www.ncapaonline.org/feed/",
+      "kind": "statement"
+    },
+    {
+      "name": "SEARAC",
+      "home": "https://www.searac.org",
+      "feed": "https://www.searac.org/feed/",
+      "kind": "statement"
+    },
+    {
+      "name": "Sikh Coalition",
+      "home": "https://www.sikhcoalition.org",
+      "feed": "https://www.sikhcoalition.org/press-release/feed/",
+      "kind": "statement"
+    },
+    {
+      "name": "SALDEF",
+      "home": "https://saldef.org",
+      "feed": "https://saldef.org/category/press-release/feed/",
+      "kind": "statement"
+    },
+    {
+      "name": "NAPABA",
+      "home": "https://www.napaba.org",
+      "feed": "https://news.google.com/rss/search?q=site%3Anapaba.org%2Fnews+when%3A30d&hl=en-US&gl=US&ceid=US:en",
+      "google": true,
+      "asName": "NAPABA",
+      "kind": "statement"
+    },
+    {
+      "name": "NAPAWF",
+      "home": "https://napawf.org",
+      "wp": "https://napawf.org/wp-json/wp/v2/news?per_page=20&_fields=link,title,date_gmt",
+      "kind": "statement"
+    },
+    {
+      "name": "JACL",
+      "home": "https://jacl.org",
+      "feed": "https://jacl.org/statements?format=rss",
+      "kind": "statement"
+    },
+    {
+      "name": "APIAVote",
+      "home": "https://apiavote.org",
+      "feed": "https://apiavote.org/category/press-release/feed/",
+      "kind": "statement"
+    },
+    {
+      "name": "Asian American Scholar Forum",
+      "home": "https://www.aasforum.org",
+      "feed": "https://www.aasforum.org/category/press-release/feed/",
+      "kind": "statement"
+    },
+    {
+      "name": "AAPI Data",
+      "home": "https://aapidata.com",
+      "wp": "https://aapidata.com/wp-json/wp/v2/posts?categories=13&per_page=20&_fields=link,title,date_gmt,excerpt",
+      "kind": "statement"
+    },
+    {
+      "name": "AAPI Data",
+      "home": "https://aapidata.com",
+      "wp": "https://aapidata.com/wp-json/wp/v2/posts?categories=159&per_page=20&_fields=link,title,date_gmt,excerpt",
+      "kind": "statement"
+    },
+    {
+      "name": "AAPI Data",
+      "home": "https://aapidata.com",
+      "wp": "https://aapidata.com/wp-json/wp/v2/posts?categories=8&per_page=20&_fields=link,title,date_gmt,excerpt",
+      "kind": "statement"
+    },
+    {
+      "name": "The White House",
+      "home": "https://www.whitehouse.gov",
+      "feed": "https://www.whitehouse.gov/briefings-statements/feed/",
+      "kind": "govstmt",
+      "filter": true
+    },
+    {
+      "name": "The White House",
+      "home": "https://www.whitehouse.gov/news/",
+      "page": "https://www.whitehouse.gov/news/",
+      "link": "^/(releases|fact-sheets|briefings-statements|remarks|research)/20\\d\\d/\\d\\d/[^/]+/?$",
+      "kind": "govstmt",
+      "filter": true
+    },
+    {
+      "name": "The White House",
+      "home": "https://www.whitehouse.gov/news/",
+      "page": "https://www.whitehouse.gov/news/page/2/",
+      "link": "^/(releases|fact-sheets|briefings-statements|remarks|research)/20\\d\\d/\\d\\d/[^/]+/?$",
+      "kind": "govstmt",
+      "filter": true
+    },
+    {
+      "name": "The White House",
+      "home": "https://www.whitehouse.gov/news/",
+      "page": "https://www.whitehouse.gov/news/page/3/",
+      "link": "^/(releases|fact-sheets|briefings-statements|remarks|research)/20\\d\\d/\\d\\d/[^/]+/?$",
+      "kind": "govstmt",
+      "filter": true
+    },
+    {
+      "name": "U.S. Department of Justice",
+      "home": "https://www.justice.gov",
+      "feed": "https://www.justice.gov/news/rss?type=press_release&m=1",
+      "kind": "govstmt",
+      "filter": true,
+      "skipTitle": "\\b(sentenced|sentencing|pleads?|pleaded|guilty|convicted|indicted|indictment|charged|arrested|arrests?|smuggl\\w+|charges (for|against)|fraud (ring|scheme)|marriage fraud)\\b"
+    },
+    {
+      "name": "USCIS",
+      "home": "https://www.uscis.gov",
+      "feed": "https://www.uscis.gov/news/rss-feed/23269",
+      "kind": "govstmt",
+      "filter": true,
+      "skipTitle": "\\b(sentenced|sentencing|pleads?|pleaded|guilty|convicted|indicted|indictment|charged|arrested|arrests?|smuggl\\w+|charges (for|against)|fraud (ring|scheme)|marriage fraud)\\b"
+    },
+    {
+      "name": "CAPAC",
+      "home": "https://capac.house.gov",
+      "page": "https://capac.house.gov/press-releases",
+      "link": "^/press-release/[^/]+$",
+      "kind": "govstmt"
+    }
+  ],
+  "excludeHosts": [
+    "newsletters.theyappie.com"
+  ],
+  "siteUrl": "",
+  "renames": { "The Takeaway": "TAAF" },
+  "kinds": {
+    "AsAmNews": "community",
+    "The Yappie": "community",
+    "Rafu Shimpo": "community",
+    "NextShark": "community",
+    "The Rebel Yellow": "community",
+    "Joysauce": "community",
+    "AP-NORC": "research",
+    "The Juggernaut": "community",
+    "Mochi Magazine": "community",
+    "Angry Asian Man": "community",
+    "Red, White and Brown": "community",
+    "Nichi Bei": "community",
+    "Northwest Asian Weekly": "community",
+    "The Indian Eye": "community",
+    "India West": "community",
+    "India Currents": "community",
+    "International Examiner": "community",
+    "Pacific Citizen": "community",
+    "Asian Journal": "community",
+    "Hyphen": "community",
+    "Hawaii Reporter": "community",
+    "Stop AAPI Hate": "statement",
+    "Asian Americans Advancing Justice": "statement",
+    "APIAVote": "statement",
+    "SEARAC": "statement",
+    "OCA National": "statement",
+    "NAPAWF": "statement",
+    "NCAPA": "statement",
+    "TAAF": "statement",
+    "AAJA": "statement",
+    "AALDEF": "statement",
+    "Sikh Coalition": "statement",
+    "SALDEF": "statement",
+    "NAPABA": "statement",
+    "JACL": "statement",
+    "Asian American Scholar Forum": "statement",
+    "AAPI Data": "statement",
+    "The White House": "govstmt"
+  },
+  "federalRegister": {
+    "enabled": true,
+    "days": 45,
+    "keepCommentsDays": 120,
+    "perTerm": 40,
+    "terms": [
+      "\"Asian American\"",
+      "\"Native Hawaiian\"",
+      "\"Pacific Islander\"",
+      "AAPI",
+      "\"Compact of Free Association\"",
+      "\"Asian Pacific American\""
+    ],
+    "skipTitle": "^(Sunshine Act|Government in the Sunshine|Privacy Act of 1974|Notice of (Inventory Completion|Intended Repatriation|Intended Disposition)|Agency Information Collection Activities)",
+    "issueTerms": [
+      "immigration",
+      "\"public charge\"",
+      "\"language access\"",
+      "\"race and ethnicity\"",
+      "\"hate crimes\"",
+      "refugee",
+      "naturalization"
+    ]
+  },
+  "_note": "Live-checked once on 2026-10-31 (the 20 advocacy-organization statement sources, Federal Register, Congress.gov, Regulations.gov, GovInfo, White House, Justice Department, USCIS, CAPAC). The run log prints OK/FAIL per source. skipTitle patterns drop boilerplate (see the README). Policy items must link to a .gov host. apiBudget caps the key requests per run.",
+  "executiveActions": {
+    "enabled": true,
+    "skipTitle": "\\b(Day|Week|Month|Anniversary)\\b.*\\b20\\d\\d$",
+    "days": 120,
+    "perTerm": 40,
+    "terms": [
+      "\"Asian American\"",
+      "\"Native Hawaiian\"",
+      "\"Pacific Islander\"",
+      "AAPI",
+      "\"Compact of Free Association\"",
+      "\"Asian Pacific American\""
+    ],
+    "issueTerms": [
+      "immigration",
+      "citizenship",
+      "\"birthright\"",
+      "refugee",
+      "\"visa\"",
+      "\"language access\"",
+      "\"hate crimes\"",
+      "\"race and ethnicity\""
+    ]
+  },
+  "apiBudget": { "perRun": 150, "keepFraction": 0.25 },
+  "regulations": { "enabled": true, "api": "https://api.regulations.gov/v4", "pageSize": 25 },
+  "govinfo": { "enabled": true, "api": "https://api.govinfo.gov", "days": 180, "collections": ["PLAW", "CHRG", "CRPT", "GAOREPORTS"], "maxPages": 2,
+    "issueTerms": ["immigration", "citizenship", "\"birth tourism\"", "birthright", "refugee", "asylum", "naturalization", "\"public charge\"", "\"language access\"", "\"hate crimes\"", "census"] },
+  "congress": {
+    "enabled": true,
+    "days": 10,
+    "maxPages": 6,
+    "keyEnv": "CONGRESS_API_KEY"
+  },
+  "policyKeepDays": 120,
+  "policyMax": 300
+}

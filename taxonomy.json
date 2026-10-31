@@ -1,0 +1,588 @@
+{
+ "version": 1,
+ "note": "Edit the patterns here. Topics are scored (headline match = 2, excerpt match = 1, times the topic weight 'w' if set); the highest score wins, ties go to the earlier topic; no match = default. Patterns are case-insensitive. 'pre' rewrites run first and are case-sensitive.",
+ "pre": [
+  [
+   "\\bICE\\b",
+   "immigration-enforcement"
+  ]
+ ],
+ "default": "CULTURE",
+ "topics": [
+  {
+   "k": "PACIFIC",
+   "label": "Pacific Islands",
+   "re": "\\b(cofa|compact of free association|american samoa\\w*|guam\\w*|chamorro|marshall islands|marshallese|micronesia\\w*|palau\\w*|northern mariana\\w*|cnmi|saipan|territor(?:y|ies)|deep[- ]sea mining|seabed|nuclear test\\w*|runit|bikini atoll|pacific islands?|mauna kea|ceded lands?|kalaupapa|hawaiian home lands?|dhhl|sovereignty)\\b",
+   "w": 2
+  },
+  {
+   "k": "ELECTIONS",
+   "label": "Elections & voting",
+   "re": "\\b(elections?|vot\\w+|ballots?|campaign\\w*|candidates?|polls?|polling|governor\\w*|mayoral|mayor['’]s race|mayor race|county judge|senate|senator|midterms?|primary|supervisor|races?|democrats?|republicans?|treasurer|council(?:woman|man|member)?|school board|re-?election|reelection|turnout|registered|district \\d+|ca-\\d+)\\b"
+  },
+  {
+   "k": "IMMIGRATION",
+   "label": "Immigration",
+   "re": "\\b(immigration-enforcement|immigra\\w*|deport\\w*|denaturaliz\\w*|naturaliz\\w*|visas?|green cards?|refugees?|asylum\\w*|citizenship|undocumented|h-?1b|daca|border|detention|detainees?|detained)\\b"
+  },
+  {
+   "k": "CIVIL RIGHTS",
+   "label": "Civil rights & hate",
+   "re": "\\b(hate|bias|discriminat\\w*|racis\\w*|racial\\w*|anti-asian|stop aapi hate|civil rights|xenophob\\w*|profiling|affirmative action|harass\\w*|incarcerat\\w*|internment|redress|reparations|aclu|advancing justice|aajc|vigil|civil liberties)\\b"
+  },
+  {
+   "k": "HEALTH",
+   "label": "Health",
+   "re": "\\b(health\\w*|medicaid|medicare|medical|hospital\\w*|hospice|doctors?|nurses?|patients?|mental health|cancer|covid|vaccin\\w*|disease|epilepsy|insurance|clinics?|chatgpt medical)\\b"
+  },
+  {
+   "k": "HOUSING",
+   "label": "Housing",
+   "re": "\\b(housing|homebuyer\\w*|homeownership|homeless\\w*|rent(?:ers?|al|s)?|tenants?|evict\\w*|mortgage\\w*|affordab\\w*|zoning|landlords?|lahaina families|lahaina family)\\b"
+  },
+  {
+   "k": "ECONOMY",
+   "label": "Economy & jobs",
+   "re": "\\b(economy|economic|jobs?|workers?|labor|wages?|employ\\w*|businesses|small business\\w*|tariffs?|trade|entrepreneur\\w*|layoffs?|unions?|inflation|retail\\w*|restaurants? workers?)\\b"
+  },
+  {
+   "k": "EDUCATION",
+   "label": "Education",
+   "re": "\\b(schools?|college\\w*|universit\\w*|admissions?|students?|campus|teachers?|enrollment|scholarships?|tuition|harvard|k-12|curriculum|youth ambassadors?|aanapisi\\w*|uh|hawaiian language|language revitalization)\\b"
+  },
+  {
+   "k": "COURTS",
+   "label": "Courts & crime",
+   "re": "\\b(courts?|(?<!county )judges?|lawsuits?|suits?|sues?|sued|suing|trials?|charged|indict\\w*|prosecut\\w*|attorneys?|verdicts?|ruling|settlement|justice department|supreme court|bribery|corruption|convict\\w*|sentenced|sentencing|crimes?|police|shoot\\w*|murder\\w*|assault\\w*|stabb\\w*|arrest\\w*|fraud|spying|liability|cases?|informant|testimony|testif\\w*|corrupt\\w*|investigat\\w*|burglar\\w*)\\b"
+  },
+  {
+   "k": "GOVERNMENT",
+   "label": "Government & policy",
+   "re": "\\b(bills?|congress\\w*|legislat\\w*|federal|administration|executive order|funding|census|policy|policies|federal agenc(?:y|ies)|budget|grants?|regulat\\w*|department of|state law|city hall|county|commission|recogni(?:tion|zed)|co-naming|stewardship|advoca\\w+|coalition|lawmakers?)\\b",
+   "w": 0.5
+  },
+  {
+   "k": "CULTURE",
+   "label": "Culture",
+   "re": "\\b(films?|movies?|festivals?|music\\w*|artists?|art|novel|books?|authors?|restaurants?|food|chefs?|actors?|actress|concerts?|exhibit\\w*|museums?|comedian|television|tv|celebrat\\w*|heritage|k-pop|anime|hula|dies|died|tribute|cultural?|cosplay\\w*|staff picks|wnba|sports?|reality tv|radio|hollywood|documentar\\w*)\\b"
+  }
+ ],
+ "communities": [
+  {
+   "k": "CN",
+   "label": "Chinese",
+   "re": "\\b(chinese|chinatown|taiwanese|hong kong)\\b"
+  },
+  {
+   "k": "JP",
+   "label": "Japanese",
+   "re": "\\b(japanese|little tokyo|japantown|nikkei)\\b"
+  },
+  {
+   "k": "KR",
+   "label": "Korean",
+   "re": "\\b(korean|koreatown|k-pop)\\b"
+  },
+  {
+   "k": "PH",
+   "label": "Filipino",
+   "re": "\\b(filipino\\w*|filipina\\w*|manilatown|pilipino)\\b"
+  },
+  {
+   "k": "VN",
+   "label": "Vietnamese",
+   "re": "\\b(vietnamese|little saigon)\\b"
+  },
+  {
+   "k": "SEA",
+   "label": "Southeast Asian",
+   "re": "\\b(southeast asian|hmong|cambodian|khmer|laotian|burmese|mien|thai|indonesian|malaysian)\\b"
+  },
+  {
+   "k": "SA",
+   "label": "South Asian",
+   "re": "\\b(south asian|indian americans?|pakistani|bangladeshi|nepali|sri lankan|bhutanese|sikh|desi|hindu)\\b"
+  },
+  {
+   "k": "NHPI",
+   "label": "Native Hawaiian & Pacific Islander",
+   "re": "\\b(native hawaiians?|hawaiian|pacific islanders?|nhpi|samoa\\w*|tongan|chamorro|micronesia\\w*|marshallese|chuukese|palauan|fijian|cofa|compact of free association|guam\\w*|kanaka|lahaina|maui|oha)\\b"
+  }
+ ],
+ "states": [
+  [
+   "AL",
+   "Alabama",
+   "alabama"
+  ],
+  [
+   "AK",
+   "Alaska",
+   "alaska"
+  ],
+  [
+   "AZ",
+   "Arizona",
+   "arizona|phoenix"
+  ],
+  [
+   "AR",
+   "Arkansas",
+   "arkansas"
+  ],
+  [
+   "CA",
+   "California",
+   "california|los angeles|san francisco|oakland|san jose|sacramento|san diego|orange county|irvine|fremont|la county|ca-\\d+|sf|bay area|silicon valley"
+  ],
+  [
+   "CO",
+   "Colorado",
+   "colorado|denver"
+  ],
+  [
+   "CT",
+   "Connecticut",
+   "connecticut"
+  ],
+  [
+   "DE",
+   "Delaware",
+   "delaware"
+  ],
+  [
+   "DC",
+   "Washington, D.C.",
+   "washington,? d\\.?c\\.?|district of columbia"
+  ],
+  [
+   "FL",
+   "Florida",
+   "florida|miami|orlando"
+  ],
+  [
+   "GA",
+   "Georgia",
+   "georgia(?! tech)|atlanta|gwinnett"
+  ],
+  [
+   "HI",
+   "Hawaii",
+   "hawai[‘'ʻ]?i\\b|honolulu|maui|oahu|lahaina|hilo|kauai"
+  ],
+  [
+   "ID",
+   "Idaho",
+   "idaho"
+  ],
+  [
+   "IL",
+   "Illinois",
+   "illinois|chicago"
+  ],
+  [
+   "IN",
+   "Indiana",
+   "indiana"
+  ],
+  [
+   "IA",
+   "Iowa",
+   "iowa"
+  ],
+  [
+   "KS",
+   "Kansas",
+   "kansas"
+  ],
+  [
+   "KY",
+   "Kentucky",
+   "kentucky"
+  ],
+  [
+   "LA",
+   "Louisiana",
+   "louisiana|new orleans"
+  ],
+  [
+   "ME",
+   "Maine",
+   "maine"
+  ],
+  [
+   "MD",
+   "Maryland",
+   "maryland|montgomery county"
+  ],
+  [
+   "MA",
+   "Massachusetts",
+   "massachusetts|boston|harvard"
+  ],
+  [
+   "MI",
+   "Michigan",
+   "michigan|detroit"
+  ],
+  [
+   "MN",
+   "Minnesota",
+   "minnesota|minneapolis|st\\. paul"
+  ],
+  [
+   "MS",
+   "Mississippi",
+   "mississippi"
+  ],
+  [
+   "MO",
+   "Missouri",
+   "missouri|st\\. louis"
+  ],
+  [
+   "MT",
+   "Montana",
+   "montana"
+  ],
+  [
+   "NE",
+   "Nebraska",
+   "nebraska"
+  ],
+  [
+   "NV",
+   "Nevada",
+   "nevada|las vegas"
+  ],
+  [
+   "NH",
+   "New Hampshire",
+   "new hampshire"
+  ],
+  [
+   "NJ",
+   "New Jersey",
+   "new jersey|edison"
+  ],
+  [
+   "NM",
+   "New Mexico",
+   "new mexico|albuquerque"
+  ],
+  [
+   "NY",
+   "New York",
+   "new york|nyc|brooklyn|queens|flushing|manhattan|sunset park"
+  ],
+  [
+   "NC",
+   "North Carolina",
+   "north carolina|charlotte|raleigh"
+  ],
+  [
+   "ND",
+   "North Dakota",
+   "north dakota"
+  ],
+  [
+   "OH",
+   "Ohio",
+   "ohio|columbus|cleveland"
+  ],
+  [
+   "OK",
+   "Oklahoma",
+   "oklahoma"
+  ],
+  [
+   "OR",
+   "Oregon",
+   "oregon|portland(?!,? maine)"
+  ],
+  [
+   "PA",
+   "Pennsylvania",
+   "pennsylvania|philadelphia|pittsburgh"
+  ],
+  [
+   "RI",
+   "Rhode Island",
+   "rhode island"
+  ],
+  [
+   "SC",
+   "South Carolina",
+   "south carolina"
+  ],
+  [
+   "SD",
+   "South Dakota",
+   "south dakota"
+  ],
+  [
+   "TN",
+   "Tennessee",
+   "tennessee|nashville"
+  ],
+  [
+   "TX",
+   "Texas",
+   "texas|houston|dallas|austin|plano"
+  ],
+  [
+   "UT",
+   "Utah",
+   "utah"
+  ],
+  [
+   "VT",
+   "Vermont",
+   "vermont"
+  ],
+  [
+   "VA",
+   "Virginia",
+   "(?<!west )virginia|fairfax"
+  ],
+  [
+   "WA",
+   "Washington",
+   "washington(?!,? d\\.?c\\.?| post| examiner| times)|seattle|tacoma|bellevue|king county"
+  ],
+  [
+   "WV",
+   "West Virginia",
+   "west virginia"
+  ],
+  [
+   "WI",
+   "Wisconsin",
+   "wisconsin|milwaukee"
+  ],
+  [
+   "WY",
+   "Wyoming",
+   "wyoming"
+  ],
+  [
+   "GU",
+   "Guam",
+   "guam\\w*"
+  ],
+  [
+   "AS",
+   "American Samoa",
+   "american samoa\\w*"
+  ],
+  [
+   "MP",
+   "Northern Mariana Islands",
+   "northern mariana\\w*|cnmi|saipan"
+  ],
+  [
+   "PR",
+   "Puerto Rico",
+   "puerto ric\\w*"
+  ],
+  [
+   "VI",
+   "U.S. Virgin Islands",
+   "virgin islands"
+  ]
+ ],
+ "bill": "(?<![\\w.])(H\\.?\\s?R\\.?|H\\.?\\s?J\\.?\\s?Res\\.?|H\\.?\\s?Res\\.?|H\\.?\\s?Con\\.?\\s?Res\\.?|S\\.|S\\.\\s?J\\.?\\s?Res\\.?|S\\.\\s?Res\\.?|S\\.\\s?Con\\.?\\s?Res\\.?)\\s?(\\d{1,5})\\b",
+ "lang": {
+  "ranges": [
+   [
+    880,
+    1023
+   ],
+   [
+    1024,
+    1279
+   ],
+   [
+    1424,
+    1791
+   ],
+   [
+    2304,
+    3583
+   ],
+   [
+    3584,
+    3839
+   ],
+   [
+    4096,
+    4255
+   ],
+   [
+    6016,
+    6143
+   ],
+   [
+    12352,
+    12543
+   ],
+   [
+    13312,
+    19903
+   ],
+   [
+    19968,
+    40959
+   ],
+   [
+    44032,
+    55215
+   ],
+   [
+    65280,
+    65519
+   ]
+  ],
+  "vi": "ạảãấầẩẫậắằẳẵặẹẻẽếềểễệỉịọỏốồổỗộớờởỡợụủứừửữựỳỵỷỹđơư",
+  "en": [
+   "the",
+   "a",
+   "an",
+   "and",
+   "or",
+   "of",
+   "to",
+   "in",
+   "for",
+   "on",
+   "with",
+   "is",
+   "are",
+   "was",
+   "were",
+   "at",
+   "by",
+   "from",
+   "as",
+   "that",
+   "this",
+   "it",
+   "its",
+   "after",
+   "over",
+   "amid",
+   "new",
+   "says",
+   "said",
+   "will",
+   "not",
+   "be",
+   "has",
+   "have",
+   "had",
+   "but",
+   "about",
+   "into",
+   "their",
+   "our",
+   "your",
+   "we",
+   "they",
+   "he",
+   "she",
+   "who",
+   "what",
+   "when",
+   "why",
+   "how",
+   "more",
+   "than",
+   "up",
+   "out",
+   "one",
+   "two"
+  ],
+  "xx": [
+   "para",
+   "que",
+   "una",
+   "con",
+   "por",
+   "pero",
+   "sobre",
+   "también",
+   "não",
+   "uma",
+   "dos",
+   "das",
+   "são",
+   "avec",
+   "pour",
+   "dans",
+   "les",
+   "des",
+   "une",
+   "sont",
+   "und",
+   "der",
+   "die",
+   "das",
+   "mit",
+   "für",
+   "nicht",
+   "ein",
+   "eine",
+   "ang",
+   "mga",
+   "yang",
+   "dan",
+   "untuk",
+   "dengan",
+   "dari",
+   "pada",
+   "ini",
+   "itu",
+   "adalah",
+   "bahwa",
+   "dalam"
+  ]
+ },
+ "kinds": {
+  "community": "AAPI Media",
+  "news": "Mainstream",
+  "statement": "Statements",
+  "research": "Research",
+  "bill": "Legislation",
+  "official": "Rules & notices",
+  "order": "Executive actions",
+  "govstmt": "Government statements",
+  "hearing": "Hearings & reports"
+ },
+ "policyKinds": [
+  "bill",
+  "official",
+  "order",
+  "govstmt",
+  "hearing"
+ ],
+ "policy": {
+  "issue": "\\b(immigra\\w+|non-?immigra\\w+|birth tourism|visas?|green cards?|naturaliz\\w+|citizenship|birthright|refugees?|asylum|deport\\w+|H-?1B|H-?4|public charge|temporary protected status|DACA|language access|limited english|english proficien\\w+|census|race and ethnic\\w*|racial and ethnic|disaggregat\\w+|hate crimes?|hate incidents?)\\b"
+ },
+ "research": {
+  "note": "Research page: a news story or organization statement is listed there when its headline or summary matches one of these patterns, tried in this order (a poll or survey wins over a report, a report over plain data). 'ignore' removes look-alike phrases before matching (polls as in voting, data centers, ethnic studies). Items from the Policy tracker are never listed, and a source typed 'research' (AP-NORC) always is. Patterns are case-insensitive.",
+  "labels": {
+   "poll": "Survey",
+   "report": "Report",
+   "data": "Data"
+  },
+  "plural": {
+   "poll": "Surveys",
+   "report": "Reports",
+   "data": "Data"
+  },
+  "ignore": "\\b(at|to|near|outside|inside)\\s+(the\\s+)?polls\\b|\\bpoll(ing)?\\s+(workers?|watchers?|places?|sites?|locations?|stations?|centers?|centres?|hours|managers?)\\b|\\bpolls?\\s+(open|opens|close|closes|closing)\\b|\\bdata\\s+(centers?|centres?|breach(es)?|privacy|brokers?|leaks?|security|protection|entry)\\b|\\bAAPI\\s+Data\\b|\\b(ethnic|asian american|asian|aapi|pacific islander|native hawaiian|american|african american|black|latino|women'?s|gender|area|film|religious|cultural|international|diaspora)\\s+studies\\b|\\bstudy\\s+(abroad|hall|group|session)\\b|\\bland\\s+survey\\b|\\bgeological\\s+survey\\b",
+  "poll": "\\b(polls?|polling|pollsters?|surveys?|surveyed|respondents|questionnaires?|AP-NORC|exit polls?)\\b",
+  "report": "\\b(studies|study|researchers?|new research|research\\s+(shows?|finds?|found|suggests?|reveals?|indicates?)|(new|latest|annual|landmark|national|major|updated|special|final|full|joint|interim|comprehensive)\\s+(\\w+\\s+)?reports?|reports?\\s+(finds?|found|shows?|showed|says|reveals?|highlights?|details|warns|released|examines?|documents?|analy[sz]es?|outlines?|estimates?|ranks?)|(releases?|publishes?|unveils?|launches?|issues?)\\s+(a\\s+|its\\s+|the\\s+)?(\\w+\\s+)?(report|analysis|findings|brief)|white paper|policy brief|issue brief|fact sheets?|an analysis|analysis\\s+(finds?|shows?|of)|findings|scorecard|report card|audit|state of the)\\b",
+  "data": "\\b(data|statistics|statistical|datasets?|census\\s+(data|figures|numbers|bureau\\s+(data|figures|report))|by the numbers|numbers\\s+(show|reveal|rise|climb|drop)|\\d+(\\.\\d+)?\\s?(%|percent)\\s+of|percent\\s+of|(hate\\s+)?(incidents?|crimes?)\\s+(rose|rise|rising|jumped|jump|increased|surged?|fell|dropped|declined?)|(rises?|rose|falls?|fell|drops?|dropped|climbs?|climbed|jumps?|jumped|surges?|surged|declines?|declined|increases?|increased|reaches?|reached)\\s+(to|by)\\s+(a\\s+)?(record\\s+)?\\d+|record\\s+(high|low)s?|projected|projections?|estimates?\\s+(show|suggest|indicate|put)|forecasts?)\\b"
+ }
+}

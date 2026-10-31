@@ -70,7 +70,10 @@ const clean = s => tx(s).replace(/<[^>]*>/g, " ")
 // Show only a publisher-written dek/excerpt from the feed. Never generated or rewritten.
 // Auto-trimmed body excerpts ("… [...]", "appeared first on") and long text are dropped.
 const dek = (s, title) => {
-  const c = clean(s);
+  let c = clean(s);
+  // WordPress feeds add "The post <title> appeared first on <site>." after the excerpt; that footer is removed and the excerpt in front of it is kept.
+  const f = c.search(/appeared first on/i);
+  if (f > 0) { const j = c.lastIndexOf("The post ", f); if (j >= 0) c = c.slice(0, j).trim(); }
   if (c.length < 25 || c.length > 280) return "";
   if (/(…|\.\.\.)\s*\]?\s*$/.test(c) || /appeared first on/i.test(c)) return "";
   if (c.toLowerCase().startsWith(title.toLowerCase().slice(0, 40))) return "";
@@ -92,6 +95,19 @@ const heroOf = (it, body) => {
   const u = pick(it["media:content"])?.["@_url"] ?? pick(it["media:thumbnail"])?.["@_url"] ?? pick(it.enclosure)?.["@_url"] ?? /<img[^>]+src=["']([^"']+)["']/i.exec(body)?.[1];
   const s = safeUrl(u ?? "");
   return s.startsWith("https://") ? s : "";
+};
+
+// A WordPress feed repeats the featured image at the top of the body, often as another size of the same file (photo-1024x683.jpg and photo-scaled.jpg).
+// The reader already shows the lead photo above the story, so a copy at the top of the body is removed. A different photo is a real figure and stays.
+const photoKey = u => { try { return new URL(u).pathname.toLowerCase().replace(/-(?:\d+x\d+|scaled|rotated)(?=\.\w+$)/, ""); } catch { return ""; } };
+const LEAD = /^\s*(<figure\b[^>]*>[\s\S]*?<\/figure>|<p\b[^>]*>\s*(?:<a\b[^>]*>\s*)?<img\b[^>]*>\s*(?:<\/a>\s*)?<\/p>|<img\b[^>]*>)\s*(?:<br\s*\/?>\s*)*/i;
+const dropLeadPhoto = (body, hero) => {
+  const m = LEAD.exec(body ?? "");
+  const img = m && /<img\b[^>]*\bsrc=["']([^"']+)["'][^>]*>/i.exec(m[1]);
+  if (!img) return body;
+  if (hero && photoKey(safeUrl(img[1])) !== photoKey(hero)) return body;
+  const cap = /<figcaption\b[^>]*>([\s\S]*?)<\/figcaption>/i.exec(m[1]);
+  return (cap && clean(cap[1]) ? m[1].replace(img[0], "") : "") + body.slice(m[0].length);
 };
 
 async function getText(url, accept) {
@@ -192,7 +208,7 @@ async function pull(src) {
     const full = src.fullText ? cleanBody(tx(it["content:encoded"] ?? it.content)) : "";
     // a .gov statement can also be in the Policy tracker, so it gets an id of its own here
     const item = { id: createHash("sha1").update(isOrg(src.kind) && isGov(u) ? "statement:" + u : u).digest("hex").slice(0, 12), d: d.toISOString(), s, h, m, u, g: src.google ? 1 : 0, k: src.kind ?? kindOf(s), ...(rl ? { rl } : {}), ...TG.all(h, raw + " " + clean(full).slice(0, 4000), d, gov ? "GOVERNMENT" : undefined) };
-    if (full) { item.v = 1; item.art = { by: clean(it["dc:creator"] ?? it.author?.name), img: heroOf(it, full), body: full }; }
+    if (full) { const img = heroOf(it, full); item.v = 1; item.art = { by: clean(it["dc:creator"] ?? it.author?.name), img, body: dropLeadPhoto(full, img) }; }
     out.push(item);
   }
   return out;
@@ -404,6 +420,12 @@ const adir = join(dirname(OUT), "articles");
 await mkdir(adir, { recursive: true });
 for (const [id, a] of arts) await writeFile(join(adir, id + ".json"), JSON.stringify(a));
 const keepIds = new Set(out.filter(i => i.v).map(i => i.id));
+for (const f of await readdir(adir)) { // articles stored before this rule existed
+  const id = f.slice(0, -5);
+  if (!f.endsWith(".json") || arts.has(id) || !keepIds.has(id)) continue;
+  const a = JSON.parse(await readFile(join(adir, f), "utf8")), b = dropLeadPhoto(a.body, a.img);
+  if (b !== a.body) await writeFile(join(adir, f), JSON.stringify({ ...a, body: b }));
+}
 for (const f of await readdir(adir)) if (f.endsWith(".json") && !keepIds.has(f.slice(0, -5))) await unlink(join(adir, f));
 const pubSources = status.map(({ name, home, kind, ok, count, note }) => ({ name, home, kind, ok, count, note }));
 if (JSON.stringify(out) === JSON.stringify(old) && JSON.stringify(pubSources) === JSON.stringify(oldSources)) { console.log("No changes."); process.exit(0); }

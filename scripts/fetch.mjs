@@ -10,8 +10,15 @@ import { makeEnglishCheck } from "./lang.mjs";
 const CFG = process.env.SOURCES ?? fileURLToPath(new URL("../sources.json", import.meta.url));
 const OUT = process.env.OUT ?? fileURLToPath(new URL("../data/feed.json", import.meta.url));
 const cfg = JSON.parse(await readFile(CFG, "utf8"));
-const BLOCK = new Set((cfg.excludeHosts ?? []).map(h => h.toLowerCase())); // e.g. "newsletters.theyappie.com"
+const BLOCK = new Set((cfg.excludeHosts ?? []).map(h => h.toLowerCase())); // sites that are never shown, with their subdomains, e.g. "medium.com"
 const hostOf = v => { try { return new URL(String(v)).hostname.toLowerCase(); } catch { return ""; } };
+const hostBlocked = h => !!h && [...BLOCK].some(d => h === d || h.endsWith("." + d));
+// Google News gives a publisher's name, not its address, so names are matched too: the ones in "excludeNames" and each blocked site's own name ("hoodline.com" also blocks a publisher called "Hoodline").
+const normName = v => String(v ?? "").toLowerCase().replace(/[^a-z0-9]+/g, "");
+const noTld = v => String(v ?? "").trim().replace(/\.(com|org|net|co|ca|vn|in|io|info|tv|us)$/i, "");
+const BLOCK_NAMES = new Set([...(cfg.excludeNames ?? []), ...BLOCK].flatMap(n => [normName(n), normName(noTld(n))]).filter(Boolean));
+const nameBlocked = n => [normName(n), normName(noTld(n))].some(k => k && BLOCK_NAMES.has(k));
+const blocked = o => hostBlocked(hostOf(o.u)) || nameBlocked(o.s);
 const KEEP_MS = (cfg.keepDays ?? 30) * 864e5, MAX = cfg.maxItems ?? 400;
 const parser = new XMLParser({ ignoreAttributes: false, attributeNamePrefix: "@_", textNodeName: "#text" });
 
@@ -192,14 +199,14 @@ async function pull(src) {
   const caseRe = src.skipTitle ? new RegExp(src.skipTitle, "i") : null;
   const out = [];
   for (const it of await records(src)) {
-    let h = clean(it.title), s = src.name;
+    let h = clean(it.title), s = src.name, pubName = "";
     if (src.google) {
       const pub = clean(it.source);
-      if (pub) { s = pub; if (h.endsWith(" - " + pub)) h = h.slice(0, -(pub.length + 3)); }
+      if (pub) { pubName = pub; s = pub; if (h.endsWith(" - " + pub)) h = h.slice(0, -(pub.length + 3)); }
       if (src.asName) s = src.asName; // e.g. show Google News results from nbcnews.com as "NBC Asian America"
     }
     const u = safeUrl(linkOf(it));
-    if (BLOCK.has(hostOf(u)) || BLOCK.has(hostOf(it.source?.["@_url"] ?? ""))) continue;
+    if (hostBlocked(hostOf(u)) || hostBlocked(hostOf(it.source?.["@_url"] ?? "")) || nameBlocked(pubName)) continue;
     const raw = src.google ? "" : clean(it.description ?? it.summary ?? it["content:encoded"]).slice(0, 300); // used only for filtering/tagging
     const m = src.google ? "" : dek(it.description ?? it.summary, h);
     const gov = isPolicy(src.kind), rl = gov ? (relOf(h + " " + raw) || (src.filter ? "" : "n")) : "";
@@ -408,6 +415,7 @@ const retag = o => {
   return { ...o, s, g: 1, k: o.k ?? kindOf(s), t: !force && VALID.has(o.t) ? o.t : tg.t, cm: !force && o.cm ? o.cm : tg.cm, st: !force && o.st ? o.st : tg.st, bl: !force && o.bl ? o.bl : tg.bl };
 };
 for (const it of [...fresh, ...old.map(retag)]) {
+  if (blocked(it)) continue; // a blocked site is dropped from stored stories too
   const pol = isPolicy(it.k);
   if (pol && !isGov(it.u)) continue; // the Policy tracker takes .gov sources only
   const k = pol ? it.u : it.h.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim().slice(0, 70); // companion bills can share a title, so policy items are told apart by link

@@ -349,8 +349,28 @@
       "kind": "govstmt"
     }
   ],
+  "_excludeNote": "Sites listed here are never shown, including their subdomains. excludeNames covers a publisher name that Google News shows without a web address. Stored stories from these sites are removed on the next update.",
   "excludeHosts": [
-    "newsletters.theyappie.com"
+    "newsletters.theyappie.com",
+    "hoodline.com",
+    "vietnam.vn",
+    "dainikjagranmpcg.com",
+    "kelownadailycourier.ca",
+    "nationalenquirer.co",
+    "nationalenquirer.com",
+    "sofascore.com",
+    "usresistnews.org",
+    "constitutioncenter.org",
+    "history.com",
+    "medium.com"
+  ],
+  "excludeNames": [
+    "The National Constitution Center",
+    "National Constitution Center",
+    "Dainik Jagran MP/CG",
+    "Kelowna Daily Courier",
+    "US Resist News",
+    "National Enquirer"
   ],
   "siteUrl": "",
   "renames": { "The Takeaway": "TAAF" },

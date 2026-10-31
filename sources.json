@@ -21,7 +21,7 @@
     {
       "name": "NextShark",
       "home": "https://nextshark.com",
-      "feed": "https://nextshark.com/feed"
+      "wp": "https://nextshark.com/wp-json/wp/v2/posts?per_page=20&_fields=link,title,date_gmt,excerpt"
     },
     {
       "name": "Maui Now",
@@ -104,7 +104,10 @@
     {
       "name": "Red, White and Brown",
       "home": "https://redwhiteandbrown.substack.com/archive",
-      "feed": "https://redwhiteandbrown.substack.com/feed"
+      "google": true,
+      "asName": "Red, White and Brown",
+      "skipTitle": "^(Red, White and Brown|Archive|About|Home)$",
+      "feed": "https://news.google.com/rss/search?q=site%3Aredwhiteandbrown.substack.com+when%3A30d&hl=en-US&gl=US&ceid=US:en"
     },
     {
       "name": "Pacific Citizen",

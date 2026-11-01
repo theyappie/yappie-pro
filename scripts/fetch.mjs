@@ -1,4 +1,4 @@
-// AAPI Wire — feed collector (Node 20+). Usage: node scripts/fetch.mjs
+// The Yappie Pro — feed collector (Node 20+). Usage: node scripts/fetch.mjs
 import { readFile, writeFile, mkdir, readdir, unlink } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { dirname, join } from "node:path";
@@ -55,7 +55,7 @@ const isEnglish = makeEnglishCheck(JSON.parse(await readFile(TAXO_PATH, "utf8"))
 const POLICY = TG.policyKinds, ISSUE = TG.issue, isPolicy = k => POLICY.has(k);
 const isGov = u => /(^|\.)gov$/.test(hostOf(u));
 const relOf = s => AAPI.test(s) ? "n" : ISSUE.test(s) ? "i" : "";
-const GOV_UA = { "user-agent": "AAPIWire/1.0 (open-source policy index)", accept: "application/json" };
+const GOV_UA = { "user-agent": "TheYappiePro/1.0 (open-source policy index)", accept: "application/json" };
 
 // One free api.data.gov key serves Congress.gov, GovInfo and Regulations.gov. Each allows about 1,000 or more requests an hour per key, the response headers say how many are left,
 // and this job runs about every 10 minutes (up to 6 runs an hour). A run therefore makes at most apiBudget.perRun key requests and stops early when a host reports that less than apiBudget.keepFraction of its hourly allowance is left.
@@ -167,7 +167,7 @@ const dropFooter = body => String(body ?? "").replace(/\s*<p\b[^>]*>\s*(?:<(?:em
 const tidyBody = (body, hero) => dropFooter(dropLeadPhoto(body, hero));
 
 async function getText(url, accept) {
-  const res = await fetch(url, { headers: { "user-agent": "AAPIWire/1.0 (open-source news index)", ...(accept ? { accept } : {}) }, signal: AbortSignal.timeout(20000) });
+  const res = await fetch(url, { headers: { "user-agent": "TheYappiePro/1.0 (open-source news index)", ...(accept ? { accept } : {}) }, signal: AbortSignal.timeout(20000) });
   if (!res.ok) throw new Error("HTTP " + res.status);
   return res.text();
 }

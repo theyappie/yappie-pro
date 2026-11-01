@@ -22,15 +22,15 @@ function rss(title, desc, list) {
 const out = new Map(), index = [];
 const add = (file, title, desc, list, group) => { if (!list.length) return; out.set(file, rss(title, desc, list)); index.push({ file: "rss/" + file, title, group, count: list.length }); };
 const by = (fn) => items.filter(fn);
-add("all.xml", "AAPI Wire: all stories", "Every story in the index, newest first.", items, "all");
-for (const t of tax.topics) add(`topic-${slug(t.k)}.xml`, `AAPI Wire: ${t.label}`, `${t.label} stories.`, by(x => x.t === t.k), "topic");
-for (const c of tax.communities) add(`community-${slug(c.k)}.xml`, `AAPI Wire: ${c.label}`, `Stories mentioning ${c.label} communities.`, by(x => x.cm?.includes(c.k)), "community");
-for (const [k, l] of tax.states) add(`state-${slug(k)}.xml`, `AAPI Wire: ${l}`, `Stories mentioning ${l}.`, by(x => x.st?.includes(k)), "state");
-for (const [k, l] of Object.entries(tax.kinds)) add(`kind-${slug(k)}.xml`, `AAPI Wire: ${l}`, `${l} items only.`, by(x => x.k === k), "kind");
+add("all.xml", "The Yappie Pro: all stories", "Every story in the index, newest first.", items, "all");
+for (const t of tax.topics) add(`topic-${slug(t.k)}.xml`, `The Yappie Pro: ${t.label}`, `${t.label} stories.`, by(x => x.t === t.k), "topic");
+for (const c of tax.communities) add(`community-${slug(c.k)}.xml`, `The Yappie Pro: ${c.label}`, `Stories mentioning ${c.label} communities.`, by(x => x.cm?.includes(c.k)), "community");
+for (const [k, l] of tax.states) add(`state-${slug(k)}.xml`, `The Yappie Pro: ${l}`, `Stories mentioning ${l}.`, by(x => x.st?.includes(k)), "state");
+for (const [k, l] of Object.entries(tax.kinds)) add(`kind-${slug(k)}.xml`, `The Yappie Pro: ${l}`, `${l} items only.`, by(x => x.k === k), "kind");
 const POLK = new Set(tax.policyKinds ?? []);
-add("policy.xml", "AAPI Wire: policy tracker", "Bills, rules, executive actions, hearings and government statements from .gov sources.", by(x => POLK.has(x.k)), "kind");
+add("policy.xml", "The Yappie Pro: policy tracker", "Bills, rules, executive actions, hearings and government statements from .gov sources.", by(x => POLK.has(x.k)), "kind");
 const dl = by(x => x.dl).sort((a, b) => a.dl.localeCompare(b.dl));
-add("deadlines.xml", "AAPI Wire: comment deadlines", "Federal Register items open for public comment, soonest deadline first.", dl, "deadlines");
+add("deadlines.xml", "The Yappie Pro: comment deadlines", "Federal Register items open for public comment, soonest deadline first.", dl, "deadlines");
 
 const dir = join(ROOT, "data/rss"); await mkdir(dir, { recursive: true });
 for (const [f, x] of out) await writeFile(join(dir, f), x);
@@ -42,7 +42,7 @@ const fold = l => { const b = Buffer.from(l); if (b.length <= 74) return l; cons
 const ics = t => String(t ?? "").replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\r?\n/g, "\\n");
 const ymd = d => d.replace(/-/g, ""), next = d => new Date(new Date(d + "T12:00:00Z").getTime() + 864e5).toISOString().slice(0, 10).replace(/-/g, "");
 const z = stamp.toISOString().replace(/[-:]/g, "").replace(/\.\d+/, "");
-const lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//AAPI Wire//Comment deadlines//EN", "CALSCALE:GREGORIAN", "X-WR-CALNAME:AAPI comment deadlines"];
+const lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//The Yappie Pro//Comment deadlines//EN", "CALSCALE:GREGORIAN", "X-WR-CALNAME:AAPI comment deadlines"];
 for (const x of dl) lines.push("BEGIN:VEVENT", `UID:${x.id}@aapi-wire`, `DTSTAMP:${z}`, `DTSTART;VALUE=DATE:${ymd(x.dl)}`, `DTEND;VALUE=DATE:${next(x.dl)}`, `SUMMARY:${ics("Comments due: " + x.h)}`, `URL:${x.u}`, `DESCRIPTION:${ics([x.ty, x.ag, x.m].filter(Boolean).join(" | ") + "\n" + x.u)}`, "END:VEVENT");
 lines.push("END:VCALENDAR");
 await writeFile(join(ROOT, "data/deadlines.ics"), lines.map(fold).join("\r\n") + "\r\n");

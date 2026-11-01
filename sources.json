@@ -1,6 +1,7 @@
 {
   "keepDays": 30,
   "maxItems": 400,
+  "researchMax": 150,
   "sources": [
     {
       "name": "AsAmNews",
@@ -11,7 +12,8 @@
       "name": "The Yappie",
       "home": "https://theyappie.com",
       "feed": "https://theyappie.com/feed/",
-      "fullText": true
+      "fullText": true,
+      "authors": { "The Yappie Staff": "https://theyappie.com/author/andrewpeng1/" }
     },
     {
       "name": "Rafu Shimpo",
@@ -38,8 +40,63 @@
     {
       "name": "RNZ Pacific",
       "home": "https://www.rnz.co.nz/news/pacific",
-      "feed": "https://www.rnz.co.nz/rss/pacific.xml",
-      "filter": true
+      "feed": "https://www.rnz.co.nz/rss/pacific.xml"
+    },
+    {
+      "name": "Pew Research Center",
+      "home": "https://www.pewresearch.org/topic/race-ethnicity/",
+      "wp": "https://www.pewresearch.org/wp-json/wp/v2/posts?categories=150&per_page=30&orderby=date&order=desc&_fields=link,title,date_gmt,excerpt",
+      "kind": "research",
+      "keepDays": 730,
+      "skipTitle": "^(Acknowledg\\w+|Methodology\\b.*|Appendix\\b.*|Detailed tables.*|Topline\\b.*|Chapter \\d+.*|\\d+\\.\\s.*)$"
+    },
+    {
+      "name": "Pew Research Center",
+      "home": "https://www.pewresearch.org/topic/race-ethnicity/",
+      "wp": "https://www.pewresearch.org/wp-json/wp/v2/short-read?categories=150&per_page=30&orderby=date&order=desc&_fields=link,title,date_gmt,excerpt",
+      "kind": "research",
+      "keepDays": 730,
+      "skipTitle": "^(Acknowledg\\w+|Methodology\\b.*|Appendix\\b.*|Detailed tables.*|Topline\\b.*|Chapter \\d+.*|\\d+\\.\\s.*)$"
+    },
+    {
+      "name": "Pew Research Center",
+      "home": "https://www.pewresearch.org/topic/race-ethnicity/",
+      "wp": "https://www.pewresearch.org/wp-json/wp/v2/posts?categories=28&per_page=30&orderby=date&order=desc&_fields=link,title,date_gmt,excerpt",
+      "kind": "research",
+      "keepDays": 730,
+      "skipTitle": "^(Acknowledg\\w+|Methodology\\b.*|Appendix\\b.*|Detailed tables.*|Topline\\b.*|Chapter \\d+.*|\\d+\\.\\s.*)$",
+      "filter": true,
+      "match": "\\b(asian[- ]americans?|asians? in the (?:u\\.?s\\.?|united states|america)|asian (?:adults|immigrants?|voters|population|origin|groups|households)|aapi|aanhpi|nhpi|native hawaiians?|pacific islanders?|(?:chinese|korean|japanese|indian|vietnamese|filipino|taiwanese|pakistani|bangladeshi|cambodian|laotian|burmese|nepalese) americans?|hmong|south asians?|southeast asians?)\\b"
+    },
+    {
+      "name": "Pew Research Center",
+      "home": "https://www.pewresearch.org/topic/race-ethnicity/",
+      "wp": "https://www.pewresearch.org/wp-json/wp/v2/short-read?categories=28&per_page=30&orderby=date&order=desc&_fields=link,title,date_gmt,excerpt",
+      "kind": "research",
+      "keepDays": 730,
+      "skipTitle": "^(Acknowledg\\w+|Methodology\\b.*|Appendix\\b.*|Detailed tables.*|Topline\\b.*|Chapter \\d+.*|\\d+\\.\\s.*)$",
+      "filter": true,
+      "match": "\\b(asian[- ]americans?|asians? in the (?:u\\.?s\\.?|united states|america)|asian (?:adults|immigrants?|voters|population|origin|groups|households)|aapi|aanhpi|nhpi|native hawaiians?|pacific islanders?|(?:chinese|korean|japanese|indian|vietnamese|filipino|taiwanese|pakistani|bangladeshi|cambodian|laotian|burmese|nepalese) americans?|hmong|south asians?|southeast asians?)\\b"
+    },
+    {
+      "name": "Pew Research Center",
+      "home": "https://www.pewresearch.org/topic/race-ethnicity/",
+      "wp": "https://www.pewresearch.org/wp-json/wp/v2/short-read?search=Pacific+Islander&per_page=30&orderby=date&order=desc&_fields=link,title,date_gmt,excerpt",
+      "kind": "research",
+      "keepDays": 730,
+      "skipTitle": "^(Acknowledg\\w+|Methodology\\b.*|Appendix\\b.*|Detailed tables.*|Topline\\b.*|Chapter \\d+.*|\\d+\\.\\s.*)$",
+      "filter": true,
+      "match": "\\b(asian[- ]americans?|asians? in the (?:u\\.?s\\.?|united states|america)|asian (?:adults|immigrants?|voters|population|origin|groups|households)|aapi|aanhpi|nhpi|native hawaiians?|pacific islanders?|(?:chinese|korean|japanese|indian|vietnamese|filipino|taiwanese|pakistani|bangladeshi|cambodian|laotian|burmese|nepalese) americans?|hmong|south asians?|southeast asians?)\\b"
+    },
+    {
+      "name": "Pew Research Center",
+      "home": "https://www.pewresearch.org/topic/race-ethnicity/",
+      "wp": "https://www.pewresearch.org/wp-json/wp/v2/posts?search=Pacific+Islander&per_page=30&orderby=date&order=desc&_fields=link,title,date_gmt,excerpt",
+      "kind": "research",
+      "keepDays": 730,
+      "skipTitle": "^(Acknowledg\\w+|Methodology\\b.*|Appendix\\b.*|Detailed tables.*|Topline\\b.*|Chapter \\d+.*|\\d+\\.\\s.*)$",
+      "filter": true,
+      "match": "\\b(asian[- ]americans?|asians? in the (?:u\\.?s\\.?|united states|america)|asian (?:adults|immigrants?|voters|population|origin|groups|households)|aapi|aanhpi|nhpi|native hawaiians?|pacific islanders?|(?:chinese|korean|japanese|indian|vietnamese|filipino|taiwanese|pakistani|bangladeshi|cambodian|laotian|burmese|nepalese) americans?|hmong|south asians?|southeast asians?)\\b"
     },
     {
       "name": "AP-NORC",
@@ -131,6 +188,11 @@
       "name": "Google News: Pacific Islander",
       "google": true,
       "feed": "https://news.google.com/rss/search?q=%22Pacific+Islander%22+OR+%22Native+Hawaiian%22+OR+%22American+Samoa%22+OR+Guam+when%3A7d&hl=en-US&gl=US&ceid=US:en"
+    },
+    {
+      "name": "Google News: Pacific Islands",
+      "google": true,
+      "feed": "https://news.google.com/rss/search?q=%28%22Pacific+Islands%22+OR+%22Pacific+Islanders%22+OR+Pasifika%29+%28climate+OR+%22sea+level%22+OR+%22deep-sea+mining%22+OR+sovereignty+OR+nuclear+OR+%22Compact+of+Free+Association%22+OR+migration%29+when%3A14d&hl=en-US&gl=US&ceid=US:en"
     },
     {
       "name": "Google News: Anti-Asian hate",
@@ -351,6 +413,8 @@
   ],
   "_excludeNote": "Sites listed here are never shown, including their subdomains. excludeNames covers a publisher name that Google News shows without a web address. Stored stories from these sites are removed on the next update.",
   "excludeHosts": [
+    "linkedin.com",
+    "britannica.com",
     "newsletters.theyappie.com",
     "hoodline.com",
     "vietnam.vn",
@@ -435,9 +499,18 @@
     "EcoPortal.net",
     "Rediff"
   ],
-  "_foreignNote": "Sites on a country domain outside the U.S. (.ca, .ch, .uz, .co.uk, .com.au, and every other two-letter country ending except .us and the U.S. territories .gu .as .mp .vi .pr .um) are never shown, and a source on one is not fetched. List a site in allowHosts to let it through.",
+  "_foreignNote": "Sites on a country domain outside the U.S. (.ca, .ch, .uz, .co.uk, .com.au, and every other two-letter country ending except .us and the U.S. territories .gu .as .mp .vi .pr .um) are never shown, and a source on one is not fetched. List a site in allowHosts to let it through, and in gatedHosts to let through only some of its stories.",
   "blockForeignDomains": true,
-  "allowHosts": [],
+  "allowHosts": ["rnz.co.nz"],
+  "_gateNote": "A site in allowHosts can also be listed here to let through only some of its stories: a story from it (matched by its address, the address Google News reports for its publisher, or its name) is kept when its headline and summary match require and do not match deny. rnz.co.nz: Pacific Islander stories only, no sports.",
+  "gatedHosts": [
+    {
+      "hosts": ["rnz.co.nz"],
+      "names": ["RNZ", "RNZ Pacific", "Radio New Zealand"],
+      "require": "\\b(pacific islanders?|pacific islands?|pasifika|pacific (?:peoples?|communit\\w+|diaspora|nations?|leaders?|forum|region|youth|families|workers?)|south pacific|polynesia\\w*|melanesia\\w*|micronesia\\w*|oceania|samoa\\w*|tonga\\w*|fiji\\w*|vanuatu|ni-?vanuatu|tuvalu\\w*|kiribati|i-kiribati|nauru\\w*|palau\\w*|marshall islands|marshallese|cook islands?|cook islanders?|niue\\w*|tokelau\\w*|papua new guinea|bougainville|solomon islands?|solomon islanders?|new caledonia|kanak\\w*|tahiti\\w*|wallis and futuna|guam|chamorros?|chamoru|mariana\\w*|saipan|tinian|cnmi|american samoa|hawai\\S*|rapa nui|pitcairn|pohnpei|chuuk|kosrae)\\b",
+      "deny": "\\b(sports?|sporting|rugby|nrl|netball|football\\w*|soccer|cricket|basketball|volleyball|athletics|athletes?|olympi\\w+|paralympi\\w+|commonwealth games|pacific games|micronesian games|mini games|island games|arafura games|world cup|premier league|league|cup|semis|recap|half-?time|full-?time|kick-?off|line-?up|scores? (?:a |the )?(?:winner|try|goal|hat-?trick)|(?:fiji|tonga|samoa|png|cook islands|new zealand|australia|england|france|kiwis|wallabies) (?:beats?|defeats?|edges?|stuns?|downs?|upsets?|thrash\\w*|routs?)|all blacks|black ferns|silver ferns|tall blacks|tall ferns|wallabies|wallaroos|warriors|moana pasifika|drua|flying fijians|manu samoa|ikale tahi|sevens|swimm\\w+|weightlift\\w+|boxing(?! day)|boxers?|mma|ufc|golf\\w*|tennis|cycling|rowing|surf(?:ing|ers?)|sailing|triathlon|waka ama|referee\\w*|(?:gold|silver|bronze) medal\\w*|medall?ists?|fifa|ofc|nba|nfl|grand final|semi-?finals?|quarter-?finals?|tournament|try-?scorer|scrum\\w*|halfback|five-?eighth)\\b"
+    }
+  ],
   "_routesNote": "Stories from these sites or publishers are shown on the page for the kind named here, whatever source they came in through. Stories that link to a .gov address move from News to the Policy page on their own.",
   "routes": [
     {"kind": "statement", "hosts": ["asianlawcaucus.org"], "names": ["Asian Law Caucus"]}
@@ -485,7 +558,7 @@
     "KoreAm",
     "Sampan"
   ],
-  "communityPattern": "\\b(asian[- ]?americans?|asian[- ]pacific(?: american| islander)s?|(?<!:)aapi(?!\\s+director)|aanhpi|nhpi|pacific islanders?|native hawaiians?|kanaka|chamorros?|chamorus?|chamoru|marshallese|micronesians?|samoans?|tongans?|fijians?|palauans?|filipinos?|filipinas?|hmong|cambodians?|laotians?|south asians?|southeast asians?|east asians?|sikhs?|stop aapi hate|anti-asian|asian (?:voters?|communit\\w+|immigrants?|students?|families|women|men|businesses|elders|seniors|residents|leaders|lawmakers|candidates|population|hate|youth|workers|neighbors|diaspora|enrollment|owned)|(?:chinese|korean|japanese|indian|vietnamese|taiwanese|pakistani|bangladeshi|nepali|nepalese|burmese|thai|indonesian|malaysian|sri lankan|bhutanese|hawaiian)[- ]americans?|chinatown|little tokyo|koreatown|japantown|little saigon|manilatown|nisei|sansei|yonsei|issei|nikkei|jacl|manzanar|tule lake|heart mountain)\\b",
+  "communityPattern": "\\b(asian[- ]?americans?|asian[- ]pacific(?: american| islander)s?|(?<!:)aapi(?!\\s+director)|aanhpi|nhpi|pacific islanders?|pacific islands?|pasifika|pacific (?:peoples?|communit\\w+|nations?|leaders?)|polynesian\\w*|melanesian\\w*|marshall islands|cook islanders?|native hawaiians?|kanaka|chamorros?|chamorus?|chamoru|marshallese|micronesians?|samoans?|tongans?|fijians?|palauans?|filipinos?|filipinas?|hmong|cambodians?|laotians?|south asians?|southeast asians?|east asians?|sikhs?|stop aapi hate|anti-asian|asian (?:voters?|communit\\w+|immigrants?|students?|families|women|men|businesses|elders|seniors|residents|leaders|lawmakers|candidates|population|hate|youth|workers|neighbors|diaspora|enrollment|owned)|(?:chinese|korean|japanese|indian|vietnamese|taiwanese|pakistani|bangladeshi|nepali|nepalese|burmese|thai|indonesian|malaysian|sri lankan|bhutanese|hawaiian)[- ]americans?|chinatown|little tokyo|koreatown|japantown|little saigon|manilatown|nisei|sansei|yonsei|issei|nikkei|jacl|manzanar|tule lake|heart mountain)\\b",
   "siteUrl": "",
   "renames": { "The Takeaway": "TAAF" },
   "kinds": {
@@ -496,6 +569,7 @@
     "The Rebel Yellow": "community",
     "Joysauce": "community",
     "AP-NORC": "research",
+    "Pew Research Center": "research",
     "The Juggernaut": "community",
     "Mochi Magazine": "community",
     "Angry Asian Man": "community",

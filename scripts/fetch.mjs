@@ -35,6 +35,9 @@ const nameBlocked = n => [normName(n), normName(noTld(n))].some(k => k && BLOCK_
 const pubBlocked = o => { const a = pubHosts(o); return a.length > 0 && a.every(h => hostBlocked(h)); };
 const blocked = o => hostBlocked(hostOf(o.u)) || pubBlocked(o) || nameBlocked(o.s);
 const KEEP_MS = (cfg.keepDays ?? 30) * 864e5, MAX = cfg.maxItems ?? 400;
+// A source can keep its stories longer than everyone else with its own "keepDays" (a research center publishes a few reports a year). Research stories are counted apart from the news cap ("researchMax"), so a busy news week never pushes a report out.
+const KEEP_BY = new Map(cfg.sources.filter(x => x.keepDays).map(x => [normName(x.asName ?? x.name), x.keepDays * 864e5])), keepOf = o => KEEP_BY.get(normName(o.s)) ?? KEEP_MS;
+const RES_MAX = cfg.researchMax ?? 150;
 const parser = new XMLParser({ ignoreAttributes: false, attributeNamePrefix: "@_", textNodeName: "#text" });
 
 // Relevance filter for general-interest outlets (sources with "filter": true)
@@ -78,7 +81,7 @@ const kindOf = name => cfg.kinds?.[name] ?? "news";
 // Stories must affect Asian American, Native Hawaiian and/or Pacific Islander communities in the U.S.
 // Items about events abroad (places below) with no U.S.-community term are skipped; skipped headlines are logged.
 const ABROAD = /\b(japan\w*|korea\w*|china|taiwan\w*|india|philippines|vietnam\w*|okinawa|beijing|tokyo|seoul|asean|thailand|indonesia|malaysia|myanmar|pakistan|bangladesh|nepal|sri lanka|hong kong|singapore|cambodia)\b/i;
-const abroadOnly = s => ABROAD.test(s) && !AAPI.test(s);
+const abroadOnly = s => ABROAD.test(s) && !AAPI.test(s) && !COMMUNITY.test(s); // COMMUNITY (below) also knows "Vietnamese Americans", "Taiwanese Americans" and the other community names that contain a place name
 // Statements come from U.S. AAPI advocacy organizations, so a statement about a place abroad (for example deportations to Cambodia) is still about U.S. communities and is kept.
 const isOrg = k => k === "statement";
 const skipped = [];
@@ -97,7 +100,12 @@ const reroute = o => {
 // A story that Google News found with a broad search can share only a word with the communities (a Guam soccer score, a stock ticker), so it is shown only when its headline names the communities (communityPattern) or its publisher is trusted: every source above plus "trustedOutlets".
 const COMMUNITY = new RegExp(cfg.communityPattern ?? AAPI.source, "i");
 const TRUSTED = new Set([...cfg.sources.filter(x => !(x.google && !/site(:|%3A)/i.test(x.feed ?? ""))).flatMap(x => [x.name, x.asName]), ...(cfg.trustedOutlets ?? [])].map(normName).filter(Boolean));
-const offTopic = o => !isPolicy(o.k) && !isOrg(o.k) && hostOf(o.u) === "news.google.com" && !TRUSTED.has(normName(o.s)) && !COMMUNITY.test(o.h + " " + (o.m ?? ""));
+// A site that is allowed back through allowHosts but only for some of its stories ("gatedHosts"): its story is kept when it matches "require" and does not match "deny" (rnz.co.nz: Pacific Islander stories, no sports).
+// The site is matched by its address, by the address Google News reports for its publisher, or by its name. A story that passes its gate skips the headline test below, because the gate is stricter.
+const GATES = (cfg.gatedHosts ?? []).map(g => { const hosts = (g.hosts ?? []).map(h => h.toLowerCase()); return { hosts, names: new Set([...(g.names ?? []), ...hosts].flatMap(n => [normName(n), normName(noTld(n))]).filter(Boolean)), require: g.require ? new RegExp(g.require, "i") : null, deny: g.deny ? new RegExp(g.deny, "i") : null }; });
+const gateOf = o => GATES.find(g => inList(hostOf(o.u), g.hosts) || pubHosts(o).some(h => inList(h, g.hosts)) || g.names.has(normName(o.s)) || g.names.has(normName(noTld(o.s))));
+const gateFails = o => { const g = gateOf(o); if (!g) return false; const t = o.h + " " + (o.m ?? ""); return !!((g.require && !g.require.test(t)) || (g.deny && g.deny.test(t))); };
+const offTopic = o => !isPolicy(o.k) && !isOrg(o.k) && hostOf(o.u) === "news.google.com" && !TRUSTED.has(normName(o.s)) && !gateOf(o) && !COMMUNITY.test(o.h + " " + (o.m ?? ""));
 
 const ENT = { amp: "&", lt: "<", gt: ">", quot: '"', apos: "'", nbsp: " " };
 const tx = n => (typeof n === "string" || typeof n === "number") ? String(n) : (n?.["#text"] ?? "");
@@ -157,6 +165,19 @@ async function getText(url, accept) {
   const res = await fetch(url, { headers: { "user-agent": "AAPIWire/1.0 (open-source news index)", ...(accept ? { accept } : {}) }, signal: AbortSignal.timeout(20000) });
   if (!res.ok) throw new Error("HTTP " + res.status);
   return res.text();
+}
+// The author of a full-text story (The Yappie) links to the author's page on the publisher's own site, e.g. theyappie.com/author/shawnachen/. The address cannot be worked out from the name, so it is read from the story's own page:
+// the link to /author/<name>/ on the story's site whose text is the author's name (or the only author link on the page). Returns the address, "" when the page names no author page, undefined when the page could not be read (tried again next run).
+async function authorPage(storyUrl, name) {
+  let html, origin; try { origin = new URL(storyUrl).origin; html = await getText(storyUrl, "text/html"); } catch { return undefined; }
+  const links = [];
+  for (const m of html.matchAll(/<a\b[^>]*\bhref\s*=\s*["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi)) {
+    let u; try { u = new URL(m[1].replace(/&amp;/g, "&"), origin); } catch { continue; }
+    if (u.origin !== origin || !/^\/author\/[^/]+\/?$/.test(u.pathname)) continue;
+    links.push({ href: u.origin + u.pathname.replace(/\/?$/, "/"), text: clean(m[2]).replace(/^by\s+/i, "").toLowerCase() });
+  }
+  const want = String(name).trim().toLowerCase(), named = links.find(l => l.text === want), pages = [...new Set(links.map(l => l.href))];
+  return (named ?? (pages.length === 1 ? { href: pages[0] } : null))?.href ?? "";
 }
 // A source is read one of four ways: an RSS/Atom "feed", a WordPress REST list ("wp"), the organization's own listing page ("page" plus a "link" pattern for its story links), or a listing page whose stories are JSON in a <script> tag ("page" plus "embedded").
 // All three produce the same kind of record, so the filtering and tagging below is shared.
@@ -228,6 +249,7 @@ async function records(src) {
 
 async function pull(src) {
   const caseRe = src.skipTitle ? new RegExp(src.skipTitle, "i") : null;
+  const onTopic = src.match ? new RegExp(src.match, "i") : AAPI; // "match": the source's own relevance pattern, used with "filter" in place of the general one (Pew writes "Asians", not "AAPI")
   const out = [];
   for (const it of await records(src)) {
     let h = clean(it.title), s = src.name, pubName = "";
@@ -243,7 +265,7 @@ async function pull(src) {
     const m = src.google ? "" : dek(it.description ?? it.summary, h);
     const gov = isPolicy(src.kind), rl = gov ? (relOf(h + " " + raw) || (src.filter ? "" : "n")) : "";
     if (!gov && caseRe && caseRe.test(h)) continue; // on a news source skipTitle drops pages that are not stories (an author page or an archive index that a search returns)
-    if (!h || !u || (gov && (!isGov(u) || !rl)) || (!gov && src.filter && !AAPI.test(h + " " + raw))) continue;
+    if (!h || !u || (gov && (!isGov(u) || !rl)) || (!gov && src.filter && !onTopic.test(h + " " + raw))) continue;
     if (gov && rl === "i" && caseRe && caseRe.test(h)) continue; // individual court cases are not policy; releases that name the communities stay
     if (!isEnglish(h + " " + raw)) { skippedLang.push(s + ": " + h); continue; }
     if (!isOrg(src.kind) && abroadOnly(h + " " + raw)) { skipped.push(s + ": " + h); continue; }
@@ -449,34 +471,53 @@ const retag = o => {
   return { ...o, s, g: 1, k: o.k ?? kindOf(s), t: !force && VALID.has(o.t) ? o.t : tg.t, cm: !force && o.cm ? o.cm : tg.cm, st: !force && o.st ? o.st : tg.st, bl: !force && o.bl ? o.bl : tg.bl };
 };
 learnHosts([...old, ...fresh]);
-const offTopicLog = [];
+const offTopicLog = [], gateLog = [];
 for (const it0 of [...fresh, ...old.map(retag)]) {
   if (blocked(it0)) continue; // a blocked site, or a site on a non-U.S. domain, is dropped from stored stories too
   const it = reroute(it0);
+  if (gateFails(it)) { gateLog.push(it.s + ": " + it.h); continue; }
   if (offTopic(it)) { offTopicLog.push(it.s + ": " + it.h); continue; }
   const pol = isPolicy(it.k);
   if (pol && !govItem(it)) continue; // the Policy tracker takes .gov sources only
   const k = pol ? it.u : it.h.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim().slice(0, 70); // companion bills can share a title, so policy items are told apart by link
   const open = it.dl && it.dl >= today && now - new Date(it.d) < keepFR;
-  if (!k || seen.has(k) || (now - new Date(it.d) > (pol ? POL_KEEP : KEEP_MS) && !open)) continue;
+  if (!k || seen.has(k) || (now - new Date(it.d) > (pol ? POL_KEEP : keepOf(it)) && !open)) continue;
   if (!pol && ((!isOrg(it.k) && abroadOnly(it.h + " " + (it.m ?? ""))) || !isEnglish(it.h + " " + (it.m ?? "")))) continue;
   seen.add(k); items.push(it);
 }
+if (gateLog.length) console.log(`Dropped (site is allowed only for Pacific Islander stories that are not sports): ${gateLog.length}\n  ` + gateLog.slice(0, 40).join("\n  "));
 if (offTopicLog.length) console.log(`Dropped (headline does not name AAPI communities): ${offTopicLog.length}\n  ` + offTopicLog.slice(0, 40).join("\n  "));
 items.sort((a, b) => b.d.localeCompare(a.d));
-const kept = [...items.filter(i => !isPolicy(i.k)).slice(0, MAX), ...items.filter(i => isPolicy(i.k)).slice(0, POL_MAX)].sort((a, b) => b.d.localeCompare(a.d));
+const kept = [...items.filter(i => !isPolicy(i.k) && i.k !== "research").slice(0, MAX), ...items.filter(i => i.k === "research").slice(0, RES_MAX), ...items.filter(i => isPolicy(i.k)).slice(0, POL_MAX)].sort((a, b) => b.d.localeCompare(a.d));
 const arts = new Map(kept.filter(i => i.art).map(i => [i.id, i.art]));
 const slim = o => Object.fromEntries(Object.entries(o).filter(([, v]) => !(Array.isArray(v) && !v.length) && v !== "" && v !== undefined));
 const out = kept.map(({ g, art, ...rest }) => slim(rest));
 const adir = join(dirname(OUT), "articles");
 await mkdir(adir, { recursive: true });
-for (const [id, a] of arts) await writeFile(join(adir, id + ".json"), JSON.stringify(a));
+// Author pages ("byu"): an author seen before is not looked up again (sources.json "authors" lists bylines whose stories live on another site, e.g. The Yappie Staff on the newsletter), and at most 6 pages are read per run.
+const stored = new Map();
+for (const f of await readdir(adir)) if (f.endsWith(".json")) { try { stored.set(f.slice(0, -5), JSON.parse(await readFile(join(adir, f), "utf8"))); } catch { /* unreadable file: replaced or removed below */ } }
+const knownAuthor = new Map(Object.entries(Object.assign({}, ...cfg.sources.map(x => x.authors ?? {}))));
+for (const a of stored.values()) if (a.by && a.byu && !knownAuthor.has(a.by)) knownAuthor.set(a.by, a.byu);
+const storyUrl = new Map(kept.map(i => [i.id, i.u]));
+let authorReads = 0;
+const authorFor = async (id, a) => {
+  if (!a.by) return undefined;
+  if (knownAuthor.has(a.by)) return knownAuthor.get(a.by);
+  const before = stored.get(id)?.byu;
+  if (before !== undefined) return before; // looked up on an earlier run (found, or the page has no author page)
+  if (authorReads >= 6 || !storyUrl.get(id)) return undefined;
+  authorReads++;
+  const r = await authorPage(storyUrl.get(id), a.by);
+  if (r) knownAuthor.set(a.by, r);
+  return r;
+};
+for (const [id, a] of arts) { const byu = await authorFor(id, a); await writeFile(join(adir, id + ".json"), JSON.stringify(byu === undefined ? a : { ...a, byu })); }
 const keepIds = new Set(out.filter(i => i.v).map(i => i.id));
-for (const f of await readdir(adir)) { // articles stored before this rule existed
-  const id = f.slice(0, -5);
-  if (!f.endsWith(".json") || arts.has(id) || !keepIds.has(id)) continue;
-  const a = JSON.parse(await readFile(join(adir, f), "utf8")), b = tidyBody(a.body, a.img);
-  if (b !== a.body) await writeFile(join(adir, f), JSON.stringify({ ...a, body: b }));
+for (const [id, a] of stored) { // articles stored before this rule existed
+  if (arts.has(id) || !keepIds.has(id)) continue;
+  const b = tidyBody(a.body, a.img), byu = await authorFor(id, a);
+  if (b !== a.body || (byu !== undefined && byu !== a.byu)) await writeFile(join(adir, id + ".json"), JSON.stringify({ ...a, body: b, ...(byu === undefined ? {} : { byu }) }));
 }
 for (const f of await readdir(adir)) if (f.endsWith(".json") && !keepIds.has(f.slice(0, -5))) await unlink(join(adir, f));
 const pubSources = status.map(({ name, home, kind, ok, count, note }) => ({ name, home, kind, ok, count, note }));

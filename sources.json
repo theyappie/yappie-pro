@@ -13,6 +13,9 @@
       "home": "https://theyappie.com",
       "feed": "https://theyappie.com/feed/",
       "fullText": true,
+      "pages": 10,
+      "excludeCategories": ["Press", "Newsletters"],
+      "keepSince": "2026-09-23",
       "authors": { "The Yappie Staff": "https://theyappie.com/author/andrewpeng1/" }
     },
     {

@@ -36,7 +36,11 @@ const pubBlocked = o => { const a = pubHosts(o); return a.length > 0 && a.every(
 const blocked = o => hostBlocked(hostOf(o.u)) || pubBlocked(o) || nameBlocked(o.s);
 const KEEP_MS = (cfg.keepDays ?? 30) * 864e5, MAX = cfg.maxItems ?? 400;
 // A source can keep its stories longer than everyone else with its own "keepDays" (a research center publishes a few reports a year). Research stories are counted apart from the news cap ("researchMax"), so a busy news week never pushes a report out.
-const KEEP_BY = new Map(cfg.sources.filter(x => x.keepDays).map(x => [normName(x.asName ?? x.name), x.keepDays * 864e5])), keepOf = o => KEEP_BY.get(normName(o.s)) ?? KEEP_MS;
+const KEEP_BY = new Map(cfg.sources.filter(x => x.keepDays).map(x => [normName(x.asName ?? x.name), x.keepDays * 864e5]));
+// "keepSince": "YYYY-MM-DD" keeps every story a source published on or after that day (UTC) however old it gets, and those stories do not count against the news cap ("maxItems"). Stories before that day follow the usual rule.
+const SINCE = new Map(cfg.sources.filter(x => x.keepSince).map(x => [normName(x.asName ?? x.name), Date.parse(x.keepSince + "T00:00:00Z")]).filter(([, t]) => !isNaN(t)));
+const keepOf = o => { const n = normName(o.s), base = KEEP_BY.get(n) ?? KEEP_MS, since = SINCE.get(n); return since ? Math.max(base, Date.now() - since) : base; };
+const held = o => { const t = SINCE.get(normName(o.s)); return t !== undefined && Date.parse(o.d) >= t; };
 const RES_MAX = cfg.researchMax ?? 150;
 const parser = new XMLParser({ ignoreAttributes: false, attributeNamePrefix: "@_", textNodeName: "#text" });
 
@@ -242,16 +246,34 @@ async function records(src) {
     if (!pageText.has(src.page)) pageText.set(src.page, getText(src.page, "text/html"));
     return src.embedded ? embeddedRecords(await pageText.get(src.page), src) : pageRecords(await pageText.get(src.page), src);
   }
-  const x = parser.parse(await getText(src.feed));
+  let list = await feedItems(src.feed), last = list;
+  // "pages": a WordPress feed lists 10 stories a page (feed/?paged=2). The next pages are read, up to this many in all, until a page reaches back past the days the source's stories are kept (a story that is new always sits on page 1).
+  const floor = Date.now() - keepOf({ s: src.asName ?? src.name });
+  for (let p = 2; p <= (src.pages ?? 1) && last.length; p++) {
+    if (Math.min(...last.map(it => dateOf(it).getTime()).filter(t => !isNaN(t))) < floor) break;
+    const u = new URL(src.feed); u.searchParams.set("paged", p);
+    try { last = await feedItems(u.href); } catch { break; } // past the last page, or a page that cannot be read: the pages read so far are used
+    list = list.concat(last);
+  }
+  const seenLink = new Set();
+  return list.filter(it => { const l = linkOf(it); if (seenLink.has(l)) return false; seenLink.add(l); return true; }); // a story published while the pages were read can appear on two of them
+}
+async function feedItems(url) {
+  const x = parser.parse(await getText(url));
   if (!x.rss && !x.feed && !x["rdf:RDF"]) throw new Error("Not a feed");
   const raw = x.rss?.channel?.item ?? x.feed?.entry ?? x["rdf:RDF"]?.item ?? [];
   return Array.isArray(raw) ? raw : [raw];
 }
+const dateOf = it => new Date(tx(it.pubDate ?? it.published ?? it.updated ?? it["dc:date"]));
+// "excludeCategories" on a source drops its stories that carry one of those categories (an RSS <category>, matched without regard to case). The stored copy of such a story, if an earlier run kept it, is dropped too.
+const catsOf = it => [it.category].flat().filter(c => c != null).map(c => normName(tx(c) || c?.["@_term"] || c?.["@_label"])).filter(Boolean);
+const skippedCat = [], catDropIds = new Set();
+const idOf = (kind, u) => createHash("sha1").update(isOrg(kind) && isGov(u) ? "statement:" + u : u).digest("hex").slice(0, 12);
 
 async function pull(src) {
   const caseRe = src.skipTitle ? new RegExp(src.skipTitle, "i") : null;
   const onTopic = src.match ? new RegExp(src.match, "i") : AAPI; // "match": the source's own relevance pattern, used with "filter" in place of the general one (Pew writes "Asians", not "AAPI")
-  const out = [];
+  const out = [], exCat = new Set((src.excludeCategories ?? []).map(normName));
   for (const it of await records(src)) {
     let h = clean(it.title), s = src.name, pubName = "";
     if (src.google) {
@@ -262,6 +284,7 @@ async function pull(src) {
     const u = safeUrl(linkOf(it)), ph = src.google ? hostOf(it.source?.["@_url"] ?? "").replace(/^www\./, "") : "";
     if (ph) learnHost(s, ph); // learned before the block check, so a stored story from a blocked publisher can be recognised later
     if (hostBlocked(hostOf(u)) || hostBlocked(ph) || nameBlocked(pubName)) continue;
+    if (exCat.size && catsOf(it).some(c => exCat.has(c))) { if (u) catDropIds.add(idOf(src.kind, u)); skippedCat.push(s + ": " + h); continue; }
     const raw = src.google ? "" : clean(it.description ?? it.summary ?? it["content:encoded"]).slice(0, 300); // used only for filtering/tagging
     const m = src.google ? "" : dek(it.description ?? it.summary, h);
     const gov = isPolicy(src.kind), rl = gov ? (relOf(h + " " + raw) || (src.filter ? "" : "n")) : "";
@@ -270,11 +293,11 @@ async function pull(src) {
     if (gov && rl === "i" && caseRe && caseRe.test(h)) continue; // individual court cases are not policy; releases that name the communities stay
     if (!isEnglish(h + " " + raw)) { skippedLang.push(s + ": " + h); continue; }
     if (!isOrg(src.kind) && abroadOnly(h + " " + raw)) { skipped.push(s + ": " + h); continue; }
-    let d = new Date(tx(it.pubDate ?? it.published ?? it.updated ?? it["dc:date"]));
+    let d = dateOf(it);
     if (isNaN(d) || d > Date.now() + 864e5) d = new Date();
     const full = src.fullText ? cleanBody(tx(it["content:encoded"] ?? it.content)) : "";
     // a .gov statement can also be in the Policy tracker, so it gets an id of its own here
-    const item = { id: createHash("sha1").update(isOrg(src.kind) && isGov(u) ? "statement:" + u : u).digest("hex").slice(0, 12), d: d.toISOString(), s, h, m, u, g: src.google ? 1 : 0, ...(ph ? { ph } : {}), k: src.kind ?? kindOf(s), ...(rl ? { rl } : {}), ...TG.all(h, raw + " " + clean(full).slice(0, 4000), d, gov ? "GOVERNMENT" : undefined) };
+    const item = { id: idOf(src.kind, u), d: d.toISOString(), s, h, m, u, g: src.google ? 1 : 0, ...(ph ? { ph } : {}), k: src.kind ?? kindOf(s), ...(rl ? { rl } : {}), ...TG.all(h, raw + " " + clean(full).slice(0, 4000), d, gov ? "GOVERNMENT" : undefined) };
     if (full) { const img = heroOf(it, full); item.v = 1; item.art = { by: clean(it["dc:creator"] ?? it.author?.name), img, body: tidyBody(full, img) }; }
     out.push(item);
   }
@@ -457,6 +480,7 @@ await runPolicy("GovInfo", "https://www.govinfo.gov", "hearing", cfg.govinfo?.en
 if (cfg.apiBudget || API_KEY) console.log(`API key requests this run: ${(cfg.apiBudget?.perRun ?? 150) - LIM.left} of ${cfg.apiBudget?.perRun ?? 150} allowed`);
 console.log(status.map(s => `${s.ok ? "OK  " : "FAIL"} ${s.name}: ${s.ok ? s.count + " items" + (s.note ? " (" + s.note + ")" : "") : s.error}`).join("\n"));
 if (skippedLang.length) console.log("Skipped (not in English):\n  " + skippedLang.join("\n  "));
+if (skippedCat.length) console.log("Skipped (excluded category):\n  " + skippedCat.join("\n  "));
 if (skipped.length) console.log("Skipped (not about U.S. AAPI communities):\n  " + skipped.join("\n  "));
 if (!status.some(s => s.ok)) { console.error("All sources failed; keeping previous data."); process.exit(1); }
 
@@ -475,6 +499,7 @@ const retag = o => {
 learnHosts([...old, ...fresh, ...old.map(renamed), ...fresh.map(renamed)]); // a publisher shown under its new name keeps its web address
 const offTopicLog = [], gateLog = [];
 for (const it0 of [...fresh.map(renamed), ...old.map(retag)]) {
+  if (catDropIds.has(it0.id)) continue; // a story in an excluded category, stored by an earlier run
   if (blocked(it0)) continue; // a blocked site, or a site on a non-U.S. domain, is dropped from stored stories too
   const it = reroute(it0);
   if (gateFails(it)) { gateLog.push(it.s + ": " + it.h); continue; }
@@ -490,7 +515,7 @@ for (const it0 of [...fresh.map(renamed), ...old.map(retag)]) {
 if (gateLog.length) console.log(`Dropped (a gated site: only the stories its gate allows are kept): ${gateLog.length}\n  ` + gateLog.slice(0, 40).join("\n  "));
 if (offTopicLog.length) console.log(`Dropped (headline does not name AAPI communities): ${offTopicLog.length}\n  ` + offTopicLog.slice(0, 40).join("\n  "));
 items.sort((a, b) => b.d.localeCompare(a.d));
-const kept = [...items.filter(i => !isPolicy(i.k) && i.k !== "research").slice(0, MAX), ...items.filter(i => i.k === "research").slice(0, RES_MAX), ...items.filter(i => isPolicy(i.k)).slice(0, POL_MAX)].sort((a, b) => b.d.localeCompare(a.d));
+const kept = [...items.filter(i => !isPolicy(i.k) && i.k !== "research" && !held(i)).slice(0, MAX), ...items.filter(i => !isPolicy(i.k) && i.k !== "research" && held(i)), ...items.filter(i => i.k === "research").slice(0, RES_MAX), ...items.filter(i => isPolicy(i.k)).slice(0, POL_MAX)].sort((a, b) => b.d.localeCompare(a.d));
 const arts = new Map(kept.filter(i => i.art).map(i => [i.id, i.art]));
 const slim = o => Object.fromEntries(Object.entries(o).filter(([, v]) => !(Array.isArray(v) && !v.length) && v !== "" && v !== undefined));
 const out = kept.map(({ g, art, ...rest }) => slim(rest));

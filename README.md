@@ -21,7 +21,7 @@ A free, open-source news and policy terminal for stories affecting Asian America
 - **Feeds (generated, but not linked from the page):** an RSS feed for every topic, community, state and type, one for the Policy tracker, one for comment deadlines, a calendar file (`data/deadlines.ics`), and an optional weekday email brief that lists new policy records and comment deadlines.
 
 ## How it works
-A GitHub Action runs `scripts/fetch.mjs` every 30 minutes. It pulls the feeds in `sources.json`, drops non-English and abroad-only items, drops off-topic items from general outlets, de-duplicates, tags each story, and commits `data/feed.json`. News is kept 30 days. Policy records are kept 120 days (an open comment period is kept until its deadline passes), and a policy record is dropped unless it links to a `.gov` address. `scripts/build-outputs.mjs` then writes the RSS feeds and calendar. `index.html` is a static page that reads those files.
+A GitHub Action runs `scripts/fetch.mjs` every 15 minutes (GitHub schedules can start a few minutes late), and a page that is left open checks for new data every 10 minutes. It pulls the feeds in `sources.json`, drops non-English and abroad-only items, drops off-topic items from general outlets, de-duplicates, tags each story, and commits `data/feed.json`. News is kept 30 days. Policy records are kept 120 days (an open comment period is kept until its deadline passes), and a policy record is dropped unless it links to a `.gov` address. `scripts/build-outputs.mjs` then writes the RSS feeds and calendar. `index.html` is a static page that reads those files.
 
 Nothing is generated or rewritten. Text that looks auto-trimmed from an article body is dropped, and a description appears only when the publisher supplied one.
 

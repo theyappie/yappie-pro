@@ -1,6 +1,7 @@
 name: update-feed
 on:
-  schedule: [{ cron: "*/30 * * * *" }]
+  # every 15 minutes, at minutes GitHub's scheduler is less busy with (it often delays runs that are due on the hour or half hour)
+  schedule: [{ cron: "7,22,37,52 * * * *" }]
   workflow_dispatch:
 permissions:
   contents: write
@@ -8,6 +9,7 @@ concurrency: update-feed
 jobs:
   update:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

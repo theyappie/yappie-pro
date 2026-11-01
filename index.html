@@ -566,6 +566,9 @@ const normT=a=>a.filter(x=>x&&x.h&&x.u&&isEnglish(x.h)).map(x=>{if(!TAGS.include
 const fts=d=>{const p=pd(d);if(isNaN(p))return"";const f=o=>new Intl.DateTimeFormat("en-US",Object.assign({timeZone:"America/New_York"},o)),day={year:"numeric",month:"numeric",day:"numeric"};return(f(day).format(p)==f(day).format(new Date())?"":f({month:"short",day:"numeric"}).format(p)+", ")+f({hour:"numeric",minute:"2-digit",timeZoneName:"short"}).format(p)};
 function loadFeed(bust){return fetch(FEEDURL+(bust?(FEEDURL.includes("?")?"&":"?")+"_r="+Date.now():""),{cache:bust?"no-store":"no-cache"}).then(r=>{if(!r.ok)throw 0;return r.json()}).then(j=>{if(!j.items||!j.items.length)throw 0;const had=new Set(D.map(x=>x.u));D=normT(j.items);GEN=j.generated;REF=Date.now();H=Object.assign({},HOME);(j.sources||[]).forEach(s=>{if(s.home)H[s.name]=s.home});PSTAT=(j.sources||[]).filter(s=>isPK(s.kind));return D.filter(x=>!had.has(x.u)).length})}
 const setBase=()=>{};
+let syncing=0,syncAt=Date.now();
+function sync(){if(syncing||document.hidden||Date.now()-syncAt<12e4||/^#a\//.test(location.hash)||document.activeElement===$("#q")||scrollY>400)return;syncing=1;syncAt=Date.now();const g=GEN;loadFeed(0).then(()=>{if(GEN!==g){cluster();render()}}).catch(()=>{}).finally(()=>{syncing=0})}
+setInterval(sync,6e5);addEventListener("visibilitychange",()=>{if(!document.hidden)sync()});
 readQS();
 loadFeed(0).catch(()=>{}).finally(()=>{cluster();render();setBase();route()});
 </script></body></html>

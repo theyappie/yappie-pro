@@ -21,7 +21,12 @@ if (/^\s*export\s/m.test(coreBody)) throw new Error("scripts/admin.mjs has an ex
 const coreForPage = coreBody.replaceAll("<!--", "<\\!--");
 if (/<\/script/i.test(coreForPage)) throw new Error("scripts/admin.mjs contains </script");
 
-const login = read("src/login.html"), app = read("src/app.html").replace("{{CORE}}", () => coreForPage);
+// the Yappie Pro wordmark goes into the login page as a data address, so the page needs no other file
+const logo = read("src/yappie-pro-logo.svg").trim();
+if (!/^<svg[\s>]/.test(logo) || /<script|on\w+\s*=/i.test(logo)) throw new Error("src/yappie-pro-logo.svg is not a plain SVG");
+const logoUri = "data:image/svg+xml;base64," + Buffer.from(logo).toString("base64");
+const login = read("src/login.html").replace("{{LOGO}}", () => logoUri), app = read("src/app.html").replace("{{CORE}}", () => coreForPage);
+if (login.includes("{{LOGO}}")) throw new Error("login.html: {{LOGO}} was not replaced");
 for (const [n, t] of [["login.html", login], ["app.html", app]]) if (/<\/script\s*>\s*<\/script/i.test(t)) throw new Error(n + " looks wrong");
 
 let main = read("src/worker-main.js");

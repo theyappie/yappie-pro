@@ -1,10 +1,11 @@
 // Admin decisions for The Yappie Pro: what the owner changed by hand in the admin dashboard (tools/admin) and how the collector (scripts/fetch.mjs) applies it.
 // Pure functions, no file or network access. The collector and the admin Worker both use this file (the Worker build inlines it), so the rules are written once.
 //
-// The decisions live in data/admin.json (see emptyState): edits and retags, hand-written article text, deleted items (with a copy, so they can be restored),
-// approvals, items held back, items kept past the usual days, items added by hand, and the approval setting. Items waiting for approval are written to data/pending.json.
+// The decisions live in admin.json (see emptyState): edits and retags, hand-written article text, deleted items (with a copy, so they can be restored),
+// approvals, items held back, items kept past the usual days, items added by hand, and the approval setting. Items waiting for approval are written to pending.json.
+// Both files are kept in a separate PRIVATE repository (see tools/admin/README.md), because this site's own repository is public and published.
 
-export const STATE_FILE = "data/admin.json", PENDING_FILE = "data/pending.json";
+export const STATE_FILE = "admin.json", PENDING_FILE = "pending.json";
 export const EDIT_FIELDS = ["h", "m", "s", "u", "d", "k", "t", "cm", "st"]; // headline, summary, source, link, date, section, topic, communities, states
 export const PURGE_DAYS = 180; // how long a deleted, approved or held record is remembered
 export const STATE_MAX_BYTES = 900_000; // the GitHub contents API returns a file inline up to 1 MB

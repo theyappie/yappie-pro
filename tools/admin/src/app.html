@@ -567,7 +567,7 @@ function renderSettings(main) {
     opt("all", "Everything waits", " Every new story waits for you to approve it."),
     opt("custom", "Only some sources or sections wait", " New stories from the sources and sections you pick wait; the rest go live."),
     custom, h("div", null, save)),
-    h("div", { class: "card" }, h("h2", null, "How changes reach the site"), h("p", null, `Every change is saved to ${CFG.repo} (the file data/admin.json) and shows up on the site after the next update, usually two to three minutes after you save. “Update the site now” starts one straight away. Items you delete stay in the Trash for 180 days.`),
+    h("div", { class: "card" }, h("h2", null, "How changes reach the site"), h("p", null, `Every change is saved to the private repository ${CFG.dataRepo} (the file admin.json), which is not published. It shows up on the site after the next update, usually two to three minutes after you save. “Update the site now” starts one straight away. Items you delete stay in the Trash for 180 days.`),
       h("p", null, `Sign-ins last ${CFG.hours} hours. ${CFG.kv ? "Wrong-password lockouts and sign-outs are remembered across servers." : "No KV store is attached, so lockouts and sign-outs are only remembered by one server at a time. See the setup guide to add one."}`)));
   paint();
 }

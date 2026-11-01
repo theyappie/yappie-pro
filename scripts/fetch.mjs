@@ -1,5 +1,5 @@
 // The Yappie Pro — feed collector (Node 20+). Usage: node scripts/fetch.mjs
-import { readFile, writeFile, mkdir, readdir, unlink } from "node:fs/promises";
+import { readFile, writeFile, mkdir, readdir, unlink, stat } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -459,11 +459,14 @@ async function pullGovInfo(gi) {
 
 let old = [], oldSources = [];
 try { const prev = JSON.parse(await readFile(OUT, "utf8")); old = prev.items ?? []; oldSources = prev.sources ?? []; } catch {}
-// The owner's decisions from the admin dashboard (data/admin.json: edits, deleted and approved items, items added by hand; see scripts/admin.mjs) and the items waiting for approval (data/pending.json).
+// The owner's decisions from the admin dashboard (admin.json: edits, deleted and approved items, items added by hand; see scripts/admin.mjs) and the items waiting for approval (pending.json).
+// They are private, so on the real site they live in a separate private repository that the update job checks out; ADMIN_DIR is that folder. Without ADMIN_DIR they sit next to feed.json (for a local run).
+const ADMIN_DIR = process.env.ADMIN_DIR || dirname(OUT);
+if (process.env.ADMIN_DIR && !(await stat(ADMIN_DIR).then(x => x.isDirectory(), () => false))) { console.error(`ADMIN_DIR (${ADMIN_DIR}) is not a folder; stopping so the owner's decisions are not skipped.`); process.exit(1); }
 let A = normalizeState(null), oldPending = [];
-try { A = normalizeState(JSON.parse(await readFile(join(dirname(OUT), "admin.json"), "utf8"))); }
-catch (e) { if (e.code !== "ENOENT") { console.error("data/admin.json cannot be read (" + e.message + "); keeping the previous data so the owner's decisions are not lost."); process.exit(1); } } // no file: no decisions yet
-try { oldPending = JSON.parse(await readFile(join(dirname(OUT), "pending.json"), "utf8")).items ?? []; } catch { /* nothing waiting */ }
+try { A = normalizeState(JSON.parse(await readFile(join(ADMIN_DIR, "admin.json"), "utf8"))); }
+catch (e) { if (e.code !== "ENOENT") { console.error("admin.json cannot be read (" + e.message + "); keeping the previous data so the owner's decisions are not lost."); process.exit(1); } } // no file: no decisions yet
+try { oldPending = JSON.parse(await readFile(join(ADMIN_DIR, "pending.json"), "utf8")).items ?? []; } catch { /* nothing waiting */ }
 const PEND_MAX = cfg.pendingMax ?? 500;
 const status = [], fresh = [];
 const foreignSources = cfg.sources.filter(s => s.enabled !== false && !s.google && hostForeign(hostOf(s.feed ?? s.page ?? s.wp)));
@@ -568,7 +571,7 @@ const pendOut = waiting.slice(0, PEND_MAX).map(({ g, art, ...rest }) => {
   const a = ov && Object.keys(ov).length ? { by: "", img: "", body: "", ...(base ?? {}), ...ov } : base;
   return slim(a ? { ...rest, art: a } : rest);
 });
-if (JSON.stringify(pendOut) !== JSON.stringify(oldPending) && (pendOut.length || oldPending.length)) await writeFile(join(dirname(OUT), "pending.json"), JSON.stringify({ generated: new Date().toISOString(), items: pendOut }));
+if (JSON.stringify(pendOut) !== JSON.stringify(oldPending) && (pendOut.length || oldPending.length)) await writeFile(join(ADMIN_DIR, "pending.json"), JSON.stringify({ generated: new Date().toISOString(), items: pendOut }));
 const pubSources = status.map(({ name, home, kind, ok, count, note }) => ({ name, home, kind, ok, count, note }));
 if (JSON.stringify(out) === JSON.stringify(old) && JSON.stringify(pubSources) === JSON.stringify(oldSources)) { console.log("No changes."); process.exit(0); }
 await mkdir(dirname(OUT), { recursive: true });

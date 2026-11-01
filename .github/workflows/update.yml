@@ -32,14 +32,39 @@ jobs:
     if: needs.gate.outputs.skip != 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    env:
+      # The admin dashboard keeps its decisions (admin.json) and the stories waiting for approval (pending.json) in a separate PRIVATE repository, because this one is public and published.
+      # ADMIN_DATA_TOKEN: an Actions secret, a fine-grained token with Contents read and write on that repository. Setup: tools/admin/README.md. Without it the dashboard is not in use.
+      ADMIN_DATA_TOKEN: ${{ secrets.ADMIN_DATA_TOKEN }}
+      ADMIN_DATA_REPO: ${{ vars.ADMIN_DATA_REPO || 'theyappie/yappie-pro-admin' }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with: { node-version: 20, cache: npm }
       - run: npm ci
+      - name: Admin dashboard is not set up
+        if: env.ADMIN_DATA_TOKEN == ''
+        run: echo "::notice::ADMIN_DATA_TOKEN is not set, so decisions made in the admin dashboard are not applied. See tools/admin/README.md."
+      - name: Check that the admin data repository is private
+        if: env.ADMIN_DATA_TOKEN != ''
+        env:
+          GH_TOKEN: ${{ secrets.ADMIN_DATA_TOKEN }}
+        run: |
+          set -eu
+          private=$(gh api "repos/$ADMIN_DATA_REPO" --jq .private) || { echo "::error::The admin data repository $ADMIN_DATA_REPO was not found, or ADMIN_DATA_TOKEN cannot see it."; exit 1; }
+          if [ "$private" != "true" ]; then echo "::error::$ADMIN_DATA_REPO is not private. Make it private (Settings, Danger Zone, Change visibility); stories waiting for approval would otherwise be public."; exit 1; fi
+      - name: Get the admin data
+        if: env.ADMIN_DATA_TOKEN != ''
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.ADMIN_DATA_REPO }}
+          token: ${{ secrets.ADMIN_DATA_TOKEN }}
+          path: admin-data
       - name: Collect news and policy records
         run: node scripts/fetch.mjs
         env:
+          # when the admin data was fetched, the collector reads and writes it there; otherwise next to the feed
+          ADMIN_DIR: ${{ secrets.ADMIN_DATA_TOKEN != '' && 'admin-data' || '' }}
           # optional: one free api.data.gov key (api.congress.gov/sign-up) for Congress.gov, Regulations.gov and GovInfo; without it the Policy tab skips those three
           API_DATA_GOV_KEY: ${{ secrets.API_DATA_GOV_KEY }}
           CONGRESS_API_KEY: ${{ secrets.CONGRESS_API_KEY }}
@@ -51,11 +76,28 @@ jobs:
           git add data
           git diff --cached --quiet && exit 0
           git commit -m "feed: $(date -u +%FT%TZ)"
-          # The admin dashboard saves its decisions to data/admin.json while this job runs, so a push can be refused. Take the newer files and push again.
+          # This push can be refused if another run or a manual commit landed first. Take the newer files and push again.
           for try in 1 2 3 4 5; do
             git push && exit 0
             echo "Push refused (a change was saved in the meantime); trying again ($try of 5)."
             sleep $((try * 3))
             git pull --rebase origin "$GITHUB_REF_NAME"
+          done
+          echo "Could not push after 5 tries."; exit 1
+      - name: Save the waiting list to the private repository
+        if: env.ADMIN_DATA_TOKEN != ''
+        working-directory: admin-data
+        run: |
+          git config user.name "yappie-pro-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet && exit 0
+          git commit -m "pending: $(date -u +%FT%TZ)"
+          # The dashboard saves admin.json to this repository at any moment, so a push can be refused. Take the newer files and push again.
+          for try in 1 2 3 4 5; do
+            git push && exit 0
+            echo "Push refused (a change was saved in the meantime); trying again ($try of 5)."
+            sleep $((try * 3))
+            git pull --rebase
           done
           echo "Could not push after 5 tries."; exit 1

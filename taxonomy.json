@@ -12,7 +12,7 @@
   {
    "k": "PACIFIC",
    "label": "Pacific Islands",
-   "re": "\\b(cofa|compact of free association|american samoa\\w*|guam\\w*|chamorro|marshall islands|marshallese|micronesia\\w*|palau\\w*|northern mariana\\w*|cnmi|saipan|territor(?:y|ies)|deep[- ]sea mining|seabed|nuclear test\\w*|runit|bikini atoll|pacific islands?|mauna kea|ceded lands?|kalaupapa|hawaiian home lands?|dhhl|sovereignty)\\b",
+   "re": "\\b(cofa|compact of free association|american samoa\\w*|guam\\w*|chamorro|marshall islands|marshallese|micronesia\\w*|palau\\w*|northern mariana\\w*|cnmi|saipan|territor(?:y|ies)|deep[- ]sea mining|seabed|nuclear test\\w*|runit|bikini atoll|pacific islands?|fiji\\w*|tuvalu|kiribati|vanuatu|tonga\\w*|nauru\\w*|solomon islands|cook islands|niue|tokelau|samoa\\w*|pasifika|polynesia\\w*|melanesia\\w*|mauna kea|ceded lands?|kalaupapa|hawaiian home lands?|dhhl|sovereignty)\\b",
    "w": 2
   },
   {

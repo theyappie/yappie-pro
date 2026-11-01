@@ -195,6 +195,33 @@
       "feed": "https://news.google.com/rss/search?q=%28%22Pacific+Islands%22+OR+%22Pacific+Islanders%22+OR+Pasifika%29+%28climate+OR+%22sea+level%22+OR+%22deep-sea+mining%22+OR+sovereignty+OR+nuclear+OR+%22Compact+of+Free+Association%22+OR+migration%29+when%3A14d&hl=en-US&gl=US&ceid=US:en"
     },
     {
+      "name": "The Independent",
+      "home": "https://www.independent.co.uk/topic/pacific-islands",
+      "feed": "https://www.independent.co.uk/topic/pacific-islands/rss"
+    },
+    {
+      "name": "The Independent",
+      "home": "https://www.independent.co.uk/topic/asian-americans",
+      "feed": "https://www.independent.co.uk/topic/asian-americans/rss"
+    },
+    {
+      "name": "The Independent",
+      "home": "https://www.independent.co.uk/news/world/americas",
+      "feed": "https://www.independent.co.uk/news/world/americas/rss"
+    },
+    {
+      "name": "The Independent",
+      "home": "https://www.independent.co.uk/news/world/americas/us-politics",
+      "feed": "https://www.independent.co.uk/news/world/americas/us-politics/rss"
+    },
+    {
+      "name": "The Independent",
+      "home": "https://www.independent.co.uk",
+      "google": true,
+      "asName": "The Independent",
+      "feed": "https://news.google.com/rss/search?q=site%3Aindependent.co.uk+%28%22Asian+American%22+OR+%22Asian+Americans%22+OR+AAPI+OR+%22Pacific+Islander%22+OR+%22Pacific+Islanders%22+OR+%22Native+Hawaiian%22+OR+%22anti-Asian%22%29+when%3A30d&hl=en-US&gl=US&ceid=US:en"
+    },
+    {
       "name": "Google News: Anti-Asian hate",
       "google": true,
       "feed": "https://news.google.com/rss/search?q=%22anti-Asian%22+OR+%22Stop+AAPI+Hate%22+when%3A7d&hl=en-US&gl=US&ceid=US:en"
@@ -501,14 +528,19 @@
   ],
   "_foreignNote": "Sites on a country domain outside the U.S. (.ca, .ch, .uz, .co.uk, .com.au, and every other two-letter country ending except .us and the U.S. territories .gu .as .mp .vi .pr .um) are never shown, and a source on one is not fetched. List a site in allowHosts to let it through, and in gatedHosts to let through only some of its stories.",
   "blockForeignDomains": true,
-  "allowHosts": ["rnz.co.nz"],
-  "_gateNote": "A site in allowHosts can also be listed here to let through only some of its stories: a story from it (matched by its address, the address Google News reports for its publisher, or its name) is kept when its headline and summary match require and do not match deny. rnz.co.nz: Pacific Islander stories only, no sports.",
+  "allowHosts": ["rnz.co.nz", "independent.co.uk"],
+  "_gateNote": "A site in allowHosts can also be listed here to let through only some of its stories: a story from it (matched by its address, the address Google News reports for its publisher, or its name) is kept when its headline and summary match require (or, with community: true, name the communities in communityPattern) and do not match deny. rnz.co.nz: Pacific Islander stories only, no sports. independent.co.uk: stories about Asian American, Native Hawaiian and Pacific Islander communities only.",
   "gatedHosts": [
     {
       "hosts": ["rnz.co.nz"],
       "names": ["RNZ", "RNZ Pacific", "Radio New Zealand"],
       "require": "\\b(pacific islanders?|pacific islands?|pasifika|pacific (?:peoples?|communit\\w+|diaspora|nations?|leaders?|forum|region|youth|families|workers?)|south pacific|polynesia\\w*|melanesia\\w*|micronesia\\w*|oceania|samoa\\w*|tonga\\w*|fiji\\w*|vanuatu|ni-?vanuatu|tuvalu\\w*|kiribati|i-kiribati|nauru\\w*|palau\\w*|marshall islands|marshallese|cook islands?|cook islanders?|niue\\w*|tokelau\\w*|papua new guinea|bougainville|solomon islands?|solomon islanders?|new caledonia|kanak\\w*|tahiti\\w*|wallis and futuna|guam|chamorros?|chamoru|mariana\\w*|saipan|tinian|cnmi|american samoa|hawai\\S*|rapa nui|pitcairn|pohnpei|chuuk|kosrae)\\b",
       "deny": "\\b(sports?|sporting|rugby|nrl|netball|football\\w*|soccer|cricket|basketball|volleyball|athletics|athletes?|olympi\\w+|paralympi\\w+|commonwealth games|pacific games|micronesian games|mini games|island games|arafura games|world cup|premier league|league|cup|semis|recap|half-?time|full-?time|kick-?off|line-?up|scores? (?:a |the )?(?:winner|try|goal|hat-?trick)|(?:fiji|tonga|samoa|png|cook islands|new zealand|australia|england|france|kiwis|wallabies) (?:beats?|defeats?|edges?|stuns?|downs?|upsets?|thrash\\w*|routs?)|all blacks|black ferns|silver ferns|tall blacks|tall ferns|wallabies|wallaroos|warriors|moana pasifika|drua|flying fijians|manu samoa|ikale tahi|sevens|swimm\\w+|weightlift\\w+|boxing(?! day)|boxers?|mma|ufc|golf\\w*|tennis|cycling|rowing|surf(?:ing|ers?)|sailing|triathlon|waka ama|referee\\w*|(?:gold|silver|bronze) medal\\w*|medall?ists?|fifa|ofc|nba|nfl|grand final|semi-?finals?|quarter-?finals?|tournament|try-?scorer|scrum\\w*|halfback|five-?eighth)\\b"
+    },
+    {
+      "hosts": ["independent.co.uk"],
+      "names": ["The Independent", "Independent"],
+      "community": true
     }
   ],
   "_routesNote": "Stories from these sites or publishers are shown on the page for the kind named here, whatever source they came in through. Stories that link to a .gov address move from News to the Policy page on their own.",

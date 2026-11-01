@@ -337,7 +337,8 @@ const FK=["t","c","st","k","s","r"],$$=s=>[...document.querySelectorAll(s)];
 const selT=$("#selT"),selS=$("#selS"),selC=$("#selC"),selST=$("#selST"),selK=$("#selK"),selR=$("#selR"),selSTd=$("#selSTd"),isMob=()=>matchMedia("(max-width:1000px)").matches;
 const fdl=d=>pd(d).toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"});
 const tl=t=>TL[t]||cap(t),kl=k=>KL[k||"news"]||"Mainstream",ks=k=>KS[k||"news"]||"Mainstream";
-const has=(x,f,v)=>f=="t"?x.t==v:f=="c"?(x.cm||[]).includes(v):f=="st"?(x.st||[]).includes(v):f=="k"?(RSL[v]?x.rs==v:v=="open"?!!x.dl&&dleft(x.dl)>=0:(x.k||"news")==v):f=="r"?x.rl==v:(v=="__other"?!isMain(x):x.s==v);
+const MAINS=()=>VIEW=="research"?["AAPI Data","Pew Research Center","AP-NORC","AP News"]:["The Yappie","AsAmNews","The Rebel Yellow","Joysauce"],isMainV=x=>MAINS().includes(x.s); // the outlets listed by name in the Sources filter, in this order; every other outlet is one combined "Other sources" row (News and Research each have their own list)
+const has=(x,f,v)=>f=="t"?x.t==v:f=="c"?(x.cm||[]).includes(v):f=="st"?(x.st||[]).includes(v):f=="k"?(RSL[v]?x.rs==v:v=="open"?!!x.dl&&dleft(x.dl)>=0:(x.k||"news")==v):f=="r"?x.rl==v:(v=="__other"?!isMainV(x):x.s==v);
 const aapiq=t=>t.replace(/aanhpi/g,"aapi");
 const qtext=x=>aapiq((x.h+" "+(x.s=="The Yappie"?x.m||"":"")+" "+x.s+" "+tl(x.t)+" "+(x.cm||[]).map(k=>CL[k]).join(" ")+" "+(x.st||[]).map(k=>SLB[k]).join(" ")+" "+(x.bl||[]).map(b=>b.n).join(" ")+" "+(x.ty||"")+" "+(x.ag||"")+" "+(x.la||"")+" "+(RSL[x.rs]||"")).toLowerCase());
 const hit=(x,skip)=>FK.every(f=>f==skip||!F[f]||has(x,f,F[f]))&&(!F.q||qtext(x).includes(aapiq(F.q)));
@@ -379,11 +380,11 @@ const ok=[...new Set(PSTAT.filter(s=>s.ok&&!s.note).map(s=>s.name.replace(/ \(.*
 $("#pcov").textContent=(ok.length?"From official .gov sources: "+ok.join(" · ")+".":"Official .gov sources only.")+(bad.length?" Not loaded this time: "+bad.join(", ")+".":"")}
 // ---- filter rail: each facet is a collapsible group whose header shows what is selected; long lists show the biggest few and "Show all" ----
 const OPENF=(()=>{try{return JSON.parse(localStorage.getItem("fo2")||"{}")}catch(e){return{}}})(),DEFO={t:1,c:0,r:0,s:0},DEFN={t:1,c:0,r:0,s:0},DEFA={t:1,c:0,r:0,s:0},MORE={},CAP={t:99,c:99,r:99,s:6}; // Advocacy opens on its organizations first and has its own remembered state (keys "at","as"…) // only the long Sources list is cut short; topics and communities are short and keep their fixed order
-const okey=f=>VIEW=="advocacy"?"a"+f:VIEW=="research"?"x"+f:f,fOpen=f=>{const v=OPENF[okey(f)];return v===undefined?!!(VIEW=="advocacy"?DEFA:VIEW=="feed"||VIEW=="research"?DEFN:DEFO)[f]:!!v},fStore=()=>{try{localStorage.setItem("fo2",JSON.stringify(OPENF))}catch(e){}},fToggle=f=>{OPENF[okey(f)]=!fOpen(f);fStore()};
+const okey=f=>VIEW=="advocacy"?"a"+f:VIEW=="research"?"x"+f:VIEW=="policy"?"p"+f:f,fOpen=f=>{const v=OPENF[okey(f)];return v===undefined?!!(VIEW=="advocacy"?DEFA:VIEW=="feed"||VIEW=="research"?DEFN:DEFO)[f]:!!v},fStore=()=>{try{localStorage.setItem("fo2",JSON.stringify(OPENF))}catch(e){}},fToggle=f=>{OPENF[okey(f)]=!fOpen(f);fStore()};
 function renderFilters(){
 const rb=(f,v,label,n)=>`<button class="ri${F[f]==v?" on":""}" data-f="${f}" data-v="${esc(v)}" aria-pressed="${F[f]==v}">${esc(label)}</button>`; // the count n still decides which rows appear, but it is not shown
 const tl_=TAGS.map(t=>[t,cnt("t",t)]).filter(([t,n])=>n>0||F.t==t),cl_=TAXO.c.map(([k,l])=>[k,l,cnt("c",k)]).filter(([k,,n])=>n>0||F.c==k),sl_=TAXO.s.map(([k,l])=>[k,l,cnt("st",k)]).filter(([k,,n])=>n>0||F.st==k),kl_=(VIEW=="research"?Object.keys(RSL):Object.keys(KL).filter(k=>!isPK(k)&&k!="open")).map(k=>[k,VIEW=="research"?RSP[k]:KL[k],cnt("k",k)]).filter(([k,,n])=>n>0||F.k==k),rl_=Object.keys(RL).map(k=>[k,RL[k],cnt("r",k)]).filter(([k,,n])=>n>0||F.r==k);
-const MAIN4=["The Yappie","AsAmNews","The Rebel Yellow","Joysauce"];
+const MAIN4=MAINS();
 const SL=srcAll().map(s=>({v:s,l:s,n:cnt("s",s),x:H[s]?`<a href="${H[s]}" target="_blank" rel="noopener" title="Open ${esc(s)}" aria-label="Open ${esc(s)} website">↗</a>`:""})).filter(o=>o.n>0||F.s==o.v);
 if(F.s=="__other")SL.push({v:"__other",l:"Other sources",n:cnt("s","__other"),x:""});
 const list=(f,box,items,none)=>{const el=$(box),cap=CAP[f],many=items.length>cap+1,more=!!MORE[f];let vis=items;
@@ -395,7 +396,7 @@ const tI=tl_.map(([t,n])=>({v:t,l:tl(t),n})),cI=cl_.map(([v,l,n])=>({v,l,n})),rI
 list("t","#tags",tI,"None in this view");head("t",F.t&&tl(F.t));
 list("c","#comms",cI,"None in this view");head("c",F.c&&CL[F.c]);
 list("r","#rels",rI,"None in this view");head("r",F.r&&RL[F.r]);
-if(VIEW=="feed"){ // News: the four main outlets, then ONE combined "Other sources" row (everything else together); a single other outlet picked from a headline shows as its own selected row
+if(VIEW=="feed"||VIEW=="research"){ // News and Research: the main outlets for the page, then ONE combined "Other sources" row (everything else together); a single other outlet picked from a headline shows as its own selected row
 const row=o=>`<div class="r2">${rb("s",o.v,o.l,o.n)}${o.x||'<span class="xs"></span>'}</div>`,mn=MAIN4.map(m=>SL.find(o=>o.v==m)).filter(Boolean),one=F.s&&F.s!="__other"&&!MAIN4.includes(F.s)?SL.find(o=>o.v==F.s):null,on=cnt("s","__other"),el=$("#srcs");
 el.classList.remove("sc");el.innerHTML=mn.concat(one?[one]:[]).concat(on>0||F.s=="__other"?[{v:"__other",l:"Other sources",n:on,x:""}]:[]).map(row).join("")||`<div class="none">None in this view</div>`}
 else list("s","#srcs",SL,"None in this view");head("s",F.s&&(F.s=="__other"?"Other sources":F.s));
@@ -404,7 +405,7 @@ renderPtabs();
 const stO=opt("","All states")+sl_.map(([k,l])=>opt(k,l)).join("");
 setSel(selSTd,stO,F.st);setSel(selST,stO,F.st);
 setSel(selT,opt("","All topics")+tl_.map(([t])=>opt(t,tl(t))).join(""),F.t);
-setSel(selS,opt("",VIEW=="advocacy"?"All groups":"All sources")+(VIEW=="feed"?SL.filter(o=>MAIN4.includes(o.v)).sort((a,b)=>MAIN4.indexOf(a.v)-MAIN4.indexOf(b.v)).map(o=>opt(o.v,o.l)).join("")+(F.s&&F.s!="__other"&&!MAIN4.includes(F.s)?opt(F.s,F.s):"")+(cnt("s","__other")>0||F.s=="__other"?opt("__other","Other sources"):""):SL.map(o=>opt(o.v,o.l)).join("")),F.s);
+setSel(selS,opt("",VIEW=="advocacy"?"All groups":"All sources")+((VIEW=="feed"||VIEW=="research")?SL.filter(o=>MAIN4.includes(o.v)).sort((a,b)=>MAIN4.indexOf(a.v)-MAIN4.indexOf(b.v)).map(o=>opt(o.v,o.l)).join("")+(F.s&&F.s!="__other"&&!MAIN4.includes(F.s)?opt(F.s,F.s):"")+(cnt("s","__other")>0||F.s=="__other"?opt("__other","Other sources"):""):SL.map(o=>opt(o.v,o.l)).join("")),F.s);
 setSel(selC,opt("","All communities")+cl_.map(([k,l])=>opt(k,l)).join(""),F.c);
 setSel(selK,opt("",VIEW=="research"?"All findings":"All types")+kl_.map(([k,l])=>opt(k,l)).join(""),F.k);
 $("#fsT").classList.toggle("on",!!F.t);$("#fsS").classList.toggle("on",!!F.s);
@@ -477,7 +478,7 @@ if(n=="clearall"){clearAll();return}
 if(n=="clearsaved"){SV.length=0;svStore();render();return}
 if(!x)return;
 if(n=="save"){toggleSv(x);if(viewing)$("#vacts").innerHTML=actRow(x,1);else render();return}
-if(n=="link"){doCopy(x.v&&origin()?origin()+BASE+"#a/"+uid(x):x.u,null,"Link copied.");return}
+if(n=="link"){doCopy(x.u,null,"Link copied.");return} // always the address of the story at its source (a Yappie article copies its theyappie.com address, not the page on this site)
 }
 const setF=(f,v)=>{F[f]=F[f]==v?"":v;sel=0;gsel="";render()};
 // click on a topic, source, community or state name inside a story: show only that, from wherever you are

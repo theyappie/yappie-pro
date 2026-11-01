@@ -100,11 +100,12 @@ const reroute = o => {
 // A story that Google News found with a broad search can share only a word with the communities (a Guam soccer score, a stock ticker), so it is shown only when its headline names the communities (communityPattern) or its publisher is trusted: every source above plus "trustedOutlets".
 const COMMUNITY = new RegExp(cfg.communityPattern ?? AAPI.source, "i");
 const TRUSTED = new Set([...cfg.sources.filter(x => !(x.google && !/site(:|%3A)/i.test(x.feed ?? ""))).flatMap(x => [x.name, x.asName]), ...(cfg.trustedOutlets ?? [])].map(normName).filter(Boolean));
-// A site that is allowed back through allowHosts but only for some of its stories ("gatedHosts"): its story is kept when it matches "require" and does not match "deny" (rnz.co.nz: Pacific Islander stories, no sports).
+// A site that is allowed back through allowHosts but only for some of its stories ("gatedHosts"): its story is kept when it matches "require" (or names the communities, with "community": true) and does not match "deny" (rnz.co.nz: Pacific Islander stories, no sports; independent.co.uk: stories about the communities).
 // The site is matched by its address, by the address Google News reports for its publisher, or by its name. A story that passes its gate skips the headline test below, because the gate is stricter.
-const GATES = (cfg.gatedHosts ?? []).map(g => { const hosts = (g.hosts ?? []).map(h => h.toLowerCase()); return { hosts, names: new Set([...(g.names ?? []), ...hosts].flatMap(n => [normName(n), normName(noTld(n))]).filter(Boolean)), require: g.require ? new RegExp(g.require, "i") : null, deny: g.deny ? new RegExp(g.deny, "i") : null }; });
+const GATES = (cfg.gatedHosts ?? []).map(g => { const hosts = (g.hosts ?? []).map(h => h.toLowerCase()); return { hosts, names: new Set([...(g.names ?? []), ...hosts].flatMap(n => [normName(n), normName(noTld(n))]).filter(Boolean)), require: g.require ? new RegExp(g.require, "i") : null, community: !!g.community, deny: g.deny ? new RegExp(g.deny, "i") : null }; });
 const gateOf = o => GATES.find(g => inList(hostOf(o.u), g.hosts) || pubHosts(o).some(h => inList(h, g.hosts)) || g.names.has(normName(o.s)) || g.names.has(normName(noTld(o.s))));
-const gateFails = o => { const g = gateOf(o); if (!g) return false; const t = o.h + " " + (o.m ?? ""); return !!((g.require && !g.require.test(t)) || (g.deny && g.deny.test(t))); };
+// A gate lets a story through when it matches "require" or, if the gate sets "community": true, when it names the communities (communityPattern); a gate with neither lets every story through. "deny" always drops.
+const gateFails = o => { const g = gateOf(o); if (!g) return false; const t = o.h + " " + (o.m ?? ""); const pass = (!g.require && !g.community) || (g.require && g.require.test(t)) || (g.community && COMMUNITY.test(t)); return !pass || !!(g.deny && g.deny.test(t)); };
 const offTopic = o => !isPolicy(o.k) && !isOrg(o.k) && hostOf(o.u) === "news.google.com" && !TRUSTED.has(normName(o.s)) && !gateOf(o) && !COMMUNITY.test(o.h + " " + (o.m ?? ""));
 
 const ENT = { amp: "&", lt: "<", gt: ">", quot: '"', apos: "'", nbsp: " " };
@@ -485,7 +486,7 @@ for (const it0 of [...fresh, ...old.map(retag)]) {
   if (!pol && ((!isOrg(it.k) && abroadOnly(it.h + " " + (it.m ?? ""))) || !isEnglish(it.h + " " + (it.m ?? "")))) continue;
   seen.add(k); items.push(it);
 }
-if (gateLog.length) console.log(`Dropped (site is allowed only for Pacific Islander stories that are not sports): ${gateLog.length}\n  ` + gateLog.slice(0, 40).join("\n  "));
+if (gateLog.length) console.log(`Dropped (a gated site: only the stories its gate allows are kept): ${gateLog.length}\n  ` + gateLog.slice(0, 40).join("\n  "));
 if (offTopicLog.length) console.log(`Dropped (headline does not name AAPI communities): ${offTopicLog.length}\n  ` + offTopicLog.slice(0, 40).join("\n  "));
 items.sort((a, b) => b.d.localeCompare(a.d));
 const kept = [...items.filter(i => !isPolicy(i.k) && i.k !== "research").slice(0, MAX), ...items.filter(i => i.k === "research").slice(0, RES_MAX), ...items.filter(i => isPolicy(i.k)).slice(0, POL_MAX)].sort((a, b) => b.d.localeCompare(a.d));

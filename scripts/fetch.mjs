@@ -12,13 +12,28 @@ const OUT = process.env.OUT ?? fileURLToPath(new URL("../data/feed.json", import
 const cfg = JSON.parse(await readFile(CFG, "utf8"));
 const BLOCK = new Set((cfg.excludeHosts ?? []).map(h => h.toLowerCase())); // sites that are never shown, with their subdomains, e.g. "medium.com"
 const hostOf = v => { try { return new URL(String(v)).hostname.toLowerCase(); } catch { return ""; } };
-const hostBlocked = h => !!h && [...BLOCK].some(d => h === d || h.endsWith("." + d));
+// A site on a country domain outside the U.S. (.ca, .ch, .uz, .co.uk, .com.au, ...) is never shown. The U.S. and its territories (.us .gu .as .mp .vi .pr .um) count as U.S.; "allowHosts" lists exceptions.
+const US_TLDS = new Set(["us", "gu", "as", "mp", "vi", "pr", "um"]), ALLOW = (cfg.allowHosts ?? []).map(h => h.toLowerCase());
+const hostForeign = h => {
+  h = String(h ?? "").toLowerCase().replace(/\.$/, "");
+  if (!h || cfg.blockForeignDomains === false || ALLOW.some(d => h === d || h.endsWith("." + d))) return false;
+  const tld = h.split(".").pop();
+  return /^[a-z]{2}$/.test(tld) ? !US_TLDS.has(tld) : tld.startsWith("xn--");
+};
+const hostBlocked = h => !!h && ([...BLOCK].some(d => h === d || h.endsWith("." + d)) || hostForeign(h));
 // Google News gives a publisher's name, not its address, so names are matched too: the ones in "excludeNames" and each blocked site's own name ("hoodline.com" also blocks a publisher called "Hoodline").
-const normName = v => String(v ?? "").toLowerCase().replace(/[^a-z0-9]+/g, "");
+const normName = v => String(v ?? "").toLowerCase().replace(/[^\p{L}\p{N}]+/gu, ""); // letters and digits in any script, so a publisher named in Arabic or Korean can be blocked too
 const noTld = v => String(v ?? "").trim().replace(/\.(com|org|net|co|ca|vn|in|io|info|tv|us)$/i, "");
 const BLOCK_NAMES = new Set([...(cfg.excludeNames ?? []), ...BLOCK].flatMap(n => [normName(n), normName(noTld(n))]).filter(Boolean));
-const nameBlocked = n => [normName(n), normName(noTld(n))].some(k => k && BLOCK_NAMES.has(k));
-const blocked = o => hostBlocked(hostOf(o.u)) || nameBlocked(o.s);
+// A publisher shown by name only (Google News) is matched to its web address too: each Google story carries it ("ph"), and stored stories learn it from the same publisher's other stories.
+const PUB_HOSTS = new Map();
+const pubHosts = o => o.ph ? [o.ph] : PUB_HOSTS.get(normName(o.s)) ?? [];
+const learnHost = (name, host) => { const k = normName(name), a = PUB_HOSTS.get(k) ?? []; if (k && host && !a.includes(host)) PUB_HOSTS.set(k, [...a, host]); };
+const learnHosts = list => { for (const o of list) if (o.ph && o.s) learnHost(o.s, o.ph); };
+const nameForeign = n => { const t = String(n ?? "").trim().toLowerCase(); return /^[a-z0-9-]+(\.[a-z0-9-]+)+$/.test(t) && hostForeign(t); }; // a publisher named by its web address, e.g. "UzDaily.uz"
+const nameBlocked = n => [normName(n), normName(noTld(n))].some(k => k && BLOCK_NAMES.has(k)) || nameForeign(n);
+const pubBlocked = o => { const a = pubHosts(o); return a.length > 0 && a.every(h => hostBlocked(h)); };
+const blocked = o => hostBlocked(hostOf(o.u)) || pubBlocked(o) || nameBlocked(o.s);
 const KEEP_MS = (cfg.keepDays ?? 30) * 864e5, MAX = cfg.maxItems ?? 400;
 const parser = new XMLParser({ ignoreAttributes: false, attributeNamePrefix: "@_", textNodeName: "#text" });
 
@@ -67,6 +82,22 @@ const abroadOnly = s => ABROAD.test(s) && !AAPI.test(s);
 // Statements come from U.S. AAPI advocacy organizations, so a statement about a place abroad (for example deportations to Cambodia) is still about U.S. communities and is kept.
 const isOrg = k => k === "statement";
 const skipped = [];
+// Where a story belongs. A story that links to a .gov address moves from News to the Policy page. "routes" in sources.json send a named site or publisher to another page (Asian Law Caucus to Advocacy).
+const govHost = h => /(^|\.)gov$/.test(h ?? "");
+const govItem = o => govHost(hostOf(o.u)) || pubHosts(o).some(govHost);
+const NEWS_KINDS = new Set(["news", "community"]);
+const inList = (h, list) => !!h && list.some(d => h === d || h.endsWith("." + d));
+const ROUTES = (cfg.routes ?? []).map(r => { const hosts = (r.hosts ?? []).map(h => h.toLowerCase()); return { kind: r.kind, hosts, names: new Set([...(r.names ?? []), ...hosts].flatMap(n => [normName(n), normName(noTld(n))]).filter(Boolean)) }; });
+const routeOf = o => ROUTES.find(r => inList(hostOf(o.u), r.hosts) || pubHosts(o).some(h => inList(h, r.hosts)) || r.names.has(normName(o.s)) || r.names.has(normName(noTld(o.s))))?.kind;
+const reroute = o => {
+  const rk = routeOf(o);
+  if (rk) return rk === o.k ? o : { ...o, k: rk };
+  return NEWS_KINDS.has(o.k) && govItem(o) ? { ...o, k: "govstmt", rl: o.rl || relOf(o.h + " " + (o.m ?? "")) || "n" } : o;
+};
+// A story that Google News found with a broad search can share only a word with the communities (a Guam soccer score, a stock ticker), so it is shown only when its headline names the communities (communityPattern) or its publisher is trusted: every source above plus "trustedOutlets".
+const COMMUNITY = new RegExp(cfg.communityPattern ?? AAPI.source, "i");
+const TRUSTED = new Set([...cfg.sources.filter(x => !(x.google && !/site(:|%3A)/i.test(x.feed ?? ""))).flatMap(x => [x.name, x.asName]), ...(cfg.trustedOutlets ?? [])].map(normName).filter(Boolean));
+const offTopic = o => !isPolicy(o.k) && !isOrg(o.k) && hostOf(o.u) === "news.google.com" && !TRUSTED.has(normName(o.s)) && !COMMUNITY.test(o.h + " " + (o.m ?? ""));
 
 const ENT = { amp: "&", lt: "<", gt: ">", quot: '"', apos: "'", nbsp: " " };
 const tx = n => (typeof n === "string" || typeof n === "number") ? String(n) : (n?.["#text"] ?? "");
@@ -205,8 +236,9 @@ async function pull(src) {
       if (pub) { pubName = pub; s = pub; if (h.endsWith(" - " + pub)) h = h.slice(0, -(pub.length + 3)); }
       if (src.asName) s = src.asName; // e.g. show Google News results from nbcnews.com as "NBC Asian America"
     }
-    const u = safeUrl(linkOf(it));
-    if (hostBlocked(hostOf(u)) || hostBlocked(hostOf(it.source?.["@_url"] ?? "")) || nameBlocked(pubName)) continue;
+    const u = safeUrl(linkOf(it)), ph = src.google ? hostOf(it.source?.["@_url"] ?? "").replace(/^www\./, "") : "";
+    if (ph) learnHost(s, ph); // learned before the block check, so a stored story from a blocked publisher can be recognised later
+    if (hostBlocked(hostOf(u)) || hostBlocked(ph) || nameBlocked(pubName)) continue;
     const raw = src.google ? "" : clean(it.description ?? it.summary ?? it["content:encoded"]).slice(0, 300); // used only for filtering/tagging
     const m = src.google ? "" : dek(it.description ?? it.summary, h);
     const gov = isPolicy(src.kind), rl = gov ? (relOf(h + " " + raw) || (src.filter ? "" : "n")) : "";
@@ -219,7 +251,7 @@ async function pull(src) {
     if (isNaN(d) || d > Date.now() + 864e5) d = new Date();
     const full = src.fullText ? cleanBody(tx(it["content:encoded"] ?? it.content)) : "";
     // a .gov statement can also be in the Policy tracker, so it gets an id of its own here
-    const item = { id: createHash("sha1").update(isOrg(src.kind) && isGov(u) ? "statement:" + u : u).digest("hex").slice(0, 12), d: d.toISOString(), s, h, m, u, g: src.google ? 1 : 0, k: src.kind ?? kindOf(s), ...(rl ? { rl } : {}), ...TG.all(h, raw + " " + clean(full).slice(0, 4000), d, gov ? "GOVERNMENT" : undefined) };
+    const item = { id: createHash("sha1").update(isOrg(src.kind) && isGov(u) ? "statement:" + u : u).digest("hex").slice(0, 12), d: d.toISOString(), s, h, m, u, g: src.google ? 1 : 0, ...(ph ? { ph } : {}), k: src.kind ?? kindOf(s), ...(rl ? { rl } : {}), ...TG.all(h, raw + " " + clean(full).slice(0, 4000), d, gov ? "GOVERNMENT" : undefined) };
     if (full) { const img = heroOf(it, full); item.v = 1; item.art = { by: clean(it["dc:creator"] ?? it.author?.name), img, body: tidyBody(full, img) }; }
     out.push(item);
   }
@@ -381,7 +413,9 @@ async function pullGovInfo(gi) {
 let old = [], oldSources = [];
 try { const prev = JSON.parse(await readFile(OUT, "utf8")); old = prev.items ?? []; oldSources = prev.sources ?? []; } catch {}
 const status = [], fresh = [];
-await Promise.all(cfg.sources.filter(s => s.enabled !== false).map(async s => {
+const foreignSources = cfg.sources.filter(s => s.enabled !== false && !s.google && hostForeign(hostOf(s.feed ?? s.page ?? s.wp)));
+if (foreignSources.length) console.log("Skipped (source is on a non-U.S. domain): " + [...new Set(foreignSources.map(s => s.name))].join(", "));
+await Promise.all(cfg.sources.filter(s => s.enabled !== false && !foreignSources.includes(s)).map(async s => {
   try { const r = await pull(s); fresh.push(...r); status.push({ name: s.name, home: s.home, kind: s.kind ?? kindOf(s.asName ?? s.name), ok: true, count: r.length }); }
   catch (e) { status.push({ name: s.name, home: s.home, kind: s.kind ?? kindOf(s.asName ?? s.name), ok: false, error: String(e.message ?? e) }); }
 }));
@@ -414,16 +448,21 @@ const retag = o => {
   const tg = TG.all(o.h, o.m ?? "", o.d, isPolicy(o.k) ? "GOVERNMENT" : undefined), force = !!process.env.RETAG, s = cfg.renames?.[o.s] ?? o.s;
   return { ...o, s, g: 1, k: o.k ?? kindOf(s), t: !force && VALID.has(o.t) ? o.t : tg.t, cm: !force && o.cm ? o.cm : tg.cm, st: !force && o.st ? o.st : tg.st, bl: !force && o.bl ? o.bl : tg.bl };
 };
-for (const it of [...fresh, ...old.map(retag)]) {
-  if (blocked(it)) continue; // a blocked site is dropped from stored stories too
+learnHosts([...old, ...fresh]);
+const offTopicLog = [];
+for (const it0 of [...fresh, ...old.map(retag)]) {
+  if (blocked(it0)) continue; // a blocked site, or a site on a non-U.S. domain, is dropped from stored stories too
+  const it = reroute(it0);
+  if (offTopic(it)) { offTopicLog.push(it.s + ": " + it.h); continue; }
   const pol = isPolicy(it.k);
-  if (pol && !isGov(it.u)) continue; // the Policy tracker takes .gov sources only
+  if (pol && !govItem(it)) continue; // the Policy tracker takes .gov sources only
   const k = pol ? it.u : it.h.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim().slice(0, 70); // companion bills can share a title, so policy items are told apart by link
   const open = it.dl && it.dl >= today && now - new Date(it.d) < keepFR;
   if (!k || seen.has(k) || (now - new Date(it.d) > (pol ? POL_KEEP : KEEP_MS) && !open)) continue;
   if (!pol && ((!isOrg(it.k) && abroadOnly(it.h + " " + (it.m ?? ""))) || !isEnglish(it.h + " " + (it.m ?? "")))) continue;
   seen.add(k); items.push(it);
 }
+if (offTopicLog.length) console.log(`Dropped (headline does not name AAPI communities): ${offTopicLog.length}\n  ` + offTopicLog.slice(0, 40).join("\n  "));
 items.sort((a, b) => b.d.localeCompare(a.d));
 const kept = [...items.filter(i => !isPolicy(i.k)).slice(0, MAX), ...items.filter(i => isPolicy(i.k)).slice(0, POL_MAX)].sort((a, b) => b.d.localeCompare(a.d));
 const arts = new Map(kept.filter(i => i.art).map(i => [i.id, i.art]));

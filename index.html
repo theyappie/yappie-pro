@@ -203,7 +203,10 @@ body.msheet{overflow:hidden}body.msheet .side{display:block;position:fixed;inset
 @media (max-width:640px){.brand img{height:26px}.cmd{flex:1 1 0;min-width:72px;max-width:128px;gap:6px;padding:6px 10px}.cmd:focus-within{max-width:none}.bar:has(.cmd:focus-within) .brand{display:none}}
 @media (max-width:380px){.brand img{height:24px}}
 @media (max-width:340px){.brand img{height:20px}}
-.hl,.dtl h2,.vit a>span,.vcard h1{font-family:var(--head)}
+.vcard h1,.vbody{font-family:var(--head)}
+.kp,.rlc,.ag,.dlc,.sd{font-family:var(--sans)}
+.vit a>span{font-weight:400}
+.hla{font-weight:400}
 </style></head><body>
 <header>
 <div class="bar">
@@ -219,7 +222,7 @@ body.msheet{overflow:hidden}body.msheet .side{display:block;position:fixed;inset
 <section><div class="ph"><span id="ttl">Top headlines</span></div>
 <div class="ptabs" id="ptabs" role="group" aria-label="Type" hidden></div><div class="vtool" id="vtool" hidden></div><div class="chips" id="chips" hidden></div>
 <div class="row h"><span>TIME</span><span id="hsrc">SOURCE</span><span>TOPIC</span><span>HEADLINE</span><span></span></div><div id="rows"></div><div class="more" id="more"></div><div class="pcov" id="pcov" hidden></div></section>
-<section class="side"><div id="dtlw"><div class="ph" id="dtlt"><span id="dtlts">Story details</span><button type="button" class="dx" id="dtlx">Close</button></div><div class="dtl" id="dtl"></div></div>
+<section class="side"><div id="dtlw"><div class="ph" id="dtlt"><span id="dtlts">Details</span><button type="button" class="dx" id="dtlx">Close</button></div><div class="dtl" id="dtl"></div></div>
 </section>
 </main>
 <div id="viewer" hidden><div class="vw">
@@ -410,7 +413,7 @@ $("#chips").hidden=!act.length;
 function tabCounts(){$("#nSv").textContent=SV.length||"";$$("#tabs a").forEach(a=>{const on=a.dataset.v==VIEW;a.classList.toggle("on",on);on?a.setAttribute("aria-current","page"):a.removeAttribute("aria-current")})}
 const TITLES={feed:"Top headlines",policy:"Policy tracker",advocacy:"Advocacy statements",research:"Research",saved:"Saved stories"};
 function render(){
-$("#feed").dataset.v=VIEW;$("#ttl").textContent=TITLES[VIEW];$("#dtlts").textContent=VIEW=="policy"?"Policy details":VIEW=="advocacy"?"Statement details":VIEW=="research"?"Research details":"Story details";$("#hsrc").textContent=VIEW=="advocacy"?"GROUP":"SOURCE";tabCounts();syncQS();
+$("#feed").dataset.v=VIEW;$("#ttl").textContent=TITLES[VIEW];$("#dtlts").textContent="Details";$("#hsrc").textContent=VIEW=="advocacy"?"GROUP":"SOURCE";tabCounts();syncQS();
 $("#vtool").hidden=true;$("#vtool").innerHTML="";
 renderFilters();const NOUN=VIEW=="policy"||VIEW=="research"?"items":VIEW=="advocacy"?"statements":"stories";
 L=VIEW=="saved"?savedList():sortPol(vset().filter(x=>hit(x)));

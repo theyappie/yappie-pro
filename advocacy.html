@@ -1,7 +1,9 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="theme-color" content="#111525"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>The Yappie</title>
+<title>The Yappie Pro — Informing and Empowering AAPI Communities</title>
+<meta name="application-name" content="The Yappie Pro — Informing and Empowering AAPI Communities"><meta property="og:site_name" content="The Yappie Pro — Informing and Empowering AAPI Communities">
+<link rel="icon" href="/favicon.ico" sizes="48x48"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">
 <link rel="preconnect" href="https://use.typekit.net">
 <link rel="preconnect" href="https://use.typekit.net" crossorigin>
 <link rel="stylesheet" href="https://use.typekit.net/uug3ias.css">
@@ -571,7 +573,7 @@ if(VIEW!=nv){VIEW=nv;if(nv!="saved")fixF();sel=0;gsel="";render();window.scrollT
 if(VIEW!=nv){VIEW=nv;if(nv!="saved")fixF();sel=0;gsel="";render()}
 if(viewing!==x){viewing=x;showArticle(x)}rkey=ck()}
 function showArticle(x){
-if(!$("#feed").hidden)feedY=window.scrollY;$("#feed").hidden=true;$("#viewer").hidden=false;document.title=x.h+" | "+baseTitle;window.scrollTo(0,0);
+if(!$("#feed").hidden)feedY=window.scrollY;$("#feed").hidden=true;$("#viewer").hidden=false;document.title=x.h+" | The Yappie Pro";window.scrollTo(0,0);
 const when=x.d.length>10?fdt(x.d):MON[+x.d.slice(5,7)-1]+" "+(+x.d.slice(8,10))+", "+x.d.slice(0,4);
 $("#vcard").innerHTML=`<div class="ph vph"><span>Article</span><span aria-hidden="true">·</span><button type="button" class="lk" data-f="s" data-v="${esc(x.s)}" aria-label="Show only ${esc(x.s)} stories">${esc(x.s)}</button></div><div class="vbd"><a class="vback" href="${hrefOf(lastS||"feed")}" data-go="${lastS||"feed"}">← Back to ${lastS?"list":"news"}</a><div class="vmeta"><span class="vsrc"><button type="button" class="lk" data-f="s" data-v="${esc(x.s)}" aria-label="Show only ${esc(x.s)} stories">${esc(x.s)}</button> · </span><button type="button" class="vtp" data-f="t" data-v="${esc(x.t)}" aria-label="Show only ${esc(tl(x.t))} stories">${esc(tl(x.t))}</button></div><h1>${esc(x.h)}</h1>${x.m?`<p class="vdek">${esc(x.m)}</p>`:""}<div class="vby" id="vby">${when}</div>${fx(x)}<div id="vacts">${actRow(x,1)}</div><div class="vhero" id="vhero" hidden></div><div class="vbody" id="vbody"><div class="vnote">Loading…</div></div><div class="vfoot">Originally published by The Yappie. <a class="lnk" href="${esc(x.u)}" target="_blank" rel="noopener">Read on theyappie.com ↗</a></div></div>`;
 const hero=u=>{if(!(u&&/^https:\/\//.test(u)))return;const im=new Image();im.alt="";im.onload=()=>{if(viewing!==x)return;$("#vhero").innerHTML="";$("#vhero").appendChild(im);$("#vhero").hidden=false};im.src=u},byl=(n,u)=>{if(n)$("#vby").innerHTML=`By ${/^https:\/\//.test(u||"")?`<a href="${esc(u)}" target="_blank" rel="noopener" title="More by ${esc(n)} on theyappie.com"><b>${esc(n)}</b></a>`:`<b>${esc(n)}</b>`} | ${when}`};

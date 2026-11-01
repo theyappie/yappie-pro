@@ -1,12 +1,35 @@
 name: update-feed
 on:
-  # started by the "tick" workflow about every 10 minutes (tick.yml), or by hand from the Actions tab
+  # Normally started by the "tick" workflow about every 10 minutes (tick.yml), or by hand from the Actions tab.
+  # The schedule below is a second, independent trigger for the case where GitHub is late with tick's schedule; the "gate" job skips it when an update began in the last 7 minutes.
+  schedule: [{ cron: "17,47 * * * *" }]
   workflow_dispatch:
 permissions:
   contents: write
+  actions: read
 concurrency: update-feed
 jobs:
+  gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    outputs:
+      skip: ${{ steps.check.outputs.skip }}
+    steps:
+      - id: check
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -eu
+          echo "skip=false" >> "$GITHUB_OUTPUT"
+          [ "$GITHUB_EVENT_NAME" = "schedule" ] || exit 0
+          created=$(gh run list --repo "$GITHUB_REPOSITORY" --workflow update.yml --limit 5 --json databaseId,createdAt --jq "[.[] | select(.databaseId != $GITHUB_RUN_ID)][0] // empty | .createdAt")
+          [ -n "$created" ] || exit 0
+          age=$(( $(date +%s) - $(date -d "$created" +%s) ))
+          echo "The previous update began $age seconds ago."
+          if [ "$age" -lt 420 ]; then echo "Too soon; skipping this scheduled run."; echo "skip=true" > "$GITHUB_OUTPUT"; fi
   update:
+    needs: gate
+    if: needs.gate.outputs.skip != 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:

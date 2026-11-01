@@ -36,7 +36,7 @@ const relOf = s => AAPI.test(s) ? "n" : ISSUE.test(s) ? "i" : "";
 const GOV_UA = { "user-agent": "AAPIWire/1.0 (open-source policy index)", accept: "application/json" };
 
 // One free api.data.gov key serves Congress.gov, GovInfo and Regulations.gov. Each allows about 1,000 or more requests an hour per key, the response headers say how many are left,
-// and this job runs every 15 minutes (4 runs an hour). A run therefore makes at most apiBudget.perRun key requests and stops early when a host reports that less than apiBudget.keepFraction of its hourly allowance is left.
+// and this job runs about every 10 minutes (up to 6 runs an hour). A run therefore makes at most apiBudget.perRun key requests and stops early when a host reports that less than apiBudget.keepFraction of its hourly allowance is left.
 const API_KEY = process.env.API_DATA_GOV_KEY || process.env.CONGRESS_API_KEY || "";
 const NO_KEY = "skipped: no API key set (API_DATA_GOV_KEY)";
 const LIM = { left: cfg.apiBudget?.perRun ?? 150, keep: cfg.apiBudget?.keepFraction ?? 0.25, hosts: new Map(), stopped: "" };

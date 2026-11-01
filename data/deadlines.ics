@@ -4,8 +4,8 @@ PRODID:-//The Yappie Pro//Comment deadlines//EN
 CALSCALE:GREGORIAN
 X-WR-CALNAME:AAPI comment deadlines
 BEGIN:VEVENT
-UID:5160228586c2@aapi-wire
-DTSTAMP:20261101T221851Z
+UID:5160228586c2@yappie-pro
+DTSTAMP:20261101T222140Z
 DTSTART;VALUE=DATE:20261103
 DTEND;VALUE=DATE:20261104
 SUMMARY:Comments due: Decennial Census of the Population of Americans\; Pr
@@ -16,8 +16,8 @@ DESCRIPTION:Proposed Rule | USBC\nhttps://www.regulations.gov/document/USB
  C-2026-0628-0001
 END:VEVENT
 BEGIN:VEVENT
-UID:832b8bc05d18@aapi-wire
-DTSTAMP:20261101T221851Z
+UID:832b8bc05d18@yappie-pro
+DTSTAMP:20261101T222140Z
 DTSTART;VALUE=DATE:20261109
 DTEND;VALUE=DATE:20261110
 SUMMARY:Comments due: Optional Practical Training Fees
@@ -31,8 +31,8 @@ DESCRIPTION:Proposed Rule | Homeland Security Department | S. workers. The
  ical-training-fees
 END:VEVENT
 BEGIN:VEVENT
-UID:f0f969572aaa@aapi-wire
-DTSTAMP:20261101T221851Z
+UID:f0f969572aaa@yappie-pro
+DTSTAMP:20261101T222140Z
 DTSTART;VALUE=DATE:20261113
 DTEND;VALUE=DATE:20261114
 SUMMARY:Comments due: Removing 30-Day Refugee Termination Notice
@@ -43,8 +43,8 @@ DESCRIPTION:Rule | Homeland Security Department\nhttps://www.federalregist
  n-notice
 END:VEVENT
 BEGIN:VEVENT
-UID:28c212996917@aapi-wire
-DTSTAMP:20261101T221851Z
+UID:28c212996917@yappie-pro
+DTSTAMP:20261101T222140Z
 DTSTART;VALUE=DATE:20261113
 DTEND;VALUE=DATE:20261114
 SUMMARY:Comments due: Removing Deference to Prior USCIS Determinations of 
@@ -59,8 +59,8 @@ DESCRIPTION:Proposed Rule | Homeland Security Department | S. S. 1(c)(5)\,
  -determinations-of-eligibility
 END:VEVENT
 BEGIN:VEVENT
-UID:5ca04f41efe6@aapi-wire
-DTSTAMP:20261101T221851Z
+UID:5ca04f41efe6@yappie-pro
+DTSTAMP:20261101T222140Z
 DTSTART;VALUE=DATE:20261128
 DTEND;VALUE=DATE:20261129
 SUMMARY:Comments due: Notice of Proposed Information Collection Requests: 

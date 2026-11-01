@@ -38,7 +38,10 @@ jobs:
       ADMIN_DATA_TOKEN: ${{ secrets.ADMIN_DATA_TOKEN }}
       ADMIN_DATA_REPO: ${{ vars.ADMIN_DATA_REPO || 'theyappie/yappie-pro-admin' }}
     steps:
+      # The newest commit of the branch, not the one that was current when this run was triggered: a run that waited in the queue behind another update would otherwise start from out-of-date data.
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
       - uses: actions/setup-node@v4
         with: { node-version: 20, cache: npm }
       - run: npm ci
@@ -76,12 +79,19 @@ jobs:
           git add data
           git diff --cached --quiet && exit 0
           git commit -m "feed: $(date -u +%FT%TZ)"
-          # This push can be refused if another run or a manual commit landed first. Take the newer files and push again.
+          # This push is refused if something else was pushed to the branch in the meantime. Every file in data/ is rebuilt from scratch on each run, so where both sides changed
+          # one, keep this run's version. If that cannot be done, drop this run: the next one (within minutes) rebuilds everything.
           for try in 1 2 3 4 5; do
             git push && exit 0
-            echo "Push refused (a change was saved in the meantime); trying again ($try of 5)."
+            echo "Push refused (something was pushed in the meantime); trying again ($try of 5)."
             sleep $((try * 3))
-            git pull --rebase origin "$GITHUB_REF_NAME"
+            git fetch -q origin "$GITHUB_REF_NAME"
+            if ! git rebase -X theirs FETCH_HEAD; then
+              git rebase --abort || true
+              git reset -q --hard FETCH_HEAD
+              echo "Could not combine this run with the newer data; skipping it. The next update starts from the newer data."
+              exit 0
+            fi
           done
           echo "Could not push after 5 tries."; exit 1
       - name: Save the waiting list to the private repository
@@ -93,11 +103,12 @@ jobs:
           git add -A
           git diff --cached --quiet && exit 0
           git commit -m "pending: $(date -u +%FT%TZ)"
-          # The dashboard saves admin.json to this repository at any moment, so a push can be refused. Take the newer files and push again.
+          # The dashboard saves admin.json to this repository at any moment, so a push can be refused. This job only ever writes pending.json here, so keep this run's version of it.
           for try in 1 2 3 4 5; do
             git push && exit 0
             echo "Push refused (a change was saved in the meantime); trying again ($try of 5)."
             sleep $((try * 3))
-            git pull --rebase
+            git fetch -q origin
+            if ! git rebase -X theirs '@{u}'; then git rebase --abort || true; git reset -q --hard '@{u}'; echo "Could not combine; skipping. The next update saves the waiting list again."; exit 0; fi
           done
           echo "Could not push after 5 tries."; exit 1

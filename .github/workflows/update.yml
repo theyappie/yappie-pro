@@ -49,4 +49,13 @@ jobs:
           git config user.name "yappie-pro-bot"
           git config user.email "actions@users.noreply.github.com"
           git add data
-          git diff --cached --quiet || (git commit -m "feed: $(date -u +%FT%TZ)" && git push)
+          git diff --cached --quiet && exit 0
+          git commit -m "feed: $(date -u +%FT%TZ)"
+          # The admin dashboard saves its decisions to data/admin.json while this job runs, so a push can be refused. Take the newer files and push again.
+          for try in 1 2 3 4 5; do
+            git push && exit 0
+            echo "Push refused (a change was saved in the meantime); trying again ($try of 5)."
+            sleep $((try * 3))
+            git pull --rebase origin "$GITHUB_REF_NAME"
+          done
+          echo "Could not push after 5 tries."; exit 1

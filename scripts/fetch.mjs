@@ -6,6 +6,7 @@ import { fileURLToPath } from "node:url";
 import { XMLParser } from "fast-xml-parser";
 import { makeTagger, TAXO_PATH } from "./tag.mjs";
 import { makeEnglishCheck } from "./lang.mjs";
+import { normalizeState, applyEdits, placeOf } from "./admin.mjs";
 
 const CFG = process.env.SOURCES ?? fileURLToPath(new URL("../sources.json", import.meta.url));
 const OUT = process.env.OUT ?? fileURLToPath(new URL("../data/feed.json", import.meta.url));
@@ -458,6 +459,12 @@ async function pullGovInfo(gi) {
 
 let old = [], oldSources = [];
 try { const prev = JSON.parse(await readFile(OUT, "utf8")); old = prev.items ?? []; oldSources = prev.sources ?? []; } catch {}
+// The owner's decisions from the admin dashboard (data/admin.json: edits, deleted and approved items, items added by hand; see scripts/admin.mjs) and the items waiting for approval (data/pending.json).
+let A = normalizeState(null), oldPending = [];
+try { A = normalizeState(JSON.parse(await readFile(join(dirname(OUT), "admin.json"), "utf8"))); }
+catch (e) { if (e.code !== "ENOENT") { console.error("data/admin.json cannot be read (" + e.message + "); keeping the previous data so the owner's decisions are not lost."); process.exit(1); } } // no file: no decisions yet
+try { oldPending = JSON.parse(await readFile(join(dirname(OUT), "pending.json"), "utf8")).items ?? []; } catch { /* nothing waiting */ }
+const PEND_MAX = cfg.pendingMax ?? 500;
 const status = [], fresh = [];
 const foreignSources = cfg.sources.filter(s => s.enabled !== false && !s.google && hostForeign(hostOf(s.feed ?? s.page ?? s.wp)));
 if (foreignSources.length) console.log("Skipped (source is on a non-U.S. domain): " + [...new Set(foreignSources.map(s => s.name))].join(", "));
@@ -485,7 +492,7 @@ if (skipped.length) console.log("Skipped (not about U.S. AAPI communities):\n  "
 if (!status.some(s => s.ok)) { console.error("All sources failed; keeping previous data."); process.exit(1); }
 
 fresh.sort((a, b) => a.g - b.g); // direct outlets win over Google News duplicates
-const seen = new Set(), items = [], now = Date.now();
+const seen = new Set(), seenId = new Set(), items = [], now = Date.now();
 const keepFR = (cfg.federalRegister?.keepCommentsDays ?? 120) * 864e5, today = new Date().toISOString().slice(0, 10);
 const POL_KEEP = (cfg.policyKeepDays ?? 120) * 864e5, POL_MAX = cfg.policyMax ?? 300;
 // Stored items from before a rules change are re-tagged so every item has the current topic, communities, states and bills.
@@ -498,8 +505,9 @@ const retag = o => {
 };
 learnHosts([...old, ...fresh, ...old.map(renamed), ...fresh.map(renamed)]); // a publisher shown under its new name keeps its web address
 const offTopicLog = [], gateLog = [];
-for (const it0 of [...fresh.map(renamed), ...old.map(retag)]) {
+for (const it0 of [...fresh.map(renamed), ...old.map(retag), ...oldPending.map(retag)]) {
   if (catDropIds.has(it0.id)) continue; // a story in an excluded category, stored by an earlier run
+  if (A.deleted[it0.id]) continue; // deleted in the admin dashboard: never collected again
   if (blocked(it0)) continue; // a blocked site, or a site on a non-U.S. domain, is dropped from stored stories too
   const it = reroute(it0);
   if (gateFails(it)) { gateLog.push(it.s + ": " + it.h); continue; }
@@ -508,14 +516,19 @@ for (const it0 of [...fresh.map(renamed), ...old.map(retag)]) {
   if (pol && !govItem(it)) continue; // the Policy tracker takes .gov sources only
   const k = pol ? it.u : it.h.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim().slice(0, 70); // companion bills can share a title, so policy items are told apart by link
   const open = it.dl && it.dl >= today && now - new Date(it.d) < keepFR;
-  if (!k || seen.has(k) || (now - new Date(it.d) > (pol ? POL_KEEP : keepOf(it)) && !open)) continue;
+  if (!k || seen.has(k) || seenId.has(it.id) || (now - new Date(it.d) > (pol ? POL_KEEP : keepOf(it)) && !open && !A.pinned[it.id])) continue;
   if (!pol && ((!isOrg(it.k) && abroadOnly(it.h + " " + (it.m ?? ""))) || !isEnglish(it.h + " " + (it.m ?? "")))) continue;
-  seen.add(k); items.push(it);
+  seen.add(k); seenId.add(it.id); items.push(it);
 }
 if (gateLog.length) console.log(`Dropped (a gated site: only the stories its gate allows are kept): ${gateLog.length}\n  ` + gateLog.slice(0, 40).join("\n  "));
 if (offTopicLog.length) console.log(`Dropped (headline does not name AAPI communities): ${offTopicLog.length}\n  ` + offTopicLog.slice(0, 40).join("\n  "));
-items.sort((a, b) => b.d.localeCompare(a.d));
-const kept = [...items.filter(i => !isPolicy(i.k) && i.k !== "research" && !held(i)).slice(0, MAX), ...items.filter(i => !isPolicy(i.k) && i.k !== "research" && held(i)), ...items.filter(i => i.k === "research").slice(0, RES_MAX), ...items.filter(i => isPolicy(i.k)).slice(0, POL_MAX)].sort((a, b) => b.d.localeCompare(a.d));
+// The owner's decisions: items added by hand or restored from the trash join the others (kept, or aged out like any other unless "kept permanently"); edits go on top of what was collected; an item that needs approval goes to the waiting list.
+const oldIds = new Set(old.map(i => i.id)), oldPendIds = new Set(oldPending.map(i => i.id));
+for (const m of A.added) if (!A.deleted[m.id] && !seenId.has(m.id) && (A.pinned[m.id] || now - Date.parse(m.d) <= keepOf(m))) { seenId.add(m.id); items.push({ ...m, g: 1 }); }
+const live = [], waiting = [];
+for (const it0 of items) { const it = applyEdits(it0, A); (placeOf(A, it, { live: oldIds.has(it.id), pending: oldPendIds.has(it.id) }) === "pending" ? waiting : live).push(it); }
+live.sort((a, b) => b.d.localeCompare(a.d)); waiting.sort((a, b) => b.d.localeCompare(a.d));
+const kept = [...live.filter(i => !isPolicy(i.k) && i.k !== "research" && !held(i)).slice(0, MAX), ...live.filter(i => !isPolicy(i.k) && i.k !== "research" && held(i)), ...live.filter(i => i.k === "research").slice(0, RES_MAX), ...live.filter(i => isPolicy(i.k)).slice(0, POL_MAX)].sort((a, b) => b.d.localeCompare(a.d));
 const arts = new Map(kept.filter(i => i.art).map(i => [i.id, i.art]));
 const slim = o => Object.fromEntries(Object.entries(o).filter(([, v]) => !(Array.isArray(v) && !v.length) && v !== "" && v !== undefined));
 const out = kept.map(({ g, art, ...rest }) => slim(rest));
@@ -524,6 +537,8 @@ await mkdir(adir, { recursive: true });
 // Author pages ("byu"): an author seen before is not looked up again (sources.json "authors" lists bylines whose stories live on another site, e.g. The Yappie Staff on the newsletter), and at most 6 pages are read per run.
 const stored = new Map();
 for (const f of await readdir(adir)) if (f.endsWith(".json")) { try { stored.set(f.slice(0, -5), JSON.parse(await readFile(join(adir, f), "utf8"))); } catch { /* unreadable file: replaced or removed below */ } }
+// An article the owner wrote or changed in the dashboard (state.article) goes on top of the collected one; its author link is kept as given.
+for (const i of kept) { const ov = A.article[i.id]; if (ov && Object.keys(ov).length) arts.set(i.id, { by: "", img: "", body: "", ...(stored.get(i.id) ?? {}), ...(arts.get(i.id) ?? {}), ...ov }); }
 const knownAuthor = new Map(Object.entries(Object.assign({}, ...cfg.sources.map(x => x.authors ?? {}))));
 for (const a of stored.values()) if (a.by && a.byu && !knownAuthor.has(a.by)) knownAuthor.set(a.by, a.byu);
 const storyUrl = new Map(kept.map(i => [i.id, i.u]));
@@ -539,7 +554,7 @@ const authorFor = async (id, a) => {
   if (r) knownAuthor.set(a.by, r);
   return r;
 };
-for (const [id, a] of arts) { const byu = await authorFor(id, a); await writeFile(join(adir, id + ".json"), JSON.stringify(byu === undefined ? a : { ...a, byu })); }
+for (const [id, a] of arts) { const byu = a.byu !== undefined ? a.byu : await authorFor(id, a); await writeFile(join(adir, id + ".json"), JSON.stringify(byu === undefined ? a : { ...a, byu })); }
 const keepIds = new Set(out.filter(i => i.v).map(i => i.id));
 for (const [id, a] of stored) { // articles stored before this rule existed
   if (arts.has(id) || !keepIds.has(id)) continue;
@@ -547,6 +562,13 @@ for (const [id, a] of stored) { // articles stored before this rule existed
   if (b !== a.body || (byu !== undefined && byu !== a.byu)) await writeFile(join(adir, id + ".json"), JSON.stringify({ ...a, body: b, ...(byu === undefined ? {} : { byu }) }));
 }
 for (const f of await readdir(adir)) if (f.endsWith(".json") && !keepIds.has(f.slice(0, -5))) await unlink(join(adir, f));
+// Items waiting for approval, with their article text inside (the article file of an item that is not live is removed).
+const pendOut = waiting.slice(0, PEND_MAX).map(({ g, art, ...rest }) => {
+  const base = art ?? (rest.v ? stored.get(rest.id) : undefined), ov = A.article[rest.id]; // the owner's own article text goes on top here too
+  const a = ov && Object.keys(ov).length ? { by: "", img: "", body: "", ...(base ?? {}), ...ov } : base;
+  return slim(a ? { ...rest, art: a } : rest);
+});
+if (JSON.stringify(pendOut) !== JSON.stringify(oldPending) && (pendOut.length || oldPending.length)) await writeFile(join(dirname(OUT), "pending.json"), JSON.stringify({ generated: new Date().toISOString(), items: pendOut }));
 const pubSources = status.map(({ name, home, kind, ok, count, note }) => ({ name, home, kind, ok, count, note }));
 if (JSON.stringify(out) === JSON.stringify(old) && JSON.stringify(pubSources) === JSON.stringify(oldSources)) { console.log("No changes."); process.exit(0); }
 await mkdir(dirname(OUT), { recursive: true });

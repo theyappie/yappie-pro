@@ -1,0 +1,603 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="color-scheme" content="light dark">
+<meta name="csrf" content="{{CSRF}}">
+<title>Admin · The Yappie Pro</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a67f1'/%3E%3Cpath d='M9 8l7 9 7-9M16 17v8' stroke='%23fff' stroke-width='3.2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<style nonce="{{NONCE}}">
+:root{--bg:#faf9f5;--pn:#fff;--tx:#111525;--dm:#5e5e5e;--ln:#dee2e6;--ac:#0a67f1;--bt:#fff;--sel:#e7f0fe;--err:#b3261e;--errbg:#fdecea;--ok:#146c2e;--okbg:#e3f4e8;--warn-bg:#fdeccb;--warn-tx:#5a3a00;--chip:#eef0f4;--sh:0 1px 2px rgba(0,0,0,.05),0 8px 24px rgba(17,21,37,.08)}
+@media (prefers-color-scheme:dark){:root{--bg:#0b0e1a;--pn:#111525;--tx:#e9ecf5;--dm:#9aa3bd;--ln:#232a45;--ac:#4d94ff;--bt:#0b0e1a;--sel:#182247;--err:#ff8a80;--errbg:#3a1613;--ok:#7be0a0;--okbg:#10301c;--warn-bg:#3a2a0b;--warn-tx:#f3d9a4;--chip:#1b2140;--sh:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.4)}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid color-mix(in srgb,var(--ac) 50%,transparent);outline-offset:1px}
+[hidden]{display:none!important}
+a{color:var(--ac)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* top bar */
+.top{position:sticky;top:0;z-index:20;background:var(--pn);border-bottom:1px solid var(--ln);display:flex;align-items:center;gap:12px;padding:10px 16px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-.01em;margin-right:auto}
+.brand .mk{width:30px;height:30px;border-radius:8px;background:var(--ac);display:grid;place-items:center}
+.brand .mk svg{width:18px;height:18px}
+.brand small{font-weight:500;color:var(--dm)}
+.status{display:flex;align-items:center;gap:8px;font-size:13px;padding:5px 10px;border-radius:999px;background:var(--chip);color:var(--dm)}
+.status i{width:8px;height:8px;border-radius:50%;background:var(--dm);display:inline-block}
+.status.ok i{background:#1a9c44}.status.run i{background:var(--ac);animation:pulse 1s infinite alternate}.status.bad{background:var(--errbg);color:var(--err)}.status.bad i{background:var(--err)}.status.wait{background:var(--warn-bg);color:var(--warn-tx)}.status.wait i{background:#d9972b}
+@keyframes pulse{to{opacity:.25}}
+@media (prefers-reduced-motion:reduce){.status.run i{animation:none}}
+.btn{border:1px solid var(--ln);background:var(--pn);border-radius:8px;padding:7px 12px;font-weight:600;font-size:14px;line-height:1.2;white-space:nowrap}
+.btn:hover{border-color:var(--ac)}
+.btn.pri{background:var(--ac);border-color:var(--ac);color:var(--bt)}
+.btn.dng{color:var(--err);border-color:color-mix(in srgb,var(--err) 40%,var(--ln))}
+.btn.sm{padding:4px 9px;font-size:13px}
+.btn.lnk{border:0;background:none;color:var(--ac);padding:4px 6px}
+.btn:disabled{opacity:.55;cursor:default}
+details.menu{position:relative}
+details.menu summary{list-style:none;cursor:pointer}
+details.menu summary::-webkit-details-marker{display:none}
+details.menu .pop{position:absolute;right:0;top:calc(100% + 6px);background:var(--pn);border:1px solid var(--ln);border-radius:10px;box-shadow:var(--sh);padding:6px;min-width:230px;z-index:30;display:grid}
+.pop button{text-align:left;border:0;background:none;padding:9px 10px;border-radius:7px}
+.pop button:hover{background:var(--sel)}
+
+#banner{margin:12px 16px 0;padding:10px 14px;border-radius:9px;background:var(--errbg);color:var(--err);font-size:14px}
+.tabs{display:flex;gap:2px;padding:0 12px;border-bottom:1px solid var(--ln);background:var(--pn);overflow-x:auto}
+.tabs button{border:0;background:none;padding:12px 14px;font-weight:600;color:var(--dm);border-bottom:3px solid transparent;white-space:nowrap}
+.tabs button[aria-selected=true]{color:var(--tx);border-bottom-color:var(--ac)}
+.tabs .n{display:inline-block;min-width:22px;padding:0 6px;margin-left:6px;border-radius:999px;background:var(--chip);color:var(--dm);font-size:12px;line-height:20px;text-align:center}
+.tabs .n.hot{background:var(--ac);color:var(--bt)}
+main{max-width:1180px;margin:0 auto;padding:16px}
+
+/* filters */
+.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px}
+.bar input[type=search]{flex:1 1 240px;min-width:0}
+.in,.bar input,.bar select,dialog input,dialog select,dialog textarea{border:1px solid var(--ln);background:var(--pn);border-radius:8px;padding:8px 10px;max-width:100%}
+.bar select{max-width:180px}
+.listhead{display:flex;align-items:center;gap:12px;padding:8px 12px;color:var(--dm);font-size:13px;border:1px solid var(--ln);border-bottom:0;border-radius:10px 10px 0 0;background:var(--pn);flex-wrap:wrap}
+.listhead .sp{margin-left:auto}
+ul.rows{list-style:none;margin:0;padding:0;border:1px solid var(--ln);border-radius:0 0 10px 10px;background:var(--pn);overflow:hidden}
+.row{display:grid;grid-template-columns:36px minmax(0,1fr) minmax(150px,260px) auto;gap:4px 12px;padding:11px 12px;border-top:1px solid var(--ln);align-items:start}
+.row:first-child{border-top:0}
+.row:hover{background:color-mix(in srgb,var(--sel) 45%,transparent)}
+.row.on{background:var(--sel)}
+.cb{display:flex;padding-top:2px}
+.cb input{width:18px;height:18px;accent-color:var(--ac)}
+.title{border:0;background:none;padding:0;text-align:left;font-weight:650;font-size:15.5px;line-height:1.35;color:var(--tx)}
+.title:hover{color:var(--ac);text-decoration:underline}
+.meta{font-size:13px;color:var(--dm);margin-top:2px}
+.sum{font-size:13px;color:var(--dm);margin-top:3px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.badges{display:flex;gap:5px;flex-wrap:wrap;margin-top:5px}
+.b{font-size:11.5px;font-weight:650;padding:1px 7px;border-radius:999px;background:var(--chip);color:var(--dm)}
+.b.ed{background:var(--sel);color:var(--ac)}.b.wait{background:var(--warn-bg);color:var(--warn-tx)}.b.ok{background:var(--okbg);color:var(--ok)}
+.tags{display:flex;gap:5px;flex-wrap:wrap;align-content:flex-start}
+.chip{font-size:12px;padding:2px 8px;border-radius:6px;background:var(--chip)}
+.chip.k{font-weight:650}
+.acts{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.more{padding:14px;text-align:center}
+.empty{padding:40px 20px;text-align:center;color:var(--dm)}
+
+/* bulk bar */
+.bulk{position:sticky;bottom:12px;z-index:15;margin:14px auto 0;max-width:1180px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:10px 14px;background:var(--tx);color:var(--bg);border-radius:12px;box-shadow:var(--sh)}
+.bulk b{margin-right:auto}
+.bulk .btn{background:transparent;color:var(--bg);border-color:color-mix(in srgb,var(--bg) 35%,transparent)}
+.bulk .btn.pri{background:var(--ac);border-color:var(--ac);color:#fff}
+.bulk .btn.dng{color:#ff9d94}
+
+/* dialogs */
+dialog{border:0;border-radius:14px;padding:0;width:min(720px,calc(100vw - 24px));max-height:calc(100vh - 24px);background:var(--pn);color:var(--tx);box-shadow:0 20px 60px rgba(0,0,0,.35)}
+dialog::backdrop{background:rgba(10,14,26,.55)}
+.dh{display:flex;align-items:center;padding:16px 20px;border-bottom:1px solid var(--ln);gap:12px}
+.dh h2{margin:0;font-size:18px;letter-spacing:-.01em;margin-right:auto}
+.db{padding:16px 20px;overflow:auto;max-height:calc(100vh - 170px);display:grid;gap:14px}
+.df{display:flex;gap:8px;padding:14px 20px;border-top:1px solid var(--ln);justify-content:flex-end;flex-wrap:wrap}
+.df .sp{margin-right:auto}
+.fl{display:grid;gap:5px;align-content:start}
+.fl>label,.fl>.lb{font-size:13px;font-weight:650}
+.fl .hint{font-size:12.5px;color:var(--dm)}
+.fl input,.fl select,.fl textarea{width:100%}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:620px){.two{grid-template-columns:1fr}}
+.checks{display:flex;flex-wrap:wrap;gap:6px 14px}
+.chk{display:flex;gap:7px;align-items:center;font-size:14px}
+.chk input{width:16px;height:16px;accent-color:var(--ac)}
+.stlist{border:1px solid var(--ln);border-radius:8px;max-height:150px;overflow:auto;padding:8px;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:4px 10px}
+.tb{display:flex;gap:4px;flex-wrap:wrap}
+.tb button{border:1px solid var(--ln);background:var(--pn);border-radius:6px;padding:3px 9px;font-size:13px}
+textarea.body{min-height:220px;font:13.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace}
+iframe.pv{width:100%;height:280px;border:1px solid var(--ln);border-radius:8px;background:#fff}
+fieldset{border:1px solid var(--ln);border-radius:10px;padding:12px 14px;margin:0;display:grid;gap:12px}
+legend{font-weight:650;font-size:13px;padding:0 6px}
+.err{color:var(--err);font-size:13.5px}
+.coll{font-size:12px;color:var(--dm)}
+
+/* settings, activity */
+.card{background:var(--pn);border:1px solid var(--ln);border-radius:12px;padding:18px 20px;margin-bottom:14px}
+.card h2{margin:0 0 4px;font-size:17px}
+.card p{margin:4px 0 12px;color:var(--dm)}
+.opt{display:flex;gap:10px;padding:10px 0;align-items:flex-start}
+.opt input{margin-top:4px;accent-color:var(--ac)}
+.opt b{display:block}
+.srcs{max-height:280px;overflow:auto;border:1px solid var(--ln);border-radius:8px;padding:8px;display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:4px 12px;margin:8px 0}
+ul.log{list-style:none;margin:0;padding:0}
+ul.log li{display:flex;gap:12px;padding:10px 4px;border-top:1px solid var(--ln);flex-wrap:wrap}
+ul.log li:first-child{border-top:0}
+ul.log time{color:var(--dm);min-width:170px;font-size:13px}
+
+#toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);z-index:60;display:grid;gap:8px;width:min(560px,calc(100vw - 24px))}
+.t{background:var(--tx);color:var(--bg);padding:11px 14px;border-radius:10px;box-shadow:var(--sh);display:flex;gap:12px;align-items:center}
+.t.bad{background:var(--err);color:#fff}
+.t button{margin-left:auto;border:0;background:none;color:inherit;font-weight:700;text-decoration:underline;padding:0}
+
+@media (max-width:820px){
+  .top{gap:8px}
+  .bar select{flex:1 1 calc(50% - 8px);max-width:none;min-width:0}
+  .row{grid-template-columns:30px minmax(0,1fr)}
+  .tags,.acts{grid-column:2}
+  .acts{justify-content:flex-start}
+  main{padding:12px}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="brand"><span class="mk" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="#fff" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 8l7 9 7-9M16 17v8"/></svg></span><span>The Yappie Pro <small>Admin</small></span></div>
+  <div class="status" id="status" role="status"><i></i><span>Loading…</span></div>
+  <button class="btn" id="publish" type="button">Update the site now</button>
+  <a class="btn" id="site" target="_blank" rel="noopener noreferrer">View site ↗</a>
+  <details class="menu" id="acct"><summary class="btn">Account</summary>
+    <div class="pop"><button type="button" id="logout">Log out</button><button type="button" id="logoutAll">Log out on every device</button></div></details>
+</header>
+<div id="banner" role="alert" hidden></div>
+<nav class="tabs" role="tablist" id="tabs" aria-label="Sections"></nav>
+<main id="main"><div class="empty">Loading…</div></main>
+<div id="bulkwrap"></div>
+<div id="toast" aria-live="polite"></div>
+<dialog id="dlg" aria-labelledby="dlgTitle"></dialog>
+<script id="cfg" type="application/json" nonce="{{NONCE}}">{{CFG}}</script>
+<script nonce="{{NONCE}}">
+"use strict";
+const CORE = (() => {
+{{CORE}}
+return { normalizeState, applyEdits, placeOf, sanitizeHtml };
+})();
+(() => {
+const CFG = JSON.parse(document.getElementById("cfg").textContent), NONCE = document.getElementById("cfg").nonce || "";
+const CSRF = document.querySelector('meta[name="csrf"]').content;
+const $ = (s, r = document) => r.querySelector(s);
+
+// ---------------------------------------------------------------- small helpers
+function h(tag, a, ...kids) {
+  const e = document.createElement(tag);
+  if (a) for (const [k, v] of Object.entries(a)) {
+    if (v == null || v === false) continue;
+    if (k === "class") e.className = v;
+    else if (k === "on") for (const [ev, fn] of Object.entries(v)) e.addEventListener(ev, fn);
+    else if (k in e && k !== "list" && k !== "form") e[k] = v;
+    else e.setAttribute(k, v === true ? "" : String(v));
+  }
+  for (const kid of kids.flat(2)) { if (kid == null || kid === false) continue; e.append(kid.nodeType ? kid : document.createTextNode(String(kid))); }
+  return e;
+}
+const fmt = iso => { const d = new Date(iso); return isNaN(d) ? "" : d.toLocaleString(undefined, { month: "short", day: "numeric", year: "numeric", hour: "numeric", minute: "2-digit" }); };
+const fmtDay = iso => { const d = new Date(iso); return isNaN(d) ? "" : d.toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" }); };
+const p2 = n => String(n).padStart(2, "0");
+const toLocal = iso => { const d = new Date(iso); return isNaN(d) ? "" : `${d.getFullYear()}-${p2(d.getMonth() + 1)}-${p2(d.getDate())}T${p2(d.getHours())}:${p2(d.getMinutes())}`; };
+const plural = (n, w) => `${n} ${w}${n === 1 ? "" : "s"}`;
+const sameSet = (a, b) => { a = a ?? []; b = b ?? []; return a.length === b.length && a.every(x => b.includes(x)); };
+const clearNode = n => { while (n.firstChild) n.removeChild(n.firstChild); };
+
+let ended = false;
+function sessionEnded() { if (ended) return; ended = true; location.replace("/"); }
+async function api(path, body) {
+  const o = { credentials: "same-origin", headers: {} };
+  if (body !== undefined) { o.method = "POST"; o.headers["content-type"] = "application/json"; o.headers["x-csrf"] = CSRF; o.body = JSON.stringify(body); }
+  let r; try { r = await fetch(path, o); } catch { throw new Error("Could not reach the server. Check your connection."); }
+  if (r.status === 401) { sessionEnded(); throw new Error("Please log in again."); }
+  const j = await r.json().catch(() => ({ ok: false, error: "Unexpected answer from the server." }));
+  if (!r.ok || j.ok === false) throw new Error(j.error || `Something went wrong (${r.status}).`);
+  return j;
+}
+
+// ---------------------------------------------------------------- data
+const D = { S: CORE.normalizeState(null), feed: [], pending: [], tax: { topics: [], communities: [], states: [], kinds: {}, default: "CULTURE" }, srcCfg: [], live: [], wait: [], trash: [], rows: new Map(), ready: false };
+const F = { q: "", src: "", kind: "", topic: "", cm: "", st: "", only: "", sort: "new", limit: 100 };
+let TAB = "live", sel = new Set(), busy = false;
+const kindLabel = k => D.tax.kinds[k] || k || "";
+const topicLabel = k => (D.tax.topics.find(t => t.k === k) || {}).label || k || "";
+const cmLabel = k => (D.tax.communities.find(c => c.k === k) || {}).label || k;
+const stName = k => (D.tax.states.find(s => s[0] === k) || [])[1] || k;
+
+async function loadAll() {
+  const names = ["feed", "pending", "state", "taxonomy", "sources"];
+  const [feed, pend, state, tax, src] = await Promise.all(names.map(n => api("/api/raw/" + n)));
+  D.feed = feed.items || []; D.pending = pend.items || []; D.S = CORE.normalizeState(state); D.tax = tax; D.srcCfg = src.sources || []; D.ready = true;
+  rebuild();
+}
+function rebuild() {
+  const S = D.S, rows = new Map();
+  const put = (it, where) => { if (!rows.has(it.id)) rows.set(it.id, { id: it.id, raw: it, where }); };
+  for (const it of D.feed) put(it, "live");
+  for (const it of D.pending) put(it, "pending");
+  for (const it of S.added) put(it, "new");
+  D.live = []; D.wait = []; D.trash = []; D.rows = rows;
+  for (const r of rows.values()) {
+    if (S.deleted[r.id]) continue;
+    const item = CORE.applyEdits(r.raw, S), target = CORE.placeOf(S, item, { live: r.where === "live", pending: r.where === "pending" });
+    Object.assign(r, { item, target, dirty: r.where === "new" || target !== r.where || JSON.stringify(item) !== JSON.stringify(r.raw), edited: !!S.edits[r.id], kept: !!S.pinned[r.id], mine: S.added.some(x => x.id === r.id) });
+    (target === "pending" ? D.wait : D.live).push(r);
+  }
+  for (const [id, d] of Object.entries(S.deleted)) { const item = d.item || rows.get(id)?.raw; D.trash.push({ id, at: d.at, item: item || { id, h: "(no copy saved) " + id, s: "", d: d.at, k: "", t: "" }, noCopy: !item }); }
+  D.trash.sort((a, b) => b.at.localeCompare(a.at));
+  for (const id of [...sel]) if (!rows.has(id) && !S.deleted[id]) sel.delete(id);
+}
+const dirtyCount = () => D.live.concat(D.wait).filter(r => r.dirty).length;
+
+// ---------------------------------------------------------------- toasts, dialogs
+function toast(msg, o = {}) {
+  const t = h("div", { class: "t" + (o.bad ? " bad" : "") }, h("span", null, msg));
+  if (o.undo) t.append(h("button", { type: "button", on: { click: () => { t.remove(); o.undo(); } } }, "Undo"));
+  clearNode($("#toast")); $("#toast").append(t); setTimeout(() => t.remove(), o.bad || o.undo ? 9000 : 4500); // one message at a time: an Undo always belongs to the last change
+}
+const dlg = $("#dlg");
+function openDialog(title, body, foot, { onClose } = {}) {
+  clearNode(dlg);
+  dlg.append(h("div", { class: "dh" }, h("h2", { id: "dlgTitle" }, title), h("button", { class: "btn lnk", type: "button", "aria-label": "Close", on: { click: () => dlg.close() } }, "✕")), h("div", { class: "db" }, body), h("div", { class: "df" }, foot));
+  dlg.onclose = () => { dlg.onclose = null; onClose && onClose(); };
+  if (!dlg.open) dlg.showModal();
+}
+function confirmBox(title, text, ok, danger) {
+  return new Promise(res => {
+    let done = false;
+    const fin = v => { if (!done) { done = true; res(v); } };
+    openDialog(title, h("p", null, text), [h("button", { class: "btn", type: "button", on: { click: () => dlg.close() } }, "Cancel"), h("button", { class: "btn " + (danger ? "dng" : "pri"), type: "button", on: { click: () => { fin(true); dlg.close(); } } }, ok)], { onClose: () => fin(false) });
+  });
+}
+
+// ---------------------------------------------------------------- saving
+async function act(op, args, { undo, quiet } = {}) {
+  if (busy) return null;
+  busy = true; setStatus();
+  try {
+    const r = await api("/api/op", { op, args });
+    D.S = CORE.normalizeState(r.state); rebuild(); render();
+    if (!quiet) toast(r.summary, undo ? { undo: () => undo(r) } : {});
+    pollSoon(); return r;
+  } catch (e) { toast(e.message, { bad: true }); return null; }
+  finally { busy = false; setStatus(); }
+}
+const snapshots = ids => Object.fromEntries(ids.map(id => [id, D.rows.get(id)?.item]).filter(([, v]) => v));
+const doApprove = (ids, undoing) => act("approve", { ids }, undoing ? {} : { undo: () => doHold(ids, true) });
+const doHold = (ids, undoing) => act("unpublish", { ids }, undoing ? {} : { undo: () => doApprove(ids, true) });
+const doPin = (ids, undoing) => act("pin", { ids }, undoing ? {} : { undo: () => doUnpin(ids, true) });
+const doUnpin = (ids, undoing) => act("unpin", { ids }, undoing ? {} : { undo: () => doPin(ids, true) });
+// closes the open dialog first, so a second dialog opened right after does not receive the first one's "close" event
+const closeThen = fn => { if (!dlg.open) return fn(); dlg.addEventListener("close", () => setTimeout(fn, 0), { once: true }); dlg.close(); };
+async function doDelete(ids) {
+  const ok = await confirmBox(`Delete ${plural(ids.length, "item")}?`, "They are taken off the site and will not be collected again. They stay in the Trash for 180 days, where you can restore them.", "Delete", true);
+  if (!ok) return;
+  await act("delete", { ids, items: snapshots(ids) }, { undo: () => act("restore", { ids }) });
+  sel.clear(); render();
+}
+const doRestore = ids => act("restore", { ids }, { undo: () => act("delete", { ids, items: Object.fromEntries(ids.map(id => [id, D.S.added.find(x => x.id === id)]).filter(([, v]) => v)) }) });
+
+// ---------------------------------------------------------------- status
+let runs = null, lastRunKey = "", pollTimer = 0;
+async function pollRuns() {
+  clearTimeout(pollTimer);
+  try {
+    const j = await api("/api/raw/runs"), r = (j.workflow_runs || [])[0];
+    runs = r ? { id: r.id, status: r.status, conclusion: r.conclusion, at: r.updated_at || r.created_at, url: r.html_url } : null;
+    const key = runs ? `${runs.id}:${runs.status}` : "";
+    if (lastRunKey && key !== lastRunKey && runs && runs.status === "completed") { try { await loadAll(); render(); } catch { /* shown on next poll */ } }
+    lastRunKey = key;
+  } catch (e) { runs = { error: e.message }; }
+  setStatus();
+  const active = runs && (runs.status === "in_progress" || runs.status === "queued" || runs.status === "waiting" || runs.status === "pending");
+  pollTimer = setTimeout(pollRuns, active || dirtyCount() ? 12000 : 60000);
+}
+const pollSoon = () => { clearTimeout(pollTimer); pollTimer = setTimeout(pollRuns, 9000); };
+function setStatus() {
+  const el = $("#status"), n = dirtyCount();
+  let cls = "", text = "Checking…";
+  if (busy) { cls = "run"; text = "Saving…"; }
+  else if (runs?.error) { cls = "bad"; text = "Cannot check updates"; }
+  else if (runs && runs.status !== "completed") { cls = "run"; text = "Updating the site…"; }
+  else if (runs && runs.conclusion && runs.conclusion !== "success") { cls = "bad"; text = "The last update failed"; }
+  else if (n) { cls = "wait"; text = `${plural(n, "change")} not on the site yet`; }
+  else if (runs) { cls = "ok"; text = "Site is up to date · " + fmt(runs.at); }
+  el.className = "status " + cls; el.lastChild.textContent = text;
+  const lnk = runs?.url && (cls === "bad" || cls === "run") ? runs.url : null;
+  el.title = lnk ? "Open the update log on GitHub: " + lnk : "";
+}
+
+// ---------------------------------------------------------------- list view
+function matches(r) {
+  const it = r.item, q = F.q.trim().toLowerCase();
+  if (q && !`${it.h} ${it.s} ${it.m || ""} ${it.id}`.toLowerCase().includes(q)) return false;
+  if (F.src && it.s !== F.src) return false;
+  if (F.kind && it.k !== F.kind) return false;
+  if (F.topic && it.t !== F.topic) return false;
+  if (F.cm && !(it.cm || []).includes(F.cm)) return false;
+  if (F.st && !(it.st || []).includes(F.st)) return false;
+  if (F.only === "edited" && !r.edited) return false;
+  if (F.only === "kept" && !r.kept) return false;
+  if (F.only === "mine" && !r.mine) return false;
+  if (F.only === "article" && it.v !== 1) return false;
+  if (F.only === "dirty" && !r.dirty) return false;
+  return true;
+}
+const sorters = { new: (a, b) => b.item.d.localeCompare(a.item.d), old: (a, b) => a.item.d.localeCompare(b.item.d), az: (a, b) => a.item.h.localeCompare(b.item.h), src: (a, b) => (a.item.s || "").localeCompare(b.item.s || "") || b.item.d.localeCompare(a.item.d) };
+const tabRows = () => TAB === "live" ? D.live : TAB === "waiting" ? D.wait : D.trash.map(t => ({ id: t.id, item: t.item, trash: t, noCopy: t.noCopy }));
+
+function render() {
+  if (!D.ready) return;
+  renderTabs();
+  const main = $("#main"); clearNode(main);
+  if (TAB === "settings") renderSettings(main);
+  else if (TAB === "activity") renderActivity(main);
+  else renderList(main);
+  renderBulk(); setStatus();
+}
+function renderTabs() {
+  const tabs = [["live", "Live", D.live.length], ["waiting", "Waiting for approval", D.wait.length, D.wait.length > 0], ["trash", "Trash", D.trash.length], ["activity", "Activity"], ["settings", "Settings"]];
+  const nav = $("#tabs"); clearNode(nav);
+  for (const [k, label, n, hot] of tabs) nav.append(h("button", { type: "button", role: "tab", id: "tab-" + k, "aria-selected": String(k === TAB), on: { click: () => { TAB = k; sel.clear(); Object.assign(F, { q: "", src: "", kind: "", topic: "", cm: "", st: "", only: "", limit: 100 }); location.hash = k; render(); } } }, label, n != null && h("span", { class: "n" + (hot ? " hot" : "") }, n)));
+}
+function select(label, value, options, onChange) {
+  const s = h("select", { "aria-label": label, on: { change: e => onChange(e.target.value) } }, h("option", { value: "" }, label), options.map(([v, l]) => h("option", { value: v }, l)));
+  s.value = value; return s;
+}
+function renderList(main) {
+  const base = tabRows(), isTrash = TAB === "trash";
+  const srcs = [...new Set(base.map(r => r.item.s).filter(Boolean))].sort((a, b) => a.localeCompare(b));
+  const bar = h("div", { class: "bar" },
+    h("input", { type: "search", placeholder: "Search headlines, sources and summaries", "aria-label": "Search", value: F.q, on: { input: e => { F.q = e.target.value; F.limit = 100; refreshList(); } } }),
+    select("All sources", F.src, srcs.map(s => [s, s]), v => { F.src = v; refreshList(true); }),
+    select("All sections", F.kind, Object.entries(D.tax.kinds), v => { F.kind = v; refreshList(true); }),
+    select("All topics", F.topic, D.tax.topics.map(t => [t.k, t.label]), v => { F.topic = v; refreshList(true); }),
+    select("All communities", F.cm, D.tax.communities.map(c => [c.k, c.label]), v => { F.cm = v; refreshList(true); }),
+    select("All states", F.st, D.tax.states.map(s => [s[0], s[1]]), v => { F.st = v; refreshList(true); }),
+    !isTrash && select("Show everything", F.only, [["edited", "Edited by me"], ["kept", "Kept permanently"], ["mine", "Added by me"], ["article", "Stories written here"], ["dirty", "Not on the site yet"]], v => { F.only = v; refreshList(true); }),
+    h("select", { "aria-label": "Sort", on: { change: e => { F.sort = e.target.value; refreshList(true); } } }, [["new", "Newest first"], ["old", "Oldest first"], ["az", "Headline A–Z"], ["src", "Source"]].map(([v, l]) => h("option", { value: v, selected: F.sort === v }, l))),
+    !isTrash && h("button", { class: "btn pri", type: "button", on: { click: () => openEditor(null) } }, "+ Add an item"));
+  main.append(bar, h("div", { id: "listbox" }));
+  refreshList();
+}
+function refreshList(rerenderBar) {
+  if (rerenderBar) { const main = $("#main"); clearNode(main); renderList(main); return; }
+  const box = $("#listbox"); if (!box) return; clearNode(box);
+  const isTrash = TAB === "trash", all = tabRows().filter(matches).sort(isTrash ? (a, b) => b.trash.at.localeCompare(a.trash.at) : sorters[F.sort]);
+  const shown = all.slice(0, F.limit), allSel = all.length > 0 && all.every(r => sel.has(r.id));
+  const master = h("input", { type: "checkbox", "aria-label": "Select all " + all.length + " matching", checked: allSel, on: { change: e => { for (const r of all) e.target.checked ? sel.add(r.id) : sel.delete(r.id); refreshList(); renderBulk(); } } });
+  box.append(h("div", { class: "listhead" }, master, h("span", null, `${plural(all.length, "item")}${all.length < tabRows().length ? " match" : ""}`), all.length > shown.length && h("span", { class: "sp" }, `Showing the first ${shown.length}`)));
+  const ul = h("ul", { class: "rows" });
+  if (!all.length) ul.append(h("li", { class: "empty" }, emptyText()));
+  for (const r of shown) ul.append(rowEl(r));
+  box.append(ul);
+  if (all.length > shown.length) box.append(h("div", { class: "more" }, h("button", { class: "btn", type: "button", on: { click: () => { F.limit += 200; refreshList(); } } }, `Show ${Math.min(200, all.length - shown.length)} more`)));
+}
+function emptyText() {
+  if (F.q || F.src || F.kind || F.topic || F.cm || F.st || F.only) return "Nothing matches these filters.";
+  return TAB === "waiting" ? "Nothing is waiting for approval. To review new stories before they go live, turn on approval in Settings." : TAB === "trash" ? "The Trash is empty." : "Nothing here yet.";
+}
+function rowEl(r) {
+  const it = r.item, isTrash = !!r.trash, ids = [r.id];
+  const badges = [];
+  if (r.edited) badges.push(h("span", { class: "b ed" }, "Edited"));
+  if (r.mine) badges.push(h("span", { class: "b ed" }, "Added by me"));
+  if (r.kept) badges.push(h("span", { class: "b" }, "Kept permanently"));
+  if (it.v === 1) badges.push(h("span", { class: "b" }, "Story"));
+  if (r.dirty && !isTrash) badges.push(h("span", { class: "b wait" }, r.target !== r.where && r.where !== "new" ? (r.target === "live" ? "Going live…" : "Moving to waiting…") : "Updating…"));
+  if (isTrash) badges.push(h("span", { class: "b" }, "Deleted " + fmtDay(r.trash.at)));
+  if (r.noCopy) badges.push(h("span", { class: "b wait" }, "No saved copy"));
+  const tags = [it.k && h("span", { class: "chip k" }, kindLabel(it.k)), it.t && h("span", { class: "chip" }, topicLabel(it.t)), (it.cm || []).map(c => h("span", { class: "chip" }, cmLabel(c))), (it.st || []).map(s => h("span", { class: "chip" }, s))];
+  const acts = isTrash ? [!r.noCopy && h("button", { class: "btn sm pri", type: "button", on: { click: () => doRestore(ids) } }, "Restore")] : [
+    TAB === "waiting" ? h("button", { class: "btn sm pri", type: "button", on: { click: () => doApprove(ids) } }, "Approve") : h("button", { class: "btn sm", type: "button", on: { click: () => doHold(ids) } }, "Move to waiting"),
+    h("button", { class: "btn sm", type: "button", on: { click: () => openEditor(r) } }, "Edit"),
+    h("button", { class: "btn sm dng", type: "button", on: { click: () => doDelete(ids) } }, "Delete")];
+  return h("li", { class: "row" + (sel.has(r.id) ? " on" : ""), "data-id": r.id },
+    h("label", { class: "cb" }, h("input", { type: "checkbox", checked: sel.has(r.id), "aria-label": "Select: " + it.h, on: { change: e => { e.target.checked ? sel.add(r.id) : sel.delete(r.id); e.target.closest(".row").classList.toggle("on", e.target.checked); renderBulk(); } } })),
+    h("div", null,
+      isTrash ? h("span", { class: "title" }, it.h) : h("button", { class: "title", type: "button", on: { click: () => openEditor(r) } }, it.h),
+      h("div", { class: "meta" }, [it.s, fmtDay(it.d)].filter(Boolean).join(" · "), /^https?:\/\//i.test(it.u || "") && [" · ", h("a", { href: it.u, target: "_blank", rel: "noopener noreferrer" }, "Open ↗")]),
+      it.m && h("div", { class: "sum" }, it.m),
+      badges.length > 0 && h("div", { class: "badges" }, badges)),
+    h("div", { class: "tags" }, tags), h("div", { class: "acts" }, acts));
+}
+
+// ---------------------------------------------------------------- bulk actions
+function renderBulk() {
+  const w = $("#bulkwrap"); clearNode(w);
+  const ids = [...sel]; if (!ids.length || TAB === "settings" || TAB === "activity") return;
+  const b = (label, fn, cls = "") => h("button", { class: "btn " + cls, type: "button", on: { click: fn } }, label);
+  const rowsSel = ids.map(id => D.rows.get(id)).filter(Boolean), allKept = rowsSel.length && rowsSel.every(r => r.kept);
+  w.append(h("div", { class: "bulk", role: "region", "aria-label": "Actions for selected items" }, h("b", null, `${plural(ids.length, "item")} selected`),
+    TAB === "trash" ? [b("Restore", async () => { await doRestore(ids); sel.clear(); render(); }, "pri")] : [
+      TAB === "waiting" ? b("Approve", async () => { await doApprove(ids); sel.clear(); render(); }, "pri") : b("Move to waiting", async () => { await doHold(ids); sel.clear(); render(); }),
+      b("Retag…", () => openRetag(ids)),
+      allKept ? b("Stop keeping", () => doUnpin(ids)) : b("Keep permanently", () => doPin(ids)),
+      b("Delete", () => doDelete(ids), "dng")],
+    b("Clear", () => { sel.clear(); render(); })));
+}
+function openRetag(ids) {
+  const rows = ids.map(id => D.rows.get(id)).filter(Boolean), cmBox = new Set(), stBox = new Set();
+  const kindSel = h("select", null, h("option", { value: "" }, "Leave as is"), Object.entries(D.tax.kinds).map(([k, l]) => h("option", { value: k }, l)));
+  const topicSel = h("select", null, h("option", { value: "" }, "Leave as is"), D.tax.topics.map(t => h("option", { value: t.k }, t.label)));
+  const mode = name => h("select", { "aria-label": name }, [["", "Leave as is"], ["add", "Add these"], ["set", "Replace with these"], ["clear", "Remove all"]].map(([v, l]) => h("option", { value: v }, l)));
+  const cmMode = mode("Communities"), stMode = mode("States");
+  const checks = (list, set) => list.map(([v, l]) => h("label", { class: "chk" }, h("input", { type: "checkbox", on: { change: e => e.target.checked ? set.add(v) : set.delete(v) } }), l));
+  const err = h("div", { class: "err", role: "alert" });
+  const body = [h("p", null, `Change the tags on ${plural(rows.length, "item")}. Only the fields you change are touched.`),
+    h("div", { class: "two" }, h("div", { class: "fl" }, h("label", null, "Section"), kindSel), h("div", { class: "fl" }, h("label", null, "Topic"), topicSel)),
+    h("fieldset", null, h("legend", null, "Communities"), cmMode, h("div", { class: "checks" }, checks(D.tax.communities.map(c => [c.k, c.label]), cmBox))),
+    h("fieldset", null, h("legend", null, "States"), stMode, h("div", { class: "stlist" }, checks(D.tax.states.map(s => [s[0], s[1]]), stBox))), err];
+  const go = h("button", { class: "btn pri", type: "button", on: { click: async () => {
+    const edits = [];
+    for (const r of rows) {
+      const it = r.item, patch = {}, orig = {};
+      const setF = (f, v, same) => { if (!same) { patch[f] = v; orig[f] = it[f] ?? null; } };
+      if (kindSel.value) setF("k", kindSel.value, it.k === kindSel.value);
+      if (topicSel.value) setF("t", topicSel.value, it.t === topicSel.value);
+      for (const [m, set, f] of [[cmMode, cmBox, "cm"], [stMode, stBox, "st"]]) {
+        const cur = it[f] || [], pick = [...set]; let nv = null;
+        if (m.value === "add") nv = [...new Set([...cur, ...pick])]; else if (m.value === "set") nv = pick; else if (m.value === "clear") nv = []; else continue;
+        setF(f, nv, sameSet(cur, nv));
+      }
+      if (Object.keys(patch).length) edits.push({ id: r.id, patch, orig });
+    }
+    if (!edits.length) { err.textContent = "Nothing would change. Pick a new section, topic, community or state."; return; }
+    go.disabled = true; const res = await act("editMany", { edits }); go.disabled = false; if (res) { dlg.close(); sel.clear(); render(); }
+  } } }, "Apply to " + plural(rows.length, "item"));
+  openDialog("Retag items", body, [h("button", { class: "btn", type: "button", on: { click: () => dlg.close() } }, "Cancel"), go]);
+}
+
+// ---------------------------------------------------------------- the editor (edit and add)
+async function openEditor(row) {
+  const isNew = !row, S = D.S, id = row?.id;
+  const it = row ? row.item : { d: new Date().toISOString(), s: "", h: "", m: "", u: "", k: "community", t: D.tax.default, cm: [], st: [] };
+  const col = row ? S.orig[id] || {} : {};
+  let art0 = { by: "", img: "", byu: "", body: "" };
+  if (!isNew && it.v === 1) {
+    try { const base = row.raw.art || (row.where === "live" ? await api("/api/article/" + id) : {}); art0 = { ...art0, ...base, ...(S.article[id] || {}) }; }
+    catch (e) { toast("The story text could not be loaded: " + e.message, { bad: true }); return; }
+  }
+  const hint = f => f in col && col[f] != null && col[f] !== "" ? h("div", { class: "coll" }, "Collected: " + (Array.isArray(col[f]) ? col[f].join(", ") : f === "d" ? fmt(col[f]) : f === "k" ? kindLabel(col[f]) : f === "t" ? topicLabel(col[f]) : col[f])) : null;
+  const inp = (f, label, o = {}, extra) => { const el = h(o.area ? "textarea" : "input", { type: o.area ? undefined : o.type || "text", id: "f-" + f, value: o.value ?? it[f] ?? "", rows: o.area ? 3 : undefined, maxlength: o.max, required: o.req, placeholder: o.ph, list: undefined }); if (o.list) el.setAttribute("list", o.list); return [el, h("div", { class: "fl" }, h("label", { for: "f-" + f }, label), el, o.hint && h("div", { class: "hint" }, o.hint), hint(f), extra)]; };
+  const [hEl, hRow] = inp("h", "Headline", { req: true, max: 300 });
+  const [mEl, mRow] = inp("m", "Summary (optional)", { area: true, max: 700, hint: "Shown under the headline in lists." });
+  const [sEl, sRow] = inp("s", "Source name", { req: true, max: 80, list: "srcnames" });
+  const [uEl, uRow] = inp("u", "Link", { req: true, type: "url", max: 1000, ph: "https://", hint: "Where “Read at source” goes." });
+  const [dEl, dRow] = inp("d", "Date", { type: "datetime-local", value: toLocal(it.d) });
+  const kEl = h("select", { id: "f-k" }, Object.entries(D.tax.kinds).map(([k, l]) => h("option", { value: k }, l))); kEl.value = it.k || "community";
+  const tEl = h("select", { id: "f-t" }, D.tax.topics.map(t => h("option", { value: t.k }, t.label))); tEl.value = it.t || D.tax.default;
+  const cmSet = new Set(it.cm || []), stSet = new Set(it.st || []);
+  const cmChecks = D.tax.communities.map(c => h("label", { class: "chk" }, h("input", { type: "checkbox", checked: cmSet.has(c.k), on: { change: e => e.target.checked ? cmSet.add(c.k) : cmSet.delete(c.k) } }), c.label));
+  const stFilter = h("input", { type: "search", placeholder: "Find a state", "aria-label": "Find a state", on: { input: e => { const q = e.target.value.trim().toLowerCase(); for (const l of stList.children) l.hidden = !!q && !l.textContent.toLowerCase().includes(q); } } });
+  const stList = h("div", { class: "stlist" }, D.tax.states.map(s => h("label", { class: "chk" }, h("input", { type: "checkbox", checked: stSet.has(s[0]), on: { change: e => e.target.checked ? stSet.add(s[0]) : stSet.delete(s[0]) } }), s[1])));
+  const names = [...new Set([...D.srcCfg.map(s => s.name), ...D.feed.map(i => i.s), ...D.pending.map(i => i.s)].filter(Boolean))].sort();
+  const dl = h("datalist", { id: "srcnames" }, names.map(n => h("option", { value: n })));
+
+  // story text
+  const withArt = h("input", { type: "checkbox", id: "f-art", checked: it.v === 1 });
+  const byEl = h("input", { id: "f-by", value: art0.by, maxlength: "120" }), byuEl = h("input", { id: "f-byu", type: "url", value: art0.byu || "", placeholder: "https://" }), imgEl = h("input", { id: "f-img", type: "url", value: art0.img || "", placeholder: "https://" });
+  const bodyEl = h("textarea", { class: "body", id: "f-body", value: art0.body || "", spellcheck: "true" });
+  const pv = h("iframe", { class: "pv", title: "Preview of the story text", sandbox: "", hidden: true });
+  const wrap = (a, z) => () => { const s = bodyEl.selectionStart, e = bodyEl.selectionEnd, v = bodyEl.value; bodyEl.value = v.slice(0, s) + a + v.slice(s, e) + z + v.slice(e); bodyEl.focus(); bodyEl.setSelectionRange(s + a.length, e + a.length); };
+  const tool = (l, a, z) => h("button", { type: "button", on: { click: wrap(a, z) } }, l);
+  const artBox = h("fieldset", { hidden: !withArt.checked }, h("legend", null, "Story text"),
+    h("div", { class: "two" }, h("div", { class: "fl" }, h("label", { for: "f-by" }, "Author"), byEl), h("div", { class: "fl" }, h("label", { for: "f-byu" }, "Author page link (optional)"), byuEl)),
+    h("div", { class: "fl" }, h("label", { for: "f-img" }, "Main picture link (optional)"), imgEl),
+    h("div", { class: "fl" }, h("div", { class: "lb" }, "Text"),
+      h("div", { class: "tb" }, tool("Bold", "<strong>", "</strong>"), tool("Italic", "<em>", "</em>"), tool("Link", '<a href="https://">', "</a>"), tool("Heading", "<h2>", "</h2>"), tool("Quote", "<blockquote>", "</blockquote>"), tool("List", "<ul>\n<li>", "</li>\n</ul>"), tool("Paragraph", "<p>", "</p>"),
+        h("button", { type: "button", on: { click: () => { const on = pv.hidden; pv.hidden = !on; bodyEl.hidden = on; if (on) pv.srcdoc = `<!doctype html><meta charset="utf-8"><style nonce="${NONCE}">body{font:16px/1.6 Georgia,serif;margin:14px;color:#111}img{max-width:100%;height:auto}a{color:#0a67f1}</style>${CORE.sanitizeHtml(bodyEl.value)}`; } } }, "Preview on / off")),
+      bodyEl, pv, h("div", { class: "hint" }, "Plain HTML. Scripts, styles and unknown tags are removed (the preview shows the cleaned text).")));
+  withArt.addEventListener("change", () => { artBox.hidden = !withArt.checked; });
+  const keepEl = h("input", { type: "checkbox", id: "f-keep", checked: isNew });
+  const err = h("div", { class: "err", role: "alert" });
+
+  const body = [hRow, mRow, h("div", { class: "two" }, sRow, uRow), h("div", { class: "two" }, dRow, h("div", { class: "fl" }, h("label", { for: "f-k" }, "Section"), kEl, hint("k"))), h("div", { class: "fl" }, h("label", { for: "f-t" }, "Topic"), tEl, hint("t")),
+    h("fieldset", null, h("legend", null, "Communities"), h("div", { class: "checks" }, cmChecks)), h("fieldset", null, h("legend", null, "States"), stFilter, stList),
+    (isNew || it.v === 1) && h("label", { class: "chk" }, withArt, isNew ? "I am writing the story text here (it opens inside The Yappie Pro)" : "Story text is kept on this site"),
+    (isNew || it.v === 1) && artBox,
+    isNew && h("label", { class: "chk" }, keepEl, "Keep this item permanently (otherwise it ages out like other items)"), dl, err];
+
+  const collect = () => {
+    const out = { h: hEl.value.trim(), m: mEl.value.trim(), s: sEl.value.trim(), u: uEl.value.trim(), k: kEl.value, t: tEl.value, cm: [...cmSet], st: [...stSet] };
+    const dv = dEl.value; out.d = dv && dv !== toLocal(it.d) ? new Date(dv).toISOString() : it.d;
+    return out;
+  };
+  const artNow = () => ({ by: byEl.value.trim(), byu: byuEl.value.trim(), img: imgEl.value.trim(), body: bodyEl.value });
+  const save = async approve => {
+    err.textContent = "";
+    const v = collect();
+    for (const [el, msg] of [[hEl, "Enter a headline."], [sEl, "Enter the source name."], [uEl, "Enter the link (starting with https://)."]]) if (!el.value.trim()) { err.textContent = msg; el.focus(); return; }
+    let res;
+    if (isNew) {
+      const args = { item: v, pin: keepEl.checked }; if (withArt.checked) args.article = artNow();
+      res = await act("add", args, { quiet: false });
+    } else {
+      const patch = {}, orig = {};
+      for (const f of ["h", "m", "s", "u", "k", "t", "d"]) { const a = v[f] ?? "", b = it[f] ?? ""; if (a !== b) { patch[f] = v[f]; orig[f] = it[f] ?? null; } }
+      for (const f of ["cm", "st"]) if (!sameSet(v[f], it[f])) { patch[f] = v[f]; orig[f] = it[f] ?? null; }
+      const a1 = artNow(), article = {}; if (it.v === 1) for (const f of ["by", "byu", "img", "body"]) if (a1[f] !== (art0[f] || "")) article[f] = a1[f];
+      if (!Object.keys(patch).length && !Object.keys(article).length) { dlg.close(); if (approve) doApprove([id]); else toast("No changes to save."); return; }
+      const args = { id, orig }; if (Object.keys(patch).length) args.patch = patch; if (Object.keys(article).length) args.article = article;
+      res = await act("edit", args);
+      if (res && approve) await doApprove([id]);
+    }
+    if (res) dlg.close(); else err.textContent = "The change was not saved. See the message at the bottom of the page.";
+  };
+  const foot = [];
+  if (!isNew) {
+    foot.push(h("button", { class: "btn dng sp", type: "button", on: { click: () => closeThen(() => doDelete([id])) } }, "Delete…"));
+    if (S.orig[id] && Object.keys(S.orig[id]).length) foot.push(h("button", { class: "btn", type: "button", on: { click: async () => { if (await act("revert", { id })) dlg.close(); } } }, "Revert to collected"));
+  }
+  foot.push(h("button", { class: "btn", type: "button", on: { click: () => dlg.close() } }, "Cancel"));
+  if (row && row.target === "pending") foot.push(h("button", { class: "btn", type: "button", on: { click: () => save(true) } }, "Save and approve"));
+  foot.push(h("button", { class: "btn pri", type: "button", on: { click: () => save(false) } }, isNew ? "Add item" : "Save"));
+  openDialog(isNew ? "Add an item" : "Edit item", body, foot);
+  hEl.focus();
+}
+
+// ---------------------------------------------------------------- settings
+function renderSettings(main) {
+  const cur = D.S.settings.approval, srcSet = new Set(cur.sources), kindSet = new Set(cur.kinds);
+  const allNames = [...new Set([...D.srcCfg.map(s => s.name), ...D.feed.map(i => i.s), ...D.pending.map(i => i.s), ...cur.sources].filter(Boolean))].sort((a, b) => a.localeCompare(b));
+  let mode = cur.mode;
+  const custom = h("div", { id: "custom" });
+  const paint = () => {
+    clearNode(custom); custom.hidden = mode !== "custom"; if (mode !== "custom") return;
+    const extra = h("input", { type: "text", placeholder: "Add a source name that is not listed", "aria-label": "Add a source name", maxlength: "80" });
+    const list = h("div", { class: "srcs" });
+    const addBox = n => list.append(h("label", { class: "chk" }, h("input", { type: "checkbox", checked: srcSet.has(n), on: { change: e => e.target.checked ? srcSet.add(n) : srcSet.delete(n) } }), n));
+    allNames.forEach(addBox);
+    custom.append(h("p", null, "Sources whose new stories wait:"), list, h("div", { class: "bar" }, extra, h("button", { class: "btn", type: "button", on: { click: () => { const n = extra.value.trim(); if (n && !allNames.includes(n)) { allNames.push(n); srcSet.add(n); addBox(n); } extra.value = ""; } } }, "Add")),
+      h("p", null, "Sections whose new stories wait:"), h("div", { class: "checks" }, Object.entries(D.tax.kinds).map(([k, l]) => h("label", { class: "chk" }, h("input", { type: "checkbox", checked: kindSet.has(k), on: { change: e => e.target.checked ? kindSet.add(k) : kindSet.delete(k) } }), l))));
+  };
+  const opt = (v, t, d) => h("label", { class: "opt" }, h("input", { type: "radio", name: "mode", value: v, checked: mode === v, on: { change: () => { mode = v; paint(); } } }), h("span", null, h("b", null, t), d));
+  const save = h("button", { class: "btn pri", type: "button", on: { click: async () => { if (mode === "custom" && !srcSet.size && !kindSet.size) { toast("Choose at least one source or section, or pick another option.", { bad: true }); return; } await act("settings", { approval: { mode, sources: [...srcSet], kinds: [...kindSet] } }); } } }, "Save settings");
+  main.append(h("div", { class: "card" }, h("h2", null, "Approval"), h("p", null, "Choose which new stories wait in “Waiting for approval” until you approve them. Stories already on the site stay where they are."),
+    opt("off", "Nothing waits", " New stories go live as soon as they are collected. You can still edit or remove anything."),
+    opt("all", "Everything waits", " Every new story waits for you to approve it."),
+    opt("custom", "Only some sources or sections wait", " New stories from the sources and sections you pick wait; the rest go live."),
+    custom, h("div", null, save)),
+    h("div", { class: "card" }, h("h2", null, "How changes reach the site"), h("p", null, `Every change is saved to ${CFG.repo} (the file data/admin.json) and shows up on the site after the next update, usually two to three minutes after you save. “Update the site now” starts one straight away. Items you delete stay in the Trash for 180 days.`),
+      h("p", null, `Sign-ins last ${CFG.hours} hours. ${CFG.kv ? "Wrong-password lockouts and sign-outs are remembered across servers." : "No KV store is attached, so lockouts and sign-outs are only remembered by one server at a time. See the setup guide to add one."}`)));
+  paint();
+}
+
+// ---------------------------------------------------------------- activity
+async function renderActivity(main) {
+  const card = h("div", { class: "card" }, h("h2", null, "Recent changes"), h("p", null, "Everything saved from this dashboard, newest first. The full history is in the repository on GitHub."));
+  const list = h("ul", { class: "log" }, h("li", null, "Loading…")); card.append(list); main.append(card);
+  try {
+    const j = await api("/api/raw/commits"), items = (Array.isArray(j) ? j : []).filter(c => /^admin:/.test(c.commit?.message || ""));
+    clearNode(list);
+    if (!items.length) list.append(h("li", null, "Nothing has been changed from the dashboard yet."));
+    for (const c of items) { const msg = c.commit.message.split("\n"); list.append(h("li", null, h("time", { datetime: c.commit.author.date }, fmt(c.commit.author.date)), h("span", null, msg[0].replace(/^admin:\s*/, ""), msg[2] ? h("span", { class: "coll" }, " · " + msg[2].slice(0, 90)) : null), c.html_url && h("a", { href: c.html_url, target: "_blank", rel: "noopener noreferrer" }, "View on GitHub"))); }
+  } catch (e) { clearNode(list); list.append(h("li", { class: "err" }, e.message)); }
+}
+
+// ---------------------------------------------------------------- start
+$("#site").href = CFG.site;
+$("#publish").addEventListener("click", async e => { e.target.disabled = true; try { await api("/api/publish", {}); toast("The site update has started."); pollSoon(); } catch (er) { toast(er.message, { bad: true }); } e.target.disabled = false; });
+$("#logout").addEventListener("click", async () => { try { await api("/api/logout", {}); } catch { /* leaving anyway */ } sessionEnded(); });
+$("#logoutAll").addEventListener("click", async () => { if (!(await confirmBox("Log out on every device?", "Every browser signed in to this admin, including this one, will have to log in again.", "Log out everywhere", true))) return; try { await api("/api/logout-all", {}); } catch { /* leaving anyway */ } sessionEnded(); });
+addEventListener("hashchange", () => { const t = location.hash.slice(1); if (["live", "waiting", "trash", "activity", "settings"].includes(t) && t !== TAB) { TAB = t; sel.clear(); render(); } });
+{ const t = location.hash.slice(1); if (["live", "waiting", "trash", "activity", "settings"].includes(t)) TAB = t; }
+document.addEventListener("click", e => { const m = $("#acct"); if (m.open && !m.contains(e.target)) m.open = false; });
+(async () => {
+  try { await loadAll(); render(); }
+  catch (e) { const b = $("#banner"); b.hidden = false; b.textContent = e.message; clearNode($("#main")); $("#main").append(h("div", { class: "empty" }, "The data could not be loaded. ", h("button", { class: "btn", type: "button", on: { click: () => location.reload() } }, "Try again"))); }
+  pollRuns();
+})();
+})();
+</script>
+</body>
+</html>

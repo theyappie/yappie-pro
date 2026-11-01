@@ -43,7 +43,7 @@ const ics = t => String(t ?? "").replace(/\\/g, "\\\\").replace(/;/g, "\\;").rep
 const ymd = d => d.replace(/-/g, ""), next = d => new Date(new Date(d + "T12:00:00Z").getTime() + 864e5).toISOString().slice(0, 10).replace(/-/g, "");
 const z = stamp.toISOString().replace(/[-:]/g, "").replace(/\.\d+/, "");
 const lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//The Yappie Pro//Comment deadlines//EN", "CALSCALE:GREGORIAN", "X-WR-CALNAME:AAPI comment deadlines"];
-for (const x of dl) lines.push("BEGIN:VEVENT", `UID:${x.id}@aapi-wire`, `DTSTAMP:${z}`, `DTSTART;VALUE=DATE:${ymd(x.dl)}`, `DTEND;VALUE=DATE:${next(x.dl)}`, `SUMMARY:${ics("Comments due: " + x.h)}`, `URL:${x.u}`, `DESCRIPTION:${ics([x.ty, x.ag, x.m].filter(Boolean).join(" | ") + "\n" + x.u)}`, "END:VEVENT");
+for (const x of dl) lines.push("BEGIN:VEVENT", `UID:${x.id}@yappie-pro`, `DTSTAMP:${z}`, `DTSTART;VALUE=DATE:${ymd(x.dl)}`, `DTEND;VALUE=DATE:${next(x.dl)}`, `SUMMARY:${ics("Comments due: " + x.h)}`, `URL:${x.u}`, `DESCRIPTION:${ics([x.ty, x.ag, x.m].filter(Boolean).join(" | ") + "\n" + x.u)}`, "END:VEVENT");
 lines.push("END:VCALENDAR");
 await writeFile(join(ROOT, "data/deadlines.ics"), lines.map(fold).join("\r\n") + "\r\n");
 console.log(`Wrote ${out.size} RSS feeds and ${dl.length} calendar events.`);

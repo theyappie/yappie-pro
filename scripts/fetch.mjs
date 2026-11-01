@@ -466,14 +466,15 @@ const keepFR = (cfg.federalRegister?.keepCommentsDays ?? 120) * 864e5, today = n
 const POL_KEEP = (cfg.policyKeepDays ?? 120) * 864e5, POL_MAX = cfg.policyMax ?? 300;
 // Stored items from before a rules change are re-tagged so every item has the current topic, communities, states and bills.
 // Set RETAG=1 to re-run the rules over everything already stored (after editing taxonomy.json).
-// "renames" in sources.json maps an old source name to its new one (for example "The Takeaway" is now part of "TAAF"), so stored items follow along.
+// "renames" in sources.json maps an old source name to its new one (for example "The Takeaway" is now part of "The Asian American Foundation", and the publisher Google News calls "Bloomberg.com" is shown as "Bloomberg News"), for stored and for new stories alike.
+const renamed = o => { const s = cfg.renames?.[o.s]; return s ? { ...o, s } : o; };
 const retag = o => {
   const tg = TG.all(o.h, o.m ?? "", o.d, isPolicy(o.k) ? "GOVERNMENT" : undefined), force = !!process.env.RETAG, s = cfg.renames?.[o.s] ?? o.s;
   return { ...o, s, g: 1, k: o.k ?? kindOf(s), t: !force && VALID.has(o.t) ? o.t : tg.t, cm: !force && o.cm ? o.cm : tg.cm, st: !force && o.st ? o.st : tg.st, bl: !force && o.bl ? o.bl : tg.bl };
 };
-learnHosts([...old, ...fresh]);
+learnHosts([...old, ...fresh, ...old.map(renamed), ...fresh.map(renamed)]); // a publisher shown under its new name keeps its web address
 const offTopicLog = [], gateLog = [];
-for (const it0 of [...fresh, ...old.map(retag)]) {
+for (const it0 of [...fresh.map(renamed), ...old.map(retag)]) {
   if (blocked(it0)) continue; // a blocked site, or a site on a non-U.S. domain, is dropped from stored stories too
   const it = reroute(it0);
   if (gateFails(it)) { gateLog.push(it.s + ": " + it.h); continue; }

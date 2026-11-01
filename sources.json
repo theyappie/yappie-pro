@@ -128,10 +128,10 @@
       "feed": "https://news.google.com/rss/search?q=site%3Anytimes.com+%28%22Asian+American%22+OR+%22Asian+Americans%22+OR+AAPI%29+when%3A30d&hl=en-US&gl=US&ceid=US:en"
     },
     {
-      "name": "AP News",
+      "name": "Associated Press",
       "home": "https://apnews.com/hub/asian-americans",
       "google": true,
-      "asName": "AP News",
+      "asName": "Associated Press",
       "filter": true,
       "feed": "https://news.google.com/rss/search?q=site%3Aapnews.com+%28%22Asian+American%22+OR+%22Asian+Americans%22+OR+AAPI%29+when%3A30d&hl=en-US&gl=US&ceid=US:en"
     },
@@ -249,15 +249,15 @@
       "feed": "https://news.google.com/rss/search?q=site%3Anbcnews.com%2Fnews%2Fasian-america+when%3A30d&hl=en-US&gl=US&ceid=US:en"
     },
     {
-      "name": "TAAF",
+      "name": "The Asian American Foundation",
       "home": "https://taaf.org/newsroom",
       "google": true,
-      "asName": "TAAF",
+      "asName": "The Asian American Foundation",
       "feed": "https://news.google.com/rss/search?q=site%3Ataaf.org%2Fblog+when%3A30d&hl=en-US&gl=US&ceid=US:en",
       "kind": "statement"
     },
     {
-      "name": "TAAF",
+      "name": "The Asian American Foundation",
       "home": "https://taaf.org/newsroom",
       "page": "https://taaf.org/newsroom/press-releases",
       "link": "^/news/[^/]+$",
@@ -289,7 +289,7 @@
       "kind": "statement"
     },
     {
-      "name": "CAPAC",
+      "name": "Congressional Asian Pacific American Caucus",
       "home": "https://capac.house.gov",
       "page": "https://capac.house.gov/press-releases",
       "link": "^/press-release/[^/]+$",
@@ -431,7 +431,7 @@
       "skipTitle": "\\b(sentenced|sentencing|pleads?|pleaded|guilty|convicted|indicted|indictment|charged|arrested|arrests?|smuggl\\w+|charges (for|against)|fraud (ring|scheme)|marriage fraud)\\b"
     },
     {
-      "name": "CAPAC",
+      "name": "Congressional Asian Pacific American Caucus",
       "home": "https://capac.house.gov",
       "page": "https://capac.house.gov/press-releases",
       "link": "^/press-release/[^/]+$",
@@ -481,7 +481,25 @@
     "deccanherald.com",
     "pressdemocrat.com",
     "ecoportal.net",
-    "eturbonews.com"
+    "eturbonews.com",
+    "socialist-alliance.org",
+    "londondaily.news",
+    "al-monitor.com",
+    "newsgram.com",
+    "ua.news",
+    "jpost.com",
+    "publicservices.international",
+    "timesofisrael.com",
+    "rightlivelihood.org",
+    "aflcio.org",
+    "universityherald.com",
+    "yahoo.com",
+    "msn.com",
+    "aol.com",
+    "newsbreak.com",
+    "smartnews.com",
+    "lassennews.com",
+    "cedarnews.net"
   ],
   "excludeNames": [
     "The National Constitution Center",
@@ -524,7 +542,17 @@
     "GuruFocus",
     "eTurboNews",
     "EcoPortal.net",
-    "Rediff"
+    "Rediff",
+    "The Jerusalem Post",
+    "Jerusalem Post",
+    "The Times of Israel",
+    "Times of Israel",
+    "Lassen County News",
+    "Yahoo News",
+    "Yahoo Finance",
+    "Yahoo Entertainment",
+    "Yahoo Sports",
+    "Yahoo Life"
   ],
   "_foreignNote": "Sites on a country domain outside the U.S. (.ca, .ch, .uz, .co.uk, .com.au, and every other two-letter country ending except .us and the U.S. territories .gu .as .mp .vi .pr .um) are never shown, and a source on one is not fetched. List a site in allowHosts to let it through, and in gatedHosts to let through only some of its stories.",
   "blockForeignDomains": true,
@@ -545,7 +573,9 @@
   ],
   "_routesNote": "Stories from these sites or publishers are shown on the page for the kind named here, whatever source they came in through. Stories that link to a .gov address move from News to the Policy page on their own.",
   "routes": [
-    {"kind": "statement", "hosts": ["asianlawcaucus.org"], "names": ["Asian Law Caucus"]}
+    {"kind": "statement", "hosts": ["asianlawcaucus.org"], "names": ["Asian Law Caucus"]},
+    {"kind": "statement", "hosts": ["aclu.org"], "names": ["American Civil Liberties Union", "ACLU"]},
+    {"kind": "research", "hosts": ["csis.org"], "names": ["CSIS", "CSIS | Center for Strategic and International Studies", "Center for Strategic and International Studies"]}
   ],
   "_relevanceNote": "Broad Google News searches can return stories that only share a word with the communities (a Guam soccer score, a stock ticker). A story found that way is shown only if its headline names the communities (communityPattern) or its publisher is listed here: local and community outlets, plus every source above. Remove a name from trustedOutlets to hold that outlet to the headline test too.",
   "trustedOutlets": [
@@ -580,6 +610,7 @@
     "Northwest Asian Weekly",
     "The Korea Daily",
     "INQUIRER.net USA",
+    "INQUIRER.net",
     "The American Bazaar",
     "American Community Media",
     "Asian Law Caucus",
@@ -592,7 +623,17 @@
   ],
   "communityPattern": "\\b(asian[- ]?americans?|asian[- ]pacific(?: american| islander)s?|(?<!:)aapi(?!\\s+director)|aanhpi|nhpi|pacific islanders?|pacific islands?|pasifika|pacific (?:peoples?|communit\\w+|nations?|leaders?)|polynesian\\w*|melanesian\\w*|marshall islands|cook islanders?|native hawaiians?|kanaka|chamorros?|chamorus?|chamoru|marshallese|micronesians?|samoans?|tongans?|fijians?|palauans?|filipinos?|filipinas?|hmong|cambodians?|laotians?|south asians?|southeast asians?|east asians?|sikhs?|stop aapi hate|anti-asian|asian (?:voters?|communit\\w+|immigrants?|students?|families|women|men|businesses|elders|seniors|residents|leaders|lawmakers|candidates|population|hate|youth|workers|neighbors|diaspora|enrollment|owned)|(?:chinese|korean|japanese|indian|vietnamese|taiwanese|pakistani|bangladeshi|nepali|nepalese|burmese|thai|indonesian|malaysian|sri lankan|bhutanese|hawaiian)[- ]americans?|chinatown|little tokyo|koreatown|japantown|little saigon|manilatown|nisei|sansei|yonsei|issei|nikkei|jacl|manzanar|tule lake|heart mountain)\\b",
   "siteUrl": "",
-  "renames": { "The Takeaway": "TAAF" },
+  "renames": {
+    "The Takeaway": "The Asian American Foundation",
+    "AP News": "Associated Press",
+    "guampdn.com": "Pacific Daily News",
+    "INQUIRER.net USA": "INQUIRER.net",
+    "Bloomberg.com": "Bloomberg News",
+    "Dallas News": "Dallas Morning News",
+    "CAPAC": "Congressional Asian Pacific American Caucus",
+    "Washington State Department of Corrections (DOC) (.gov)": "Washington State Department of Corrections",
+    "TAAF": "The Asian American Foundation"
+  },
   "kinds": {
     "AsAmNews": "community",
     "The Yappie": "community",
@@ -623,7 +664,7 @@
     "OCA National": "statement",
     "NAPAWF": "statement",
     "NCAPA": "statement",
-    "TAAF": "statement",
+    "The Asian American Foundation": "statement",
     "AAJA": "statement",
     "AALDEF": "statement",
     "Sikh Coalition": "statement",

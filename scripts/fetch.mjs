@@ -754,6 +754,10 @@ await ownedFile("numbers.json", process.env.NUMBERS ?? fileURLToPath(new URL("..
 const pubSources = status.map(({ name, home, kind, ok, count, note }) => ({ name: rnS(name), home, kind, ok, count, note }));
 const taxo = feedTaxo(A.settings, TAXO_BASE); // names (never keywords) of the owner's own topics, communities and categories, new names for built-in ones and the built-in ones removed, so the page can show them
 const hubsPub = feedHubs(HUBS).filter(h => out.some(i => i.hb?.includes(h.k))); // the page lists the hubs that have something in them
+// Story threads: stories that two or more outlets reported get the same short thread id "th" (scripts/threads.mjs). A thread id kept from the last run is never trusted, and a failure here only means the feed is written without threads.
+for (const i of out) delete i.th;
+try { const { assignThreads } = await import("./threads.mjs"), th = assignThreads(out); for (const i of out) if (th.has(i.id)) i.th = th.get(i.id); }
+catch (e) { for (const i of out) delete i.th; console.warn(`Story threads skipped: ${e?.message ?? e}`); }
 if (JSON.stringify(out) === JSON.stringify(old) && JSON.stringify(pubSources) === JSON.stringify(oldSources) && JSON.stringify(taxo) === JSON.stringify(oldTaxo) && JSON.stringify(hubsPub.length ? hubsPub : null) === JSON.stringify(oldHubs)) { console.log("No changes."); process.exit(0); }
 await mkdir(dirname(OUT), { recursive: true });
 await writeFile(OUT, JSON.stringify({ generated: new Date().toISOString(), sources: pubSources, ...(taxo ? { taxo } : {}), ...(hubsPub.length ? { hubs: hubsPub } : {}), items: out }));

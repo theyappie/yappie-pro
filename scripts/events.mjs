@@ -217,11 +217,12 @@ async function collectFeed(ctx, feed, prev) {
 
 // ---------------------------------------------------------------- putting it together
 /** The events the page shows: collected ones the owner has not hidden, plus the owner's own; only what is current; one entry for the same title on the same day. */
-export function mergeEvents({ own = [], auto = [], off = [], now = Date.now(), keepPastDays = 7, aheadDays = 400, max = 800, hubsOf = () => [] }) {
+export function mergeEvents({ own = [], auto = [], off = [], now = Date.now(), keepPastDays = 7, aheadDays = 400, max = 800, maxSpanDays = 0, hubsOf = () => [] }) {
   const hide = new Set(off), lo = now - keepPastDays * DAY, hi = now + aheadDays * DAY, seen = new Set(), out = [];
   for (const [ev, mine] of [...own.map(e => [e, true]), ...auto.filter(e => !hide.has(e.id)).map(e => [e, false])]) {
     const c = cleanEvent(ev, false); if (!c || !c.id) continue;
     if (endMs(c) < lo || startMs(c) > hi) continue;
+    if (!mine && maxSpanDays > 0 && c.k === "event" && (endMs(c) - startMs(c)) / DAY > maxSpanDays) continue; // a museum exhibition that runs for months is not something to attend on a day
     const key = normTitle(c.t) + dayOf(c); if (seen.has(key)) continue; seen.add(key);
     const hb = hubsOf([c.t, c.o, c.m, c.sub].join(" "));
     out.push({ ...c, ...(hb.length ? { hb } : {}), ...(mine ? { own: 1 } : {}) });
@@ -269,7 +270,7 @@ export async function main(env = process.env, now = env.EVENTS_NOW ? Date.parse(
   }
   cache.feeds = nextFeeds;
   const auto = [...Object.values(cache.hearings?.seen ?? {}).map(x => x.ev).filter(Boolean), ...(cache.grants?.events ?? []), ...Object.values(nextFeeds).flatMap(x => x?.events ?? [])];
-  const events = mergeEvents({ own: A.settings.events, auto, off: A.settings.eventsOff.map(x => x.id), now, keepPastDays: cfg.keepPastDays ?? 7, aheadDays: cfg.aheadDays ?? 400, max: cfg.max ?? 800, hubsOf });
+  const events = mergeEvents({ own: A.settings.events, auto, off: A.settings.eventsOff.map(x => x.id), now, keepPastDays: cfg.keepPastDays ?? 7, aheadDays: cfg.aheadDays ?? 400, max: cfg.max ?? 800, maxSpanDays: cfg.maxSpanDays ?? 21, hubsOf });
   const hidden = auto.filter(e => A.settings.eventsOff.some(x => x.id === e.id)).length;
   await mkdir(dirname(OUT), { recursive: true });
   await writeFile(CACHE, JSON.stringify(cache));

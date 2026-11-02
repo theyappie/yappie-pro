@@ -820,6 +820,7 @@
     "_note": "Events and funding deadlines (scripts/events.mjs). hearings: committee meetings from the Congress.gov API (needs the free api.data.gov key), kept only when they are about the issues the site follows. grants: open Grants.gov opportunities that match the keywords. feeds: starter calendar feeds (iCalendar); the site owner adds more, or stops following these, in the admin dashboard (Settings, Event calendars).",
     "keepPastDays": 7,
     "aheadDays": 400,
+    "maxSpanDays": 21,
     "max": 800,
     "hearings": { "enabled": true, "everyMinutes": 120, "lookbackDays": 30, "maxDetails": 40, "chambers": ["house", "senate"] },
     "grants": { "enabled": true, "everyMinutes": 360, "rows": 40, "max": 80, "keywords": ["Asian American", "Native Hawaiian", "Pacific Islander", "AANAPISI", "Hmong", "Southeast Asian"] },

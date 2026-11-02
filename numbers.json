@@ -1,0 +1,1050 @@
+{
+ "updated": "2026-11-02",
+ "checked": "2026-11-02",
+ "note": "Each figure is copied from the page named as its source. A figure marked 'as reported by' comes from a group that reprints it. Nothing here is estimated or calculated by this site.",
+ "cats": [
+  [
+   "pop",
+   "Population"
+  ],
+  [
+   "biz",
+   "Education and business"
+  ],
+  [
+   "imm",
+   "Citizenship and immigration"
+  ],
+  [
+   "hate",
+   "Hate and discrimination"
+  ]
+ ],
+ "sources": {
+  "fff26": {
+   "o": "U.S. Census Bureau",
+   "t": "Asian American and Native Hawaiian and Pacific Islander Heritage Month: May 2026 (Facts for Features, CB26-FFF.04)",
+   "u": "https://www.census.gov/newsroom/facts-for-features/2026/asian-american-pacific-islander.html",
+   "d": "April 21, 2026"
+  },
+  "cen22": {
+   "o": "U.S. Census Bureau",
+   "t": "20.6 Million People in the U.S. Identify as Asian, Native Hawaiian or Pacific Islander",
+   "u": "https://www.census.gov/library/stories/2022/05/aanhpi-population-diverse-geographically-dispersed.html",
+   "d": "May 25, 2022"
+  },
+  "dhca": {
+   "o": "U.S. Census Bureau",
+   "t": "Chinese, Except Taiwanese, Was The Largest Asian Alone or in Any Combination Group; Nepalese Population Grew Fastest",
+   "u": "https://www.census.gov/library/stories/2023/09/2020-census-dhc-a-asian-population.html",
+   "d": "September 21, 2023"
+  },
+  "sah2": {
+   "o": "Stop AAPI Hate",
+   "t": "Two Years and Thousands of Voices: What Community-Generated Data Tells Us About Anti-AAPI Hate",
+   "u": "https://stopaapihate.org/wp-content/uploads/2022/07/Stop-AAPI-Hate-Year-2-Report.pdf",
+   "d": "2022"
+  },
+  "sah25": {
+   "o": "Stop AAPI Hate",
+   "t": "The State of Anti-AA/PI Hate in 2024",
+   "u": "https://stopaapihate.org/2025/06/02/state-of-hate-june25/",
+   "d": "June 2, 2025"
+  },
+  "sah26": {
+   "o": "Stop AAPI Hate",
+   "t": "Closing Doors, Widening Harm: Persistent Hate Against Asian Americans and Pacific Islanders in an Anti-Immigrant Climate",
+   "u": "https://stopaapihate.org/2026/05/01/new-report-half-of-aapis-experienced-a-hate-act-in-2025/",
+   "d": "May 1, 2026"
+  },
+  "sahsa": {
+   "o": "Stop AAPI Hate",
+   "t": "The State of Anti-South Asian Hate",
+   "u": "https://stopaapihate.org/2026/09/03/the-state-of-anti-south-asian-hate/",
+   "d": "September 3, 2026"
+  },
+  "aajc": {
+   "o": "Asian Americans Advancing Justice - AAJC",
+   "t": "Anti-Asian Hate in 2024: Analysis and Recommendations for Change",
+   "u": "https://www.advancingjustice-aajc.org/sites/default/files/2025-11/Anti-Asian%20Hate%20in%202024%20Report.pdf",
+   "d": "November 2025"
+  },
+  "fbi": {
+   "o": "Federal Bureau of Investigation",
+   "t": "FBI Releases 2024 Reported Crimes in the Nation Statistics",
+   "u": "https://www.fbi.gov/news/press-releases/fbi-releases-2024-reported-crimes-in-the-nation-statistics",
+   "d": ""
+  },
+  "cadoj": {
+   "o": "California Attorney General's Office",
+   "t": "Attorney General Bonta Releases 2024 Hate Crime Report, Highlights Continued Efforts to Combat Hate in California",
+   "u": "https://oag.ca.gov/news/press-releases/attorney-general-bonta-releases-2024-hate-crime-report-highlights-continued",
+   "d": "June 25, 2025"
+  }
+ },
+ "items": [
+  {
+   "id": "pop-asian-2024",
+   "cat": "pop",
+   "v": "26.8 million",
+   "t": "Asian alone-or-in-combination residents of the United States",
+   "y": "2024",
+   "s": "fff26",
+   "p": "2024 Population Estimates"
+  },
+  {
+   "id": "pop-nhpi-2024",
+   "cat": "pop",
+   "v": "1.8 million",
+   "t": "Native Hawaiian and Pacific Islander (NHPI) alone-or-in-combination residents of the United States",
+   "y": "2024",
+   "s": "fff26",
+   "p": "2024 Population Estimates",
+   "c": [
+    "NHPI"
+   ],
+   "g": "Native Hawaiian and Pacific Islander"
+  },
+  {
+   "id": "pop-cn-2024",
+   "cat": "pop",
+   "v": "5.8 million",
+   "t": "people of Chinese (except Taiwanese) descent in the United States, the largest Asian group",
+   "y": "2024",
+   "s": "fff26",
+   "p": "2024 American Community Survey 1-year estimates",
+   "c": [
+    "CN"
+   ],
+   "g": "Chinese (except Taiwanese)"
+  },
+  {
+   "id": "pop-in-2024",
+   "cat": "pop",
+   "v": "5.6 million",
+   "t": "Asian Indian people in the United States",
+   "y": "2024",
+   "s": "fff26",
+   "p": "2024 American Community Survey 1-year estimates",
+   "c": [
+    "SA"
+   ],
+   "g": "Asian Indian"
+  },
+  {
+   "id": "pop-ph-2024",
+   "cat": "pop",
+   "v": "5.0 million",
+   "t": "Filipino people in the United States",
+   "y": "2024",
+   "s": "fff26",
+   "p": "2024 American Community Survey 1-year estimates",
+   "c": [
+    "PH"
+   ],
+   "g": "Filipino"
+  },
+  {
+   "id": "pop-vn-2024",
+   "cat": "pop",
+   "v": "2.4 million",
+   "t": "Vietnamese people in the United States",
+   "y": "2024",
+   "s": "fff26",
+   "p": "2024 American Community Survey 1-year estimates",
+   "c": [
+    "VN"
+   ],
+   "g": "Vietnamese"
+  },
+  {
+   "id": "pop-kr-2024",
+   "cat": "pop",
+   "v": "2.2 million",
+   "t": "Korean people in the United States",
+   "y": "2024",
+   "s": "fff26",
+   "p": "2024 American Community Survey 1-year estimates",
+   "c": [
+    "KR"
+   ],
+   "g": "Korean"
+  },
+  {
+   "id": "pop-jp-2024",
+   "cat": "pop",
+   "v": "1.7 million",
+   "t": "Japanese people in the United States",
+   "y": "2024",
+   "s": "fff26",
+   "p": "2024 American Community Survey 1-year estimates",
+   "c": [
+    "JP"
+   ],
+   "g": "Japanese"
+  },
+  {
+   "id": "pop-nh-2024",
+   "cat": "pop",
+   "v": "728,718",
+   "t": "Native Hawaiian residents of the United States, the largest detailed NHPI group",
+   "y": "2024",
+   "s": "fff26",
+   "p": "2024 American Community Survey 1-year estimates",
+   "c": [
+    "NHPI"
+   ],
+   "g": "Native Hawaiian"
+  },
+  {
+   "id": "pop-sm-2024",
+   "cat": "pop",
+   "v": "271,387",
+   "t": "Samoan people in the United States",
+   "y": "2024",
+   "s": "fff26",
+   "p": "2024 American Community Survey 1-year estimates",
+   "c": [
+    "NHPI"
+   ],
+   "g": "Samoan"
+  },
+  {
+   "id": "pop-cm-2024",
+   "cat": "pop",
+   "v": "167,504",
+   "t": "Chamorro people in the United States",
+   "y": "2024",
+   "s": "fff26",
+   "p": "2024 American Community Survey 1-year estimates",
+   "c": [
+    "NHPI"
+   ],
+   "g": "Chamorro"
+  },
+  {
+   "id": "pop-vet-asian-2024",
+   "cat": "pop",
+   "v": "2.4%",
+   "t": "of the Asian alone-or-in-combination population were military veterans",
+   "y": "2024",
+   "s": "fff26",
+   "p": "2024 American Community Survey 1-year estimates"
+  },
+  {
+   "id": "pop-vet-nhpi-2024",
+   "cat": "pop",
+   "v": "6.8%",
+   "t": "of the Native Hawaiian and Pacific Islander alone-or-in-combination population were military veterans",
+   "y": "2024",
+   "s": "fff26",
+   "p": "2024 American Community Survey 1-year estimates",
+   "c": [
+    "NHPI"
+   ],
+   "g": "Native Hawaiian and Pacific Islander"
+  },
+  {
+   "id": "pop-asian-alone-2020",
+   "cat": "pop",
+   "v": "19.9 million",
+   "t": "people who identified as Asian alone",
+   "y": "2020",
+   "s": "cen22",
+   "p": "2020 Census"
+  },
+  {
+   "id": "pop-asian-combo-2020",
+   "cat": "pop",
+   "v": "4.1 million",
+   "t": "people who identified as Asian in combination with another race",
+   "y": "2020",
+   "s": "cen22",
+   "p": "2020 Census"
+  },
+  {
+   "id": "pop-nhpi-alone-2020",
+   "cat": "pop",
+   "v": "Roughly 690,000",
+   "t": "people who identified as Native Hawaiian or Other Pacific Islander (NHPI) alone",
+   "y": "2020",
+   "s": "cen22",
+   "p": "2020 Census",
+   "c": [
+    "NHPI"
+   ],
+   "g": "Native Hawaiian and Pacific Islander"
+  },
+  {
+   "id": "pop-nhpi-combo-2020",
+   "cat": "pop",
+   "v": "Almost 900,000",
+   "t": "people who identified as NHPI in combination with another race",
+   "y": "2020",
+   "s": "cen22",
+   "p": "2020 Census",
+   "c": [
+    "NHPI"
+   ],
+   "g": "Native Hawaiian and Pacific Islander"
+  },
+  {
+   "id": "pop-in-alone-2020",
+   "cat": "pop",
+   "v": "4,397,737",
+   "t": "Asian Indian alone residents (up 54.7% since 2010), the largest Asian alone group",
+   "y": "2020",
+   "s": "dhca",
+   "p": "2020 Census, Detailed DHC-A",
+   "c": [
+    "SA"
+   ],
+   "g": "Asian Indian"
+  },
+  {
+   "id": "pop-cn-alone-2020",
+   "cat": "pop",
+   "v": "4,128,718",
+   "t": "Chinese, except Taiwanese, alone residents (up 31.6% since 2010)",
+   "y": "2020",
+   "s": "dhca",
+   "p": "2020 Census, Detailed DHC-A",
+   "c": [
+    "CN"
+   ],
+   "g": "Chinese (except Taiwanese)"
+  },
+  {
+   "id": "pop-ph-alone-2020",
+   "cat": "pop",
+   "v": "3,076,108",
+   "t": "Filipino alone residents (up 20.4% since 2010)",
+   "y": "2020",
+   "s": "dhca",
+   "p": "2020 Census, Detailed DHC-A",
+   "c": [
+    "PH"
+   ],
+   "g": "Filipino"
+  },
+  {
+   "id": "pop-vn-alone-2020",
+   "cat": "pop",
+   "v": "1,951,746",
+   "t": "Vietnamese alone residents (up 26.0% since 2010)",
+   "y": "2020",
+   "s": "dhca",
+   "p": "2020 Census, Detailed DHC-A",
+   "c": [
+    "VN"
+   ],
+   "g": "Vietnamese"
+  },
+  {
+   "id": "pop-kr-alone-2020",
+   "cat": "pop",
+   "v": "1,508,575",
+   "t": "Korean alone residents (up 6.0% since 2010)",
+   "y": "2020",
+   "s": "dhca",
+   "p": "2020 Census, Detailed DHC-A",
+   "c": [
+    "KR"
+   ],
+   "g": "Korean"
+  },
+  {
+   "id": "pop-jp-alone-2020",
+   "cat": "pop",
+   "v": "741,544",
+   "t": "Japanese alone residents (down 3.2% since 2010)",
+   "y": "2020",
+   "s": "dhca",
+   "p": "2020 Census, Detailed DHC-A",
+   "c": [
+    "JP"
+   ],
+   "g": "Japanese"
+  },
+  {
+   "id": "pop-np-alone-2020",
+   "cat": "pop",
+   "v": "205,297",
+   "t": "Nepalese alone residents, up 295.5% from 51,907 in 2010",
+   "y": "2020",
+   "s": "dhca",
+   "p": "2020 Census, Detailed DHC-A",
+   "c": [
+    "SA"
+   ],
+   "g": "Nepalese",
+   "n": "The Census Bureau names the Nepalese population the fastest-growing detailed Asian group."
+  },
+  {
+   "id": "geo-asian-10",
+   "cat": "pop",
+   "v": "3 states",
+   "t": "where 10% or more of the population identified as Asian alone: Hawaii, California and New Jersey",
+   "y": "2020",
+   "s": "cen22",
+   "p": "2020 Census",
+   "st": [
+    "HI",
+    "CA",
+    "NJ"
+   ]
+  },
+  {
+   "id": "geo-nhpi-1",
+   "cat": "pop",
+   "v": "3 states",
+   "t": "where at least 1% of the population identified as Native Hawaiian and Other Pacific Islander alone: Hawaii, Alaska and Utah",
+   "y": "2020",
+   "s": "cen22",
+   "p": "2020 Census",
+   "c": [
+    "NHPI"
+   ],
+   "st": [
+    "HI",
+    "AK",
+    "UT"
+   ],
+   "g": "Native Hawaiian and Pacific Islander"
+  },
+  {
+   "id": "geo-ca-18",
+   "cat": "pop",
+   "v": "More than 18%",
+   "t": "of each of the six largest Asian groups (Chinese except Taiwanese, Asian Indian, Filipino, Vietnamese, Korean, Japanese; alone or in any combination) lived in California, the state with the largest share of each",
+   "y": "2020",
+   "s": "dhca",
+   "p": "2020 Census, Detailed DHC-A",
+   "c": [
+    "CN",
+    "SA",
+    "PH",
+    "VN",
+    "KR",
+    "JP"
+   ],
+   "st": [
+    "CA"
+   ]
+  },
+  {
+   "id": "geo-ny-cn",
+   "cat": "pop",
+   "v": "15.9%",
+   "t": "of the nation's Chinese (except Taiwanese) population, alone or in any combination, lived in New York, the second-largest state share",
+   "y": "2020",
+   "s": "dhca",
+   "p": "2020 Census, Detailed DHC-A",
+   "c": [
+    "CN"
+   ],
+   "st": [
+    "NY"
+   ],
+   "g": "Chinese (except Taiwanese)"
+  },
+  {
+   "id": "geo-ny-kr",
+   "cat": "pop",
+   "v": "8.1%",
+   "t": "of the nation's Korean population, alone or in any combination, lived in New York, the second-largest state share",
+   "y": "2020",
+   "s": "dhca",
+   "p": "2020 Census, Detailed DHC-A",
+   "c": [
+    "KR"
+   ],
+   "st": [
+    "NY"
+   ],
+   "g": "Korean"
+  },
+  {
+   "id": "geo-tx-in",
+   "cat": "pop",
+   "v": "10.6%",
+   "t": "of the nation's Asian Indian population, alone or in any combination, lived in Texas, the second-largest state share",
+   "y": "2020",
+   "s": "dhca",
+   "p": "2020 Census, Detailed DHC-A",
+   "c": [
+    "SA"
+   ],
+   "st": [
+    "TX"
+   ],
+   "g": "Asian Indian"
+  },
+  {
+   "id": "geo-tx-vn",
+   "cat": "pop",
+   "v": "14.2%",
+   "t": "of the nation's Vietnamese population, alone or in any combination, lived in Texas, the second-largest state share",
+   "y": "2020",
+   "s": "dhca",
+   "p": "2020 Census, Detailed DHC-A",
+   "c": [
+    "VN"
+   ],
+   "st": [
+    "TX"
+   ],
+   "g": "Vietnamese"
+  },
+  {
+   "id": "geo-hi-ph",
+   "cat": "pop",
+   "v": "8.6%",
+   "t": "of the nation's Filipino population, alone or in any combination, lived in Hawaii, the second-largest state share",
+   "y": "2020",
+   "s": "dhca",
+   "p": "2020 Census, Detailed DHC-A",
+   "c": [
+    "PH"
+   ],
+   "st": [
+    "HI"
+   ],
+   "g": "Filipino"
+  },
+  {
+   "id": "geo-hi-jp",
+   "cat": "pop",
+   "v": "19.7%",
+   "t": "of the nation's Japanese population, alone or in any combination, lived in Hawaii, the second-largest state share",
+   "y": "2020",
+   "s": "dhca",
+   "p": "2020 Census, Detailed DHC-A",
+   "c": [
+    "JP"
+   ],
+   "st": [
+    "HI"
+   ],
+   "g": "Japanese"
+  },
+  {
+   "id": "cty-honolulu-ph",
+   "cat": "pop",
+   "v": "271,235",
+   "t": "Filipino residents of Honolulu County, Hawaii, the largest detailed Asian group there (42.9% of the county's Asian alone-or-in-combination population)",
+   "y": "2020",
+   "s": "dhca",
+   "p": "2020 Census, Detailed DHC-A",
+   "c": [
+    "PH"
+   ],
+   "st": [
+    "HI"
+   ],
+   "g": "Filipino"
+  },
+  {
+   "id": "cty-sandiego-ph",
+   "cat": "pop",
+   "v": "215,168",
+   "t": "Filipino residents of San Diego County, California, the largest detailed Asian group there (41.6% of the county's Asian alone-or-in-combination population)",
+   "y": "2020",
+   "s": "dhca",
+   "p": "2020 Census, Detailed DHC-A",
+   "c": [
+    "PH"
+   ],
+   "st": [
+    "CA"
+   ],
+   "g": "Filipino"
+  },
+  {
+   "id": "cty-orange-vn",
+   "cat": "pop",
+   "v": "241,557",
+   "t": "Vietnamese residents of Orange County, California, the largest detailed Asian group there",
+   "y": "2020",
+   "s": "dhca",
+   "p": "2020 Census, Detailed DHC-A",
+   "c": [
+    "VN"
+   ],
+   "st": [
+    "CA"
+   ],
+   "g": "Vietnamese"
+  },
+  {
+   "id": "cty-cook-in",
+   "cat": "pop",
+   "v": "134,169",
+   "t": "Asian Indian residents of Cook County, Illinois, the largest detailed Asian group there",
+   "y": "2020",
+   "s": "dhca",
+   "p": "2020 Census, Detailed DHC-A",
+   "c": [
+    "SA"
+   ],
+   "st": [
+    "IL"
+   ],
+   "g": "Asian Indian"
+  },
+  {
+   "id": "met-chicago-in",
+   "cat": "pop",
+   "v": "229,003",
+   "t": "Asian Indian alone residents of the Chicago metro area, the largest Asian alone group there",
+   "y": "2016-2020",
+   "s": "cen22",
+   "p": "2016-2020 American Community Survey 5-year estimates",
+   "c": [
+    "SA"
+   ],
+   "st": [
+    "IL"
+   ],
+   "g": "Asian Indian"
+  },
+  {
+   "id": "met-atlanta-in",
+   "cat": "pop",
+   "v": "136,931",
+   "t": "Asian Indian alone residents of the Atlanta metro area, the largest Asian alone group there",
+   "y": "2016-2020",
+   "s": "cen22",
+   "p": "2016-2020 American Community Survey 5-year estimates",
+   "c": [
+    "SA"
+   ],
+   "st": [
+    "GA"
+   ],
+   "g": "Asian Indian"
+  },
+  {
+   "id": "met-houston-vn",
+   "cat": "pop",
+   "v": "136,813",
+   "t": "Vietnamese residents of the Houston metro area, one of the largest Asian groups there",
+   "y": "2016-2020",
+   "s": "cen22",
+   "p": "2016-2020 American Community Survey 5-year estimates",
+   "c": [
+    "VN"
+   ],
+   "st": [
+    "TX"
+   ],
+   "g": "Vietnamese"
+  },
+  {
+   "id": "met-minneapolis-hm",
+   "cat": "pop",
+   "v": "83,132",
+   "t": "Hmong alone residents of the Minneapolis metro area, the largest Asian alone group there",
+   "y": "2016-2020",
+   "s": "cen22",
+   "p": "2016-2020 American Community Survey 5-year estimates",
+   "c": [
+    "SEA"
+   ],
+   "st": [
+    "MN"
+   ],
+   "g": "Hmong"
+  },
+  {
+   "id": "met-seattle-cn",
+   "cat": "pop",
+   "v": "124,204",
+   "t": "Chinese (except Taiwanese) alone residents of the Seattle metro area, the largest Asian alone group there",
+   "y": "2016-2020",
+   "s": "cen22",
+   "p": "2016-2020 American Community Survey 5-year estimates",
+   "c": [
+    "CN"
+   ],
+   "st": [
+    "WA"
+   ],
+   "g": "Chinese (except Taiwanese)"
+  },
+  {
+   "id": "met-boston-cn",
+   "cat": "pop",
+   "v": "152,274",
+   "t": "Chinese (except Taiwanese) alone residents of the Boston metro area, the largest Asian alone group there",
+   "y": "2016-2020",
+   "s": "cen22",
+   "p": "2016-2020 American Community Survey 5-year estimates",
+   "c": [
+    "CN"
+   ],
+   "st": [
+    "MA"
+   ],
+   "g": "Chinese (except Taiwanese)"
+  },
+  {
+   "id": "met-sandiego-ph",
+   "cat": "pop",
+   "v": "155,522",
+   "t": "Filipino alone residents of the San Diego metro area, the largest Asian alone group there",
+   "y": "2016-2020",
+   "s": "cen22",
+   "p": "2016-2020 American Community Survey 5-year estimates",
+   "c": [
+    "PH"
+   ],
+   "st": [
+    "CA"
+   ],
+   "g": "Filipino"
+  },
+  {
+   "id": "met-slc-nhpi",
+   "cat": "pop",
+   "v": "18,291",
+   "t": "NHPI alone residents of the Salt Lake City metro area, significantly more than any detailed Asian alone group there",
+   "y": "2016-2020",
+   "s": "cen22",
+   "p": "2016-2020 American Community Survey 5-year estimates",
+   "c": [
+    "NHPI"
+   ],
+   "st": [
+    "UT"
+   ],
+   "g": "Native Hawaiian and Pacific Islander"
+  },
+  {
+   "id": "edu-ba-asian",
+   "cat": "biz",
+   "v": "57.7%",
+   "t": "of the Asian alone-or-in-combination population age 25 and over had a bachelor's degree or higher",
+   "y": "2024",
+   "s": "fff26",
+   "p": "2024 American Community Survey 1-year estimates"
+  },
+  {
+   "id": "edu-ba-nhpi",
+   "cat": "biz",
+   "v": "26.5%",
+   "t": "of the Native Hawaiian and Pacific Islander alone-or-in-combination population age 25 and over had a bachelor's degree or higher",
+   "y": "2024",
+   "s": "fff26",
+   "p": "2024 American Community Survey 1-year estimates",
+   "c": [
+    "NHPI"
+   ],
+   "g": "Native Hawaiian and Pacific Islander"
+  },
+  {
+   "id": "edu-hs-asian",
+   "cat": "biz",
+   "v": "89.7%",
+   "t": "of the Asian alone-or-in-combination population age 25 and over had at least a high school diploma or equivalent",
+   "y": "2024",
+   "s": "fff26",
+   "p": "2024 American Community Survey 1-year estimates"
+  },
+  {
+   "id": "edu-hs-nhpi",
+   "cat": "biz",
+   "v": "90.0%",
+   "t": "of the Native Hawaiian and Pacific Islander alone-or-in-combination population age 25 and over had at least a high school diploma or equivalent",
+   "y": "2024",
+   "s": "fff26",
+   "p": "2024 American Community Survey 1-year estimates",
+   "c": [
+    "NHPI"
+   ],
+   "g": "Native Hawaiian and Pacific Islander"
+  },
+  {
+   "id": "biz-asian",
+   "cat": "biz",
+   "v": "684,916",
+   "t": "Asian-owned firms with paid employees in the United States",
+   "y": "2023",
+   "s": "fff26",
+   "p": "2024 Annual Business Survey, data year 2023"
+  },
+  {
+   "id": "biz-nhpi",
+   "cat": "biz",
+   "v": "9,413",
+   "t": "Native Hawaiian and Pacific Islander-owned U.S. firms with paid employees",
+   "y": "2023",
+   "s": "fff26",
+   "p": "2024 Annual Business Survey, data year 2023",
+   "c": [
+    "NHPI"
+   ],
+   "g": "Native Hawaiian and Pacific Islander"
+  },
+  {
+   "id": "imm-cit-asian",
+   "cat": "imm",
+   "v": "73.2%",
+   "t": "of people who identified as Asian alone were U.S. citizens, by birth or naturalization",
+   "y": "2016-2020",
+   "s": "cen22",
+   "p": "2016-2020 American Community Survey 5-year estimates"
+  },
+  {
+   "id": "imm-cit-nhpi",
+   "cat": "imm",
+   "v": "85.9%",
+   "t": "of people who identified as NHPI alone were U.S. citizens, by birth or naturalization",
+   "y": "2016-2020",
+   "s": "cen22",
+   "p": "2016-2020 American Community Survey 5-year estimates",
+   "c": [
+    "NHPI"
+   ],
+   "g": "Native Hawaiian and Pacific Islander"
+  },
+  {
+   "id": "imm-fb-asia",
+   "cat": "imm",
+   "v": "31.3%",
+   "t": "of the roughly 44 million foreign-born people in the United States were born in Asia",
+   "y": "2016-2020",
+   "s": "cen22",
+   "p": "2016-2020 American Community Survey 5-year estimates"
+  },
+  {
+   "id": "imm-sah-aapi-2025",
+   "cat": "imm",
+   "v": "53%",
+   "t": "of AA/PI adults said they or an AA/PI person they know were negatively affected by immigration policy changes or anti-immigrant sentiment",
+   "y": "2025",
+   "s": "sah26",
+   "p": "State of Hate survey, NORC at the University of Chicago"
+  },
+  {
+   "id": "imm-sah-sa-2025",
+   "cat": "imm",
+   "v": "55%",
+   "t": "of South Asian adults said they or another AA/PI person in their community have been affected by changing immigration policies or anti-immigrant sentiment",
+   "y": "2025",
+   "s": "sahsa",
+   "c": [
+    "SA"
+   ],
+   "g": "South Asian"
+  },
+  {
+   "id": "hate-sah-2025",
+   "cat": "hate",
+   "v": "49%",
+   "t": "of AA/PI adults experienced a hate act in 2025",
+   "y": "2025",
+   "s": "sah26",
+   "p": "State of Hate survey, NORC at the University of Chicago"
+  },
+  {
+   "id": "hate-sah-2024",
+   "cat": "hate",
+   "v": "53%",
+   "t": "of AA/PI adults experienced hate in 2024",
+   "y": "2024",
+   "s": "sah25",
+   "p": "State of Hate survey, NORC at the University of Chicago"
+  },
+  {
+   "id": "hate-sah-2023",
+   "cat": "hate",
+   "v": "49%",
+   "t": "of AA/PI adults reported race-based hate in 2023",
+   "y": "2023",
+   "s": "sah25",
+   "p": "State of Hate survey, NORC at the University of Chicago"
+  },
+  {
+   "id": "hate-pi-2025",
+   "cat": "hate",
+   "v": "57%",
+   "t": "of Pacific Islander adults experienced hate in 2025, up from 47% in 2024 (a statistically significant increase)",
+   "y": "2025",
+   "s": "sah26",
+   "p": "State of Hate survey, NORC at the University of Chicago",
+   "c": [
+    "NHPI"
+   ],
+   "g": "Pacific Islander"
+  },
+  {
+   "id": "hate-sa-2025",
+   "cat": "hate",
+   "v": "48%",
+   "t": "of South Asian adults experienced a hate act due to their race, ethnicity, or nationality in 2025",
+   "y": "2025",
+   "s": "sahsa",
+   "c": [
+    "SA"
+   ],
+   "g": "South Asian"
+  },
+  {
+   "id": "hate-unrep-2024",
+   "cat": "hate",
+   "v": "77%",
+   "t": "of AA/PI adults who experienced hate in 2024 did not formally report it",
+   "y": "2024",
+   "s": "sah25",
+   "p": "State of Hate survey, NORC at the University of Chicago"
+  },
+  {
+   "id": "hate-sa-threats",
+   "cat": "hate",
+   "v": "71%",
+   "t": "of all anti-Asian threats of violence between August 2024 and December 2025 were directed at South Asians",
+   "y": "2024-2025",
+   "s": "sahsa",
+   "c": [
+    "SA"
+   ],
+   "g": "South Asian",
+   "n": "Stop AAPI Hate's own analysis; see the source for how it was measured."
+  },
+  {
+   "id": "hate-sa-slurs",
+   "cat": "hate",
+   "v": "109%",
+   "t": "rise in the use of anti-South Asian slurs between January 2023 and December 2025",
+   "y": "2023-2025",
+   "s": "sahsa",
+   "c": [
+    "SA"
+   ],
+   "g": "South Asian",
+   "n": "Stop AAPI Hate's own analysis; see the source for how it was measured."
+  },
+  {
+   "id": "hate-sah-total",
+   "cat": "hate",
+   "v": "11,467",
+   "t": "incidents reported to Stop AAPI Hate from March 19, 2020 to March 31, 2022",
+   "y": "2020-2022",
+   "s": "sah2",
+   "p": "p. 3",
+   "n": "Self-reported incidents, not police or court records."
+  },
+  {
+   "id": "hate-sah-harass",
+   "cat": "hate",
+   "v": "67%",
+   "t": "of the incidents reported to Stop AAPI Hate from March 2020 to March 2022 involved harassment",
+   "y": "2020-2022",
+   "s": "sah2",
+   "p": "p. 3",
+   "n": "An incident can involve more than one type, so the types add up to more than 100%."
+  },
+  {
+   "id": "hate-sah-physical",
+   "cat": "hate",
+   "v": "17%",
+   "t": "of the incidents reported to Stop AAPI Hate from March 2020 to March 2022 involved physical violence",
+   "y": "2020-2022",
+   "s": "sah2",
+   "p": "p. 4",
+   "n": "An incident can involve more than one type, so the types add up to more than 100%."
+  },
+  {
+   "id": "hate-fbi-asian-2024",
+   "cat": "hate",
+   "v": "379",
+   "t": "anti-Asian hate crime incidents reported to the FBI in 2024",
+   "y": "2024",
+   "s": "aajc",
+   "p": "p. 6",
+   "via": "FBI Hate Crime Statistics, as reported by Asian Americans Advancing Justice - AAJC"
+  },
+  {
+   "id": "hate-fbi-asian-2023",
+   "cat": "hate",
+   "v": "407",
+   "t": "anti-Asian hate crime incidents reported to the FBI in 2023",
+   "y": "2023",
+   "s": "aajc",
+   "p": "p. 6",
+   "via": "FBI Hate Crime Statistics, as reported by Asian Americans Advancing Justice - AAJC"
+  },
+  {
+   "id": "hate-fbi-3x",
+   "cat": "hate",
+   "v": "Nearly three times",
+   "t": "the 2013-2018 pre-pandemic average: the number of anti-Asian hate crime incidents reported to the FBI in 2024",
+   "y": "2024",
+   "s": "aajc",
+   "p": "p. 6",
+   "via": "FBI Hate Crime Statistics, as reported by Asian Americans Advancing Justice - AAJC"
+  },
+  {
+   "id": "hate-fbi-nhpi-2024",
+   "cat": "hate",
+   "v": "29",
+   "t": "anti-Native Hawaiian or Other Pacific Islander hate crime incidents reported to the FBI in 2024, the highest number recorded since the FBI began counting the category separately in 2013",
+   "y": "2024",
+   "s": "aajc",
+   "p": "p. 6",
+   "c": [
+    "NHPI"
+   ],
+   "g": "Native Hawaiian and Pacific Islander",
+   "via": "FBI Hate Crime Statistics, as reported by Asian Americans Advancing Justice - AAJC"
+  },
+  {
+   "id": "hate-fbi-total-2024",
+   "cat": "hate",
+   "v": "11,679",
+   "t": "hate crime incidents submitted to the FBI in 2024, across all bias categories",
+   "y": "2024",
+   "s": "fbi",
+   "p": "FBI release text",
+   "n": "In 2024, 16,419 agencies took part in the FBI's hate crime collection, covering 95.1% of the U.S. population."
+  },
+  {
+   "id": "hate-six-pct",
+   "cat": "hate",
+   "v": "About 6%",
+   "t": "of all reported hate crimes in California, New York and Washington were anti-Asian",
+   "y": "2024",
+   "s": "aajc",
+   "p": "p. 9",
+   "st": [
+    "CA",
+    "NY",
+    "WA"
+   ],
+   "via": "FBI Hate Crime Statistics, as reported by Asian Americans Advancing Justice - AAJC"
+  },
+  {
+   "id": "hate-ca-asian-2024",
+   "cat": "hate",
+   "v": "119",
+   "t": "anti-Asian bias hate crime events in California in 2024, down 4.8% from 125 in 2023",
+   "y": "2024",
+   "s": "cadoj",
+   "st": [
+    "CA"
+   ]
+  },
+  {
+   "id": "hate-ca-total-2024",
+   "cat": "hate",
+   "v": "2,023",
+   "t": "reported hate crime events in California in 2024, up 2.7% from 1,970 in 2023",
+   "y": "2024",
+   "s": "cadoj",
+   "st": [
+    "CA"
+   ]
+  }
+ ]
+}

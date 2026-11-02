@@ -815,5 +815,18 @@
     "gov": { "apiRequests": 600, "frPerTerm": 500, "frPages": 8, "execPerTerm": 500, "congressPages": 60, "regsPages": 4, "govinfoPages": 20 }
   },
   "policyKeepDays": 120,
-  "policyMax": 300
+  "policyMax": 300,
+  "events": {
+    "_note": "Events and funding deadlines (scripts/events.mjs). hearings: committee meetings from the Congress.gov API (needs the free api.data.gov key), kept only when they are about the issues the site follows. grants: open Grants.gov opportunities that match the keywords. feeds: starter calendar feeds (iCalendar); the site owner adds more, or stops following these, in the admin dashboard (Settings, Event calendars).",
+    "keepPastDays": 7,
+    "aheadDays": 400,
+    "max": 800,
+    "hearings": { "enabled": true, "everyMinutes": 120, "lookbackDays": 30, "maxDetails": 40, "chambers": ["house", "senate"] },
+    "grants": { "enabled": true, "everyMinutes": 360, "rows": 40, "max": 80, "keywords": ["Asian American", "Native Hawaiian", "Pacific Islander", "AANAPISI", "Hmong", "Southeast Asian"] },
+    "feedsEveryMinutes": 60,
+    "feeds": [
+      { "name": "Potluck Asian America", "url": "https://potluckasianamerica.org/events/?ical=1" },
+      { "name": "AAPIP (Asian Americans / Pacific Islanders in Philanthropy)", "url": "https://aapip.org/?post_type=tribe_events&ical=1&eventDisplay=list" }
+    ]
+  }
 }

@@ -9,7 +9,7 @@ export const STATE_FILE = "admin.json", PENDING_FILE = "pending.json";
 export const EDIT_FIELDS = ["h", "m", "s", "u", "d", "k", "t", "tx", "cm", "st", "rl", "rt"]; // headline, summary, source, link, date, section, topic, extra topics, communities, states, policy relevancy, research type
 export const MAX_EXTRA_TOPICS = 4; // a story has one main topic ("t") and up to this many more ("tx")
 export const RESEARCH_TYPES = ["poll", "report", "data", "none"]; // rt: a survey ("poll"), a report, data, or "none" (not a research item); no rt = the site's rules decide
-export const LIMITS = { topics: 30, communities: 30, newsKinds: 8, words: 40, sourceKinds: 500, blocked: 200, hubs: 40 };
+export const LIMITS = { topics: 30, communities: 30, newsKinds: 8, words: 40, sourceKinds: 500, blocked: 200, hubs: 40, events: 300, eventsOff: 1000, feeds: 30 };
 export const NEWS_BASE_KINDS = ["community", "news"]; // "AAPI Media" and "Mainstream": the News page's two built-in categories
 export const BREAKING_LABELS = { breaking: "Breaking", urgent: "Urgent", important: "Important" }; // the red, flashing label an item carries while it is marked
 export const BREAKING_HOURS = [2, 6, 12, 24, 48]; // what the dashboard offers; any whole number of hours from 2 to 72 is accepted (the shortest is 2 so the item is on the page for at least an hour even after the few minutes the site needs to update)
@@ -27,6 +27,10 @@ export const emptySettings = () => ({
   blocked: {},     // source name -> when the owner blocked it: all its stories are taken off the site and nothing new is collected from it
   hubs: [],        // topic hubs the owner added besides the starter set in hubs.json: { k, label, blurb, words } (words: the keywords that put a story, policy item or statement in the hub)
   hubsOff: [],     // keys of starter hubs (hubs.json) the owner hid
+  events: [],      // events the owner added by hand (a webinar, a hearing, a grant or fellowship deadline): { id, k, t, d, e?, ad?, o?, u?, m?, loc?, sub? } (see cleanEvent)
+  eventsOff: [],   // collected events the owner hid: { id, t } (t: the title, so the dashboard can list them)
+  eventFeeds: [],  // calendar feeds (iCalendar, .ics) the owner follows besides the starter ones in sources.json: { name, url }
+  eventFeedsOff: [], // web addresses of starter calendar feeds the owner stopped following
   builtin: { topics: {}, communities: {}, kinds: {} }, // changes to the built-in ones, by key: { label?: a new name, off?: true (removed), to?: for a removed News category, the category its sources go to }
 });
 export const emptyState = () => ({
@@ -98,6 +102,13 @@ export function normalizeState(raw) {
       hubSeen.add(e.k); s.settings.hubs.push({ k: e.k, label, blurb: line(e.blurb, 200), words: cleanWords(e.words) });
     }
     s.settings.hubsOff = [...new Set(arr(raw.settings.hubsOff).filter(x => typeof x === "string" && HUB_KEY.test(x) && x.length <= HUB_KEY_MAX))].slice(0, 100);
+    const evSeen = new Set();
+    for (const e of arr(raw.settings.events)) { const c = isObj(e) && validId(e.id) && !evSeen.has(e.id) && s.settings.events.length < LIMITS.events ? cleanEvent(e, false) : null; if (c) { evSeen.add(c.id); s.settings.events.push(c); } }
+    const offSeen = new Set();
+    for (const e of arr(raw.settings.eventsOff)) if (isObj(e) && validId(e.id) && !offSeen.has(e.id) && s.settings.eventsOff.length < LIMITS.eventsOff) { offSeen.add(e.id); s.settings.eventsOff.push({ id: e.id, t: line(e.t, 160) }); }
+    const feSeen = new Set();
+    for (const e of arr(raw.settings.eventFeeds)) { const c = isObj(e) ? cleanFeed(e, false) : null; if (c && !feSeen.has(c.url) && s.settings.eventFeeds.length < LIMITS.feeds) { feSeen.add(c.url); s.settings.eventFeeds.push(c); } }
+    s.settings.eventFeedsOff = [...new Set(arr(raw.settings.eventFeedsOff).map(x => httpsUrl(x)).filter(Boolean))].slice(0, 100);
     if (isObj(raw.settings.blocked)) for (const [n, t] of Object.entries(raw.settings.blocked)) { if (Object.keys(s.settings.blocked).length >= LIMITS.blocked) break; const name = line(n, 80); if (name && nameKey(name)) s.settings.blocked[name] = typeof t === "string" ? t.slice(0, 40) : ""; }
   }
   for (const k of ["edits", "orig", "article", "approved", "held", "pinned", "featured", "deleted"]) if (isObj(raw[k])) for (const [id, v] of Object.entries(raw[k])) if (validId(id) && v != null && (k === "approved" || k === "held" || k === "pinned" || isObj(v) || (k === "featured" && typeof v === "string"))) s[k][id] = v;
@@ -107,7 +118,8 @@ export function normalizeState(raw) {
 }
 
 /** Sets of valid values, built from taxonomy.json. The label maps are used to keep the owner's own names apart from the built-in ones. */
-export const taxSets = (t, hubs) => ({
+export const taxSets = (t, hubs, events) => ({
+  feeds: new Map(arr(events?.feeds).filter(f => isObj(f) && httpsUrl(f.url)).map(f => [httpsUrl(f.url), { name: line(f.name, 80), url: httpsUrl(f.url) }])), // the starter calendar feeds (sources.json, "events")
   hubs: new Map(arr(hubs?.hubs).filter(h => isObj(h) && typeof h.k === "string" && typeof h.label === "string").map(h => [h.k, h])), // the starter topic hubs (hubs.json)
   topics: new Set(arr(t?.topics).map(x => x.k)), communities: new Set(arr(t?.communities).map(x => x.k)),
   states: new Set(arr(t?.states).map(x => x[0])), kinds: new Set(Object.keys(t?.kinds ?? {})), defaultTopic: t?.default ?? "CULTURE",
@@ -183,6 +195,79 @@ function cleanHubs(list, starter, old) {
     if (!words.length) throw new AdminError(`Add at least one keyword to “${label}”, so stories can be matched to it.`);
     if (words.length > LIMITS.words) throw new AdminError(`“${label}” has more than ${LIMITS.words} keywords.`);
     out.push({ k, label, blurb: line(it.blurb, 200), words });
+  }
+  return out;
+}
+
+// ---------------------------------------------------------------- events and funding deadlines: hearings, webinars and events, grant and fellowship deadlines
+export const EVENT_KINDS = { hearing: "Hearing", event: "Event or webinar", funding: "Funding or fellowship deadline" };
+const DATE_ONLY = /^\d{4}-\d{2}-\d{2}$/;
+const dateOk = s => typeof s === "string" && DATE_ONLY.test(s) && new Date(s + "T12:00:00Z").toISOString().slice(0, 10) === s && s >= "2000-01-01" && s <= "2100-12-31";
+/** A web address that starts with https:// (or http:// when allowed), as the browser would write it; "" when it is not one. */
+export function httpsUrl(v, max = 500, allowHttp = false) {
+  try { const u = new URL(String(v ?? "").trim()); return (u.protocol === "https:" || (allowHttp && u.protocol === "http:")) && String(v).trim().length <= max && !u.username && !u.password ? u.href : ""; } catch { return ""; }
+}
+/** One event, checked. "d" is the start: an ISO date and time (UTC) or, for an all-day entry ("ad": a deadline, a conference day), a date like 2026-12-01; "e" is the end (the last day for an all-day entry).
+ *  strict: throw an AdminError that says what is wrong (the dashboard), otherwise give null for something unusable (reading a saved file). */
+export function cleanEvent(raw, strict = true) {
+  const bad = m => { if (strict) throw new AdminError(m); return null; };
+  if (!isObj(raw)) return bad("The event could not be read.");
+  const t = line(raw.t, 160); if (!t) return bad("Every event needs a title.");
+  const k = typeof raw.k === "string" && Object.hasOwn(EVENT_KINDS, raw.k) ? raw.k : ""; if (!k) return bad(`Choose what kind of event “${t}” is.`);
+  const ds = typeof raw.d === "string" ? raw.d.trim() : "", ad = raw.ad === true || dateOk(ds);
+  let d, e = "";
+  if (ad) {
+    d = ds.slice(0, 10); if (!dateOk(d)) return bad(`“${t}” needs a date.`);
+    const es = typeof raw.e === "string" ? raw.e.trim().slice(0, 10) : ""; if (es) { if (!dateOk(es)) return bad(`The last day of “${t}” is not a date.`); if (es < d) return bad(`“${t}” ends before it starts.`); if (es > d) e = es; }
+  } else {
+    const ms = Date.parse(ds); if (!ds.includes("T") || Number.isNaN(ms) || ms < Date.parse("2000-01-01") || ms > Date.parse("2100-12-31")) return bad(`“${t}” needs a date and time.`);
+    d = new Date(ms).toISOString();
+    if (typeof raw.e === "string" && raw.e.trim()) { const me = Date.parse(raw.e); if (Number.isNaN(me)) return bad(`The end time of “${t}” is not a time.`); if (me < ms) return bad(`“${t}” ends before it starts.`); if (me > ms) e = new Date(me).toISOString(); }
+  }
+  let u = ""; if (typeof raw.u === "string" && raw.u.trim()) { u = httpsUrl(raw.u, 500, true); if (!u) return bad(`The link for “${t}” must be a web address that starts with https://.`); }
+  const out = { id: validId(raw.id) ? raw.id : "", k, t, d };
+  if (e) out.e = e; if (ad) out.ad = 1;
+  const o = line(raw.o, 80), m = line(raw.m, 500), loc = line(raw.loc, 120), sub = line(raw.sub, 40);
+  if (o) out.o = o; if (u) out.u = u; if (m) out.m = m; if (loc) out.loc = loc; if (sub) out.sub = sub;
+  return out;
+}
+/** A calendar feed (an iCalendar address the collector reads), checked. */
+export function cleanFeed(raw, strict = true) {
+  const bad = m => { if (strict) throw new AdminError(m); return null; };
+  if (!isObj(raw)) return bad("The calendar feed could not be read.");
+  const url = httpsUrl(typeof raw.url === "string" ? raw.url.trim().replace(/^webcal:\/\//i, "https://") : "");
+  if (!url) return bad("A calendar feed address must start with https:// (or webcal://).");
+  const host = new URL(url).hostname.toLowerCase();
+  if (host === "localhost" || /^[\d.]+$/.test(host) || host.includes(":") || !host.includes(".") || /\.(local|internal|localhost|test)$/.test(host)) return bad("A calendar feed must be on a public web site (not an IP address or a local name).");
+  const name = line(raw.name, 80) || host.replace(/^www\./, "");
+  return { name, url };
+}
+function cleanOff(list) {
+  if (!Array.isArray(list)) throw new AdminError("The list could not be read.");
+  const seen = new Set(), out = [];
+  for (const e of list) { const id = typeof e === "string" ? e : isObj(e) ? e.id : ""; if (!validId(id) || seen.has(id)) continue; seen.add(id); out.push({ id, t: typeof e === "string" ? "" : line(e.t, 160) }); }
+  return out.slice(0, LIMITS.eventsOff);
+}
+function cleanEvents(list, old) {
+  if (!Array.isArray(list)) throw new AdminError("The list could not be read.");
+  if (list.length > LIMITS.events) throw new AdminError(`You can add at most ${LIMITS.events} events.`);
+  const seen = new Set(), out = [];
+  for (const it of list) {
+    const c = cleanEvent(it, true);
+    if (!validId(c.id)) throw new AdminError("An event id is missing.");
+    if (seen.has(c.id)) throw new AdminError("The same event is in the list twice.");
+    seen.add(c.id); out.push(c);
+  }
+  return out;
+}
+function cleanFeeds(list, starter) {
+  if (!Array.isArray(list)) throw new AdminError("The list could not be read.");
+  if (list.length > LIMITS.feeds) throw new AdminError(`You can follow at most ${LIMITS.feeds} calendar feeds of your own.`);
+  const used = new Set(starter.keys()), out = [];
+  for (const it of list) {
+    const c = cleanFeed(it, true);
+    if (used.has(c.url)) throw new AdminError(`“${c.name}” is already followed.`);
+    used.add(c.url); out.push(c);
   }
   return out;
 }
@@ -490,6 +575,8 @@ function dropKeys(s, type, gone, fallback) {
  *  edit {id, patch, orig?, article?} · editMany {edits:[{id, patch, orig?}]} · revert {id} · add {item, article?, pin?, feature?, breaking?: {hours?, label?}} · settings {approval}
  *  topics {list:[{k?, label, words}]} · communities {list} · newsKinds {list:[{k?, label}]}  (the owner's own: the whole list is sent)
  *  hubs {list:[{k?, label, blurb?, words}], off:[starter hub keys]}  (topic hubs: the owner's own, the whole list is sent; off: hubs from hubs.json they hid)
+ *  events {list:[{id, k, t, d, e?, ad?, o?, u?, m?, loc?, sub?}], off:[{id, t} of collected events to hide]}  (events and funding deadlines: the owner's own, the whole list is sent)
+ *  eventFeeds {list:[{name, url}], off:[starter feed addresses (sources.json) to stop following]}  (calendar feeds, iCalendar .ics, the collector reads)
  *  sourceKinds {sources:[name], kind: key | null}  (which News page category a source belongs to; null = back to the usual one)
  *  blockSources {sources:[name]} · unblockSources {sources:[name]}  (a blocked source: all its stories are taken off the site, and nothing new is collected from it)
  * ctx: { X: taxSets(...) of taxonomy.json, now?: ms, inPlace?: true }. Returns { state, summary, ids, id? }. Throws AdminError for a request that is not allowed.
@@ -603,6 +690,28 @@ export function applyOp(state, op, args, ctx) {
       s.settings.hubs = list; s.settings.hubsOff = off;
       const nm = k => starter.get(k)?.label ?? k, one = (xs, verb, f = x => x.label) => xs.length === 1 ? `${verb} the hub “${f(xs[0])}”` : `${verb} ${plural(xs.length, "hub")}`;
       out.summary = [added.length && one(added, "Added"), gone.length && one(gone, "Removed"), changed.length && one(changed, "Changed"), hid.length && one(hid, "Hid", nm), shown.length && one(shown, "Showed", nm)].filter(Boolean).join(", ").replace(/^(.)/, c => c.toUpperCase()); break;
+    }
+    case "events": {
+      const old = s.settings.events, list = args?.list === undefined ? old : cleanEvents(args.list, old);
+      const offOld = s.settings.eventsOff, off = args?.off === undefined ? offOld : cleanOff(args.off);
+      const before = new Map(old.map(x => [x.id, x])), nowK = new Set(list.map(x => x.id));
+      const added = list.filter(x => !before.has(x.id)), gone = old.filter(x => !nowK.has(x.id)), changed = list.filter(x => before.has(x.id) && JSON.stringify(before.get(x.id)) !== JSON.stringify(x));
+      const offIds = new Set(off.map(x => x.id)), oldIds = new Set(offOld.map(x => x.id)), hid = off.filter(x => !oldIds.has(x.id)), shown = offOld.filter(x => !offIds.has(x.id));
+      if (!added.length && !gone.length && !changed.length && !hid.length && !shown.length) throw new AdminError("Nothing to change.");
+      s.settings.events = list; s.settings.eventsOff = off;
+      const one = (xs, verb) => xs.length === 1 ? `${verb} the event “${xs[0].t}”` : `${verb} ${plural(xs.length, "event")}`, cnt = (xs, verb) => `${verb} ${xs.length === 1 ? "an event" : plural(xs.length, "event")}`;
+      out.summary = [added.length && one(added, "Added"), gone.length && one(gone, "Removed"), changed.length && one(changed, "Changed"), hid.length && cnt(hid, "Hid"), shown.length && cnt(shown, "Showed")].filter(Boolean).join(", ").replace(/^(.)/, c => c.toUpperCase()); break;
+    }
+    case "eventFeeds": {
+      const starter = BX.feeds ?? new Map(), old = s.settings.eventFeeds, list = args?.list === undefined ? old : cleanFeeds(args.list, starter);
+      const offOld = s.settings.eventFeedsOff, off = args?.off === undefined ? offOld : [...new Set(arr(args.off).map(x => httpsUrl(x)).filter(u => u && starter.has(u)))].slice(0, 100);
+      const before = new Map(old.map(x => [x.url, x])), nowU = new Set(list.map(x => x.url));
+      const added = list.filter(x => !before.has(x.url)), gone = old.filter(x => !nowU.has(x.url)), changed = list.filter(x => before.has(x.url) && before.get(x.url).name !== x.name);
+      const hid = off.filter(u => !offOld.includes(u)), shown = offOld.filter(u => !off.includes(u));
+      if (!added.length && !gone.length && !changed.length && !hid.length && !shown.length) throw new AdminError("Nothing to change.");
+      s.settings.eventFeeds = list; s.settings.eventFeedsOff = off;
+      const nm = u => starter.get(u)?.name ?? u, one = (xs, verb, f = x => x.name) => xs.length === 1 ? `${verb} the calendar “${f(xs[0])}”` : `${verb} ${plural(xs.length, "calendar")}`;
+      out.summary = [added.length && one(added, "Added"), gone.length && one(gone, "Removed"), changed.length && one(changed, "Renamed"), hid.length && one(hid, "Stopped following", nm), shown.length && one(shown, "Follows again", nm)].filter(Boolean).join(", ").replace(/^(.)/, c => c.toUpperCase()); break;
     }
     case "sourceKinds": {
       const names = uniq(arr(args?.sources).map(x => line(x, 80)).filter(Boolean)).slice(0, LIMITS.sourceKinds);

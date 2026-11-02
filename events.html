@@ -1,0 +1,845 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="theme-color" content="#111525"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Yappie Pro — Informing and Empowering AAPI Communities</title>
+<meta name="application-name" content="The Yappie Pro — Informing and Empowering AAPI Communities"><meta property="og:site_name" content="The Yappie Pro — Informing and Empowering AAPI Communities">
+<link rel="icon" href="/favicon.ico" sizes="48x48"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://use.typekit.net">
+<link rel="preconnect" href="https://use.typekit.net" crossorigin>
+<link rel="stylesheet" href="https://use.typekit.net/uug3ias.css">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--hh:46px;--th:45px;--warn-bg:#fdeccb;--warn-bd:#d9972b;--warn-tx:#5a3a00;--head:"corsario-variable",Georgia,"Times New Roman",serif;--sans:"tablet-gothic","IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;--mono:var(--sans);--bg:#faf9f5;--pn:#faf9f5;--ln:#dee2e6;--tx:#111525;--dm:#5e5e5e;--ac:#0a67f1;--sel:#e7f0fe;--L:.5;--bar:#111525;--bt:#fff;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b0e1a;--pn:#111525;--ln:#232a45;--tx:#e9ecf5;--dm:#9aa3bd;--ac:#4d94ff;--sel:#182247;--L:.78;--warn-bg:#3a2a0b;--warn-bd:#b07a1f;--warn-tx:#f3d9a4}}
+:root[data-theme="dark"]{--bg:#0b0e1a;--pn:#111525;--ln:#232a45;--tx:#e9ecf5;--dm:#9aa3bd;--ac:#4d94ff;--sel:#182247;--L:.78;--warn-bg:#3a2a0b;--warn-bd:#b07a1f;--warn-tx:#f3d9a4}
+.fbar,.vback{display:none}.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}.rf{border-radius:6px}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:13.5px/1.45 var(--sans);-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+.chip,.cmd,.ph,.row.h,.dt,.sr,.tg,.ri,.meta,.ht,.open,.go{font-family:var(--mono);font-size:12px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bar)}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;text-align:left}
+[data-t]{--c:oklch(var(--L) var(--k,.15) var(--h,80))}
+[data-t=ALL]{--k:0}[data-t=POLICY]{--h:70}[data-t=POLITICS]{--h:255}[data-t=LEGAL]{--h:305}[data-t=CULTURE]{--h:185}[data-t=EDUCATION]{--h:145}[data-t=SAFETY]{--h:25}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:11;background:var(--bar);color:#fff}
+.bar{display:flex;align-items:center;gap:10px;padding:8px 12px;border-bottom:1px solid rgba(255,255,255,.14);flex-wrap:wrap}
+
+.cmd{flex:0 1 var(--sw,260px);min-width:150px;display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.25);border-radius:8px;padding:4px 10px;min-height:36px;transition:flex-basis .18s ease,background .15s ease,border-color .15s ease}
+.cmd:focus-within{--sw:380px;background:rgba(255,255,255,.12)}.kb{flex:none;font:inherit;font-size:11px;line-height:1;color:#aab2cc;border:1px solid rgba(255,255,255,.25);border-radius:4px;padding:2px 6px}.cmd:focus-within .kb,.cmd:has(input:not(:placeholder-shown)) .kb{display:none}@media (hover:none),(max-width:859px){.kb{display:none}}@media (prefers-reduced-motion:reduce){.cmd{transition:none}}
+.cmd:focus-within{border-color:var(--bt)}.cmd .mg{width:15px;height:15px;flex:none;fill:none;stroke:#8f98b5;stroke-width:1.6;stroke-linecap:round}.cmd input[type=search]{-webkit-appearance:none;appearance:none}
+.cmd input{flex:1;min-width:0;background:none;border:0;outline:0;color:#fff;font:inherit}
+.chip{border:1px solid rgba(255,255,255,.25);padding:3px 8px;color:#c5cbe0;white-space:nowrap}.chip i{color:#3ddc84;font-style:normal}
+.g{display:grid;grid-template-columns:215px minmax(0,1fr) clamp(350px,calc(350px + (100vw - 1100px) * .55),560px);gap:1px;background:var(--ln);border-bottom:1px solid var(--ln);min-height:calc(100vh - var(--hh) - var(--th));min-height:calc(100dvh - var(--hh) - var(--th))}
+.g>section{background:var(--pn);min-width:0}
+.ph{padding:9px 12px;color:var(--tx);font-weight:600;font-size:13px;border-bottom:1px solid var(--ln);display:flex;justify-content:space-between;align-items:center}
+.ri{display:flex;align-items:center;gap:8px;width:100%;padding:5px 12px}
+.ri:hover,.row:hover{background:var(--sel)}
+.ri.on{background:var(--sel);box-shadow:inset 2px 0 var(--ac);font-weight:600}
+.ri b{margin-left:auto;color:var(--dm);font-weight:400}
+.sw{width:8px;height:8px;background:var(--c);flex:none}
+.r2{display:flex;align-items:center}.r2 a{padding:0 12px;color:var(--ac)}
+.row{display:grid;grid-template-columns:66px 84px 128px 1fr 34px;gap:10px;padding:9px 12px;border-bottom:1px solid var(--ln);cursor:pointer;align-items:baseline}
+.row.h{cursor:default;color:var(--dm);font-size:11px;background:none}
+.row.sel{background:var(--sel);box-shadow:inset 2px 0 var(--ac)}
+.dt{color:var(--dm)}.new .dt{color:var(--ac)}
+.sr{color:var(--tx)}.tg{color:var(--ac);font-weight:600;font-size:11px;}.hl{font-weight:600;font-size:15px;line-height:1.4}
+.sm,.go,.mrel{display:none}
+.dtl{padding:12px;min-height:215px}.dtl h2{font-size:18px;line-height:1.3;font-weight:700;margin:8px 0}.dtl p{color:var(--dm);margin:0;font-size:14px;line-height:1.55}
+.meta{color:var(--dm);font-size:11px}
+.open{display:inline-block;margin:12px 12px 0 0;padding:6px 10px;background:var(--ac);color:var(--bg);font-weight:700}
+.lnk{color:var(--ac)}
+.kd{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--ln)}
+.kd a{background:var(--pn);padding:10px 12px}.kd a:hover{background:var(--sel)}
+.kd strong{display:block;font-size:20px;color:var(--ac)}.kd span{color:var(--dm);font-size:11px;display:block}
+.dx{display:none}.hla{cursor:pointer}.fx .ag{white-space:normal;line-height:1.25;max-width:100%}.ht{color:var(--ac);font-size:11px;margin-left:8px;font-weight:700;white-space:nowrap;background:none;border:0;padding:0;cursor:pointer}.hla:hover{color:var(--ac)}.hla:focus-visible,.ht:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+@media (max-width:1000px){
+.g{grid-template-columns:1fr}
+header{position:static}
+.rail,.side{display:none}
+body.msheet{overflow:hidden}body.msheet .side{display:block;position:fixed;inset:0;z-index:40;background:var(--pn);overscroll-behavior:contain}body.msheet #dtlw{position:static;height:100%;max-height:none;overflow:auto;border:0;-webkit-overflow-scrolling:touch;padding-bottom:env(safe-area-inset-bottom,0px)}body.msheet #dtlt{position:sticky;top:0;z-index:1;min-height:52px;padding:calc(env(safe-area-inset-top,0px) + 6px) 8px 6px 16px;background:var(--pn)}body.msheet .dx{display:inline-flex;align-items:center;justify-content:center;min-width:72px;min-height:44px;padding:0 14px;font:inherit;font-weight:600;color:var(--ac);background:none;border:1px solid var(--ln);border-radius:8px;cursor:pointer}body.msheet .dtl{padding:16px 16px 32px;min-height:0}body.msheet .dtl h2{font-size:20px}
+.fbar{display:flex;align-items:center;gap:8px;position:sticky;top:env(safe-area-inset-top,0px);z-index:9;padding:8px 12px;background:var(--pn);border-bottom:1px solid var(--ln)}
+.fs{position:relative;flex:1 1 0;min-width:0;max-width:260px}
+.fs select{appearance:none;-webkit-appearance:none;width:100%;height:44px;padding:0 32px 0 12px;font:inherit;font-size:16px;font-weight:500;color:var(--tx);background:var(--pn);border:1px solid var(--ln);border-radius:8px;text-overflow:ellipsis}
+.fs::after{content:"";position:absolute;right:14px;top:50%;width:7px;height:7px;border-right:2px solid var(--dm);border-bottom:2px solid var(--dm);transform:translateY(-70%) rotate(45deg);pointer-events:none}
+.fs.on select{border-color:var(--ac);color:var(--ac);font-weight:600}.fs.on::after{border-color:var(--ac)}
+.clr{flex:none;height:44px;padding:0 6px;color:var(--ac);font-weight:600;font-size:15px}
+.fs select:focus-visible,.clr:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+.row{grid-template-columns:auto auto 1fr 44px;gap:3px 10px;padding:14px 16px}.row.h{display:none}
+.row.sel{background:none;box-shadow:none}.row:hover{background:none}.row.gx{background:var(--sel)}
+.sr{grid-area:1/1;font-size:13px;font-weight:600}.tg{grid-area:1/2;font-size:13px}.dt{grid-area:1/3;justify-self:end;font-size:12.5px}
+.hl{grid-column:1/-1;font-size:17px;line-height:1.3;margin-top:3px}.sd{font-size:14px;margin-top:5px}
+.sm,.go{display:none}.mrel{grid-column:1/-1}.row.gx .mrel{display:block}.mrel .meta{margin-top:10px!important}
+.hl .ht{display:inline-flex;align-items:center;min-height:30px;padding:0 10px;margin-left:8px;border:1px solid var(--ln);border-radius:15px;font-size:12px;vertical-align:middle;background:var(--pn)}
+.ph{padding:10px 16px}.rt{flex-wrap:nowrap;gap:8px}#upd{max-width:46vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rf{position:relative;min-height:36px;min-width:44px;justify-content:center;border-radius:8px}.rf::after{content:"";position:absolute;inset:-5px 0}.rf .rl,#cnt{display:none}
+.dh{padding:16px 16px 6px}.more{padding:16px}
+.vback{top:env(safe-area-inset-top,0px)!important}
+}
+.cmd input::placeholder{color:#8f98b5}
+.more{padding:14px 12px;border-bottom:1px solid var(--ln);text-align:center}.morebtn{display:block;width:100%;padding:12px 14px;background:var(--pn);border:1px solid var(--ln);color:var(--tx);font-weight:600;text-align:center;cursor:pointer}.morebtn:hover{border-color:var(--ac);color:var(--ac)}.morebtn span{display:block;font-weight:400;color:var(--dm);font-size:11px;margin-top:2px}.end{color:var(--dm);font-size:11px;padding:4px 0}
+#dtlw{position:sticky;top:calc(env(safe-area-inset-top,0px) + var(--hh));z-index:2;background:var(--pn);border-bottom:1px solid var(--ln);max-height:calc(100vh - var(--hh));max-height:calc(100dvh - var(--hh));overflow:auto}
+.dh{padding:14px 12px 6px;font-size:12px;font-weight:600;color:var(--dm);border-bottom:1px solid var(--ln)}
+.tl{margin-top:6px}.tl .vit:last-child::before{display:none}
+[hidden]{display:none!important}
+#viewer{background:var(--bg)}
+.vw{display:grid;grid-template-columns:215px minmax(0,1fr) clamp(350px,calc(350px + (100vw - 1100px) * .55),560px);gap:1px;background:var(--ln);border-bottom:1px solid var(--ln);min-height:calc(100vh - var(--hh));min-height:calc(100dvh - var(--hh))}
+.vw>*{background:var(--pn);min-width:0}
+.vw .ph h2{margin:0;font:inherit}
+.vbd{padding:36px 40px 72px;max-width:760px;margin:0 auto}
+.vmeta{font-size:11px}.vtp{color:var(--ac);font-weight:600}
+.vcard h1{font-size:26px;line-height:1.25;font-weight:700;margin:8px 0 10px}
+.vdek{font-size:17px;line-height:1.5;color:var(--dm);margin:0 0 14px}
+.vby{font-size:12.5px;color:var(--dm);padding-bottom:14px;margin-bottom:16px;border-bottom:1px solid var(--ln)}.vby b{color:var(--tx);font-weight:700}
+.vhero{aspect-ratio:16/9;width:100%;background:var(--sel);margin-bottom:20px;overflow:hidden}.vhero img{width:100%;height:100%;object-fit:cover;display:block}
+.vbody{font-size:16px;line-height:1.65}.vbody p{margin:0 0 1em}.vbody h2,.vbody h3,.vbody h4{line-height:1.3;margin:1.5em 0 .5em;font-size:18px}.vbody h4{font-size:15px}
+.vbody a{color:var(--ac);text-decoration:underline}.vbody blockquote{margin:1.2em 0;padding-left:14px;border-left:2px solid var(--ac);color:var(--dm)}
+.vbody img{max-width:100%;height:auto}.vbody figure{margin:1.2em 0}.vbody figcaption{font-size:12px;color:var(--dm)}
+.vnote{background:var(--sel);padding:10px 12px;font-size:13px;line-height:1.5}
+.vfoot{margin-top:24px;padding-top:12px;border-top:1px solid var(--ln);font-size:12px;color:var(--dm)}
+.vsb{padding:2px 12px 20px}.vnone{font-size:12px;color:var(--dm);margin:8px 0}
+.vrail{min-width:0}
+.vit{display:grid;grid-template-columns:20px 1fr;position:relative;padding:6px 0 12px}
+.vit::before{content:"";position:absolute;left:3px;top:16px;bottom:-4px;width:1px;background:var(--ln)}
+.vit::after{content:"";position:absolute;left:0;top:10px;width:7px;height:7px;border-radius:50%;background:var(--ac)}
+.vit a{grid-column:2;display:block}.vit small{display:block;font-size:11px;color:var(--dm)}.vit small b{color:var(--tx);font-weight:700}
+.vit span{display:block;font-weight:600;font-size:14px;line-height:1.4;margin-top:3px}.vit a:hover span{color:var(--ac)}
+.rel{margin-top:6px}.rel .vit span{margin-top:0}.rel .vit::before{top:19px}.rel .vit::after{top:12px}.rel .vit:last-child::before{display:none}
+.open.alt{background:none;color:var(--ac);border:1px solid var(--ac);padding:5px 10px}
+@media (max-width:1100px){.vw{grid-template-columns:minmax(0,1fr);min-height:0}.vrail,.vph{display:none}.vback{display:flex;align-items:center;position:sticky;top:calc(env(safe-area-inset-top,0px) + var(--hh));z-index:8;height:48px;margin:-20px -20px 16px;padding:0 20px;background:var(--pn);border-bottom:1px solid var(--ln);color:var(--ac);font-weight:600;font-size:15px}.vback:focus-visible{outline:2px solid var(--ac);outline-offset:-2px}.vbd{padding:20px 20px 40px}.vcard h1{font-size:22px}.vdek{font-size:16px}}
+.rt{display:flex;align-items:center;gap:6px 14px;flex-wrap:wrap;justify-content:flex-end}#upd{color:var(--dm);font-weight:400}.rf{display:inline-flex;align-items:center;gap:6px;font:inherit;font-weight:600;color:var(--ac);background:transparent;border:1px solid var(--ln);padding:1px 8px;cursor:pointer}.rf:hover{background:var(--sel);border-color:var(--ac)}.rf:focus-visible{outline:2px solid var(--ac);outline-offset:1px}.rf[disabled]{cursor:default;opacity:.7}.rf.ld svg{animation:rfs .8s linear infinite}@keyframes rfs{to{transform:rotate(360deg)}}@media (prefers-reduced-motion:reduce){.rf.ld svg{animation:none}}
+@media print{header,.vrail,.vside{display:none!important}#viewer{background:#fff}.vw{display:block}.vw>*{background:#fff}.vbd{padding:0;max-width:none}}
+.brand{display:flex;align-items:center;flex:none}.brand img{display:block;height:20px;width:auto}.brand:focus-visible,.tgl:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.tgl{position:relative;flex:none;width:52px;height:26px;padding:0;border-radius:13px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:#c5cbe0;cursor:pointer}
+.tgl svg{position:absolute;top:6px;width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;pointer-events:none}.tgl .su{left:7px}.tgl .mo{right:7px}
+.tgl .kn{position:absolute;top:2px;left:2px;width:20px;height:20px;border-radius:50%;background:#faf9f5;transition:transform .18s ease}.tgl[aria-checked=true] .kn{transform:translateX(26px)}
+.tgl[aria-checked=false] .su,.tgl[aria-checked=true] .mo{color:#111525}@media (prefers-reduced-motion:reduce){.tgl .kn{transition:none}}
+/* under 860px: row 1 is logo, search and switch; row 2 is the section tabs */
+@media (max-width:859px){:root{--hh:104px;--th:0px}.bar{padding:8px 12px 0;gap:10px}.brand{order:1}.cmd{order:2;flex:1 1 0;min-width:96px;max-width:360px;margin-left:auto}.tgl{order:3}.tabs{order:4;flex:1 0 100%;margin:0 -12px;border-top:1px solid rgba(255,255,255,.12)}}
+@media (min-width:641px){.brand img{height:30px}.cmd{padding:6px 12px}.tgl{width:58px;height:30px;border-radius:15px}.tgl svg{top:8px}.tgl .su{left:8px}.tgl .mo{right:8px}.tgl .kn{width:24px;height:24px}.tgl[aria-checked=true] .kn{transform:translateX(28px)}}
+/* 860px and up: everything on one 56px row, tabs on the left, search and switch on the right */
+@media (min-width:860px){:root{--hh:56px;--th:0px}.bar{box-sizing:border-box;height:var(--hh);padding:0 16px;gap:8px;flex-wrap:nowrap}.brand{margin-right:14px}.tabs{align-self:stretch;margin-right:auto}.tabs a{min-height:0;height:100%}.tgl{margin-left:6px}}
+.sd{display:block;font-weight:400;font-size:13px;line-height:1.45;color:var(--dm);margin-top:3px}
+:root{color-scheme:light}:root[data-theme="dark"]{color-scheme:dark}
+.tgl::after{content:"";position:absolute;inset:-10px}
+@media (max-width:640px){.cmd{min-height:44px}.cmd input{font-size:16px}}
+
+.tabs{display:flex;gap:2px;padding:0 8px;overflow-x:auto;scrollbar-width:none}.tabs::-webkit-scrollbar{display:none}
+.tabs a{display:flex;align-items:center;gap:6px;min-height:44px;padding:0 12px;font-weight:600;font-size:14px;color:#aab2cc;border-bottom:2px solid transparent;white-space:nowrap}
+.tabs a:hover{color:#fff}.tabs a.on{color:#fff;border-bottom-color:#fff}.tabs a:focus-visible{outline:2px solid #fff;outline-offset:-2px}
+.tabs b{font-weight:600;font-size:11px;line-height:1;color:#e6e9f4;background:rgba(255,255,255,.16);border-radius:9px;padding:3px 6px}.tabs b:empty{display:none}
+.fb{flex:none;height:44px;padding:0 12px;border:1px solid var(--ln);border-radius:8px;font-size:15px;font-weight:600;display:inline-flex;align-items:center;gap:6px;background:var(--pn)}
+.fb.on{border-color:var(--ac);color:var(--ac)}.fb[aria-expanded=true]{background:var(--sel)}.fb:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+.fb i{font-style:normal;font-size:12px;line-height:1;min-width:20px;height:20px;border-radius:10px;background:var(--ac);color:var(--bg);display:inline-grid;place-items:center;padding:0 5px}
+.fmore{flex:1 0 100%;display:grid;grid-template-columns:1fr 1fr;gap:8px}.fmore .fs{max-width:none;flex:none;width:100%}.fmore .wide{grid-column:1/-1}
+.chips{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:10px 12px;border-bottom:1px solid var(--ln)}
+.nbar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px 14px;padding:8px 12px;border-bottom:1px solid var(--ln);background:var(--pn);font-size:13px;color:var(--tx)}.nbar[hidden]{display:none}
+.nbar .nt{display:inline-flex;align-items:center;gap:7px}.nbar .nt b{font-weight:700}.nd2{width:8px;height:8px;border-radius:50%;background:var(--ac);flex:none}
+.nbar .na{display:inline-flex;flex-wrap:wrap;gap:4px 14px}.nbar button{min-height:32px;padding:0 2px;color:var(--ac);font-weight:600;font-size:13px}.nbar button:hover{text-decoration:underline}.nbar button[aria-pressed="true"]{text-decoration:underline}
+#feed[data-sn="1"] .row.new .dt::before{content:"";display:inline-block;width:6px;height:6px;margin-right:5px;border-radius:50%;background:var(--ac);vertical-align:1px}
+.tabs b.nn{color:#0b0e1a;background:#7db2ff;font-weight:700}.tabs a[hidden]{display:none}
+/* topic hubs: a list of issues (/hubs) and one page per issue (/hubs?h=...) with a "who is saying what" panel above its timeline */
+.hubhead{padding:12px 14px 14px;border-bottom:1px solid var(--ln);background:var(--pn)}.hubhead[hidden]{display:none}
+.hback{display:inline-block;margin-bottom:6px;min-height:24px;font-size:13px;font-weight:600;color:var(--ac)}
+.hblurb{margin:0 0 8px;max-width:72ch;font-size:14px;line-height:1.5;color:var(--tx)}
+.hstat{display:flex;flex-wrap:wrap;gap:2px 16px;font-size:13px;color:var(--dm)}.hstat b{color:var(--tx);font-weight:700}
+.wsw{margin-top:12px;border:1px solid var(--ln);border-radius:8px;background:var(--bg)}
+.wsw>summary{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 10px;padding:10px 12px;cursor:pointer;list-style:none;font-weight:700;font-size:14px;color:var(--tx)}.wsw>summary::-webkit-details-marker{display:none}
+.wsw>summary::before{content:"";flex:none;align-self:center;width:6px;height:6px;margin:0 2px 2px 1px;border-right:2px solid var(--dm);border-bottom:2px solid var(--dm);transform:rotate(-45deg)}.wsw[open]>summary::before{transform:rotate(45deg)}
+.wsw>summary:focus-visible{outline:2px solid var(--ac);outline-offset:-2px}
+.wn{font-weight:500;font-size:13px;color:var(--dm)}
+.wl{border-top:1px solid var(--ln)}
+.wr{display:grid;grid-template-columns:minmax(120px,200px) 86px minmax(0,1fr) 48px;gap:2px 12px;align-items:baseline;padding:7px 12px;border-bottom:1px solid var(--ln);font-size:13px}.wr:last-child{border-bottom:0}
+.wo,.wh{display:inline;padding:0;border:0;background:none;text-align:left;font:inherit;cursor:pointer}
+.wo{min-height:28px;font-weight:600;color:var(--ac)}.wo:hover,.wh:hover{text-decoration:underline}.wo[aria-pressed="true"]{text-decoration:underline;text-decoration-thickness:2px}
+.wh{color:var(--tx);line-height:1.4}.wc,.wd{color:var(--dm);white-space:nowrap}.wd{text-align:right}
+.wq,.wg{padding:9px 12px;border-top:1px solid var(--ln);font-size:13px;line-height:1.6;color:var(--dm)}.wq b,.wg>b{color:var(--tx);font-weight:700}.wq .wo{min-height:0;font-weight:500}
+.wg .wl{margin:6px -12px -9px}.wg .wr:first-child{border-top:1px solid var(--ln)}
+.wmr{padding:6px 12px 8px;border-top:1px solid var(--ln)}.wmr .wo{min-height:28px}
+.wnote{padding:8px 12px 10px;border-top:1px solid var(--ln);font-size:12px;line-height:1.5;color:var(--dm)}
+@media (max-width:700px){.wr{grid-template-columns:minmax(0,1fr) auto}.wr .wc{display:none}.wr .wh{grid-column:1/-1;grid-row:2}.wr .wd{grid-column:2;grid-row:1}}
+.hintro{margin:0;padding:14px 16px 0;font-size:14px;line-height:1.5;color:var(--dm)}
+.hdir{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px;padding:14px 16px 24px}
+.hcard{display:block;padding:14px 14px 12px;border:1px solid var(--ln);border-radius:10px;background:var(--pn);color:var(--tx)}.hcard:hover{border-color:var(--ac)}.hcard:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+.hcard h3{margin:0 0 4px;font-size:16px;line-height:1.3}.hcard p{margin:0 0 10px;font-size:13px;line-height:1.45;color:var(--dm)}
+.hmeta{display:flex;flex-wrap:wrap;gap:3px 12px;font-size:12.5px;color:var(--dm)}.hmeta b{color:var(--tx);font-weight:700}.hmeta .hnw{color:var(--ac);font-weight:700}
+.hchips{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;margin-top:16px;font-size:13px;color:var(--dm)}.hchips a{padding:3px 10px;border:1px solid var(--ac);border-radius:14px;font-size:12.5px;font-weight:600;color:var(--ac)}.hchips a:hover{background:var(--sel)}
+.g[data-v=hubs]:not([data-h]) .fbar,.g[data-v=hubs]:not([data-h]) .row.h,.g[data-v=hubs]:not([data-h]) .more{display:none}.g[data-v=hubs] .nop{display:none}
+@media (min-width:1001px){.g[data-v=hubs]:not([data-h]){grid-template-columns:minmax(0,1fr);background:var(--bg)}.g[data-v=hubs]:not([data-h]) .rail,.g[data-v=hubs]:not([data-h]) .side{display:none}.g[data-v=hubs]:not([data-h])>section{width:100%;max-width:1040px;margin:0 auto;border-inline:1px solid var(--ln)}}
+@media print{.hubhead .wsw>summary::before{display:none}}
+/* events and funding: a list or a month calendar of hearings, webinars and grant, fellowship and scholarship deadlines (/events) */
+.evbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;padding:12px 16px;border-bottom:1px solid var(--ln);background:var(--pn)}
+.evseg{display:flex;flex-wrap:wrap;gap:6px}
+.evseg button{display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:0 12px;border:1px solid var(--ln);border-radius:18px;background:var(--bg);color:var(--tx);font:inherit;font-size:13.5px;font-weight:600;cursor:pointer}
+.evseg button i{font-style:normal;font-weight:500;color:var(--dm)}.evseg button:hover{border-color:var(--ac)}.evseg button[aria-pressed="true"]{border-color:var(--ac);background:var(--sel);box-shadow:inset 0 0 0 1px var(--ac)}.evseg button:focus-visible,.evsub button:focus-visible,.eva button:focus-visible,.evnav button:focus-visible,.evc:focus-visible,.evdn:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+.evsel,.evchk{display:flex;align-items:center;gap:6px;font-size:13.5px;color:var(--dm)}.evsel select{min-height:36px;padding:0 8px;border:1px solid var(--ln);border-radius:8px;background:var(--bg);color:var(--tx);font:inherit;font-size:13.5px}.evchk input{width:18px;height:18px}
+.evsub{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;padding:10px 16px;border-bottom:1px solid var(--ln);font-size:13px;color:var(--dm)}.evsub a,.evsub button{min-height:30px;padding:0;border:0;background:none;font:inherit;font-weight:600;color:var(--ac);cursor:pointer;text-decoration:underline}
+.evm0{padding:6px 16px 28px}.evmh{margin:22px 0 4px;padding-bottom:4px;border-bottom:1px solid var(--ln);font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--dm)}
+.evi{display:grid;grid-template-columns:56px minmax(0,1fr);gap:4px 14px;padding:14px 0;border-bottom:1px solid var(--ln)}.evi.past{opacity:.7}
+.evd{display:flex;flex-direction:column;align-items:center;align-self:start;padding:6px 0;border:1px solid var(--ln);border-radius:8px;background:var(--pn);line-height:1.15}.evd b{font-size:20px}.evd span{font-size:11.5px;font-weight:600;text-transform:uppercase;color:var(--dm)}
+.evt{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px;font-size:16px;font-weight:700;line-height:1.35}.evt a{color:var(--tx)}.evt a:hover{color:var(--ac);text-decoration:underline}
+.evk{flex:none;padding:1px 8px;border:1px solid var(--ln);border-radius:10px;font-size:12px;font-weight:700;color:var(--tx)}.evk.k-hearing{color:var(--ac);border-color:var(--ac)}.evk.k-funding{color:var(--warn-tx);background:var(--warn-bg);border-color:var(--warn-bd)}
+.evs{margin-top:2px;font-size:13.5px;color:var(--dm)}.evx{margin:6px 0 0;max-width:72ch;font-size:14px;line-height:1.5}
+.evm .hchips{margin-top:8px}.eva{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:6px}.eva button,.eva a{min-height:30px;padding:0;border:0;background:none;font:inherit;font-size:13px;font-weight:600;color:var(--ac);cursor:pointer;text-decoration:underline}
+.evnav{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:14px 16px 8px}.evnav h2{margin:0 8px 0 0;font-size:18px}.evnav button{min-height:36px;padding:0 12px;border:1px solid var(--ln);border-radius:18px;background:var(--bg);color:var(--tx);font:inherit;font-size:13.5px;font-weight:600;cursor:pointer}.evnav button:hover{border-color:var(--ac)}
+.cal{width:calc(100% - 32px);margin:0 16px;border-collapse:collapse;table-layout:fixed}.cal th{padding:6px 4px;font-size:12px;font-weight:700;text-transform:uppercase;color:var(--dm);text-align:left}
+.evtd{height:96px;padding:4px;border:1px solid var(--ln);vertical-align:top;overflow:hidden}.evtd.out{background:var(--pn)}.evtd.tod{box-shadow:inset 0 0 0 2px var(--ac)}.evtd.sel{background:var(--sel)}
+.evdn{display:inline-block;min-width:24px;min-height:24px;padding:0 4px;border:0;border-radius:12px;background:none;font:inherit;font-size:13px;font-weight:600;color:var(--tx);text-align:center}button.evdn{cursor:pointer;text-decoration:underline}
+.evc{display:block;width:100%;margin-top:2px;padding:1px 5px;border:0;border-left:3px solid var(--ln);border-radius:3px;background:var(--pn);color:var(--tx);font:inherit;font-size:11.5px;line-height:1.35;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer}.evc.k-hearing{border-left-color:var(--ac)}.evc.k-funding{border-left-color:var(--warn-bd)}.evc:hover{background:var(--sel)}
+.evmore{display:block;margin-top:2px;font-size:11.5px;color:var(--dm)}.evn{display:none}
+.evnote{margin:20px 16px 0;max-width:72ch;font-size:12.5px;line-height:1.5;color:var(--dm)}
+.hcome{margin-top:12px;padding:10px 12px;border:1px solid var(--ln);border-radius:8px;background:var(--bg);font-size:13.5px}.hcome>b{display:block;margin-bottom:4px;font-size:14px}.hcome ul{margin:0;padding:0;list-style:none}.hcome li{padding:3px 0;line-height:1.4}.hcome li span{color:var(--dm);margin-right:8px;white-space:nowrap}.hcome a{color:var(--tx)}.hcome a:hover{color:var(--ac);text-decoration:underline}.hcome .hall{display:inline-block;margin-top:4px;min-height:24px;font-weight:600;color:var(--ac)}
+.g[data-v=events] .fbar,.g[data-v=events] .row.h,.g[data-v=events] .more,.g[data-v=events] .nop{display:none}
+@media (min-width:1001px){.g[data-v=events]{grid-template-columns:minmax(0,1fr);background:var(--bg)}.g[data-v=events] .rail,.g[data-v=events] .side{display:none}.g[data-v=events]>section{width:100%;max-width:1040px;margin:0 auto;border-inline:1px solid var(--ln)}}
+@media (max-width:700px){.evi{grid-template-columns:48px minmax(0,1fr);gap:4px 10px}.evtd{height:52px;padding:2px}.evc,.evmore{display:none}.evn{display:inline-block;margin-left:2px;padding:0 5px;border-radius:9px;background:var(--ac);color:#fff;font-size:11px;font-weight:700}.cal{width:calc(100% - 16px);margin:0 8px}.evbar,.evsub,.evnav{padding-inline:12px}.evm0{padding-inline:12px}}
+@media print{.evbar,.evsub,.evnav,.eva{display:none!important}}
+.chp{display:inline-flex;align-items:center;gap:4px;position:relative;min-height:32px;padding:0 6px 0 11px;border:1px solid var(--ac);border-radius:16px;color:var(--ac);font-weight:600;font-size:13px;background:var(--pn)}
+.chp i{font-style:normal;font-size:17px;line-height:1;width:20px;height:20px;display:grid;place-items:center}.chp::after{content:"";position:absolute;inset:-6px 0}.chp:hover{background:var(--sel)}
+.chp:focus-visible,.chips .clr:focus-visible,.empty .clr:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+.chips .clr{height:auto;min-height:32px;padding:0 6px;color:var(--ac);font-weight:600;font-size:13px}
+.sr,.tg{position:relative;padding:0;justify-self:start;text-align:left}.sr::after,.tg::after{content:"";position:absolute;inset:-8px -4px}
+.sr:hover,.tg:hover,.lk:hover,.vtp:hover{text-decoration:underline}.sr:focus-visible,.tg:focus-visible,.lk:focus-visible,.vtp:focus-visible{outline:2px solid var(--ac);outline-offset:2px;border-radius:2px}
+.vph{justify-content:flex-start;gap:8px}.vph .lk{font-weight:600}@media (min-width:1101px){.vsrc{display:none}}
+.lk,.vtp{display:inline;padding:0;font:inherit;text-align:left}.lk{color:inherit}.lk.ac,.vtp{color:var(--ac);font-weight:600}.vtp{font-size:inherit}
+.star{align-self:start;justify-self:end;position:relative;display:grid;place-items:center;width:30px;height:30px;margin:-6px -4px -6px 0;border-radius:6px;color:var(--dm)}
+.star svg{fill:none;stroke:currentColor;stroke-width:1.5}.star:hover{color:var(--ac)}.star[aria-pressed=true]{color:var(--ac)}.star[aria-pressed=true] svg{fill:currentColor}.star:focus-visible{outline:2px solid var(--ac);outline-offset:1px}
+.fx{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;font-weight:400}
+.fx i,.fx .bl{font-style:normal;font-size:11.5px;font-weight:600;line-height:1;padding:4px 7px;border-radius:4px;border:1px solid var(--ln);color:var(--dm);white-space:nowrap}
+.fx .k-statement{color:var(--ac);border-color:var(--ac)}.fx .k-official{color:var(--tx);border-color:var(--tx)}
+.fx .dlc{color:var(--tx)}.fx .dlc.soon{background:var(--warn-bg);border-color:var(--warn-bd);color:var(--warn-tx)}.fx .dlc.past{color:var(--dm);text-decoration:line-through}
+.fx .bl{color:var(--ac)}.fx .bl:hover{border-color:var(--ac)}
+.kp{font-style:normal;font-size:10.5px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;color:var(--ac);margin-right:2px}.k-research.kp{color:var(--dm)}
+.fx .k-rs{color:var(--tx);background:var(--sel);border-color:var(--ln)}
+.rail .none{padding:5px 12px;color:var(--dm);font-size:12px}
+.rin{position:sticky;top:calc(env(safe-area-inset-top,0px) + var(--hh));max-height:calc(100vh - var(--hh));max-height:calc(100dvh - var(--hh));overflow:auto;overscroll-behavior:contain;scrollbar-width:thin}
+.fac{border-bottom:1px solid var(--ln)}.fac:last-child{border-bottom:0}
+.fh{position:relative;display:flex;align-items:center;min-height:38px}
+.fh::after{content:"";position:absolute;right:15px;top:50%;width:6px;height:6px;margin-top:-5px;border:solid var(--dm);border-width:0 1.6px 1.6px 0;transform:rotate(45deg);transition:transform .12s;pointer-events:none}.fac.on .fh::after{transform:rotate(-135deg);margin-top:-1px}
+.rail .ft{flex:1;min-width:0;justify-content:flex-start;gap:8px;border-bottom:0;text-align:left;padding-right:34px;cursor:pointer}
+.ft:hover .fn{color:var(--ac)}.ft:focus-visible,.fxb:focus-visible,.fexp:focus-visible,.ri:focus-visible,.fsel select:focus-visible{outline:2px solid var(--ac);outline-offset:-2px}
+.fn{flex:none}.fv{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:right;font-size:12px;font-weight:600;color:var(--ac)}.fv.d{color:var(--dm);font-weight:400}
+.fxb{flex:none;width:30px;height:30px;margin-right:26px;border-radius:6px;font-size:18px;line-height:1;color:var(--ac)}.fxb:hover{background:var(--sel)}
+.r2 .ri{flex:1;min-width:0}.r2 a,.r2 .xs{flex:none;width:34px;padding:0;text-align:center;line-height:30px}.r2 a:hover{background:var(--sel)}
+.fac.hs .ft{flex-wrap:wrap;row-gap:0;padding-top:7px;padding-bottom:7px}.fac.hs .fv{flex:0 0 100%;order:3;text-align:left;margin-top:-2px}
+.fb2{padding-bottom:6px}.fb2.sc{max-height:236px;overflow:auto;scrollbar-width:thin}
+.fexp{display:block;width:100%;padding:6px 12px;text-align:left;font-size:12px;font-weight:600;color:var(--ac)}.fexp:hover{text-decoration:underline}
+.fsel{display:flex;align-items:center;gap:10px;padding:8px 12px;border-bottom:1px solid var(--ln)}.fsel label{flex:none;font-size:13px;font-weight:600;color:var(--tx)}
+.fsel select{flex:1;min-width:0;height:32px;padding:0 6px;font:inherit;font-size:13px;color:var(--tx);background:var(--pn);border:1px solid var(--ln);border-radius:6px}
+@media (max-width:1000px){.g[data-v=feed] .ptabs,.g[data-v=research] .ptabs{display:none}}
+.vtool{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:10px 12px;border-bottom:1px solid var(--ln)}
+.vtool button,.vtool a,.acts2 button{display:inline-flex;align-items:center;padding:7px 11px;border:1px solid var(--ln);border-radius:6px;font-weight:600;font-size:13px;color:var(--ac);background:var(--pn)}
+.vtool button:hover,.vtool a:hover,.acts2 button:hover{border-color:var(--ac)}.vtool button:focus-visible,.vtool a:focus-visible,.acts2 button:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+.vnote2{color:var(--dm);font-size:12px;margin-left:auto}
+.acts2{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.acts2 button[aria-pressed=true]{background:var(--sel);border-color:var(--ac)}
+.tc{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}.tag{padding:3px 10px;border:1px solid var(--ln);border-radius:12px;font-size:12px;color:var(--dm)}.tag:hover{color:var(--ac);border-color:var(--ac)}.tag:focus-visible{outline:2px solid var(--ac);outline-offset:1px}
+.vcard .fx{margin:0 0 12px}.vcard .tc{margin:0 0 4px}.vcard .acts2{margin:10px 0 18px}
+.empty{padding:28px 16px;color:var(--dm);font-size:14px;line-height:1.55}.empty .clr{display:inline-flex;align-items:center;margin-top:10px;min-height:44px;padding:0;color:var(--ac);font-weight:600;font-size:14px}
+.ptabs{display:flex;flex-wrap:wrap;gap:6px;padding:10px 12px;border-bottom:1px solid var(--ln)}
+.pt{display:inline-flex;align-items:center;gap:7px;min-height:34px;padding:0 12px;border:1px solid var(--ln);border-radius:17px;font-weight:600;font-size:13px;color:var(--dm);background:var(--pn);white-space:nowrap}
+.pt b{font-weight:600;font-size:11px;line-height:1;color:var(--dm)}.pt:hover{border-color:var(--ac);color:var(--tx)}
+.pt.on{color:var(--ac);border-color:var(--ac);background:var(--sel)}.pt.on b{color:var(--ac)}.pt:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+.pcov{padding:12px;color:var(--dm);font-size:12px;line-height:1.5}
+.fx .ag{color:var(--tx)}.fx .rlc.n{color:var(--ac);border-color:var(--ac)}.fx .rlc.i{color:var(--dm);border-style:dashed}
+.fx .k-bill,.fx .k-order,.fx .k-govstmt,.fx .k-hearing{color:var(--ac);border-color:var(--ac)}
+.facts{display:grid;grid-template-columns:auto 1fr;gap:6px 12px;margin:14px 0 0;font-size:13.5px;line-height:1.45}.facts dt{color:var(--dm);font-weight:600}.facts dd{margin:0}.facts .auto{color:var(--dm);font-size:12px}
+#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translate(-50%,12px);max-width:min(92vw,420px);background:var(--bar);color:#fff;border:1px solid rgba(255,255,255,.22);padding:11px 16px;border-radius:8px;font-size:14px;line-height:1.35;opacity:0;pointer-events:none;transition:opacity .18s,transform .18s;z-index:30}
+#toast.on{opacity:1;transform:translate(-50%,0)}@media (prefers-reduced-motion:reduce){#toast{transition:none}}
+.g[data-v=saved] .fbar{display:none}
+.g:not([data-v=policy]) .onlyp{display:none}.g[data-v=policy] .nop,.g[data-v=advocacy] .nop{display:none}
+@media (min-width:1001px){
+.g[data-v=saved]{grid-template-columns:minmax(0,1fr);background:var(--bg)}
+.g[data-v=saved] .rail,.g[data-v=saved] .side{display:none}
+.g[data-v=saved]>section{width:100%;max-width:980px;margin:0 auto;border-inline:1px solid var(--ln)}}
+@media (max-width:1000px){
+.fbar{flex-wrap:wrap}
+.star{grid-area:1/4;width:44px;height:44px;margin:-14px -14px -14px 0}
+.vtool button,.vtool a,.acts2 button{min-height:44px}.tag{min-height:36px;display:inline-flex;align-items:center}.pt{min-height:44px}.ptabs{gap:8px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding:8px 12px}.ptabs::-webkit-scrollbar{display:none}
+.fx{margin-top:8px}
+.g{min-height:calc(100vh - var(--hh) - var(--th));min-height:calc(100dvh - var(--hh) - var(--th))}}
+@media print{header,.tabs,.rail,.side,.fbar,.vtool,.chips,.nbar,.hchips,.star,.rf,#toast,.row.h,.more,#cnt{display:none!important}
+.g{display:block!important;background:#fff!important;min-height:0}.g>section{max-width:none!important;border:0!important;background:#fff}
+.row{grid-template-columns:70px 1fr!important;gap:2px 10px!important;padding:8px 0!important;break-inside:avoid}.row .tg,.row .sm{display:none}.row .sr{grid-area:auto!important}.row .dt{grid-area:auto!important;justify-self:start!important}.row .hl{grid-column:2!important;grid-row:1/3}
+.hl a::after{content:" (" attr(href) ")";font-weight:400;font-size:11px;color:#444}}
+/* phones: bigger logo, narrower search */
+@media (max-width:640px){.brand img{height:26px}.cmd{flex:1 1 0;min-width:72px;max-width:128px;gap:6px;padding:6px 10px}.cmd:focus-within{max-width:none}.bar:has(.cmd:focus-within) .brand{display:none}}
+@media (max-width:380px){.brand img{height:24px}}
+@media (max-width:340px){.brand img{height:20px}}
+.vcard h1,.vbody{font-family:var(--head)}
+.kp,.rlc,.ag,.dlc,.sd{font-family:var(--sans)}
+.vit a>span{font-weight:400}
+.hla{font-weight:400}
+@media screen and (min-width:1101px){.vw{grid-template-columns:215px minmax(0,1fr) clamp(250px,calc(250px + (100vw - 1100px) * .1),320px)}.vbd{max-width:880px;padding:56px clamp(32px,5vw,72px) 96px}.vbody{max-width:none}}
+.vsb .vit:last-child::before{display:none}
+.vby a{color:inherit;text-decoration:underline;text-decoration-color:var(--dm);text-decoration-thickness:1px;text-underline-offset:3px}.vby a:hover,.vby a:focus-visible{color:var(--ac);text-decoration-color:currentColor}
+.drng{display:grid;gap:6px;padding:6px 12px 4px}.drng label{display:flex;align-items:center;gap:10px;min-width:0;font-size:13px;font-weight:600;color:var(--tx)}.drng label span{flex:none;width:34px}.drm label{display:flex;flex-direction:column;gap:3px;min-width:0;font-size:12px;font-weight:600;color:var(--dm)}
+.drng input{flex:1}.drng input,.drm input{width:100%;min-width:0;height:32px;padding:0 6px;font:inherit;font-size:13px;color:var(--tx);background:var(--pn);border:1px solid var(--ln);border-radius:6px}
+.drng input:focus-visible,.drm input:focus-visible{outline:2px solid var(--ac);outline-offset:1px}
+.drm{display:grid;grid-template-columns:1fr 1fr;gap:8px}.drm input{height:44px;font-size:16px;padding:0 10px;border-radius:8px}
+/* Featured and breaking: the owner's marks. Featured items lead their page with a quiet label; a breaking item is red with a pulsing label until its time is up, then it is an ordinary row again. */
+:root{--bk:#c8102e;--bkbg:#fdecec;--bkbg2:#f9d0d3;--bkt:#fff;--fea:#dcedfb;--feasel:#c8e0f8;--feac:#0850c2}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bk:#ff5c66;--bkbg:#2b1117;--bkbg2:#431a22;--bkt:#2a0a0f;--fea:#10243f;--feasel:#18355f;--feac:#4d94ff}}
+:root[data-theme="dark"]{--bk:#ff5c66;--bkbg:#2b1117;--bkbg2:#431a22;--bkt:#2a0a0f;--fea:#10243f;--feasel:#18355f;--feac:#4d94ff}
+.row.fea,.row.fea.gx{--ac:var(--feac);background:var(--fea);box-shadow:inset 3px 0 var(--ac)}.row.fea:hover,.row.fea.sel{background:var(--feasel);box-shadow:inset 3px 0 var(--ac)}
+.ftag,.bkt{display:inline-flex;align-items:center;gap:6px;margin-right:8px;vertical-align:1px;font-family:var(--sans);font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;line-height:1;padding:4px 7px 3px;border-radius:3px;white-space:nowrap}
+.ftag{color:var(--ac);border:1px solid var(--ac)}
+.bkt{color:var(--bkt);background:var(--bk)}.bkt i{width:7px;height:7px;border-radius:50%;background:currentColor;flex:none;animation:bkd 1.2s ease-in-out infinite}
+.row.brk,.row.brk.sel,.row.brk.gx{background:var(--bkbg);box-shadow:inset 4px 0 var(--bk);animation:bkr 2.4s ease-in-out infinite}
+.row.brk .hl{color:var(--tx)}.row.brk .hla{font-weight:600}
+.dh.hbk{color:var(--bk);font-weight:700;letter-spacing:.06em;text-transform:uppercase}.dh.hft{color:var(--ac);font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.stg{padding:0 0 4px}.stg .bkt,.stg .ftag{margin:0 8px 0 0}
+@keyframes bkd{0%,100%{opacity:1}50%{opacity:.15}}
+@keyframes bkr{0%,100%{background:var(--bkbg)}50%{background:var(--bkbg2)}}
+@media (prefers-reduced-motion:reduce){.bkt i,.row.brk{animation:none!important}}
+@media print{.row.brk,.row.fea{background:none!important;box-shadow:none!important;animation:none!important}.bkt{color:#000;background:none;border:1px solid #000}.bkt i{display:none}}
+</style></head><body>
+<header>
+<div class="bar">
+<a class="brand" id="brand" href="/" data-go="feed" title="The Yappie Pro: back to the feed" aria-label="The Yappie Pro, back to the feed"><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODQ5IiBoZWlnaHQ9IjEzOSIgdmlld0JveD0iMCAwIDg0OSAxMzkiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXAwXzY2N181MDApIj48cGF0aCBkPSJNNjYxLjUwNSAxMDNWMzMuMjdINjg3LjgyQzcwNS44NyAzMy4yNyA3MTEuMTkgNDIuMTA1IDcxMS4xOSA1My42QzcxMS4xOSA2Mi42MjUgNzA4LjA1NSA3Ny4xNiA2ODQuMjEgNzcuMTZINjczLjU3VjEwM0g2NjEuNTA1Wk02NzMuNTcgNjguMTM1SDY4Mi42OUM2OTMuNjE1IDY4LjEzNSA2OTguODQgNjMuNjcgNjk4Ljg0IDU0LjQ1NUM2OTguODQgNDYuMjg1IDY5NC45NDUgNDIuODY1IDY4NC43OCA0Mi44NjVINjczLjU3VjY4LjEzNVpNNzIyLjA4NiAxMDNWMzMuMjdINzQ4LjY4NkM3NjYuMzU2IDMzLjI3IDc3Mi4wNTYgNDEuNjMgNzcyLjA1NiA1Mi41NTVDNzcyLjA1NiA1OS43NzUgNzY5Ljc3NiA2OC43MDUgNzU3LjcxMSA3Mi4zMTVMNzczLjM4NiAxMDNINzYwLjU2MUw3NDUuOTMxIDczLjgzNUM3NDQuNjk2IDc0LjAyNSA3NDMuOTM2IDc0LjAyNSA3NDMuMDgxIDc0LjAyNUg3MzQuMTUxVjEwM0g3MjIuMDg2Wk03MzQuMTUxIDY0LjgxSDc0My40NjFDNzU0LjAwNiA2NC44MSA3NTkuNTE2IDYxLjg2NSA3NTkuNTE2IDUzLjIyQzc1OS41MTYgNDUuMjQgNzU0Ljk1NiA0Mi44NjUgNzQ1LjU1MSA0Mi44NjVINzM0LjE1MVY2NC44MVpNODEwLjY3OSAxMDQuMTRDNzkwLjE1OSAxMDQuMTQgNzgwLjA4OSA5MC45MzUgNzgwLjA4OSA2OC4zMjVDNzgwLjA4OSA0NS41MjUgNzkyLjM0NCAzMi4wMzUgODEyLjM4OSAzMi4wMzVDODMyLjA1NCAzMi4wMzUgODQxLjgzOSA0NS4yNCA4NDEuODM5IDY3LjA5Qzg0MS44MzkgOTAuNzQ1IDgzMS4zODkgMTA0LjE0IDgxMC42NzkgMTA0LjE0Wk04MTAuODY5IDk0LjQ1QzgyMy4xMjQgOTQuNDUgODI4LjkxOSA4NS4yMzUgODI4LjkxOSA2Ny41NjVDODI4LjkxOSA1MC45NCA4MjMuNjk0IDQxLjkxNSA4MTEuOTE0IDQxLjkxNUM3OTkuOTQ0IDQxLjkxNSA3OTMuMDA5IDUwLjk0IDc5My4wMDkgNjguMDRDNzkzLjAwOSA4NC45NSA3OTguNzA5IDk0LjQ1IDgxMC44NjkgOTQuNDVaIiBmaWxsPSIjRkFGOUY1Ii8+PHBhdGggZD0iTTI1My41NDQgNDUuNDc0NkwyNzEuNjM4IDc2LjA5MTRMMjg2LjIxNCA0NC45ODA0TDI3My45OTcgMzguOTQ5MUgyOTkuODg0TDI5MC45NDMgNDUuNDc0NkwyNjIuNDY3IDEwNC45NDJDMjQ5LjY3OCAxMzIuNTMzIDI0My44MDUgMTM4Ljg2OSAyMjEuNjkzIDEzNC45MzlWMTEyLjEyN0MyMzAuNjMzIDExOS4xMTYgMjQxLjI0NiAxMjAuNzU0IDI0Ny43MTUgMTE4LjIxNkMyNTEuNDM1IDExNi43NjEgMjU0LjM4IDExNC4xNTggMjU4LjMxNCAxMDUuNDczTDIxOC42MzkgMzguOTQ5MUgyNjUuODYzTDI1My41NDQgNDUuNDc0NlpNMzk3LjI1MiA0OS4yNDE2QzQwMi41NTMgNDAuMjE4MyA0MTIuNDMxIDM1LjY1OTMgNDIwLjIyIDM1LjY1OTNDNDMzLjU1MSAzNS42NTkzIDQ0My43MTcgNDYuNDc2NCA0NDMuNzE3IDY2LjkxOTNDNDQzLjcxNyA5MC4xMzA3IDQzMC45MTQgMTA0LjI0NCA0MTMuMDk1IDEwNC4yNDRDNDA1LjY2MSAxMDQuMjQ0IDQwMC4zMTkgMTAxLjQ2OSAzOTcuMjUyIDk4LjA4NDRWMTM1Ljg5N0gzNzAuODU0VjUwLjQ4NzFMMzk3LjI1MiAzMy4xMDA2VjQ5LjI0NVY0OS4yNDE2Wk00NzcuNzUyIDQ5LjI0MTZDNDgzLjA1MyA0MC4yMTgzIDQ5Mi45MzEgMzUuNjU5MyA1MDAuNzIgMzUuNjU5M0M1MTQuMDUxIDM1LjY1OTMgNTI0LjIxNCA0Ni40NzY0IDUyNC4yMTQgNjYuOTE5M0M1MjQuMjE0IDkwLjEzMDcgNTExLjQxMSAxMDQuMjQ0IDQ5My41OTEgMTA0LjI0NEM0ODYuMTYxIDEwNC4yNDQgNDgwLjgxOSAxMDEuNDY5IDQ3Ny43NTIgOTguMDg0NFYxMzUuODk3SDQ1MS4zNTFWNTAuNDg3MUw0NzcuNzUyIDMzLjEwMDZWNDkuMjQ1VjQ5LjI0MTZaTTM2LjU2MzQgMzIuNDQwNkw0Ni42MDM5IDQwLjIzMTlWNDAuNDA3OUgzNi41NjM0VjEwMi45MjRIMTAuMTY1N1Y0MC40MDc5SDBWNDAuMjc1OUwzNi41NjM0IDExLjUyMzlWMzIuNDQwNlpNNzkuMTE1MyA0OS4wODkzQzgzLjI0NTIgNDEuOTE0IDk1LjM1MDYgMzQuOTk5MyAxMDQuMzI1IDM0Ljk5OTNDMTE1LjU0MyAzNC45OTkzIDEyMS4zNTIgNDEuOTg4NSAxMjEuMzUyIDU1LjQ0MjJWMTAyLjkyMUg5NC45NTEyVjYxLjExMTNDOTQuOTUxMiA1MC44MjIyIDkyLjQ0MjggNDcuMzkzNiA4Ny4wMzMyIDQ3LjM5MzZDODQuMzkyOCA0Ny4zOTM2IDgwLjkwNiA0OS43NTI3IDc5LjExMTkgNTMuMTcxMVYxMDIuOTE4SDUyLjcxMDhWMjIuMzMwOUw3OS4xMTE5IDRWNDkuMDg1OUw3OS4xMTUzIDQ5LjA4OTNaTTE2NC41NzQgMzQuMzM5M0MxNzYuOTgxIDM0LjMzOTMgMTg1LjU2MyA0MS41OTI1IDE4NS41NjMgNTEuMjIxNkMxODUuNTYzIDYyLjE2NzMgMTc3LjY4NSA3Mi41MDM4IDE2MS44NDYgNzguNDM3QzE2OS4zNzEgODUuODIyMSAxNzguMzAxIDg5Ljk5NTMgMTg3LjE0NyA4OS45OTUzQzE4OC40NjcgODkuOTk1MyAxODkuNzg3IDg5Ljg2MzMgMTkwLjk3NSA4OS42MDI3TDE5MS4xMDcgODkuNzM0N0MxODUuNTYzIDk4LjE3NTggMTc2LjcyIDEwMi45MjQgMTY0LjQ0NiAxMDIuOTI0QzE0NS44MzQgMTAyLjkyNCAxMzAuNTIzIDg5Ljk5ODcgMTMwLjUyMyA2OS41NTU4QzEzMC41MjMgNTAuMzAxIDE0My40NTggMzQuMzQyNyAxNjQuNTc4IDM0LjM0MjdMMTY0LjU3NCAzNC4zMzkzWk01NTguNzU2IDEwMi45MjFINTMyLjM1NVY0OS42ODE2TDU1OC43NTYgMzIuMjQwOVYxMDIuOTIxWk02MDEuNDcgMzQuMzM5M0M2MTMuODc3IDM0LjMzOTMgNjIyLjQ1OCA0MS41OTI1IDYyMi40NTggNTEuMjIxNkM2MjIuNDU4IDYyLjE2NzMgNjE0LjAwOSA3MS43OTY0IDU5OC4xNyA3Ny43MzNDNjA1LjY5NSA4NS4xMTgxIDYxNS4xOTcgODkuOTk4NyA2MjQuMDM5IDg5Ljk5ODdDNjI1LjM2IDg5Ljk5ODcgNjI2LjY4IDg5Ljg2NjcgNjI3Ljg2OCA4OS42MDI3TDYyOCA4OS43MzQ3QzYyMi40NTggOTguMTc1OCA2MTMuNjEzIDEwMi45MjQgNjAxLjMzNSAxMDIuOTI0QzU4Mi43MjMgMTAyLjkyNCA1NjcuNDEyIDg5Ljk5ODcgNTY3LjQxMiA2OS41NTU4QzU2Ny40MTIgNTAuMzAxIDU4MC4zNDcgMzQuMzQyNyA2MDEuNDY3IDM0LjM0MjdMNjAxLjQ3IDM0LjMzOTNaTTMwNS44NjIgMzkuNzk4N0MzMTEuNDc4IDM3LjkyMDIgMzE5LjU1OSAzNC43OTI5IDMyOC4zNCAzNS4wMTI5QzM0My42MSAzNS4zOTE5IDM2MS42OTEgNDAuNDA0NSAzNjEuNjkxIDY1LjE0OTFWMTAyLjkyMUgzMzUuMjQ1VjkyLjMwMzZDMzMyLjE0OCA5Ny4yNzIxIDMyMy44NTQgMTAxLjk4MyAzMTUuOTA5IDEwMS45ODdDMzAzLjU5MSAxMDEuOTk0IDI5Ni45NDUgOTMuNTg2MyAyOTguMDkgODMuNDgzNEMyOTkuMTY2IDc0LjAwMzIgMzA5LjAxNCA2My4zMDc5IDMzNS4yNDUgNjEuMjUwMVY2MC4wMjE1QzMzNS4yNDUgNTMuOTE5MSAzMzcuMDQzIDQyLjkzMjggMzI5Ljc2OCAzOS41MjQ1QzMyMi40NTMgMzYuMDk1OSAzMTUuMDI5IDQwLjc0NjMgMzEzLjQxMSA0My4wMTA2TDMwNS44NjIgNTMuNDUyVjM5Ljc5ODdaTTQwNi44NDYgNDcuMzA5QzQwMS41NzggNDcuMTMzIDM5Ny4yNTIgNTEuOTk2NyAzOTcuMjUyIDU0LjYxOTdWOTUuMzQ2M0MzOTkuMSA5Ni42NjYzIDQwMS40NzcgOTcuMzIyOSA0MDMuNzE4IDk3LjMyMjlDNDEwLjU4MyA5Ny4zMjI5IDQxOS44NTIgOTAuOTk3MSA0MjEuMDA2IDc0LjQyOTZDNDIyLjIzNSA1Ni43OTYgNDE0LjU0NyA0Ny41NjI5IDQwNi44NDYgNDcuMzA1NlY0Ny4zMDlaTTQ4Ny4zNDUgNDcuMzA5QzQ4Mi4wNzggNDcuMTMzIDQ3Ny43NTIgNTEuOTk2NyA0NzcuNzUyIDU0LjYxOTdWOTUuMzQ2M0M0NzkuNiA5Ni42NjYzIDQ4MS45NzcgOTcuMzIyOSA0ODQuMjE3IDk3LjMyMjlDNDkxLjA4MyA5Ny4zMjI5IDUwMC4zNTEgOTAuOTk3MSA1MDEuNTA2IDc0LjQyOTZDNTAyLjczNCA1Ni43OTYgNDk1LjA0MyA0Ny41NjI5IDQ4Ny4zNDUgNDcuMzA1NlY0Ny4zMDlaTTMzNS4yNDkgNjMuMTg2MUMzMjguNTYzIDY1LjIxMzQgMzIwLjE5OCA3MS40NTggMzIwLjIwMiA4MC42OTQ1QzMyMC4yMDIgODcuOTYxMiAzMjQuNzY1IDkyLjE1MTMgMzMwLjAwMiA5Mi4xNTEzQzMzMi43NTcgOTIuMTUxMyAzMzQuOTE3IDkwLjIyNTQgMzM1LjI0NSA4OS4wOTVWNjMuMTg5NEwzMzUuMjQ5IDYzLjE4NjFaTTE1Mi4zIDM4Ljk1NTlDMTQ4Ljg2NyAzOC45NTU5IDE0Ni44ODcgNDEuODU2NSAxNDYuODg3IDQ2LjczN0MxNDYuODg3IDU3LjY4NjEgMTUyLjU2IDY4Ljc2MzggMTYwLjQ4MiA3Ni45NDFDMTY0LjE3OCA3Mi4xOTI0IDE2NS42MzEgNjYuOTE1OSAxNjUuNjMxIDYwLjE5MDdDMTY1LjYzMSA0OC43MTcgMTU3Ljk3NyAzOC45NTU5IDE1Mi4zIDM4Ljk1NTlaTTU4OS4xOTYgMzguOTU1OUM1ODUuNzYzIDM4Ljk1NTkgNTgzLjc4MyA0MS44NTY1IDU4My43ODMgNDYuNzM3QzU4My43ODMgNTcuNjg2MSA1ODkuNDU2IDY4Ljc2MzggNTk3LjM3OCA3Ni45NDFDNjAxLjA3NCA3Mi4xOTI0IDYwMi41MyA2Ni45MTU5IDYwMi41MyA2MC4xOTA3QzYwMi41MyA0OC43MTcgNTk0Ljg3MyAzOC45NTU5IDU4OS4xOTYgMzguOTU1OVpNNTQ1LjU1NyA2LjQyNjc0QzU1My43NDIgNi40MjY3NCA1NTguMzU3IDExLjQ5NjggNTU4LjM1NyAxOS4yMTdDNTU4LjM1NyAyNi45MzczIDU1My43NDYgMzIuMTE5MSA1NDUuNTU3IDMyLjExOTFDNTM3LjM3MiAzMi4xMTkxIDUzMi43NTggMjYuODE4OCA1MzIuNzU4IDE5LjIxN0M1MzIuNzU4IDExLjYxNTMgNTM3LjM3MiA2LjQyNjc0IDU0NS41NTcgNi40MjY3NFoiIGZpbGw9IiNGQUY5RjUiLz48L2c+PGRlZnM+PGNsaXBQYXRoIGlkPSJjbGlwMF82NjdfNTAwIj48cmVjdCB3aWR0aD0iODQ5IiBoZWlnaHQ9IjEzOSIgZmlsbD0id2hpdGUiLz48L2NsaXBQYXRoPjwvZGVmcz48L3N2Zz4=" alt="The Yappie Pro" width="122" height="20"></a>
+<nav class="tabs" id="tabs" aria-label="Sections"><a href="/" data-go="feed" data-v="feed">News</a><a href="/policy" data-go="policy" data-v="policy">Policy</a><a href="/advocacy" data-go="advocacy" data-v="advocacy">Advocacy</a><a href="/research" data-go="research" data-v="research">Research</a><a href="/hubs" data-go="hubs" data-v="hubs" id="tabHubs" hidden>Hubs</a><a href="/events" data-go="events" data-v="events" id="tabEvents" hidden>Events</a><a href="/saved" data-go="saved" data-v="saved">Saved<b id="nSv"></b></a></nav>
+<label class="cmd" title="Keys: / search · j/k move · Enter open · Esc reset"><svg class="mg" viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.6 10.6 14 14"/></svg><input id="q" type="search" autocomplete="off" enterkeyhint="search" placeholder="Search" aria-label="Search"><kbd class="kb" aria-hidden="true">/</kbd></label>
+<button class="tgl" id="th" type="button" role="switch" aria-checked="false" aria-label="Dark mode" title="Switch to dark mode"><i class="kn"></i><svg class="su" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="2.8"/><path d="M8 1.6v1.6M8 12.8v1.6M1.6 8h1.6M12.8 8h1.6M3.5 3.5l1.1 1.1M11.4 11.4l1.1 1.1M3.5 12.5l1.1-1.1M11.4 4.6l1.1-1.1"/></svg><svg class="mo" viewBox="0 0 16 16" aria-hidden="true"><path d="M13.2 9.6A5.6 5.6 0 0 1 6.4 2.8a5.6 5.6 0 1 0 6.8 6.8z"/></svg></button></div>
+</header>
+<main class="g" id="feed" data-v="feed">
+<div class="fbar" id="fbar"><label class="fs" id="fsT"><span class="vh">Topic</span><select id="selT"></select></label><label class="fs" id="fsS"><span class="vh">Source</span><select id="selS"></select></label><button class="fb" id="fbtn" type="button" aria-expanded="false" aria-controls="fmore">Filters<i id="fbn" hidden></i></button>
+<div class="fmore" id="fmore" hidden><label class="fs"><span class="vh">Community</span><select id="selC"></select></label><label class="fs"><span class="vh">State</span><select id="selST"></select></label><label class="fs wide"><span class="vh">Date</span><select id="selD"></select></label><div class="drm wide" id="drm" hidden><label>From<input type="date" id="mFrom"></label><label>To<input type="date" id="mTo"></label></div><label class="fs wide nop"><span class="vh">Type</span><select id="selK"></select></label><label class="fs wide onlyp"><span class="vh">Relevance</span><select id="selR"></select></label></div></div>
+<section class="rail" aria-label="Filters"><div class="rin"><div class="fac" data-fac="t"><div class="fh"><button type="button" class="ph ft" aria-expanded="true" aria-controls="tags"><span class="fn">Topics</span><span class="fv"></span></button><button type="button" class="fxb" data-clr="t" aria-label="Clear topics filter" hidden>×</button></div><div id="tags" class="fb2"></div></div><div class="fac" data-fac="d"><div class="fh"><button type="button" class="ph ft" aria-expanded="true" aria-controls="dbox"><span class="fn">Date</span><span class="fv"></span></button><button type="button" class="fxb" data-clr="d" aria-label="Clear date filter" hidden>×</button></div><div id="dbox" class="fb2"><div id="dates"></div><div class="drng"><label><span>From</span><input type="date" id="dFrom"></label><label><span>To</span><input type="date" id="dTo"></label></div></div></div><div class="fac" data-fac="c"><div class="fh"><button type="button" class="ph ft" aria-expanded="true" aria-controls="comms"><span class="fn">Communities</span><span class="fv"></span></button><button type="button" class="fxb" data-clr="c" aria-label="Clear communities filter" hidden>×</button></div><div id="comms" class="fb2"></div></div><div class="fsel"><label for="selSTd">State</label><select id="selSTd"></select></div><div class="fac onlyp" data-fac="r"><div class="fh"><button type="button" class="ph ft" aria-expanded="true" aria-controls="rels"><span class="fn">Relevance</span><span class="fv"></span></button><button type="button" class="fxb" data-clr="r" aria-label="Clear relevance filter" hidden>×</button></div><div id="rels" class="fb2"></div></div><div class="fac" data-fac="s"><div class="fh"><button type="button" class="ph ft" aria-expanded="true" aria-controls="srcs"><span class="fn">Sources</span><span class="fv"></span></button><button type="button" class="fxb" data-clr="s" aria-label="Clear sources filter" hidden>×</button></div><div id="srcs" class="fb2"></div></div></div></section>
+<section><div class="ph"><span id="ttl">Top headlines</span></div><div class="hubhead" id="hubhead" hidden></div>
+<div class="ptabs" id="ptabs" role="group" aria-label="Type" hidden></div><div class="vtool" id="vtool" hidden></div><div class="chips" id="chips" hidden></div><div class="nbar" id="nbar" hidden></div>
+<div class="row h"><span>TIME</span><span id="hsrc">SOURCE</span><span>TOPIC</span><span>HEADLINE</span><span></span></div><div id="rows"></div><div class="more" id="more"></div><div class="pcov" id="pcov" hidden></div></section>
+<section class="side"><div id="dtlw"><div class="ph" id="dtlt"><span id="dtlts">Details</span><button type="button" class="dx" id="dtlx">Close</button></div><div class="dtl" id="dtl"></div></div>
+</section>
+</main>
+<div id="viewer" hidden><div class="vw">
+<nav class="vrail" aria-label="Menu"><div class="ph">Menu</div><a class="ri" href="/" data-go="feed" data-t="ALL" title="Back to news (Esc)">Home<b>Esc</b></a><a class="ri on" id="vnavart" aria-current="page">Article</a></nav>
+<article class="vcard" id="vcard"></article><aside class="vside" id="vside"></aside></div></div>
+<div id="toast" role="status" aria-live="polite"></div>
+<script type="application/json" id="art-snap">{}</script>
+<script>
+const FALLBACK=[
+{d:"2026-10-31",s:"The Indian Eye",t:"ELECTIONS",h:"Senator Cory Booker Hosts Rally for the South Asian, Asian American & Pacific Islander Community",m:"",u:"https://theindianeye.com/2026/10/31/senator-cory-booker-hosts-rally-for-the-south-asian-asian-american-pacific-islander-community/",k:"community",cm:["SA","NHPI"]},
+{d:"2026-10-30",s:"Joysauce",t:"CULTURE",h:"‘Wildwood’ is a dazzling stop-motion landmark",m:"",u:"https://joysauce.com/wildwood-is-a-dazzling-stop-motion-landmark/",k:"community"},
+{d:"2026-10-30",s:"Joysauce",t:"CULTURE",h:"Long live Lalisa!",m:"",u:"https://joysauce.com/long-live-lalisa/",k:"community"},
+{d:"2026-10-30",s:"AsAmNews",t:"HEALTH",h:"Family blames ChatGPT medical advice for Seattle woman’s Death",m:"",u:"https://asamnews.com/2026/10/30/openai-lawsuit-chatgpt-medical-advice-epilepsy-death/",k:"community",st:["WA"]},
+{d:"2026-10-30",s:"AsAmNews",t:"COURTS",h:"Prosecutors: Thao tried to create “emergency” in bribery bid",m:"",u:"https://asamnews.com/2026/10/30/prosecutors-thao-tried-to-create-emergency-in-bribery-bid/",k:"community"},
+{d:"2026-10-30",s:"AsAmNews",t:"CULTURE",h:"Veteran Reporter Lisa Ling Signs with Creative Artists Agency",m:"",u:"https://asamnews.com/2026/10/30/lisa-ling-signs-with-caa-representation-documentaries-tv-projects/",k:"community"},
+{d:"2026-10-30",s:"AsAmNews",t:"ELECTIONS",h:"Yee Leng Xiong seeks to unseat Wisconsin state treasurer",m:"",u:"https://asamnews.com/2026/10/30/yee-leng-xiong-endorsed-wisconsin-state-treasurer-hmong-history/",k:"community",st:["WI"]},
+{d:"2026-10-30T14:55:32Z",s:"The Yappie",t:"EDUCATION",h:"AAPI Nation: Navy escapes liability, Harvard’s incoming class, and more",m:"Catch up on the biggest headlines shaping AAPI communities this week.",u:"https://theyappie.com/aapi-nation-navy-escapes-liability-harvards-incoming-class-and-more/",by:"Shawna Chen",img:"https://theyappie.com/wp-content/uploads/2026/10/9925540.jpg",v:1,k:"community",st:["MA"]},
+{d:"2026-10-30",s:"AsAmNews",t:"COURTS",h:"Informant in Sheng Thao case tells a gripping story of corrupt deals",m:"",u:"https://asamnews.com/2026/10/30/mario-juarez-testimony-sheng-thao-corruption-trial-oakland/",k:"community"},
+{d:"2026-10-30",s:"AsAmNews",t:"ELECTIONS",h:"Asian American voters emerge as key bloc in LA mayor’s race",m:"",u:"https://asamnews.com/2026/10/30/aanhpi-voters-los-angeles-mayor-race-election/",k:"community"},
+{d:"2026-10-30",s:"The Rebel Yellow",t:"COURTS",h:"Asian American business owners face 5th new wave of burglaries in Oregon",m:"",u:"https://therebelyellow.com/p/asian-american-business-owners-face",k:"community",st:["OR"]},
+{d:"2026-10-30",s:"The Rebel Yellow",t:"EDUCATION",h:"Harvard’s Asian American enrollment reaches record high",m:"",u:"https://www.therebelyellow.com/p/harvards-asian-american-enrollment",k:"community",st:["MA"]},
+{d:"2026-10-30",s:"The Rebel Yellow",t:"ELECTIONS",h:"Democrats peel away a quarter of Trump’s South Asian voters",m:"",u:"https://www.therebelyellow.com/p/democrats-peel-away-a-quarter-of",k:"community",cm:["SA"]},
+{d:"2026-10-30",s:"The Rebel Yellow",t:"COURTS",h:"California realtor accused of spying for China denies charges",m:"",u:"https://therebelyellow.com/p/california-realtor-accused-of-spying",k:"community",st:["CA"]},
+{d:"2026-10-30",s:"Maui Now",t:"EDUCATION",h:"OHA and UH Hilo sign memorandum of understanding reaffirming commitment to Hawaiian language revitalization",m:"",u:"https://mauinow.com/2026/10/30/oha-and-uh-hilo-sign-memorandum-of-understanding-reaffirming-commitment-to-hawaiian-language-revitalization/",cm:["NHPI"],st:["HI"]},
+{d:"2026-10-30",s:"Maui Now",t:"EDUCATION",h:"County of Maui and Kamehameha Schools propose shared stewardship of Lahaina water resources",m:"",u:"https://mauinow.com/2026/10/30/county-of-maui-and-kamehameha-schools-propose-shared-stewardship-of-lahaina-water-resources/",cm:["NHPI"],st:["HI"]},
+{d:"2026-10-30",s:"Rafu Shimpo",t:"ELECTIONS",h:"Yamasaki Seeking Re-election to Orange Unified Board",m:"",u:"https://rafu.com/2026/10/yamasaki-seeking-re-election-to-orange-unified-board",k:"community"},
+{d:"2026-10-29",s:"AsAmNews",t:"EDUCATION",h:"Asian American enrollment at Harvard rises. Black enrollment falls",m:"",u:"https://asamnews.com/2026/10/29/harvard-asian-american-enrollment-class-of-2030/",k:"community",st:["MA"]},
+{d:"2026-10-29",s:"University Herald",t:"EDUCATION",h:"Harvard’s Black Freshman Enrollment Falls to 9.3% as Asian American Enrollment Rises",m:"",u:"https://www.universityherald.com/articles/80596/20261029/harvards-black-freshman-enrollment-falls-93-asian-american-enrollment-rises.htm",st:["MA"]},
+{d:"2026-10-29",s:"Northwest Asian Weekly",t:"ELECTIONS",h:"Coalition of AAPI orgs, ACLU, Common Cause sue federal government over program targeting naturalized voters",m:"",u:"https://nwasianweekly.com/2026/10/coalition-of-aapi-orgs-aclu-common-cause-sue-federal-government-over-program-targeting-naturalized-voters/",k:"community"},
+{d:"2026-10-29",s:"Joysauce",t:"CULTURE",h:"Shady Haze tackles burnout and joy amongst Filipino American cosplayers",m:"",u:"https://joysauce.com/shady-haze-tackles-burnout-and-joy-amongst-filipino-american-cosplayers/",k:"community",cm:["PH"]},
+{d:"2026-10-28",s:"Joysauce",t:"CULTURE",h:"San Diego Asian Film Festival continues to champion Asian diasporic voices",m:"",u:"https://joysauce.com/san-diego-asian-film-festival-continues-to-champion-asian-diasporic-voices/",k:"community",st:["CA"]},
+{d:"2026-10-28",s:"The Rebel Yellow",t:"ELECTIONS",h:"Asian American Texas county judge accused of faking Black support with AI",m:"",u:"https://www.therebelyellow.com/p/asian-american-texas-county-judge",k:"community",st:["TX"]},
+{d:"2026-10-28",s:"The Asian American Foundation",t:"CULTURE",h:"TAAF Staff Picks: Nikki Singh",m:"",u:"https://taaf.org/blog/taaf-staff-picks-nikki-singh",k:"statement"},
+{d:"2026-10-28",s:"Bloomberg",t:"EDUCATION",h:"Harvard Asian Enrollment Rises to 43% as Black Students Fall",m:"",u:"https://www.bloomberg.com/news/articles/2026-10-28/harvard-asian-enrollment-rises-to-43-as-black-students-decline",st:["MA"]},
+{d:"2026-10-28",s:"Courthouse News",t:"COURTS",h:"Navy dodges liability in Pearl Harbor Clean Water Act suit",m:"",u:"https://courthousenews.com/navy-dodges-liability-in-pearl-harbor-clean-water-act-suit"},
+{d:"2026-10-28",s:"6abc",t:"CULTURE",h:"Philadelphia Asian American Film Festival 2026: 73 films over 10 days",m:"",u:"https://6abc.com/post/philadelphia-asian-american-film-festival-2026-73-films-10-days/19985775/",st:["PA"]},
+{d:"2026-10-28",s:"AsAmNews",t:"ELECTIONS",h:"Affordability drives SF District 8 race: Candidates debate housing",m:"",u:"https://asamnews.com/2026/10/28/san-francisco-district-8-supervisor-race-housing-affordability/",k:"community",st:["CA"]},
+{d:"2026-10-28",s:"KRQE",t:"CULTURE",h:"Albuquerque Office of Asian Pacific Islander Native Hawaiian Affairs premiers new film",m:"",u:"https://www.krqe.com/fox-505/albuquerque-office-of-asian-pacific-islander-native-hawaiian-affairs-premiers-new-film/",cm:["NHPI"],st:["NM"]},
+{d:"2026-10-28",s:"AsAmNews",t:"ELECTIONS",h:"First Asian American city councilwoman in Portland seeks reelection",m:"",u:"https://asamnews.com/2026/10/28/tiffany-koyama-lane-portland-city-council-reelection/",k:"community",st:["OR"]},
+{d:"2026-10-28",s:"AsAmNews",t:"CULTURE",h:"Former Miss Aloha Hula award winner dies at 45",m:"",u:"https://asamnews.com/2026/10/28/maile-emily-francisco-miss-aloha-hula-2005-dies-at-45",k:"community"},
+{d:"2026-10-28",s:"Northwest Asian Weekly",t:"ELECTIONS",h:"Two-thirds of Asian Americans eligible to vote are naturalized citizens—but not all are registered",m:"",u:"https://nwasianweekly.com/2026/10/two-thirds-of-asian-americans-eligible-to-vote-are-naturalized-citizens-but-not-all-are-registered/",k:"community"},
+{d:"2026-10-28",s:"Joysauce",t:"CULTURE",h:"Spook up your Halloween with a JoySauce TV horror movie marathon",m:"",u:"https://joysauce.com/spook-up-your-halloween-with-a-joysauce-tv-horror-movie-marathon/",k:"community"},
+{d:"2026-10-27",s:"Joysauce",t:"CULTURE",h:"Esther Choi knows you can’t measure everything that matters",m:"",u:"https://joysauce.com/esther-choi-knows-you-cant-measure-everything-that-matters/",k:"community"},
+{d:"2026-10-27",s:"AsAmNews",t:"ELECTIONS",h:"1 out of 3 naturalized citizens eligible to vote are Asian American",m:"",u:"https://asamnews.com/2026/10/27/asian-american-naturalized-voters-2026-midterms/",k:"community"},
+{d:"2026-10-27",s:"AsAmNews",t:"COURTS",h:"Ex-Mayor Thao’s attorney argues texts undercut bribery claims",m:"",u:"https://asamnews.com/2026/10/27/ex-mayor-thaos-attorney-argues-texts-undercut-bribery-claims/",k:"community"},
+{d:"2026-10-27T15:03:59Z",s:"The Yappie",t:"IMMIGRATION",h:"A new House bill could enable wrongfully detained U.S. citizens to sue ICE",m:"The legislation comes after federal immigration agents wrongfully detained over 500 U.S. citizens since the start of President Trump’s second term.",u:"https://theyappie.com/a-new-house-bill-could-enable-wrongfully-detained-u-s-citizens-to-sue-ice/",by:"Hojung Lee",img:"https://theyappie.com/wp-content/uploads/2026/10/55587639465_df6517e960_o.jpg",v:1,k:"community"},
+{d:"2026-10-27T15:03:00Z",s:"The Yappie",t:"PACIFIC",h:"American Samoa opposes deep sea mining. The U.S. is auctioning a seabed anyway.",m:"The Trump administration’s move is the latest chapter in the ongoing conflict over who gets final say over what goes on in and around U.S. territories.",u:"https://theyappie.com/american-samoa-opposes-deep-sea-mining-the-u-s-is-auctioning-a-seabed-anyway/",by:"Hojung Lee",img:"https://theyappie.com/wp-content/uploads/2026/10/53588138166_078d356d91_o-1024x768.jpg",v:1,k:"community",cm:["NHPI"],st:["AS"]},
+{d:"2026-10-27",s:"AsAmNews",t:"COURTS",h:"Seattle Chinatown frustrated despite mayor’s anti-crime plan",m:"",u:"https://asamnews.com/2026/10/27/seattle-chinatown-anti-crime-plan-business-owners/",k:"community",cm:["CN"],st:["WA"]},
+{d:"2026-10-27",s:"Maui Now",t:"CULTURE",h:"Native Hawaiian Organizations demonstrate community impact at annual showcase",m:"",u:"https://mauinow.com/2026/10/27/native-hawaiian-organizations-demonstrate-community-impact-at-annual-showcase/",cm:["NHPI"]},
+{d:"2026-10-27",s:"AsAmNews",t:"ELECTIONS",h:"A Generational Shift? Vang takes on Matsui in CA-7",m:"",u:"https://asamnews.com/2026/10/27/doris-matsui-mai-vang-congressional-election-sacramento",k:"community",st:["CA"]},
+{d:"2026-10-27",s:"Joysauce",t:"CULTURE",h:"JoySauce Radio: Get into spooky season with these K-pop bangers",m:"",u:"https://joysauce.com/joysauce-radio-get-into-spooky-season-with-these-k-pop-bangers/",k:"community",cm:["KR"]},
+{d:"2026-10-26",s:"AsAmNews",t:"ELECTIONS",h:"Polls show Ramaswamy falling behind in Ohio’s governor’s race",m:"",u:"https://asamnews.com/2026/10/26/vivek-ramaswamy-ohio-governor-race-amy-acton-polls/",k:"community",st:["OH"]},
+{d:"2026-10-26",s:"AsAmNews",t:"GOVERNMENT",h:"Thousands gather as Brooklyn’s Chinatown gains official recognition",m:"",u:"https://asamnews.com/2026/10/26/brooklyn-chinatown-street-co-naming-eighth-avenue-sunset-park/",k:"community",cm:["CN"],st:["NY"]},
+{d:"2026-10-26",s:"AsAmNews",t:"COURTS",h:"Judge halts overnight construction of Chinatown jail for now",m:"",u:"https://asamnews.com/2026/10/26/judge-halts-overnight-construction-of-chinatown-jail-for-now/",k:"community",cm:["CN"]},
+{d:"2026-10-26",s:"The Rebel Yellow",t:"ELECTIONS",h:"Asians on Texas’ Senate race, Chinese Restaurants Get Kittens ‘Joke’, 90-Year-Old Shoved on Subway",m:"",u:"https://www.therebelyellow.com/p/asians-on-texas-senate-race-chinese",k:"community",cm:["CN"],st:["TX"]},
+{d:"2026-10-26",s:"The Rebel Yellow",t:"ELECTIONS",h:"Asian American Texans could sway a tight Senate race, but nearly half sat out 2024",m:"",u:"https://therebelyellow.com/p/asian-american-texans-could-sway",k:"community"},
+{d:"2026-10-26",s:"Joysauce",t:"CULTURE",h:"Hong Sang-soo’s newest movies turn the camera on himself",m:"",u:"https://joysauce.com/hong-sang-soos-newest-movies-turn-the-camera-on-himself/",k:"community"},
+{d:"2026-10-26",s:"Joysauce",t:"CULTURE",h:"Peyton Elizabeth Lee embraces the magic of ‘Wildwood’",m:"",u:"https://joysauce.com/peyton-elizabeth-lee-embraces-the-magic-of-wildwood/",k:"community"},
+{d:"2026-10-25",s:"AsAmNews",t:"CIVIL RIGHTS",h:"LA County Launches Hate Reporting Text Service in 15 Languages",m:"",u:"https://asamnews.com/2026/10/25/anti-hate-text-reporting-system-los-angeles/",k:"community",st:["CA"]},
+{d:"2026-10-25",s:"AsAmNews",t:"COURTS",h:"NYC Chinatown residents file lawsuit over jail construction",m:"",u:"https://asamnews.com/2026/10/25/nyc-chinatown-residents-lawsuit-after-hours-construction-jail/",k:"community",cm:["CN"],st:["NY"]},
+{d:"2026-10-24",s:"AsAmNews",t:"COURTS",h:"Filipino American charged in alleged Medicare fraud takedown",m:"",u:"https://asamnews.com/2026/10/24/filipino-american-medicare-fraud-scheme-charges-hospice/",k:"community",cm:["PH"]},
+{d:"2026-10-23",s:"AsAmNews",t:"HOUSING",h:"100th Lahaina Family Awarded Homebuyer Grant After Fires",m:"",u:"https://asamnews.com/2026/10/23/maui-first-time-homebuyer-program-lahaina-fire-survivors/",k:"community",cm:["NHPI"],st:["HI"]},
+{d:"2026-10-23",s:"AsAmNews",t:"ELECTIONS",h:"Muslim and Arab Americans Feel Betrayed by Republicans",m:"",u:"https://asamnews.com/2026/10/23/michigan-muslim-arab-american-voters-trump-betrayal-abdul-el-sayed/",k:"community"},
+{d:"2026-10-23T13:24:25Z",s:"The Yappie",t:"ELECTIONS",h:"AAPI Nation: Ramaswamy’s race turns ugly, AAPI voter pulse, and more",m:"Catch up on the biggest headlines shaping AAPI communities this week.",u:"https://theyappie.com/aapi-nation-ramaswamys-race-turns-ugly-aapi-voter-pulse-and-more/",by:"Shawna Chen",img:"https://theyappie.com/wp-content/uploads/2026/10/55020572718_8a961b6442_6k.jpg",v:1,k:"community"},
+{d:"2026-10-22T18:13:37Z",s:"The Yappie",t:"IMMIGRATION",h:"Jail cooperation hasn’t slowed community ICE arrests, data shows",m:"The Trump administration pledged to draw back operations in cities and states that cooperated with ICE, but daily ICE arrests have surged.",u:"https://theyappie.com/jail-cooperation-hasnt-slowed-community-ice-arrests-data-shows/",by:"Hojung Lee",img:"https://theyappie.com/wp-content/uploads/2026/10/ICE-1024x683.png",v:1,k:"community"},
+{d:"2026-10-22T18:03:11Z",s:"The Yappie",t:"EDUCATION",h:"Another Asian American admissions fight reaches the Supreme Court",m:"Following its rejection of affirmative action, the justices will hear a case alleging racial discrimination against Asian American middle school students in Maryland.",u:"https://theyappie.com/another-asian-american-admissions-fight-reaches-the-supreme-court/",by:"Hojung Lee",img:"https://theyappie.com/wp-content/uploads/2026/10/Supreme-Court-1024x683.png",v:1,k:"community",st:["MD"]},
+{d:"2026-10-19",s:"The Asian American Foundation",t:"EDUCATION",h:"How Act To Change is Developing Young AAPI Leaders and Upstanders: An Interview with Two Youth Ambassadors",m:"",u:"https://taaf.org/blog/how-act-to-change-is-developing-young-aapi-leaders-and-upstanders-an-interview-with-two-youth-ambassadors",k:"statement"},
+{d:"2026-10-19T13:53:46Z",s:"The Yappie",t:"COURTS",h:"AAPI Nation: Sheng Thao trial kicks off, Hindu temple attack plot, and more",m:"Catch up on the biggest headlines shaping AAPI communities this week.",u:"https://theyappie.com/aapi-nation-sheng-thao-trial-kicks-off-hindu-temple-attack-plot-and-more/",by:"Shawna Chen",img:"https://theyappie.com/wp-content/uploads/2026/10/Sheng-Tao.png",v:1,k:"community",cm:["SA"]},
+{d:"2026-10-14",s:"The Rebel Yellow",t:"CULTURE",h:"WNBA Trailblazers, Reality TV Reckoning, Voter ID Measures",m:"",u:"https://www.therebelyellow.com/p/wnba-trailblazers-reality-tv-reckoning",k:"community"},
+{d:"2026-10-13T15:08:22Z",s:"The Yappie",t:"PACIFIC",h:"Supreme Court case tests how much say Pacific Islanders have over their homelands",m:"A legal challenge to the Air Force's munition detonations on a Guam beach could have far-reaching consequences for residents in U.S. territories.",u:"https://theyappie.com/supreme-court-case-tests-how-much-say-pacific-islanders-have-over-their-homelands/",by:"William Tong",img:"https://theyappie.com/wp-content/uploads/2026/10/DF-SD-04-04609-1024x672.jpeg",v:1,k:"community",cm:["NHPI"],st:["GU"]},
+{d:"2026-10-13T15:05:00Z",s:"The Yappie",t:"ELECTIONS",h:"In suburban Dallas, a Republican bets that quiet centrism still works",m:"Angie Chen Button's re-election campaign is one to watch amid frustration with top-of-ticket conservatives in Texas.",u:"https://theyappie.com/in-suburban-dallas-a-republican-bets-that-quiet-centrism-still-works/",by:"William Tong",img:"https://theyappie.com/wp-content/uploads/2026/10/abc-4747-2048x1363-1-1024x682.jpg",v:1,k:"community",st:["TX"]},
+{d:"2026-10-09T15:05:00Z",s:"The Yappie",t:"IMMIGRATION",h:"AAPI Nation: DOJ’s denaturalization push, Montana’s AAPI boom, and more",m:"Catch up on the biggest headlines shaping AAPI communities this week.",u:"https://theyappie.com/aapi-nation-dojs-denaturalization-push-montanas-aapi-boom-and-more/",by:"Shawna Chen",img:"https://theyappie.com/wp-content/uploads/2026/10/HT5FdrUWYAAlFic-1024x654.jpg",v:1,k:"community",st:["MT"]},
+{d:"2026-10-09",s:"The Asian American Foundation",t:"CULTURE",h:"John Cho on Bringing Depth to the Role of Unhinged Pastor in ‘Your Mother Your Mother Your Mother’",m:"",u:"https://taaf.org/blog/john-cho-on-bringing-depth-to-the-role-of-unhinged-pastor-in-your-mother-your-mother-your-mother",k:"statement"},
+{d:"2026-10-06T15:45:00Z",s:"The Yappie",t:"EDUCATION",h:"Education Department diverts funding meant to bolster AAPI-serving colleges",m:"Funds for some minority-serving institutions are redirected to HBCUs and tribal colleges, drawing criticism from members of Congress.",u:"https://theyappie.com/education-department-diverts-funding-meant-to-bolster-aapi-serving-colleges/",by:"Hojung Lee",img:"https://theyappie.com/wp-content/uploads/2026/10/55331068724_57c3526726_o-1024x683.jpg",v:1,k:"community"},
+{d:"2026-10-06T15:15:00Z",s:"The Yappie",t:"GOVERNMENT",h:"Trump claws back nearly $600M from minority-serving programs",m:"The Trump administration is moving to cancel funding that had been appropriated by Congress.",u:"https://theyappie.com/trump-claws-back-nearly-600m-from-minority-serving-programs/",by:"Hojung Lee",img:"https://theyappie.com/wp-content/uploads/2026/10/55353645464_dec443b62e_o-1024x683.jpg",v:1,k:"community"},
+{d:"2026-10-06T15:10:00Z",s:"The Yappie",t:"GOVERNMENT",h:"The clock is ticking on a Bay Area archive of Asian American history",m:"The planned closure of a National Archives facility in California has sparked alarm among Democratic lawmakers, historians, and advocates.",u:"https://theyappie.com/the-clock-is-ticking-on-a-bay-area-archive-of-asian-american-history/",by:"Hojung Lee",img:"https://theyappie.com/wp-content/uploads/2026/10/National-Archives-1024x683.png",v:1,k:"community",st:["CA"]},
+{d:"2026-10-02T12:34:49Z",s:"The Yappie",t:"ELECTIONS",h:"AAPI Nation: St. Paul mayor investigated, AI race swapping, and more",m:"Catch up on the biggest headlines shaping AAPI communities this week.",u:"https://theyappie.com/aapi-nation-st-paul-mayors-conduct-scrutinized-in-sexual-harassment-probe/",by:"Shawna Chen",img:"https://theyappie.com/wp-content/uploads/2026/10/ic-1024x768.png",v:1,k:"community",st:["MN"]},
+{d:"2026-09-29T15:45:00Z",s:"The Yappie",t:"ELECTIONS",h:"What one California race could say about Democrats’ future among AAPIs",m:"In California’s 7th District, Mai Vang is challenging Doris Matsui, the second most senior Asian American member of the House.",u:"https://theyappie.com/what-one-california-race-could-say-about-democrats-future-among-aapis/",by:"William Tong",img:"https://theyappie.com/wp-content/uploads/2026/09/House-Races-1024x683.png",v:1,k:"community",st:["CA"]},
+{d:"2026-09-29T15:30:00Z",s:"The Yappie",t:"IMMIGRATION",h:"How the GOP’s push to limit immigration is turning on skilled workers",m:"As the midterm elections loom, the Trump administration and some Republicans are increasingly targeting H-1B visas.",u:"https://theyappie.com/how-the-gops-push-to-limit-immigration-is-turning-on-skilled-workers/",by:"William Tong",img:"https://theyappie.com/wp-content/uploads/2026/09/55257364946_653416dfda_o-1024x683.jpg",v:1,k:"community"},
+{d:"2026-09-25T20:49:01Z",s:"The Yappie",t:"ELECTIONS",h:"AAPI Nation: Advocates sue to ban armed agents at polls",m:"Plus: American Samoan voting charges dropped, South Asian communities on edge, and other AAPI news this week.",u:"https://theyappie.com/aapi-nation-advocates-sue-to-ban-armed-agents-at-polls/",by:"Shawna Chen",img:"https://theyappie.com/wp-content/uploads/2026/09/55364495840_ed7a49e7c9_o-1024x683.jpg",v:1,k:"community",cm:["SA","NHPI"],st:["AS"]},
+{d:"2026-09-23T15:22:39Z",s:"The Yappie",t:"IMMIGRATION",h:"The hidden numbers in Trump’s immigration crackdown",m:"New data from Stop AAPI Hate reveals the scale of the Trump administration’s immigration crackdown and its impacts on Asians.",u:"https://theyappie.com/the-hidden-numbers-in-trumps-immigration-crackdown/",by:"Shawna Chen",img:"https://theyappie.com/wp-content/uploads/2026/09/ICE-Tracker-1024x683.png",v:1,k:"community"},
+{d:"2026-09-23T15:16:29Z",s:"The Yappie",t:"ELECTIONS",h:"Why do Texas Republicans suddenly care about racism?",m:"The firestorm over comments from a GOP nominee for the Texas Railroad Commission is putting a spotlight on rising anti-South Asian sentiment in the state and beyond.",u:"https://theyappie.com/why-do-texas-republicans-suddenly-care-about-racism/",by:"Shawna Chen",img:"https://theyappie.com/wp-content/uploads/2026/09/Bo-1024x683.png",v:1,k:"community",cm:["SA"],st:["TX"]},
+{d:"2026-09-23T15:05:54Z",s:"The Yappie",t:"GOVERNMENT",h:"These census proposals could reshape AAPI representation for decades",m:"The Trump administration seeking to overhaul how the federal government collects demographic data through the U.S. Census—and potentially dilute AAPI political power as soon as the next count in 2030.",u:"https://theyappie.com/these-census-proposals-could-reshape-aapi-representation-for-decades/",by:"Shawna Chen",img:"https://theyappie.com/wp-content/uploads/2026/09/55264242319_1ed5fe35b5_o-1024x683.jpg",v:1,k:"community"},
+];
+let D=FALLBACK.slice(),GEN="2026-10-31T14:00:00Z";let REF=new Date(GEN).getTime();
+const HOME={"The Yappie":"https://theyappie.com","AsAmNews":"https://asamnews.com","The Rebel Yellow":"https://www.therebelyellow.com","Joysauce":"https://joysauce.com","NBC Asian America":"https://www.nbcnews.com/asian-america"};
+let H=Object.assign({},HOME,{"Maui Now":"https://mauinow.com","KRQE":"https://www.krqe.com","Courthouse News":"https://courthousenews.com","University Herald":"https://www.universityherald.com","Bloomberg":"https://www.bloomberg.com","6abc":"https://6abc.com","Northwest Asian Weekly":"https://nwasianweekly.com","The Indian Eye":"https://theindianeye.com","Rafu Shimpo":"https://rafu.com","The Asian American Foundation":"https://taaf.org/newsroom"});
+const TAXO={"t":[["IMMIGRATION","Immigration"],["CIVIL RIGHTS","Civil rights & hate"],["HEALTH","Health"],["ELECTIONS","Elections & voting"],["ECONOMY","Economy & jobs"],["HOUSING","Housing"],["EDUCATION","Education"],["COURTS","Courts & crime"],["GOVERNMENT","Government & policy"],["PACIFIC","Pacific Islands"],["CULTURE","Culture"]],"c":[["CN","Chinese"],["PH","Filipino"],["JP","Japanese"],["KR","Korean"],["NHPI","Native Hawaiian & Pacific Islander"],["SA","South Asian"],["SEA","Southeast Asian"],["VN","Vietnamese"]],"s":[["AL","Alabama"],["AK","Alaska"],["AZ","Arizona"],["AR","Arkansas"],["CA","California"],["CO","Colorado"],["CT","Connecticut"],["DE","Delaware"],["DC","Washington, D.C."],["FL","Florida"],["GA","Georgia"],["HI","Hawaii"],["ID","Idaho"],["IL","Illinois"],["IN","Indiana"],["IA","Iowa"],["KS","Kansas"],["KY","Kentucky"],["LA","Louisiana"],["ME","Maine"],["MD","Maryland"],["MA","Massachusetts"],["MI","Michigan"],["MN","Minnesota"],["MS","Mississippi"],["MO","Missouri"],["MT","Montana"],["NE","Nebraska"],["NV","Nevada"],["NH","New Hampshire"],["NJ","New Jersey"],["NM","New Mexico"],["NY","New York"],["NC","North Carolina"],["ND","North Dakota"],["OH","Ohio"],["OK","Oklahoma"],["OR","Oregon"],["PA","Pennsylvania"],["RI","Rhode Island"],["SC","South Carolina"],["SD","South Dakota"],["TN","Tennessee"],["TX","Texas"],["UT","Utah"],["VT","Vermont"],["VA","Virginia"],["WA","Washington"],["WV","West Virginia"],["WI","Wisconsin"],["WY","Wyoming"],["GU","Guam"],["AS","American Samoa"],["MP","Northern Mariana Islands"],["PR","Puerto Rico"],["VI","U.S. Virgin Islands"]],"kl":{"community":"AAPI Media","news":"Mainstream","statement":"Statements","research":"Research","bill":"Legislation","official":"Rules & notices","order":"Executive actions","govstmt":"Government statements","hearing":"Hearings & reports","open":"Open for comment"},"ks":{"community":"AAPI Media","news":"Mainstream","statement":"Statement","research":"Research","bill":"Bill","official":"Rule or notice","order":"Executive action","govstmt":"Government statement","hearing":"Hearing or report"},"pk":["bill","official","order","govstmt","hearing"],"kw":{"IMMIGRATION":["immigration","deportation","visa","green card","refugee","asylum","citizenship","H-1B","DACA","detention","ICE"],"CIVIL RIGHTS":["hate","bias","discrimination","racism","anti-Asian","civil rights","harassment","internment","redress","profiling"],"HEALTH":["health","Medicaid","Medicare","hospital","doctor","mental health","cancer","COVID","vaccine","clinic","insurance"],"ELECTIONS":["election","vote","ballot","campaign","candidate","poll","governor","mayor","senator","midterm","primary"],"ECONOMY":["economy","jobs","workers","wages","small business","tariffs","trade","layoffs","union","inflation"],"HOUSING":["housing","homeowner","homeless","rent","tenant","eviction","mortgage","affordable","zoning","landlord"],"EDUCATION":["school","college","university","admissions","students","teachers","tuition","scholarship","K-12","curriculum"],"COURTS":["court","judge","lawsuit","trial","charged","indicted","prosecutor","verdict","ruling","police","crime"],"GOVERNMENT":["bill","Congress","legislation","federal","executive order","funding","census","policy","budget","grants"],"PACIFIC":["COFA","Compact of Free Association","American Samoa","Guam","Marshall Islands","Micronesia","Palau","Northern Mariana","Pacific Islands"],"CULTURE":["film","festival","music","artist","book","food","chef","concert","museum","heritage","anime (also the fallback when nothing else matches)"]},"lang":{"ranges":[[880,1023],[1024,1279],[1424,1791],[2304,3583],[3584,3839],[4096,4255],[6016,6143],[12352,12543],[13312,19903],[19968,40959],[44032,55215],[65280,65519]],"vi":"ạảãấầẩẫậắằẳẵặẹẻẽếềểễệỉịọỏốồổỗộớờởỡợụủứừửữựỳỵỷỹđơư","en":["the","a","an","and","or","of","to","in","for","on","with","is","are","was","were","at","by","from","as","that","this","it","its","after","over","amid","new","says","said","will","not","be","has","have","had","but","about","into","their","our","your","we","they","he","she","who","what","when","why","how","more","than","up","out","one","two"],"xx":["para","que","una","con","por","pero","sobre","también","não","uma","dos","das","são","avec","pour","dans","les","des","une","sont","und","der","die","das","mit","für","nicht","ein","eine","ang","mga","yang","dan","untuk","dengan","dari","pada","ini","itu","adalah","bahwa","dalam"]},"rs":{"labels":{"poll":"Survey","report":"Report","data":"Data"},"plural":{"poll":"Surveys","report":"Reports","data":"Data"},"ignore":"\\b(at|to|near|outside|inside)\\s+(the\\s+)?polls\\b|\\bpoll(ing)?\\s+(workers?|watchers?|places?|sites?|locations?|stations?|centers?|centres?|hours|managers?)\\b|\\bpolls?\\s+(open|opens|close|closes|closing)\\b|\\bdata\\s+(centers?|centres?|breach(es)?|privacy|brokers?|leaks?|security|protection|entry)\\b|\\bAAPI\\s+Data\\b|\\b(ethnic|asian american|asian|aapi|pacific islander|native hawaiian|american|african american|black|latino|women'?s|gender|area|film|religious|cultural|international|diaspora)\\s+studies\\b|\\bstudy\\s+(abroad|hall|group|session)\\b|\\bland\\s+survey\\b|\\bgeological\\s+survey\\b","poll":"\\b(polls?|polling|pollsters?|surveys?|surveyed|respondents|questionnaires?|AP-NORC|exit polls?)\\b","report":"\\b(studies|study|researchers?|new research|research\\s+(shows?|finds?|found|suggests?|reveals?|indicates?)|(new|latest|annual|landmark|national|major|updated|special|final|full|joint|interim|comprehensive)\\s+(\\w+\\s+)?reports?|reports?\\s+(finds?|found|shows?|showed|says|reveals?|highlights?|details|warns|released|examines?|documents?|analy[sz]es?|outlines?|estimates?|ranks?)|(releases?|publishes?|unveils?|launches?|issues?)\\s+(a\\s+|its\\s+|the\\s+)?(\\w+\\s+)?(report|analysis|findings|brief)|white paper|policy brief|issue brief|fact sheets?|an analysis|analysis\\s+(finds?|shows?|of)|findings|scorecard|report card|audit|state of the)\\b","data":"\\b(data|statistics|statistical|datasets?|census\\s+(data|figures|numbers|bureau\\s+(data|figures|report))|by the numbers|numbers\\s+(show|reveal|rise|climb|drop)|\\d+(\\.\\d+)?\\s?(%|percent)\\s+of|percent\\s+of|(hate\\s+)?(incidents?|crimes?)\\s+(rose|rise|rising|jumped|jump|increased|surged?|fell|dropped|declined?)|(rises?|rose|falls?|fell|drops?|dropped|climbs?|climbed|jumps?|jumped|surges?|surged|declines?|declined|increases?|increased|reaches?|reached)\\s+(to|by)\\s+(a\\s+)?(record\\s+)?\\d+|record\\s+(high|low)s?|projected|projections?|estimates?\\s+(show|suggest|indicate|put)|forecasts?)\\b"}};
+const TAGS=TAXO.t.map(a=>a[0]),TL=Object.fromEntries(TAXO.t),CL=Object.fromEntries(TAXO.c),SLB=Object.fromEntries(TAXO.s),KL=TAXO.kl,KS=TAXO.ks;
+// What the site owner set in the admin dashboard comes with the feed ("taxo": names only, never keywords): topics, communities and News categories they added (t, c, kl), new names for built-in ones (rn) and built-in ones they removed (off). They are applied to the lists above each time the feed is read, always starting again from the built-in lists, so a change that is later undone disappears. So they show up as filters without a new release.
+const T0=TAXO.t.map(a=>a.slice()),C0=TAXO.c.map(a=>a.slice()),KL0=Object.assign({},KL),KS0=Object.assign({},KS),XA={t:[],c:[],k:[]};
+const addTaxo=t=>{t=t||{};
+const isO=o=>!!o&&typeof o=="object"&&!Array.isArray(o),off=isO(t.off)?t.off:{},rn=isO(t.rn)?t.rn:{},set=a=>new Set(Array.isArray(a)?a.filter(k=>typeof k=="string"):[]),oT=set(off.t),oC=set(off.c),oK=set(off.k),nm=(m,k,d)=>isO(m)&&typeof m[k]=="string"&&m[k]?m[k]:d;
+TAXO.t.length=0;T0.filter(a=>!oT.has(a[0])||a[0]=="CULTURE").forEach(a=>TAXO.t.push([a[0],nm(rn.t,a[0],a[1])])); /* CULTURE catches every story that fits no other topic, so it stays */
+TAXO.c.length=0;C0.filter(a=>!oC.has(a[0])).forEach(a=>TAXO.c.push([a[0],nm(rn.c,a[0],a[1])]));
+for(const k in KL)delete KL[k];for(const k in KS)delete KS[k];
+Object.keys(KL0).filter(k=>!oK.has(k)).forEach(k=>{KL[k]=nm(rn.k,k,KL0[k])});Object.keys(KS0).filter(k=>!oK.has(k)).forEach(k=>{KS[k]=nm(rn.k,k,KS0[k])});
+XA.t=[];XA.c=[];XA.k=[];
+const ok=a=>Array.isArray(a)&&typeof a[0]=="string"&&typeof a[1]=="string"&&a[0]&&a[1];
+(Array.isArray(t.t)?t.t:[]).filter(ok).forEach(([k,l])=>{if(TAXO.t.some(a=>a[0]==k))return;TAXO.t.push([k,l]);XA.t.push(k)});
+(Array.isArray(t.c)?t.c:[]).filter(ok).forEach(([k,l])=>{if(TAXO.c.some(a=>a[0]==k))return;TAXO.c.push([k,l]);XA.c.push(k)});
+Object.entries(isO(t.kl)?t.kl:{}).forEach(([k,l])=>{if(KL[k]||KL0[k]||typeof l!="string"||!l||k=="__other")return;KL[k]=l;KS[k]=l;XA.k.push(k)});
+TAGS.length=0;TAXO.t.forEach(a=>TAGS.push(a[0]));for(const k in TL)delete TL[k];TAXO.t.forEach(([k,l])=>{TL[k]=l});for(const k in CL)delete CL[k];TAXO.c.forEach(([k,l])=>{CL[k]=l})};
+// the Policy tracker: bills, rules, executive actions and government statements (all from .gov sources)
+const PK=TAXO.pk,isPK=k=>PK.includes(k),isP=x=>PK.includes(x.k),RL={n:"Impacts AAPIs",i:"Related issue"};
+// Advocacy page: statements and press releases from advocacy organizations (kind "statement"). They are kept out of News.
+const SRCALIAS={"The Takeaway": "The Asian American Foundation", "AP News": "Associated Press", "guampdn.com": "Pacific Daily News", "INQUIRER.net USA": "INQUIRER.net", "Bloomberg.com": "Bloomberg News", "Dallas News": "Dallas Morning News", "CAPAC": "Congressional Asian Pacific American Caucus", "Washington State Department of Corrections (DOC) (.gov)": "Washington State Department of Corrections", "TAAF": "The Asian American Foundation"},isAdv=x=>x.k=="statement",part=x=>isP(x)?"p":isAdv(x)?"a":x.k=="research"?"r":"n"; // which tab a record belongs to
+// Research page: a news story or an organization statement is listed when its headline or summary mentions new data, a report or study, or a poll (patterns: taxonomy.json "research"). Sources typed "research" (AP-NORC) are always listed. They are kept out of News.
+const RS=TAXO.rs,RSL=RS.labels,RSP=RS.plural,RSX=new RegExp(RS.ignore,"gi"),RSR=["poll","report","data"].map(k=>[k,new RegExp(RS[k],"i")]);
+// x.rt is the site owner's own choice from the admin dashboard: "poll" (Survey), "report" or "data" lists the item as that type; "none" keeps a news story or statement off the Research page.
+const resOf=x=>{if(isP(x))return"";if(x.rt&&RSL[x.rt])return x.rt;if(x.rt=="none"&&x.k!="research")return"";const t=(x.h+" "+(x.m||"")).replace(RSX," ");for(const[k,r]of RSR)if(r.test(t))return k;return x.k=="research"?(/norc|poll|survey/i.test(x.s)?"poll":"report"):""},isRes=x=>!!x.rs;
+// English-only check: same rules as the collector (taxonomy.json "lang"). Used as a safety net on whatever the feed file contains.
+const isEnglish=(()=>{const Lg=TAXO.lang,en=new Set(Lg.en),xx=new Set(Lg.xx),vi=new Set([...Lg.vi]),inR=cp=>Lg.ranges.some(r=>cp>=r[0]&&cp<=r[1]);
+return t=>{const s=String(t==null?"":t);let n=0,o=0,v=0;for(const ch of s){if(/\p{L}/u.test(ch)){n++;if(inR(ch.codePointAt(0)))o++;else if(vi.has(ch.toLowerCase()))v++}}
+if(n&&o/n>=.3)return false;if(v>=2)return false;const w=s.toLowerCase().match(/[a-zà-ÿ'’]+/g)||[];let e=0,f=0;w.forEach(k=>{if(en.has(k))e++;else if(xx.has(k))f++});
+if(f>=2&&f>e)return false;if(f>=1&&e===0&&w.length>=4)return false;return true}})();
+const $=s=>document.querySelector(s);
+const cap=t=>t?t.charAt(0)+t.slice(1).toLowerCase():"";
+const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const pd=d=>new Date(d.length>10?d:d+"T12:00:00");
+// ---- since your last visit: a visit ends after 30 quiet minutes; what is new is what was published after the previous visit ended (the first visit, or no storage, falls back to the last 2 days)
+let SINCE=null;const _ms=new WeakMap(),msOf=x=>{let v=_ms.get(x);if(v===undefined){v=+pd(x.d);_ms.set(x,v)}return v};
+const seenNow=()=>{try{localStorage.setItem("ypLast",String(Date.now()))}catch(e){}};
+const visit=()=>{try{const now=Date.now(),last=+localStorage.getItem("ypLast")||0;let vs=+localStorage.getItem("ypVS")||0;if(last&&now-last>18e5){vs=last;localStorage.setItem("ypVS",String(vs))}SINCE=vs||null}catch(e){SINCE=null}seenNow()};
+visit();addEventListener("visibilitychange",()=>{if(document.hidden){seenNow();return}const o=SINCE;visit();if(SINCE!==o)try{render()}catch(e){}});addEventListener("pagehide",seenNow);setInterval(()=>{if(!document.hidden)seenNow()},6e4);
+const isNew=x=>SINCE!=null?msOf(x)>SINCE:new Date(GEN)-pd(x.d)<1728e5;const fd=d=>pd(d).toLocaleDateString("en-US",{month:"short",day:"numeric"});
+const MAIN=["The Yappie","AsAmNews","The Rebel Yellow","Joysauce"],isMain=x=>MAIN.includes(x.s);
+const F0=()=>({t:"",s:"",q:"",c:"",st:"",k:"",r:"",d:"",n:""});const PAGE=20;let F=F0(),VIEW="feed",sel=0,L=[],shown=PAGE,sig="",gsel="",HUBS=[],HUB="",STMT=[];
+const FK=["t","c","st","k","s","r","d"],$$=s=>[...document.querySelectorAll(s)];
+const selT=$("#selT"),selS=$("#selS"),selC=$("#selC"),selST=$("#selST"),selK=$("#selK"),selR=$("#selR"),selD=$("#selD"),selSTd=$("#selSTd"),isMob=()=>matchMedia("(max-width:1000px)").matches;
+const fdl=d=>pd(d).toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"});
+const tl=t=>TL[t]||cap(t),kl=k=>KL[k||"news"]||KL.news||"Mainstream",ks=k=>KS[k||"news"]||KS.news||"Mainstream";
+// a story has one main topic (x.t) and may have extra ones (x.tx, set by the site owner in the admin dashboard): each is a button that filters by it
+const tbtns=(x,c,aria)=>[x.t].concat(x.tx||[]).map(t=>`<button type="button" class="${c}" data-f="t" data-v="${esc(t)}" ${aria?"aria-label":"title"}="Show only ${esc(tl(t))} stories">${esc(tl(t))}</button>`).join(", ");
+const MAINS=()=>VIEW=="research"?["AAPI Data","Pew Research Center","AP-NORC","Associated Press"]:["The Yappie","AsAmNews","The Rebel Yellow","Joysauce"],isMainV=x=>MAINS().includes(x.s); // the outlets listed by name in the Sources filter, in this order; every other outlet is one combined "Other sources" row (News and Research each have their own list)
+// ---- dates: a story's day is its date in the reader's own time zone (the same day the list shows it under); policy items carry a plain date. A date filter is one text: "7d" or "30d" (the last 7 or 30 days), "2026-03" (a month) or "2026-03-05..2026-03-20" (either end may be left out).
+const p2=n=>(n<10?"0":"")+n,isoD=d=>d.getFullYear()+"-"+p2(d.getMonth()+1)+"-"+p2(d.getDate());
+const _dy=new WeakMap(),dayOf=x=>{let v=_dy.get(x);if(v===undefined){v=x.d.length>10?isoD(new Date(x.d)):x.d;_dy.set(x,v)}return v};
+let TODAY=isoD(new Date());const _dr=new Map();
+const drng=v=>{let r=_dr.get(v),m;if(r)return r;
+if(m=/^(7|30)d$/.exec(v)){const d=new Date();d.setDate(d.getDate()-(+m[1]-1));r=[isoD(d),"9999"]}
+else if(/^\d{4}-\d{2}$/.test(v))r=[v+"-01",v+"-31"];
+else if(m=/^(\d{4}-\d{2}-\d{2})?\.\.(\d{4}-\d{2}-\d{2})?$/.exec(v)){let a=m[1]||"0000",b=m[2]||"9999";if(a>b)[a,b]=[b,a];r=[a,b]}
+else r=["0000","9999"];
+_dr.set(v,r);return r};
+const dhas=(x,v)=>{const r=drng(v),y=dayOf(x);return y>=r[0]&&y<=r[1]};
+const DQ=/^(?:(?:7|30)d|\d{4}-(?:0[1-9]|1[0-2])|(?:\d{4}-\d{2}-\d{2})?\.\.(?:\d{4}-\d{2}-\d{2})?)$/,DRG=/^(\d{4}-\d{2}-\d{2})?\.\.(\d{4}-\d{2}-\d{2})?$/;
+const mlab=ym=>MON[+ym.slice(5)-1]+" "+ym.slice(0,4),fday=(s,short)=>new Date(s+"T12:00:00").toLocaleDateString("en-US",short&&s.slice(0,4)==TODAY.slice(0,4)?{month:"short",day:"numeric"}:{month:"short",day:"numeric",year:"numeric"});
+const dlabel=(v,short)=>{if(v=="7d"||v=="30d")return"Last "+parseInt(v)+" days";if(/^\d{4}-\d{2}$/.test(v))return mlab(v);const m=DRG.exec(v);if(!m)return"";let a=m[1],b=m[2];if(a&&b&&a>b)[a,b]=[b,a];return a&&b?fday(a,short)+" – "+fday(b,short):a?"Since "+fday(a,short):b?"Until "+fday(b,short):"Custom range"};
+const has=(x,f,v)=>f=="t"?x.t==v||(x.tx||[]).includes(v):f=="d"?dhas(x,v):f=="c"?(x.cm||[]).includes(v):f=="st"?(x.st||[]).includes(v):f=="k"?(RSL[v]?x.rs==v:v=="open"?!!x.dl&&dleft(x.dl)>=0:(x.k||"news")==v):f=="r"?x.rl==v:(v=="__other"?!isMainV(x):x.s==v);
+const aapiq=t=>t.replace(/aanhpi/g,"aapi");
+const _qc=new WeakMap(); // a story's searchable text is built once (a full year is thousands of stories, and every filter count asks again); a reloaded feed has new story objects, so the names in it are never stale
+const qtext=x=>{let q=_qc.get(x);if(q===undefined){q=aapiq((x.h+" "+(x.s=="The Yappie"?x.m||"":"")+" "+x.s+" "+tl(x.t)+" "+(x.tx||[]).map(tl).join(" ")+" "+(x.cm||[]).map(k=>CL[k]).join(" ")+" "+(x.st||[]).map(k=>SLB[k]).join(" ")+" "+(x.bl||[]).map(b=>b.n).join(" ")+" "+(x.ty||"")+" "+(x.ag||"")+" "+(x.la||"")+" "+(RSL[x.rs]||"")).toLowerCase());_qc.set(x,q)}return q};
+let _aqv=null,_aq="";const aq=()=>{if(_aqv!==F.q){_aqv=F.q;_aq=aapiq(F.q)}return _aq};
+const hit=(x,skip)=>FK.every(f=>f==skip||!F[f]||has(x,f,F[f]))&&(!F.q||qtext(x).includes(aq()))&&(!F.n||isNew(x));
+// news, policy and advocacy-statement records live in the same feed file; each tab works on its own part
+let _vs=null,_vd=null,_vv="";
+let _vh="";const vset=()=>{if(_vd!==D||_vv!=VIEW||_vh!=HUB){_vd=D;_vv=VIEW;_vh=HUB;_vs=VIEW=="policy"?D.filter(isP):VIEW=="advocacy"?D.filter(isAdv):VIEW=="research"?D.filter(isRes):VIEW=="hubs"?hubItems(HUB):VIEW=="saved"?D:D.filter(x=>!isP(x)&&!isAdv(x)&&x.k!="research")}return _vs};
+// ---- the owner's marks: "bu" (a breaking item's end time) and "fe" (featured). Breaking items come first, then featured ones, then the usual order; RN is the clock for one whole render
+const BKL={breaking:"Breaking",urgent:"Urgent",important:"Important"};let RN=Date.now(),brkT=0,keepSel=null;
+const bkOn=x=>!!x.bu&&RN<Date.parse(x.bu),grp=x=>VIEW=="saved"?2:bkOn(x)?0:x.fe?1:2;
+const lead=a=>{if(VIEW=="saved")return a;let b=null,f=null;for(const x of a){if(bkOn(x))(b=b||[]).push(x);else if(x.fe)(f=f||[]).push(x)}if(!b&&!f)return a;
+if(b)b.sort((p,q)=>p.bt<q.bt?1:p.bt>q.bt?-1:0);if(f)f.sort((p,q)=>p.fe<q.fe?1:p.fe>q.fe?-1:0);return (b||[]).concat(f||[],a.filter(x=>!bkOn(x)&&!x.fe))};
+const mark=x=>bkOn(x)?`<span class="bkt"><i></i>${esc(BKL[x.bk]||"Breaking")}</span>`:x.fe&&VIEW!="saved"?'<span class="ftag">Featured</span>':"";
+const stag=x=>{const m=mark(x);return m?`<div class="stg">${m}</div>`:""};
+const sortPol0=a=>VIEW=="research"?a.slice().sort((p,q)=>pd(q.d)-pd(p.d)):VIEW!="policy"?a:a.slice().sort(F.k=="open"?(p,q)=>p.dl<q.dl?-1:p.dl>q.dl?1:0:(p,q)=>pd(q.d)-pd(p.d));
+const sortPol=a=>lead(sortPol0(a));
+const fixF=()=>{if(RSL[F.k]?VIEW!="research":VIEW=="research")F.k=""; /* a poll/report/data filter only belongs to Research, and News-type filters (AAPI Media…) do not apply there */const s=vset();FK.forEach(f=>{if(F[f]&&!s.some(x=>has(x,f,F[f])))F[f]=""})};
+let PSTAT=[];
+// how many stories each filter button would show: one pass over the stories, not one pass per button (a full year is ~10,000 stories and ~250 buttons).
+// A story counts toward a button of filter f when it passes the search and every OTHER chosen filter, so one that fails exactly one chosen filter only counts toward that filter's own buttons.
+let _cn=null;
+const kvals=x=>{const a=[],k=x.k||"news";if(x.rs&&RSL[x.rs])a.push(x.rs);if(!RSL[k]&&k!="open")a.push(k);if(x.dl&&dleft(x.dl)>=0)a.push("open");return a};
+const cntMap=()=>{const q=F.q?aq():"",key=VIEW+HUB+"\u0001"+FK.map(f=>F[f]||"").join("\u0001")+"\u0001"+q+"\u0001"+D.length+"\u0001"+TODAY+"\u0001"+F.n+SINCE;
+if(_cn&&_cn.D===D&&_cn.key===key)return _cn.m;
+const m={t:new Map,c:new Map,st:new Map,k:new Map,s:new Map,r:new Map,d:new Map},MN=MAINS(),P7=drng("7d")[0],P30=drng("30d")[0],vals={d:x=>{const y=dayOf(x),a=[y.slice(0,7)];if(y>=P7)a.push("7d");if(y>=P30)a.push("30d");return a},t:x=>x.tx&&x.tx.length?[...new Set([x.t].concat(x.tx))]:[x.t],c:x=>x.cm||[],st:x=>x.st||[],k:kvals,s:x=>MN.includes(x.s)?[x.s]:[x.s,"__other"],r:x=>x.rl?[x.rl]:[]};
+for(const x of vset()){if(q&&!qtext(x).includes(q))continue;if(F.n&&!isNew(x))continue;let bad="",nb=0;for(const f of FK)if(F[f]&&!has(x,f,F[f])){bad=f;if(++nb>1)break}
+if(nb>1)continue;for(const f of nb?[bad]:FK){const mp=m[f];for(const v of vals[f](x))mp.set(v,(mp.get(v)||0)+1)}}
+_cn={D,key,m};return m};
+const cnt=(f,v)=>cntMap()[f].get(v)||0;
+const STAR='<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M8 1.6l1.9 4 4.4.5-3.3 3 .9 4.3L8 11.1 4.1 13.4 5 9.1l-3.3-3 4.4-.5z" stroke-linejoin="round"/></svg>';
+// ---- saved stories (this browser only) ----
+const SV=(()=>{try{return JSON.parse(localStorage.getItem("sv")||"[]").filter(x=>x&&x.u&&x.h)}catch(e){return[]}})();
+const svStore=()=>{try{localStorage.setItem("sv",JSON.stringify(SV))}catch(e){}};
+const isSv=x=>SV.some(y=>y.u==x.u);
+function toggleSv(x){const i=SV.findIndex(y=>y.u==x.u);if(i>=0)SV.splice(i,1);else{const{rel,c,fe,bt,bu,bk,...o}=x;SV.unshift(o);if(SV.length>100)SV.length=100}svStore();tabCounts()}
+const savedList=()=>SV.map(s=>D.find(x=>x.u==s.u)||s);
+// ---- small helpers ----
+const dleft=d=>Math.round((new Date(d+"T12:00:00Z")-new Date(new Date(REF).toISOString().slice(0,10)+"T12:00:00Z"))/864e5);
+const dueTxt=x=>{const n=dleft(x.dl);return n<0?"Comments closed "+fdl(x.dl):"Comments due "+fdl(x.dl)+" · "+(n==0?"today":n+(n==1?" day":" days")+" left")};
+const tyl=x=>x.ty||ks(x.k);
+const fx=x=>{const a=[];if(VIEW=="research"&&x.rs)a.push(`<i class="kp k-rs">${esc(RSL[x.rs])}</i>`);if(isP(x)){a.push(`<i class="kp k-${x.k}">${esc(tyl(x))}</i>`);if(x.ag)a.push(`<i class="ag">${esc(x.ag)}</i>`);if(RL[x.rl])a.push(`<i class="rlc ${x.rl}">${RL[x.rl]}</i>`)}
+else if(["statement","research"].includes(x.k)&&VIEW!="advocacy"&&!(VIEW=="research"&&x.k=="research"))a.push(`<i class="kp k-${x.k}">${esc(tyl(x))}</i>`);
+if(x.dl){const n=dleft(x.dl);a.push(`<i class="dlc${n<0?" past":n<=7?" soon":""}">${esc(dueTxt(x))}</i>`)}
+(x.bl||[]).slice(0,3).forEach(b=>a.push(`<a class="bl" href="${esc(b.u)}" target="_blank" rel="noopener">${esc(b.n)}</a>`));
+return a.length?`<span class="fx">${a.join("")}</span>`:""};
+const hd=(x,i)=>{const g=grp(x);if(g<2)return i==0||grp(L[i-1])!=g?`<div class="dh ${g?"hft":"hbk"}">${g?"Featured":"Breaking"}</div>`:"";return VIEW=="saved"||F.k=="open"?"":dh(x,i)};
+const rowHTML=(x,i)=>{const k=uid(x),sv=isSv(x),tp=F.t&&(x.tx||[]).includes(F.t)?F.t:x.t;return `<div class="row${i==sel?" sel":""}${isNew(x)?" new":""}${gsel==k?" gx":""}${bkOn(x)?" brk":x.fe&&VIEW!="saved"?" fea":""}" data-i="${i}" data-t="${x.t}"><span class="dt" title="${fd(x.d)}">${ago(x.d)}</span><button class="sr" type="button" data-f="s" data-v="${esc(x.s)}" aria-label="Show only ${esc(x.s)} stories">${esc(x.s)}</button><button class="tg" type="button" data-f="t" data-v="${esc(tp)}" aria-label="Show only ${esc(tl(tp))} stories"${x.tx?` title="${esc([x.t].concat(x.tx).map(tl).join(", "))}"`:""}>${esc(tl(tp))}</button><span class="hl">${mark(x)}${VIEW=="saved"?`<a class="hla" href="${x.v?"#a/"+k:esc(x.u)}"${x.v?"":' target="_blank" rel="noopener"'}>${esc(x.h)}</a>`:`<span class="hla" role="button" tabindex="0">${esc(x.h)}</span>`}${x.c>1?`<button class="ht" type="button" data-g title="Covered by ${x.c} outlets" aria-label="Covered by ${x.c} outlets: show">▲${x.c}</button>`:""}${x.s=="The Yappie"&&x.m?`<span class="sd">${esc(x.m)}</span>`:""}${isP(x)&&x.la?`<span class="sd">Latest action: ${esc(x.la)}</span>`:""}${fx(x)}</span><button class="star" type="button" data-sv aria-pressed="${sv}" aria-label="${sv?"Remove from saved":"Save story"}" title="${sv?"Saved":"Save for later"}">${STAR}</button>${gsel==k&&x.rel&&x.rel.length?`<div class="mrel">${relHTML(x)}</div>`:""}</div>`};
+const opt=(v,l)=>`<option value="${esc(v)}">${esc(l)}</option>`;
+function setSel(el,html,val){if(el.dataset.k!=html){el.innerHTML=html;el.dataset.k=html}el.value=val}
+const srcAll=()=>{const m=new Map();vset().forEach(x=>m.set(x.s,(m.get(x.s)||0)+1));return [...m].sort((a,b)=>b[1]-a[1]||(a[0]<b[0]?-1:1)).map(a=>a[0])};
+const PT=["","open"].concat(PK);
+// ---- topic hubs: the collector tags every item with the hubs it belongs to ("hb") and lists the hubs in the feed (name and description). /hubs lists them; /hubs?h=<key> is one issue: its own timeline, and a panel of who has said what
+let _hx=null;const hubIdx=()=>{if(_hx&&_hx.D===D&&_hx.H===HUBS)return _hx.m;const m=new Map(HUBS.map(h=>[h.k,[]]));for(const x of D)if(x.hb)for(const k of x.hb){const a=m.get(k);if(a)a.push(x)}_hx={D,H:HUBS,m};return m};
+const hubItems=k=>hubIdx().get(k)||[],hubsOn=()=>HUBS.filter(h=>hubItems(h.k).length),curHub=()=>HUB&&HUBS.find(h=>h.k==HUB&&hubItems(h.k).length)||null,hubHref=k=>hrefOf("hubs")+(k?"?h="+encodeURIComponent(k):"");
+const hubChips=x=>{const a=(x.hb||[]).map(k=>HUBS.find(h=>h.k==k)).filter(Boolean);return a.length?`<div class="hchips"><span>Topic hub${a.length>1?"s":""}:</span>${a.map(h=>`<a href="${hubHref(h.k)}" data-hub="${esc(h.k)}">${esc(h.label)}</a>`).join("")}</div>`:""};
+// who has said what on an issue: every advocacy group the site follows (the sources of type "statement" that loaded, and any group with a statement stored) is either listed with its latest statement on the issue or among those with none collected yet; officials who spoke on it are listed separately
+const advOrgs=()=>{const s=new Set(STMT);for(const x of D)if(isAdv(x))s.add(x.s);return[...s]};
+function wswData(k){const items=hubItems(k),by=new Map(),off=new Map(),orgs=advOrgs();
+for(const x of items){if(!isAdv(x))continue;let o=by.get(x.s);if(!o)by.set(x.s,o={s:x.s,n:0,last:x});o.n++}
+for(const x of items){if(x.k!="govstmt"||by.has(x.s))continue;let o=off.get(x.s);if(!o)off.set(x.s,o={s:x.s,n:0,last:x});o.n++}
+const late=(a,b)=>pd(b.last.d)-pd(a.last.d);
+return{said:[...by.values()].sort(late),silent:orgs.filter(n=>!by.has(n)).sort((a,b)=>a.localeCompare(b)),off:[...off.values()].sort(late),total:orgs.length}}
+let WSWO=null,WSWM=false;const WSWLIM=5; // WSWO: the reader folded or opened the panel; WSWM: all the groups are listed (otherwise the first 5)
+const wrow=o=>`<div class="wr"><button type="button" class="wo" data-wo="${esc(o.s)}" aria-pressed="${F.s==o.s}" title="${F.s==o.s?"Show everyone again":"Show only "+esc(o.s)+" in this hub"}">${esc(o.s)}</button><span class="wc">${o.n} ${o.n>1?"items":"item"}</span><button type="button" class="wh" data-wopen="${esc(uid(o.last))}">${esc(o.last.h)}</button><span class="wd">${esc(fd(o.last.d))}</span></div>`;
+function renderHubHead(){const el=$("#hubhead"),h=VIEW=="hubs"&&curHub();if(!h){el.hidden=true;el.innerHTML="";return}
+const items=hubItems(h.k),w=wswData(h.k),nn=SINCE!=null?items.filter(x=>msOf(x)>SINCE).length:0,open=WSWO===null?!isMob():WSWO,said=WSWM?w.said:w.said.slice(0,WSWLIM),offs=WSWM?w.off:w.off.slice(0,3),more=w.said.length>WSWLIM||w.off.length>3;
+el.hidden=false;el.innerHTML=`<a class="hback" href="${hubHref("")}" data-hub="">← All topic hubs</a>${h.blurb?`<p class="hblurb">${esc(h.blurb)}</p>`:""}<div class="hstat"><span><b>${items.length.toLocaleString()}</b> ${items.length==1?"item":"items"}${nn?` (<b>${nn.toLocaleString()}</b> new)`:""}</span><span><b>${w.said.length}</b> of ${w.total} advocacy groups have a statement here</span><span>Latest ${esc(fd(items[0].d))}</span></div>
+${hubComing(h.k)}<details class="wsw"${open?" open":""}><summary>Who’s saying what<span class="wn">${w.said.length?`${w.said.length} ${w.said.length==1?"group has":"groups have"} weighed in`:"No advocacy group statement collected yet"}</span></summary>
+${said.length?`<div class="wl">${said.map(wrow).join("")}</div>`:""}
+${w.silent.length?`<div class="wq"><b>No statement collected yet from ${w.silent.length}:</b> ${w.silent.map(n=>esc(n)).join(", ")}</div>`:""}
+${offs.length?`<div class="wg"><b>Officials and agencies</b><div class="wl">${offs.map(wrow).join("")}</div></div>`:""}
+${more?`<div class="wmr"><button type="button" class="wo" data-wmore aria-expanded="${WSWM}">${WSWM?"Show fewer":"Show all"+(w.said.length>WSWLIM?` ${w.said.length} groups`:"")+(w.off.length>3?(w.said.length>WSWLIM?" and ":" ")+`${w.off.length} officials and agencies`:"")}</button></div>`:""}
+<div class="wnote">From the statements this site collects from advocacy groups and official .gov pages. A group may have spoken elsewhere (social media, interviews) or under other wording.</div></details>`}
+function renderHubDir(){const hs=hubsOn().map(h=>{const it=hubItems(h.k);return{h,n:it.length,w:wswData(h.k).said.length,nw:SINCE!=null?it.filter(x=>msOf(x)>SINCE).length:0,last:it[0]}}).sort((a,b)=>pd(b.last.d)-pd(a.last.d)||a.h.label.localeCompare(b.h.label));
+$("#ttl").textContent="Topic hubs";for(const id of["#vtool","#ptabs","#chips","#nbar","#pcov","#hubhead"]){$(id).hidden=true}$("#vtool").innerHTML="";$("#chips").innerHTML="";$("#nbar").innerHTML="";$("#hubhead").innerHTML="";$("#more").innerHTML="";$("#dtl").innerHTML="";L=[];sel=0;clearTimeout(brkT);
+$("#rows").innerHTML=hs.length?`<p class="hintro">One page per issue: the news, policy items, statements and research about it in a single timeline, and who has said what.</p><div class="hdir">${hs.map(({h,n,w,nw,last})=>`<a class="hcard" href="${hubHref(h.k)}" data-hub="${esc(h.k)}"><h3>${esc(h.label)}</h3>${h.blurb?`<p>${esc(h.blurb)}</p>`:""}<div class="hmeta"><span><b>${n.toLocaleString()}</b> ${n==1?"item":"items"}</span><span><b>${w}</b> ${w==1?"group":"groups"} weighed in</span>${nw?`<span class="hnw">${nw.toLocaleString()} new</span>`:""}<span>Latest ${esc(fd(last.d))}</span></div></a>`).join("")}</div>`:`<div class="empty">No topic hubs yet. They appear here as soon as the site finds stories, policy items or statements about an issue it follows.</div>`;
+if(!viewing)document.title=baseTitle}
+function openHub(k){closeSheet(()=>{F=F0();$("#q").value="";sel=0;gsel="";shown=PAGE;feedY=0;try{history.pushState(null,"",hubHref(k))}catch(e){location.href=hubHref(k);return}route();window.scrollTo(0,0)})}
+function renderPtabs(){const w=$("#ptabs"),pol=VIEW=="policy",rsv=VIEW=="research",on=pol||VIEW=="feed"||rsv;w.hidden=!on;$("#pcov").hidden=!pol;if(!on)return;
+const ks=pol?PT:[""].concat((rsv?Object.keys(RSL):Object.keys(KL).filter(k=>!isPK(k)&&k!="open")).filter(k=>cnt("k",k)>0||F.k==k));
+w.setAttribute("aria-label",pol?"Policy type":rsv?"Kind of finding":"Story type");
+w.innerHTML=ks.map(k=>`<button type="button" class="pt${F.k==k?" on":""}" data-k="${k}" aria-pressed="${F.k==k}">${esc(k?(rsv?RSP[k]:KL[k]):"All")}</button>`).join("");
+if(!pol)return;
+const ok=[...new Set(PSTAT.filter(s=>s.ok&&!s.note).map(s=>s.name.replace(/ \(.*\)$/,"")))],bad=[...new Set(PSTAT.filter(s=>!s.ok||s.note).map(s=>s.name.replace(/ \(.*\)$/,"")+(s.note?" ("+s.note.replace(/^skipped: /,"")+")":"")))];
+$("#pcov").textContent=(ok.length?"From official .gov sources: "+ok.join(" · ")+".":"Official .gov sources only.")+(bad.length?" Not loaded this time: "+bad.join(", ")+".":"")}
+// ---- filter rail: each facet is a collapsible group whose header shows what is selected; long lists show the biggest few and "Show all" ----
+const OPENF=(()=>{try{return JSON.parse(localStorage.getItem("fo2")||"{}")}catch(e){return{}}})(),DEFO={t:1,d:1,c:0,r:0,s:0},DEFN={t:1,d:1,c:0,r:0,s:0},DEFA={t:1,d:1,c:0,r:0,s:0},MORE={},CAP={t:99,c:99,r:99,s:6,d:8}; // Advocacy opens on its organizations first and has its own remembered state (keys "at","as"…) // only the long Sources list is cut short; topics and communities are short and keep their fixed order
+const okey=f=>VIEW=="advocacy"?"a"+f:VIEW=="research"?"x"+f:VIEW=="policy"?"p"+f:f,fOpen=f=>{const v=OPENF[okey(f)];return v===undefined?!!(VIEW=="advocacy"?DEFA:VIEW=="feed"||VIEW=="research"?DEFN:DEFO)[f]:!!v},fStore=()=>{try{localStorage.setItem("fo2",JSON.stringify(OPENF))}catch(e){}},fToggle=f=>{OPENF[okey(f)]=!fOpen(f);fStore()};
+function renderFilters(){
+const rb=(f,v,label,n)=>`<button class="ri${F[f]==v?" on":""}" data-f="${f}" data-v="${esc(v)}" aria-pressed="${F[f]==v}">${esc(label)}</button>`; // the count n still decides which rows appear, but it is not shown
+const tl_=TAGS.map(t=>[t,cnt("t",t)]).filter(([t,n])=>n>0||F.t==t),cl_=TAXO.c.map(([k,l])=>[k,l,cnt("c",k)]).filter(([k,,n])=>n>0||F.c==k),sl_=TAXO.s.map(([k,l])=>[k,l,cnt("st",k)]).filter(([k,,n])=>n>0||F.st==k),kl_=(VIEW=="research"?Object.keys(RSL):Object.keys(KL).filter(k=>!isPK(k)&&k!="open")).map(k=>[k,VIEW=="research"?RSP[k]:KL[k],cnt("k",k)]).filter(([k,,n])=>n>0||F.k==k),rl_=Object.keys(RL).map(k=>[k,RL[k],cnt("r",k)]).filter(([k,,n])=>n>0||F.r==k);
+const MAIN4=MAINS();
+const SL=srcAll().map(s=>({v:s,l:s,n:cnt("s",s),x:H[s]?`<a href="${H[s]}" target="_blank" rel="noopener" title="Open ${esc(s)}" aria-label="Open ${esc(s)} website">↗</a>`:""})).filter(o=>o.n>0||F.s==o.v);
+if(F.s=="__other")SL.push({v:"__other",l:"Other sources",n:cnt("s","__other"),x:""});
+const list=(f,box,items,none)=>{const el=$(box),cap=CAP[f],many=items.length>cap+1,more=!!MORE[f];let vis=items;
+if(many&&!more){vis=items.slice(0,cap);const s=F[f]&&items.find(o=>o.v==F[f]);if(s&&!vis.includes(s))vis[cap-1]=s}
+el.classList.toggle("sc",many&&more&&items.length>10);
+el.innerHTML=items.length?vis.map(o=>f=="s"?`<div class="r2">${rb(f,o.v,o.l,o.n)}${o.x||'<span class="xs"></span>'}</div>`:rb(f,o.v,o.l,o.n)).join("")+(many?`<button type="button" class="fexp" data-fexp="${f}" aria-expanded="${more}">${more?"Show fewer":"Show all"}</button>`:""):`<div class="none">${none}</div>`};
+const head=(f,chosen)=>{const w=$(`.fac[data-fac="${f}"]`),o=fOpen(f),v=w.querySelector(".fv");w.classList.toggle("on",o);w.classList.toggle("hs",!!chosen);w.querySelector(".ft").setAttribute("aria-expanded",o);w.querySelector(".fb2").hidden=!o;v.textContent=chosen||"";v.classList.toggle("d",!chosen);w.querySelector(".fxb").hidden=!chosen;if(f=="s"){const nm=VIEW=="advocacy"?"Groups":"Sources";w.querySelector(".fn").textContent=nm;w.querySelector(".fxb").setAttribute("aria-label","Clear "+nm.toLowerCase()+" filter")}};
+const tI=tl_.map(([t,n])=>({v:t,l:tl(t),n})),cI=cl_.map(([v,l,n])=>({v,l,n})),rI=rl_.map(([v,l,n])=>({v,l,n}));
+list("t","#tags",tI,"None in this view");head("t",F.t&&tl(F.t));
+const dm=cntMap().d,dI=[["7d","Last 7 days"],["30d","Last 30 days"]].map(([v,l])=>({v,l,n:dm.get(v)||0})).concat([...dm.keys()].filter(k=>/^\d{4}-\d{2}$/.test(k)).sort().reverse().map(k=>({v:k,l:mlab(k),n:dm.get(k)}))).filter(o=>o.n>0||F.d==o.v);
+if(/^\d{4}-\d{2}$/.test(F.d)&&!dI.some(o=>o.v==F.d))dI.push({v:F.d,l:mlab(F.d),n:0});
+list("d","#dates",dI,"No dates in this view");head("d",F.d&&dlabel(F.d,1));
+{const rg=DRG.exec(F.d)||[];for(const[a,b]of[["dFrom","dTo"],["mFrom","mTo"]]){const A=$("#"+a),B=$("#"+b);if(document.activeElement!==A)A.value=rg[1]||"";if(document.activeElement!==B)B.value=rg[2]||""}
+$("#drm").hidden=!rg.length;setSel(selD,opt("","Any date")+dI.map(o=>opt(o.v,o.l)).join("")+opt("..","Custom range…"),rg.length?"..":F.d)}
+list("c","#comms",cI,"None in this view");head("c",F.c&&CL[F.c]);
+list("r","#rels",rI,"None in this view");head("r",F.r&&RL[F.r]);
+if(VIEW=="feed"||VIEW=="research"){ // News and Research: the main outlets for the page, then ONE combined "Other sources" row (everything else together); a single other outlet picked from a headline shows as its own selected row
+const row=o=>`<div class="r2">${rb("s",o.v,o.l,o.n)}${o.x||'<span class="xs"></span>'}</div>`,mn=MAIN4.map(m=>SL.find(o=>o.v==m)).filter(Boolean),one=F.s&&F.s!="__other"&&!MAIN4.includes(F.s)?SL.find(o=>o.v==F.s):null,on=cnt("s","__other"),el=$("#srcs");
+el.classList.remove("sc");el.innerHTML=mn.concat(one?[one]:[]).concat(on>0||F.s=="__other"?[{v:"__other",l:"Other sources",n:on,x:""}]:[]).map(row).join("")||`<div class="none">None in this view</div>`}
+else list("s","#srcs",SL,"None in this view");head("s",F.s&&(F.s=="__other"?"Other sources":F.s));
+setSel(selR,opt("","All relevance")+rl_.map(([k,l])=>opt(k,l)).join(""),F.r);
+renderPtabs();
+const stO=opt("","All states")+sl_.map(([k,l])=>opt(k,l)).join("");
+setSel(selSTd,stO,F.st);setSel(selST,stO,F.st);
+setSel(selT,opt("","All topics")+tl_.map(([t])=>opt(t,tl(t))).join(""),F.t);
+setSel(selS,opt("",VIEW=="advocacy"?"All groups":"All sources")+((VIEW=="feed"||VIEW=="research")?SL.filter(o=>MAIN4.includes(o.v)).sort((a,b)=>MAIN4.indexOf(a.v)-MAIN4.indexOf(b.v)).map(o=>opt(o.v,o.l)).join("")+(F.s&&F.s!="__other"&&!MAIN4.includes(F.s)?opt(F.s,F.s):"")+(cnt("s","__other")>0||F.s=="__other"?opt("__other","Other sources"):""):SL.map(o=>opt(o.v,o.l)).join("")),F.s);
+setSel(selC,opt("","All communities")+cl_.map(([k,l])=>opt(k,l)).join(""),F.c);
+setSel(selK,opt("",VIEW=="research"?"All findings":"All types")+kl_.map(([k,l])=>opt(k,l)).join(""),F.k);
+$("#fsT").classList.toggle("on",!!F.t);$("#fsS").classList.toggle("on",!!F.s);
+const nx=(VIEW=="policy"?["c","st","r","d"]:VIEW=="advocacy"?["c","st","d"]:["c","st","k","d"]).filter(f=>F[f]).length,fb=$("#fbn");fb.textContent=nx||"";fb.hidden=!nx;$("#fbtn").classList.toggle("on",!!nx);
+const act=[["t",F.t&&tl(F.t)],["c",F.c&&CL[F.c]],["st",F.st&&SLB[F.st]],["d",F.d&&dlabel(F.d)],["n",F.n&&"New since your last visit"],["k",VIEW!="policy"&&VIEW!="advocacy"&&F.k&&(RSP[F.k]||KL[F.k])],["r",F.r&&RL[F.r]],["s",F.s&&(F.s=="__other"?"Other sources":F.s)],["q",F.q&&"“"+F.q+"”"]].filter(a=>a[1]);
+$("#chips").innerHTML=act.length?act.map(([f,l])=>`<button class="chp" type="button" data-x="${f}" aria-label="Remove filter: ${esc(l)}">${esc(l)}<i aria-hidden="true">×</i></button>`).join("")+`<button class="clr" id="clr" type="button">Clear all</button>`:"";
+$("#chips").hidden=!act.length;
+}
+const fsince=t=>new Date(t).toLocaleString("en-US",{month:"short",day:"numeric",hour:"numeric",minute:"2-digit"});
+let _nc=null;const newCounts=()=>{if(SINCE==null)return null;if(_nc&&_nc.D===D&&_nc.S===SINCE)return _nc.c;const c={feed:0,policy:0,advocacy:0,research:0};for(const x of D){if(msOf(x)<=SINCE)continue;if(isP(x))c.policy++;else if(isAdv(x))c.advocacy++;else if(x.k!="research")c.feed++;if(isRes(x))c.research++}_nc={D,S:SINCE,c};return c};
+function renderNbar(){const el=$("#nbar");if(VIEW=="saved"||SINCE==null){el.hidden=true;el.innerHTML="";return}let n=0;for(const x of vset())if(msOf(x)>SINCE)n++;
+if(!n&&!F.n){el.hidden=true;el.innerHTML="";return}el.hidden=false;el.innerHTML=`<span class="nt"><i class="nd2" aria-hidden="true"></i><b>${n.toLocaleString()} new</b> since your last visit, ${esc(fsince(SINCE))}</span><span class="na"><button type="button" data-n="only" aria-pressed="${!!F.n}">${F.n?"Show all":"Show only new"}</button><button type="button" data-n="seen">Mark all as seen</button></span>`}
+function markSeen(){SINCE=Date.now();try{localStorage.setItem("ypVS",String(SINCE))}catch(e){}F.n="";sel=0;render()}
+// ---- events and funding: data/events.json (hearings, webinars, grant and fellowship deadlines) is written by scripts/events.mjs. /events lists them or shows a month; a topic hub shows what is coming up on its issue.
+let EV=[],EVLOAD=0,EVGEN="",_es="";const E={k:"",v:"list",m:"",day:"",hub:"",past:false};
+const EVK={hearing:"Hearing",event:"Event or webinar",funding:"Funding deadline"},EVKP={hearing:"Hearings",event:"Events and webinars",funding:"Funding and deadlines"};
+const evk=d=>d.getFullYear()+"-"+p2(d.getMonth()+1)+"-"+p2(d.getDate()),ymd=s=>{const a=s.split("-").map(Number);return new Date(a[0],a[1]-1,a[2])},nextDay=s=>{const d=ymd(s);d.setDate(d.getDate()+1);return evk(d)};
+const evAd=x=>!!x.ad||x.d.length==10,evDay=x=>evAd(x)?x.d.slice(0,10):evk(new Date(x.d)),evLast=x=>evAd(x)?(x.e||x.d).slice(0,10):evk(new Date(x.e||x.d));
+const evLive=x=>evAd(x)?evLast(x)>=TODAY:(x.e?Date.parse(x.e):Date.parse(x.d)+36e5)>=Date.now();
+const evUrl=x=>x.u&&/^https?:\/\//i.test(x.u)?x.u:"";
+const evOrder=(a,b)=>(evAd(a)?ymd(a.d.slice(0,10)).getTime():Date.parse(a.d))-(evAd(b)?ymd(b.d.slice(0,10)).getTime():Date.parse(b.d))||a.t.localeCompare(b.t);
+function readE(){const p=new URLSearchParams(location.search),g=k=>p.get(k)||"";E.k=EVK[g("ek")]?g("ek"):"";E.v=g("ev")=="month"?"month":"list";E.m=/^\d{4}-(0[1-9]|1[0-2])$/.test(g("em"))?g("em"):"";E.day=/^\d{4}-\d{2}-\d{2}$/.test(g("ed"))?g("ed"):"";E.hub=g("eh");E.past=g("ep")=="1"}
+const dayFmt=(s,o)=>ymd(s).toLocaleDateString(undefined,o||{weekday:"short",month:"short",day:"numeric",year:"numeric"});
+function evTime(x){if(evAd(x)){const a=evDay(x),b=evLast(x);return(x.k=="funding"?"Due ":"")+dayFmt(a)+(b>a?" to "+dayFmt(b):"")+(x.k=="funding"?"":" · all day")}
+const s=new Date(x.d),o={weekday:"short",month:"short",day:"numeric",hour:"numeric",minute:"2-digit"};let r=s.toLocaleString(undefined,o);const tz=new Intl.DateTimeFormat(undefined,{timeZoneName:"short"}).formatToParts(s).find(q=>q.type=="timeZoneName");
+if(x.e){const e=new Date(x.e);r+=" to "+(evk(e)==evk(s)?e.toLocaleTimeString(undefined,{hour:"numeric",minute:"2-digit"}):e.toLocaleString(undefined,o))}return r+(tz?" "+tz.value:"")}
+function evBlock(x){const d=evAd(x)?ymd(evDay(x)):new Date(x.d),L=(o)=>d.toLocaleDateString(undefined,o);return`<div class="evd" aria-hidden="true"><span>${esc(L({month:"short"}))}</span><b>${d.getDate()}</b><span>${esc(L({weekday:"short"}))}</span></div>`}
+function evItem(x){const u=evUrl(x),past=!evLive(x),sub=[evTime(x),x.o,x.loc].filter(Boolean).map(esc).join(" · ");
+return`<article class="evi${past?" past":""}">${evBlock(x)}<div class="evm"><div class="evt"><span class="evk k-${x.k}">${esc(x.sub&&x.k=="funding"?x.sub:EVK[x.k]||"Event")}</span>${u?`<a href="${esc(u)}" target="_blank" rel="noopener">${esc(x.t)}</a>`:`<span>${esc(x.t)}</span>`}${past?`<span class="evk">Past</span>`:""}</div><div class="evs">${sub}</div>${x.m?`<p class="evx">${esc(x.m)}</p>`:""}${hubChips(x)}<div class="eva"><button type="button" data-eadd="${esc(x.id)}">Add to calendar</button>${u?`<a href="${esc(u)}" target="_blank" rel="noopener">${x.k=="hearing"?"Hearing page":x.k=="funding"?"Opportunity page":"Event page"}<span class="vh"> (opens in a new tab)</span></a>`:""}</div></div></article>`}
+function evIcsText(x){const z=ms=>new Date(ms).toISOString().replace(/[-:]/g,"").replace(/\.\d+/,""),e=s=>String(s||"").replace(/\\/g,"\\\\").replace(/;/g,"\\;").replace(/,/g,"\\,").replace(/\r?\n/g,"\\n");
+const L=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//The Yappie Pro//Events//EN","BEGIN:VEVENT","UID:"+x.id+"@pro.theyappie.com","DTSTAMP:"+z(Date.now())];
+if(evAd(x))L.push("DTSTART;VALUE=DATE:"+evDay(x).replace(/-/g,""),"DTEND;VALUE=DATE:"+nextDay(evLast(x)).replace(/-/g,""));else L.push("DTSTART:"+z(Date.parse(x.d)),"DTEND:"+z(x.e?Date.parse(x.e):Date.parse(x.d)+36e5));
+L.push("SUMMARY:"+e(x.t));const d=[EVK[x.k],x.o&&"From "+x.o,x.m].filter(Boolean).join(". ");if(d)L.push("DESCRIPTION:"+e(d));if(x.loc)L.push("LOCATION:"+e(x.loc));if(evUrl(x))L.push("URL:"+evUrl(x));L.push("END:VEVENT","END:VCALENDAR");const te=new TextEncoder(),fold=l=>{const o=[];let c="",n=0;for(const ch of l){const w=te.encode(ch).length;if(n+w>(o.length?74:75)){o.push(c);c="";n=0}c+=ch;n+=w}o.push(c);return o.join("\r\n ")};return L.map(fold).join("\r\n")+"\r\n"}
+function evDownload(x){try{const b=new Blob([evIcsText(x)],{type:"text/calendar"}),u=URL.createObjectURL(b),a=document.createElement("a");a.href=u;a.download=(x.t.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"").slice(0,40)||"event")+".ics";document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),2000);toast("Calendar file downloaded. Open it to add the event.")}catch(e){toast("Couldn’t make the calendar file.")}}
+function evMonthView(base){const now=new Date(),ym=E.m||evk(now).slice(0,7),Y=+ym.slice(0,4),M=+ym.slice(5,7),lead=new Date(Y,M-1,1).getDay(),days=new Date(Y,M,0).getDate(),weeks=Math.ceil((lead+days)/7),by=new Map();
+for(const x of base){let d=evDay(x);const last=evLast(x);for(let n=0;n<62&&d<=last;n++){if(!by.has(d))by.set(d,[]);by.get(d).push(x);d=nextDay(d)}}
+const title=new Date(Y,M-1,1).toLocaleDateString(undefined,{month:"long",year:"numeric"}),pm=evk(new Date(Y,M-2,1)).slice(0,7),nm=evk(new Date(Y,M,1)).slice(0,7),wd=[0,1,2,3,4,5,6].map(i=>new Date(2024,0,7+i).toLocaleDateString(undefined,{weekday:"short"}));
+let g=`<div class="evnav"><h2>${esc(title)}</h2><button type="button" data-em="${pm}" aria-label="Previous month">← Previous</button><button type="button" data-em="today">This month</button><button type="button" data-em="${nm}" aria-label="Next month">Next →</button></div><table class="cal"><caption class="vh">${esc(title)}: days with events can be selected to list them below</caption><thead><tr>${wd.map(w=>`<th scope="col">${esc(w)}</th>`).join("")}</tr></thead><tbody>`;
+for(let w=0;w<weeks;w++){g+="<tr>";for(let i=0;i<7;i++){const n=w*7+i-lead+1;if(n<1||n>days){g+='<td class="evtd out"></td>';continue}const key=Y+"-"+p2(M)+"-"+p2(n),a=by.get(key)||[];
+g+=`<td class="evtd${key==TODAY?" tod":""}${E.day==key?" sel":""}">${a.length?`<button type="button" class="evdn" data-ed="${key}" aria-pressed="${E.day==key}" aria-label="${a.length} ${a.length==1?"event":"events"} on ${esc(dayFmt(key,{weekday:"long",month:"long",day:"numeric"}))}">${n}<span class="evn" aria-hidden="true">${a.length}</span></button>`:`<span class="evdn">${n}</span>`}${a.slice(0,3).map(x=>`<button type="button" class="evc k-${x.k}" data-ed="${key}" title="${esc(x.t)}">${esc(x.t)}</button>`).join("")}${a.length>3?`<span class="evmore">+${a.length-3} more</span>`:""}</td>`}g+="</tr>"}
+g+="</tbody></table>";const first=Y+"-"+p2(M)+"-01",last=Y+"-"+p2(M)+"-"+p2(days),list=(E.day?by.get(E.day)||[]:[...new Set([...by].filter(([k])=>k>=first&&k<=last).flatMap(([,v])=>v))]).sort(evOrder);
+g+=`<div class="evm0"><div class="evmh">${E.day?esc(dayFmt(E.day,{weekday:"long",month:"long",day:"numeric",year:"numeric"}))+` <button type="button" class="wo" data-ed="">Show the whole month</button>`:"In "+esc(title)}</div>${list.length?list.map(evItem).join(""):`<div class="empty">Nothing listed for ${E.day?"this day":"this month"}.</div>`}</div>`;return g}
+function renderEvents(){for(const id of["#vtool","#ptabs","#chips","#nbar","#pcov","#hubhead"])$(id).hidden=true;$("#vtool").innerHTML="";$("#chips").innerHTML="";$("#nbar").innerHTML="";$("#hubhead").innerHTML="";$("#more").innerHTML="";$("#dtl").innerHTML="";L=[];sel=0;clearTimeout(brkT);
+$("#ttl").textContent="Events and funding";if(!viewing)document.title="Events and funding | "+baseTitle;
+if(!EVLOAD){$("#rows").innerHTML='<div class="empty">Loading events…</div>';return}
+const hubs=HUBS.filter(h=>EV.some(x=>(x.hb||[]).includes(h.k)));if(E.hub&&!hubs.some(h=>h.k==E.hub))E.hub="";
+const base=EV.filter(x=>!E.hub||(x.hb||[]).includes(E.hub)),cnt=k=>base.filter(x=>(!k||x.k==k)&&evLive(x)).length,kb=base.filter(x=>!E.k||x.k==E.k);
+const bar=`<div class="evbar"><div class="evseg" role="group" aria-label="Kind of event">${[["","All"]].concat(Object.keys(EVK).map(k=>[k,EVKP[k]])).map(([k,l])=>`<button type="button" data-ek="${k}" aria-pressed="${E.k==k}">${esc(l)} <i>${cnt(k)}</i></button>`).join("")}</div><div class="evseg" role="group" aria-label="View"><button type="button" data-ev="list" aria-pressed="${E.v!="month"}">List</button><button type="button" data-ev="month" aria-pressed="${E.v=="month"}">Month</button></div>${hubs.length?`<label class="evsel">Topic <select id="evhub"><option value="">All topics</option>${hubs.map(h=>`<option value="${esc(h.k)}"${E.hub==h.k?" selected":""}>${esc(h.label)}</option>`).join("")}</select></label>`:""}${E.v!="month"?`<label class="evchk"><input type="checkbox" id="evpast"${E.past?" checked":""}> Include the past 30 days</label>`:""}</div>`;
+const sub=`<div class="evsub"><span>Get these in your calendar:</span><a href="${esc(BASE+"data/events.ics")}" download>Download the calendar file</a><button type="button" data-ecopy>Copy the address to subscribe</button></div>`;
+let body;if(E.v=="month")body=evMonthView(kb);else{const lo=Date.now()-30*864e5,a=kb.filter(x=>evLive(x)||(E.past&&(evAd(x)?ymd(evLast(x)).getTime():Date.parse(x.e||x.d))>=lo)).sort(evOrder);let cur="",h="";
+for(const x of a){const m=evDay(x).slice(0,7);if(m!=cur){cur=m;h+=`<div class="evmh">${esc(ymd(m+"-01").toLocaleDateString(undefined,{month:"long",year:"numeric"}))}</div>`}h+=evItem(x)}
+body=`<div class="evm0">${a.length?h:`<div class="empty">${EV.length?"Nothing upcoming matches these choices.":"No events or deadlines are listed right now."}${E.k||E.hub?' <button type="button" class="clr" data-eclr>Show all events</button>':""}</div>`}</div>`}
+$("#rows").innerHTML=bar+sub+body+`<p class="evnote">Hearings come from Congress.gov, grant deadlines from Grants.gov, and the rest from calendars of AAPI organizations and entries added by this site's editors. Dates and times can change: check the organizer's page before you rely on one.${EVGEN?" Updated "+esc(fd(EVGEN))+".":""}</p>`}
+function evSet(f,focus){f();syncQS();_es=location.search;render();if(focus){const n=document.querySelector(focus);if(n)n.focus({preventScroll:true})}}
+$("#rows").addEventListener("click",e=>{if(VIEW!="events")return;const t=e.target.closest("[data-ek],[data-ev],[data-em],[data-ed],[data-eadd],[data-ecopy],[data-eclr]");if(!t)return;const d=t.dataset;
+if(d.eadd!==undefined){const x=EV.find(y=>y.id==d.eadd);if(x)evDownload(x);return}
+if(d.ecopy!==undefined){doCopy(origin()+BASE+"data/events.ics",null,"Calendar address copied. In your calendar app choose “subscribe” or “add calendar from URL” and paste it.");return}
+if(d.eclr!==undefined){evSet(()=>{E.k="";E.hub=""},"");return}
+if(d.ek!==undefined)evSet(()=>{E.k=d.ek;E.day=""},`[data-ek="${d.ek}"]`);else if(d.ev)evSet(()=>{E.v=d.ev;E.day=""},`[data-ev="${d.ev}"]`);
+else if(d.em)evSet(()=>{E.m=d.em=="today"?"":d.em;E.day=""},`[data-em="${d.em}"]`);else if(d.ed!==undefined)evSet(()=>{E.day=E.day==d.ed?"":d.ed;if(E.day&&!E.m)E.m=E.day.slice(0,7)},d.ed?`.evdn[data-ed="${d.ed}"]`:"")});
+$("#rows").addEventListener("change",e=>{if(VIEW!="events")return;if(e.target.id=="evhub")evSet(()=>{E.hub=e.target.value;E.day=""},"#evhub");else if(e.target.id=="evpast")evSet(()=>{E.past=e.target.checked},"#evpast")});
+const evFor=k=>EV.filter(x=>(x.hb||[]).includes(k)&&evLive(x)).sort(evOrder);
+function hubComing(k){const a=evFor(k);if(!a.length)return"";return`<div class="hcome"><b>Coming up</b><ul>${a.slice(0,4).map(x=>{const u=evUrl(x),d=evAd(x)?dayFmt(evDay(x),{month:"short",day:"numeric"}):new Date(x.d).toLocaleDateString(undefined,{month:"short",day:"numeric"});return`<li><span>${esc(d)}</span>${u?`<a href="${esc(u)}" target="_blank" rel="noopener">${esc(x.t)}</a>`:esc(x.t)} <span>${esc(EVK[x.k]||"")}</span></li>`}).join("")}</ul><a class="hall" href="${esc(hrefOf("events")+"?eh="+encodeURIComponent(k))}" data-ehub="${esc(k)}">${a.length>4?`All ${a.length} upcoming on this issue`:"Open in the events calendar"}</a></div>`}
+document.addEventListener("click",e=>{const a=e.target.closest&&e.target.closest("a[data-ehub]");if(!a||e.defaultPrevented||e.button||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;e.preventDefault();closeSheet(()=>{try{history.pushState(null,"",a.getAttribute("href"))}catch(x){location.href=a.getAttribute("href");return}route();window.scrollTo(0,0)})});
+function loadEvents(){return fetch(BASE+"data/events.json",{cache:"no-cache"}).then(r=>{if(!r.ok)throw 0;return r.json()}).then(j=>{EV=(Array.isArray(j.events)?j.events:[]).filter(x=>x&&typeof x.id=="string"&&typeof x.t=="string"&&typeof x.d=="string"&&/^\d{4}-\d{2}-\d{2}/.test(x.d)&&EVK[x.k]);EVGEN=j.generated||"";EVLOAD=1;tabCounts();if(VIEW=="events"||(VIEW=="hubs"&&HUB))render()}).catch(()=>{EVLOAD=1;if(VIEW=="events")render()})}
+function tabCounts(){$("#nSv").textContent=SV.length||"";$("#tabHubs").hidden=!HUBS.length&&VIEW!="hubs";$("#tabEvents").hidden=!EV.some(evLive)&&VIEW!="events";const nc=newCounts();$$("#tabs a").forEach(a=>{let b=a.querySelector("b.nn");const n=nc&&nc[a.dataset.v]||0;if(n){if(!b){b=document.createElement("b");b.className="nn";a.append(b)}b.textContent=n>99?"99+":String(n);b.title=n+" new since your last visit";b.setAttribute("aria-label",n+" new since your last visit")}else if(b)b.remove()});$$("#tabs a").forEach(a=>{const on=a.dataset.v==VIEW;a.classList.toggle("on",on);on?a.setAttribute("aria-current","page"):a.removeAttribute("aria-current")})}
+const TITLES={feed:"Top headlines",policy:"Policy tracker",advocacy:"Advocacy statements",research:"Research",hubs:"Topic hubs",events:"Events and funding",saved:"Saved stories"};
+function render(){
+{const t=isoD(new Date());if(t!=TODAY){TODAY=t;_dr.clear()}}RN=Date.now();
+if(VIEW=="hubs"&&HUB&&HUBS.length&&!curHub())HUB="";$("#feed").dataset.v=VIEW;if(VIEW=="hubs"&&curHub())$("#feed").setAttribute("data-h","1");else $("#feed").removeAttribute("data-h");$("#ttl").textContent=VIEW=="hubs"&&curHub()?curHub().label:TITLES[VIEW];$("#dtlts").textContent="Details";$("#hsrc").textContent=VIEW=="advocacy"?"GROUP":"SOURCE";tabCounts();syncQS();$("#feed").dataset.sn=SINCE!=null&&VIEW!="saved"?"1":"";
+if(VIEW=="hubs"&&!curHub()){renderHubDir();return}
+if(VIEW=="events"){renderEvents();return}
+$("#vtool").hidden=true;$("#vtool").innerHTML="";
+renderFilters();renderNbar();renderHubHead();if(!viewing)document.title=VIEW=="hubs"&&curHub()?curHub().label+" | "+baseTitle:baseTitle;const NOUN=VIEW=="policy"||VIEW=="research"||VIEW=="hubs"?"items":VIEW=="advocacy"?"statements":"stories";
+L=VIEW=="saved"?savedList():sortPol(vset().filter(x=>hit(x)));
+if(keepSel){const i=L.indexOf(keepSel);if(i>=0)sel=i;keepSel=null}
+const sg=JSON.stringify(F)+VIEW+HUB;if(sg!=sig){sig=sg;shown=PAGE}if(sel>=L.length)sel=Math.max(0,L.length-1);if(VIEW!="saved"&&sel>=shown)shown=Math.ceil((sel+1)/PAGE)*PAGE;
+const lim=VIEW!="saved"?shown:1e9,any=F.t||F.c||F.st||F.k||F.s||F.q||F.d||F.n;
+$("#rows").innerHTML=L.length?L.slice(0,lim).map((x,i)=>hd(x,i)+rowHTML(x,i)).join(""):`<div class="empty">${VIEW=="saved"?"Nothing saved yet. Tap the star on a story to save it here.":VIEW=="hubs"?"Nothing in this hub matches these filters.":VIEW=="advocacy"?(vset().length?"No statements match these filters.":"No statements yet. This page fills from the press-release pages of AAPI advocacy organizations each time the site updates."):VIEW=="research"?(vset().length?"No research items match these filters.":"Nothing here yet. This page lists news stories and organization statements that mention new data, reports, studies or polls, each time the site updates."):VIEW=="policy"?(vset().length?"No policy items match these filters.":"Nothing in the tracker yet. It fills from official .gov sources (Federal Register, Congress.gov, the White House, the Justice Department, USCIS and the Congressional Asian Pacific American Caucus) each time the site updates."):"No headlines match these filters."}${any?'<br><button type="button" class="clr" data-act="clearall">Clear filters</button>':""}</div>`;
+$("#more").innerHTML=VIEW!="saved"?(L.length>shown?`<button class="morebtn" data-more>Load more ${NOUN}</button>`:(L.length>PAGE?`<div class="end">End of ${VIEW=="policy"?"tracker":VIEW=="feed"?"feed":"list"}</div>`:"")):"";
+if(VIEW=="saved"&&L.length){$("#vtool").hidden=false;$("#vtool").innerHTML=`<button type="button" data-act="clearsaved">Remove all</button><span class="vnote2">Saved in this browser only.</span>`}
+renderDetail();
+clearTimeout(brkT);{let nx=1/0;for(const x of L){if(!x.bu)continue;const t=Date.parse(x.bu);if(t>RN&&t<nx)nx=t}if(nx<1/0)brkT=setTimeout(()=>{keepSel=L[sel];render()},Math.min(nx-Date.now()+500,2e9))} // when a breaking mark runs out, the item goes back to its usual place and look
+}
+// ---- deployment settings (the WordPress plugin fills these in) ----
+const OUTBASE="data/";
+// ---- addresses: / is News; /policy, /advocacy, /research and /saved are the other pages; an article opens as #a/<id> on top of its page ----
+const SECS=["policy","advocacy","research","hubs","events","saved"],ALIAS={bills:"policy"};
+const BASE=location.pathname.replace(/(?:index|404)\.html$/,"").replace(/\/?(?:policy|advocacy|research|hubs|events|saved)(?:\.html)?\/?$/,"/").replace(/[^/]*$/,"")||"/";
+function secOf(){const m=/(?:^|\/)(policy|advocacy|research|hubs|events|saved)(?:\.html)?\/?$/.exec(location.pathname);return m?m[1]:"feed"}
+const hrefOf=s=>BASE+(s=="feed"?"":s);
+(()=>{ // an old link (#v/policy), /policy/, /policy.html or the 404 page becomes the plain address
+const vm=/^#v\/(\w+)$/.exec(location.hash);let s=secOf(),h=location.hash;
+if(vm){const k=ALIAS[vm[1]]||vm[1];s=SECS.includes(k)?k:"feed";h=""}
+const u=hrefOf(s)+location.search+h;if(u!==location.pathname+location.search+location.hash){try{history.replaceState(history.state,"",u)}catch(e){}}})();
+function go(s,h,keep){const u=hrefOf(s)+((s=="hubs"||s=="events")&&!keep?"":location.search)+(h||"");if(u!==location.pathname+location.search+location.hash){try{history.pushState(null,"",u)}catch(e){location.href=u;return}}route()}
+addEventListener("click",e=>{const a=e.target.closest&&e.target.closest("a[data-go]");if(!a||e.defaultPrevented||e.button||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;e.preventDefault();closeSheet(()=>go(a.dataset.go,"",!!a.dataset.keep))});
+$$("a[data-go]").forEach(a=>a.setAttribute("href",hrefOf(a.dataset.go)));
+// ---- toast, copy, download ----
+function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove("on"),2800)}
+async function copyOut(text,html){try{if(html&&window.ClipboardItem&&navigator.clipboard&&navigator.clipboard.write){await navigator.clipboard.write([new ClipboardItem({"text/plain":new Blob([text],{type:"text/plain"}),"text/html":new Blob([html],{type:"text/html"})})]);return 1}
+if(navigator.clipboard&&navigator.clipboard.writeText){await navigator.clipboard.writeText(text);return 1}}catch(e){}
+try{const a=document.createElement("textarea");a.value=text;a.setAttribute("readonly","");a.style.cssText="position:fixed;left:-9999px;top:0";document.body.appendChild(a);a.select();const ok=document.execCommand("copy");a.remove();return ok}catch(e){return 0}}
+const doCopy=(text,html,msg)=>copyOut(text,html).then(ok=>toast(ok?msg:"Couldn’t copy. Select the text and copy it by hand."));
+const origin=()=>location.origin&&location.origin!="null"?location.origin:"";
+// ---- URL state: ?t=IMMIGRATION&c=SEA&st=MN&k=statement&s=AsAmNews&q=text ----
+const QSK=["t","c","st","k","s","r","d","n","q"];
+// a filter on a topic, community or category the site owner has since removed (an old link, or a page left open) is dropped
+function dropGone(){if(F.t&&!TAGS.includes(F.t))F.t="";if(F.c&&!CL[F.c])F.c="";if(F.k&&!KL[F.k]&&!RSL[F.k])F.k=""}
+function readQS(){const p=new URLSearchParams(location.search),g=k=>p.get(k)||"";
+if(TAGS.includes(g("t")))F.t=g("t");if(CL[g("c")])F.c=g("c");if(SLB[g("st")])F.st=g("st");if(KL[g("k")]||(RSL[g("k")]&&secOf()=="research"))F.k=g("k");if(RL[g("r")])F.r=g("r");if(DQ.test(g("d")))F.d=g("d");if(g("n")=="1")F.n="1";if(g("s"))F.s=g("s");if(g("q")){F.q=g("q").toLowerCase();$("#q").value=g("q")}
+if(F.k=="statement"){F.k="";if(secOf()=="feed"&&!location.hash)history.replaceState(null,"",hrefOf("advocacy")+location.search)}
+if(F.k=="research"){F.k="";if(secOf()=="feed"&&!location.hash)history.replaceState(null,"",hrefOf("research")+location.search)} // links from when Research was a type in News
+if(F.c||F.st||F.k||F.r||F.d){$("#fmore").hidden=false;$("#fbtn").setAttribute("aria-expanded","true")}}
+function syncQS(){try{const p=new URLSearchParams(location.search);const dir=VIEW=="hubs"&&!HUB||VIEW=="events";QSK.forEach(k=>{p.delete(k);if(F[k]&&!dir)p.set(k,k=="q"?$("#q").value.trim():F[k])});if(secOf()!="hubs")p.delete("h");else if(VIEW=="hubs"){if(HUB)p.set("h",HUB);else p.delete("h")}if(VIEW=="events"||secOf()!="events")["ek","ev","em","ed","eh","ep"].forEach(k=>p.delete(k));if(VIEW=="events"){if(E.k)p.set("ek",E.k);if(E.v=="month")p.set("ev","month");if(E.m)p.set("em",E.m);if(E.day)p.set("ed",E.day);if(E.hub)p.set("eh",E.hub);if(E.past)p.set("ep","1")}const s=p.toString(),u=location.pathname+(s?"?"+s:"")+location.hash;if(u!==location.pathname+location.search+location.hash)history.replaceState(history.state,"",u)}catch(e){}}
+// ---- story detail (desktop side pane), "also covered by", "more in this topic" ----
+const tagChips=(x,nost)=>{const a=[].concat((x.cm||[]).map(k=>["c",k,CL[k]]),nost?[]:(x.st||[]).map(k=>["st",k,SLB[k]])).filter(a=>a[2]);return a.length?`<div class="tc">${a.map(([f,v,l])=>`<button type="button" class="tag" data-f="${f}" data-v="${esc(v)}" title="Show only ${esc(l)} stories">${esc(l)}</button>`).join("")}</div>`:""};
+const actRow=(x,rd)=>{const s=isSv(x);return `<div class="acts2"><button type="button" data-act="save" aria-pressed="${s}">${s?"Saved ✓":"Save"}</button>${rd?'<button type="button" data-act="link">Copy link</button>':""}</div>`};
+const detailHTML=x=>`${stag(x)}<div class="meta">${fdl(x.d)} · <button type="button" class="lk" data-f="s" data-v="${esc(x.s)}" title="Show only ${esc(x.s)} stories">${esc(x.s)}</button> · ${tbtns(x,"lk ac")}</div><h2>${esc(x.h)}</h2>${fx(x)}<div class="acts">${x.v?`<a class="open" href="#a/${uid(x)}">Read here</a>`:""}<a class="open${x.v?" alt":""}" href="${esc(x.u)}" target="_blank" rel="noopener">Open source ↗</a></div>${actRow(x)}`;
+const DLB={official:"Published",order:"Signed",govstmt:"Posted",hearing:"Published"};
+const RLT={n:"Names Asian American, Native Hawaiian or Pacific Islander communities in its official text.",i:"Related issue: it covers immigration, language access, the census, civil rights or a similar topic that affects AAPI communities, but does not name them."};
+const hostOf=u=>{try{return new URL(u).hostname.replace(/^www\./,"")}catch(e){return""}};
+const fact=(l,v)=>v?`<dt>${esc(l)}</dt><dd>${v}</dd>`:"";
+const polDetail=x=>`${stag(x)}<div class="meta">${fdl(x.d)} · <button type="button" class="lk" data-f="s" data-v="${esc(x.s)}" title="Show only ${esc(x.s)}">${esc(x.s)}</button> · ${tbtns(x,"lk ac")}</div><h2>${esc(x.h)}</h2><dl class="facts">${fact("Type",esc(tyl(x)))}${fact(x.k=="bill"?"Chamber":"Agency",esc(x.ag||""))}${x.k=="bill"?fact("Latest action",esc(fdl(x.d)+(x.la?" · "+x.la:""))):fact(DLB[x.k]||"Date",esc(fdl(x.d)))}${fact("Comments",x.dl?esc(dleft(x.dl)<0?"Closed "+fdl(x.dl):"Open until "+fdl(x.dl)+" · "+(dleft(x.dl)==0?"today":dleft(x.dl)+(dleft(x.dl)==1?" day":" days")+" left")):"")}${fact("Relevance",esc(RLT[x.rl]||"")+(RLT[x.rl]?' <span class="auto">Tagged automatically.</span>':""))}</dl><div class="acts"><a class="open" href="${esc(x.u)}" target="_blank" rel="noopener">Open on ${esc(hostOf(x.u))} ↗</a></div>${actRow(x)}`;
+function renderDetail(){const x=L[sel],p=x&&isP(x);$("#dtl").innerHTML=VIEW!="saved"&&x?(p?polDetail(x):detailHTML(x)):"";if(VIEW!="saved"&&x)$("#dtl").insertAdjacentHTML("beforeend",hubChips(x));if(VIEW!="saved"&&!p){relRender();topicRender()}}
+const kpi=y=>["statement","research"].includes(y.k)?`<i class="kp k-${y.k}">${esc(tyl(y))}</i> `:"";
+const relHTML=x=>x&&x.rel&&x.rel.length?`<div class="meta" style="margin-top:14px">Also covered by ${x.c-1} outlet${x.c>2?"s":""}</div><div class="rel">`+x.rel.slice(0,5).map(y=>`<div class="vit"><a href="${esc(y.u)}" target="_blank" rel="noopener"><span>${kpi(y)}<strong>${esc(y.s)}</strong>: ${esc(y.h)} ↗</span></a></div>`).join("")+`</div>`:"";
+function relRender(){const h=relHTML(L[sel]);if(h)$("#dtl").insertAdjacentHTML("beforeend",h)}
+function topicRender(){const x=L[sel];if(!x)return;const rsv=VIEW=="research",rel=x.rel||[],adv=isAdv(x)&&!rsv,tn=tl(x.t),more=D.filter(y=>y!==x&&(rsv?isRes(y)&&y.t==x.t:(adv?y.s==x.s:y.t==x.t)&&part(y)==part(x))&&!rel.includes(y)).sort((a,b)=>pd(b.d)-pd(a.d)).slice(0,5);if(!more.length)return;
+$("#dtl").insertAdjacentHTML("beforeend",`<div class="meta" style="margin-top:18px;font-weight:600;color:var(--tx);font-size:13px">${adv?`More statements from <button type="button" class="lk ac" data-f="s" data-v="${esc(x.s)}" title="Show all statements from ${esc(x.s)}">${esc(x.s)}</button>`:`More <button type="button" class="lk ac" data-f="t" data-v="${esc(x.t)}" title="Show all ${esc(tn)} ${rsv?"research":"stories"}">${esc(tn)}</button> ${rsv?"research":"stories"}`}</div><div class="tl">`+more.map(y=>`<div class="vit"><a href="${y.v?"#a/"+uid(y):esc(y.u)}"${y.v?"":' target="_blank" rel="noopener"'}><small>${adv?"":"<b>"+esc(y.s)+"</b> · "}${fd(y.d)}</small><span>${esc(y.h)}</span></a></div>`).join("")+`</div>`)}
+// ---- actions ----
+function act(n,x){
+if(n=="clearall"){clearAll();return}
+if(n=="clearsaved"){SV.length=0;svStore();render();return}
+if(!x)return;
+if(n=="save"){toggleSv(x);if(viewing)$("#vacts").innerHTML=actRow(x,1);else render();return}
+if(n=="link"){doCopy(x.u,null,"Link copied.");return} // always the address of the story at its source (a Yappie article copies its theyappie.com address, not the page on this site)
+}
+const setF=(f,v)=>{F[f]=F[f]==v?"":v;sel=0;gsel="";render()};
+// click on a topic, source, community or state name inside a story: show only that, from wherever you are
+const vh=y=>isP(y)?"policy":isAdv(y)?"advocacy":"feed";
+function applyF(f,v,p){F[f]=v;sel=0;gsel="";feedY=0;if(viewing||VIEW=="saved"){go(p||"feed");return}render();window.scrollTo(0,0)}
+const clearAll=()=>{F=F0();$("#q").value="";sel=0;gsel="";render()};
+const openStory=y=>y.v&&D.some(z=>uid(z)==uid(y))?(location.hash="#a/"+uid(y)):window.open(y.u,"_blank","noopener");
+let sheetOn=false,sheetAfter=null;
+const sheetHide=()=>{sheetOn=false;document.body.classList.remove("msheet")};
+function openSheet(i){sel=i;render();if(!sheetOn){try{history.pushState({sh:1},"")}catch(e){}}sheetOn=true;document.body.classList.add("msheet");$("#dtlw").scrollTop=0;$("#dtlx").focus({preventScroll:true})}
+function closeSheet(then){if(!sheetOn){if(then)then();return}sheetAfter=then||null;if(history.state&&history.state.sh)history.back();else{sheetHide();const f=sheetAfter;sheetAfter=null;if(f)f()}}
+addEventListener("popstate",()=>{if(sheetOn)sheetHide();const f=sheetAfter;sheetAfter=null;if(f)f()});
+$("#dtlx").onclick=()=>closeSheet();
+$("#rows").onclick=e=>{
+const ab=e.target.closest("[data-act]");if(ab&&!e.target.closest(".row")){act(ab.dataset.act);return}
+const r=e.target.closest(".row[data-i]");if(!r)return;const y=L[+r.dataset.i],ha=e.target.closest("a.hla");
+if(e.target.closest("a:not(.hla)"))return;
+const fb=e.target.closest("[data-f]");if(fb&&r.contains(fb)){applyF(fb.dataset.f,fb.dataset.v,vh(y));return}
+if(e.target.closest("[data-sv]")){const i=+r.dataset.i;toggleSv(y);render();const s=$('#rows .row[data-i="'+i+'"] .star');if(s)s.focus({preventScroll:true});return}
+if(e.target.closest("[data-g]")){const k=uid(y);gsel=gsel==k?"":k;sel=+r.dataset.i;render();return}
+if(VIEW=="saved"){if(!ha)openStory(y);return}
+const i=+r.dataset.i;if(isMob()){openSheet(i);return}
+sel=i;render();if(e.detail==0){const n=$('#rows .row[data-i="'+i+'"] .hla');if(n)n.focus({preventScroll:true})}};
+$("#rows").onkeydown=e=>{if((e.key=="Enter"||e.key==" ")&&e.target.classList&&e.target.classList.contains("hla")&&e.target.tagName!="A"){e.preventDefault();e.stopPropagation();e.target.click()}};
+[[selT,"t"],[selS,"s"],[selC,"c"],[selST,"st"],[selSTd,"st"],[selK,"k"],[selR,"r"]].forEach(([el,f])=>{el.onchange=()=>{F[f]=el.value;sel=0;gsel="";render()}});
+selD.onchange=()=>{F.d=selD.value;sel=0;gsel="";render()};
+[["dFrom","dTo"],["mFrom","mTo"]].forEach(([a,b])=>[a,b].forEach(id=>{$("#"+id).onchange=()=>{const x=$("#"+a).value,y=$("#"+b).value;F.d=x||y?x+".."+y:"";sel=0;gsel="";render()}}));
+$("#fbtn").onclick=()=>{const o=$("#fmore").hidden;$("#fmore").hidden=!o;$("#fbtn").setAttribute("aria-expanded",String(o))};
+document.addEventListener("click",e=>{const a=e.target.closest&&e.target.closest("a[data-hub]");if(!a||e.defaultPrevented||e.button||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;e.preventDefault();openHub(a.dataset.hub)});
+$("#hubhead").addEventListener("toggle",e=>{if(e.target.matches&&e.target.matches("details.wsw"))WSWO=e.target.open},true);
+$("#hubhead").onclick=e=>{if(e.target.closest("[data-wmore]")){WSWM=!WSWM;renderHubHead();const b=$("#hubhead [data-wmore]");if(b)b.focus({preventScroll:true});return}const o=e.target.closest("button[data-wo]");if(o){setF("s",o.dataset.wo);return}
+const w=e.target.closest("button[data-wopen]");if(!w)return;let i=L.findIndex(y=>uid(y)==w.dataset.wopen);if(i<0){F=F0();$("#q").value="";sel=0;render();i=L.findIndex(y=>uid(y)==w.dataset.wopen)}if(i<0)return;
+if(isMob()){openSheet(i);return}sel=i;render();const r=$("#rows .row.sel");if(r)r.scrollIntoView({block:"nearest"})};
+$("#nbar").onclick=e=>{const b=e.target.closest("button[data-n]");if(!b)return;if(b.dataset.n=="seen")markSeen();else{F.n=F.n?"":"1";sel=0;render()}};
+$("#chips").onclick=e=>{const c=e.target.closest(".chp");if(c){const f=c.dataset.x;F[f]="";if(f=="q")$("#q").value="";sel=0;render();return}if(e.target.closest(".clr"))clearAll()};
+$(".rail").onclick=e=>{const b=e.target.closest("button[data-f]");if(b){const f=b.dataset.f,v=b.dataset.v;setF(f,v);const n=$(`.rail button[data-f="${f}"][data-v="${CSS.escape(v)}"]`)||$(`.fac[data-fac="${f}"] .ft`);if(n)n.focus({preventScroll:true});return}
+const h=e.target.closest(".ft");if(h){const f=h.closest(".fac").dataset.fac;fToggle(f);renderFilters();$(`.fac[data-fac="${f}"] .ft`).focus({preventScroll:true});return}
+const x=e.target.closest("[data-clr]");if(x){const f=x.dataset.clr;F[f]="";sel=0;gsel="";render();$(`.fac[data-fac="${f}"] .ft`).focus({preventScroll:true});return}
+const m=e.target.closest("[data-fexp]");if(m){const f=m.dataset.fexp;MORE[f]=!MORE[f];renderFilters();const n=$(`.rail [data-fexp="${f}"]`);if(n)n.focus({preventScroll:true});return}
+const a=e.target.closest("[data-act]");if(a)act(a.dataset.act)};
+$("#ptabs").onclick=e=>{const b=e.target.closest("button[data-k]");if(b){F.k=b.dataset.k;sel=0;gsel="";render();const n=$(`#ptabs button[data-k="${b.dataset.k}"]`);if(n)n.focus({preventScroll:true})}};
+$("#vtool").onclick=e=>{const a=e.target.closest("[data-act]");if(a)act(a.dataset.act)};
+$("#dtl").onclick=e=>{const l=e.target.closest("a[href^='#']");if(l&&sheetOn){e.preventDefault();const h=l.getAttribute("href");closeSheet(()=>{location.hash=h});return}const t=e.target.closest("button[data-f]");if(t){const f=t.dataset.f,v=t.dataset.v;closeSheet(()=>applyF(f,v));return}const a=e.target.closest("[data-act]");if(a)act(a.dataset.act,L[sel])};
+$("#vside").onclick=e=>{const t=e.target.closest("button[data-f]");if(t)applyF(t.dataset.f,t.dataset.v)};
+$("#vcard").onclick=e=>{const t=e.target.closest("button[data-f]");if(t){applyF(t.dataset.f,t.dataset.v);return}const a=e.target.closest("[data-act]");if(a)act(a.dataset.act,viewing)};
+$("#q").oninput=e=>{if(viewing)go("feed");F.q=e.target.value.trim().toLowerCase();sel=0;render()};
+addEventListener("keydown",e=>{
+if(sheetOn&&e.key=="Escape"){e.preventDefault();closeSheet();return}
+if(!$("#viewer").hidden)return;const ae=document.activeElement,q=ae==$("#q");if(ae&&ae.tagName=="SELECT")return;
+if(e.key=="/"&&!q){e.preventDefault();$("#q").focus();return}
+
+if(e.key=="Escape"){clearAll();$("#q").blur();return}
+if(!L.length)return;
+if(q&&e.key!="ArrowDown"&&e.key!="ArrowUp")return;
+const mv=n=>{e.preventDefault();sel=Math.max(0,Math.min(L.length-1,sel+n));render();const r=$(".row.sel");r&&r.scrollIntoView({block:"nearest"})};
+if(e.key=="j"||e.key=="ArrowDown")mv(1);
+else if(e.key=="k"||e.key=="ArrowUp")mv(-1);
+else if((e.key=="Enter"||e.key=="o")&&L[sel]&&!(ae&&ae.matches&&ae.matches("a,button,[role=button]"))){const y=L[sel];(e.key=="Enter"&&y.v)?location.hash="#a/"+uid(y):window.open(y.u,"_blank","noopener")}
+});
+const R=document.documentElement;let th="light";try{th=localStorage.getItem("th")||"light"}catch(e){}
+const setTh=t=>{th=t=="dark"?"dark":"light";R.dataset.theme=th;const b=$("#th");b.setAttribute("aria-checked",th=="dark");b.title=th=="dark"?"Switch to light mode":"Switch to dark mode"};setTh(th);
+$("#th").onclick=()=>{setTh(th=="dark"?"light":"dark");try{localStorage.setItem("th",th)}catch(e){}};
+$("#brand").onclick=e=>{e.preventDefault();gsel="";VIEW="feed";F=F0();$("#q").value="";sel=0;shown=PAGE;go("feed");render();window.scrollTo(0,0)};
+const ago=d=>{const m=Math.max(0,(REF-pd(d))/6e4);return m<60?Math.round(m)+"m":m<1440?Math.floor(m/60)+"h":Math.floor(m/1440)+"d"};
+const STOP=new Set("the and for with from after over amid says more nation aapi asian american americans pacific islander islanders news this that into their about".split(" "));
+const toks=h=>new Set(h.toLowerCase().replace(/[^a-z0-9ʻ ]+/g," ").split(/\s+/).filter(w=>w.length>3&&!STOP.has(w)));
+function cluster(){const T=D.map(x=>toks(x.h)),W=D.map(x=>+pd(x.d)),P=D.map((_,i)=>i),f=i=>{while(P[i]!=i){P[i]=P[P[i]];i=P[i]}return i};
+const srt=W.every((t,i)=>!i||W[i-1]>=t); // the feed is newest first, so with a year of stories the search for a match can stop at the first story more than 3 days older
+for(let i=0;i<D.length;i++)if(!isP(D[i])&&!isAdv(D[i]))for(let j=i+1;j<D.length;j++){const gap=Math.abs(W[i]-W[j]);if(gap>2592e5){if(srt)break;continue}if(isP(D[j])||isAdv(D[j]))continue;let n=0;T[i].forEach(w=>T[j].has(w)&&n++);if(n>=2&&n/(T[i].size+T[j].size-n)>=.4)P[f(i)]=f(j)}
+const g={};D.forEach((x,i)=>{(g[f(i)]=g[f(i)]||[]).push(x)});Object.values(g).forEach(a=>{const n=new Set(a.map(x=>x.s)).size;a.forEach(x=>{x.c=n;x.rel=a.filter(y=>y!==x&&y.s!=x.s)})})}
+const DAYF=new Intl.DateTimeFormat("en-US",{weekday:"long",month:"long",day:"numeric"}),dkey=x=>pd(x.d).toDateString();
+const dh=(x,i)=>(i==0||grp(L[i-1])<2||dkey(L[i-1])!=dkey(x))?`<div class="dh">${DAYF.format(pd(x.d))}</div>`:"";
+const ARTBASE=BASE+"data/articles/",WPAPI="https://theyappie.com/wp-json/wp/v2/posts";
+const h32=s=>{let h=5381;for(let i=0;i<s.length;i++)h=(h*33^s.charCodeAt(i))>>>0;return h.toString(36)};
+const uid=x=>x.id||h32(x.u);
+const MON=["January","February","March","April","May","June","July","August","September","October","November","December"];
+const ord=n=>{const s=["th","st","nd","rd"],v=n%100;return n+(s[(v-20)%10]||s[v]||s[0])};
+const fdt=d=>{const p=new Intl.DateTimeFormat("en-US",{timeZone:"America/New_York",year:"numeric",month:"long",day:"numeric",hour:"2-digit",minute:"2-digit",hour12:true,timeZoneName:"short"}).formatToParts(pd(d)),g=k=>(p.find(q=>q.type==k)||{}).value;return g("month")+" "+g("day")+", "+g("year")+" "+g("hour")+":"+g("minute")+" "+g("dayPeriod")+" "+g("timeZoneName")};
+// Article HTML is rebuilt from an allow-list of tags/attributes before it is shown (horizontal rules are dropped on purpose).
+const OKT=new Set("p h2 h3 h4 ul ol li strong b em i a blockquote br figure figcaption img".split(" ")),BAD=new Set("script style iframe object embed form svg noscript".split(" "));
+function sanitize(html){const doc=new DOMParser().parseFromString(html,"text/html"),out=document.createElement("div");
+const walk=(src,dst)=>src.childNodes.forEach(n=>{if(n.nodeType==3)dst.appendChild(document.createTextNode(n.textContent));else if(n.nodeType==1){const t=n.tagName.toLowerCase();if(BAD.has(t))return;
+if(OKT.has(t)){const e=document.createElement(t);if(t=="a"){const h=n.getAttribute("href")||"";if(/^https?:\/\//i.test(h)){e.href=h;e.target="_blank";e.rel="noopener"}}
+if(t=="img"){const s=n.getAttribute("src")||"";if(!/^https:\/\//i.test(s))return;e.src=s;e.alt=n.getAttribute("alt")||"";e.loading="lazy"}
+walk(n,e);dst.appendChild(e)}else walk(n,dst)}});walk(doc.body,out);return out}
+// 1) article text saved by the collector, 2) otherwise read live from theyappie.com's own WordPress REST API
+const slugOf=u=>{try{const p=new URL(u);return(p.hostname=="theyappie.com"||p.hostname=="www.theyappie.com")?p.pathname.split("/").filter(Boolean).pop()||"":""}catch(e){return""}};
+const liveWP=x=>{const s=slugOf(x.u);if(!s)return Promise.reject();return fetch(WPAPI+(WPAPI.includes("?")?"&":"?")+"slug="+encodeURIComponent(s)+"&_embed=1",{signal:AbortSignal.timeout?AbortSignal.timeout(8000):undefined}).then(r=>{if(!r.ok)throw 0;return r.json()}).then(a=>{const p=a&&a[0];if(!p||!p.content||!p.content.rendered)throw 0;const em=p._embedded||{},m=em["wp:featuredmedia"];return{by:(em.author&&em.author[0]&&em.author[0].name)||"",img:(m&&m[0]&&m[0].source_url)||"",body:p.content.rendered}})};
+// 3) last resort: article text bundled into this page (only present in the standalone preview build)
+const SNAP=(()=>{try{return JSON.parse($("#art-snap").textContent)}catch(e){return{}}})();
+const snapArt=x=>{const a=SNAP[String(x.u||"").split("?")[0].replace(/\/+$/,"")];return a&&a.body?Promise.resolve(a):Promise.reject()};
+const getArt=x=>(ARTBASE?fetch(ARTBASE+uid(x)+".json").then(r=>{if(!r.ok)throw 0;return r.json()}):Promise.reject()).then(a=>{if(!a||!a.body)throw 0;return a}).catch(()=>liveWP(x)).catch(()=>snapArt(x));
+let viewing=null,feedY=0,lastS="",rkey="";const baseTitle=document.title,ck=()=>location.pathname+location.search+location.hash;
+function route(){let h=location.hash;const vm=/^#v\/(\w+)$/.exec(h);
+if(vm){const k=ALIAS[vm[1]]||vm[1];try{history.replaceState(history.state,"",hrefOf(SECS.includes(k)?k:"feed")+location.search)}catch(e){}h=""}
+const m=/^#a\/([\w-]+)$/.exec(h),x=m&&D.find(y=>y.v&&uid(y)==m[1]),nv=secOf();lastS=nv!="feed"?nv:"";let hc=false;if(nv=="hubs"){const q=new URLSearchParams(location.search).get("h")||"";if(q!=HUB){HUB=q;hc=true}}if(nv=="events"&&location.search!=_es){_es=location.search;readE();hc=true}
+if(!x){const was=viewing||!$("#viewer").hidden;if(was){$("#viewer").hidden=true;$("#feed").hidden=false;$("#tabs").hidden=false;document.title=baseTitle}viewing=null;
+if(VIEW!=nv||hc){VIEW=nv;if(nv!="saved")fixF();sel=0;gsel="";render();window.scrollTo(0,0)}else if(was){render();window.scrollTo(0,feedY)}rkey=ck();return}
+if(VIEW!=nv||hc){VIEW=nv;if(nv!="saved")fixF();sel=0;gsel="";render()}
+if(viewing!==x){viewing=x;showArticle(x)}rkey=ck()}
+function showArticle(x){
+if(!$("#feed").hidden)feedY=window.scrollY;$("#feed").hidden=true;$("#viewer").hidden=false;document.title=x.h+" | The Yappie Pro";window.scrollTo(0,0);
+const when=x.d.length>10?fdt(x.d):MON[+x.d.slice(5,7)-1]+" "+(+x.d.slice(8,10))+", "+x.d.slice(0,4);
+$("#vcard").innerHTML=`<div class="ph vph"><span>Article</span><span aria-hidden="true">·</span><button type="button" class="lk" data-f="s" data-v="${esc(x.s)}" aria-label="Show only ${esc(x.s)} stories">${esc(x.s)}</button></div><div class="vbd"><a class="vback" href="${lastS=="hubs"?hubHref(HUB):hrefOf(lastS||"feed")}" data-go="${lastS||"feed"}"${lastS=="hubs"&&HUB?' data-keep="1"':""}>← Back to ${lastS?"list":"news"}</a><div class="vmeta"><span class="vsrc"><button type="button" class="lk" data-f="s" data-v="${esc(x.s)}" aria-label="Show only ${esc(x.s)} stories">${esc(x.s)}</button> · </span>${tbtns(x,"vtp",1)}</div><h1>${esc(x.h)}</h1>${x.m?`<p class="vdek">${esc(x.m)}</p>`:""}<div class="vby" id="vby">${when}</div>${fx(x)}<div id="vacts">${actRow(x,1)}</div><div class="vhero" id="vhero" hidden></div><div class="vbody" id="vbody"><div class="vnote">Loading…</div></div><div class="vfoot">Originally published by The Yappie. <a class="lnk" href="${esc(x.u)}" target="_blank" rel="noopener">Read on theyappie.com ↗</a></div></div>`;
+const hero=u=>{if(!(u&&/^https:\/\//.test(u)))return;const im=new Image();im.alt="";im.onload=()=>{if(viewing!==x)return;$("#vhero").innerHTML="";$("#vhero").appendChild(im);$("#vhero").hidden=false};im.src=u},byl=(n,u)=>{if(n)$("#vby").innerHTML=`By ${/^https:\/\//.test(u||"")?`<a href="${esc(u)}" target="_blank" rel="noopener" title="More by ${esc(n)} on theyappie.com"><b>${esc(n)}</b></a>`:`<b>${esc(n)}</b>`} | ${when}`};
+byl(x.by);hero(x.img);
+const byNew=(a,b)=>pd(b.d)-pd(a.d),same=D.filter(y=>y!==x&&y.t==x.t&&part(y)==part(x)).sort(byNew).slice(0,5),tn=tl(x.t);
+const tlist=list=>{let o="";list.forEach(y=>{
+o+=`<div class="vit"><a href="${y.v?"#a/"+uid(y):esc(y.u)}"${y.v?"":' target="_blank" rel="noopener"'}><small><b>${esc(y.s)}</b></small><span>${esc(y.h)}</span></a></div>`});return o};
+$("#vside").innerHTML=`<div class="ph"><h2>More <button type="button" class="lk ac" data-f="t" data-v="${esc(x.t)}" title="Show all ${esc(tn)} stories">${esc(tn)}</button> stories</h2></div><div class="vsb">`+(same.length?tlist(same):`<div class="vnone">No other ${esc(tn)} stories yet.</div>`)+`</div>`;
+getArt(x).then(a=>{if(viewing!==x)return;
+byl(a.by,a.byu);if(a.img&&a.img!==x.img)hero(a.img)
+const b=sanitize(a.body);if(!b.childNodes.length)throw 0;$("#vbody").replaceChildren(...b.childNodes)}).catch(()=>{if(viewing!==x)return;$("#vbody").innerHTML='<div class="vnote">The full text of this story couldn’t be loaded here. Use “Read on theyappie.com” below to open the original.</div>'})}
+addEventListener("hashchange",()=>{if(ck()!=rkey)route()});addEventListener("popstate",()=>{if(ck()!=rkey)route()});
+addEventListener("keydown",e=>{if(e.key=="Escape"&&viewing)go(lastS||"feed","",true)});
+$("#more").onclick=e=>{if(e.target.closest("button")){shown+=PAGE;render()}};
+// Live feed: the collector rewrites the feed file on a schedule; this re-reads it (initially, and whenever Refresh is pressed).
+const FEEDURL=BASE+"data/feed.json";
+const normT=a=>a.filter(x=>x&&x.h&&x.u&&isEnglish(x.h)).map(x=>{if(!TAGS.includes(x.t))x.t="CULTURE";if(x.tx){x.tx=x.tx.filter(k=>TAGS.includes(k)&&k!=x.t);if(!x.tx.length)delete x.tx};x.s=SRCALIAS[x.s]||x.s;x.rs=resOf(x);return x});D.forEach(x=>{x.rs=resOf(x)});
+const fts=d=>{const p=pd(d);if(isNaN(p))return"";const f=o=>new Intl.DateTimeFormat("en-US",Object.assign({timeZone:"America/New_York"},o)),day={year:"numeric",month:"numeric",day:"numeric"};return(f(day).format(p)==f(day).format(new Date())?"":f({month:"short",day:"numeric"}).format(p)+", ")+f({hour:"numeric",minute:"2-digit",timeZoneName:"short"}).format(p)};
+function loadFeed(bust){return fetch(FEEDURL+(bust?(FEEDURL.includes("?")?"&":"?")+"_r="+Date.now():""),{cache:bust?"no-store":"no-cache"}).then(r=>{if(!r.ok)throw 0;return r.json()}).then(j=>{if(!j.items||!j.items.length)throw 0;const had=new Set(D.map(x=>x.u));addTaxo(j.taxo);dropGone();D=normT(j.items);GEN=j.generated;REF=Date.now();H=Object.assign({},HOME);(j.sources||[]).forEach(s=>{if(s.home)H[SRCALIAS[s.name]||s.name]=s.home});PSTAT=(j.sources||[]).filter(s=>isPK(s.kind));STMT=(j.sources||[]).filter(s=>s.kind=="statement"&&s.ok).map(s=>SRCALIAS[s.name]||s.name);HUBS=Array.isArray(j.hubs)?j.hubs.filter(h=>h&&typeof h.k=="string"&&typeof h.label=="string"):[];return D.filter(x=>!had.has(x.u)).length})}
+const setBase=()=>{};
+let syncing=0,syncAt=Date.now();
+function sync(){if(syncing||document.hidden||Date.now()-syncAt<12e4||/^#a\//.test(location.hash)||document.activeElement===$("#q")||scrollY>400)return;syncing=1;syncAt=Date.now();const g=GEN;loadFeed(0).then(()=>{if(GEN!==g){cluster();render()}}).catch(()=>{}).finally(()=>{syncing=0});loadEvents()}
+setInterval(sync,6e5);addEventListener("visibilitychange",()=>{if(!document.hidden)sync()});
+readQS();
+loadEvents();
+loadFeed(0).catch(()=>{}).finally(()=>{if(XA.t.length||XA.c.length||XA.k.length)readQS();cluster();render();setBase();route()});
+</script></body></html>

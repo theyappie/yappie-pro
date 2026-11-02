@@ -150,7 +150,10 @@ legend{font-weight:650;font-size:13px;padding:0 6px}
 .srcbar.sel{padding:8px 12px;border-radius:10px;background:var(--sel)}
 .srcbar input[type=search],.srcbar select{border:1px solid var(--ln);background:var(--pn);border-radius:8px;padding:8px 10px;max-width:100%}
 .srcbar input[type=search]{flex:1 1 220px;min-width:0}
-@media (max-width:620px){.cr,.cr.one{grid-template-columns:1fr}.srow{grid-template-columns:1fr}}
+.cr.ev{grid-template-columns:minmax(0,1fr) auto}.efs{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px 12px;margin-bottom:10px}.efs .fl.wide{grid-column:1/-1}.ev-ad{display:flex;align-items:center;gap:8px;min-height:38px;font-size:14px}.ev-ad input{width:auto}
+.cr.fd{grid-template-columns:minmax(0,1fr) auto}.fdst{font-size:12.5px;color:var(--dm);margin-top:2px;overflow-wrap:anywhere}.fdst.bad{color:var(--err)}
+.evl{display:grid;gap:6px;margin:6px 0}.evr{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;align-items:center;padding:8px 10px;border:1px solid var(--ln);border-radius:8px;background:var(--bg)}.evr .nm{font-weight:600;overflow-wrap:anywhere}.evr .hint{overflow-wrap:anywhere}
+@media (max-width:620px){.cr,.cr.one,.cr.ev,.cr.fd{grid-template-columns:1fr}.srow{grid-template-columns:1fr}.efs{grid-template-columns:1fr}}
 ul.log{list-style:none;margin:0;padding:0}
 ul.log li{display:flex;gap:12px;padding:10px 4px;border-top:1px solid var(--ln);flex-wrap:wrap}
 ul.log li:first-child{border-top:0}
@@ -191,7 +194,7 @@ ul.log time{color:var(--dm);min-width:170px;font-size:13px}
 "use strict";
 const CORE = (() => {
 {{CORE}}
-return { normalizeState, applyEdits, placeOf, sanitizeHtml, withCustom, newsKindKeys, kindState, nameKey, breakingOn, breakingEnd, cleanWords, BREAKING_LABELS, BREAKING_HOURS, MAX_EXTRA_TOPICS, LIMITS };
+return { normalizeState, applyEdits, placeOf, sanitizeHtml, withCustom, newsKindKeys, kindState, nameKey, breakingOn, breakingEnd, cleanWords, cleanEvent, cleanFeed, EVENT_KINDS, BREAKING_LABELS, BREAKING_HOURS, MAX_EXTRA_TOPICS, LIMITS };
 })();
 (() => {
 const CFG = JSON.parse(document.getElementById("cfg").textContent), NONCE = document.getElementById("cfg").nonce || "";
@@ -243,8 +246,8 @@ const stName = k => (D.tax.states.find(s => s[0] === k) || [])[1] || k;
 
 async function loadAll() {
   const names = ["feed", "pending", "state", "taxonomy", "sources"];
-  const [feed, pend, state, tax, src, hubs] = await Promise.all(names.map(n => api("/api/raw/" + n)).concat(api("/api/raw/hubs").catch(() => null)));
-  D.feed = feed.items || []; D.pending = pend.items || []; D.S = CORE.normalizeState(state); D.taxBase = tax; D.srcKinds = src.kinds || {}; D.srcCfg = src.sources || []; D.hubsBase = hubs; RSC = null; D.ready = true;
+  const [feed, pend, state, tax, src, hubs, evs] = await Promise.all(names.map(n => api("/api/raw/" + n)).concat(api("/api/raw/hubs").catch(() => null), api("/api/raw/events").catch(() => null)));
+  D.feed = feed.items || []; D.pending = pend.items || []; D.S = CORE.normalizeState(state); D.taxBase = tax; D.srcKinds = src.kinds || {}; D.srcCfg = src.sources || []; D.hubsBase = hubs; D.events = evs && Array.isArray(evs.events) ? evs : { events: [], status: {} }; D.srcEvents = src.events || {}; RSC = null; D.ready = true;
   rebuild();
 }
 // a blocked source: its stories are not listed, and the site still holding some is a change not on the site yet (names are compared the way the collector does, so "Hoodline.com" and "Hoodline" are one)
@@ -791,6 +794,134 @@ function hubsCard() {
     h("p", { class: "hint" }, "Keywords match whole words in any capitals, and a plural also matches (“refugee” finds “refugees”). Up to " + CORE.LIMITS.words + " keywords each; at most " + max + " hubs of your own. A hub with nothing in it is not shown on the site."));
 }
 
+// Events and funding: hearings, webinars, grant and fellowship deadlines (the Events tab). The site collects some by itself; the owner adds their own and hides collected ones.
+const dayLabel = s => { const [y, m, d] = String(s).slice(0, 10).split("-").map(Number); return new Date(y, m - 1, d).toLocaleDateString(undefined, { weekday: "short", month: "short", day: "numeric", year: "numeric" }); };
+const evEnd = e => e.ad || String(e.d).length === 10 ? Date.parse(String(e.e || e.d).slice(0, 10) + "T23:59:59Z") : e.e ? Date.parse(e.e) : Date.parse(e.d) + 36e5;
+const evWhen = e => e.ad || String(e.d).length === 10 ? dayLabel(e.d) + (e.e ? " to " + dayLabel(e.e) : "") : fmt(e.d);
+function eventsCard() {
+  const cur = D.S.settings.events, max = CORE.LIMITS.events, KIND = CORE.EVENT_KINDS, pad = n => String(n).padStart(2, "0");
+  const dOf = d => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`, tOf = d => `${pad(d.getHours())}:${pad(d.getMinutes())}`;
+  const toRow = e => { const r = { id: e.id, k: e.k, t: e.t, ad: !!e.ad, o: e.o || "", u: e.u || "", loc: e.loc || "", m: e.m || "", date: "", time: "", endDate: "", endTime: "" };
+    if (e.ad) { r.date = e.d; r.endDate = e.e || ""; } else { const s = new Date(e.d); r.date = dOf(s); r.time = tOf(s); if (e.e) { const x = new Date(e.e); r.endDate = dOf(x); r.endTime = tOf(x); } }
+    return r; };
+  const rows = cur.map(toRow), off = new Map(D.S.settings.eventsOff.map(x => [x.id, x.t]));
+  const newId = () => "o" + [...crypto.getRandomValues(new Uint8Array(6))].map(b => b.toString(16).padStart(2, "0")).join("");
+  const fromRow = r => {
+    const t = r.t.trim(); if (!t) throw new Error("Every event needs a title. Fill it in or remove it.");
+    if (!r.date) throw new Error(`“${t}” needs a date.`);
+    const o = { id: r.id, k: r.k, t, o: r.o.trim(), u: r.u.trim(), loc: r.loc.trim(), m: r.m.trim() };
+    try {
+      if (r.ad) { o.ad = true; o.d = r.date; if (r.endDate) o.e = r.endDate; }
+      else {
+        if (!r.time) throw new Error(`“${t}” needs a time, or tick “All day”.`);
+        o.d = new Date(`${r.date}T${r.time}`).toISOString();
+        if (r.endTime || r.endDate) { if (!r.endTime) throw new Error(`Give “${t}” an end time, or clear the end date.`); o.e = new Date(`${r.endDate || r.date}T${r.endTime}`).toISOString(); }
+      }
+    } catch (e) { throw e instanceof RangeError ? new Error(`“${t}” has a date or time that cannot be read.`) : e; }
+    return o;
+  };
+  const list = h("div", { class: "cl" }), coll = h("div", null), err = h("div", { class: "err", role: "alert" });
+  const add = h("button", { class: "btn", type: "button", on: { click: () => { rows.push({ id: newId(), k: "event", t: "", ad: false, o: "", u: "", loc: "", m: "", date: "", time: "", endDate: "", endTime: "" }); paint(); [...list.querySelectorAll(".cr.mine")].pop().querySelector("input").focus(); } } }, "+ Add an event");
+  const fld = (label, el, cls) => h("div", { class: "fl" + (cls ? " " + cls : "") }, h("div", { class: "lb" }, label), el);
+  const inp = (r, f, type, aria, extra = {}) => h("input", { type, value: r[f], "aria-label": aria, on: { input: e => { r[f] = e.target.value; } }, ...extra });
+  const paint = () => {
+    clearNode(list);
+    list.append(h("div", { class: "sub" }, "Your events and deadlines"));
+    if (!rows.length) list.append(h("p", { class: "hint" }, "You have not added any yet. Add a webinar, a hearing, or a grant, fellowship or scholarship deadline, and it appears on the Events tab at the next update."));
+    rows.forEach((r, i) => {
+      const n = i + 1, kind = h("select", { "aria-label": `Kind of event ${n}`, on: { change: e => { r.k = e.target.value; if (r.k === "funding" && !r.date) r.ad = true; paint(); } } }, Object.entries(KIND).map(([k, l]) => h("option", { value: k, selected: r.k === k }, l)));
+      list.append(h("div", { class: "cr ev mine" },
+        h("div", { class: "fl" }, h("div", { class: "efs" }, fld("What is it?", kind), fld("Title", inp(r, "t", "text", `Title of event ${n}`, { maxlength: "160", placeholder: "For example: Fulbright-style fellowship application due" }), "wide")),
+          h("div", { class: "efs" }, fld(r.ad ? "Date (or first day)" : "Date", inp(r, "date", "date", `Date of event ${n}`)),
+            r.ad ? fld("Last day (optional)", inp(r, "endDate", "date", `Last day of event ${n}`)) : fld("Starts at", inp(r, "time", "time", `Start time of event ${n}`)),
+            r.ad ? null : fld("Ends on (optional)", inp(r, "endDate", "date", `End date of event ${n}`)), r.ad ? null : fld("Ends at (optional)", inp(r, "endTime", "time", `End time of event ${n}`)),
+            h("label", { class: "ev-ad" }, h("input", { type: "checkbox", checked: r.ad, "aria-label": `All day, event ${n}`, on: { change: e => { r.ad = e.target.checked; paint(); } } }), "All day (a deadline or a date with no time)")),
+          h("div", { class: "efs" }, fld("Who is hosting it? (optional)", inp(r, "o", "text", `Host of event ${n}`, { maxlength: "80", placeholder: "For example: House Judiciary Committee" })), fld("Link (optional)", inp(r, "u", "url", `Link of event ${n}`, { maxlength: "500", placeholder: "https://…" })),
+            fld("Place (optional)", inp(r, "loc", "text", `Place of event ${n}`, { maxlength: "120", placeholder: "Zoom, or an address" }))),
+          fld("A line about it (optional)", h("textarea", { rows: "2", value: r.m, maxlength: "500", "aria-label": `Description of event ${n}`, on: { input: e => { r.m = e.target.value; } } }))),
+        h("button", { class: "btn sm dng", type: "button", on: { click: () => { rows.splice(i, 1); paint(); } } }, "Remove")));
+    });
+    add.disabled = rows.length >= max; paintColl();
+  };
+  let q = "", lim = 12;
+  const paintColl = () => {
+    clearNode(coll);
+    const now = Date.now(), all = (D.events.events || []).filter(e => !e.own && evEnd(e) >= now).sort((a, b) => Date.parse(a.d.length === 10 ? a.d + "T00:00:00Z" : a.d) - Date.parse(b.d.length === 10 ? b.d + "T00:00:00Z" : b.d));
+    const shown = all.filter(e => !off.has(e.id)), needle = q.trim().toLowerCase(), match = needle ? shown.filter(e => (e.t + " " + (e.o || "")).toLowerCase().includes(needle)) : shown;
+    coll.append(h("div", { class: "sub" }, "Collected by the site"), h("p", { class: "hint" }, all.length ? `${plural(shown.length, "upcoming event")} the site found by itself (hearings, grant deadlines and the calendars below). Hide one that does not belong on the site.` : "The site has not found any upcoming events yet. They appear after the next update."));
+    if (all.length) coll.append(h("input", { type: "search", class: "evq", value: q, placeholder: "Search these events", "aria-label": "Search collected events", on: { input: e => { q = e.target.value; lim = 12; const pos = e.target.selectionStart; paintColl(); const n = coll.querySelector(".evq"); n.focus(); n.setSelectionRange(pos, pos); } } }));
+    const box = h("div", { class: "evl" });
+    for (const e of match.slice(0, lim)) box.append(h("div", { class: "evr" }, h("div", null, h("div", { class: "nm" }, e.t), h("div", { class: "hint" }, `${KIND[e.k] || e.k} · ${evWhen(e)}${e.o ? " · " + e.o : ""}`)),
+      h("button", { class: "btn sm dng", type: "button", "aria-label": `Hide the event ${e.t}`, on: { click: () => { off.set(e.id, e.t); paintColl(); } } }, "Hide")));
+    coll.append(box);
+    if (match.length > lim) coll.append(h("button", { class: "btn sm", type: "button", on: { click: () => { lim += 20; paintColl(); } } }, `Show ${Math.min(20, match.length - lim)} more of ${match.length}`));
+    if (needle && !match.length) coll.append(h("p", { class: "hint" }, "No upcoming event matches."));
+    if (off.size) {
+      coll.append(h("div", { class: "sub" }, "Hidden"), h("p", { class: "hint" }, "Not on the site while hidden. Show one to bring it back."));
+      const hb = h("div", { class: "evl" });
+      for (const [id, title] of off) hb.append(h("div", { class: "evr" }, h("div", { class: "nm" }, title || "An event"), h("button", { class: "btn sm", type: "button", "aria-label": `Show the event ${title || id}`, on: { click: () => { off.delete(id); paintColl(); } } }, "Show")));
+      coll.append(hb);
+    }
+  };
+  const save = h("button", { class: "btn pri", type: "button", on: { click: async () => {
+    err.textContent = "";
+    let out; try { out = rows.map(fromRow); for (const o of out) CORE.cleanEvent(o, true); } catch (e) { err.textContent = e.message; return; }
+    const gone = cur.filter(c => !rows.some(r => r.id === c.id));
+    if (gone.length && !(await confirmBox(`Remove ${gone.length === 1 ? "“" + gone[0].t + "”" : gone.length + " events"}?`, "It is taken off the Events tab at the next update.", "Remove", true))) return;
+    const res = await act("events", { list: out, off: [...off].map(([id, t]) => ({ id, t })) });
+    if (!res) err.textContent = "Not saved. See the message at the bottom of the page.";
+  } } }, "Save events");
+  paint();
+  return h("div", { class: "card", id: "card-events" }, h("h2", null, "Events and funding"),
+    h("p", null, "The Events tab lists congressional hearings, webinars and coalition events, and grant, fellowship and scholarship deadlines, with a calendar people can subscribe to. The site collects hearings, federal grant deadlines and the calendars listed under Event calendars. Here you add your own and hide anything collected that does not belong."),
+    list, h("div", { class: "bar" }, add), coll, err, h("div", { class: "bar" }, save),
+    h("p", { class: "hint" }, "Times you enter are in your own time zone; visitors see them in theirs. Up to " + max + " of your own."));
+}
+function calendarsCard() {
+  const base = (D.srcEvents.feeds || []).filter(f => f && typeof f.url === "string" && typeof f.name === "string"), cur = D.S.settings.eventFeeds, max = CORE.LIMITS.feeds, st = D.events.status || {};
+  const rows = cur.map(f => ({ name: f.name, url: f.url })), off = new Set(D.S.settings.eventFeedsOff);
+  const stOf = url => (st.feeds || []).find(f => f.url === url);
+  const line = s => !s ? h("div", { class: "fdst" }, "Not read yet. The site reads it at its next update.") : s.ok ? h("div", { class: "fdst" }, `Working: ${plural(s.n, "event")}, checked ${fmt(s.at)}.`) : h("div", { class: "fdst bad" }, `Not working: ${s.note || "unknown problem"}.${s.n ? ` Showing the ${s.n} events from the last good read.` : ""}`);
+  const list = h("div", { class: "cl" }), err = h("div", { class: "err", role: "alert" });
+  const add = h("button", { class: "btn", type: "button", on: { click: () => { rows.push({ name: "", url: "" }); paint(); [...list.querySelectorAll(".cr.mine")].pop().querySelector("input").focus(); } } }, "+ Add a calendar");
+  const src = (label, s, hint) => h("div", { class: "cr one" }, h("div", { class: "fl" }, h("div", { class: "nm" }, label), s ? (s.ok ? h("div", { class: "fdst" }, `Working: ${plural(s.n, "event")}, checked ${fmt(s.at)}.`) : h("div", { class: "fdst bad" }, `${/skipped/.test(s.note || "") ? "Off" : "Not working"}: ${s.note || "unknown problem"}.`)) : h("div", { class: "fdst" }, "Not read yet. The site reads it at its next update."), hint ? h("div", { class: "hint" }, hint) : null));
+  const paint = () => {
+    clearNode(list);
+    list.append(h("div", { class: "sub" }, "Collected automatically"),
+      src("Congressional hearings and markups (Congress.gov)", st.hearings, "Only meetings about the issues the site follows. Needs the free Congress.gov API key set on the site (see the setup guide)."),
+      src("Federal grant deadlines (Grants.gov)", st.grants, "Open funding opportunities that name Asian American, Native Hawaiian or Pacific Islander communities."));
+    list.append(h("div", { class: "sub" }, "Calendars the site follows"));
+    if (!base.length) list.append(h("p", { class: "hint" }, "The starter list (sources.json) could not be read, so only your own calendars are shown."));
+    for (const b of base.filter(x => !off.has(x.url))) list.append(h("div", { class: "cr fd" }, h("div", { class: "fl" }, h("div", { class: "nm" }, b.name), line(stOf(b.url))),
+      h("button", { class: "btn sm dng", type: "button", "aria-label": `Stop following ${b.name}`, on: { click: () => { off.add(b.url); paint(); } } }, "Stop following")));
+    list.append(h("div", { class: "sub" }, "Your own calendars"));
+    if (!rows.length) list.append(h("p", { class: "hint" }, "You have not added any. Many organizations publish a public calendar address ending in .ics, or a link that says “Subscribe” or “Export”. Paste it here and its events appear on the Events tab."));
+    rows.forEach((r, i) => list.append(h("div", { class: "cr mine" },
+      h("div", { class: "fl" }, h("div", { class: "lb" }, "Name"), h("input", { type: "text", value: r.name, maxlength: "80", placeholder: "For example: SEARAC events", "aria-label": `Name of calendar ${i + 1}`, on: { input: e => { r.name = e.target.value; } } }), cur.some(c => c.url === r.url) ? line(stOf(r.url)) : null),
+      h("div", { class: "fl" }, h("div", { class: "lb" }, "Calendar address (.ics)"), h("input", { type: "url", value: r.url, maxlength: "500", placeholder: "https://…/events/?ical=1", "aria-label": `Address of calendar ${i + 1}`, on: { input: e => { r.url = e.target.value; } } })),
+      h("button", { class: "btn sm dng", type: "button", on: { click: () => { rows.splice(i, 1); paint(); } } }, "Remove"))));
+    const hid = base.filter(x => off.has(x.url));
+    if (hid.length) {
+      list.append(h("div", { class: "sub" }, "Not followed"), h("p", { class: "hint" }, "Its events are not collected while it is here. Follow again to bring them back."));
+      for (const b of hid) list.append(h("div", { class: "cr off one" }, h("div", { class: "fl" }, h("div", { class: "nm" }, b.name), h("div", { class: "hint" }, b.url)), h("button", { class: "btn sm", type: "button", "aria-label": `Follow ${b.name} again`, on: { click: () => { off.delete(b.url); paint(); } } }, "Follow again")));
+    }
+    add.disabled = rows.length >= max;
+  };
+  const save = h("button", { class: "btn pri", type: "button", on: { click: async () => {
+    err.textContent = "";
+    let out; try { out = rows.map(r => { if (!r.url.trim()) throw new Error("Every calendar needs an address. Fill it in or remove it."); return CORE.cleanFeed({ name: r.name, url: r.url }, true); }); } catch (e) { err.textContent = e.message; return; }
+    const gone = cur.filter(c => !out.some(r => r.url === c.url));
+    if (gone.length && !(await confirmBox(`Stop following ${gone.length === 1 ? "“" + gone[0].name + "”" : gone.length + " calendars"}?`, "Its events are taken off the Events tab at the next update.", "Stop following", true))) return;
+    const res = await act("eventFeeds", { list: out, off: [...off] });
+    if (!res) err.textContent = "Not saved. See the message at the bottom of the page.";
+  } } }, "Save calendars");
+  paint();
+  return h("div", { class: "card", id: "card-calendars" }, h("h2", null, "Event calendars"),
+    h("p", null, "Where the Events tab gets its events. Calendars are read about once an hour; a calendar that stops working keeps its last good events and is marked here."),
+    list, err, h("div", { class: "bar" }, add, save),
+    h("p", { class: "hint" }, "Repeating events are read once, as the calendar lists them. Up to " + max + " calendars of your own."));
+}
+
 // News sources: which category each one is in
 const SRC = { q: "", only: "", limit: 100 }, srcSel = new Set();
 function sourcesCard() {
@@ -922,7 +1053,7 @@ function renderSettings(main) {
     opt("all", "Everything waits", " Every new story waits for you to approve it."),
     opt("custom", "Only some sources or sections wait", " New stories from the sources and sections you pick wait; the rest go live."),
     custom, h("div", null, save)),
-    customCard("topic"), customCard("community"), customCard("kind"), hubsCard(), sourcesCard(), blockedCard(), breakingCard(), featuredCard(),
+    customCard("topic"), customCard("community"), customCard("kind"), hubsCard(), eventsCard(), calendarsCard(), sourcesCard(), blockedCard(), breakingCard(), featuredCard(),
     h("div", { class: "card" }, h("h2", null, "How changes reach the site"), h("p", null, `Every change is saved to the private repository ${CFG.dataRepo} (the file admin.json), which is not published. It shows up on the site after the next update, usually two to three minutes after you save. “Update the site now” starts one straight away. Items you delete stay in the Trash for 180 days.`),
       h("p", null, `Sign-ins last ${CFG.hours} hours. ${CFG.kv ? "Wrong-password lockouts and sign-outs are remembered across servers." : "No KV store is attached, so lockouts and sign-outs are only remembered by one server at a time. See the setup guide to add one."}`)));
   paint();

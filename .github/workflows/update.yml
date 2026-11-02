@@ -83,6 +83,16 @@ jobs:
           # started by hand with "backfill" ticked: read each source back to keepFrom (scripts/backfill.mjs)
           BACKFILL: ${{ inputs.backfill && '1' || '' }}
           BACKFILL_ONLY: ${{ inputs.only }}
+      - name: Collect events and funding deadlines
+        # hearings (Congress.gov), grant deadlines (Grants.gov), coalition calendars and the owner's own events (scripts/events.mjs). It never stops the news update: a source that fails keeps what it returned last time.
+        continue-on-error: true
+        run: node scripts/events.mjs
+        env:
+          ADMIN_DIR: ${{ secrets.ADMIN_DATA_TOKEN != '' && 'admin-data' || '' }}
+          API_DATA_GOV_KEY: ${{ secrets.API_DATA_GOV_KEY }}
+          CONGRESS_API_KEY: ${{ secrets.CONGRESS_API_KEY }}
+          # started by hand with "backfill" ticked: ask every events source again now
+          EVENTS_FORCE: ${{ inputs.backfill && '1' || '' }}
       - run: node scripts/build-outputs.mjs
       - name: Commit feed
         run: |

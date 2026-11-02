@@ -9,7 +9,7 @@ import { STATE_FILE, PENDING_FILE, STATE_MAX_BYTES, AdminError, emptyState, vali
 const COOKIE = "__Host-yp_admin", SESSION_HOURS = 12, MAX_BODY = 1_500_000;
 const LOCK_AFTER = 5, LOCK_MINUTES = 15;
 // which repository each file the dashboard reads lives in
-const RAW = { feed: ["site", "data/feed.json"], pending: ["data", PENDING_FILE], state: ["data", STATE_FILE], taxonomy: ["site", "taxonomy.json"], sources: ["site", "sources.json"], hubs: ["site", "hubs.json"] };
+const RAW = { feed: ["site", "data/feed.json"], pending: ["data", PENDING_FILE], state: ["data", STATE_FILE], taxonomy: ["site", "taxonomy.json"], sources: ["site", "sources.json"], hubs: ["site", "hubs.json"], events: ["site", "data/events.json"] };
 const enc = new TextEncoder(), dec = new TextDecoder();
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
@@ -167,7 +167,8 @@ async function taxonomy(env, now) {
   const r = await rawFile(env, "taxonomy.json", "site");
   if (!r.ok) throw await ghProblem(env, r, "taxonomy.json");
   let hubs = null; try { const h = await rawFile(env, "hubs.json", "site"); if (h.ok) hubs = await h.json(); } catch { /* no starter hubs: the owner's own hubs still work */ }
-  taxCache = { at: now, X: taxSets(await r.json(), hubs) };
+  let events = null; try { const s = await rawFile(env, "sources.json", "site"); if (s.ok) events = (await s.json()).events ?? null; } catch { /* no starter calendar feeds: the owner's own still work */ }
+  taxCache = { at: now, X: taxSets(await r.json(), hubs, events) };
   return taxCache.X;
 }
 
@@ -284,6 +285,7 @@ async function route(req, env, ctx) {
     const r = await rawFile(env, file, w);
     if (r.status === 404 && name === "pending") return json({ generated: "", items: [] });
     if (r.status === 404 && name === "state") return json(emptyState());
+    if (r.status === 404 && name === "events") return json({ events: [], status: {} });
     if (!r.ok) throw await ghProblem(env, r, file, w);
     return new Response(r.body, { headers: { ...SECURITY, "content-type": "application/json; charset=utf-8" } });
   }

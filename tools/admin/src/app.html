@@ -74,7 +74,7 @@ ul.rows{list-style:none;margin:0;padding:0;border:1px solid var(--ln);border-rad
 .sum{font-size:13px;color:var(--dm);margin-top:3px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .badges{display:flex;gap:5px;flex-wrap:wrap;margin-top:5px}
 .b{font-size:11.5px;font-weight:650;padding:1px 7px;border-radius:999px;background:var(--chip);color:var(--dm)}
-.b.ed{background:var(--sel);color:var(--ac)}.b.wait{background:var(--warn-bg);color:var(--warn-tx)}.b.ok{background:var(--okbg);color:var(--ok)}
+.b.ft{background:var(--sel);color:var(--ac)}.b.brk{background:var(--errbg);color:var(--err)}.b.ed{background:var(--sel);color:var(--ac)}.b.wait{background:var(--warn-bg);color:var(--warn-tx)}.b.ok{background:var(--okbg);color:var(--ok)}
 .tags{display:flex;gap:5px;flex-wrap:wrap;align-content:flex-start}
 .chip{font-size:12px;padding:2px 8px;border-radius:6px;background:var(--chip)}
 .chip.k{font-weight:650}
@@ -131,6 +131,10 @@ legend{font-weight:650;font-size:13px;padding:0 6px}
 .cr input,.cr textarea{border:1px solid var(--ln);background:var(--pn);border-radius:8px;padding:8px 10px;width:100%}
 .cr textarea{min-height:70px;resize:vertical}
 .hint{font-size:13px;color:var(--dm)}
+.pick{border:1px solid var(--ln);border-radius:10px;background:var(--pn);margin-top:6px}.pick:empty{display:none}
+.pick .srow{grid-template-columns:minmax(0,1fr) auto}.pick .srow .nm{white-space:normal}.pick .srow .sub{display:block;font-size:12.5px;color:var(--dm);font-weight:400}
+.fsrow{grid-template-columns:minmax(0,1fr) 120px auto}.fsrow .nm{white-space:normal}.fsrow .nm .sub{display:block;font-size:12.5px;color:var(--dm);font-weight:400}
+.bkbox{display:grid;grid-template-columns:1fr 1fr;gap:10px 12px;margin:6px 0 4px 26px}.bkbox[hidden]{display:none}
 .sub{margin:16px 0 2px;font-size:12.5px;font-weight:650;letter-spacing:.04em;text-transform:uppercase;color:var(--dm)}
 .cr.off{border-style:dashed;background:transparent}
 .cr .nm{font-weight:600;padding:8px 0;overflow-wrap:anywhere}
@@ -187,7 +191,7 @@ ul.log time{color:var(--dm);min-width:170px;font-size:13px}
 "use strict";
 const CORE = (() => {
 {{CORE}}
-return { normalizeState, applyEdits, placeOf, sanitizeHtml, withCustom, newsKindKeys, kindState, MAX_EXTRA_TOPICS, LIMITS };
+return { normalizeState, applyEdits, placeOf, sanitizeHtml, withCustom, newsKindKeys, kindState, nameKey, breakingOn, breakingEnd, BREAKING_LABELS, BREAKING_HOURS, MAX_EXTRA_TOPICS, LIMITS };
 })();
 (() => {
 const CFG = JSON.parse(document.getElementById("cfg").textContent), NONCE = document.getElementById("cfg").nonce || "";
@@ -243,8 +247,15 @@ async function loadAll() {
   D.feed = feed.items || []; D.pending = pend.items || []; D.S = CORE.normalizeState(state); D.taxBase = tax; D.srcKinds = src.kinds || {}; D.srcCfg = src.sources || []; RSC = null; D.ready = true;
   rebuild();
 }
+// a blocked source: its stories are not listed, and the site still holding some is a change not on the site yet (names are compared the way the collector does, so "Hoodline.com" and "Hoodline" are one)
+const stripTld = v => String(v ?? "").trim().replace(/\.(com|org|net|co|ca|vn|in|io|info|tv|us)$/i, "");
+const nameKeys = n => [CORE.nameKey(n), CORE.nameKey(stripTld(n))];
+let BK = new Set();
+const blockedName = n => BK.size > 0 && nameKeys(n).some(k => k && BK.has(k));
+const stories = n => n === 1 ? "1 story" : n.toLocaleString() + " stories";
 function rebuild() {
   const S = D.S, rows = new Map();
+  BK = new Set(Object.keys(S.settings.blocked).flatMap(nameKeys).filter(Boolean)); D.gone = BK.size ? D.feed.concat(D.pending).filter(it => blockedName(it.s)).length : 0;
   if (D.taxBase) D.tax = CORE.withCustom(D.taxBase, S.settings); // the built-in topics, communities and sections plus the owner's own
   const put = (it, where) => { if (!rows.has(it.id)) rows.set(it.id, { id: it.id, raw: it, where }); };
   for (const it of D.feed) put(it, "live");
@@ -253,7 +264,9 @@ function rebuild() {
   D.live = []; D.wait = []; D.trash = []; D.rows = rows;
   for (const r of rows.values()) {
     if (S.deleted[r.id]) continue;
-    const item = CORE.applyEdits(r.raw, S), target = CORE.placeOf(S, item, { live: r.where === "live", pending: r.where === "pending" });
+    const item = CORE.applyEdits(r.raw, S);
+    if (BK.size && (blockedName(r.raw.s) || blockedName(item.s))) continue; // a blocked source: none of its stories are shown
+    const target = CORE.placeOf(S, item, { live: r.where === "live", pending: r.where === "pending" });
     Object.assign(r, { item, target, dirty: r.where === "new" || target !== r.where || JSON.stringify(item) !== JSON.stringify(r.raw), edited: !!S.edits[r.id], kept: !!S.pinned[r.id], mine: S.added.some(x => x.id === r.id) });
     (target === "pending" ? D.wait : D.live).push(r);
   }
@@ -261,7 +274,9 @@ function rebuild() {
   D.trash.sort((a, b) => b.at.localeCompare(a.at));
   for (const id of [...sel]) if (!rows.has(id) && !S.deleted[id]) sel.delete(id);
 }
-const dirtyCount = () => D.live.concat(D.wait).filter(r => r.dirty).length;
+const brkOf = id => CORE.breakingOn(D.S, id) ? D.S.breaking[id] : null; // the mark an item carries right now (an ended one does not count)
+const hoursText = n => n < 24 ? plural(n, "hour") : n % 24 ? plural(n, "hour") : plural(n / 24, "day");
+const dirtyCount = () => D.live.concat(D.wait).filter(r => r.dirty).length + (D.gone || 0);
 
 // ---------------------------------------------------------------- toasts, dialogs
 function toast(msg, o = {}) {
@@ -301,6 +316,22 @@ const doApprove = (ids, undoing) => act("approve", { ids }, undoing ? {} : { und
 const doHold = (ids, undoing) => act("unpublish", { ids }, undoing ? {} : { undo: () => doApprove(ids, true) });
 const doPin = (ids, undoing) => act("pin", { ids }, undoing ? {} : { undo: () => doUnpin(ids, true) });
 const doUnpin = (ids, undoing) => act("unpin", { ids }, undoing ? {} : { undo: () => doPin(ids, true) });
+const doFeature = (ids, undoing) => act("feature", { ids }, undoing ? {} : { undo: () => doUnfeature(ids, true) });
+const doUnfeature = (ids, undoing) => act("unfeature", { ids }, undoing ? {} : { undo: () => doFeature(ids, true) });
+const doEndBreaking = ids => { const was = ids.map(id => [id, brkOf(id)]).filter(([, b]) => b); return act("unbreaking", { ids }, { undo: () => was.length ? Promise.all(was.map(([id, b]) => act("breaking", { ids: [id], hours: b.hours, label: b.label }, { quiet: true }))) : null }); };
+// asks which label and how long, then marks the items; ids may include items that are already marked (the time then starts again)
+function openBreaking(ids, then) {
+  const labels = CORE.BREAKING_LABELS, lab = h("select", { id: "bk-label" }, Object.entries(labels).map(([k, l]) => h("option", { value: k }, l)));
+  const hrs = h("select", { id: "bk-hours" }, CORE.BREAKING_HOURS.map(n => h("option", { value: String(n) }, hoursText(n))));
+  const note = h("p", { class: "hint", "aria-live": "polite" });
+  const upd = () => { note.textContent = `After the next site update (a few minutes), ${ids.length === 1 ? "this item is" : "these items are"} shown first on ${ids.length === 1 ? "its page" : "their pages"} in red with a flashing “${labels[lab.value]}” label, counted from now until about ${fmt(new Date(Date.now() + Number(hrs.value) * 36e5).toISOString())}. Then ${ids.length === 1 ? "it goes" : "they go"} back to looking like any other item.`; };
+  lab.addEventListener("change", upd); hrs.addEventListener("change", upd); upd();
+  const go = h("button", { class: "btn pri", type: "button", on: { click: async () => { const r = await act("breaking", { ids, hours: Number(hrs.value), label: lab.value }, { undo: () => act("unbreaking", { ids }) }); if (r) { dlg.close(); then && then(); } } } }, "Mark it");
+  openDialog(`Mark ${plural(ids.length, "item")} as breaking news`, [h("div", { class: "two" }, h("div", { class: "fl" }, h("label", { for: "bk-label" }, "Label"), lab), h("div", { class: "fl" }, h("label", { for: "bk-hours" }, "Stays red for"), hrs)), note,
+    h("p", { class: "hint" }, "The shortest time is 2 hours, so a story is on the page for at least an hour even after the few minutes the site needs to update. You can end it earlier from Settings, Breaking news.")],
+    [h("button", { class: "btn", type: "button", on: { click: () => dlg.close() } }, "Cancel"), go]);
+  lab.focus();
+}
 // closes the open dialog first, so a second dialog opened right after does not receive the first one's "close" event
 const closeThen = fn => { if (!dlg.open) return fn(); dlg.addEventListener("close", () => setTimeout(fn, 0), { once: true }); dlg.close(); };
 async function doDelete(ids) {
@@ -355,6 +386,8 @@ function matches(r) {
   if (F.only === "mine" && !r.mine) return false;
   if (F.only === "article" && it.v !== 1) return false;
   if (F.only === "dirty" && !r.dirty) return false;
+  if (F.only === "featured" && !D.S.featured[r.id]) return false;
+  if (F.only === "breaking" && !brkOf(r.id)) return false;
   return true;
 }
 const sorters = { new: (a, b) => b.item.d.localeCompare(a.item.d), old: (a, b) => a.item.d.localeCompare(b.item.d), az: (a, b) => a.item.h.localeCompare(b.item.h), src: (a, b) => (a.item.s || "").localeCompare(b.item.s || "") || b.item.d.localeCompare(a.item.d) };
@@ -388,7 +421,7 @@ function renderList(main) {
     select("All topics", F.topic, D.tax.topics.map(t => [t.k, t.label]), v => { F.topic = v; refreshList(true); }),
     select("All communities", F.cm, D.tax.communities.map(c => [c.k, c.label]), v => { F.cm = v; refreshList(true); }),
     select("All states", F.st, D.tax.states.map(s => [s[0], s[1]]), v => { F.st = v; refreshList(true); }),
-    !isTrash && select("Show everything", F.only, [["edited", "Edited by me"], ["kept", "Kept permanently"], ["mine", "Added by me"], ["article", "Stories written here"], ["dirty", "Not on the site yet"]], v => { F.only = v; refreshList(true); }),
+    !isTrash && select("Show everything", F.only, [["edited", "Edited by me"], ["kept", "Kept permanently"], ["mine", "Added by me"], ["article", "Stories written here"], ["featured", "Featured"], ["breaking", "Breaking now"], ["dirty", "Not on the site yet"]], v => { F.only = v; refreshList(true); }),
     h("select", { "aria-label": "Sort", on: { change: e => { F.sort = e.target.value; refreshList(true); } } }, [["new", "Newest first"], ["old", "Oldest first"], ["az", "Headline A–Z"], ["src", "Source"]].map(([v, l]) => h("option", { value: v, selected: F.sort === v }, l))),
     !isTrash && h("button", { class: "btn pri", type: "button", on: { click: () => openEditor(null) } }, "+ Add an item"));
   main.append(bar, h("div", { id: "listbox" }));
@@ -417,6 +450,8 @@ function rowEl(r) {
   if (r.edited) badges.push(h("span", { class: "b ed" }, "Edited"));
   if (r.mine) badges.push(h("span", { class: "b ed" }, "Added by me"));
   if (r.kept) badges.push(h("span", { class: "b" }, "Kept permanently"));
+  if (!isTrash && D.S.featured[r.id]) badges.push(h("span", { class: "b ft" }, "Featured"));
+  { const b = !isTrash && brkOf(r.id); if (b) badges.push(h("span", { class: "b brk" }, `${CORE.BREAKING_LABELS[b.label]} until ${new Date(CORE.breakingEnd(b)).toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" })}`)); }
   if (it.v === 1) badges.push(h("span", { class: "b" }, "Story"));
   if (r.dirty && !isTrash) badges.push(h("span", { class: "b wait" }, r.target !== r.where && r.where !== "new" ? (r.target === "live" ? "Going live…" : "Moving to waiting…") : "Updating…"));
   if (isTrash) badges.push(h("span", { class: "b" }, "Deleted " + fmtDay(r.trash.at)));
@@ -425,6 +460,8 @@ function rowEl(r) {
   const acts = isTrash ? [!r.noCopy && h("button", { class: "btn sm pri", type: "button", on: { click: () => doRestore(ids) } }, "Restore")] : [
     TAB === "waiting" ? h("button", { class: "btn sm pri", type: "button", on: { click: () => doApprove(ids) } }, "Approve") : h("button", { class: "btn sm", type: "button", on: { click: () => doHold(ids) } }, "Move to waiting"),
     h("button", { class: "btn sm", type: "button", on: { click: () => openEditor(r) } }, "Edit"),
+    D.S.featured[r.id] ? h("button", { class: "btn sm", type: "button", "aria-label": "Stop featuring: " + it.h, on: { click: () => doUnfeature(ids) } }, "Unfeature") : h("button", { class: "btn sm", type: "button", "aria-label": "Feature: " + it.h, on: { click: () => doFeature(ids) } }, "Feature"),
+    brkOf(r.id) ? h("button", { class: "btn sm", type: "button", "aria-label": "End breaking: " + it.h, on: { click: () => doEndBreaking(ids) } }, "End breaking") : h("button", { class: "btn sm", type: "button", "aria-label": "Mark as breaking: " + it.h, on: { click: () => openBreaking(ids) } }, "Breaking…"),
     h("button", { class: "btn sm dng", type: "button", on: { click: () => doDelete(ids) } }, "Delete")];
   return h("li", { class: "row" + (sel.has(r.id) ? " on" : ""), "data-id": r.id },
     h("label", { class: "cb" }, h("input", { type: "checkbox", checked: sel.has(r.id), "aria-label": "Select: " + it.h, on: { change: e => { e.target.checked ? sel.add(r.id) : sel.delete(r.id); e.target.closest(".row").classList.toggle("on", e.target.checked); renderBulk(); } } })),
@@ -442,11 +479,14 @@ function renderBulk() {
   const ids = [...sel]; if (!ids.length || TAB === "settings" || TAB === "activity") return;
   const b = (label, fn, cls = "") => h("button", { class: "btn " + cls, type: "button", on: { click: fn } }, label);
   const rowsSel = ids.map(id => D.rows.get(id)).filter(Boolean), allKept = rowsSel.length && rowsSel.every(r => r.kept);
+  const allFeat = ids.length > 0 && ids.every(id => D.S.featured[id]), allBrk = ids.length > 0 && ids.every(id => brkOf(id));
   w.append(h("div", { class: "bulk", role: "region", "aria-label": "Actions for selected items" }, h("b", null, `${plural(ids.length, "item")} selected`),
     TAB === "trash" ? [b("Restore", async () => { await doRestore(ids); sel.clear(); render(); }, "pri")] : [
       TAB === "waiting" ? b("Approve", async () => { await doApprove(ids); sel.clear(); render(); }, "pri") : b("Move to waiting", async () => { await doHold(ids); sel.clear(); render(); }),
       b("Retag…", () => openRetag(ids)),
       allKept ? b("Stop keeping", () => doUnpin(ids)) : b("Keep permanently", () => doPin(ids)),
+      allFeat ? b("Unfeature", () => doUnfeature(ids)) : b("Feature", () => doFeature(ids)),
+      allBrk ? b("End breaking", () => doEndBreaking(ids)) : b("Breaking…", () => openBreaking(ids)),
       b("Delete", () => doDelete(ids), "dng")],
     b("Clear", () => { sel.clear(); render(); })));
 }
@@ -559,6 +599,10 @@ async function openEditor(row) {
       bodyEl, pv, h("div", { class: "hint" }, "Plain HTML. Scripts, styles and unknown tags are removed (the preview shows the cleaned text).")));
   withArt.addEventListener("change", () => { artBox.hidden = !withArt.checked; });
   const keepEl = h("input", { type: "checkbox", id: "f-keep", checked: isNew });
+  const featEl = h("input", { type: "checkbox", id: "f-feat" }), brkEl = h("input", { type: "checkbox", id: "f-brk" });
+  const bLab = h("select", { id: "f-blabel", "aria-label": "Label" }, Object.entries(CORE.BREAKING_LABELS).map(([k, l]) => h("option", { value: k }, l))), bHrs = h("select", { id: "f-bhours", "aria-label": "Stays red for" }, CORE.BREAKING_HOURS.map(n => h("option", { value: String(n) }, hoursText(n))));
+  const bBox = h("div", { class: "bkbox", hidden: true }, h("div", { class: "fl" }, h("label", { for: "f-blabel" }, "Label"), bLab), h("div", { class: "fl" }, h("label", { for: "f-bhours" }, "Stays red for"), bHrs));
+  brkEl.addEventListener("change", () => { bBox.hidden = !brkEl.checked; });
   const err = h("div", { class: "err", role: "alert" });
 
   const body = [hRow, mRow, h("div", { class: "two" }, sRow, uRow), h("div", { class: "two" }, dRow, h("div", { class: "fl" }, h("label", { for: "f-k" }, "Section"), kEl, hint("k"))), h("div", { class: "fl" }, h("label", { for: "f-t" }, "Main topic"), tEl, hint("t")),
@@ -566,7 +610,9 @@ async function openEditor(row) {
     h("fieldset", null, h("legend", null, "Communities"), h("div", { class: "checks" }, cmChecks)), h("fieldset", null, h("legend", null, "States"), stFilter, stList),
     (isNew || it.v === 1) && h("label", { class: "chk" }, withArt, isNew ? "I am writing the story text here (it opens inside The Yappie Pro)" : "Story text is kept on this site"),
     (isNew || it.v === 1) && artBox,
-    isNew && h("label", { class: "chk" }, keepEl, "Keep this item permanently (otherwise it ages out like other items)"), dl, err];
+    isNew && h("label", { class: "chk" }, keepEl, "Keep this item permanently (otherwise it ages out like other items)"),
+    isNew && h("label", { class: "chk" }, featEl, "Feature it: show it first on its page with a “Featured” label"),
+    isNew && h("label", { class: "chk" }, brkEl, "Mark it as breaking news: red, with a flashing label, first on its page for a while"), isNew && bBox, dl, err];
 
   const collect = () => {
     const out = { h: hEl.value.trim(), m: mEl.value.trim(), s: sEl.value.trim(), u: uEl.value.trim(), k: kEl.value, t: tEl.value, tx: [...txSet], cm: [...cmSet], st: [...stSet] };
@@ -582,6 +628,8 @@ async function openEditor(row) {
     let res;
     if (isNew) {
       const args = { item: v, pin: keepEl.checked }; if (withArt.checked) args.article = artNow();
+      if (featEl.checked) args.feature = true;
+      if (brkEl.checked) args.breaking = { hours: Number(bHrs.value), label: bLab.value };
       res = await act("add", args, { quiet: false });
     } else {
       const patch = {}, orig = {};
@@ -737,12 +785,72 @@ function sourcesCard() {
   const pickAll = h("button", { class: "btn", type: "button", on: { click: () => { for (const r of shownRows()) srcSel.add(r.n); paintList(); paintBulk(); } } }, "Select all shown");
   paintList(); paintBulk();
   return h("div", { class: "card" }, h("h2", null, "News sources"),
-    h("p", null, `Put each source in one of the News categories (${[...keys].map(kindLabel).join(", ")}). The choice applies to all of the source's stories, new and old, at the next update. A story you move by hand (Edit) keeps its own choice.`),
+    h("p", null, `Put each source in one of the News categories (${[...keys].map(kindLabel).join(", ")}). The choice applies to all of the source's stories, new and old, at the next update. A story you move by hand (Edit) keeps its own choice. To remove a source completely, use Blocked sources below.`),
     h("div", { class: "srcbar" }, h("input", { type: "search", placeholder: "Find a source", "aria-label": "Find a source", value: SRC.q, on: { input: e => { SRC.q = e.target.value; SRC.limit = 100; paintList(); } } }), filt, pickAll),
     bulk, head, box);
 }
 
 // ---------------------------------------------------------------- settings
+// Blocked sources: take every story of a source off the site and stop collecting new ones
+function blockedCard() {
+  const entries = Object.entries(D.S.settings.blocked).sort((a, b) => a[0].localeCompare(b[0])), counts = new Map();
+  for (const r of D.live.concat(D.wait)) { const n = r.item && r.item.s; if (n) counts.set(n, (counts.get(n) || 0) + 1); }
+  const names = [...new Set([...counts.keys(), ...D.srcCfg.map(s => s.asName || s.name)])].filter(n => n && !blockedName(n)).sort((a, b) => a.localeCompare(b));
+  const list = h("datalist", { id: "blockable" }, names.map(n => h("option", { value: n }, counts.get(n) ? stories(counts.get(n)) : "")));
+  const input = h("input", { type: "text", list: "blockable", placeholder: "Type or choose a source", "aria-label": "Source to block", maxlength: "80", autocomplete: "off" });
+  const countOf = name => { const ks = new Set(nameKeys(name).filter(Boolean)); return D.live.concat(D.wait).filter(r => nameKeys(r.item.s).some(k => ks.has(k))).length; };
+  const block = async () => {
+    const name = input.value.trim();
+    if (!name || !CORE.nameKey(name)) { toast("Type or choose the source to block.", { bad: true }); input.focus(); return; }
+    if (blockedName(name)) { toast("That source is already blocked.", { bad: true }); return; }
+    const n = countOf(name);
+    const ok = await confirmBox(`Block “${name}”?`, (n ? `All ${stories(n)} from ${name} are taken off the site` : `${name} has no stories on the site now`) + ", and nothing new is collected from it. Nothing goes to the Trash. You can unblock it later; new stories are then collected again, and its older ones come back after the next full scan.", n ? "Block and delete its stories" : "Block", true);
+    if (ok) await act("blockSources", { sources: [name] }, { undo: () => act("unblockSources", { sources: [name] }) });
+  };
+  input.addEventListener("keydown", e => { if (e.key === "Enter") { e.preventDefault(); block(); } });
+  const rows = entries.length ? entries.map(([n, t]) => h("div", { class: "srow" }, h("span", { class: "nm" }, n), h("span", { class: "ct" }, t && !isNaN(new Date(t)) ? "since " + new Date(t).toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" }) : "blocked"),
+    h("div", null, h("button", { class: "btn", type: "button", "aria-label": "Unblock " + n, on: { click: () => act("unblockSources", { sources: [n] }, { undo: () => act("blockSources", { sources: [n] }) }) } }, "Unblock")))) : [h("div", { class: "empty" }, "No sources are blocked.")];
+  return h("div", { class: "card", id: "card-blocked" }, h("h2", null, "Blocked sources"),
+    h("p", null, "Block a source to take all of its stories off the site and stop collecting new ones from it, for an outlet you never want to show. A blocked source disappears from the lists above, and nothing from it is added to the Trash."),
+    h("div", { class: "bar" }, input, list, h("button", { class: "btn dng", type: "button", on: { click: block } }, "Block this source")),
+    h("div", { class: "srclist", id: "blockedlist" }, rows),
+    h("p", { class: "hint" }, "Unblocking brings the source back: new stories are collected again at the next update. Its older stories return after the next full scan of the year, which you start on GitHub (Actions, update-feed, Run workflow, tick “backfill”)."));
+}
+// finds items on the site by words in the headline or source and offers a button for each (used to feature or mark an item without scrolling the list)
+function itemFinder(placeholder, label, btnText, onPick, skip) {
+  const input = h("input", { type: "search", placeholder, "aria-label": label, maxlength: "120", autocomplete: "off" }), out = h("div", { class: "pick", "aria-live": "polite" });
+  const run = () => {
+    clearNode(out); const q = input.value.trim().toLowerCase(); if (q.length < 2) return;
+    const words = q.split(/\s+/).filter(Boolean);
+    const hits = D.live.concat(D.wait).filter(r => !skip(r.id) && (t => words.every(w => t.includes(w)))(`${r.item.h} ${r.item.s}`.toLowerCase())).sort((a, b) => b.item.d.localeCompare(a.item.d));
+    if (!hits.length) { out.append(h("div", { class: "empty" }, "No item on the site matches.")); return; }
+    for (const r of hits.slice(0, 6)) out.append(h("div", { class: "srow" }, h("span", { class: "nm" }, r.item.h, h("span", { class: "sub" }, [r.item.s, fmtDay(r.item.d)].filter(Boolean).join(" · "))), h("div", null, h("button", { class: "btn", type: "button", "aria-label": btnText + ": " + r.item.h, on: { click: () => onPick(r) } }, btnText))));
+    if (hits.length > 6) out.append(h("div", { class: "empty" }, `${hits.length - 6} more match. Type more words to narrow it down.`));
+  };
+  input.addEventListener("input", run);
+  return [input, out];
+}
+function featuredCard() {
+  const ids = Object.keys(D.S.featured).sort((a, b) => D.S.featured[b].localeCompare(D.S.featured[a]));
+  const [input, out] = itemFinder("Search for a story to feature", "Search for a story to feature", "Feature", r => doFeature([r.id]), id => !!D.S.featured[id]);
+  const rows = ids.length ? ids.map(id => { const it = D.rows.get(id)?.item; return h("div", { class: "srow fsrow" }, h("span", { class: "nm" }, it ? it.h : "(an item that is no longer on the site)", it && h("span", { class: "sub" }, [it.s, fmtDay(it.d)].filter(Boolean).join(" · "))), h("span", { class: "ct" }, "since " + fmtDay(D.S.featured[id])),
+    h("div", null, h("button", { class: "btn", type: "button", "aria-label": "Stop featuring: " + (it ? it.h : id), on: { click: () => doUnfeature([id]) } }, "Remove"))); }) : [h("div", { class: "empty" }, "Nothing is featured.")];
+  return h("div", { class: "card", id: "card-featured" }, h("h2", null, "Featured items"),
+    h("p", null, "Featured items are shown first on their page with a “Featured” label, the most recently featured first, ahead of the usual order. There is no limit. They are also kept past the usual number of days until you remove them here. You can also use the Feature button on any item in the Live list."),
+    h("div", { class: "bar" }, input), out,
+    h("div", { class: "srclist", id: "featuredlist" }, rows));
+}
+function breakingCard() {
+  const on = Object.keys(D.S.breaking).filter(id => brkOf(id)).sort((a, b) => D.S.breaking[b].at.localeCompare(D.S.breaking[a].at));
+  const [input, out] = itemFinder("Search for a story to mark as breaking", "Search for a story to mark as breaking", "Mark…", r => openBreaking([r.id]), id => !!brkOf(id));
+  const rows = on.length ? on.map(id => { const it = D.rows.get(id)?.item, b = D.S.breaking[id]; return h("div", { class: "srow fsrow" }, h("span", { class: "nm" }, it ? it.h : "(an item that is no longer on the site)", h("span", { class: "sub" }, `${CORE.BREAKING_LABELS[b.label]} · ${it ? it.s : ""}`.replace(/ · $/, ""))), h("span", { class: "ct" }, "until " + new Date(CORE.breakingEnd(b)).toLocaleString(undefined, { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })),
+    h("div", null, h("button", { class: "btn", type: "button", "aria-label": "End breaking: " + (it ? it.h : id), on: { click: () => doEndBreaking([id]) } }, "End now"))); }) : [h("div", { class: "empty" }, "Nothing is marked right now.")];
+  return h("div", { class: "card", id: "card-breaking" }, h("h2", null, "Breaking news"),
+    h("p", null, "Mark a story as Breaking, Urgent or Important. On the site it appears first on its page in red with a flashing label for the time you choose (at least 2 hours), then goes back to looking like any other item without you doing anything. You can also use the Breaking button on any item in the Live list, or tick it when you add an item."),
+    h("div", { class: "bar" }, input), out,
+    h("div", { class: "srclist", id: "breakinglist" }, rows),
+    h("p", { class: "hint" }, "A mark appears on the site after the next update, usually two to three minutes after you save. Visitors who already have the page open see it within about ten minutes, or when they reload."));
+}
 function renderSettings(main) {
   const cur = D.S.settings.approval, srcSet = new Set(cur.sources), kindSet = new Set(cur.kinds);
   const allNames = [...new Set([...D.srcCfg.map(s => s.name), ...D.feed.map(i => i.s), ...D.pending.map(i => i.s), ...cur.sources].filter(Boolean))].sort((a, b) => a.localeCompare(b));
@@ -764,7 +872,7 @@ function renderSettings(main) {
     opt("all", "Everything waits", " Every new story waits for you to approve it."),
     opt("custom", "Only some sources or sections wait", " New stories from the sources and sections you pick wait; the rest go live."),
     custom, h("div", null, save)),
-    customCard("topic"), customCard("community"), customCard("kind"), sourcesCard(),
+    customCard("topic"), customCard("community"), customCard("kind"), sourcesCard(), blockedCard(), breakingCard(), featuredCard(),
     h("div", { class: "card" }, h("h2", null, "How changes reach the site"), h("p", null, `Every change is saved to the private repository ${CFG.dataRepo} (the file admin.json), which is not published. It shows up on the site after the next update, usually two to three minutes after you save. “Update the site now” starts one straight away. Items you delete stay in the Trash for 180 days.`),
       h("p", null, `Sign-ins last ${CFG.hours} hours. ${CFG.kv ? "Wrong-password lockouts and sign-outs are remembered across servers." : "No KV store is attached, so lockouts and sign-outs are only remembered by one server at a time. See the setup guide to add one."}`)));
   paint();

@@ -6,7 +6,7 @@ import { fileURLToPath } from "node:url";
 import { XMLParser } from "fast-xml-parser";
 import { makeTagger, TAXO_PATH } from "./tag.mjs";
 import { makeEnglishCheck } from "./lang.mjs";
-import { normalizeState, applyEdits, placeOf, withCustom, newsKindKeys, kindState, feedTaxo } from "./admin.mjs";
+import { normalizeState, applyEdits, breakingOn, placeOf, withCustom, newsKindKeys, kindState, feedTaxo } from "./admin.mjs";
 
 const CFG = process.env.SOURCES ?? fileURLToPath(new URL("../sources.json", import.meta.url));
 const OUT = process.env.OUT ?? fileURLToPath(new URL("../data/feed.json", import.meta.url));
@@ -34,7 +34,7 @@ const learnHosts = list => { for (const o of list) if (o.ph && o.s) learnHost(o.
 const nameForeign = n => { const t = String(n ?? "").trim().toLowerCase(); return /^[a-z0-9-]+(\.[a-z0-9-]+)+$/.test(t) && hostForeign(t); }; // a publisher named by its web address, e.g. "UzDaily.uz"
 const nameBlocked = n => [normName(n), normName(noTld(n))].some(k => k && BLOCK_NAMES.has(k)) || nameForeign(n);
 const pubBlocked = o => { const a = pubHosts(o); return a.length > 0 && a.every(h => hostBlocked(h)); };
-const blocked = o => hostBlocked(hostOf(o.u)) || pubBlocked(o) || nameBlocked(o.s);
+const blocked = o => hostBlocked(hostOf(o.u)) || pubBlocked(o) || nameBlocked(o.s) || ownerBlocked(o.s);
 const KEEP_MS = (cfg.keepDays ?? 30) * 864e5, MAX = cfg.maxItems ?? 400;
 // A source can keep its stories longer than everyone else with its own "keepDays" (a research center publishes a few reports a year). Research stories are counted apart from the news cap ("researchMax"), so a busy news week never pushes a report out.
 const KEEP_BY = new Map(cfg.sources.filter(x => x.keepDays).map(x => [normName(x.asName ?? x.name), x.keepDays * 864e5]));
@@ -46,7 +46,7 @@ const keepOf = o => { const n = normName(o.s), base = KEEP_BY.get(n) ?? KEEP_MS,
 const FROM = cfg.keepFrom ? Date.parse(cfg.keepFrom + "T00:00:00Z") : NaN;
 if (cfg.keepFrom && Number.isNaN(FROM)) { console.error(`"keepFrom" (${cfg.keepFrom}) is not a date like 2026-01-01.`); process.exit(1); }
 const inRange = o => !Number.isNaN(FROM) && Date.parse(o.d) >= FROM;
-const held = o => inRange(o) || (t => t !== undefined && Date.parse(o.d) >= t)(SINCE.get(normName(o.s)));
+const held = o => inRange(o) || !!A.featured[o.id] || breakingOn(A, o.id) || (t => t !== undefined && Date.parse(o.d) >= t)(SINCE.get(normName(o.s)));
 const sinceFrom = ms => Number.isNaN(FROM) ? ms : Math.max(ms, Date.now() - FROM); // a window in days, stretched back to "keepFrom" if that is further
 const BACKFILL = /^(1|true|yes)$/i.test(process.env.BACKFILL ?? ""); // set by the update workflow's "backfill" input: read every source as far back as "keepFrom" and relax the government windows (scripts/backfill.mjs)
 if (BACKFILL && Number.isNaN(FROM)) { console.error('BACKFILL needs "keepFrom" in sources.json.'); process.exit(1); }
@@ -67,6 +67,9 @@ let A = normalizeState(null), oldPending = [];
 try { A = normalizeState(JSON.parse(await readFile(join(ADMIN_DIR, "admin.json"), "utf8"))); }
 catch (e) { if (e.code !== "ENOENT") { console.error("admin.json cannot be read (" + e.message + "); keeping the previous data so the owner's decisions are not lost."); process.exit(1); } } // no file: no decisions yet
 try { oldPending = JSON.parse(await readFile(join(ADMIN_DIR, "pending.json"), "utf8")).items ?? []; } catch { /* nothing waiting */ }
+// Sources the owner blocked in the dashboard: nothing from them is collected, and what is stored is dropped (by name, so a publisher shown by Google News is caught too; "Hoodline.com" and "Hoodline" are one name).
+const OWNER_BLOCK = new Set(Object.keys(A.settings.blocked).flatMap(n => [normName(n), normName(noTld(n))]).filter(Boolean));
+function ownerBlocked(n) { return OWNER_BLOCK.size > 0 && [normName(n), normName(noTld(n))].some(k => k && OWNER_BLOCK.has(k)); }
 const TAXO_BASE = JSON.parse(await readFile(TAXO_PATH, "utf8")), TAXO = withCustom(TAXO_BASE, A.settings); // TAXO: taxonomy.json plus the owner's own topics (with their keywords), communities and categories
 const TG = makeTagger(TAXO);
 const isEnglish = makeEnglishCheck(TAXO_BASE); // English-language stories only
@@ -329,7 +332,7 @@ async function pull(src) {
     }
     const u = safeUrl(linkOf(it)), ph = G ? hostOf(it.source?.["@_url"] ?? "").replace(/^www\./, "") : "";
     if (ph) learnHost(s, ph); // learned before the block check, so a stored story from a blocked publisher can be recognised later
-    if (hostBlocked(hostOf(u)) || hostBlocked(ph) || nameBlocked(pubName)) continue;
+    if (hostBlocked(hostOf(u)) || hostBlocked(ph) || nameBlocked(pubName) || ownerBlocked(pubName)) continue;
     if (exCat.size && catsOf(it).some(c => exCat.has(c))) { if (u) catDropIds.add(idOf(src.kind, u)); skippedCat.push(s + ": " + h); continue; }
     const raw = G ? "" : clean(it.description ?? it.summary ?? it["content:encoded"]).slice(0, 300); // used only for filtering/tagging
     const m = G ? "" : dek(it.description ?? it.summary, h);
@@ -520,7 +523,9 @@ const PEND_MAX = cfg.pendingMax ?? 500;
 const status = [], fresh = [];
 const foreignSources = cfg.sources.filter(s => s.enabled !== false && !s.google && hostForeign(hostOf(s.feed ?? s.page ?? s.wp)));
 if (foreignSources.length) console.log("Skipped (source is on a non-U.S. domain): " + [...new Set(foreignSources.map(s => s.name))].join(", "));
-await Promise.all(cfg.sources.filter(s => s.enabled !== false && !foreignSources.includes(s)).map(async s => {
+const blockedSources = cfg.sources.filter(s => s.enabled !== false && ownerBlocked(s.asName ?? s.name));
+if (blockedSources.length) console.log("Skipped (blocked in the admin dashboard): " + [...new Set(blockedSources.map(s => s.asName ?? s.name))].join(", "));
+await Promise.all(cfg.sources.filter(s => s.enabled !== false && !foreignSources.includes(s) && !blockedSources.includes(s)).map(async s => {
   try { const r = await pull(s); fresh.push(...r); status.push({ name: s.name, home: s.home, kind: s.kind ?? kindOf(s.asName ?? s.name), ok: true, count: r.length }); }
   catch (e) { status.push({ name: s.name, home: s.home, kind: s.kind ?? kindOf(s.asName ?? s.name), ok: false, error: String(e.message ?? e) }); }
 }));
@@ -578,7 +583,7 @@ for (const it0 of [...fresh.map(renamed).map(settle), ...old.map(retag), ...oldP
   const k = pol ? it.u : it.h.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim().slice(0, 70); // companion bills can share a title, so policy items are told apart by link
   const open = it.dl && it.dl >= today && now - new Date(it.d) < keepFR, at = Date.parse(it.d);
   const repeat = pol ? seen.has(k) : (seenAt.get(k) ?? []).some(t => Math.abs(t - at) < SAME_STORY_MS);
-  if (!k || repeat || seenId.has(it.id) || (now - new Date(it.d) > (pol ? POL_KEEP : keepOf(it)) && !open && !A.pinned[it.id] && !inRange(it))) continue;
+  if (!k || repeat || seenId.has(it.id) || (now - new Date(it.d) > (pol ? POL_KEEP : keepOf(it)) && !open && !A.pinned[it.id] && !A.featured[it.id] && !breakingOn(A, it.id, now) && !inRange(it))) continue;
   if (!pol && ((!isOrg(it.k) && abroadOnly(it.h + " " + (it.m ?? ""))) || !isEnglish(it.h + " " + (it.m ?? "")))) continue;
   if (pol) seen.add(k); else seenAt.set(k, [...(seenAt.get(k) ?? []), at]);
   seenId.add(it.id); items.push(it);
@@ -587,10 +592,10 @@ if (gateLog.length) console.log(`Dropped (a gated site: only the stories its gat
 if (offTopicLog.length) console.log(`Dropped (headline does not name AAPI communities): ${offTopicLog.length}\n  ` + offTopicLog.slice(0, 40).join("\n  "));
 // The owner's decisions: items added by hand or restored from the trash join the others (kept, or aged out like any other unless "kept permanently"); edits go on top of what was collected; an item that needs approval goes to the waiting list.
 const oldIds = new Set(old.map(i => i.id)), oldPendIds = new Set(oldPending.map(i => i.id));
-for (const m of A.added) if (!A.deleted[m.id] && !seenId.has(m.id) && (A.pinned[m.id] || inRange(m) || now - Date.parse(m.d) <= keepOf(m))) { seenId.add(m.id); items.push({ ...m, g: 1 }); }
+for (const m of A.added) if (!A.deleted[m.id] && !seenId.has(m.id) && (A.pinned[m.id] || A.featured[m.id] || breakingOn(A, m.id, now) || inRange(m) || now - Date.parse(m.d) <= keepOf(m))) { seenId.add(m.id); items.push({ ...m, g: 1 }); }
 const live = [], waiting = [];
 // A story the backfill found is the owner's own request for the year's record, so it goes live even when new stories wait for approval; one the owner already holds back, or that already waits, stays as it is.
-for (const it0 of items) { const it = applyEdits(it0, A); (placeOf(A, it, { live: oldIds.has(it.id) || (BACKFILL && !oldPendIds.has(it.id)), pending: oldPendIds.has(it.id) }) === "pending" ? waiting : live).push(it); }
+for (const it0 of items) { const it = applyEdits(it0, A); if (ownerBlocked(it.s)) continue; /* also when the owner renamed the story's source to a blocked one, or added the story by hand */ (placeOf(A, it, { live: oldIds.has(it.id) || (BACKFILL && !oldPendIds.has(it.id)), pending: oldPendIds.has(it.id) }) === "pending" ? waiting : live).push(it); }
 live.sort((a, b) => b.d.localeCompare(a.d)); waiting.sort((a, b) => b.d.localeCompare(a.d));
 // News, Research and Policy are each capped, except the stories that are held (published on or after "keepFrom", or from a source with "keepSince"): those are all kept.
 const capped = (list, max) => [...list.filter(i => !held(i)).slice(0, max), ...list.filter(held)];

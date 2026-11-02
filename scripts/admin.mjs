@@ -9,8 +9,10 @@ export const STATE_FILE = "admin.json", PENDING_FILE = "pending.json";
 export const EDIT_FIELDS = ["h", "m", "s", "u", "d", "k", "t", "tx", "cm", "st", "rl", "rt"]; // headline, summary, source, link, date, section, topic, extra topics, communities, states, policy relevancy, research type
 export const MAX_EXTRA_TOPICS = 4; // a story has one main topic ("t") and up to this many more ("tx")
 export const RESEARCH_TYPES = ["poll", "report", "data", "none"]; // rt: a survey ("poll"), a report, data, or "none" (not a research item); no rt = the site's rules decide
-export const LIMITS = { topics: 30, communities: 30, newsKinds: 8, words: 40, sourceKinds: 500 };
+export const LIMITS = { topics: 30, communities: 30, newsKinds: 8, words: 40, sourceKinds: 500, blocked: 200 };
 export const NEWS_BASE_KINDS = ["community", "news"]; // "AAPI Media" and "Mainstream": the News page's two built-in categories
+export const BREAKING_LABELS = { breaking: "Breaking", urgent: "Urgent", important: "Important" }; // the red, flashing label an item carries while it is marked
+export const BREAKING_HOURS = [2, 6, 12, 24, 48]; // what the dashboard offers; any whole number of hours from 2 to 72 is accepted (the shortest is 2 so the item is on the page for at least an hour even after the few minutes the site needs to update)
 export const PURGE_DAYS = 180; // how long a deleted, approved or held record is remembered
 export const STATE_MAX_BYTES = 900_000; // the GitHub contents API returns a file inline up to 1 MB
 
@@ -22,6 +24,7 @@ export const emptySettings = () => ({
   communities: [], // communities the owner added: { k, label, words }
   newsKinds: [],   // News page categories the owner added besides AAPI Media and Mainstream: { k, label }
   sourceKinds: {}, // source name -> News page category key ("community" = AAPI Media, "news" = Mainstream, or one of newsKinds)
+  blocked: {},     // source name -> when the owner blocked it: all its stories are taken off the site and nothing new is collected from it
   builtin: { topics: {}, communities: {}, kinds: {} }, // changes to the built-in ones, by key: { label?: a new name, off?: true (removed), to?: for a removed News category, the category its sources go to }
 });
 export const emptyState = () => ({
@@ -33,9 +36,23 @@ export const emptyState = () => ({
   approved: {}, // id -> when; an item the owner approved (it goes live even when approval is required)
   held: {},     // id -> when; an item the owner took back to the approval queue
   pinned: {},   // id -> when; an item kept past the usual number of days
+  featured: {}, // id -> when; an item shown at the top of its page with a "Featured" label (newest first); it is also kept past the usual number of days
+  breaking: {}, // id -> { at, hours, label }; an item the page shows in red with a flashing label for "hours" hours from "at", at the top of its page (then it is an ordinary item again)
   deleted: {},  // id -> { at, item }; removed items are never collected again; "item" is a copy for restoring
   added: [],    // items added by hand, or restored from the trash
 });
+
+/** A source name as one comparable word: letters and digits in any script, in lower case ("Maui Now", "maui now" and "MauiNow" are one source). */
+export const nameKey = v => String(v ?? "").toLowerCase().replace(/[^\p{L}\p{N}]+/gu, "");
+
+/** When a breaking mark ends (ms). */
+export const breakingEnd = b => Date.parse(b.at) + b.hours * 36e5;
+/** Is the item marked as breaking news right now? (an ended mark does not count) */
+export const breakingOn = (s, id, now = Date.now()) => { const b = s.breaking?.[id]; return !!b && now < breakingEnd(b); };
+const cleanBreaking = (b, at) => {
+  const h = Math.round(Number(isObj(b) ? b.hours : NaN)), label = isObj(b) && typeof b.label === "string" && b.label in BREAKING_LABELS ? b.label : "breaking";
+  return { at, hours: Number.isFinite(h) ? Math.min(72, Math.max(2, h)) : BREAKING_HOURS[0], label };
+};
 
 const isObj = o => !!o && typeof o === "object" && !Array.isArray(o);
 const arr = a => Array.isArray(a) ? a : [];
@@ -72,8 +89,10 @@ export function normalizeState(raw) {
       }
     }
     if (isObj(raw.settings.sourceKinds)) for (const [n, k] of Object.entries(raw.settings.sourceKinds)) { if (Object.keys(s.settings.sourceKinds).length >= LIMITS.sourceKinds) break; const name = line(n, 80); if (name && typeof k === "string" && KEY_OK.kind.test(k) && k.length <= KEY_MAX.kind) s.settings.sourceKinds[name] = k; }
+    if (isObj(raw.settings.blocked)) for (const [n, t] of Object.entries(raw.settings.blocked)) { if (Object.keys(s.settings.blocked).length >= LIMITS.blocked) break; const name = line(n, 80); if (name && nameKey(name)) s.settings.blocked[name] = typeof t === "string" ? t.slice(0, 40) : ""; }
   }
-  for (const k of ["edits", "orig", "article", "approved", "held", "pinned", "deleted"]) if (isObj(raw[k])) for (const [id, v] of Object.entries(raw[k])) if (validId(id) && v != null && (k === "approved" || k === "held" || k === "pinned" || isObj(v))) s[k][id] = v;
+  for (const k of ["edits", "orig", "article", "approved", "held", "pinned", "featured", "deleted"]) if (isObj(raw[k])) for (const [id, v] of Object.entries(raw[k])) if (validId(id) && v != null && (k === "approved" || k === "held" || k === "pinned" || isObj(v) || (k === "featured" && typeof v === "string"))) s[k][id] = v;
+  if (isObj(raw.breaking)) for (const [id, b] of Object.entries(raw.breaking)) if (validId(id) && isObj(b) && typeof b.at === "string" && !Number.isNaN(Date.parse(b.at)) && Object.keys(s.breaking).length < 500) s.breaking[id] = cleanBreaking(b, b.at);
   s.added = arr(raw.added).filter(x => isObj(x) && validId(x.id) && typeof x.h === "string" && x.h && typeof x.u === "string" && x.u);
   return s;
 }
@@ -353,6 +372,10 @@ export function applyEdits(it, s) {
   let o = it;
   if (e) { o = { ...it }; for (const f of EDIT_FIELDS) if (f in e) { if (e[f] === null) delete o[f]; else o[f] = e[f]; } }
   if (Array.isArray(o.tx)) { const a = o.tx.filter(k => k !== o.t); if (a.length !== o.tx.length) { if (o === it) o = { ...it }; if (a.length) o.tx = a; else delete o.tx; } } // the main topic is not repeated among the extra ones
+  const fe = s.featured?.[it.id]; // "fe": when the owner featured it (the page shows these first, newest first); an old "fe" the owner has since taken away is dropped
+  if (typeof fe === "string" && fe) { if (o.fe !== fe) { if (o === it) o = { ...it }; o.fe = fe; } } else if ("fe" in o) { if (o === it) o = { ...it }; delete o.fe; }
+  const b = s.breaking?.[it.id]; // "bt" / "bu" / "bk": when the item was marked, when the mark ends, and its label (the page shows the item in red with a flashing label until "bu")
+  if (b) { const bu = new Date(breakingEnd(b)).toISOString(); if (o.bt !== b.at || o.bu !== bu || o.bk !== b.label) { if (o === it) o = { ...it }; o.bt = b.at; o.bu = bu; o.bk = b.label; } } else if ("bu" in o || "bt" in o || "bk" in o) { if (o === it) o = { ...it }; delete o.bt; delete o.bu; delete o.bk; }
   if (s.article[it.id]?.body) o = o === it ? { ...it, v: 1 } : (o.v = 1, o);
   return o;
 }
@@ -377,7 +400,8 @@ const plural = (n, w) => `${n} ${n === 1 ? w : w === "community" ? "communities"
 export function purge(s, now = Date.now()) {
   const old = t => now - Date.parse(t) > PURGE_DAYS * 864e5;
   for (const k of ["approved", "held"]) for (const [id, t] of Object.entries(s[k])) if (old(t)) delete s[k][id];
-  for (const [id, d] of Object.entries(s.deleted)) if (old(d.at)) { delete s.deleted[id]; s.added = s.added.filter(x => x.id !== id); }
+  for (const [id, d] of Object.entries(s.deleted)) if (old(d.at)) { delete s.deleted[id]; delete s.featured[id]; s.added = s.added.filter(x => x.id !== id); }
+  for (const [id, b] of Object.entries(s.breaking)) if (now - breakingEnd(b) > 7 * 864e5) delete s.breaking[id]; // a mark that ended a week ago
   s.added = s.added.filter(x => s.pinned[x.id] || !old(x.d)); // an item restored or added without "keep" ages out like any other
   return s;
 }
@@ -409,10 +433,12 @@ function dropKeys(s, type, gone, fallback) {
 
 /**
  * Applies one dashboard action to a copy of the state. ops:
- *  approve {ids} · unpublish {ids} · delete {ids, items?} · restore {ids} · pin {ids} · unpin {ids}
- *  edit {id, patch, orig?, article?} · editMany {edits:[{id, patch, orig?}]} · revert {id} · add {item, article?, pin?} · settings {approval}
+ *  approve {ids} · unpublish {ids} · delete {ids, items?} · restore {ids} · pin {ids} · unpin {ids} · feature {ids} · unfeature {ids}
+ *  breaking {ids, hours?, label?} · unbreaking {ids}  (red, flashing, at the top of its page for "hours" hours; label: breaking, urgent or important)
+ *  edit {id, patch, orig?, article?} · editMany {edits:[{id, patch, orig?}]} · revert {id} · add {item, article?, pin?, feature?, breaking?: {hours?, label?}} · settings {approval}
  *  topics {list:[{k?, label, words}]} · communities {list} · newsKinds {list:[{k?, label}]}  (the owner's own: the whole list is sent)
  *  sourceKinds {sources:[name], kind: key | null}  (which News page category a source belongs to; null = back to the usual one)
+ *  blockSources {sources:[name]} · unblockSources {sources:[name]}  (a blocked source: all its stories are taken off the site, and nothing new is collected from it)
  * ctx: { X: taxSets(...) of taxonomy.json, now?: ms, inPlace?: true }. Returns { state, summary, ids, id? }. Throws AdminError for a request that is not allowed.
  */
 export function applyOp(state, op, args, ctx) {
@@ -425,9 +451,19 @@ export function applyOp(state, op, args, ctx) {
     case "unpublish": needIds(); for (const id of ids) { s.held[id] = at; delete s.approved[id]; } out.summary = `Moved ${plural(ids.length, "item")} back to the approval queue`; break;
     case "pin": needIds(); for (const id of ids) s.pinned[id] = at; out.summary = `Kept ${plural(ids.length, "item")} permanently`; break;
     case "unpin": needIds(); for (const id of ids) delete s.pinned[id]; out.summary = `Stopped keeping ${plural(ids.length, "item")} permanently`; break;
+    case "feature": needIds(); for (const id of ids) if (!s.featured[id]) s.featured[id] = at; out.summary = `Featured ${plural(ids.length, "item")} at the top of ${ids.length === 1 ? "its page" : "their pages"}`; break;
+    case "unfeature": needIds(); for (const id of ids) delete s.featured[id]; out.summary = `Removed ${plural(ids.length, "item")} from Featured`; break;
+    case "breaking": {
+      needIds(); const b = cleanBreaking(args, at);
+      for (const id of ids) s.breaking[id] = b;
+      if (Object.keys(s.breaking).length > 500) throw new AdminError("At most 500 items can be marked at once.");
+      out.summary = `Marked ${plural(ids.length, "item")} as ${b.label}, shown in red at the top for ${b.hours} hours`; break;
+    }
+    case "unbreaking": needIds(); for (const id of ids) delete s.breaking[id]; out.summary = `Ended the ${ids.length === 1 ? "breaking mark" : "breaking marks"} on ${plural(ids.length, "item")}`; break;
     case "delete": {
       needIds();
       for (const id of ids) {
+        delete s.breaking[id];
         const snap = isObj(args.items) && isObj(args.items[id]) ? args.items[id] : s.added.find(x => x.id === id);
         let item; if (snap) { try { item = cleanItem({ ...snap, id }, X, ctx.now); } catch { item = undefined; } }
         s.deleted[id] = { at, ...(item ? { item } : {}) }; delete s.approved[id]; delete s.held[id];
@@ -476,7 +512,9 @@ export function applyOp(state, op, args, ctx) {
       const item = cleanItem({ ...args.item, id }, X, ctx.now), art = args.article !== undefined ? cleanArticle(args.article) : {};
       if (art.body) { item.v = 1; s.article[id] = { by: "", img: "", byu: "", ...art }; }
       s.added.push(item); if (args.pin !== false) s.pinned[id] = at; s.approved[id] = at;
-      out.ids = [id]; out.id = id; out.summary = "Added an item"; break;
+      if (args.feature === true) s.featured[id] = at;
+      if (isObj(args.breaking)) s.breaking[id] = cleanBreaking(args.breaking, at);
+      out.ids = [id]; out.id = id; out.summary = isObj(args.breaking) ? `Added an item marked as ${s.breaking[id].label}` : "Added an item"; break;
     }
     case "settings": {
       const a = args?.approval; if (!isObj(a) || !["off", "all", "custom"].includes(a.mode)) throw new AdminError("Choose an approval mode.");
@@ -510,6 +548,21 @@ export function applyOp(state, op, args, ctx) {
       for (const n of names) s.settings.sourceKinds[n] = args.kind;
       if (Object.keys(s.settings.sourceKinds).length > LIMITS.sourceKinds) throw new AdminError(`At most ${LIMITS.sourceKinds} sources can have their own category.`);
       out.summary = `Moved ${plural(names.length, "source")} to ${X.kindLabel.get(args.kind) ?? (args.kind === "community" ? "AAPI Media" : args.kind === "news" ? "Mainstream" : args.kind)}`; break;
+    }
+    case "blockSources": {
+      const all = arr(args?.sources).map(x => line(x, 80)).filter(x => nameKey(x)), names = all.filter((n, i) => all.findIndex(m => nameKey(m) === nameKey(n)) === i);
+      if (!names.length) throw new AdminError("Choose a source to block.");
+      const have = new Set(Object.keys(s.settings.blocked).map(nameKey)), fresh = names.filter(n => !have.has(nameKey(n)));
+      if (!fresh.length) throw new AdminError(names.length === 1 ? "That source is already blocked." : "Those sources are already blocked.");
+      if (Object.keys(s.settings.blocked).length + fresh.length > LIMITS.blocked) throw new AdminError(`At most ${LIMITS.blocked} sources can be blocked.`);
+      for (const n of fresh) s.settings.blocked[n] = at;
+      out.summary = fresh.length === 1 ? `Blocked “${fresh[0]}” and removed its stories` : `Blocked ${plural(fresh.length, "source")} and removed their stories`; break;
+    }
+    case "unblockSources": {
+      const keys = new Set(arr(args?.sources).map(x => nameKey(line(x, 80))).filter(Boolean)), gone = Object.keys(s.settings.blocked).filter(n => keys.has(nameKey(n)));
+      if (!gone.length) throw new AdminError("Those sources are not blocked.");
+      for (const n of gone) delete s.settings.blocked[n];
+      out.summary = gone.length === 1 ? `Unblocked “${gone[0]}”` : `Unblocked ${plural(gone.length, "source")}`; break;
     }
     default: throw new AdminError("Unknown action.", 404);
   }

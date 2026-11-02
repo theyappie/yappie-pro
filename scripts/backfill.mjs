@@ -12,7 +12,7 @@
 // A source can carry its own "backfill":
 //   false                                      skip this source
 //   { "modes": ["feed", "google-site"] }        the strategies to try, in order: wp feed blogger substack squarespace page google google-site (default depends on the kind of source, see autoModes)
-//   { "pages": 120 }                            how many pages of a feed or listing page to read at most; "pageParam": "page" or "pagePath": "page/{n}/" say how a listing page is paged
+//   { "pages": 120 }                            how many pages of a feed or listing page to read at most; "pageParam": "page" or "pagePath": "page/{n}/" say how a listing page is paged ("pageFrom": 1 when its first page is ?page=0)
 //   { "rest": "https://x.org/wp-json/wp/v2/posts" }   the WordPress list to use instead of working it out from the feed's address
 //   { "site": "example.com", "terms": true }    what the Google News fallback searches: the site (a folder is fine) and the words stories must contain ("terms": true is the AAPI words; a string is your own)
 //   { "json": "https://x.org/news" }            the Squarespace page to read as JSON; { "origin": "https://x.substack.com" } for Substack
@@ -143,10 +143,11 @@ export function makeBackfill({ from, until = new Date(), get, parseFeed, itemDat
   // ---------------------------------------------------------------- a listing page's numbered pages (?page=2 or /page/2/); the page's own reader finds the stories and their dates
   async function pagePaged(src, have, sink) {
     const bf = src.backfill ?? {}, maxP = bf.pages ?? 60, seen = new Set(have.map(r => normUrl(itemLink(r))));
-    for (let p = 2; p <= maxP; p++) {
+    const first = bf.pageFrom ?? 2; // "pageFrom": 1 for a listing whose numbering starts at 0 (Drupal: ?page=1 is the second page)
+    for (let p = first; p <= maxP; p++) {
       const u = new URL(src.page);
       if (bf.pagePath) u.pathname = u.pathname.replace(/\/?$/, "/") + bf.pagePath.replace("{n}", p); else u.searchParams.set(bf.pageParam ?? "page", String(p));
-      let html; try { html = await fetchText(u.href, "text/html"); } catch (e) { if (p === 2) throw e; break; }
+      let html; try { html = await fetchText(u.href, "text/html"); } catch (e) { if (p === first) throw e; break; }
       const recs = pageRecords(html, src), fresh = recs.filter(r => !seen.has(normUrl(itemLink(r))));
       if (!recs.length || !fresh.length) break; // no story with a date inside the period, or the same page again
       for (const r of fresh) seen.add(normUrl(itemLink(r)));

@@ -1360,6 +1360,152 @@
     "California Commission on Asian and Pacific Islander American Affairs"
    ],
    "o": "About Us | California Commission on APIA Affairs"
+  },
+  {
+   "id": "nqapia",
+   "n": "National Queer Asian Pacific Islander Alliance",
+   "ab": "National alliance of LGBTQ+ Asian American, Native Hawaiian and Pacific Islander groups that builds the capacity of local, grassroots and affinity-based organizations and advances an intersectional justice and equity agenda.",
+   "u": "https://www.nqapia.org",
+   "sc": "national",
+   "hq": "New York, NY",
+   "st": [],
+   "c": [],
+   "is": [
+    "CIVIL RIGHTS",
+    "IMMIGRATION"
+   ],
+   "ty": "advocacy",
+   "fd": "2005",
+   "src": [
+    "NQAPIA"
+   ],
+   "o": "NATIONAL QUEER ASIAN PACIFIC ISLANDER ALLIANCE | Empower and Advocate Today"
+  },
+  {
+   "id": "national-capacd",
+   "n": "National Coalition for Asian Pacific American Community Development",
+   "ab": "Coalition of more than 150 member organizations working on community development and against the gentrification and displacement of Asian American, Native Hawaiian and Pacific Islander communities.",
+   "u": "https://www.nationalcapacd.org",
+   "sc": "national",
+   "hq": "Washington, DC",
+   "st": [],
+   "c": [],
+   "is": [
+    "HOUSING",
+    "ECONOMY"
+   ],
+   "ty": "advocacy",
+   "fd": "1999",
+   "src": [
+    "National CAPACD"
+   ],
+   "o": "Who We Are - National CAPACD"
+  },
+  {
+   "id": "center-for-asian-american-media",
+   "n": "Center for Asian American Media",
+   "ab": "San Francisco nonprofit, formerly the National Asian American Telecommunications Association, dedicated to advancing Asian Americans in independent media, including television, film and public broadcasting.",
+   "u": "https://caamedia.org",
+   "sc": "national",
+   "hq": "San Francisco, CA",
+   "st": [],
+   "c": [],
+   "is": [
+    "CULTURE"
+   ],
+   "ty": "media",
+   "fd": "1980",
+   "src": [
+    "Center for Asian American Media"
+   ],
+   "o": "About - Center for Asian American Media"
+  },
+  {
+   "id": "aapcho",
+   "n": "Association of Asian Pacific Community Health Organizations",
+   "ab": "National association of community health centers, formed in 1987, that serves as a national voice for the health of Asian American, Native Hawaiian and Pacific Islander communities.",
+   "u": "https://aapcho.org",
+   "sc": "national",
+   "hq": "",
+   "st": [],
+   "c": [],
+   "is": [
+    "HEALTH"
+   ],
+   "ty": "health",
+   "fd": "1987",
+   "src": [
+    "AAPCHO"
+   ],
+   "o": "About Us - AAPCHO"
+  },
+  {
+   "id": "council-of-korean-americans",
+   "n": "Council of Korean Americans",
+   "ab": "Nonpartisan national nonprofit that advances the voice and influence of the Korean American community through a network of executives and trailblazers and leadership fellowships.",
+   "u": "https://councilka.org",
+   "sc": "national",
+   "hq": "Washington, DC",
+   "st": [],
+   "c": [
+    "KR"
+   ],
+   "is": [
+    "GOVERNMENT"
+   ],
+   "ty": "civic engagement",
+   "fd": "2011",
+   "src": [
+    "Council of Korean Americans"
+   ],
+   "o": "About Us | Council of Korean Americans (CKA)"
+  },
+  {
+   "id": "department-of-hawaiian-home-lands",
+   "n": "Department of Hawaiian Home Lands",
+   "ab": "Government body: Hawaii state agency, led by the nine-member Hawaiian Homes Commission, that manages the Hawaiian Home Lands trust under the Hawaiian Homes Commission Act of 1921.",
+   "u": "https://dhhl.hawaii.gov",
+   "sc": "government",
+   "hq": "Kapolei, HI",
+   "st": [
+    "HI"
+   ],
+   "c": [
+    "NHPI"
+   ],
+   "is": [
+    "HOUSING",
+    "CULTURE",
+    "ECONOMY"
+   ],
+   "ty": "government",
+   "fd": "1921",
+   "src": [
+    "Department of Hawaiian Home Lands"
+   ],
+   "o": "About – Department of Hawaiian Home Lands"
+  },
+  {
+   "id": "office-of-native-hawaiian-relations",
+   "n": "Office of Native Hawaiian Relations",
+   "ab": "Government body: U.S. Department of the Interior office, established by Congress in 2004, that is the liaison with the Native Hawaiian Community and handles U.S. responsibilities under the Hawaiian Home Lands trust laws.",
+   "u": "https://www.doi.gov/hawaiian",
+   "sc": "government",
+   "hq": "Honolulu, HI",
+   "st": [
+    "HI"
+   ],
+   "c": [
+    "NHPI"
+   ],
+   "is": [
+    "GOVERNMENT",
+    "HOUSING",
+    "CULTURE"
+   ],
+   "ty": "government",
+   "fd": "2004",
+   "o": "About the Office of Native Hawaiian Relations | U.S. Department of the Interior"
   }
  ]
 }

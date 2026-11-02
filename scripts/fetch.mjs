@@ -152,10 +152,22 @@ const COMMUNITY = new RegExp(cfg.communityPattern ?? AAPI.source, "i");
 const TRUSTED = new Set([...cfg.sources.filter(x => !(x.google && !/site(:|%3A)/i.test(x.feed ?? ""))).flatMap(x => [x.name, x.asName]), ...(cfg.trustedOutlets ?? [])].map(normName).filter(Boolean));
 // A site that is allowed back through allowHosts but only for some of its stories ("gatedHosts"): its story is kept when it matches "require" (or names the communities, with "community": true) and does not match "deny" (rnz.co.nz: Pacific Islander stories, no sports; independent.co.uk: stories about the communities).
 // The site is matched by its address, by the address Google News reports for its publisher, or by its name. A story that passes its gate skips the headline test below, because the gate is stricter.
-const GATES = (cfg.gatedHosts ?? []).map(g => { const hosts = (g.hosts ?? []).map(h => h.toLowerCase()); return { hosts, names: new Set([...(g.names ?? []), ...hosts].flatMap(n => [normName(n), normName(noTld(n))]).filter(Boolean)), require: g.require ? new RegExp(g.require, "i") : null, community: !!g.community, deny: g.deny ? new RegExp(g.deny, "i") : null }; });
+const GATES = (cfg.gatedHosts ?? []).map(g => { const hosts = (g.hosts ?? []).map(h => h.toLowerCase()); return { hosts, names: new Set([...(g.names ?? []), ...hosts].flatMap(n => [normName(n), normName(noTld(n))]).filter(Boolean)), require: g.require ? new RegExp(g.require, "i") : null, community: !!g.community, tie: !!g.tie, deny: g.deny ? new RegExp(g.deny, "i") : null }; });
 const gateOf = o => GATES.find(g => inList(hostOf(o.u), g.hosts) || pubHosts(o).some(h => inList(h, g.hosts)) || keys2(o.s).some(k => g.names.has(k)));
 // A gate lets a story through when it matches "require" or, if the gate sets "community": true, when it names the communities (communityPattern); a gate with neither lets every story through. "deny" always drops.
-const gateFails = o => { const g = gateOf(o); if (!g) return false; const t = o.h + " " + (o.m ?? ""); const pass = (!g.require && !g.community) || (g.require && g.require.test(t)) || (g.community && COMMUNITY.test(t)); return !pass || !!(g.deny && g.deny.test(t)); };
+// A story about a Pacific island nation (Fiji’s constitution, a Samoan prime minister, a Tongan drug-dog unit) is not about Pacific Islander communities in the United States, so it needs a tie to the U.S.: "usTie" (matched ignoring case) or "usTieCase" (matched exactly, for "US" and "U.S.", which would otherwise match the word "us") in the headline or summary.
+// The tie words cover the U.S. and its government and military, the Compact of Free Association, nuclear testing, climate change, and the U.S. territories and states. A gate with "tie": true (rnz.co.nz) requires one of them for every story; "pacificNations" names the countries and regional bodies, and a news story that names one without any tie is dropped from every source ("pacificOnly" below).
+const TIE = cfg.usTie ? new RegExp(cfg.usTie, "i") : null, TIE_CASE = cfg.usTieCase ? new RegExp(cfg.usTieCase) : null, NATIONS = cfg.pacificNations ? new RegExp(cfg.pacificNations, "i") : null;
+const hasTie = t => !!((TIE && TIE.test(t)) || (TIE_CASE && TIE_CASE.test(t)));
+const gateFails = o => { const g = gateOf(o); if (!g) return false; const t = o.h + " " + (o.m ?? ""); const pass = (!g.require && !g.community) || (g.require && g.require.test(t)) || (g.community && COMMUNITY.test(t)); return !pass || !!(g.deny && g.deny.test(t)) || (!!g.tie && !hasTie(t)); };
+// News stories only (statements, policy items, research and the community outlets are chosen one by one already); a story the owner pinned or featured stays.
+// A story from a newspaper or station on U.S. soil (Guam, the Marianas, American Samoa, Hawaii; "usOutlets", matched on the publisher address) is local news for the communities, so it is never dropped as foreign.
+const US_OUTLETS = cfg.usOutlets ? new RegExp(cfg.usOutlets, "i") : null;
+const onUsSoil = o => !!US_OUTLETS && [hostOf(o.u), ...pubHosts(o)].some(h => h && US_OUTLETS.test(h));
+const pacificOnly = o => !!NATIONS && (o.k ?? "news") === "news" && !A.pinned[o.id] && !A.featured[o.id] && !onUsSoil(o) && (t => NATIONS.test(t) && !hasTie(t))(o.h + " " + (o.m ?? ""));
+// A trip story (a TV star's trip to Guam, a K-pop idol's Hawaii honeymoon) that uses a Pacific place only as a destination and never names the communities: "travelPlaces" with "travelWords" in sources.json.
+const TRAVEL_PLACES = cfg.travelPlaces ? new RegExp(cfg.travelPlaces, "i") : null, TRAVEL_WORDS = cfg.travelWords ? new RegExp(cfg.travelWords, "i") : null;
+const travelFluff = o => !!TRAVEL_PLACES && !!TRAVEL_WORDS && (o.k ?? "news") === "news" && !A.pinned[o.id] && !A.featured[o.id] && (t => TRAVEL_PLACES.test(t) && TRAVEL_WORDS.test(t) && !COMMUNITY.test(t))(o.h + " " + (o.m ?? ""));
 const offTopic = o => !isPolicy(o.k) && !isOrg(o.k) && hostOf(o.u) === "news.google.com" && !keys1(o.s).some(k => TRUSTED.has(k)) && !gateOf(o) && !COMMUNITY.test(o.h + " " + (o.m ?? ""));
 
 const ENT = { amp: "&", lt: "<", gt: ">", quot: '"', apos: "'", nbsp: " " };
@@ -260,7 +272,8 @@ function pageRecords(html, src) {
     if (isNaN(d) && src.numericDates) for (const where of near) { const x = /\b(\d{1,2})\/(\d{1,2})\/(20\d\d)\b/.exec(clean(where)); if (x) { d = new Date(Date.UTC(+x[3], +x[1] - 1, +x[2], 12)); break; } } // "numericDates": the listing writes dates as 09/23/2026
     // some listings show no dates at all; "idDate" names the part of the link that is a Mongo-style id (HuffPost: ..._n_<24 hex>), whose first 8 hex digits are the creation time in epoch seconds
     if (isNaN(d) && src.idDate) { const x = new RegExp(src.idDate).exec(h.href); if (x) d = new Date(parseInt(x[1].slice(0, 8), 16) * 1e3); }
-    const dk = [...h.inner.matchAll(/<p\b[^>]*>([\s\S]*?)<\/p>/gi)].map(x => clean(x[1])).find(x => x.length >= 25) ?? ""; // the publisher's own summary, only when it sits inside the link
+    // the publisher's own summary: inside the link, or with "descAfter" the first paragraph after it (Interior's press-release list puts it under the headline), so a story that names the communities only in its summary is still found
+    const dk = [...(src.descAfter ? h.inner + " " + after : h.inner).matchAll(/<p\b[^>]*>([\s\S]*?)<\/p>/gi)].map(x => clean(x[1])).find(x => x.length >= 25) ?? "";
     // menus link to the same pages without a date, so a link counts once it has a title and a date
     if (title && !isNaN(d) && !found.has(h.href)) found.set(h.href, { title, d, dek: dk });
   });
@@ -651,13 +664,15 @@ const retag = o => {
 // A story that is new in this run is tagged with the topics and communities in use now; one that names a topic or community the owner has since removed (a government item filed under "Government & policy", say) gets the usual replacement.
 const settle = o => ({ ...o, ...(VALID.has(o.t) ? {} : { t: TAXO.default }), ...(Array.isArray(o.cm) && o.cm.some(c => !VALID_CM.has(c)) ? { cm: o.cm.filter(c => VALID_CM.has(c)) } : {}) });
 learnHosts([...old, ...fresh, ...old.map(renamed), ...fresh.map(renamed)]); // a publisher shown under its new name keeps its web address
-const offTopicLog = [], gateLog = [];
+const offTopicLog = [], gateLog = [], pacLog = [], travelLog = [];
 for (const it0 of [...fresh.map(renamed).map(settle), ...old.map(retag), ...oldPending.map(retag)]) {
   if (catDropIds.has(it0.id)) continue; // a story in an excluded category, stored by an earlier run
   if (A.deleted[it0.id]) continue; // deleted in the admin dashboard: never collected again
   if (blocked(it0)) continue; // a blocked site, or a site on a non-U.S. domain, is dropped from stored stories too
   const it = reroute(withSourceKind(it0));
   if (gateFails(it)) { gateLog.push(it.s + ": " + it.h); continue; }
+  if (pacificOnly(it)) { pacLog.push(it.s + ": " + it.h); continue; }
+  if (travelFluff(it)) { travelLog.push(it.s + ": " + it.h); continue; }
   if (offTopic(it)) { offTopicLog.push(it.s + ": " + it.h); continue; }
   const pol = isPolicy(it.k);
   if (pol && it.k !== "statebill" && !govItem(it) && !it.of) continue; // "of": an official body on a non-.gov address (a state commission); the Policy tracker takes .gov sources only (state bills come through Open States, whose pages link to each legislature)
@@ -669,6 +684,8 @@ for (const it0 of [...fresh.map(renamed).map(settle), ...old.map(retag), ...oldP
   if (pol) seen.add(k); else seenAt.set(k, [...(seenAt.get(k) ?? []), at]);
   seenId.add(it.id); items.push(it);
 }
+if (travelLog.length) console.log(`Dropped (a trip or celebrity story that names no community): ${travelLog.length}\n  ` + travelLog.slice(0, 40).join("\n  "));
+if (pacLog.length) console.log(`Dropped (only about Pacific island nations, no U.S. link): ${pacLog.length}\n  ` + pacLog.slice(0, 40).join("\n  "));
 if (gateLog.length) console.log(`Dropped (a gated site: only the stories its gate allows are kept): ${gateLog.length}\n  ` + gateLog.slice(0, 40).join("\n  "));
 if (offTopicLog.length) console.log(`Dropped (headline does not name AAPI communities): ${offTopicLog.length}\n  ` + offTopicLog.slice(0, 40).join("\n  "));
 // The owner's decisions: items added by hand or restored from the trash join the others (kept, or aged out like any other unless "kept permanently"); edits go on top of what was collected; an item that needs approval goes to the waiting list.

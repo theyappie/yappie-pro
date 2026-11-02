@@ -696,6 +696,31 @@
       "filter": true
     },
     {
+      "name": "Department of Hawaiian Home Lands",
+      "home": "https://dhhl.hawaii.gov",
+      "feed": "https://dhhl.hawaii.gov/category/media-releases/feed/",
+      "kind": "govstmt",
+      "dropTitle": "\\bmeetings?\\b"
+    },
+    {
+      "name": "Department of Hawaiian Home Lands",
+      "home": "https://dhhl.hawaii.gov",
+      "feed": "https://dhhl.hawaii.gov/category/public-notice/feed/",
+      "kind": "govstmt",
+      "dropTitle": "\\bmeetings?\\b"
+    },
+    {
+      "name": "U.S. Department of the Interior",
+      "home": "https://www.doi.gov/news",
+      "page": "https://www.doi.gov/news",
+      "link": "^/pressreleases/[^/]+$",
+      "kind": "govstmt",
+      "filter": true,
+      "numericDates": true,
+      "descAfter": true,
+      "backfill": {"modes": ["page"], "pageParam": "page", "pageFrom": 1, "pages": 30}
+    },
+    {
       "name": "U.S. Commission on Civil Rights",
       "home": "https://www.usccr.gov",
       "feed": "https://www.usccr.gov/feed",
@@ -918,6 +943,7 @@
     {
       "hosts": ["rnz.co.nz"],
       "names": ["RNZ", "RNZ Pacific", "Radio New Zealand"],
+      "tie": true,
       "require": "\\b(pacific islanders?|pacific islands?|pasifika|pacific (?:peoples?|communit\\w+|diaspora|nations?|leaders?|forum|region|youth|families|workers?)|south pacific|polynesia\\w*|melanesia\\w*|micronesia\\w*|oceania|samoa\\w*|tonga\\w*|fiji\\w*|vanuatu|ni-?vanuatu|tuvalu\\w*|kiribati|i-kiribati|nauru\\w*|palau\\w*|marshall islands|marshallese|cook islands?|cook islanders?|niue\\w*|tokelau\\w*|papua new guinea|bougainville|solomon islands?|solomon islanders?|new caledonia|kanak\\w*|tahiti\\w*|wallis and futuna|guam|chamorros?|chamoru|mariana\\w*|saipan|tinian|cnmi|american samoa|hawai\\S*|rapa nui|pitcairn|pohnpei|chuuk|kosrae)\\b",
       "deny": "\\b(sports?|sporting|rugby|nrl|netball|football\\w*|soccer|cricket|basketball|volleyball|athletics|athletes?|olympi\\w+|paralympi\\w+|commonwealth games|pacific games|micronesian games|mini games|island games|arafura games|world cup|premier league|league|cup|semis|recap|half-?time|full-?time|kick-?off|line-?up|scores? (?:a |the )?(?:winner|try|goal|hat-?trick)|(?:fiji|tonga|samoa|png|cook islands|new zealand|australia|england|france|kiwis|wallabies) (?:beats?|defeats?|edges?|stuns?|downs?|upsets?|thrash\\w*|routs?)|all blacks|black ferns|silver ferns|tall blacks|tall ferns|wallabies|wallaroos|warriors|moana pasifika|drua|flying fijians|manu samoa|ikale tahi|sevens|swimm\\w+|weightlift\\w+|boxing(?! day)|boxers?|mma|ufc|golf\\w*|tennis|cycling|rowing|surf(?:ing|ers?)|sailing|triathlon|waka ama|referee\\w*|(?:gold|silver|bronze) medal\\w*|medall?ists?|fifa|ofc|nba|nfl|grand final|semi-?finals?|quarter-?finals?|tournament|try-?scorer|scrum\\w*|halfback|five-?eighth)\\b"
     },
@@ -927,6 +953,14 @@
       "community": true
     }
   ],
+  "_pacificNote": "Pacific island nations. A story about a Pacific island country (Fiji's constitution, a Samoan prime minister, a drug-detection unit in Tonga) is not about Pacific Islander communities in the United States, so a news story that names one of the pacificNations without a tie to the U.S. is dropped from every source. A tie is any usTie word (matched ignoring case) or usTieCase word (matched exactly, so \"US\" and \"ICE\" do not match the words \"us\" and \"ice\"): the U.S. and its government and military, the Compact of Free Association, nuclear testing, climate change, and the U.S. territories and states. A gated site with \"tie\": true (rnz.co.nz) needs a tie for every story. Statements, policy items, research and the community outlets are not checked, and a story the owner pinned or featured stays. Add a word to usTie to keep more stories; remove pacificNations to turn the rule off.",
+  "pacificNations": "\\b(fiji|tonga|samoa|vanuatu|tuvalu|kiribati|nauru|palau|marshall islands|federated states of micronesia|cook islands?|niue|tokelau|papua new guinea|bougainville|solomon islands?|new caledonia|french polynesia|tahiti|wallis and futuna|pitcairn|south pacific|pacific islands|pacific island (?:nations?|countries|states|governments?|leaders?)|pacific (?:nations|leaders|region|forum)|melanesian spearhead group)\\b",
+  "usTie": "\\b(united states|u\\.s\\.|usa|america\\w*|trump|biden|obama|white house|pentagon|washington|capitol hill|congress\\w*|senators?|state department|usaid|peace corps|indo-?pacific|indopacom|compact of free association|cofa|free association|compact (?:funding|negotiations?|renewal|trust fund)|nuclear|radiation|runit|bikini|enewetak|castle bravo|climate|sea[- ]level|rising seas?|global warming|loss and damage|cop\\d+|guam|chamorros?|chamoru|mariana\\w*|saipan|tinian|cnmi|american samoa|hawai\\S*|native hawaiians?|kanaka|honolulu|maui|oahu|kauai|pearl harbor|aapi|aanhpi|nhpi|asian americans?|alabama|arizona|california|colorado|connecticut|delaware|florida|georgia|idaho|illinois|indiana|iowa|kansas|kentucky|louisiana|maine|maryland|massachusetts|michigan|minnesota|mississippi|missouri|montana|nebraska|nevada|new hampshire|new jersey|new mexico|new york|north carolina|north dakota|ohio|oklahoma|oregon|pennsylvania|rhode island|south carolina|south dakota|tennessee|texas|utah|vermont|virginia|west virginia|wisconsin|wyoming|alaska|arkansas|los angeles|san francisco|seattle|portland|salt lake|springdale|oakland|san diego|sacramento|chicago|houston|dallas|phoenix|las vegas|denver|atlanta|boston|philadelphia|miami|new orleans)\\b",
+  "usTieCase": "\\b(?:U\\.?S\\.?(?:A\\.?)?(?![\\w$])|(?:ICE|FBI|DHS|NOAA|FEMA)\\b)",
+  "usOutlets": "(?:^|\\.)(?:guampdn\\.com|postguam\\.com|kuam\\.com|islapublic\\.org|mvguam\\.com|mvariety\\.com|saipantribune\\.com|samoanews\\.com|civilbeat\\.org|staradvertiser\\.com|hawaiinewsnow\\.com|khon2\\.com|kitv\\.com|hawaiitribune-herald\\.com|bigislandnow\\.com|mauinow\\.com|kauainownews\\.com|hawaiipublicradio\\.org)$",
+  "_travelNote": "Travel and celebrity trips. A news story that uses a Pacific place only as a destination (a TV star's exhausting trip to Guam, a K-pop idol's honeymoon in Hawaii) is dropped when it names one of the travelPlaces together with one of the travelWords and does not name the communities (communityPattern). Local coverage of tourism, such as visitor counts or vacation-rental rules, is not matched. Statements, policy items, research and the community outlets are not checked, and a story the owner pinned or featured stays.",
+  "travelPlaces": "\\b(guam|hawai\\S*|honolulu|maui|oahu|kauai|saipan|tinian|rota|cnmi|marianas?|samoa|fiji|tonga|palau|tahiti|cook islands|marshall islands|micronesia|polynesia|pacific islands?)\\b",
+  "travelWords": "\\b(honeymoons?|getaways?|itinerar(?:y|ies)|travel (?:guide|tips|diary|vlog)|sightseeing|things to do|best (?:beaches|resorts)|where to (?:stay|eat)|tv (?:stars?|shows?|celebrit\\w+)|celebrit(?:y|ies)|k-?pop (?:idols?|stars?)|variety shows?|mukbang|vlog\\w*|trip (?:experience|diary|review|vlog)|packing list)\\b",
   "_routesNote": "Stories from these sites or publishers are shown on the page for the kind named here, whatever source they came in through. Stories that link to a .gov address move from News to the Policy page on their own.",
   "routes": [
     {"kind": "statement", "hosts": ["asianlawcaucus.org"], "names": ["Asian Law Caucus"]},

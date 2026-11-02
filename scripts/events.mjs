@@ -9,7 +9,7 @@ import { readFile, writeFile, mkdir, stat } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { dirname, join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { normalizeState, hubList, hubTagger, cleanEvent, cleanFeed, EVENT_KINDS, httpsUrl } from "./admin.mjs";
+import { normalizeState, hubList, hubTagger, cleanEvent, cleanFeed, EVENT_KINDS, httpsUrl, renameMap, renamedTo } from "./admin.mjs";
 
 const UA = { "user-agent": "TheYappiePro/1.0 (open-source policy index; events)", accept: "*/*" };
 const DAY = 864e5, MIN = 6e4;
@@ -269,7 +269,7 @@ export function electionEvents(dates, lo, hi, hubsOf = () => []) {
   return out;
 }
 
-export function mergeEvents({ own = [], auto = [], sys = [], off = [], now = Date.now(), keepPastDays = 7, aheadDays = 400, max = 800, maxSpanDays = 0, hubsOf = () => [] }) {
+export function mergeEvents({ own = [], auto = [], sys = [], off = [], now = Date.now(), keepPastDays = 7, aheadDays = 400, max = 800, maxSpanDays = 0, hubsOf = () => [], rename = t => t }) {
   const hide = new Set(off), lo = now - keepPastDays * DAY, hi = now + aheadDays * DAY, seen = new Set(), out = [];
   for (const [ev, mine, ours] of [...own.map(e => [e, true, false]), ...auto.filter(e => !hide.has(e.id)).map(e => [e, false, false]), ...sys.filter(e => !hide.has(e.id)).map(e => [e, false, true])]) {
     const c = ours ? ev : cleanEvent(ev, false); if (!c || !c.id) continue;
@@ -277,7 +277,8 @@ export function mergeEvents({ own = [], auto = [], sys = [], off = [], now = Dat
     if (!mine && maxSpanDays > 0 && c.k === "event" && (endMs(c) - startMs(c)) / DAY > maxSpanDays) continue; // a museum exhibition that runs for months is not something to attend on a day
     const key = normTitle(c.t) + dayOf(c); if (seen.has(key)) continue; seen.add(key);
     const hb = hubsOf([c.t, c.o, c.m, c.sub].join(" "));
-    out.push(ours ? c : { ...c, ...(hb.length ? { hb } : {}), ...(mine ? { own: 1 } : {}) });
+    const t = mine ? c.t : rename(c.t); // a collected event can carry a new title the owner gave it; the owner's own events are edited directly
+    out.push(ours ? (t === c.t ? c : { ...c, t }) : { ...c, t, ...(hb.length ? { hb } : {}), ...(mine ? { own: 1 } : {}) });
   }
   return out.sort((a, b) => startMs(a) - startMs(b) || a.t.localeCompare(b.t)).slice(0, max);
 }
@@ -328,7 +329,8 @@ export async function main(env = process.env, now = env.EVENTS_NOW ? Date.parse(
   const obsJ = await readJson(env.OBSERVANCES ?? join(root, "observances.json"), {}), elJ = await readJson(env.ELECTIONS ?? join(root, "elections.json"), {}), feedJ = await readJson(env.FEED ?? join(dirname(OUT), "feed.json"), {});
   const sysObs = observanceEvents(obsJ.items, lo, hi, hubsOf), sysEl = electionEvents(elJ.dates, lo, Infinity, hubsOf), sysCmt = commentEvents((feedJ.items ?? []).filter(x => x && x.dl), lo, hi, hubsOf);
   status.dates = { observances: sysObs.length, elections: sysEl.length, comments: sysCmt.length };
-  const events = mergeEvents({ own: A.settings.events, auto, sys: [...sysEl, ...sysCmt, ...sysObs], off: A.settings.eventsOff.map(x => x.id), now, keepPastDays: cfg.keepPastDays ?? 7, aheadDays: cfg.aheadDays ?? 400, max: cfg.max ?? 1200, maxSpanDays: cfg.maxSpanDays ?? 21, hubsOf });
+  const EVN = renameMap(A.settings.names.events); // new titles the owner gave to collected events (by the title they were collected with)
+  const events = mergeEvents({ own: A.settings.events, auto, sys: [...sysEl, ...sysCmt, ...sysObs], off: A.settings.eventsOff.map(x => x.id), now, keepPastDays: cfg.keepPastDays ?? 7, aheadDays: cfg.aheadDays ?? 400, max: cfg.max ?? 1200, maxSpanDays: cfg.maxSpanDays ?? 21, hubsOf , rename: EVN.size ? t => renamedTo(EVN, t) : undefined });
   const hidden = auto.filter(e => A.settings.eventsOff.some(x => x.id === e.id)).length;
   await mkdir(dirname(OUT), { recursive: true });
   await writeFile(CACHE, JSON.stringify(cache));

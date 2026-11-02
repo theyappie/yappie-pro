@@ -9,7 +9,7 @@ export const STATE_FILE = "admin.json", PENDING_FILE = "pending.json";
 export const EDIT_FIELDS = ["h", "m", "s", "u", "d", "k", "t", "tx", "cm", "st", "rl", "rt"]; // headline, summary, source, link, date, section, topic, extra topics, communities, states, policy relevancy, research type
 export const MAX_EXTRA_TOPICS = 4; // a story has one main topic ("t") and up to this many more ("tx")
 export const RESEARCH_TYPES = ["poll", "report", "data", "none"]; // rt: a survey ("poll"), a report, data, or "none" (not a research item); no rt = the site's rules decide
-export const LIMITS = { topics: 30, communities: 30, newsKinds: 8, words: 40, sourceKinds: 500, blocked: 200, hubs: 40, events: 300, eventsOff: 1000, feeds: 30 };
+export const LIMITS = { topics: 30, communities: 30, newsKinds: 8, words: 40, sourceKinds: 500, blocked: 200, hubs: 40, events: 300, eventsOff: 1000, feeds: 30, renames: 500, orgs: 300, orgEdits: 300, figures: 600, figureEdits: 400, figureSources: 200, figureCats: 20 };
 export const NEWS_BASE_KINDS = ["community", "news"]; // "AAPI Media" and "Mainstream": the News page's two built-in categories
 export const BREAKING_LABELS = { breaking: "Breaking", urgent: "Urgent", important: "Important" }; // the red, flashing label an item carries while it is marked
 export const BREAKING_HOURS = [2, 6, 12, 24, 48]; // what the dashboard offers; any whole number of hours from 2 to 72 is accepted (the shortest is 2 so the item is on the page for at least an hour even after the few minutes the site needs to update)
@@ -32,6 +32,9 @@ export const emptySettings = () => ({
   eventFeeds: [],  // calendar feeds (iCalendar, .ics) the owner follows besides the starter ones in sources.json: { name, url }
   eventFeedsOff: [], // web addresses of starter calendar feeds the owner stopped following
   builtin: { topics: {}, communities: {}, kinds: {} }, // changes to the built-in ones, by key: { label?: a new name, off?: true (removed), to?: for a removed News category, the category its sources go to }
+  names: { sources: [], events: [], hubs: {} }, // new names: sources.. [{ f, t }] (f: a name the source was collected under, t: the name shown; applied to stories already stored and to future ones), events.. the same for collected events (by title), hubs.. { starter issue key: new name }
+  orgs: { own: [], edit: {}, off: [] },   // the Organizations tab: organizations the owner added (see cleanOrg), changes to the starter ones in orgs.json by id (only the fields that differ), and starter ones the owner removed
+  numbers: { own: [], edit: {}, off: [], src: {}, cats: {}, catsOwn: [] }, // the Numbers tab: figures the owner added (see cleanFigure), changes to the starter ones in numbers.json by id, starter ones removed, sources by key (new ones, or changes to starter ones), new names for starter categories { key: name }, and the owner's own categories [{ k, label }]
 });
 export const emptyState = () => ({
   v: 1, updated: "",
@@ -110,6 +113,13 @@ export function normalizeState(raw) {
     for (const e of arr(raw.settings.eventFeeds)) { const c = isObj(e) ? cleanFeed(e, false) : null; if (c && !feSeen.has(c.url) && s.settings.eventFeeds.length < LIMITS.feeds) { feSeen.add(c.url); s.settings.eventFeeds.push(c); } }
     s.settings.eventFeedsOff = [...new Set(arr(raw.settings.eventFeedsOff).map(x => httpsUrl(x)).filter(Boolean))].slice(0, 100);
     if (isObj(raw.settings.blocked)) for (const [n, t] of Object.entries(raw.settings.blocked)) { if (Object.keys(s.settings.blocked).length >= LIMITS.blocked) break; const name = line(n, 80); if (name && nameKey(name)) s.settings.blocked[name] = typeof t === "string" ? t.slice(0, 40) : ""; }
+    const nm = raw.settings.names;
+    if (isObj(nm)) {
+      s.settings.names.sources = cleanRenames(nm.sources, { max: LIMITS.renames, noun: "source" }); s.settings.names.events = cleanRenames(nm.events, { max: LIMITS.events, noun: "event" });
+      if (isObj(nm.hubs)) for (const [k, v] of Object.entries(nm.hubs)) { const l = line(v, 40); if (HUB_KEY.test(k) && k.length <= HUB_KEY_MAX && l && Object.keys(s.settings.names.hubs).length < 100) s.settings.names.hubs[k] = l; }
+    }
+    if (isObj(raw.settings.orgs)) s.settings.orgs = normOrgs(raw.settings.orgs);
+    if (isObj(raw.settings.numbers)) s.settings.numbers = normNumbers(raw.settings.numbers);
   }
   for (const k of ["edits", "orig", "article", "approved", "held", "pinned", "featured", "deleted"]) if (isObj(raw[k])) for (const [id, v] of Object.entries(raw[k])) if (validId(id) && v != null && (k === "approved" || k === "held" || k === "pinned" || isObj(v) || (k === "featured" && typeof v === "string"))) s[k][id] = v;
   if (isObj(raw.breaking)) for (const [id, b] of Object.entries(raw.breaking)) if (validId(id) && isObj(b) && typeof b.at === "string" && !Number.isNaN(Date.parse(b.at)) && Object.keys(s.breaking).length < 500) s.breaking[id] = cleanBreaking(b, b.at);
@@ -118,7 +128,9 @@ export function normalizeState(raw) {
 }
 
 /** Sets of valid values, built from taxonomy.json. The label maps are used to keep the owner's own names apart from the built-in ones. */
-export const taxSets = (t, hubs, events) => ({
+export const taxSets = (t, hubs, events, orgs, numbers) => ({
+  orgs: new Map(arr(orgs?.orgs).filter(o => isObj(o) && typeof o.id === "string" && ORG_ID.test(o.id)).map(o => [o.id, o])), // the starter organizations (orgs.json)
+  numbers: { items: new Map(arr(numbers?.items).filter(x => isObj(x) && typeof x.id === "string" && FIG_ID.test(x.id)).map(x => [x.id, x])), sources: isObj(numbers?.sources) ? numbers.sources : {}, cats: arr(numbers?.cats).filter(a => Array.isArray(a) && typeof a[0] === "string" && typeof a[1] === "string") }, // the starter figures, sources and categories (numbers.json)
   feeds: new Map(arr(events?.feeds).filter(f => isObj(f) && httpsUrl(f.url)).map(f => [httpsUrl(f.url), { name: line(f.name, 80), url: httpsUrl(f.url) }])), // the starter calendar feeds (sources.json, "events")
   hubs: new Map(arr(hubs?.hubs).filter(h => isObj(h) && typeof h.k === "string" && typeof h.label === "string").map(h => [h.k, h])), // the starter topic hubs (hubs.json)
   topics: new Set(arr(t?.topics).map(x => x.k)), communities: new Set(arr(t?.communities).map(x => x.k)),
@@ -165,7 +177,7 @@ export function hubList(starter, settings) {
   const off = new Set(arr(settings?.hubsOff)), seen = new Set(), out = [];
   for (const h of arr(starter)) {
     if (!isObj(h) || typeof h.k !== "string" || !HUB_KEY.test(h.k) || seen.has(h.k)) continue;
-    const label = line(h.label, 40); if (!label) continue;
+    const label = line(settings?.names?.hubs?.[h.k], 40) || line(h.label, 40); if (!label) continue; // a name the owner gave it, or the starter one
     seen.add(h.k); if (!off.has(h.k)) out.push({ k: h.k, label, blurb: line(h.blurb, 200), words: cleanWords(h.words, 200) });
   }
   for (const h of arr(settings?.hubs)) if (!seen.has(h.k)) { seen.add(h.k); out.push({ k: h.k, label: h.label, blurb: h.blurb ?? "", words: cleanWords(h.words), own: true }); }
@@ -178,10 +190,10 @@ export function hubTagger(list) {
 }
 /** What the public page needs to know about the hubs (names and descriptions, never keywords). */
 export const feedHubs = list => arr(list).map(h => ({ k: h.k, label: h.label, ...(h.blurb ? { blurb: h.blurb } : {}) }));
-function cleanHubs(list, starter, old) {
+function cleanHubs(list, starter, old, eff = null) {
   if (!Array.isArray(list)) throw new AdminError("The list could not be read.");
   if (list.length > LIMITS.hubs) throw new AdminError(`You can add at most ${LIMITS.hubs} issues.`);
-  const oldKeys = new Set(old.map(o => o.k)), used = new Set(starter.keys()), names = new Set([...starter.values()].map(h => String(h.label).toLowerCase())), out = [];
+  const oldKeys = new Set(old.map(o => o.k)), used = new Set(starter.keys()), names = new Set([...starter.values()].map(h => String(eff?.[h.k] ?? h.label).toLowerCase())), out = [];
   for (const it of list) {
     if (!isObj(it)) throw new AdminError("The list could not be read.");
     const label = line(it.label, 40);
@@ -291,7 +303,7 @@ export function withCustom(tax, settings) {
   const allT = new Set(arr(tax?.topics).map(t => t.k)), allC = new Set(arr(tax?.communities).map(c => c.k));
   const topics = arr(tax?.topics).filter(t => !offT.has(t.k) || t.k === tax.default).map(t => bLabel(settings, "topic", t.k) ? { ...t, label: bLabel(settings, "topic", t.k) } : t);
   const communities = arr(tax?.communities).filter(c => !offC.has(c.k)).map(c => bLabel(settings, "community", c.k) ? { ...c, label: bLabel(settings, "community", c.k) } : c);
-  const kinds = {}; for (const [k, l] of Object.entries(tax?.kinds ?? {})) if (!ks.off.has(k)) kinds[k] = NEWS_BASE_KINDS.includes(k) && bLabel(settings, "kind", k) ? bLabel(settings, "kind", k) : l;
+  const kinds = {}; for (const [k, l] of Object.entries(tax?.kinds ?? {})) if (!ks.off.has(k)) kinds[k] = bLabel(settings, "kind", k) ?? l;
   for (const t of arr(settings?.topics)) if (!allT.has(t.k)) { allT.add(t.k); topics.push({ k: t.k, label: t.label, re: wordsPattern(t.words), w: CUSTOM_WEIGHT, custom: true }); }
   for (const c of arr(settings?.communities)) if (!allC.has(c.k)) { allC.add(c.k); communities.push({ k: c.k, label: c.label, re: wordsPattern(c.words), custom: true }); }
   for (const k of arr(settings?.newsKinds)) if (!(k.k in (tax?.kinds ?? {})) && !RESERVED_KINDS.has(k.k)) kinds[k.k] = k.label;
@@ -301,7 +313,7 @@ export function withCustom(tax, settings) {
 export function extendSets(X, settings) {
   const offT = bOff(settings, "topic"), offC = bOff(settings, "community"), ks = kindState(settings);
   const topics = new Set([...X.topics].filter(k => !offT.has(k) || k === X.defaultTopic)), communities = new Set([...X.communities].filter(k => !offC.has(k))), kinds = new Set([...X.kinds].filter(k => !ks.off.has(k))), kindLabel = new Map();
-  for (const [k, l] of X.kindLabel) if (!ks.off.has(k)) kindLabel.set(k, NEWS_BASE_KINDS.includes(k) && bLabel(settings, "kind", k) ? bLabel(settings, "kind", k) : l);
+  for (const [k, l] of X.kindLabel) if (!ks.off.has(k)) kindLabel.set(k, bLabel(settings, "kind", k) ?? l);
   for (const t of arr(settings?.topics)) topics.add(t.k);
   for (const c of arr(settings?.communities)) communities.add(c.k);
   for (const k of arr(settings?.newsKinds)) if (!RESERVED_KINDS.has(k.k)) { kinds.add(k.k); kindLabel.set(k.k, k.label); }
@@ -311,11 +323,12 @@ export function extendSets(X, settings) {
 export function feedTaxo(settings, tax) {
   const t = arr(settings?.topics).map(x => [x.k, x.label]), c = arr(settings?.communities).map(x => [x.k, x.label]), kl = Object.fromEntries(arr(settings?.newsKinds).filter(k => !RESERVED_KINDS.has(k.k)).map(k => [k.k, k.label]));
   const ks = kindState(settings), offT = [...bOff(settings, "topic")].filter(k => k !== tax?.default).sort(), offC = [...bOff(settings, "community")].sort(), offK = [...ks.off].sort();
-  const names = (type, off) => { const m = settings?.builtin?.[BFIELD[type]] ?? {}; return Object.fromEntries(Object.keys(m).filter(k => typeof m[k]?.label === "string" && m[k].label && !off.includes(k) && (type !== "kind" || NEWS_BASE_KINDS.includes(k))).sort().map(k => [k, m[k].label])); };
+  const names = (type, off) => { const m = settings?.builtin?.[BFIELD[type]] ?? {}; return Object.fromEntries(Object.keys(m).filter(k => typeof m[k]?.label === "string" && m[k].label && !off.includes(k)).sort().map(k => [k, m[k].label])); };
   const rt = names("topic", offT), rc = names("community", offC), rk = names("kind", offK);
   const rn = { ...(Object.keys(rt).length ? { t: rt } : {}), ...(Object.keys(rc).length ? { c: rc } : {}), ...(Object.keys(rk).length ? { k: rk } : {}) };
   const off = { ...(offT.length ? { t: offT } : {}), ...(offC.length ? { c: offC } : {}), ...(offK.length ? { k: offK } : {}) };
-  const o = { ...(t.length ? { t } : {}), ...(c.length ? { c } : {}), ...(Object.keys(kl).length ? { kl } : {}), ...(Object.keys(rn).length ? { rn } : {}), ...(Object.keys(off).length ? { off } : {}) };
+  const sn = Object.fromEntries(arr(settings?.names?.sources).filter(e => e.f !== e.t).map(e => [e.f, e.t])); // source names the owner changed (original -> shown), so the page still finds the outlets it lists by name
+  const o = { ...(t.length ? { t } : {}), ...(c.length ? { c } : {}), ...(Object.keys(kl).length ? { kl } : {}), ...(Object.keys(rn).length ? { rn } : {}), ...(Object.keys(off).length ? { off } : {}), ...(Object.keys(sn).length ? { sn } : {}) };
   return Object.keys(o).length ? o : null;
 }
 
@@ -336,7 +349,7 @@ export function withFeedTaxo(tax, taxo) {
 /** The name of every built-in topic, community or News page category as the owner sees it (a name they gave it, or the original). entries: settings.builtin for that type. */
 function effLabels(type, BX, entries) {
   const base = type === "topic" ? BX.topicLabel : type === "community" ? BX.communityLabel : BX.kindLabel;
-  return new Map([...base].map(([k, l]) => { const own = (type !== "kind" || NEWS_BASE_KINDS.includes(k)) && isObj(entries?.[k]) ? line(entries[k].label, 40) : ""; return [k, own || String(l)]; }));
+  return new Map([...base].map(([k, l]) => { const own = isObj(entries?.[k]) ? line(entries[k].label, 40) : ""; return [k, own || String(l)]; }));
 }
 
 /** Validates a whole list of the owner's own entries; returns the cleaned list. old: the entries before, whose keys stay as they are. eff: effLabels(...) of the built-in ones. */
@@ -370,14 +383,14 @@ function cleanCustom(type, list, X, old, eff) {
 function cleanBuiltin(type, raw, BX, custom) {
   const noun = { topic: "topic", community: "community", kind: "category" }[type];
   if (!isObj(raw)) throw new AdminError("The list could not be read.");
-  const base = type === "topic" ? BX.topicLabel : type === "community" ? BX.communityLabel : new Map(NEWS_BASE_KINDS.filter(k => BX.kindLabel.has(k)).map(k => [k, BX.kindLabel.get(k)]));
+  const base = type === "topic" ? BX.topicLabel : type === "community" ? BX.communityLabel : BX.kindLabel; // every News category, section and Policy type can be renamed; only AAPI Media and Mainstream can be removed
   for (const k of Object.keys(raw)) if (!base.has(k)) throw new AdminError(`Unknown ${noun}.`);
   const taken = new Set(custom.map(c => c.label.toLowerCase())), shown = new Map(), out = {};
-  if (type === "kind") for (const [k, l] of BX.kindLabel) if (!base.has(k)) taken.add(String(l).toLowerCase()); // Statements, Research and the Policy sections
   for (const [k, orig] of base) {
     const v = isObj(raw[k]) ? raw[k] : {}, label = line(v.label, 40), e = {};
     if (label && label !== orig) e.label = label;
     if (v.off === true) {
+      if (type === "kind" && !NEWS_BASE_KINDS.includes(k)) throw new AdminError(`“${e.label ?? orig}” is a section of the site, so it cannot be removed. You can rename it.`);
       if (type === "topic" && k === BX.defaultTopic) throw new AdminError(`“${e.label ?? orig}” is where stories that match no other topic are filed, so it cannot be removed. You can rename it.`);
       e.off = true;
     }
@@ -387,7 +400,7 @@ function cleanBuiltin(type, raw, BX, custom) {
     if (e.label || e.off) out[k] = e;
   }
   if (type === "kind") {
-    const targets = new Set([...base.keys()].filter(k => !out[k]?.off).concat(custom.map(c => c.k)));
+    const targets = new Set([...base.keys()].filter(k => NEWS_BASE_KINDS.includes(k) && !out[k]?.off).concat(custom.map(c => c.k)));
     for (const k of Object.keys(out)) if (out[k].off) {
       if (!targets.size) throw new AdminError("The News page needs at least one category.");
       const to = raw[k].to, name = out[k].label ?? base.get(k);
@@ -398,6 +411,259 @@ function cleanBuiltin(type, raw, BX, custom) {
   return out;
 }
 const canonBuiltin = m => JSON.stringify(Object.keys(m).sort().map(k => [k, m[k].label ?? null, m[k].off === true, m[k].to ?? null]));
+
+// ---------------------------------------------------------------- new names: news sources, collected events and starter issues
+/** A name the owner gave to a source or a collected event: { f, t } (f: a name it was collected under, t: the name shown). */
+export function cleanRenames(list, { max = LIMITS.renames, strict = false, noun = "name" } = {}) {
+  const bad = m => { if (strict) throw new AdminError(m); return null; };
+  if (!Array.isArray(list)) { bad("The list could not be read."); return []; }
+  if (list.length > max) bad(`You can rename at most ${max} ${noun}s.`);
+  const seen = new Map(), out = [];
+  for (const e of list) {
+    if (!isObj(e)) { bad("The list could not be read."); continue; }
+    const f = line(e.f, noun === "event" ? 160 : 80), t = line(e.t, noun === "event" ? 160 : 80);
+    if (!nameKey(f)) { bad(`A ${noun} to rename is missing its original name.`); continue; }
+    if (!nameKey(t)) { bad(`“${f}” needs a new name. Leave the name as it was, or remove the change.`); continue; }
+    const k = nameKey(f); if (seen.has(k)) { bad(`“${f}” is in the list twice.`); continue; }
+    seen.set(k, 1); if (out.length < max) out.push({ f, t });
+  }
+  return baseOnly(out);
+}
+/** A name that leads to itself is kept only while other names lead to it: it marks the name the others were changed back to (the original). Otherwise it is no change. */
+const baseOnly = list => list.filter(e => e.f !== e.t || list.some(x => x !== e && nameKey(x.t) === nameKey(e.t)));
+/** What a name is shown as after the owner's changes (the same name when it has none). */
+export const renameMap = list => new Map(arr(list).map(e => [nameKey(e.f), e.t]));
+export const renamedTo = (list, name) => { const m = list instanceof Map ? list : renameMap(list), k = nameKey(name); return (k && m.get(k)) || name; };
+/** The list after the name that is shown as "cur" is changed to "next". Every name the item has had maps straight to the newest one (stored stories carry the name they were last shown with). Used by the dashboard. */
+export function renameShown(list, cur, next) {
+  const c = nameKey(cur), out = [];
+  for (const e of arr(list)) out.push({ f: e.f, t: nameKey(e.t) === c ? next : e.t });
+  out.push({ f: cur, t: next });
+  const m = new Map();
+  for (const e of out) { const k = nameKey(e.f); m.set(k, { f: m.get(k)?.f ?? e.f, t: e.t }); } // one entry per name, in the order the names were first changed
+  const res = [...m.values()];
+  return baseOnly(res); // a name changed back to itself is no change, but stays listed as the original while the names it had still lead to it
+}
+/** What changed between two lists of new names: [{ from, to }] (the names as shown before and after). */
+export function renameChanges(oldList, newList) {
+  const names = [...new Set([...arr(oldList), ...arr(newList)].map(e => e.f))], om = renameMap(oldList), nm = renameMap(newList), seen = new Map();
+  for (const f of names) { const from = renamedTo(om, f), to = renamedTo(nm, f); if (from !== to && !seen.has(nameKey(from) + "|" + to)) seen.set(nameKey(from) + "|" + to, { from, to }); }
+  return [...seen.values()];
+}
+/** The parts of a summary ("Added …", "Hid …") as one sentence: the first starts with a capital, the others do not. */
+const sentence = parts => parts.filter(Boolean).map((p, i) => i ? p.replace(/^(.)/, c => c.toLowerCase()) : p).join(", ");
+function cleanHubNames(raw, starter, strict) {
+  const bad = m => { if (strict) throw new AdminError(m); return null; };
+  if (!isObj(raw)) { bad("The list could not be read."); return {}; }
+  const out = {};
+  for (const [k, v] of Object.entries(raw)) {
+    const h = starter.get(k); if (!h) { bad("Unknown issue."); continue; }
+    const label = line(v, 40); if (!label) { bad(`Every issue needs a name. Leave “${h.label}” as it was, or give it a new one.`); continue; }
+    if (label !== String(h.label)) out[k] = label;
+  }
+  const seen = new Map();
+  for (const h of starter.values()) { const label = out[h.k] ?? String(h.label), key = label.toLowerCase(); if (seen.has(key) && (h.k in out || seen.get(key) in out)) bad(`There is already an issue called “${label}”. Choose a different name.`); seen.set(key, h.k); }
+  return out;
+}
+
+// ---------------------------------------------------------------- the Organizations tab: the starter list (orgs.json), plus what the owner adds, changes and removes
+export const ORG_SCOPES = ["national", "regional", "state", "local", "government"];
+export const ORG_ID = /^[a-z0-9]+(?:-[a-z0-9]+)*$/, ORG_ID_MAX = 60;
+const slug = (v, max) => String(v ?? "").toLowerCase().normalize("NFKD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, max).replace(/-+$/, "");
+export const orgIdOf = name => slug(name, ORG_ID_MAX);
+/** The fields of one organization that are present in raw, checked (the keys of topics, communities and states must exist when X is given). null (or an AdminError when strict) for something unusable. */
+function cleanOrgFields(raw, X, bad) {
+  const out = {}, nm = () => line(raw.n, 120) || "this organization";
+  if ("n" in raw) { const v = line(raw.n, 120); if (!v) return bad("Every organization needs a name."); out.n = v; }
+  if ("u" in raw) { const v = httpsUrl(String(raw.u ?? "").trim()); if (!v) return bad(`The website of “${nm()}” must be a web address that starts with https://.`); out.u = v; }
+  if ("ab" in raw) out.ab = line(raw.ab, 400);
+  if ("sc" in raw) { const v = typeof raw.sc === "string" ? raw.sc : ""; if (!ORG_SCOPES.includes(v)) return bad(`Choose where “${nm()}” works: nationally, in a region, in a state, locally, or as a government body.`); out.sc = v; }
+  if ("hq" in raw) out.hq = line(raw.hq, 80);
+  if ("ty" in raw) out.ty = line(raw.ty, 40).toLowerCase();
+  if ("fd" in raw) { const v = String(raw.fd ?? "").trim(); if (v && !/^(1[6-9]|20)\d\d$/.test(v)) return bad(`The year “${nm()}” was founded must be four digits, such as 1991.`); out.fd = v; }
+  if ("o" in raw) out.o = line(raw.o, 160);
+  for (const [f, set, max] of [["st", X?.states, 60], ["c", X?.communities, 12], ["is", X?.topics, 12]]) if (f in raw) out[f] = uniq(arr(raw[f]).filter(k => typeof k === "string" && (!set || set.has(k)))).slice(0, max);
+  if ("src" in raw) out.src = uniq(arr(raw.src).map(x => line(x, 80)).filter(Boolean)).slice(0, 8);
+  return out;
+}
+/** One whole organization, as orgs.json lists it. strict: throw an AdminError that says what is wrong; otherwise null for something unusable. */
+export function cleanOrg(raw, X, strict = true) {
+  const bad = m => { if (strict) throw new AdminError(m); return null; };
+  if (!isObj(raw)) return bad("The organization could not be read.");
+  const f = cleanOrgFields(raw, X, bad); if (!f) return null;
+  if (!f.n) return bad("Every organization needs a name.");
+  if (!f.u) return bad(`Add the website of “${f.n}”. It must start with https://.`);
+  const id = typeof raw.id === "string" && raw.id.length <= ORG_ID_MAX && ORG_ID.test(raw.id) ? raw.id : "";
+  return { id, n: f.n, ab: f.ab ?? "", u: f.u, sc: f.sc ?? "national", hq: f.hq ?? "", st: f.st ?? [], c: f.c ?? [], is: f.is ?? [], ty: f.ty ?? "", ...(f.fd ? { fd: f.fd } : {}), ...(f.src?.length ? { src: f.src } : {}), ...(f.o ? { o: f.o } : {}) };
+}
+/** The starter organization with the owner's changes on top. */
+export const orgNow = (starter, edit) => edit ? { ...starter, ...edit } : starter;
+/** Only the fields of a changed starter organization that differ from the starter. */
+/** The same value, where a list is the same when it has the same entries in any order (the form lists states and issues in its own order). */
+const sameVal = (a, b) => Array.isArray(a) && Array.isArray(b) ? JSON.stringify([...a].sort()) === JSON.stringify([...b].sort()) : JSON.stringify(a) === JSON.stringify(b);
+function orgDiff(starter, now) {
+  const d = {}; for (const f of ["n", "ab", "u", "sc", "hq", "ty", "fd", "o", "st", "c", "is", "src"]) { const a = f === "u" ? (httpsUrl(starter.u) || starter.u || "") : starter[f] ?? (Array.isArray(now[f]) ? [] : ""), b = now[f] ?? (Array.isArray(a) ? [] : ""); if (!sameVal(a, b)) d[f] = b; }
+  return d;
+}
+function cleanOrgs(raw, X, old, strict = true) {
+  const bad = m => { if (strict) throw new AdminError(m); return null; }, starter = X?.orgs ?? new Map();
+  if (!isObj(raw)) { bad("The list could not be read."); return { own: [], edit: {}, off: [] }; }
+  if (arr(raw.own).length > LIMITS.orgs) bad(`You can add at most ${LIMITS.orgs} organizations of your own.`);
+  const used = new Set(starter.keys()), oldIds = new Set(arr(old?.own).map(o => o.id)), own = [];
+  for (const it of arr(raw.own).slice(0, LIMITS.orgs)) {
+    const c = cleanOrg(it, X, strict); if (!c) continue;
+    let id = c.id && (oldIds.has(c.id) || !used.has(c.id)) ? c.id : orgIdOf(c.n) || "organization";
+    if (used.has(id)) { let i = 2; while (used.has(`${id.slice(0, ORG_ID_MAX - 4)}-${i}`)) i++; id = `${id.slice(0, ORG_ID_MAX - 4)}-${i}`; }
+    used.add(id); own.push({ ...c, id });
+  }
+  const edit = {}, off = [];
+  for (const [id, v] of Object.entries(isObj(raw.edit) ? raw.edit : {})) {
+    const st = starter.get(id); if (!st) { if (strict) bad("Unknown organization."); continue; }
+    if (!isObj(v)) continue;
+    const c = cleanOrg({ ...st, ...v, id }, X, strict); if (!c) continue;
+    const d = orgDiff(st, c); if (Object.keys(d).length) edit[id] = d;
+  }
+  if (Object.keys(edit).length > LIMITS.orgEdits) bad("Too many changes to the starter list.");
+  for (const id of arr(raw.off)) if (typeof id === "string" && (starter.size ? starter.has(id) : ORG_ID.test(id)) && !off.includes(id)) off.push(id);
+  // no two organizations that stay on the site may have the same name
+  const seen = new Set();
+  for (const n of [...[...starter.values()].filter(o => !off.includes(o.id)).map(o => orgNow(o, edit[o.id]).n), ...own.map(o => o.n)]) { const k = nameKey(n); if (k && seen.has(k)) bad(`There is already an organization called “${n}”.`); seen.add(k); }
+  return { own, edit, off };
+}
+/** orgs.json (the starter file) with the owner's changes: what the site lists. */
+export function mergeOrgs(doc, st) {
+  const edit = isObj(st?.edit) ? st.edit : {}, off = new Set(arr(st?.off)), out = [], ids = new Set();
+  for (const o of arr(doc?.orgs)) { if (!isObj(o) || typeof o.id !== "string") continue; ids.add(o.id); if (!off.has(o.id)) out.push(orgNow(o, edit[o.id])); }
+  for (const o of arr(st?.own)) if (!ids.has(o.id)) out.push(o);
+  return { ...(isObj(doc) ? doc : {}), orgs: out };
+}
+export const orgsChanged = st => !!st && (arr(st.own).length > 0 || Object.keys(st.edit ?? {}).length > 0 || arr(st.off).length > 0);
+
+// ---------------------------------------------------------------- the Numbers tab: the starter list (numbers.json), plus what the owner adds, changes and removes
+export const FIG_ID = /^[a-z0-9]+(?:-[a-z0-9]+)*$/, FIG_ID_MAX = 60, SRC_KEY = /^[a-z0-9]{2,24}$/;
+export const figIdOf = f => slug(`${f.cat ?? ""} ${f.g ?? ""} ${f.t ?? ""} ${f.y ?? ""}`, FIG_ID_MAX);
+export const srcKeyOf = (publisher, taken = new Set()) => { const base = slug(publisher, 24).replace(/-/g, "").slice(0, 18) || "source"; let k = base.length >= 2 ? base : base + "src", i = 2; while (taken.has(k)) k = `${base.slice(0, 20)}${i++}`; return k; };
+/** A source of a figure: the publisher ("o"), the page or document ("t"), its web address ("u", https) and its date ("d"). */
+export function cleanFigSource(raw, strict = true) {
+  const bad = m => { if (strict) throw new AdminError(m); return null; };
+  if (!isObj(raw)) return bad("The source could not be read.");
+  const o = line(raw.o, 80), t = line(raw.t, 240), u = httpsUrl(String(raw.u ?? "").trim());
+  if (!o) return bad("Every source needs the name of who published it.");
+  if (!t) return bad(`Name the page or document where “${o}” published the figure.`);
+  if (!u) return bad(`The web address of the source “${o}” must start with https://.`);
+  return { o, t, u, d: line(raw.d, 40) };
+}
+function cleanFigFields(raw, ctx, bad) {
+  const out = {}, who = () => line(raw.t, 80) || "this figure";
+  if ("v" in raw) { const v = line(raw.v, 60); if (!v) return bad("Every figure needs its number or value."); out.v = v; }
+  if ("t" in raw) { const v = line(raw.t, 300); if (!v) return bad("Every figure needs a description."); out.t = v; }
+  if ("y" in raw) { const v = line(raw.y, 20); if (!v) return bad(`“${who()}” needs a year (or a range such as 2019–2023).`); out.y = v; }
+  if ("cat" in raw) { const v = typeof raw.cat === "string" ? raw.cat : ""; if (!v || (ctx?.cats && !ctx.cats.has(v))) return bad(`Choose a category for “${who()}”.`); out.cat = v; }
+  if ("s" in raw) { const v = typeof raw.s === "string" ? raw.s : ""; if (!v || (ctx?.sources && !ctx.sources.has(v))) return bad(`Choose the source of “${who()}”. Every figure links to the page it comes from.`); out.s = v; }
+  for (const [f, max] of [["p", 160], ["g", 80], ["via", 160], ["n", 400]]) if (f in raw) out[f] = line(raw[f], max);
+  for (const [f, set, max] of [["c", ctx?.X?.communities, 12], ["st", ctx?.X?.states, 60]]) if (f in raw) out[f] = uniq(arr(raw[f]).filter(k => typeof k === "string" && (!set || set.has(k)))).slice(0, max);
+  return out;
+}
+/** One whole figure, as numbers.json lists it. ctx: { cats: Set, sources: Set, X }. */
+export function cleanFigure(raw, ctx, strict = true) {
+  const bad = m => { if (strict) throw new AdminError(m); return null; };
+  if (!isObj(raw)) return bad("The figure could not be read.");
+  const f = cleanFigFields(raw, ctx, bad); if (!f) return null;
+  for (const [k, m] of [["v", "Every figure needs its number or value."], ["t", "Every figure needs a description."], ["y", `“${f.t ?? "This figure"}” needs a year (or a range such as 2019–2023).`], ["cat", `Choose a category for “${f.t ?? "this figure"}”.`], ["s", `Choose the source of “${f.t ?? "this figure"}”. Every figure links to the page it comes from.`]]) if (!f[k]) return bad(m);
+  const id = typeof raw.id === "string" && raw.id.length <= FIG_ID_MAX && FIG_ID.test(raw.id) ? raw.id : "";
+  return { id, cat: f.cat, v: f.v, t: f.t, y: f.y, s: f.s, ...(f.p ? { p: f.p } : {}), ...(f.c?.length ? { c: f.c } : {}), ...(f.st?.length ? { st: f.st } : {}), ...(f.g ? { g: f.g } : {}), ...(f.via ? { via: f.via } : {}), ...(f.n ? { n: f.n } : {}) };
+}
+export const figNow = (starter, edit) => edit ? { ...starter, ...edit } : starter;
+function figDiff(starter, now) {
+  const d = {}; for (const f of ["cat", "v", "t", "y", "s", "p", "g", "via", "n", "c", "st"]) { const a = starter[f] ?? (Array.isArray(now[f]) ? [] : ""), b = now[f] ?? (Array.isArray(a) ? [] : ""); if (!sameVal(a, b)) d[f] = b; }
+  return d;
+}
+/** The categories of the Numbers tab: the starter ones (with the owner's names) and the owner's own. [[key, name]] */
+export function figCats(doc, st) {
+  const names = isObj(st?.cats) ? st.cats : {}, out = arr(doc?.cats).filter(a => Array.isArray(a) && typeof a[0] === "string" && typeof a[1] === "string").map(([k, l]) => [k, names[k] || l]);
+  for (const c of arr(st?.catsOwn)) if (!out.some(a => a[0] === c.k)) out.push([c.k, c.label]);
+  return out;
+}
+/** The sources of the figures: the starter ones with the owner's changes and additions. */
+export const figSources = (doc, st) => ({ ...(isObj(doc?.sources) ? doc.sources : {}), ...(isObj(st?.src) ? st.src : {}) });
+function cleanFigures(raw, X, doc, old, strict = true) {
+  const bad = m => { if (strict) throw new AdminError(m); return null; };
+  const N = X?.numbers ?? { items: new Map(), sources: {}, cats: [] };
+  if (!isObj(raw)) { bad("The list could not be read."); return emptySettings().numbers; }
+  // sources
+  const srcRaw = isObj(raw.src) ? raw.src : {}, src = {};
+  for (const [k, v] of Object.entries(srcRaw)) {
+    if (!SRC_KEY.test(k)) { bad("A source has an unusable key."); continue; }
+    const c = cleanFigSource(v, strict); if (!c) continue;
+    const st = N.sources[k]; if (st && JSON.stringify(st) === JSON.stringify({ ...c, d: c.d })) continue;
+    src[k] = c;
+  }
+  if (Object.keys(src).length > LIMITS.figureSources) bad(`You can add or change at most ${LIMITS.figureSources} sources.`);
+  // categories
+  const catNames = {}, catsOwn = [], taken = new Set();
+  const starterCats = new Map(N.cats);
+  for (const [k, l] of starterCats) {
+    const v = isObj(raw.cats) ? line(raw.cats[k], 40) : ""; const label = v || l;
+    if (taken.has(label.toLowerCase())) bad(`There is already a category called “${label}”.`); taken.add(label.toLowerCase());
+    if (v && v !== l) catNames[k] = v;
+  }
+  for (const c of arr(raw.catsOwn)) {
+    if (!isObj(c)) continue; const label = line(c.label, 40); if (!label) { bad("Every category needs a name."); continue; }
+    const k = typeof c.k === "string" && /^[a-z0-9]{2,12}$/.test(c.k) && !starterCats.has(c.k) ? c.k : slug(label, 12).replace(/-/g, "") || "cat";
+    let key = k, i = 2; while (starterCats.has(key) || catsOwn.some(x => x.k === key)) key = `${k.slice(0, 10)}${i++}`;
+    if (taken.has(label.toLowerCase())) { bad(`There is already a category called “${label}”.`); continue; } taken.add(label.toLowerCase());
+    if (catsOwn.length < LIMITS.figureCats) catsOwn.push({ k: key, label });
+  }
+  const ctx = { cats: new Set([...starterCats.keys(), ...catsOwn.map(c => c.k)]), sources: new Set([...Object.keys(N.sources), ...Object.keys(src)]), X };
+  const used = new Set(N.items.keys()), oldIds = new Set(arr(old?.own).map(o => o.id)), own = [];
+  if (arr(raw.own).length > LIMITS.figures) bad(`You can add at most ${LIMITS.figures} figures of your own.`);
+  for (const it of arr(raw.own).slice(0, LIMITS.figures)) {
+    const c = cleanFigure(it, ctx, strict); if (!c) continue;
+    let id = c.id && (oldIds.has(c.id) || !used.has(c.id)) ? c.id : figIdOf(c) || "figure";
+    if (used.has(id)) { let i = 2; while (used.has(`${id.slice(0, FIG_ID_MAX - 4)}-${i}`)) i++; id = `${id.slice(0, FIG_ID_MAX - 4)}-${i}`; }
+    used.add(id); own.push({ ...c, id });
+  }
+  const edit = {};
+  for (const [id, v] of Object.entries(isObj(raw.edit) ? raw.edit : {})) {
+    const st = N.items.get(id); if (!st) { if (strict) bad("Unknown figure."); continue; }
+    if (!isObj(v)) continue;
+    const c = cleanFigure({ ...figNow(st), ...v, id }, ctx, strict); if (!c) continue;
+    const d = figDiff(st, c); if (Object.keys(d).length) edit[id] = d;
+  }
+  if (Object.keys(edit).length > LIMITS.figureEdits) bad("Too many changes to the starter list.");
+  const off = []; for (const id of arr(raw.off)) if (typeof id === "string" && (N.items.size ? N.items.has(id) : FIG_ID.test(id)) && !off.includes(id)) off.push(id);
+  // every figure that stays must point at a source that exists, and every category in use must exist
+  const allSrc = ctx.sources;
+  for (const it of [...[...N.items.values()].filter(x => !off.includes(x.id)).map(x => figNow(x, edit[x.id])), ...own]) if (!allSrc.has(it.s) && strict && N.items.size) bad(`“${it.t}” points at a source that is not in the list.`);
+  return { own, edit, off, src, cats: catNames, catsOwn };
+}
+/** numbers.json (the starter file) with the owner's changes: what the site lists. */
+export function mergeNumbers(doc, st) {
+  const edit = isObj(st?.edit) ? st.edit : {}, off = new Set(arr(st?.off)), items = [], ids = new Set();
+  for (const x of arr(doc?.items)) { if (!isObj(x) || typeof x.id !== "string") continue; ids.add(x.id); if (!off.has(x.id)) items.push(figNow(x, edit[x.id])); }
+  for (const x of arr(st?.own)) if (!ids.has(x.id)) items.push(x);
+  return { ...(isObj(doc) ? doc : {}), cats: figCats(doc, st), sources: figSources(doc, st), items };
+}
+export const numbersChanged = st => !!st && (arr(st.own).length > 0 || Object.keys(st.edit ?? {}).length > 0 || arr(st.off).length > 0 || Object.keys(st.src ?? {}).length > 0 || Object.keys(st.cats ?? {}).length > 0 || arr(st.catsOwn).length > 0);
+
+/** Reading what was saved: anything unusable is left out, nothing is checked against the starter lists (the collector does not know them when it reads the state). */
+function normOrgs(o) {
+  const out = { own: [], edit: {}, off: [] }, ids = new Set();
+  for (const e of arr(o.own)) { const c = cleanOrg(e, null, false); if (c && c.id && !ids.has(c.id) && out.own.length < LIMITS.orgs) { ids.add(c.id); out.own.push(c); } }
+  if (isObj(o.edit)) for (const [id, v] of Object.entries(o.edit)) { if (!ORG_ID.test(id) || id.length > ORG_ID_MAX || !isObj(v) || Object.keys(out.edit).length >= LIMITS.orgEdits) continue; const f = cleanOrgFields(v, null, () => null); if (f && Object.keys(f).length) out.edit[id] = f; }
+  out.off = uniq(arr(o.off).filter(id => typeof id === "string" && ORG_ID.test(id) && id.length <= ORG_ID_MAX)).slice(0, 400);
+  return out;
+}
+function normNumbers(o) {
+  const out = emptySettings().numbers, ids = new Set();
+  for (const e of arr(o.own)) { const c = cleanFigure(e, null, false); if (c && c.id && !ids.has(c.id) && out.own.length < LIMITS.figures) { ids.add(c.id); out.own.push(c); } }
+  if (isObj(o.edit)) for (const [id, v] of Object.entries(o.edit)) { if (!FIG_ID.test(id) || id.length > FIG_ID_MAX || !isObj(v) || Object.keys(out.edit).length >= LIMITS.figureEdits) continue; const f = cleanFigFields(v, null, () => null); if (f && Object.keys(f).length) out.edit[id] = f; }
+  out.off = uniq(arr(o.off).filter(id => typeof id === "string" && FIG_ID.test(id) && id.length <= FIG_ID_MAX)).slice(0, 600);
+  if (isObj(o.src)) for (const [k, v] of Object.entries(o.src)) { if (!SRC_KEY.test(k) || Object.keys(out.src).length >= LIMITS.figureSources) continue; const c = cleanFigSource(v, false); if (c) out.src[k] = c; }
+  if (isObj(o.cats)) for (const [k, v] of Object.entries(o.cats)) { const l = line(v, 40); if (/^[a-z0-9]{2,12}$/.test(k) && l) out.cats[k] = l; }
+  for (const c of arr(o.catsOwn)) if (isObj(c) && typeof c.k === "string" && /^[a-z0-9]{2,12}$/.test(c.k) && line(c.label, 40) && !out.catsOwn.some(x => x.k === c.k) && out.catsOwn.length < LIMITS.figureCats) out.catsOwn.push({ k: c.k, label: line(c.label, 40) });
+  return out;
+}
 
 // ---------------------------------------------------------------- cleaning what the owner types
 
@@ -681,15 +947,61 @@ export function applyOp(state, op, args, ctx) {
         .filter(Boolean).join(", ").replace(/^(.)/, c => c.toUpperCase()) || `Changed where the sources of a removed ${noun} go`; break;
     }
     case "hubs": {
-      const old = s.settings.hubs, starter = BX.hubs ?? new Map(), list = args?.list === undefined ? old : cleanHubs(args.list, starter, old);
+      const old = s.settings.hubs, starter = BX.hubs ?? new Map(), namesOld = s.settings.names.hubs, names = args?.names === undefined ? namesOld : cleanHubNames(args.names, starter, true), eff = Object.fromEntries([...starter.keys()].map(k => [k, names[k] ?? starter.get(k).label]));
+      const list = args?.list === undefined && args?.names === undefined ? old : cleanHubs(args?.list === undefined ? old : args.list, starter, old, eff);
       const offOld = s.settings.hubsOff, off = args?.off === undefined ? offOld : [...new Set(arr(args.off).filter(k => typeof k === "string" && HUB_KEY.test(k) && k.length <= HUB_KEY_MAX))].slice(0, 100);
       const before = new Map(old.map(x => [x.k, x])), nowK = new Set(list.map(x => x.k));
       const added = list.filter(x => !before.has(x.k)), gone = old.filter(x => !nowK.has(x.k)), changed = list.filter(x => before.has(x.k) && JSON.stringify(before.get(x.k)) !== JSON.stringify(x));
       const hid = off.filter(k => !offOld.includes(k)), shown = offOld.filter(k => !off.includes(k));
-      if (!added.length && !gone.length && !changed.length && !hid.length && !shown.length) throw new AdminError("Nothing to change.");
-      s.settings.hubs = list; s.settings.hubsOff = off;
-      const nm = k => starter.get(k)?.label ?? k, one = (xs, verb, f = x => x.label) => xs.length === 1 ? `${verb} the issue “${f(xs[0])}”` : `${verb} ${plural(xs.length, "issue")}`;
-      out.summary = [added.length && one(added, "Added"), gone.length && one(gone, "Removed"), changed.length && one(changed, "Changed"), hid.length && one(hid, "Hid", nm), shown.length && one(shown, "Showed", nm)].filter(Boolean).join(", ").replace(/^(.)/, c => c.toUpperCase()); break;
+      const renamedH = Object.keys({ ...names, ...namesOld }).filter(k => (names[k] ?? starter.get(k)?.label) !== (namesOld[k] ?? starter.get(k)?.label));
+      if (!added.length && !gone.length && !changed.length && !hid.length && !shown.length && !renamedH.length) throw new AdminError("Nothing to change.");
+      s.settings.hubs = list; s.settings.hubsOff = off; s.settings.names.hubs = names;
+      const nm = k => namesOld[k] ?? starter.get(k)?.label ?? k, one = (xs, verb, f = x => x.label) => xs.length === 1 ? `${verb} the issue “${f(xs[0])}”` : `${verb} ${plural(xs.length, "issue")}`;
+      out.summary = [added.length && one(added, "Added"), gone.length && one(gone, "Removed"), changed.length && one(changed, "Changed"), hid.length && one(hid, "Hid", nm), shown.length && one(shown, "Showed", nm), renamedH.length && (renamedH.length === 1 ? `Renamed the issue “${nm(renamedH[0])}” to “${names[renamedH[0]] ?? starter.get(renamedH[0])?.label}”` : `Renamed ${plural(renamedH.length, "issue")}`)].filter(Boolean).join(", ").replace(/^(.)/, c => c.toUpperCase()); break;
+    }
+    case "renames": {
+      const oldN = s.settings.names;
+      const srcs = args?.sources === undefined ? oldN.sources : cleanRenames(args.sources, { strict: true, noun: "source" });
+      const evs = args?.events === undefined ? oldN.events : cleanRenames(args.events, { max: LIMITS.events, strict: true, noun: "event" });
+      const cs = renameChanges(oldN.sources, srcs), ce = renameChanges(oldN.events, evs);
+      if (!cs.length && !ce.length && JSON.stringify(srcs) === JSON.stringify(oldN.sources) && JSON.stringify(evs) === JSON.stringify(oldN.events)) throw new AdminError("Nothing to change.");
+      s.settings.names.sources = srcs; s.settings.names.events = evs;
+      // what the owner decided about a source by its name (blocked, approval, News category) follows the new name
+      for (const { from, to } of cs) {
+        const fk = nameKey(from);
+        for (const m of [s.settings.blocked, s.settings.sourceKinds]) for (const k of Object.keys(m)) if (nameKey(k) === fk && k !== to) { if (!(to in m)) m[to] = m[k]; delete m[k]; }
+        const a = s.settings.approval; if (a.sources.some(k => nameKey(k) === fk)) a.sources = uniq(a.sources.map(k => nameKey(k) === fk ? to : k));
+      }
+      const one = (xs, noun) => xs.length === 1 ? `Renamed the ${noun} “${xs[0].from}” to “${xs[0].to}”` : `Renamed ${plural(xs.length, noun)}`;
+      out.summary = [cs.length && one(cs, "source"), ce.length && one(ce, "event")].filter(Boolean).join(", ") || "Changed the list of new names"; break;
+    }
+    case "orgs": {
+      const old = s.settings.orgs, raw = { own: args?.own ?? old.own, edit: args?.edit ?? old.edit, off: args?.off ?? old.off };
+      const next = cleanOrgs(raw, X, old, true);
+      if (JSON.stringify(next) === JSON.stringify(old)) throw new AdminError("Nothing to change.");
+      const was = new Map(old.own.map(o => [o.id, o])), nowM = new Set(next.own.map(o => o.id)), st = BX.orgs ?? new Map();
+      const added = next.own.filter(o => !was.has(o.id)), gone = old.own.filter(o => !nowM.has(o.id)), changed = next.own.filter(o => was.has(o.id) && JSON.stringify(was.get(o.id)) !== JSON.stringify(o));
+      const editedNow = Object.keys(next.edit).filter(id => JSON.stringify(next.edit[id]) !== JSON.stringify(old.edit[id])), editedGone = Object.keys(old.edit).filter(id => !next.edit[id]);
+      const hid = next.off.filter(id => !old.off.includes(id)), shown = old.off.filter(id => !next.off.includes(id));
+      s.settings.orgs = next;
+      const nm = id => orgNow(st.get(id) ?? { n: id }, next.edit[id] ?? old.edit[id]).n, one = (xs, verb, f = x => x.n) => xs.length === 1 ? `${verb} the organization “${f(xs[0])}”` : `${verb} ${plural(xs.length, "organization")}`;
+      out.summary = sentence([added.length && one(added, "Added"), gone.length && one(gone, "Removed"), [...changed, ...editedNow, ...editedGone].length && ([...changed, ...editedNow, ...editedGone].length === 1 ? one([changed[0] ?? editedNow[0] ?? editedGone[0]], "Changed", x => typeof x === "string" ? nm(x) : x.n) : `Changed ${plural(changed.length + editedNow.length + editedGone.length, "organization")}`),
+        hid.length && one(hid, "Hid", nm), shown.length && one(shown, "Showed", nm)]); break;
+    }
+    case "numbers": {
+      const old = s.settings.numbers, raw = { own: args?.own ?? old.own, edit: args?.edit ?? old.edit, off: args?.off ?? old.off, src: args?.src ?? old.src, cats: args?.cats ?? old.cats, catsOwn: args?.catsOwn ?? old.catsOwn };
+      const next = cleanFigures(raw, X, null, old, true);
+      if (JSON.stringify(next) === JSON.stringify(old)) throw new AdminError("Nothing to change.");
+      const was = new Map(old.own.map(o => [o.id, o])), nowM = new Set(next.own.map(o => o.id)), st = BX.numbers?.items ?? new Map();
+      const added = next.own.filter(o => !was.has(o.id)), gone = old.own.filter(o => !nowM.has(o.id)), changed = next.own.filter(o => was.has(o.id) && JSON.stringify(was.get(o.id)) !== JSON.stringify(o));
+      const editedNow = Object.keys(next.edit).filter(id => JSON.stringify(next.edit[id]) !== JSON.stringify(old.edit[id])), editedGone = Object.keys(old.edit).filter(id => !next.edit[id]);
+      const hid = next.off.filter(id => !old.off.includes(id)), shown = old.off.filter(id => !next.off.includes(id));
+      const srcChanged = Object.keys(next.src).filter(k => JSON.stringify(next.src[k]) !== JSON.stringify(old.src[k])).length + Object.keys(old.src).filter(k => !next.src[k]).length;
+      const catChanged = JSON.stringify([next.cats, next.catsOwn]) !== JSON.stringify([old.cats, old.catsOwn]);
+      s.settings.numbers = next;
+      const nm = id => figNow(st.get(id) ?? { t: id }, next.edit[id] ?? old.edit[id]).t, cnt = (n, w) => n === 1 ? `a ${w}` : plural(n, w), figs = [...changed, ...editedNow, ...editedGone];
+      out.summary = sentence([added.length && (added.length === 1 ? `Added the figure “${added[0].t}”` : `Added ${plural(added.length, "figure")}`), gone.length && `Removed ${cnt(gone.length, "figure")}`, figs.length && (figs.length === 1 ? `Changed the figure “${typeof figs[0] === "string" ? nm(figs[0]) : figs[0].t}”` : `Changed ${plural(figs.length, "figure")}`),
+        hid.length && `Hid ${cnt(hid.length, "figure")}`, shown.length && `Showed ${cnt(shown.length, "figure")}`, srcChanged && `Changed ${cnt(srcChanged, "source")}`, catChanged && "Changed the categories"]); break;
     }
     case "events": {
       const old = s.settings.events, list = args?.list === undefined ? old : cleanEvents(args.list, old);

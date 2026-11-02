@@ -6,7 +6,7 @@ import { fileURLToPath } from "node:url";
 import { XMLParser } from "fast-xml-parser";
 import { makeTagger, TAXO_PATH } from "./tag.mjs";
 import { makeEnglishCheck } from "./lang.mjs";
-import { normalizeState, applyEdits, breakingOn, placeOf, withCustom, newsKindKeys, kindState, feedTaxo, hubList, hubTagger, feedHubs } from "./admin.mjs";
+import { normalizeState, applyEdits, breakingOn, placeOf, withCustom, newsKindKeys, kindState, feedTaxo, hubList, hubTagger, feedHubs, renameMap, renamedTo, mergeOrgs, mergeNumbers, orgsChanged, numbersChanged } from "./admin.mjs";
 
 const CFG = process.env.SOURCES ?? fileURLToPath(new URL("../sources.json", import.meta.url));
 const OUT = process.env.OUT ?? fileURLToPath(new URL("../data/feed.json", import.meta.url));
@@ -40,13 +40,13 @@ const KEEP_MS = (cfg.keepDays ?? 30) * 864e5, MAX = cfg.maxItems ?? 400;
 const KEEP_BY = new Map(cfg.sources.filter(x => x.keepDays).map(x => [normName(x.asName ?? x.name), x.keepDays * 864e5]));
 // "keepSince": "YYYY-MM-DD" keeps every story a source published on or after that day (UTC) however old it gets, and those stories do not count against the news cap ("maxItems"). Stories before that day follow the usual rule.
 const SINCE = new Map(cfg.sources.filter(x => x.keepSince).map(x => [normName(x.asName ?? x.name), Date.parse(x.keepSince + "T00:00:00Z")]).filter(([, t]) => !isNaN(t)));
-const keepOf = o => { const n = normName(o.s), base = KEEP_BY.get(n) ?? KEEP_MS, since = SINCE.get(n); return since ? Math.max(base, Date.now() - since) : base; };
+const keepOf = o => { const base = lk(KEEP_BY, o.s) ?? KEEP_MS, since = lk(SINCE, o.s); return since ? Math.max(base, Date.now() - since) : base; };
 // "keepFrom": "YYYY-MM-DD" keeps everything published on or after that day (UTC), from every source and on every page, however old it gets. Those stories are never aged out and never count against a cap ("maxItems", "researchMax", "policyMax").
 // Only the stories before that day follow the usual rules ("keepDays", "policyKeepDays" and the caps). Remove the setting to go back to a rolling window.
 const FROM = cfg.keepFrom ? Date.parse(cfg.keepFrom + "T00:00:00Z") : NaN;
 if (cfg.keepFrom && Number.isNaN(FROM)) { console.error(`"keepFrom" (${cfg.keepFrom}) is not a date like 2026-01-01.`); process.exit(1); }
 const inRange = o => !Number.isNaN(FROM) && Date.parse(o.d) >= FROM;
-const held = o => inRange(o) || !!A.featured[o.id] || breakingOn(A, o.id) || (t => t !== undefined && Date.parse(o.d) >= t)(SINCE.get(normName(o.s)));
+const held = o => inRange(o) || !!A.featured[o.id] || breakingOn(A, o.id) || (t => t !== undefined && Date.parse(o.d) >= t)(lk(SINCE, o.s));
 const sinceFrom = ms => Number.isNaN(FROM) ? ms : Math.max(ms, Date.now() - FROM); // a window in days, stretched back to "keepFrom" if that is further
 const BACKFILL = /^(1|true|yes)$/i.test(process.env.BACKFILL ?? ""); // set by the update workflow's "backfill" input: read every source as far back as "keepFrom" and relax the government windows (scripts/backfill.mjs)
 if (BACKFILL && Number.isNaN(FROM)) { console.error('BACKFILL needs "keepFrom" in sources.json.'); process.exit(1); }
@@ -68,8 +68,16 @@ try { A = normalizeState(JSON.parse(await readFile(join(ADMIN_DIR, "admin.json")
 catch (e) { if (e.code !== "ENOENT") { console.error("admin.json cannot be read (" + e.message + "); keeping the previous data so the owner's decisions are not lost."); process.exit(1); } } // no file: no decisions yet
 try { oldPending = JSON.parse(await readFile(join(ADMIN_DIR, "pending.json"), "utf8")).items ?? []; } catch { /* nothing waiting */ }
 // Sources the owner blocked in the dashboard: nothing from them is collected, and what is stored is dropped (by name, so a publisher shown by Google News is caught too; "Hoodline.com" and "Hoodline" are one name).
+// New names the owner gave to sources in the dashboard (admin.json, names.sources). They are applied to stories already stored and to new ones, right when a story is read (after sources.json "renames"), so everything after that - blocking, approval, News categories, the page - sees the new name.
+// Settings that sources.json keeps by a source's own name (how long it keeps stories, its type, gates, routes, trusted outlets) still find it under the name it was collected with: ORIGS lists those names.
+const SRC_RN = renameMap(A.settings.names.sources);
+const rnS = s => { const a = cfg.renames?.[s] ?? s; return SRC_RN.size ? renamedTo(SRC_RN, a) : a; };
+const ORIGS = s => { const k = normName(s); return k && SRC_RN.size ? A.settings.names.sources.filter(e => normName(e.t) === k && normName(e.f) !== k).map(e => e.f) : []; };
+const keys1 = s => [normName(s), ...ORIGS(s).map(normName)];
+const keys2 = s => [s, ...ORIGS(s)].flatMap(n => [normName(n), normName(noTld(n))]);
+const lk = (map, s) => { for (const k of keys1(s)) if (map.has(k)) return map.get(k); };
 const OWNER_BLOCK = new Set(Object.keys(A.settings.blocked).flatMap(n => [normName(n), normName(noTld(n))]).filter(Boolean));
-function ownerBlocked(n) { return OWNER_BLOCK.size > 0 && [normName(n), normName(noTld(n))].some(k => k && OWNER_BLOCK.has(k)); }
+function ownerBlocked(n) { return OWNER_BLOCK.size > 0 && [n, rnS(n)].some(x => [normName(x), normName(noTld(x))].some(k => k && OWNER_BLOCK.has(k))); }
 const TAXO_BASE = JSON.parse(await readFile(TAXO_PATH, "utf8")), TAXO = withCustom(TAXO_BASE, A.settings); // TAXO: taxonomy.json plus the owner's own topics (with their keywords), communities and categories
 const TG = makeTagger(TAXO);
 // Topic hubs: the starter hubs in hubs.json (minus any the owner hid) and the owner's own. Every item on the site is matched to them on every run (headline and summary), so a new or changed hub applies to everything already stored.
@@ -127,13 +135,13 @@ const EXPLICIT = new Map(cfg.sources.filter(x => x.kind).flatMap(x => [x.name, x
 const withSourceKind = o => {
   const inNews = NEWS_KINDS.has(o.k) || KIND_OFF.has(o.k), isNews = k => NEWS_KINDS.has(k) || KIND_OFF.has(k);
   if (!inNews && BASE_KINDS.has(o.k)) return o;
-  const base = EXPLICIT.get(normName(o.s)) ?? kindOf(o.s), pick = SRC_KIND.get(normName(o.s)) ?? (isNews(base) ? base : inNews ? o.k : "news"); // a category the owner has since removed falls back to the source's usual one
+  const base = lk(EXPLICIT, o.s) ?? kindOf(ORIGS(o.s)[0] ?? o.s), pick = lk(SRC_KIND, o.s) ?? (isNews(base) ? base : inNews ? o.k : "news"); // a category the owner has since removed falls back to the source's usual one
   const want = KIND_OFF.get(pick) ?? pick; // a built-in category the owner removed: its sources go to the category they chose
   return want === o.k ? o : { ...o, k: want };
 };
 const inList = (h, list) => !!h && list.some(d => h === d || h.endsWith("." + d));
 const ROUTES = (cfg.routes ?? []).map(r => { const hosts = (r.hosts ?? []).map(h => h.toLowerCase()); return { kind: r.kind, hosts, names: new Set([...(r.names ?? []), ...hosts].flatMap(n => [normName(n), normName(noTld(n))]).filter(Boolean)) }; });
-const routeOf = o => ROUTES.find(r => inList(hostOf(o.u), r.hosts) || pubHosts(o).some(h => inList(h, r.hosts)) || r.names.has(normName(o.s)) || r.names.has(normName(noTld(o.s))))?.kind;
+const routeOf = o => ROUTES.find(r => inList(hostOf(o.u), r.hosts) || pubHosts(o).some(h => inList(h, r.hosts)) || keys2(o.s).some(k => r.names.has(k)))?.kind;
 const reroute = o => {
   const rk = routeOf(o);
   if (rk) return rk === o.k ? o : { ...o, k: rk };
@@ -145,10 +153,10 @@ const TRUSTED = new Set([...cfg.sources.filter(x => !(x.google && !/site(:|%3A)/
 // A site that is allowed back through allowHosts but only for some of its stories ("gatedHosts"): its story is kept when it matches "require" (or names the communities, with "community": true) and does not match "deny" (rnz.co.nz: Pacific Islander stories, no sports; independent.co.uk: stories about the communities).
 // The site is matched by its address, by the address Google News reports for its publisher, or by its name. A story that passes its gate skips the headline test below, because the gate is stricter.
 const GATES = (cfg.gatedHosts ?? []).map(g => { const hosts = (g.hosts ?? []).map(h => h.toLowerCase()); return { hosts, names: new Set([...(g.names ?? []), ...hosts].flatMap(n => [normName(n), normName(noTld(n))]).filter(Boolean)), require: g.require ? new RegExp(g.require, "i") : null, community: !!g.community, deny: g.deny ? new RegExp(g.deny, "i") : null }; });
-const gateOf = o => GATES.find(g => inList(hostOf(o.u), g.hosts) || pubHosts(o).some(h => inList(h, g.hosts)) || g.names.has(normName(o.s)) || g.names.has(normName(noTld(o.s))));
+const gateOf = o => GATES.find(g => inList(hostOf(o.u), g.hosts) || pubHosts(o).some(h => inList(h, g.hosts)) || keys2(o.s).some(k => g.names.has(k)));
 // A gate lets a story through when it matches "require" or, if the gate sets "community": true, when it names the communities (communityPattern); a gate with neither lets every story through. "deny" always drops.
 const gateFails = o => { const g = gateOf(o); if (!g) return false; const t = o.h + " " + (o.m ?? ""); const pass = (!g.require && !g.community) || (g.require && g.require.test(t)) || (g.community && COMMUNITY.test(t)); return !pass || !!(g.deny && g.deny.test(t)); };
-const offTopic = o => !isPolicy(o.k) && !isOrg(o.k) && hostOf(o.u) === "news.google.com" && !TRUSTED.has(normName(o.s)) && !gateOf(o) && !COMMUNITY.test(o.h + " " + (o.m ?? ""));
+const offTopic = o => !isPolicy(o.k) && !isOrg(o.k) && hostOf(o.u) === "news.google.com" && !keys1(o.s).some(k => TRUSTED.has(k)) && !gateOf(o) && !COMMUNITY.test(o.h + " " + (o.m ?? ""));
 
 const ENT = { amp: "&", lt: "<", gt: ">", quot: '"', apos: "'", nbsp: " " };
 const tx = n => (typeof n === "string" || typeof n === "number") ? String(n) : (n?.["#text"] ?? "");
@@ -613,9 +621,9 @@ const POL_KEEP = (cfg.policyKeepDays ?? 120) * 864e5, POL_MAX = cfg.policyMax ??
 // Stored items from before a rules change are re-tagged so every item has the current topic, communities, states and bills.
 // Set RETAG=1 to re-run the rules over everything already stored (after editing taxonomy.json).
 // "renames" in sources.json maps an old source name to its new one (for example "The Takeaway" is now part of "The Asian American Foundation", and the publisher Google News calls "Bloomberg.com" is shown as "Bloomberg News"), for stored and for new stories alike.
-const renamed = o => { const s = cfg.renames?.[o.s]; return s ? { ...o, s } : o; };
+const renamed = o => { const s = rnS(o.s); return s !== o.s ? { ...o, s } : o; };
 const retag = o => {
-  const tg = TG.all(o.h, o.m ?? "", o.d, isPolicy(o.k) ? "GOVERNMENT" : undefined), force = !!process.env.RETAG, s = cfg.renames?.[o.s] ?? o.s;
+  const tg = TG.all(o.h, o.m ?? "", o.d, isPolicy(o.k) ? "GOVERNMENT" : undefined), force = !!process.env.RETAG, s = rnS(o.s);
   // The owner's own topics and communities also apply to stories already stored (a new keyword finds old stories too); a story keeps its other tags. A removed topic or community of the owner's is dropped.
   const keptCm = force || !Array.isArray(o.cm) ? [] : o.cm.filter(c => VALID_CM.has(c)), cm = [...new Set([...(keptCm.length ? keptCm : tg.cm), ...tg.cm.filter(c => CUSTOM_CM.has(c) || BACK_CM.has(c))])]; // a built-in community the owner has just restored is found on old stories again
   const t = CUSTOM_TOPICS.has(tg.t) || BACK_T.has(tg.t) ? tg.t : !force && VALID.has(o.t) ? o.t : tg.t;
@@ -694,7 +702,18 @@ const pendOut = waiting.slice(0, PEND_MAX).map(({ g, art, ...rest }) => {
   return slim(a ? { ...rest, art: a } : rest);
 });
 if (JSON.stringify(pendOut) !== JSON.stringify(oldPending) && (pendOut.length || oldPending.length)) await writeFile(join(ADMIN_DIR, "pending.json"), JSON.stringify({ generated: new Date().toISOString(), items: pendOut }));
-const pubSources = status.map(({ name, home, kind, ok, count, note }) => ({ name, home, kind, ok, count, note }));
+// The Organizations and Numbers tabs: orgs.json and numbers.json in the repository are the starter lists. When the owner has added, changed or removed anything in the dashboard, the merged lists are published as data/orgs.json and data/numbers.json (the page reads those first); with no changes the files are removed and the page reads the starter lists.
+await mkdir(dirname(OUT), { recursive: true });
+const ownedFile = async (name, starterPath, st, changed, merge) => {
+  const target = join(dirname(OUT), name);
+  if (!changed(st)) { await unlink(target).catch(() => {}); return; }
+  let doc; try { doc = JSON.parse(await readFile(starterPath, "utf8")); } catch (e) { console.error(`${name}: the starter list cannot be read (${e.message}); the owner's changes are left as they were this time.`); return; }
+  const text = JSON.stringify(merge(doc, st)); let cur = ""; try { cur = await readFile(target, "utf8"); } catch { /* not written yet */ }
+  if (cur !== text) { await writeFile(target, text); console.log(`Wrote ${name} with the owner's changes.`); }
+};
+await ownedFile("orgs.json", process.env.ORGS ?? fileURLToPath(new URL("../orgs.json", import.meta.url)), A.settings.orgs, orgsChanged, mergeOrgs);
+await ownedFile("numbers.json", process.env.NUMBERS ?? fileURLToPath(new URL("../numbers.json", import.meta.url)), A.settings.numbers, numbersChanged, mergeNumbers);
+const pubSources = status.map(({ name, home, kind, ok, count, note }) => ({ name: rnS(name), home, kind, ok, count, note }));
 const taxo = feedTaxo(A.settings, TAXO_BASE); // names (never keywords) of the owner's own topics, communities and categories, new names for built-in ones and the built-in ones removed, so the page can show them
 const hubsPub = feedHubs(HUBS).filter(h => out.some(i => i.hb?.includes(h.k))); // the page lists the hubs that have something in them
 if (JSON.stringify(out) === JSON.stringify(old) && JSON.stringify(pubSources) === JSON.stringify(oldSources) && JSON.stringify(taxo) === JSON.stringify(oldTaxo) && JSON.stringify(hubsPub.length ? hubsPub : null) === JSON.stringify(oldHubs)) { console.log("No changes."); process.exit(0); }

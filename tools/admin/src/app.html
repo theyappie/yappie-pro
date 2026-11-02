@@ -153,7 +153,18 @@ legend{font-weight:650;font-size:13px;padding:0 6px}
 .cr.ev{grid-template-columns:minmax(0,1fr) auto}.efs{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px 12px;margin-bottom:10px}.efs .fl.wide{grid-column:1/-1}.ev-ad{display:flex;align-items:center;gap:8px;min-height:38px;font-size:14px}.ev-ad input{width:auto}
 .cr.fd{grid-template-columns:minmax(0,1fr) auto}.fdst{font-size:12.5px;color:var(--dm);margin-top:2px;overflow-wrap:anywhere}.fdst.bad{color:var(--err)}
 .evl{display:grid;gap:6px;margin:6px 0}.evr{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;align-items:center;padding:8px 10px;border:1px solid var(--ln);border-radius:8px;background:var(--bg)}.evr .nm{font-weight:600;overflow-wrap:anywhere}.evr .hint{overflow-wrap:anywhere}
-@media (max-width:620px){.cr,.cr.one,.cr.ev,.cr.fd{grid-template-columns:1fr}.srow{grid-template-columns:1fr}.efs{grid-template-columns:1fr}}
+.nrow{display:grid;grid-template-columns:minmax(0,1fr) minmax(150px,260px) auto;gap:8px 12px;align-items:center;padding:8px 12px;border-top:1px solid var(--ln)}.nrow:first-child{border-top:0}
+.nrow .nm{font-weight:600;overflow-wrap:anywhere}.nrow .sub{display:block;margin:0;font-size:12.5px;font-weight:400;text-transform:none;letter-spacing:0;color:var(--dm)}
+.nrow input{width:100%;border:1px solid var(--ln);background:var(--pn);border-radius:8px;padding:6px 8px}
+.rlist{border:1px solid var(--ln);border-radius:10px;background:var(--pn);margin:8px 0}.rlist:empty{display:none}
+.lrow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;align-items:center;padding:10px 12px;border-top:1px solid var(--ln)}.lrow:first-child{border-top:0}
+.lrow .nm{font-weight:600;overflow-wrap:anywhere}.lrow .meta{font-size:12.5px;color:var(--dm);overflow-wrap:anywhere}.lrow.off{opacity:.75}
+.acts{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.nrow .acts,.lrow .acts{grid-column:auto}
+.tabs2{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}.tabs2 .btn[aria-pressed=true]{background:var(--sel);border-color:var(--ac);font-weight:650}
+.chkbox{max-height:170px;overflow:auto;border:1px solid var(--ln);border-radius:8px;padding:6px 8px;display:grid;gap:2px;background:var(--bg)}.cklist{display:grid;gap:6px}
+.dform{display:grid;gap:14px}.dform input,.dform select,.dform textarea{border:1px solid var(--ln);background:var(--pn);border-radius:8px;padding:8px 10px}.dform input[type=checkbox]{width:auto;padding:0}
+@media (max-width:620px){.cr,.cr.one,.cr.ev,.cr.fd{grid-template-columns:1fr}.srow{grid-template-columns:1fr}.efs{grid-template-columns:1fr}.nrow,.lrow{grid-template-columns:1fr}.acts{justify-content:flex-start}}
 ul.log{list-style:none;margin:0;padding:0}
 ul.log li{display:flex;gap:12px;padding:10px 4px;border-top:1px solid var(--ln);flex-wrap:wrap}
 ul.log li:first-child{border-top:0}
@@ -194,7 +205,7 @@ ul.log time{color:var(--dm);min-width:170px;font-size:13px}
 "use strict";
 const CORE = (() => {
 {{CORE}}
-return { normalizeState, applyEdits, placeOf, sanitizeHtml, withCustom, newsKindKeys, kindState, nameKey, breakingOn, breakingEnd, cleanWords, cleanEvent, cleanFeed, EVENT_KINDS, BREAKING_LABELS, BREAKING_HOURS, MAX_EXTRA_TOPICS, LIMITS };
+return { normalizeState, applyEdits, placeOf, sanitizeHtml, withCustom, newsKindKeys, kindState, nameKey, breakingOn, breakingEnd, cleanWords, cleanEvent, cleanFeed, EVENT_KINDS, BREAKING_LABELS, BREAKING_HOURS, MAX_EXTRA_TOPICS, LIMITS, renameShown, renamedTo, ORG_SCOPES, cleanOrg, orgNow, cleanFigure, cleanFigSource, srcKeyOf, figCats, figSources, figNow };
 })();
 (() => {
 const CFG = JSON.parse(document.getElementById("cfg").textContent), NONCE = document.getElementById("cfg").nonce || "";
@@ -246,8 +257,8 @@ const stName = k => (D.tax.states.find(s => s[0] === k) || [])[1] || k;
 
 async function loadAll() {
   const names = ["feed", "pending", "state", "taxonomy", "sources"];
-  const [feed, pend, state, tax, src, hubs, evs] = await Promise.all(names.map(n => api("/api/raw/" + n)).concat(api("/api/raw/hubs").catch(() => null), api("/api/raw/events").catch(() => null)));
-  D.feed = feed.items || []; D.pending = pend.items || []; D.S = CORE.normalizeState(state); D.taxBase = tax; D.srcKinds = src.kinds || {}; D.srcCfg = src.sources || []; D.hubsBase = hubs; D.events = evs && Array.isArray(evs.events) ? evs : { events: [], status: {} }; D.srcEvents = src.events || {}; RSC = null; D.ready = true;
+  const [feed, pend, state, tax, src, hubs, evs, orgs, nums] = await Promise.all(names.map(n => api("/api/raw/" + n)).concat(api("/api/raw/hubs").catch(() => null), api("/api/raw/events").catch(() => null), api("/api/raw/orgs").catch(() => null), api("/api/raw/numbers").catch(() => null)));
+  D.feed = feed.items || []; D.pending = pend.items || []; D.S = CORE.normalizeState(state); D.taxBase = tax; D.srcKinds = src.kinds || {}; D.srcCfg = src.sources || []; D.hubsBase = hubs; D.orgsBase = orgs && Array.isArray(orgs.orgs) ? orgs : null; D.numbersBase = nums && Array.isArray(nums.items) ? nums : null; D.events = evs && Array.isArray(evs.events) ? evs : { events: [], status: {} }; D.srcEvents = src.events || {}; RSC = null; D.ready = true;
   rebuild();
 }
 // a blocked source: its stories are not listed, and the site still holding some is a change not on the site yet (names are compared the way the collector does, so "Hoodline.com" and "Hoodline" are one)
@@ -736,6 +747,7 @@ function customCard(type) {
       if (!(await confirmBox(`Remove ${names.length === 1 ? "“" + names[0] + "”" : names.length + " " + T.nouns}?`, [gone.length && T.gone, cut.length && T.goneBuilt].filter(Boolean).join(" "), "Remove", true))) return;
     }
     const builtin = Object.fromEntries(bl.filter(b => b.off || nameOf(b) !== b.orig).map(b => [b.k, { ...(nameOf(b) !== b.orig ? { label: nameOf(b) } : {}), ...(b.off ? { off: true, ...(type === "kind" ? { to: b.to } : {}) } : {}) }]));
+    if (type === "kind") for (const [k, v] of Object.entries(curB)) if (!bl.some(b => b.k === k)) builtin[k] = v; // new names given to Statements, Research and the Policy types (Names) stay as they are
     const res = await act(T.op, { list: rows.map(r => ({ ...(r.k ? { k: r.k } : {}), label: r.label.trim(), ...(T.words ? { words: r.words } : {}) })), builtin });
     if (!res) err.textContent = "Not saved. See the message at the bottom of the page.";
   } } }, "Save " + T.nouns);
@@ -1032,6 +1044,254 @@ function breakingCard() {
     h("div", { class: "srclist", id: "breakinglist" }, rows),
     h("p", { class: "hint" }, "A mark appears on the site after the next update, usually two to three minutes after you save. Visitors who already have the page open see it within about ten minutes, or when they reload."));
 }
+// ---------------------------------------------------------------- shared pieces for the Names, Organizations and Numbers cards
+const clientX = () => ({ states: new Set(D.tax.states.map(s => s[0])), communities: new Set(D.tax.communities.map(c => c.k)), topics: new Set(D.tax.topics.map(t => t.k)) });
+// a short list of choices with a filter box, for a form: states, communities, issues
+function checkList(options, selected, aria) {
+  const sel = new Set(selected), box = h("div", { class: "chkbox", role: "group", "aria-label": aria }), q = h("input", { type: "search", placeholder: "Filter the list", "aria-label": "Filter: " + aria, maxlength: "40" });
+  const paint = () => {
+    clearNode(box); const needle = q.value.trim().toLowerCase();
+    for (const [k, l] of options) if (!needle || l.toLowerCase().includes(needle) || sel.has(k)) box.append(h("label", { class: "chk" }, h("input", { type: "checkbox", checked: sel.has(k), "aria-label": l, on: { change: e => { e.target.checked ? sel.add(k) : sel.delete(k); } } }), l));
+  };
+  q.addEventListener("input", paint); paint();
+  return { el: h("div", { class: "cklist" }, q, box), get: () => options.map(o => o[0]).filter(k => sel.has(k)) };
+}
+const field = (label, el, hint) => h("div", { class: "fl" }, h("div", { class: "lb" }, label), el, hint && h("div", { class: "hint" }, hint));
+const txt = (value, o = {}) => h(o.area ? "textarea" : "input", { type: o.area ? undefined : o.type || "text", value: value ?? "", rows: o.area ? o.rows || 3 : undefined, maxlength: o.max ? String(o.max) : undefined, placeholder: o.ph, list: o.list, "aria-label": o.aria, autocomplete: "off" });
+
+// ---------------------------------------------------------------- new names: issues, news sources, events, topics, communities, sections
+const NAMES = { tab: "issues", q: "", lim: 40 };
+const CUSTOM_OP = { topic: "topics", community: "communities", kind: "newsKinds" };
+async function renameTax(type, k, label) {
+  const S = D.S.settings, op = CUSTOM_OP[type], own = S[op], b = S.builtin[BF[type]];
+  const orig = (type === "topic" ? new Map(D.taxBase.topics.map(x => [x.k, x.label])) : type === "community" ? new Map(D.taxBase.communities.map(x => [x.k, x.label])) : new Map(Object.entries(D.taxBase.kinds))).get(k);
+  if (own.some(e => e.k === k)) return act(op, { list: own.map(e => ({ k: e.k, label: e.k === k ? label : e.label, ...(type === "kind" ? {} : { words: e.words }) })) });
+  const e = { ...(b[k] || {}) }; if (label === orig) delete e.label; else e.label = label;
+  const builtin = { ...b }; if (Object.keys(e).length) builtin[k] = e; else delete builtin[k];
+  return act(op, { builtin });
+}
+// the name a renamed source or event was first collected under; "" when it shows its own name (also after it was changed back: the list then keeps the name as its own)
+const origOf = (map, n) => { const k = CORE.nameKey(n); if (map.some(e => CORE.nameKey(e.f) === k && CORE.nameKey(e.t) === k)) return ""; return (map.find(e => CORE.nameKey(e.t) === k) || {}).f || ""; };
+function namesCard() {
+  const S = D.S.settings, tabs = [["issues", "Issues"], ["sources", "News sources"], ["events", "Events"], ["topics", "Topics"], ["communities", "Communities"], ["sections", "Sections and types"]];
+  const bar = h("div", { class: "tabs2", role: "group", "aria-label": "What to rename" }), body = h("div");
+  // one row: the name now (and what it was), a box for the new name, and a Rename button
+  const nameRow = ({ name, was, hint, max = 80, aria, rename, reset }) => {
+    const inp = h("input", { type: "text", maxlength: String(max), placeholder: "New name", "aria-label": aria }), go = h("button", { class: "btn sm pri", type: "button", disabled: true, "aria-label": "Rename " + name }, "Rename");
+    const check = () => { go.disabled = !inp.value.trim() || inp.value.trim() === name; };
+    inp.addEventListener("input", check); inp.addEventListener("keydown", e => { if (e.key === "Enter" && !go.disabled) { e.preventDefault(); go.click(); } });
+    go.addEventListener("click", () => rename(inp.value.trim()));
+    return h("div", { class: "nrow" }, h("div", null, h("div", { class: "nm" }, name), (was || hint) && h("span", { class: "sub" }, [was && `originally “${was}”`, hint].filter(Boolean).join(" · "))), inp,
+      h("div", { class: "acts" }, go, reset && h("button", { class: "btn sm", type: "button", "aria-label": `Use the original name of ${name}`, on: { click: reset } }, "Use original")));
+  };
+  const searchBox = (ph, onInput) => { const i = h("input", { type: "search", class: "nq", value: NAMES.q, placeholder: ph, "aria-label": ph, on: { input: e => { NAMES.q = e.target.value; NAMES.lim = 40; const pos = e.target.selectionStart; onInput(); const n = body.querySelector(".nq"); if (n) { n.focus(); try { n.setSelectionRange(pos, pos); } catch {} } } } }); return h("div", { class: "srcbar" }, i); };
+  const more = (n, shown, again) => n > shown ? h("div", { class: "more" }, h("button", { class: "btn", type: "button", on: { click: () => { NAMES.lim += 60; again(); } } }, `Show ${Math.min(60, n - shown)} more of ${n}`)) : null;
+  const paint = () => {
+    clearNode(body); clearNode(bar);
+    for (const [k, l] of tabs) bar.append(h("button", { class: "btn sm", type: "button", "aria-pressed": String(NAMES.tab === k), on: { click: () => { NAMES.tab = k; NAMES.q = ""; NAMES.lim = 40; paint(); } } }, l));
+    const list = h("div", { class: "rlist" }), needle = NAMES.q.trim().toLowerCase();
+    if (NAMES.tab === "issues") {
+      const base = (D.hubsBase && Array.isArray(D.hubsBase.hubs) ? D.hubsBase.hubs : []).filter(x => x && typeof x.k === "string" && typeof x.label === "string"), nm = S.names.hubs, off = new Set(S.hubsOff);
+      body.append(h("p", { class: "hint" }, "The Issues tab and the Issues chips on the homepage. New issues you add under Issues are named when you add them; rename them here or there. A new name appears at the next update."));
+      for (const b of base.filter(x => !off.has(x.k))) list.append(nameRow({ name: nm[b.k] || b.label, was: nm[b.k] ? b.label : "", aria: `New name for the issue ${nm[b.k] || b.label}`, max: 40,
+        rename: v => { const m = { ...nm }; if (v === b.label) delete m[b.k]; else m[b.k] = v; return act("hubs", { names: m }); }, reset: nm[b.k] ? () => act("hubs", { names: Object.fromEntries(Object.entries(nm).filter(([k]) => k !== b.k)) }) : null }));
+      for (const e of S.hubs) list.append(nameRow({ name: e.label, hint: "your own", aria: `New name for the issue ${e.label}`, max: 40, rename: v => act("hubs", { list: S.hubs.map(x => ({ k: x.k, label: x.k === e.k ? v : x.label, blurb: x.blurb, words: x.words })) }) }));
+      if (!list.children.length) list.append(h("div", { class: "empty" }, "There are no issues yet."));
+      body.append(list);
+    } else if (NAMES.tab === "sources") {
+      const map = S.names.sources, counts = new Map();
+      for (const r of D.live.concat(D.wait)) { const n = CORE.renamedTo(map, r.item.s); if (n) counts.set(n, (counts.get(n) || 0) + 1); }
+      for (const s of D.srcCfg) { const n = CORE.renamedTo(map, s.asName || s.name); if (n && !counts.has(n)) counts.set(n, 0); }
+      for (const e of map) if (!counts.has(e.t)) counts.set(e.t, 0);
+      const all = [...counts.entries()].map(([n, c]) => ({ n, c, was: origOf(map, n) })).filter(r => !blockedName(r.n)).sort((a, b) => a.n.localeCompare(b.n));
+      const rows = all.filter(r => !needle || (r.n + " " + r.was).toLowerCase().includes(needle));
+      body.append(h("p", { class: "hint" }, "Rename how a source is shown: on every story, in the Sources filter, and in lists. It applies to the stories already on the site and to everything the source publishes later. Two sources renamed to the same name are shown as one."), searchBox("Find a source", paint));
+      const doRename = async (r, v) => {
+        if (counts.has(v) && CORE.nameKey(v) !== CORE.nameKey(r.n) && !(await confirmBox(`Show these stories under “${v}”?`, `A source called “${v}” already exists. After the rename the two are one source on the site.`, "Rename", false))) return;
+        await act("renames", { sources: CORE.renameShown(map, r.n, v) });
+      };
+      for (const r of rows.slice(0, NAMES.lim)) list.append(nameRow({ name: r.n, was: r.was, hint: r.c ? stories(r.c) : "no stories now", aria: `New name for the source ${r.n}`, rename: v => doRename(r, v), reset: r.was ? () => act("renames", { sources: CORE.renameShown(map, r.n, r.was) }) : null }));
+      if (!rows.length) list.append(h("div", { class: "empty" }, "No source matches."));
+      body.append(list, more(rows.length, NAMES.lim, paint));
+    } else if (NAMES.tab === "events") {
+      const map = S.names.events, now = Date.now(), seen = new Map();
+      for (const e of (D.events.events || [])) { if (e.own || evEnd(e) < now) continue; const t = CORE.renamedTo(map, e.t); if (!seen.has(CORE.nameKey(t))) seen.set(CORE.nameKey(t), { t, d: e.d, e }); }
+      for (const e of map) if (!seen.has(CORE.nameKey(e.t))) seen.set(CORE.nameKey(e.t), { t: e.t, d: "", e: null });
+      const rows = [...seen.values()].filter(r => !needle || r.t.toLowerCase().includes(needle)).sort((a, b) => (a.d || "9").localeCompare(b.d || "9") || a.t.localeCompare(b.t));
+      body.append(h("p", { class: "hint" }, "Rename an event the site collected (a hearing, a deadline, a calendar entry). The new title is used for that event and for any later event with the same title, such as a weekly webinar. Events you typed yourself are edited under Events and funding."), searchBox("Find an event", paint));
+      for (const r of rows.slice(0, NAMES.lim)) { const was = origOf(map, r.t);
+        list.append(nameRow({ name: r.t, was, hint: r.e ? evWhen(r.e) : "", max: 160, aria: `New title for the event ${r.t}`, rename: v => act("renames", { events: CORE.renameShown(map, r.t, v) }), reset: was ? () => act("renames", { events: CORE.renameShown(map, r.t, was) }) : null })); }
+      if (!rows.length) list.append(h("div", { class: "empty" }, "No upcoming collected event matches."));
+      body.append(list, more(rows.length, NAMES.lim, paint));
+    } else {
+      const type = NAMES.tab === "topics" ? "topic" : NAMES.tab === "communities" ? "community" : "kind";
+      const entries = type === "topic" ? D.tax.topics.map(t => [t.k, t.label, !!t.custom]) : type === "community" ? D.tax.communities.map(c => [c.k, c.label, !!c.custom]) : Object.entries(D.tax.kinds).map(([k, l]) => [k, l, S.newsKinds.some(x => x.k === k)]);
+      const orig = new Map(type === "topic" ? D.taxBase.topics.map(x => [x.k, x.label]) : type === "community" ? D.taxBase.communities.map(x => [x.k, x.label]) : Object.entries(D.taxBase.kinds));
+      body.append(h("p", { class: "hint" }, { topic: "The topics in the left menu, on stories and in the Topic filter.", community: "The communities in the left menu and on stories.", kind: "The names of the News categories, Statements, Research and the Policy types (federal legislation, state legislation, rules and notices, executive actions, government statements, hearings and reports). To remove or add a News category, use the card with the same name below." }[type]));
+      for (const [k, l, mine] of entries) { const o = orig.get(k) ?? ""; list.append(nameRow({ name: l, was: !mine && o && o !== l ? o : "", hint: mine ? "your own" : "", max: 40, aria: `New name for ${l}`, rename: v => renameTax(type, k, v), reset: !mine && o && o !== l ? () => renameTax(type, k, o) : null })); }
+      body.append(list);
+    }
+  };
+  paint();
+  return h("div", { class: "card", id: "card-names" }, h("h2", null, "Names"),
+    h("p", null, "Change the name of an issue, a news source, a collected event, a topic, a community, or a section such as Federal legislation. A new name applies to what is already on the site and to everything added later, and shows up after the next update. Organization names are changed under Organizations, and the labels on figures under Numbers."),
+    bar, body);
+}
+
+// ---------------------------------------------------------------- the Organizations tab
+const ORGUI = { q: "", only: "", lim: 30 };
+const SCOPE_LABEL = { national: "National", regional: "Regional", state: "State", local: "Local", government: "Government" };
+function orgEntries() {
+  const O = D.S.settings.orgs, base = D.orgsBase && Array.isArray(D.orgsBase.orgs) ? D.orgsBase.orgs : [], out = [];
+  for (const o of base) if (o && typeof o.id === "string") out.push({ id: o.id, org: CORE.orgNow(o, O.edit[o.id]), starter: o, edited: !!O.edit[o.id], off: O.off.includes(o.id) });
+  for (const o of O.own) out.push({ id: o.id, org: o, own: true });
+  return out;
+}
+function openOrgEditor(entry) {
+  const O = D.S.settings.orgs, cur = entry ? entry.org : { n: "", u: "", sc: "national", hq: "", ty: "", fd: "", st: [], c: [], is: [], src: [], ab: "" };
+  const types = [...new Set(orgEntries().map(e => e.org.ty).filter(Boolean))].sort();
+  const n = txt(cur.n, { max: 120, aria: "Name", ph: "For example: Hmong American Partnership" }), u = txt(cur.u, { type: "url", max: 500, aria: "Website", ph: "https://…" });
+  const ty = txt(cur.ty, { max: 40, aria: "Type", list: "orgtypes", ph: "For example: advocacy" }), tl = h("datalist", { id: "orgtypes" }, types.map(t => h("option", { value: t })));
+  const sc = h("select", { "aria-label": "Where it works" }, CORE.ORG_SCOPES.map(k => h("option", { value: k, selected: cur.sc === k }, SCOPE_LABEL[k] || k)));
+  const hq = txt(cur.hq, { max: 80, aria: "Headquarters", ph: "City, ST" }), fd = txt(cur.fd, { max: 4, aria: "Founded", ph: "1991" });
+  const st = checkList(D.tax.states.map(s => [s[0], s[1]]), cur.st || [], "States it works in"), cm = checkList(D.tax.communities.map(c => [c.k, c.label]), cur.c || [], "Communities it serves"), is = checkList(D.tax.topics.map(t => [t.k, t.label]), cur.is || [], "Issues it works on");
+  const src = txt((cur.src || []).join("\n"), { area: true, rows: 2, max: 400, aria: "Names it is listed under" });
+  const err = h("div", { class: "err", role: "alert" });
+  const save = h("button", { class: "btn pri", type: "button" }, entry ? "Save changes" : "Add organization");
+  save.addEventListener("click", async () => {
+    err.textContent = "";
+    const o = { id: entry ? entry.id : "", n: n.value, u: u.value, ab: cur.ab || "", sc: sc.value, hq: hq.value, ty: ty.value, fd: fd.value, st: st.get(), c: cm.get(), is: is.get(), src: src.value.split(/\n+/), ...(cur.o ? { o: cur.o } : {}) };
+    let c; try { c = CORE.cleanOrg(o, clientX(), true); } catch (e) { err.textContent = e.message; return; }
+    const args = !entry ? { own: [...O.own, c] } : entry.own ? { own: O.own.map(x => x.id === entry.id ? { ...c, id: entry.id } : x) } : { edit: { ...O.edit, [entry.id]: { ...c, id: entry.id } } };
+    if (await act("orgs", args)) dlg.close(); else err.textContent = "Not saved. See the message at the bottom of the page.";
+  });
+  const foot = [h("button", { class: "btn", type: "button", on: { click: () => dlg.close() } }, "Cancel")];
+  if (entry && entry.edited) foot.push(h("button", { class: "btn", type: "button", on: { click: async () => { const e = { ...O.edit }; delete e[entry.id]; if (await act("orgs", { edit: e })) dlg.close(); } } }, "Back to the starter version"));
+  foot.push(save);
+  openDialog(entry ? `Edit ${entry.org.n}` : "Add an organization", h("div", { class: "dform" }, field("Name", n), field("Website", u, "The organization’s own site. It must start with https://."), tl,
+    h("div", { class: "efs" }, field("Type", ty, "Pick one already in use or type a new one."), field("Where it works", sc), field("Headquarters (optional)", hq), field("Founded (optional)", fd)),
+    field("States it works in (optional)", st.el), field("Communities it serves (optional)", cm.el), field("Issues it works on (optional)", is.el),
+    field("News and statements are listed under (optional)", src, "If the site follows this organization’s feed, the name its items carry, one per line. The organization’s page then shows what it has said."), err), foot);
+  n.focus();
+}
+function orgsCard() {
+  const O = D.S.settings.orgs, all = orgEntries(), max = CORE.LIMITS.orgs;
+  const list = h("div", { class: "rlist" }), head = h("div", { class: "hint" });
+  const shown = () => all.filter(e => (!ORGUI.q || (e.org.n + " " + (e.org.hq || "") + " " + (e.org.ty || "")).toLowerCase().includes(ORGUI.q.toLowerCase())) && (!ORGUI.only || (ORGUI.only === "mine" ? e.own || e.edited : ORGUI.only === "hidden" ? e.off : !e.off)));
+  const paint = () => {
+    clearNode(list); const rows = shown(); head.textContent = `${rows.length} of ${all.length} organizations${rows.length < all.length ? " match" : ""}.`;
+    for (const e of rows.slice(0, ORGUI.lim)) {
+      const o = e.org, tags = [e.own && "added by you", e.edited && "changed by you", e.off && "hidden"].filter(Boolean);
+      const acts = [h("button", { class: "btn sm", type: "button", "aria-label": "Edit " + o.n, on: { click: () => openOrgEditor(e) } }, "Edit")];
+      if (e.off) acts.push(h("button", { class: "btn sm", type: "button", "aria-label": "Show " + o.n, on: { click: () => act("orgs", { off: O.off.filter(x => x !== e.id) }) } }, "Show"));
+      else if (e.own) acts.push(h("button", { class: "btn sm dng", type: "button", "aria-label": "Remove " + o.n, on: { click: async () => { if (await confirmBox(`Remove “${o.n}”?`, "It is taken off the Organizations tab at the next update.", "Remove", true)) act("orgs", { own: O.own.filter(x => x.id !== e.id) }); } } }, "Remove"));
+      else acts.push(h("button", { class: "btn sm dng", type: "button", "aria-label": "Hide " + o.n, on: { click: () => act("orgs", { off: [...O.off, e.id] }, { undo: () => act("orgs", { off: O.off }, { quiet: true }) }) } }, "Hide"));
+      list.append(h("div", { class: "lrow" + (e.off ? " off" : "") }, h("div", null, h("div", { class: "nm" }, o.n), h("div", { class: "meta" }, [o.ty, SCOPE_LABEL[o.sc], o.hq, ...tags].filter(Boolean).join(" · "))), h("div", { class: "acts" }, acts)));
+    }
+    if (!rows.length) list.append(h("div", { class: "empty" }, "No organization matches."));
+    if (rows.length > ORGUI.lim) list.append(h("div", { class: "more" }, h("button", { class: "btn", type: "button", on: { click: () => { ORGUI.lim += 40; paint(); } } }, `Show ${Math.min(40, rows.length - ORGUI.lim)} more`)));
+  };
+  const filt = h("select", { "aria-label": "Show organizations", on: { change: e => { ORGUI.only = e.target.value; ORGUI.lim = 30; paint(); } } }, h("option", { value: "" }, "All shown on the site"), h("option", { value: "mine" }, "Added or changed by me"), h("option", { value: "hidden" }, "Hidden"));
+  filt.value = ORGUI.only;
+  const add = h("button", { class: "btn pri", type: "button", disabled: O.own.length >= max, on: { click: () => openOrgEditor(null) } }, "+ Add an organization");
+  paint();
+  return h("div", { class: "card", id: "card-orgs" }, h("h2", null, "Organizations"),
+    h("p", null, "The Organizations tab lists AAPI organizations with where they work, whom they serve and which issues they work on. Add one, change any detail of a listed one (its name, website, type, where it works, issues), or hide one you do not want to show. Changes appear at the next update."),
+    !D.orgsBase ? h("p", { class: "hint" }, "The starter list (orgs.json) could not be read, so only organizations you add are shown.") : null,
+    h("div", { class: "srcbar" }, h("input", { type: "search", placeholder: "Find an organization", "aria-label": "Find an organization", value: ORGUI.q, on: { input: e => { ORGUI.q = e.target.value; ORGUI.lim = 30; paint(); } } }), filt, add), head, list,
+    h("p", { class: "hint" }, `Up to ${max} organizations of your own. A hidden or removed organization’s name is not deleted from stories that mention it.`));
+}
+
+// ---------------------------------------------------------------- the Numbers tab
+const NUMUI = { q: "", cat: "", only: "", lim: 30 };
+function numEntries() {
+  const N = D.S.settings.numbers, base = D.numbersBase && Array.isArray(D.numbersBase.items) ? D.numbersBase.items : [], out = [];
+  for (const x of base) if (x && typeof x.id === "string") out.push({ id: x.id, fig: CORE.figNow(x, N.edit[x.id]), starter: x, edited: !!N.edit[x.id], off: N.off.includes(x.id) });
+  for (const x of N.own) out.push({ id: x.id, fig: x, own: true });
+  return out;
+}
+function openFigureEditor(entry) {
+  const N = D.S.settings.numbers, cats = CORE.figCats(D.numbersBase, N), sources = CORE.figSources(D.numbersBase, N), cur = entry ? entry.fig : { v: "", t: "", y: "", cat: NUMUI.cat || (cats[0] || [])[0] || "", s: "", p: "", g: "", via: "", n: "", c: [], st: [] };
+  const v = txt(cur.v, { max: 60, aria: "Number", ph: "For example: 26.8 million" }), t = txt(cur.t, { area: true, rows: 2, max: 300, aria: "Description", ph: "What the number counts" }), y = txt(cur.y, { max: 20, aria: "Year", ph: "2024, or 2019–2023" });
+  const cat = h("select", { "aria-label": "Category" }, cats.map(([k, l]) => h("option", { value: k, selected: cur.cat === k }, l)));
+  const srcKeys = Object.keys(sources).sort((a, b) => sources[a].o.localeCompare(sources[b].o) || sources[a].t.localeCompare(sources[b].t));
+  const NEW = "__new";
+  const srcSel = h("select", { "aria-label": "Source" }, srcKeys.map(k => h("option", { value: k, selected: cur.s === k }, `${sources[k].o}: ${sources[k].t}`.slice(0, 120))), h("option", { value: NEW }, "+ A source that is not listed…"));
+  if (!entry || !sources[cur.s]) srcSel.value = srcKeys.length && entry ? srcKeys[0] : NEW;
+  const sf = { o: txt("", { max: 80, aria: "Publisher", ph: "For example: U.S. Census Bureau" }), t: txt("", { max: 240, aria: "Page or document", ph: "Title of the page or report" }), u: txt("", { type: "url", max: 500, aria: "Source web address", ph: "https://…" }), d: txt("", { max: 40, aria: "Source date", ph: "April 21, 2026" }) };
+  const srcBox = h("div", { class: "efs" }), srcNote = h("div", { class: "hint" });
+  const fillSrc = () => { const s = sources[srcSel.value]; if (s) { sf.o.value = s.o; sf.t.value = s.t; sf.u.value = s.u; sf.d.value = s.d || ""; } else for (const k of Object.keys(sf)) sf[k].value = ""; };
+  const paintSrc = () => {
+    clearNode(srcBox); const isNew = srcSel.value === NEW;
+    const usedBy = isNew ? 0 : numEntries().filter(e => !e.off && e.fig.s === srcSel.value && (!entry || e.id !== entry.id)).length;
+    srcNote.textContent = isNew ? "Every figure links to the page it comes from. Add who published it and the address of the page." : `Check or correct the source below. A change here applies to ${usedBy ? usedBy + " other " + (usedBy === 1 ? "figure" : "figures") + " that use" : "every figure that uses"} this source.`;
+    srcBox.append(field("Published by", sf.o), field("Page or document", sf.t), field("Web address", sf.u), field("Date (optional)", sf.d));
+  };
+  srcSel.addEventListener("change", () => { fillSrc(); paintSrc(); }); fillSrc(); paintSrc();
+  const p = txt(cur.p, { max: 160, aria: "Table or release", ph: "For example: 2024 Population Estimates" }), g = txt(cur.g, { max: 80, aria: "Group", ph: "For example: Nepalese" }), via = txt(cur.via, { max: 160, aria: "As reported by", ph: "Only if the source is a group that reprints the figure" }), nn = txt(cur.n, { area: true, rows: 2, max: 400, aria: "Note" });
+  const st = checkList(D.tax.states.map(s => [s[0], s[1]]), cur.st || [], "States"), cm = checkList(D.tax.communities.map(c => [c.k, c.label]), cur.c || [], "Communities");
+  const err = h("div", { class: "err", role: "alert" }), save = h("button", { class: "btn pri", type: "button" }, entry ? "Save changes" : "Add figure");
+  save.addEventListener("click", async () => {
+    err.textContent = "";
+    try {
+      const src = { ...N.src }; let key = srcSel.value;
+      const s = CORE.cleanFigSource({ o: sf.o.value, t: sf.t.value, u: sf.u.value, d: sf.d.value }, true);
+      if (key === NEW) { key = CORE.srcKeyOf(s.o, new Set(Object.keys(sources))); src[key] = s; }
+      else if (JSON.stringify(s) !== JSON.stringify({ ...sources[key], d: sources[key].d || "" })) src[key] = s;
+      const o = { id: entry ? entry.id : "", cat: cat.value, v: v.value, t: t.value, y: y.value, s: key, p: p.value, g: g.value, via: via.value, n: nn.value, c: cm.get(), st: st.get() };
+      const c = CORE.cleanFigure(o, { cats: new Set(cats.map(a => a[0])), sources: new Set([...Object.keys(sources), key]), X: clientX() }, true);
+      const args = { src, ...(!entry ? { own: [...N.own, c] } : entry.own ? { own: N.own.map(x => x.id === entry.id ? { ...c, id: entry.id } : x) } : { edit: { ...N.edit, [entry.id]: { ...c, id: entry.id } } }) };
+      if (await act("numbers", args)) dlg.close(); else err.textContent = "Not saved. See the message at the bottom of the page.";
+    } catch (e) { err.textContent = e.message; }
+  });
+  const foot = [h("button", { class: "btn", type: "button", on: { click: () => dlg.close() } }, "Cancel")];
+  if (entry && entry.edited) foot.push(h("button", { class: "btn", type: "button", on: { click: async () => { const e = { ...N.edit }; delete e[entry.id]; if (await act("numbers", { edit: e })) dlg.close(); } } }, "Back to the starter version"));
+  foot.push(save);
+  openDialog(entry ? "Edit a figure" : "Add a figure", h("div", { class: "dform" }, h("div", { class: "efs" }, field("Number", v), field("Year", y), field("Category", cat)), field("What it counts", t, "Written so it makes sense on its own, for example “Asian alone-or-in-combination residents of the United States”."),
+    field("Source", srcSel), srcNote, srcBox, h("div", { class: "efs" }, field("Table or release (optional)", p), field("Group (optional)", g)), field("As reported by (optional)", via), field("A note (optional)", nn), field("Communities (optional)", cm.el), field("States (optional)", st.el), err), foot);
+  v.focus();
+}
+function numbersCard() {
+  const N = D.S.settings.numbers, all = numEntries(), cats = CORE.figCats(D.numbersBase, N), catName = new Map(cats), max = CORE.LIMITS.figures;
+  const list = h("div", { class: "rlist" }), head = h("div", { class: "hint" });
+  const shown = () => all.filter(e => (!NUMUI.q || (e.fig.v + " " + e.fig.t + " " + (e.fig.g || "")).toLowerCase().includes(NUMUI.q.toLowerCase())) && (!NUMUI.cat || e.fig.cat === NUMUI.cat) && (!NUMUI.only || (NUMUI.only === "mine" ? e.own || e.edited : NUMUI.only === "hidden" ? e.off : !e.off)));
+  const paint = () => {
+    clearNode(list); const rows = shown(); head.textContent = `${rows.length} of ${all.length} figures${rows.length < all.length ? " match" : ""}.`;
+    for (const e of rows.slice(0, NUMUI.lim)) {
+      const x = e.fig, tags = [e.own && "added by you", e.edited && "changed by you", e.off && "hidden"].filter(Boolean), label = `${x.v}: ${x.t}`;
+      const acts = [h("button", { class: "btn sm", type: "button", "aria-label": "Edit " + label, on: { click: () => openFigureEditor(e) } }, "Edit")];
+      if (e.off) acts.push(h("button", { class: "btn sm", type: "button", "aria-label": "Show " + label, on: { click: () => act("numbers", { off: N.off.filter(i => i !== e.id) }) } }, "Show"));
+      else if (e.own) acts.push(h("button", { class: "btn sm dng", type: "button", "aria-label": "Remove " + label, on: { click: async () => { if (await confirmBox("Remove this figure?", `“${label}” is taken off the Numbers tab at the next update.`, "Remove", true)) act("numbers", { own: N.own.filter(i => i.id !== e.id) }); } } }, "Remove"));
+      else acts.push(h("button", { class: "btn sm dng", type: "button", "aria-label": "Hide " + label, on: { click: () => act("numbers", { off: [...N.off, e.id] }, { undo: () => act("numbers", { off: N.off }, { quiet: true }) }) } }, "Hide"));
+      list.append(h("div", { class: "lrow" + (e.off ? " off" : "") }, h("div", null, h("div", { class: "nm" }, `${x.v}`), h("div", { class: "meta" }, x.t), h("div", { class: "meta" }, [catName.get(x.cat) || x.cat, x.y, ...tags].filter(Boolean).join(" · "))), h("div", { class: "acts" }, acts)));
+    }
+    if (!rows.length) list.append(h("div", { class: "empty" }, "No figure matches."));
+    if (rows.length > NUMUI.lim) list.append(h("div", { class: "more" }, h("button", { class: "btn", type: "button", on: { click: () => { NUMUI.lim += 40; paint(); } } }, `Show ${Math.min(40, rows.length - NUMUI.lim)} more`)));
+  };
+  const catSel = h("select", { "aria-label": "Category", on: { change: e => { NUMUI.cat = e.target.value; NUMUI.lim = 30; paint(); } } }, h("option", { value: "" }, "All categories"), cats.map(([k, l]) => h("option", { value: k }, l))); catSel.value = NUMUI.cat;
+  const filt = h("select", { "aria-label": "Show figures", on: { change: e => { NUMUI.only = e.target.value; NUMUI.lim = 30; paint(); } } }, h("option", { value: "" }, "All shown on the site"), h("option", { value: "mine" }, "Added or changed by me"), h("option", { value: "hidden" }, "Hidden")); filt.value = NUMUI.only;
+  const add = h("button", { class: "btn pri", type: "button", disabled: N.own.length >= max, on: { click: () => openFigureEditor(null) } }, "+ Add a figure");
+  // categories: rename any, add your own
+  const catBox = h("div", { class: "rlist" });
+  const ownKeys = new Set(N.catsOwn.map(c => c.k));
+  for (const [k, l] of cats) {
+    const orig = ((D.numbersBase && D.numbersBase.cats) || []).find(a => a[0] === k), inp = h("input", { type: "text", maxlength: "40", placeholder: "New name", "aria-label": "New name for the category " + l }), go = h("button", { class: "btn sm pri", type: "button", disabled: true }, "Rename");
+    inp.addEventListener("input", () => { go.disabled = !inp.value.trim() || inp.value.trim() === l; });
+    go.addEventListener("click", () => ownKeys.has(k) ? act("numbers", { catsOwn: N.catsOwn.map(c => c.k === k ? { k, label: inp.value.trim() } : c) }) : act("numbers", { cats: { ...N.cats, [k]: inp.value.trim() === orig[1] ? undefined : inp.value.trim() } }));
+    const extra = ownKeys.has(k) ? h("button", { class: "btn sm dng", type: "button", "aria-label": "Remove the category " + l, on: { click: async () => { if (await confirmBox(`Remove “${l}”?`, "Figures in it must be moved to another category first.", "Remove", true)) act("numbers", { catsOwn: N.catsOwn.filter(c => c.k !== k) }); } } }, "Remove") : (N.cats[k] ? h("button", { class: "btn sm", type: "button", "aria-label": "Use the original name of " + l, on: { click: () => act("numbers", { cats: Object.fromEntries(Object.entries(N.cats).filter(([a]) => a !== k)) }) } }, "Use original") : null);
+    catBox.append(h("div", { class: "nrow" }, h("div", null, h("div", { class: "nm" }, l), h("span", { class: "sub" }, [N.cats[k] && orig ? `originally “${orig[1]}”` : "", ownKeys.has(k) ? "your own" : ""].filter(Boolean).join(" · "))), inp, h("div", { class: "acts" }, go, extra)));
+  }
+  const newCat = h("input", { type: "text", maxlength: "40", placeholder: "Name of a new category", "aria-label": "Name of a new category" });
+  const addCat = h("button", { class: "btn", type: "button", disabled: N.catsOwn.length >= CORE.LIMITS.figureCats, on: { click: async () => { const l = newCat.value.trim(); if (!l) { toast("Type a name for the category.", { bad: true }); newCat.focus(); return; } await act("numbers", { catsOwn: [...N.catsOwn, { label: l }] }); } } }, "Add category");
+  paint();
+  return h("div", { class: "card", id: "card-numbers" }, h("h2", null, "Numbers"),
+    h("p", null, "The Numbers tab lists key statistics, each with the page it comes from. Add a figure with its source, correct or reword a listed one, hide one you do not want to show, and rename or add categories. Every figure must link to its source (https), and nothing is calculated for you. Changes appear at the next update."),
+    !D.numbersBase ? h("p", { class: "hint" }, "The starter list (numbers.json) could not be read, so only figures you add are shown.") : null,
+    h("div", { class: "srcbar" }, h("input", { type: "search", placeholder: "Find a figure", "aria-label": "Find a figure", value: NUMUI.q, on: { input: e => { NUMUI.q = e.target.value; NUMUI.lim = 30; paint(); } } }), catSel, filt, add), head, list,
+    h("div", { class: "sub" }, "Categories"), catBox, h("div", { class: "bar" }, newCat, addCat),
+    h("p", { class: "hint" }, `Up to ${max} figures of your own and ${CORE.LIMITS.figureCats} categories of your own.`));
+}
+
 function renderSettings(main) {
   const cur = D.S.settings.approval, srcSet = new Set(cur.sources), kindSet = new Set(cur.kinds);
   const allNames = [...new Set([...D.srcCfg.map(s => s.name), ...D.feed.map(i => i.s), ...D.pending.map(i => i.s), ...cur.sources].filter(Boolean))].sort((a, b) => a.localeCompare(b));
@@ -1053,7 +1313,7 @@ function renderSettings(main) {
     opt("all", "Everything waits", " Every new story waits for you to approve it."),
     opt("custom", "Only some sources or sections wait", " New stories from the sources and sections you pick wait; the rest go live."),
     custom, h("div", null, save)),
-    customCard("topic"), customCard("community"), customCard("kind"), hubsCard(), eventsCard(), calendarsCard(), sourcesCard(), blockedCard(), breakingCard(), featuredCard(),
+    namesCard(), orgsCard(), numbersCard(), customCard("topic"), customCard("community"), customCard("kind"), hubsCard(), eventsCard(), calendarsCard(), sourcesCard(), blockedCard(), breakingCard(), featuredCard(),
     h("div", { class: "card" }, h("h2", null, "How changes reach the site"), h("p", null, `Every change is saved to the private repository ${CFG.dataRepo} (the file admin.json), which is not published. It shows up on the site after the next update, usually two to three minutes after you save. “Update the site now” starts one straight away. Items you delete stay in the Trash for 180 days.`),
       h("p", null, `Sign-ins last ${CFG.hours} hours. ${CFG.kv ? "Wrong-password lockouts and sign-outs are remembered across servers." : "No KV store is attached, so lockouts and sign-outs are only remembered by one server at a time. See the setup guide to add one."}`)));
   paint();

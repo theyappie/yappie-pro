@@ -18,6 +18,7 @@ A free, open-source news and policy terminal for stories affecting Asian America
 - **Saved tab:** star stories on the page to keep them in a list. Saved stories stay in this browser only.
 - **Clickable topics and sources:** click any topic or source name in the news list, the details pane or an article to filter by it.
 - **Date filter:** on every page (sidebar group *Date*, and a *Date* menu on phones): the last 7 or 30 days, any month of the year, or your own From and To days (either end may be left empty). Day boundaries follow the reader's own time zone.
+- **Since your last visit:** the page remembers (in this browser only, never sent anywhere) when you were last here. A visit ends after 30 quiet minutes; whatever was published after the previous visit ended gets a dot beside its time, each tab shows how many new items it has, and a bar above the list offers *Show only new* (also a link: `?n=1`) and *Mark all as seen*. The first visit, or a browser that blocks storage, falls back to the last two days with no bar.
 - **Shareable links:** the current filters are kept in the page address (`?t=…&c=…&st=…&k=…&s=…&d=…&q=…`).
 - **Feeds (generated, but not linked from the page):** an RSS feed for every topic, community, state and type, one for the Policy tracker, one for comment deadlines, a calendar file (`data/deadlines.ics`), and an optional weekday email brief that lists new policy records and comment deadlines.
 

@@ -134,6 +134,11 @@ body.msheet{overflow:hidden}body.msheet .side{display:block;position:fixed;inset
 .fb i{font-style:normal;font-size:12px;line-height:1;min-width:20px;height:20px;border-radius:10px;background:var(--ac);color:var(--bg);display:inline-grid;place-items:center;padding:0 5px}
 .fmore{flex:1 0 100%;display:grid;grid-template-columns:1fr 1fr;gap:8px}.fmore .fs{max-width:none;flex:none;width:100%}.fmore .wide{grid-column:1/-1}
 .chips{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:10px 12px;border-bottom:1px solid var(--ln)}
+.nbar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px 14px;padding:8px 12px;border-bottom:1px solid var(--ln);background:var(--pn);font-size:13px;color:var(--tx)}.nbar[hidden]{display:none}
+.nbar .nt{display:inline-flex;align-items:center;gap:7px}.nbar .nt b{font-weight:700}.nd2{width:8px;height:8px;border-radius:50%;background:var(--ac);flex:none}
+.nbar .na{display:inline-flex;flex-wrap:wrap;gap:4px 14px}.nbar button{min-height:32px;padding:0 2px;color:var(--ac);font-weight:600;font-size:13px}.nbar button:hover{text-decoration:underline}.nbar button[aria-pressed="true"]{text-decoration:underline}
+#feed[data-sn="1"] .row.new .dt::before{content:"";display:inline-block;width:6px;height:6px;margin-right:5px;border-radius:50%;background:var(--ac);vertical-align:1px}
+.tabs b.nn{color:#0b0e1a;background:#7db2ff;font-weight:700}
 .chp{display:inline-flex;align-items:center;gap:4px;position:relative;min-height:32px;padding:0 6px 0 11px;border:1px solid var(--ac);border-radius:16px;color:var(--ac);font-weight:600;font-size:13px;background:var(--pn)}
 .chp i{font-style:normal;font-size:17px;line-height:1;width:20px;height:20px;display:grid;place-items:center}.chp::after{content:"";position:absolute;inset:-6px 0}.chp:hover{background:var(--sel)}
 .chp:focus-visible,.chips .clr:focus-visible,.empty .clr:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
@@ -197,7 +202,7 @@ body.msheet{overflow:hidden}body.msheet .side{display:block;position:fixed;inset
 .vtool button,.vtool a,.acts2 button{min-height:44px}.tag{min-height:36px;display:inline-flex;align-items:center}.pt{min-height:44px}.ptabs{gap:8px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding:8px 12px}.ptabs::-webkit-scrollbar{display:none}
 .fx{margin-top:8px}
 .g{min-height:calc(100vh - var(--hh) - var(--th));min-height:calc(100dvh - var(--hh) - var(--th))}}
-@media print{header,.tabs,.rail,.side,.fbar,.vtool,.chips,.star,.rf,#toast,.row.h,.more,#cnt{display:none!important}
+@media print{header,.tabs,.rail,.side,.fbar,.vtool,.chips,.nbar,.star,.rf,#toast,.row.h,.more,#cnt{display:none!important}
 .g{display:block!important;background:#fff!important;min-height:0}.g>section{max-width:none!important;border:0!important;background:#fff}
 .row{grid-template-columns:70px 1fr!important;gap:2px 10px!important;padding:8px 0!important;break-inside:avoid}.row .tg,.row .sm{display:none}.row .sr{grid-area:auto!important}.row .dt{grid-area:auto!important;justify-self:start!important}.row .hl{grid-column:2!important;grid-row:1/3}
 .hl a::after{content:" (" attr(href) ")";font-weight:400;font-size:11px;color:#444}}
@@ -245,7 +250,7 @@ body.msheet{overflow:hidden}body.msheet .side{display:block;position:fixed;inset
 <div class="fmore" id="fmore" hidden><label class="fs"><span class="vh">Community</span><select id="selC"></select></label><label class="fs"><span class="vh">State</span><select id="selST"></select></label><label class="fs wide"><span class="vh">Date</span><select id="selD"></select></label><div class="drm wide" id="drm" hidden><label>From<input type="date" id="mFrom"></label><label>To<input type="date" id="mTo"></label></div><label class="fs wide nop"><span class="vh">Type</span><select id="selK"></select></label><label class="fs wide onlyp"><span class="vh">Relevance</span><select id="selR"></select></label></div></div>
 <section class="rail" aria-label="Filters"><div class="rin"><div class="fac" data-fac="t"><div class="fh"><button type="button" class="ph ft" aria-expanded="true" aria-controls="tags"><span class="fn">Topics</span><span class="fv"></span></button><button type="button" class="fxb" data-clr="t" aria-label="Clear topics filter" hidden>×</button></div><div id="tags" class="fb2"></div></div><div class="fac" data-fac="d"><div class="fh"><button type="button" class="ph ft" aria-expanded="true" aria-controls="dbox"><span class="fn">Date</span><span class="fv"></span></button><button type="button" class="fxb" data-clr="d" aria-label="Clear date filter" hidden>×</button></div><div id="dbox" class="fb2"><div id="dates"></div><div class="drng"><label><span>From</span><input type="date" id="dFrom"></label><label><span>To</span><input type="date" id="dTo"></label></div></div></div><div class="fac" data-fac="c"><div class="fh"><button type="button" class="ph ft" aria-expanded="true" aria-controls="comms"><span class="fn">Communities</span><span class="fv"></span></button><button type="button" class="fxb" data-clr="c" aria-label="Clear communities filter" hidden>×</button></div><div id="comms" class="fb2"></div></div><div class="fsel"><label for="selSTd">State</label><select id="selSTd"></select></div><div class="fac onlyp" data-fac="r"><div class="fh"><button type="button" class="ph ft" aria-expanded="true" aria-controls="rels"><span class="fn">Relevance</span><span class="fv"></span></button><button type="button" class="fxb" data-clr="r" aria-label="Clear relevance filter" hidden>×</button></div><div id="rels" class="fb2"></div></div><div class="fac" data-fac="s"><div class="fh"><button type="button" class="ph ft" aria-expanded="true" aria-controls="srcs"><span class="fn">Sources</span><span class="fv"></span></button><button type="button" class="fxb" data-clr="s" aria-label="Clear sources filter" hidden>×</button></div><div id="srcs" class="fb2"></div></div></div></section>
 <section><div class="ph"><span id="ttl">Top headlines</span></div>
-<div class="ptabs" id="ptabs" role="group" aria-label="Type" hidden></div><div class="vtool" id="vtool" hidden></div><div class="chips" id="chips" hidden></div>
+<div class="ptabs" id="ptabs" role="group" aria-label="Type" hidden></div><div class="vtool" id="vtool" hidden></div><div class="chips" id="chips" hidden></div><div class="nbar" id="nbar" hidden></div>
 <div class="row h"><span>TIME</span><span id="hsrc">SOURCE</span><span>TOPIC</span><span>HEADLINE</span><span></span></div><div id="rows"></div><div class="more" id="more"></div><div class="pcov" id="pcov" hidden></div></section>
 <section class="side"><div id="dtlw"><div class="ph" id="dtlt"><span id="dtlts">Details</span><button type="button" class="dx" id="dtlx">Close</button></div><div class="dtl" id="dtl"></div></div>
 </section>
@@ -367,9 +372,15 @@ if(f>=2&&f>e)return false;if(f>=1&&e===0&&w.length>=4)return false;return true}}
 const $=s=>document.querySelector(s);
 const cap=t=>t?t.charAt(0)+t.slice(1).toLowerCase():"";
 const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const pd=d=>new Date(d.length>10?d:d+"T12:00:00");const isNew=x=>new Date(GEN)-pd(x.d)<1728e5;const fd=d=>pd(d).toLocaleDateString("en-US",{month:"short",day:"numeric"});
+const pd=d=>new Date(d.length>10?d:d+"T12:00:00");
+// ---- since your last visit: a visit ends after 30 quiet minutes; what is new is what was published after the previous visit ended (the first visit, or no storage, falls back to the last 2 days)
+let SINCE=null;const _ms=new WeakMap(),msOf=x=>{let v=_ms.get(x);if(v===undefined){v=+pd(x.d);_ms.set(x,v)}return v};
+const seenNow=()=>{try{localStorage.setItem("ypLast",String(Date.now()))}catch(e){}};
+const visit=()=>{try{const now=Date.now(),last=+localStorage.getItem("ypLast")||0;let vs=+localStorage.getItem("ypVS")||0;if(last&&now-last>18e5){vs=last;localStorage.setItem("ypVS",String(vs))}SINCE=vs||null}catch(e){SINCE=null}seenNow()};
+visit();addEventListener("visibilitychange",()=>{if(document.hidden){seenNow();return}const o=SINCE;visit();if(SINCE!==o)try{render()}catch(e){}});addEventListener("pagehide",seenNow);setInterval(()=>{if(!document.hidden)seenNow()},6e4);
+const isNew=x=>SINCE!=null?msOf(x)>SINCE:new Date(GEN)-pd(x.d)<1728e5;const fd=d=>pd(d).toLocaleDateString("en-US",{month:"short",day:"numeric"});
 const MAIN=["The Yappie","AsAmNews","The Rebel Yellow","Joysauce"],isMain=x=>MAIN.includes(x.s);
-const F0=()=>({t:"",s:"",q:"",c:"",st:"",k:"",r:"",d:""});const PAGE=20;let F=F0(),VIEW="feed",sel=0,L=[],shown=PAGE,sig="",gsel="";
+const F0=()=>({t:"",s:"",q:"",c:"",st:"",k:"",r:"",d:"",n:""});const PAGE=20;let F=F0(),VIEW="feed",sel=0,L=[],shown=PAGE,sig="",gsel="";
 const FK=["t","c","st","k","s","r","d"],$$=s=>[...document.querySelectorAll(s)];
 const selT=$("#selT"),selS=$("#selS"),selC=$("#selC"),selST=$("#selST"),selK=$("#selK"),selR=$("#selR"),selD=$("#selD"),selSTd=$("#selSTd"),isMob=()=>matchMedia("(max-width:1000px)").matches;
 const fdl=d=>pd(d).toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"});
@@ -396,7 +407,7 @@ const aapiq=t=>t.replace(/aanhpi/g,"aapi");
 const _qc=new WeakMap(); // a story's searchable text is built once (a full year is thousands of stories, and every filter count asks again); a reloaded feed has new story objects, so the names in it are never stale
 const qtext=x=>{let q=_qc.get(x);if(q===undefined){q=aapiq((x.h+" "+(x.s=="The Yappie"?x.m||"":"")+" "+x.s+" "+tl(x.t)+" "+(x.tx||[]).map(tl).join(" ")+" "+(x.cm||[]).map(k=>CL[k]).join(" ")+" "+(x.st||[]).map(k=>SLB[k]).join(" ")+" "+(x.bl||[]).map(b=>b.n).join(" ")+" "+(x.ty||"")+" "+(x.ag||"")+" "+(x.la||"")+" "+(RSL[x.rs]||"")).toLowerCase());_qc.set(x,q)}return q};
 let _aqv=null,_aq="";const aq=()=>{if(_aqv!==F.q){_aqv=F.q;_aq=aapiq(F.q)}return _aq};
-const hit=(x,skip)=>FK.every(f=>f==skip||!F[f]||has(x,f,F[f]))&&(!F.q||qtext(x).includes(aq()));
+const hit=(x,skip)=>FK.every(f=>f==skip||!F[f]||has(x,f,F[f]))&&(!F.q||qtext(x).includes(aq()))&&(!F.n||isNew(x));
 // news, policy and advocacy-statement records live in the same feed file; each tab works on its own part
 let _vs=null,_vd=null,_vv="";
 const vset=()=>{if(_vd!==D||_vv!=VIEW){_vd=D;_vv=VIEW;_vs=VIEW=="policy"?D.filter(isP):VIEW=="advocacy"?D.filter(isAdv):VIEW=="research"?D.filter(isRes):VIEW=="saved"?D:D.filter(x=>!isP(x)&&!isAdv(x)&&x.k!="research")}return _vs};
@@ -415,10 +426,10 @@ let PSTAT=[];
 // A story counts toward a button of filter f when it passes the search and every OTHER chosen filter, so one that fails exactly one chosen filter only counts toward that filter's own buttons.
 let _cn=null;
 const kvals=x=>{const a=[],k=x.k||"news";if(x.rs&&RSL[x.rs])a.push(x.rs);if(!RSL[k]&&k!="open")a.push(k);if(x.dl&&dleft(x.dl)>=0)a.push("open");return a};
-const cntMap=()=>{const q=F.q?aq():"",key=VIEW+"\u0001"+FK.map(f=>F[f]||"").join("\u0001")+"\u0001"+q+"\u0001"+D.length+"\u0001"+TODAY;
+const cntMap=()=>{const q=F.q?aq():"",key=VIEW+"\u0001"+FK.map(f=>F[f]||"").join("\u0001")+"\u0001"+q+"\u0001"+D.length+"\u0001"+TODAY+"\u0001"+F.n+SINCE;
 if(_cn&&_cn.D===D&&_cn.key===key)return _cn.m;
 const m={t:new Map,c:new Map,st:new Map,k:new Map,s:new Map,r:new Map,d:new Map},MN=MAINS(),P7=drng("7d")[0],P30=drng("30d")[0],vals={d:x=>{const y=dayOf(x),a=[y.slice(0,7)];if(y>=P7)a.push("7d");if(y>=P30)a.push("30d");return a},t:x=>x.tx&&x.tx.length?[...new Set([x.t].concat(x.tx))]:[x.t],c:x=>x.cm||[],st:x=>x.st||[],k:kvals,s:x=>MN.includes(x.s)?[x.s]:[x.s,"__other"],r:x=>x.rl?[x.rl]:[]};
-for(const x of vset()){if(q&&!qtext(x).includes(q))continue;let bad="",nb=0;for(const f of FK)if(F[f]&&!has(x,f,F[f])){bad=f;if(++nb>1)break}
+for(const x of vset()){if(q&&!qtext(x).includes(q))continue;if(F.n&&!isNew(x))continue;let bad="",nb=0;for(const f of FK)if(F[f]&&!has(x,f,F[f])){bad=f;if(++nb>1)break}
 if(nb>1)continue;for(const f of nb?[bad]:FK){const mp=m[f];for(const v of vals[f](x))mp.set(v,(mp.get(v)||0)+1)}}
 _cn={D,key,m};return m};
 const cnt=(f,v)=>cntMap()[f].get(v)||0;
@@ -488,21 +499,26 @@ setSel(selC,opt("","All communities")+cl_.map(([k,l])=>opt(k,l)).join(""),F.c);
 setSel(selK,opt("",VIEW=="research"?"All findings":"All types")+kl_.map(([k,l])=>opt(k,l)).join(""),F.k);
 $("#fsT").classList.toggle("on",!!F.t);$("#fsS").classList.toggle("on",!!F.s);
 const nx=(VIEW=="policy"?["c","st","r","d"]:VIEW=="advocacy"?["c","st","d"]:["c","st","k","d"]).filter(f=>F[f]).length,fb=$("#fbn");fb.textContent=nx||"";fb.hidden=!nx;$("#fbtn").classList.toggle("on",!!nx);
-const act=[["t",F.t&&tl(F.t)],["c",F.c&&CL[F.c]],["st",F.st&&SLB[F.st]],["d",F.d&&dlabel(F.d)],["k",VIEW!="policy"&&VIEW!="advocacy"&&F.k&&(RSP[F.k]||KL[F.k])],["r",F.r&&RL[F.r]],["s",F.s&&(F.s=="__other"?"Other sources":F.s)],["q",F.q&&"“"+F.q+"”"]].filter(a=>a[1]);
+const act=[["t",F.t&&tl(F.t)],["c",F.c&&CL[F.c]],["st",F.st&&SLB[F.st]],["d",F.d&&dlabel(F.d)],["n",F.n&&"New since your last visit"],["k",VIEW!="policy"&&VIEW!="advocacy"&&F.k&&(RSP[F.k]||KL[F.k])],["r",F.r&&RL[F.r]],["s",F.s&&(F.s=="__other"?"Other sources":F.s)],["q",F.q&&"“"+F.q+"”"]].filter(a=>a[1]);
 $("#chips").innerHTML=act.length?act.map(([f,l])=>`<button class="chp" type="button" data-x="${f}" aria-label="Remove filter: ${esc(l)}">${esc(l)}<i aria-hidden="true">×</i></button>`).join("")+`<button class="clr" id="clr" type="button">Clear all</button>`:"";
 $("#chips").hidden=!act.length;
 }
-function tabCounts(){$("#nSv").textContent=SV.length||"";$$("#tabs a").forEach(a=>{const on=a.dataset.v==VIEW;a.classList.toggle("on",on);on?a.setAttribute("aria-current","page"):a.removeAttribute("aria-current")})}
+const fsince=t=>new Date(t).toLocaleString("en-US",{month:"short",day:"numeric",hour:"numeric",minute:"2-digit"});
+let _nc=null;const newCounts=()=>{if(SINCE==null)return null;if(_nc&&_nc.D===D&&_nc.S===SINCE)return _nc.c;const c={feed:0,policy:0,advocacy:0,research:0};for(const x of D){if(msOf(x)<=SINCE)continue;if(isP(x))c.policy++;else if(isAdv(x))c.advocacy++;else if(x.k!="research")c.feed++;if(isRes(x))c.research++}_nc={D,S:SINCE,c};return c};
+function renderNbar(){const el=$("#nbar");if(VIEW=="saved"||SINCE==null){el.hidden=true;el.innerHTML="";return}let n=0;for(const x of vset())if(msOf(x)>SINCE)n++;
+if(!n&&!F.n){el.hidden=true;el.innerHTML="";return}el.hidden=false;el.innerHTML=`<span class="nt"><i class="nd2" aria-hidden="true"></i><b>${n.toLocaleString()} new</b> since your last visit, ${esc(fsince(SINCE))}</span><span class="na"><button type="button" data-n="only" aria-pressed="${!!F.n}">${F.n?"Show all":"Show only new"}</button><button type="button" data-n="seen">Mark all as seen</button></span>`}
+function markSeen(){SINCE=Date.now();try{localStorage.setItem("ypVS",String(SINCE))}catch(e){}F.n="";sel=0;render()}
+function tabCounts(){$("#nSv").textContent=SV.length||"";const nc=newCounts();$$("#tabs a").forEach(a=>{let b=a.querySelector("b.nn");const n=nc&&nc[a.dataset.v]||0;if(n){if(!b){b=document.createElement("b");b.className="nn";a.append(b)}b.textContent=n>99?"99+":String(n);b.title=n+" new since your last visit";b.setAttribute("aria-label",n+" new since your last visit")}else if(b)b.remove()});$$("#tabs a").forEach(a=>{const on=a.dataset.v==VIEW;a.classList.toggle("on",on);on?a.setAttribute("aria-current","page"):a.removeAttribute("aria-current")})}
 const TITLES={feed:"Top headlines",policy:"Policy tracker",advocacy:"Advocacy statements",research:"Research",saved:"Saved stories"};
 function render(){
 {const t=isoD(new Date());if(t!=TODAY){TODAY=t;_dr.clear()}}RN=Date.now();
-$("#feed").dataset.v=VIEW;$("#ttl").textContent=TITLES[VIEW];$("#dtlts").textContent="Details";$("#hsrc").textContent=VIEW=="advocacy"?"GROUP":"SOURCE";tabCounts();syncQS();
+$("#feed").dataset.v=VIEW;$("#ttl").textContent=TITLES[VIEW];$("#dtlts").textContent="Details";$("#hsrc").textContent=VIEW=="advocacy"?"GROUP":"SOURCE";tabCounts();syncQS();$("#feed").dataset.sn=SINCE!=null&&VIEW!="saved"?"1":"";
 $("#vtool").hidden=true;$("#vtool").innerHTML="";
-renderFilters();const NOUN=VIEW=="policy"||VIEW=="research"?"items":VIEW=="advocacy"?"statements":"stories";
+renderFilters();renderNbar();const NOUN=VIEW=="policy"||VIEW=="research"?"items":VIEW=="advocacy"?"statements":"stories";
 L=VIEW=="saved"?savedList():sortPol(vset().filter(x=>hit(x)));
 if(keepSel){const i=L.indexOf(keepSel);if(i>=0)sel=i;keepSel=null}
 const sg=JSON.stringify(F)+VIEW;if(sg!=sig){sig=sg;shown=PAGE}if(sel>=L.length)sel=Math.max(0,L.length-1);if(VIEW!="saved"&&sel>=shown)shown=Math.ceil((sel+1)/PAGE)*PAGE;
-const lim=VIEW!="saved"?shown:1e9,any=F.t||F.c||F.st||F.k||F.s||F.q||F.d;
+const lim=VIEW!="saved"?shown:1e9,any=F.t||F.c||F.st||F.k||F.s||F.q||F.d||F.n;
 $("#rows").innerHTML=L.length?L.slice(0,lim).map((x,i)=>hd(x,i)+rowHTML(x,i)).join(""):`<div class="empty">${VIEW=="saved"?"Nothing saved yet. Tap the star on a story to save it here.":VIEW=="advocacy"?(vset().length?"No statements match these filters.":"No statements yet. This page fills from the press-release pages of AAPI advocacy organizations each time the site updates."):VIEW=="research"?(vset().length?"No research items match these filters.":"Nothing here yet. This page lists news stories and organization statements that mention new data, reports, studies or polls, each time the site updates."):VIEW=="policy"?(vset().length?"No policy items match these filters.":"Nothing in the tracker yet. It fills from official .gov sources (Federal Register, Congress.gov, the White House, the Justice Department, USCIS and the Congressional Asian Pacific American Caucus) each time the site updates."):"No headlines match these filters."}${any?'<br><button type="button" class="clr" data-act="clearall">Clear filters</button>':""}</div>`;
 $("#more").innerHTML=VIEW!="saved"?(L.length>shown?`<button class="morebtn" data-more>Load more ${NOUN}</button>`:(L.length>PAGE?`<div class="end">End of ${VIEW=="policy"?"tracker":VIEW=="feed"?"feed":"list"}</div>`:"")):"";
 if(VIEW=="saved"&&L.length){$("#vtool").hidden=false;$("#vtool").innerHTML=`<button type="button" data-act="clearsaved">Remove all</button><span class="vnote2">Saved in this browser only.</span>`}
@@ -531,11 +547,11 @@ try{const a=document.createElement("textarea");a.value=text;a.setAttribute("read
 const doCopy=(text,html,msg)=>copyOut(text,html).then(ok=>toast(ok?msg:"Couldn’t copy. Select the text and copy it by hand."));
 const origin=()=>location.origin&&location.origin!="null"?location.origin:"";
 // ---- URL state: ?t=IMMIGRATION&c=SEA&st=MN&k=statement&s=AsAmNews&q=text ----
-const QSK=["t","c","st","k","s","r","d","q"];
+const QSK=["t","c","st","k","s","r","d","n","q"];
 // a filter on a topic, community or category the site owner has since removed (an old link, or a page left open) is dropped
 function dropGone(){if(F.t&&!TAGS.includes(F.t))F.t="";if(F.c&&!CL[F.c])F.c="";if(F.k&&!KL[F.k]&&!RSL[F.k])F.k=""}
 function readQS(){const p=new URLSearchParams(location.search),g=k=>p.get(k)||"";
-if(TAGS.includes(g("t")))F.t=g("t");if(CL[g("c")])F.c=g("c");if(SLB[g("st")])F.st=g("st");if(KL[g("k")]||(RSL[g("k")]&&secOf()=="research"))F.k=g("k");if(RL[g("r")])F.r=g("r");if(DQ.test(g("d")))F.d=g("d");if(g("s"))F.s=g("s");if(g("q")){F.q=g("q").toLowerCase();$("#q").value=g("q")}
+if(TAGS.includes(g("t")))F.t=g("t");if(CL[g("c")])F.c=g("c");if(SLB[g("st")])F.st=g("st");if(KL[g("k")]||(RSL[g("k")]&&secOf()=="research"))F.k=g("k");if(RL[g("r")])F.r=g("r");if(DQ.test(g("d")))F.d=g("d");if(g("n")=="1")F.n="1";if(g("s"))F.s=g("s");if(g("q")){F.q=g("q").toLowerCase();$("#q").value=g("q")}
 if(F.k=="statement"){F.k="";if(secOf()=="feed"&&!location.hash)history.replaceState(null,"",hrefOf("advocacy")+location.search)}
 if(F.k=="research"){F.k="";if(secOf()=="feed"&&!location.hash)history.replaceState(null,"",hrefOf("research")+location.search)} // links from when Research was a type in News
 if(F.c||F.st||F.k||F.r||F.d){$("#fmore").hidden=false;$("#fbtn").setAttribute("aria-expanded","true")}}
@@ -590,6 +606,7 @@ $("#rows").onkeydown=e=>{if((e.key=="Enter"||e.key==" ")&&e.target.classList&&e.
 selD.onchange=()=>{F.d=selD.value;sel=0;gsel="";render()};
 [["dFrom","dTo"],["mFrom","mTo"]].forEach(([a,b])=>[a,b].forEach(id=>{$("#"+id).onchange=()=>{const x=$("#"+a).value,y=$("#"+b).value;F.d=x||y?x+".."+y:"";sel=0;gsel="";render()}}));
 $("#fbtn").onclick=()=>{const o=$("#fmore").hidden;$("#fmore").hidden=!o;$("#fbtn").setAttribute("aria-expanded",String(o))};
+$("#nbar").onclick=e=>{const b=e.target.closest("button[data-n]");if(!b)return;if(b.dataset.n=="seen")markSeen();else{F.n=F.n?"":"1";sel=0;render()}};
 $("#chips").onclick=e=>{const c=e.target.closest(".chp");if(c){const f=c.dataset.x;F[f]="";if(f=="q")$("#q").value="";sel=0;render();return}if(e.target.closest(".clr"))clearAll()};
 $(".rail").onclick=e=>{const b=e.target.closest("button[data-f]");if(b){const f=b.dataset.f,v=b.dataset.v;setF(f,v);const n=$(`.rail button[data-f="${f}"][data-v="${CSS.escape(v)}"]`)||$(`.fac[data-fac="${f}"] .ft`);if(n)n.focus({preventScroll:true});return}
 const h=e.target.closest(".ft");if(h){const f=h.closest(".fac").dataset.fac;fToggle(f);renderFilters();$(`.fac[data-fac="${f}"] .ft`).focus({preventScroll:true});return}

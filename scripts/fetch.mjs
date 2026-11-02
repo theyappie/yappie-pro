@@ -222,7 +222,9 @@ const dropLeadPhoto = (body, hero) => {
 // WordPress adds "The post <title> appeared first on <site>." as the last paragraph of a feed's full text. It is not part of the story, so it is removed.
 // Only the final paragraph is touched; a sentence that happens to start with "The post" earlier in the story stays.
 const dropFooter = body => String(body ?? "").replace(/\s*<p\b[^>]*>\s*(?:<(?:em|i|strong|b|span)\b[^>]*>\s*)*The post\b(?:(?!<\/p>)[\s\S])*?\bappeared first on\b(?:(?!<\/p>)[\s\S])*?<\/p>\s*$/i, "");
-const tidyBody = (body, hero) => dropFooter(dropLeadPhoto(body, hero));
+// The site writes "AAPI", not "AANHPI", in the summaries and article text it shows (headlines stay exactly as the outlet wrote them; web addresses are left alone).
+const plainTerms = t => typeof t === "string" ? t.replace(/(?<![\/=.])\bAANHPI(s?)\b/g, "AAPI$1") : t;
+const tidyBody = (body, hero) => plainTerms(dropFooter(dropLeadPhoto(body, hero)));
 
 async function getText(url, accept) {
   const res = await fetch(url, { headers: { "user-agent": "TheYappiePro/1.0 (open-source news index)", ...(accept ? { accept } : {}) }, signal: AbortSignal.timeout(20000) });
@@ -402,7 +404,7 @@ async function pull(src) {
   return out;
 }
 
-const sentences = (abs, max = 280) => { const sents = abs.match(/[^.!?]+[.!?]+(\s|$)/g) ?? [abs]; let m = ""; for (const t of sents) { if ((m + t).trim().length > max) break; m = (m + t).trim() + " "; } return m.trim(); };
+const sentences = (abs, max = 280) => { const sents = abs.match(/[^.!?]+[.!?]+(\s|$)/g) ?? [abs]; let m = ""; for (const t of sents) { if ((m + t).trim().length > max) break; m = (m + t).trim() + " "; } return plainTerms(m.trim()); };
 // A backfill reads the government sources back to "keepFrom" in one go: the whole period, bigger pages, and a bigger share of the API allowance (sources.json "backfill.gov"). Closed comment periods count too, because the aim is the year's record, not what is open now.
 const GOVB = BACKFILL ? (cfg.backfill?.gov ?? {}) : {}, FROM_DAY = Number.isNaN(FROM) ? "" : new Date(FROM).toISOString().slice(0, 10);
 if (BACKFILL) LIM.left = GOVB.apiRequests ?? 600;
@@ -700,7 +702,7 @@ const capped = (list, max) => [...list.filter(i => !held(i)).slice(0, max), ...l
 const kept = [...capped(live.filter(i => !isPolicy(i.k) && i.k !== "research"), MAX), ...capped(live.filter(i => i.k === "research"), RES_MAX), ...capped(live.filter(i => isPolicy(i.k)), POL_MAX)].sort((a, b) => b.d.localeCompare(a.d));
 const arts = new Map(kept.filter(i => i.art).map(i => [i.id, i.art]));
 const slim = o => Object.fromEntries(Object.entries(o).filter(([, v]) => !(Array.isArray(v) && !v.length) && v !== "" && v !== undefined));
-const out = kept.map(({ g, art, hb, ...rest }) => slim({ ...rest, hb: hubsOf(rest.h, rest.m) }));
+const out = kept.map(({ g, art, hb, ...rest }) => slim({ ...rest, m: plainTerms(rest.m), hb: hubsOf(rest.h, rest.m) }));
 const adir = join(dirname(OUT), "articles");
 await mkdir(adir, { recursive: true });
 // Author pages ("byu"): an author seen before is not looked up again (sources.json "authors" lists bylines whose stories live on another site, e.g. The Yappie Staff on the newsletter), and at most 6 pages are read per run.

@@ -744,54 +744,54 @@ function customCard(type) {
     T.words && h("p", { class: "hint" }, "Keywords match whole words in any capitals, and a plural also matches (“voucher” finds “vouchers”). Up to " + CORE.LIMITS.words + " keywords each; at most " + max + " " + T.nouns + " of your own."));
 }
 
-// Topic hubs: the issues the site has a page for (the Hubs tab). The starter hubs come with the site (hubs.json); the owner can hide any of them and add their own.
+// Issues (called hubs in the code): the issues the site has a page for (the Issues tab). The starter hubs come with the site (hubs.json); the owner can hide any of them and add their own.
 function hubsCard() {
   const base = (D.hubsBase && Array.isArray(D.hubsBase.hubs) ? D.hubsBase.hubs : []).filter(x => x && typeof x.k === "string" && typeof x.label === "string");
   const cur = D.S.settings.hubs, off = new Set(D.S.settings.hubsOff), max = CORE.LIMITS.hubs;
   const rows = cur.map(e => ({ k: e.k, label: e.label, blurb: e.blurb || "", words: (e.words || []).join("\n") }));
   const count = k => D.feed.reduce((n, it) => n + (Array.isArray(it.hb) && it.hb.includes(k) ? 1 : 0), 0);
   const list = h("div", { class: "cl" }), err = h("div", { class: "err", role: "alert" });
-  const add = h("button", { class: "btn", type: "button", on: { click: () => { rows.push({ label: "", blurb: "", words: "" }); paint(); [...list.querySelectorAll(".cr.mine")].pop().querySelector("input").focus(); } } }, "+ Add a hub");
+  const add = h("button", { class: "btn", type: "button", on: { click: () => { rows.push({ label: "", blurb: "", words: "" }); paint(); [...list.querySelectorAll(".cr.mine")].pop().querySelector("input").focus(); } } }, "+ Add an issue");
   const paint = () => {
     clearNode(list);
-    list.append(h("div", { class: "sub" }, "Starter hubs"));
-    if (!base.length) list.append(h("p", { class: "hint" }, "The starter list (hubs.json) could not be read, so only your own hubs are shown."));
+    list.append(h("div", { class: "sub" }, "Starter issues"));
+    if (!base.length) list.append(h("p", { class: "hint" }, "The starter list (hubs.json) could not be read, so only your own issues are shown."));
     for (const b of base.filter(x => !off.has(x.k))) {
       const n = count(b.k);
       list.append(h("div", { class: "cr one bi" },
         h("div", { class: "fl" }, h("div", { class: "nm" }, b.label), h("div", { class: "hint" }, (b.blurb || "") + " " + (n ? n.toLocaleString() + (n === 1 ? " item" : " items") + " on the site now." : "Nothing on the site yet, so it is not listed.")),
           h("details", { class: "hint" }, h("summary", null, "Keywords it matches"), h("p", { class: "hint" }, (b.words || []).join(", ")))),
-        h("button", { class: "btn sm dng", type: "button", "aria-label": `Hide the hub ${b.label}`, on: { click: () => { off.add(b.k); paint(); } } }, "Hide")));
+        h("button", { class: "btn sm dng", type: "button", "aria-label": `Hide the issue ${b.label}`, on: { click: () => { off.add(b.k); paint(); } } }, "Hide")));
     }
     list.append(h("div", { class: "sub" }, "Your own"));
-    if (!rows.length) list.append(h("p", { class: "hint" }, "You have not added any hubs yet."));
+    if (!rows.length) list.append(h("p", { class: "hint" }, "You have not added any issues yet."));
     rows.forEach((r, i) => list.append(h("div", { class: "cr mine" },
-      h("div", { class: "fl" }, h("div", { class: "lb" }, "Name"), h("input", { type: "text", value: r.label, maxlength: "40", placeholder: "For example: Guam sovereignty", "aria-label": `Name of hub ${i + 1}`, on: { input: e => { r.label = e.target.value; } } }),
-        h("div", { class: "lb" }, "Description (optional)"), h("input", { type: "text", value: r.blurb, maxlength: "200", placeholder: "One sentence about the issue", "aria-label": `Description of hub ${i + 1}`, on: { input: e => { r.blurb = e.target.value; } } })),
-      h("div", { class: "fl" }, h("div", { class: "lb" }, "Keywords"), h("textarea", { rows: "4", value: r.words, placeholder: "One word or phrase per line, or separated by commas", "aria-label": `Keywords of hub ${i + 1}`, on: { input: e => { r.words = e.target.value; } } })),
+      h("div", { class: "fl" }, h("div", { class: "lb" }, "Name"), h("input", { type: "text", value: r.label, maxlength: "40", placeholder: "For example: Guam sovereignty", "aria-label": `Name of issue ${i + 1}`, on: { input: e => { r.label = e.target.value; } } }),
+        h("div", { class: "lb" }, "Description (optional)"), h("input", { type: "text", value: r.blurb, maxlength: "200", placeholder: "One sentence about the issue", "aria-label": `Description of issue ${i + 1}`, on: { input: e => { r.blurb = e.target.value; } } })),
+      h("div", { class: "fl" }, h("div", { class: "lb" }, "Keywords"), h("textarea", { rows: "4", value: r.words, placeholder: "One word or phrase per line, or separated by commas", "aria-label": `Keywords of issue ${i + 1}`, on: { input: e => { r.words = e.target.value; } } })),
       h("button", { class: "btn sm dng", type: "button", on: { click: () => { rows.splice(i, 1); paint(); } } }, "Remove"))));
     const hid = base.filter(x => off.has(x.k));
     if (hid.length) {
       list.append(h("div", { class: "sub" }, "Hidden"), h("p", { class: "hint" }, "Not on the site while hidden. Show one to bring its page back."));
       for (const b of hid) list.append(h("div", { class: "cr off one" }, h("div", { class: "fl" }, h("div", { class: "nm" }, b.label), h("div", { class: "hint" }, b.blurb || "")),
-        h("button", { class: "btn sm", type: "button", "aria-label": `Show the hub ${b.label}`, on: { click: () => { off.delete(b.k); paint(); } } }, "Show")));
+        h("button", { class: "btn sm", type: "button", "aria-label": `Show the issue ${b.label}`, on: { click: () => { off.delete(b.k); paint(); } } }, "Show")));
     }
     add.disabled = rows.length >= max;
   };
   const save = h("button", { class: "btn pri", type: "button", on: { click: async () => {
     err.textContent = "";
-    const bad = rows.find(r => !r.label.trim()); if (bad) { err.textContent = "Every hub needs a name. Fill it in or remove it."; return; }
+    const bad = rows.find(r => !r.label.trim()); if (bad) { err.textContent = "Every issue needs a name. Fill it in or remove it."; return; }
     const none = rows.find(r => !CORE.cleanWords(r.words, Infinity).length); if (none) { err.textContent = `Add at least one keyword to “${none.label.trim()}”, so stories can be matched to it.`; return; }
     const gone = cur.filter(c => !rows.some(r => r.k === c.k));
-    if (gone.length && !(await confirmBox(`Remove ${gone.length === 1 ? "“" + gone[0].label + "”" : gone.length + " hubs"}?`, "Its page is taken off the site at the next update. The stories stay on the site.", "Remove", true))) return;
+    if (gone.length && !(await confirmBox(`Remove ${gone.length === 1 ? "“" + gone[0].label + "”" : gone.length + " issues"}?`, "Its page is taken off the site at the next update. The stories stay on the site.", "Remove", true))) return;
     const res = await act("hubs", { list: rows.map(r => ({ ...(r.k ? { k: r.k } : {}), label: r.label.trim(), blurb: r.blurb.trim(), words: r.words })), off: [...off] });
     if (!res) err.textContent = "Not saved. See the message at the bottom of the page.";
-  } } }, "Save hubs");
+  } } }, "Save issues");
   paint();
-  return h("div", { class: "card", id: "card-hubs" }, h("h2", null, "Topic hubs"),
-    h("p", null, "The Hubs tab has one page per issue (for example birthright citizenship): the news, policy items, statements and research about it in one timeline, and who has said what. A story, policy item or statement is in a hub when its headline or summary contains one of the hub’s keywords, and everything already on the site is checked again at the next update. Hide the starter hubs you do not want, or add your own."),
+  return h("div", { class: "card", id: "card-hubs" }, h("h2", null, "Issues"),
+    h("p", null, "The Issues tab has one page per issue (for example birthright citizenship): the news, policy items, statements and research about it in one timeline, and who has said what. A story, policy item or statement is under an issue when its headline or summary contains one of the issue’s keywords, and everything already on the site is checked again at the next update. Hide the starter issues you do not want, or add your own."),
     list, err, h("div", { class: "bar" }, add, save),
-    h("p", { class: "hint" }, "Keywords match whole words in any capitals, and a plural also matches (“refugee” finds “refugees”). Up to " + CORE.LIMITS.words + " keywords each; at most " + max + " hubs of your own. A hub with nothing in it is not shown on the site."));
+    h("p", { class: "hint" }, "Keywords match whole words in any capitals, and a plural also matches (“refugee” finds “refugees”). Up to " + CORE.LIMITS.words + " keywords each; at most " + max + " issues of your own. An issue with nothing in it is not shown on the site."));
 }
 
 // Events and funding: hearings, webinars, grant and fellowship deadlines (the Events tab). The site collects some by itself; the owner adds their own and hides collected ones.

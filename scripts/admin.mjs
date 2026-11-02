@@ -180,16 +180,16 @@ export function hubTagger(list) {
 export const feedHubs = list => arr(list).map(h => ({ k: h.k, label: h.label, ...(h.blurb ? { blurb: h.blurb } : {}) }));
 function cleanHubs(list, starter, old) {
   if (!Array.isArray(list)) throw new AdminError("The list could not be read.");
-  if (list.length > LIMITS.hubs) throw new AdminError(`You can add at most ${LIMITS.hubs} hubs.`);
+  if (list.length > LIMITS.hubs) throw new AdminError(`You can add at most ${LIMITS.hubs} issues.`);
   const oldKeys = new Set(old.map(o => o.k)), used = new Set(starter.keys()), names = new Set([...starter.values()].map(h => String(h.label).toLowerCase())), out = [];
   for (const it of list) {
     if (!isObj(it)) throw new AdminError("The list could not be read.");
     const label = line(it.label, 40);
-    if (!label) throw new AdminError("Every hub needs a name.");
-    if (names.has(label.toLowerCase())) throw new AdminError(`There is already a hub called “${label}”. Choose a different name.`);
+    if (!label) throw new AdminError("Every issue needs a name.");
+    if (names.has(label.toLowerCase())) throw new AdminError(`There is already an issue called “${label}”. Choose a different name.`);
     const k = typeof it.k === "string" && oldKeys.has(it.k) ? it.k : hubKeyOf(label);
-    if (!k || !HUB_KEY.test(k)) throw new AdminError(`The hub name “${label}” needs some letters or numbers (A to Z, 0 to 9).`);
-    if (used.has(k)) throw new AdminError(`There is already a hub called “${label}”. Choose a different name.`);
+    if (!k || !HUB_KEY.test(k)) throw new AdminError(`The issue name “${label}” needs some letters or numbers (A to Z, 0 to 9).`);
+    if (used.has(k)) throw new AdminError(`There is already an issue called “${label}”. Choose a different name.`);
     used.add(k); names.add(label.toLowerCase());
     const words = cleanWords(it.words, Infinity);
     if (!words.length) throw new AdminError(`Add at least one keyword to “${label}”, so stories can be matched to it.`);
@@ -688,7 +688,7 @@ export function applyOp(state, op, args, ctx) {
       const hid = off.filter(k => !offOld.includes(k)), shown = offOld.filter(k => !off.includes(k));
       if (!added.length && !gone.length && !changed.length && !hid.length && !shown.length) throw new AdminError("Nothing to change.");
       s.settings.hubs = list; s.settings.hubsOff = off;
-      const nm = k => starter.get(k)?.label ?? k, one = (xs, verb, f = x => x.label) => xs.length === 1 ? `${verb} the hub “${f(xs[0])}”` : `${verb} ${plural(xs.length, "hub")}`;
+      const nm = k => starter.get(k)?.label ?? k, one = (xs, verb, f = x => x.label) => xs.length === 1 ? `${verb} the issue “${f(xs[0])}”` : `${verb} ${plural(xs.length, "issue")}`;
       out.summary = [added.length && one(added, "Added"), gone.length && one(gone, "Removed"), changed.length && one(changed, "Changed"), hid.length && one(hid, "Hid", nm), shown.length && one(shown, "Showed", nm)].filter(Boolean).join(", ").replace(/^(.)/, c => c.toUpperCase()); break;
     }
     case "events": {

@@ -369,7 +369,17 @@ const vset=()=>{if(_vd!==D||_vv!=VIEW){_vd=D;_vv=VIEW;_vs=VIEW=="policy"?D.filte
 const sortPol=a=>VIEW=="research"?a.slice().sort((p,q)=>pd(q.d)-pd(p.d)):VIEW!="policy"?a:a.slice().sort(F.k=="open"?(p,q)=>p.dl<q.dl?-1:p.dl>q.dl?1:0:(p,q)=>pd(q.d)-pd(p.d));
 const fixF=()=>{if(RSL[F.k]?VIEW!="research":VIEW=="research")F.k=""; /* a poll/report/data filter only belongs to Research, and News-type filters (AAPI Media…) do not apply there */const s=vset();FK.forEach(f=>{if(F[f]&&!s.some(x=>has(x,f,F[f])))F[f]=""})};
 let PSTAT=[];
-const cnt=(f,v)=>vset().filter(x=>hit(x,f)&&has(x,f,v)).length;
+// how many stories each filter button would show: one pass over the stories, not one pass per button (a full year is ~10,000 stories and ~250 buttons).
+// A story counts toward a button of filter f when it passes the search and every OTHER chosen filter, so one that fails exactly one chosen filter only counts toward that filter's own buttons.
+let _cn=null;
+const kvals=x=>{const a=[],k=x.k||"news";if(x.rs&&RSL[x.rs])a.push(x.rs);if(!RSL[k]&&k!="open")a.push(k);if(x.dl&&dleft(x.dl)>=0)a.push("open");return a};
+const cntMap=()=>{const q=F.q?aq():"",key=VIEW+"\u0001"+FK.map(f=>F[f]||"").join("\u0001")+"\u0001"+q+"\u0001"+D.length;
+if(_cn&&_cn.D===D&&_cn.key===key)return _cn.m;
+const m={t:new Map,c:new Map,st:new Map,k:new Map,s:new Map,r:new Map},MN=MAINS(),vals={t:x=>x.tx&&x.tx.length?[...new Set([x.t].concat(x.tx))]:[x.t],c:x=>x.cm||[],st:x=>x.st||[],k:kvals,s:x=>MN.includes(x.s)?[x.s]:[x.s,"__other"],r:x=>x.rl?[x.rl]:[]};
+for(const x of vset()){if(q&&!qtext(x).includes(q))continue;let bad="",nb=0;for(const f of FK)if(F[f]&&!has(x,f,F[f])){bad=f;if(++nb>1)break}
+if(nb>1)continue;for(const f of nb?[bad]:FK){const mp=m[f];for(const v of vals[f](x))mp.set(v,(mp.get(v)||0)+1)}}
+_cn={D,key,m};return m};
+const cnt=(f,v)=>cntMap()[f].get(v)||0;
 const STAR='<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M8 1.6l1.9 4 4.4.5-3.3 3 .9 4.3L8 11.1 4.1 13.4 5 9.1l-3.3-3 4.4-.5z" stroke-linejoin="round"/></svg>';
 // ---- saved stories (this browser only) ----
 const SV=(()=>{try{return JSON.parse(localStorage.getItem("sv")||"[]").filter(x=>x&&x.u&&x.h)}catch(e){return[]}})();

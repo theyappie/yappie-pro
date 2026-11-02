@@ -217,17 +217,17 @@ body.msheet{overflow:hidden}body.msheet .side{display:block;position:fixed;inset
 .drng input:focus-visible,.drm input:focus-visible{outline:2px solid var(--ac);outline-offset:1px}
 .drm{display:grid;grid-template-columns:1fr 1fr;gap:8px}.drm input{height:44px;font-size:16px;padding:0 10px;border-radius:8px}
 /* Featured and breaking: the owner's marks. Featured items lead their page with a quiet label; a breaking item is red with a pulsing label until its time is up, then it is an ordinary row again. */
-:root{--bk:#c8102e;--bkbg:#fdecec;--bkbg2:#f9d0d3;--bkt:#fff}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bk:#ff5c66;--bkbg:#2b1117;--bkbg2:#431a22;--bkt:#2a0a0f}}
-:root[data-theme="dark"]{--bk:#ff5c66;--bkbg:#2b1117;--bkbg2:#431a22;--bkt:#2a0a0f}
-.row.fea{box-shadow:inset 3px 0 var(--ac)}.row.fea.sel{box-shadow:inset 3px 0 var(--ac)}
+:root{--bk:#c8102e;--bkbg:#fdecec;--bkbg2:#f9d0d3;--bkt:#fff;--fea:#dcedfb;--feasel:#c8e0f8;--feac:#0850c2}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bk:#ff5c66;--bkbg:#2b1117;--bkbg2:#431a22;--bkt:#2a0a0f;--fea:#10243f;--feasel:#18355f;--feac:#4d94ff}}
+:root[data-theme="dark"]{--bk:#ff5c66;--bkbg:#2b1117;--bkbg2:#431a22;--bkt:#2a0a0f;--fea:#10243f;--feasel:#18355f;--feac:#4d94ff}
+.row.fea,.row.fea.gx{--ac:var(--feac);background:var(--fea);box-shadow:inset 3px 0 var(--ac)}.row.fea:hover,.row.fea.sel{background:var(--feasel);box-shadow:inset 3px 0 var(--ac)}
 .ftag,.bkt{display:inline-flex;align-items:center;gap:6px;margin-right:8px;vertical-align:1px;font-family:var(--sans);font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;line-height:1;padding:4px 7px 3px;border-radius:3px;white-space:nowrap}
 .ftag{color:var(--ac);border:1px solid var(--ac)}
 .bkt{color:var(--bkt);background:var(--bk)}.bkt i{width:7px;height:7px;border-radius:50%;background:currentColor;flex:none;animation:bkd 1.2s ease-in-out infinite}
 .row.brk,.row.brk.sel,.row.brk.gx{background:var(--bkbg);box-shadow:inset 4px 0 var(--bk);animation:bkr 2.4s ease-in-out infinite}
 .row.brk .hl{color:var(--tx)}.row.brk .hla{font-weight:600}
 .dh.hbk{color:var(--bk);font-weight:700;letter-spacing:.06em;text-transform:uppercase}.dh.hft{color:var(--ac);font-weight:700;letter-spacing:.06em;text-transform:uppercase}
-.stg{padding:0 0 4px}.stg .bkt,.stg .ftag{margin:0 8px 0 0}.stg .until{font-size:12px;color:var(--dm)}
+.stg{padding:0 0 4px}.stg .bkt,.stg .ftag{margin:0 8px 0 0}
 @keyframes bkd{0%,100%{opacity:1}50%{opacity:.15}}
 @keyframes bkr{0%,100%{background:var(--bkbg)}50%{background:var(--bkbg2)}}
 @media (prefers-reduced-motion:reduce){.bkt i,.row.brk{animation:none!important}}
@@ -405,9 +405,8 @@ const BKL={breaking:"Breaking",urgent:"Urgent",important:"Important"};let RN=Dat
 const bkOn=x=>!!x.bu&&RN<Date.parse(x.bu),grp=x=>VIEW=="saved"?2:bkOn(x)?0:x.fe?1:2;
 const lead=a=>{if(VIEW=="saved")return a;let b=null,f=null;for(const x of a){if(bkOn(x))(b=b||[]).push(x);else if(x.fe)(f=f||[]).push(x)}if(!b&&!f)return a;
 if(b)b.sort((p,q)=>p.bt<q.bt?1:p.bt>q.bt?-1:0);if(f)f.sort((p,q)=>p.fe<q.fe?1:p.fe>q.fe?-1:0);return (b||[]).concat(f||[],a.filter(x=>!bkOn(x)&&!x.fe))};
-const hhmm=d=>new Date(d).toLocaleTimeString("en-US",{hour:"numeric",minute:"2-digit"});
 const mark=x=>bkOn(x)?`<span class="bkt"><i></i>${esc(BKL[x.bk]||"Breaking")}</span>`:x.fe&&VIEW!="saved"?'<span class="ftag">Featured</span>':"";
-const stag=x=>{const m=mark(x);return m?`<div class="stg">${m}${bkOn(x)?`<span class="until">Until ${esc(hhmm(x.bu))}</span>`:""}</div>`:""};
+const stag=x=>{const m=mark(x);return m?`<div class="stg">${m}</div>`:""};
 const sortPol0=a=>VIEW=="research"?a.slice().sort((p,q)=>pd(q.d)-pd(p.d)):VIEW!="policy"?a:a.slice().sort(F.k=="open"?(p,q)=>p.dl<q.dl?-1:p.dl>q.dl?1:0:(p,q)=>pd(q.d)-pd(p.d));
 const sortPol=a=>lead(sortPol0(a));
 const fixF=()=>{if(RSL[F.k]?VIEW!="research":VIEW=="research")F.k=""; /* a poll/report/data filter only belongs to Research, and News-type filters (AAPI Media…) do not apply there */const s=vset();FK.forEach(f=>{if(F[f]&&!s.some(x=>has(x,f,F[f])))F[f]=""})};

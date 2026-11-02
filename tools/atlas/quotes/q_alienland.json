@@ -1,0 +1,275 @@
+{
+"AL": {
+"ok": true,
+"u": "https://nationalaglawcenter.org/wp-content/uploads/assets/aglandownership/Alabama.pdf",
+"tried": 1
+},
+"AK": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"AZ": {
+"ok": true,
+"u": "https://www.azleg.gov/ars/33/00443.htm",
+"tried": 1
+},
+"AR": {
+"ok": true,
+"u": "https://nationalaglawcenter.org/wp-content/uploads/assets/aglandownership/Arkansas.pdf",
+"tried": 1
+},
+"CA": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"CO": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"CT": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"DC": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"DE": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"FL": {
+"ok": true,
+"u": "https://www.flsenate.gov/Laws/Statutes/2026/692.204",
+"tried": 1
+},
+"GA": {
+"ok": true,
+"u": "https://nationalaglawcenter.org/wp-content/uploads/assets/aglandownership/Georgia.pdf",
+"tried": 1
+},
+"HI": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"ID": {
+"ok": true,
+"u": "https://legislature.idaho.gov/statutesrules/idstat/Title55/T55CH1/SECT55-103/",
+"tried": 1
+},
+"IL": {
+"ok": true,
+"u": "https://nationalaglawcenter.org/wp-content/uploads/assets/aglandownership/Illinois.pdf",
+"tried": 1
+},
+"IN": {
+"ok": true,
+"u": "https://www.indianasenaterepublicans.com/koch-s-bill-to-stop-foreign-adversaries-from-buying-indiana-land-ceremonially-signed-into-law",
+"tried": 1
+},
+"IA": {
+"ok": true,
+"u": "https://www.legis.iowa.gov/docs/code/9I.3.pdf",
+"tried": 1
+},
+"KS": {
+"ok": true,
+"u": "https://www.kslegislature.gov/li/b2025_26/measures/documents/sb9_enrolled.pdf",
+"tried": 1
+},
+"KY": {
+"ok": true,
+"u": "https://nationalaglawcenter.org/wp-content/uploads/assets/aglandownership/Kentucky.pdf",
+"tried": 1
+},
+"LA": {
+"ok": true,
+"u": "https://nationalaglawcenter.org/wp-content/uploads/assets/aglandownership/Louisiana.pdf",
+"tried": 1
+},
+"ME": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"MD": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"MA": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"MI": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"MN": {
+"ok": true,
+"u": "https://www.revisor.mn.gov/statutes/cite/500.221",
+"tried": 1
+},
+"MS": {
+"ok": true,
+"u": "https://nationalaglawcenter.org/wp-content/uploads/assets/aglandownership/Mississippi.pdf",
+"tried": 1
+},
+"MO": {
+"ok": true,
+"u": "https://revisor.mo.gov/main/OneSection.aspx?section=442.571",
+"tried": 1
+},
+"MT": {
+"ok": true,
+"u": "https://nationalaglawcenter.org/wp-content/uploads//assets/aglandownership/Montana.pdf",
+"tried": 1
+},
+"NE": {
+"ok": true,
+"u": "https://nebraskalegislature.gov/laws/statutes.php?statute=76-3703",
+"tried": 1
+},
+"NV": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"NH": {
+"ok": true,
+"u": "https://leoninepublicaffairs.com/foreign-ownership-rules-expand-across-the-states/",
+"tried": 1
+},
+"NJ": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"NM": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"NY": {
+"ok": true,
+"u": "https://assembly.state.ny.us/leg/?bn=A09031&term=2025&Summary=Y&Actions=Y&Text=Y",
+"tried": 1
+},
+"NC": {
+"ok": true,
+"u": "https://www.ncleg.gov/Sessions/2025/Bills/House/PDF/H133v6.pdf",
+"tried": 1
+},
+"ND": {
+"ok": true,
+"u": "https://nationalaglawcenter.org/wp-content/uploads/assets/aglandownership/North-Dakota.pdf",
+"tried": 1
+},
+"OH": {
+"ok": true,
+"u": "https://codes.ohio.gov/ohio-revised-code/section-5301.256",
+"tried": 1
+},
+"OK": {
+"ok": true,
+"u": "https://nationalaglawcenter.org/wp-content/uploads/assets/aglandownership/Oklahoma.pdf",
+"tried": 1
+},
+"OR": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"PA": {
+"ok": true,
+"u": "https://nationalaglawcenter.org/wp-content/uploads/assets/aglandownership/Pennsylvania.pdf",
+"tried": 1
+},
+"RI": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"SC": {
+"ok": true,
+"u": "https://www.scstatehouse.gov/code/t27c013.php",
+"tried": 1
+},
+"SD": {
+"ok": true,
+"u": "https://nationalaglawcenter.org/wp-content/uploads/assets/aglandownership/South-Dakota.pdf",
+"tried": 1
+},
+"TN": {
+"ok": true,
+"u": "https://www.capitol.tn.gov/Bills/114/Bill/SB2424.pdf",
+"tried": 1
+},
+"TX": {
+"ok": true,
+"u": "https://capitol.texas.gov/tlodocs/89R/billtext/html/SB00017F.htm",
+"tried": 1
+},
+"UT": {
+"ok": true,
+"u": "https://nationalaglawcenter.org/wp-content/uploads/assets/aglandownership/Utah.pdf",
+"tried": 1
+},
+"VT": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"VA": {
+"ok": true,
+"u": "https://law.lis.virginia.gov/vacode/title55.1/chapter5.1/section55.1-508/",
+"tried": 1
+},
+"WA": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"WV": {
+"ok": true,
+"u": "https://code.wvlegislature.gov/37-3A-3/",
+"tried": 1
+},
+"WI": {
+"ok": true,
+"u": "https://nationalaglawcenter.org/wp-content/uploads/assets/aglandownership/Wisconsin.pdf",
+"tried": 1
+},
+"WY": {
+"ok": true,
+"u": "https://nationalaglawcenter.org/wp-content/uploads/assets/aglandownership/Wyoming.pdf",
+"tried": 1
+}
+}

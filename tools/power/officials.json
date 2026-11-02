@@ -1,0 +1,1693 @@
+{
+ "asOf": "2026-11-02",
+ "congress": 119,
+ "notes": [
+  "As of 2026-11-02, 119th Congress. Roster status is taken from the House Clerk member data file (published 2026-10-01) and the Senate senators XML (last updated 2026-10-08); changes after those dates were not checked. No predictions about the 2026-11-03 election.",
+  "This section lists 23 Members: 3 Senators, 18 Representatives and 2 Delegates. CRS R48535 (May 21, 2025) counts 24 Members of Asian, South Asian or Pacific Islander ancestry (21 in the House including 3 Delegates; 3 Senators) and APAICS (Nov 2024) says '24 AA & NH/PIs in Congress overall'. Neither names the Members, and no fetched page states the heritage of the third Delegate (Guam), so that person is left out rather than inferred; the list is therefore one short of the published count. Each entry's basis cites the source that names that person.",
+  "The current edition of CRS 97-398 (Asian Pacific Americans in the United States Congress) is dated June 12, 2013 (113th Congress); it names heritage for Bera, Chu, Duckworth, Hirono, Meng, Scott and Takano and is cited only for them. CRS has not issued a newer edition that names 119th Congress Members.",
+  "CAPAC chair emerita Judy Chu wrote on 2024-12-04 that CAPAC expected 25 AAPI members of Congress in the 119th Congress; CRS and APAICS count 24. No fetched source identifies a 25th person.",
+  "Considered and not included: Yassamin Ansari (D-AZ-3), whose official bio says she is the 'first Iranian American Democrat' in Congress, and Stephanie Bice (R-OK-5), whose official pages fetched do not state heritage. Neither is shown to be counted as AA/NHPI by the CRS or APAICS figures above (the CRS and APAICS figures do not name Members). CAPAC Executive Board and Associate members who are allies (for example Ed Case, Dan Goldman, Al Green) are in capacMembers but not in officials.",
+  "Two entries have weaker heritage sourcing: Vince Fong (NBC News 2024; no official, CRS, APAICS or CAPAC page naming his heritage was retrieved) and Kimberlyn King-Hinds (Pew text hosted on her official site). Reviewers should confirm these before citing. Guam's Delegate James C. Moylan is not listed because no fetched source states his heritage.",
+  "Senate member pages (senate.gov) and congress.gov/bioguide HTML pages block automated fetching, so Senators' heritage rests on CRS 97-398, H. Doc. 108-226 and APAICS, not on their senate.gov bios.",
+  "CAPAC leadership as shown on capac.house.gov/members, fetched 2026-11-02: Chair Grace Meng (NY-6); First Vice Chair Mark Takano (CA-39); Second Vice Chair Jill Tokuda (HI-2); Whip Ami Bera (CA-6); Freshman Representative Suhas Subramanyam (VA-10); Chair Emerita Judy Chu (CA-28). This matches CAPAC's 2024-12-04 announcement of 119th Congress leadership. In officials, Whip, Freshman Representative and Chair Emerita are recorded as capac 'Executive Board' with the exact title in capacTitle.",
+  "CAPAC stated member count: the capac.house.gov home page still says 83; the most recent CAPAC press release (2026-10-26, welcoming Rep. Christian Menefee, TX-18) says 'composed of 86 Members of Congress'. The members page (undated) names 85 people and does not yet list Menefee; capacMembers has 86 = those 85 + Menefee. Count history from CAPAC releases: 79 (2025-02-07), 83 (2025-05-28), 83 (2025-11-18, Walkinshaw), 84 (2026-02-06, Salinas), 85 (2026-07-09, Stanton and Rivas), 86 (2026-10-26, Menefee).",
+  "CAPAC membership as listed: 9 Senators and 77 Representatives, all Democrats; 19 of the 23 listed Members are on it (all but Fong, Young Kim, Radewagen and King-Hinds). 'tier' in capacMembers is the heading used on the members page (Leadership, Executive Board, Senate Associate, House Associate); Associate Members are the caucus's allies.",
+  "The CAPAC members page prints Rep. Scott Peters as CA-52 (the same district it gives Juan Vargas); the House Clerk lists Peters in CA-50 and Vargas in CA-52, so CA-50 is recorded.",
+  "bioguideIds: all 92 IDs used were checked on a congress.gov or bioguide.congress.gov source in this session. 43 were opened on bioguide.congress.gov and the name matched; 49 matched name, state and district in the congress.gov API member list for the 119th Congress (current members; 250 of 539 records retrieved before the API rate limit). IDs were first read from the House Clerk and Senate XML files.",
+  "name follows the congress.gov inverted form where the congress.gov API list was retrieved (for example 'Tokuda, Jill N.'); otherwise it follows the House Clerk or Senate XML list name, so middle initials may differ from congress.gov. The cg URL slug is built from the display name; the bioguideId at the end identifies the member.",
+  "Official websites come from the house.gov Representatives directory (non-voting Members listed there) and the Senate XML, fetched 2026-11-02. No personal contact details are recorded. Extra fields not in the base schema: capacTitle, bioVerified, x, unverified (officials); tier, title, note (capacMembers); capacStatedCount."
+ ],
+ "officials": [
+  {
+   "name": "Hirono, Mazie K.",
+   "display": "Mazie K. Hirono",
+   "bio": "H001042",
+   "ch": "Senate",
+   "st": "HI",
+   "dist": "",
+   "party": "D",
+   "capac": "Executive Board",
+   "capacTitle": "Executive Board Member",
+   "basis": "CRS 97-398 (2013) describes her as 'Japanese American'; H. Doc. 108-226 (House Historian) profile: 'An immigrant from Japan who came to Hawaii as a child'; counted in the CRS R48535 aggregate of 24 AA/NHPI Members",
+   "u": "https://www.hirono.senate.gov/",
+   "cg": "https://www.congress.gov/member/mazie-k-hirono/H001042",
+   "bioVerified": "bioguide.congress.gov",
+   "src": [
+    {
+     "n": "U.S. Senate: senators contact information XML (bioguide_id, party, state)",
+     "u": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    },
+    {
+     "n": "CRS 97-398 Asian Pacific Americans in the United States Congress (June 12, 2013, 113th Congress)",
+     "u": "https://www.everycrsreport.com/files/20130612_97-398_ec0b4de5a2c51e4f18e80870dd46891bb5db1c1f.html"
+    },
+    {
+     "n": "H. Doc. 108-226, Asian and Pacific Islander Americans in Congress, 1900-2017: Current Members (GPO)",
+     "u": "https://www.govinfo.gov/content/pkg/GPO-CDOC-108hdoc226/pdf/GPO-CDOC-108hdoc226-3.pdf"
+    },
+    {
+     "n": "CRS R48535 Membership of the 119th Congress: A Profile (May 21, 2025)",
+     "u": "https://www.congress.gov/crs_external_products/R/PDF/R48535/R48535.2.pdf"
+    }
+   ]
+  },
+  {
+   "name": "Duckworth, Tammy",
+   "display": "Tammy Duckworth",
+   "bio": "D000622",
+   "ch": "Senate",
+   "st": "IL",
+   "dist": "",
+   "party": "D",
+   "capac": "Executive Board",
+   "capacTitle": "Executive Board Member",
+   "basis": "CRS 97-398 (2013) describes her as 'Chinese-Thai American'; H. Doc. 108-226 lists her among Asian Pacific American women who joined the Senate; counted in the CRS R48535 aggregate of 24",
+   "u": "https://www.duckworth.senate.gov",
+   "cg": "https://www.congress.gov/member/tammy-duckworth/D000622",
+   "bioVerified": "bioguide.congress.gov",
+   "src": [
+    {
+     "n": "U.S. Senate: senators contact information XML (bioguide_id, party, state)",
+     "u": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    },
+    {
+     "n": "CRS 97-398 Asian Pacific Americans in the United States Congress (June 12, 2013, 113th Congress)",
+     "u": "https://www.everycrsreport.com/files/20130612_97-398_ec0b4de5a2c51e4f18e80870dd46891bb5db1c1f.html"
+    },
+    {
+     "n": "H. Doc. 108-226, Asian and Pacific Islander Americans in Congress, 1900-2017: Current Members (GPO)",
+     "u": "https://www.govinfo.gov/content/pkg/GPO-CDOC-108hdoc226/pdf/GPO-CDOC-108hdoc226-3.pdf"
+    },
+    {
+     "n": "CRS R48535 Membership of the 119th Congress: A Profile (May 21, 2025)",
+     "u": "https://www.congress.gov/crs_external_products/R/PDF/R48535/R48535.2.pdf"
+    }
+   ]
+  },
+  {
+   "name": "Kim, Andy",
+   "display": "Andy Kim",
+   "bio": "K000394",
+   "ch": "Senate",
+   "st": "NJ",
+   "dist": "",
+   "party": "D",
+   "capac": "Executive Board",
+   "capacTitle": "Executive Board Member",
+   "basis": "APAICS (Nov 2024 release) names Andy Kim as 'the first Korean American Senator of New Jersey'; counted in the CRS R48535 aggregate of 24",
+   "u": "https://www.kim.senate.gov/",
+   "cg": "https://www.congress.gov/member/andy-kim/K000394",
+   "bioVerified": "bioguide.congress.gov",
+   "src": [
+    {
+     "n": "U.S. Senate: senators contact information XML (bioguide_id, party, state)",
+     "u": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+    },
+    {
+     "n": "APAICS: Record-Breaking Numbers of AA & NH/PI Candidates in the 2024 General Election",
+     "u": "https://www.apaics.org/post/record-breaking-numbers-of-aa-nh-pi-candidates-in-the-2024-general-election"
+    },
+    {
+     "n": "CRS R48535 Membership of the 119th Congress: A Profile (May 21, 2025)",
+     "u": "https://www.congress.gov/crs_external_products/R/PDF/R48535/R48535.2.pdf"
+    }
+   ]
+  },
+  {
+   "name": "Bera, Ami",
+   "display": "Ami Bera",
+   "bio": "B001287",
+   "ch": "House",
+   "st": "CA",
+   "dist": "6",
+   "party": "D",
+   "capac": "Executive Board",
+   "capacTitle": "Whip",
+   "basis": "Official bio: 'son of Indian immigrants' and 'the longest-serving Indian American serving in Congress'; CRS 97-398 (2013): 'Indian American'",
+   "u": "https://bera.house.gov",
+   "cg": "https://www.congress.gov/member/ami-bera/B001287",
+   "bioVerified": "congress.gov API",
+   "src": [
+    {
+     "n": "House Clerk member data (bioguideID, state, district, party), published 2026-10-01",
+     "u": "https://clerk.house.gov/xml/lists/MemberData.xml"
+    },
+    {
+     "n": "Rep. Bera: About",
+     "u": "https://bera.house.gov/about"
+    },
+    {
+     "n": "CRS 97-398 Asian Pacific Americans in the United States Congress (June 12, 2013, 113th Congress)",
+     "u": "https://www.everycrsreport.com/files/20130612_97-398_ec0b4de5a2c51e4f18e80870dd46891bb5db1c1f.html"
+    }
+   ]
+  },
+  {
+   "name": "Chu, Judy",
+   "display": "Judy Chu",
+   "bio": "C001080",
+   "ch": "House",
+   "st": "CA",
+   "dist": "28",
+   "party": "D",
+   "capac": "Executive Board",
+   "capacTitle": "Chair Emerita",
+   "basis": "Official bio: 'the first Chinese American woman elected to Congress in history'; CRS 97-398 (2013) and H. Doc. 108-226 say the same",
+   "u": "https://chu.house.gov/",
+   "cg": "https://www.congress.gov/member/judy-chu/C001080",
+   "bioVerified": "congress.gov API",
+   "src": [
+    {
+     "n": "House Clerk member data (bioguideID, state, district, party), published 2026-10-01",
+     "u": "https://clerk.house.gov/xml/lists/MemberData.xml"
+    },
+    {
+     "n": "Rep. Chu: Biography",
+     "u": "https://chu.house.gov/about/biography"
+    },
+    {
+     "n": "CRS 97-398 Asian Pacific Americans in the United States Congress (June 12, 2013, 113th Congress)",
+     "u": "https://www.everycrsreport.com/files/20130612_97-398_ec0b4de5a2c51e4f18e80870dd46891bb5db1c1f.html"
+    },
+    {
+     "n": "H. Doc. 108-226, Asian and Pacific Islander Americans in Congress, 1900-2017: Current Members (GPO)",
+     "u": "https://www.govinfo.gov/content/pkg/GPO-CDOC-108hdoc226/pdf/GPO-CDOC-108hdoc226-3.pdf"
+    }
+   ]
+  },
+  {
+   "name": "Fong, Vince",
+   "display": "Vince Fong",
+   "bio": "F000480",
+   "ch": "House",
+   "st": "CA",
+   "dist": "20",
+   "party": "R",
+   "capac": "",
+   "capacTitle": "",
+   "basis": "NBC News (June 2024): 'the son of Chinese immigrants'; counted in the CRS R48535 aggregate of 24 (two Republican voting Members plus three Republican Delegates)",
+   "u": "https://fong.house.gov/",
+   "cg": "https://www.congress.gov/member/vince-fong/F000480",
+   "bioVerified": "bioguide.congress.gov",
+   "src": [
+    {
+     "n": "House Clerk member data (bioguideID, state, district, party), published 2026-10-01",
+     "u": "https://clerk.house.gov/xml/lists/MemberData.xml"
+    },
+    {
+     "n": "NBC News: Vince Fong brings Asian representation to central California as McCarthy's replacement",
+     "u": "https://www.nbcnews.com/news/asian-america/vince-fong-asian-representation-california-congress-mccarthy-replaceme-rcna158846"
+    },
+    {
+     "n": "Rep. Fong: About (no heritage statement)",
+     "u": "https://fong.house.gov/about"
+    },
+    {
+     "n": "CRS R48535 Membership of the 119th Congress: A Profile (May 21, 2025)",
+     "u": "https://www.congress.gov/crs_external_products/R/PDF/R48535/R48535.2.pdf"
+    }
+   ],
+   "x": "No official, CRS, APAICS or CAPAC page naming his heritage was retrieved; his official bio does not state heritage. Basis is NBC News plus the CRS aggregate count."
+  },
+  {
+   "name": "Jayapal, Pramila",
+   "display": "Pramila Jayapal",
+   "bio": "J000298",
+   "ch": "House",
+   "st": "WA",
+   "dist": "7",
+   "party": "D",
+   "capac": "Executive Board",
+   "capacTitle": "Executive Board Member",
+   "basis": "Official bio: 'the first South Asian American woman elected to the U.S. House of Representatives'; born in India and a naturalized citizen",
+   "u": "https://jayapal.house.gov",
+   "cg": "https://www.congress.gov/member/pramila-jayapal/J000298",
+   "bioVerified": "congress.gov API",
+   "src": [
+    {
+     "n": "House Clerk member data (bioguideID, state, district, party), published 2026-10-01",
+     "u": "https://clerk.house.gov/xml/lists/MemberData.xml"
+    },
+    {
+     "n": "Rep. Jayapal: About Me",
+     "u": "https://jayapal.house.gov/about-me/"
+    }
+   ]
+  },
+  {
+   "name": "Khanna, Ro",
+   "display": "Ro Khanna",
+   "bio": "K000389",
+   "ch": "House",
+   "st": "CA",
+   "dist": "17",
+   "party": "D",
+   "capac": "Executive Board",
+   "capacTitle": "Executive Board Member",
+   "basis": "Official bio: 'Both of his parents immigrated to the United States in the 1970s from India'",
+   "u": "https://khanna.house.gov",
+   "cg": "https://www.congress.gov/member/ro-khanna/K000389",
+   "bioVerified": "congress.gov API",
+   "src": [
+    {
+     "n": "House Clerk member data (bioguideID, state, district, party), published 2026-10-01",
+     "u": "https://clerk.house.gov/xml/lists/MemberData.xml"
+    },
+    {
+     "n": "Rep. Khanna: About Rep. Khanna",
+     "u": "https://khanna.house.gov/about/about-rep-khanna"
+    }
+   ]
+  },
+  {
+   "name": "Kim, Young",
+   "display": "Young Kim",
+   "bio": "K000397",
+   "ch": "House",
+   "st": "CA",
+   "dist": "40",
+   "party": "R",
+   "capac": "",
+   "capacTitle": "",
+   "basis": "Official bio: 'one of the first Korean American women ever to serve in Congress'; an immigrant",
+   "u": "https://youngkim.house.gov",
+   "cg": "https://www.congress.gov/member/young-kim/K000397",
+   "bioVerified": "bioguide.congress.gov",
+   "src": [
+    {
+     "n": "House Clerk member data (bioguideID, state, district, party), published 2026-10-01",
+     "u": "https://clerk.house.gov/xml/lists/MemberData.xml"
+    },
+    {
+     "n": "Rep. Young Kim: About",
+     "u": "https://youngkim.house.gov/about/"
+    }
+   ]
+  },
+  {
+   "name": "Krishnamoorthi, Raja",
+   "display": "Raja Krishnamoorthi",
+   "bio": "K000391",
+   "ch": "House",
+   "st": "IL",
+   "dist": "8",
+   "party": "D",
+   "capac": "Executive Board",
+   "capacTitle": "Executive Board Member",
+   "basis": "Official bio: 'the first South Asian American in history to lead a Congressional Committee' and 'the child of immigrants'; his office page lists his resolution designating July as Indian American Heritage Month",
+   "u": "https://krishnamoorthi.house.gov",
+   "cg": "https://www.congress.gov/member/raja-krishnamoorthi/K000391",
+   "bioVerified": "bioguide.congress.gov",
+   "src": [
+    {
+     "n": "House Clerk member data (bioguideID, state, district, party), published 2026-10-01",
+     "u": "https://clerk.house.gov/xml/lists/MemberData.xml"
+    },
+    {
+     "n": "Rep. Krishnamoorthi: About",
+     "u": "https://krishnamoorthi.house.gov/about"
+    },
+    {
+     "n": "Rep. Krishnamoorthi: Home",
+     "u": "https://krishnamoorthi.house.gov/"
+    }
+   ]
+  },
+  {
+   "name": "Lieu, Ted",
+   "display": "Ted Lieu",
+   "bio": "L000582",
+   "ch": "House",
+   "st": "CA",
+   "dist": "36",
+   "party": "D",
+   "capac": "Executive Board",
+   "capacTitle": "Executive Board Member",
+   "basis": "Official bio: 'the highest ranking Asian American to have ever served in House Leadership'; H. Doc. 108-226: born in Taipei, Taiwan; family immigrated in 1972",
+   "u": "https://lieu.house.gov/",
+   "cg": "https://www.congress.gov/member/ted-lieu/L000582",
+   "bioVerified": "congress.gov API",
+   "src": [
+    {
+     "n": "House Clerk member data (bioguideID, state, district, party), published 2026-10-01",
+     "u": "https://clerk.house.gov/xml/lists/MemberData.xml"
+    },
+    {
+     "n": "Rep. Lieu: Full Biography",
+     "u": "https://lieu.house.gov/about/full-biography"
+    },
+    {
+     "n": "H. Doc. 108-226, Asian and Pacific Islander Americans in Congress, 1900-2017: Current Members (GPO)",
+     "u": "https://www.govinfo.gov/content/pkg/GPO-CDOC-108hdoc226/pdf/GPO-CDOC-108hdoc226-3.pdf"
+    }
+   ]
+  },
+  {
+   "name": "Matsui, Doris",
+   "display": "Doris Matsui",
+   "bio": "M001163",
+   "ch": "House",
+   "st": "CA",
+   "dist": "7",
+   "party": "D",
+   "capac": "Executive Board",
+   "capacTitle": "Executive Board Member",
+   "basis": "H. Doc. 108-226: 'born Doris Okada in a Japanese-American internment camp in Poston, Arizona'; her official site hosts a Sacramento Bee profile 'Doris Matsui was born in an internment camp'",
+   "u": "https://matsui.house.gov",
+   "cg": "https://www.congress.gov/member/doris-matsui/M001163",
+   "bioVerified": "bioguide.congress.gov",
+   "src": [
+    {
+     "n": "House Clerk member data (bioguideID, state, district, party), published 2026-10-01",
+     "u": "https://clerk.house.gov/xml/lists/MemberData.xml"
+    },
+    {
+     "n": "H. Doc. 108-226, Asian and Pacific Islander Americans in Congress, 1900-2017: Current Members (GPO)",
+     "u": "https://www.govinfo.gov/content/pkg/GPO-CDOC-108hdoc226/pdf/GPO-CDOC-108hdoc226-3.pdf"
+    },
+    {
+     "n": "Sacramento Bee (hosted on matsui.house.gov): Doris Matsui was born in an internment camp",
+     "u": "https://matsui.house.gov/media/in-the-news/sacramento-bee-doris-matsui-was-born-internment-camp-76-heres-what-she-wants-done"
+    },
+    {
+     "n": "Rep. Matsui: Biography (no heritage statement)",
+     "u": "https://matsui.house.gov/biography"
+    }
+   ]
+  },
+  {
+   "name": "Meng, Grace",
+   "display": "Grace Meng",
+   "bio": "M001188",
+   "ch": "House",
+   "st": "NY",
+   "dist": "6",
+   "party": "D",
+   "capac": "Chair",
+   "capacTitle": "Chair",
+   "basis": "CRS 97-398 (2013): 'Chinese American'; official bio: 'the first and only Asian American Member of Congress from New York State'",
+   "u": "https://meng.house.gov",
+   "cg": "https://www.congress.gov/member/grace-meng/M001188",
+   "bioVerified": "congress.gov API",
+   "src": [
+    {
+     "n": "House Clerk member data (bioguideID, state, district, party), published 2026-10-01",
+     "u": "https://clerk.house.gov/xml/lists/MemberData.xml"
+    },
+    {
+     "n": "CRS 97-398 Asian Pacific Americans in the United States Congress (June 12, 2013, 113th Congress)",
+     "u": "https://www.everycrsreport.com/files/20130612_97-398_ec0b4de5a2c51e4f18e80870dd46891bb5db1c1f.html"
+    },
+    {
+     "n": "Rep. Meng: About",
+     "u": "https://meng.house.gov/about"
+    }
+   ]
+  },
+  {
+   "name": "Min, Dave",
+   "display": "Dave Min",
+   "bio": "M001241",
+   "ch": "House",
+   "st": "CA",
+   "dist": "47",
+   "party": "D",
+   "capac": "Executive Board",
+   "capacTitle": "Executive Board Member",
+   "basis": "Official site: 'the child of Korean immigrants'",
+   "u": "https://min.house.gov/",
+   "cg": "https://www.congress.gov/member/dave-min/M001241",
+   "bioVerified": "bioguide.congress.gov",
+   "src": [
+    {
+     "n": "House Clerk member data (bioguideID, state, district, party), published 2026-10-01",
+     "u": "https://clerk.house.gov/xml/lists/MemberData.xml"
+    },
+    {
+     "n": "Rep. Min: Home",
+     "u": "https://min.house.gov/"
+    }
+   ]
+  },
+  {
+   "name": "Scott, Robert",
+   "display": "Bobby Scott",
+   "bio": "S000185",
+   "ch": "House",
+   "st": "VA",
+   "dist": "3",
+   "party": "D",
+   "capac": "Executive Board",
+   "capacTitle": "Executive Board Member",
+   "basis": "Official bio: maternal grandfather of Filipino ancestry; 'the first American with Filipino ancestry to serve as a voting member of Congress'; CRS 97-398 (2013): 'an African American with Filipino ancestry'; Pew (2025) counts him as Black and Asian",
+   "u": "https://bobbyscott.house.gov",
+   "cg": "https://www.congress.gov/member/bobby-scott/S000185",
+   "bioVerified": "bioguide.congress.gov",
+   "src": [
+    {
+     "n": "House Clerk member data (bioguideID, state, district, party), published 2026-10-01",
+     "u": "https://clerk.house.gov/xml/lists/MemberData.xml"
+    },
+    {
+     "n": "Rep. Scott: Biography",
+     "u": "https://bobbyscott.house.gov/about/biography"
+    },
+    {
+     "n": "CRS 97-398 Asian Pacific Americans in the United States Congress (June 12, 2013, 113th Congress)",
+     "u": "https://www.everycrsreport.com/files/20130612_97-398_ec0b4de5a2c51e4f18e80870dd46891bb5db1c1f.html"
+    },
+    {
+     "n": "Pew Research Center: 119th Congress brings new growth in racial, ethnic diversity to Capitol Hill (2025-01-21)",
+     "u": "https://www.pewresearch.org/short-reads/2025/01/21/119th-congress-brings-new-growth-in-racial-ethnic-diversity-to-capitol-hill/"
+    }
+   ]
+  },
+  {
+   "name": "Strickland, Marilyn",
+   "display": "Marilyn Strickland",
+   "bio": "S001159",
+   "ch": "House",
+   "st": "WA",
+   "dist": "10",
+   "party": "D",
+   "capac": "Executive Board",
+   "capacTitle": "Executive Board Member",
+   "basis": "Official bio: 'one of the first Korean American women elected to Congress'; Pew (2025) counts her as Black and Asian",
+   "u": "https://strickland.house.gov",
+   "cg": "https://www.congress.gov/member/marilyn-strickland/S001159",
+   "bioVerified": "bioguide.congress.gov",
+   "src": [
+    {
+     "n": "House Clerk member data (bioguideID, state, district, party), published 2026-10-01",
+     "u": "https://clerk.house.gov/xml/lists/MemberData.xml"
+    },
+    {
+     "n": "Rep. Strickland: About",
+     "u": "https://strickland.house.gov/about/"
+    },
+    {
+     "n": "Pew Research Center: 119th Congress brings new growth in racial, ethnic diversity to Capitol Hill (2025-01-21)",
+     "u": "https://www.pewresearch.org/short-reads/2025/01/21/119th-congress-brings-new-growth-in-racial-ethnic-diversity-to-capitol-hill/"
+    }
+   ]
+  },
+  {
+   "name": "Subramanyam, Suhas",
+   "display": "Suhas Subramanyam",
+   "bio": "S001230",
+   "ch": "House",
+   "st": "VA",
+   "dist": "10",
+   "party": "D",
+   "capac": "Executive Board",
+   "capacTitle": "Freshman Representative",
+   "basis": "Official press release (2025-01-03): 'the first Indian-American, South Asian member of Congress in not only Virginia's history'",
+   "u": "https://subramanyam.house.gov/",
+   "cg": "https://www.congress.gov/member/suhas-subramanyam/S001230",
+   "bioVerified": "bioguide.congress.gov",
+   "src": [
+    {
+     "n": "House Clerk member data (bioguideID, state, district, party), published 2026-10-01",
+     "u": "https://clerk.house.gov/xml/lists/MemberData.xml"
+    },
+    {
+     "n": "Rep. Subramanyam: sworn-in press release",
+     "u": "https://subramanyam.house.gov/media/press-releases/suhas-subramanyam-sworn-represent-virginias-10th-district"
+    }
+   ]
+  },
+  {
+   "name": "Takano, Mark",
+   "display": "Mark Takano",
+   "bio": "T000472",
+   "ch": "House",
+   "st": "CA",
+   "dist": "39",
+   "party": "D",
+   "capac": "Vice Chair",
+   "capacTitle": "First Vice Chair",
+   "basis": "Official bio: his parents and grandparents were sent to Japanese American internment camps; CRS 97-398 (2013): 'Japanese American'; H. Doc. 108-226: 'The son of Japanese Americans'",
+   "u": "https://takano.house.gov",
+   "cg": "https://www.congress.gov/member/mark-takano/T000472",
+   "bioVerified": "congress.gov API",
+   "src": [
+    {
+     "n": "House Clerk member data (bioguideID, state, district, party), published 2026-10-01",
+     "u": "https://clerk.house.gov/xml/lists/MemberData.xml"
+    },
+    {
+     "n": "Rep. Takano: Biography",
+     "u": "https://takano.house.gov/about/biography"
+    },
+    {
+     "n": "CRS 97-398 Asian Pacific Americans in the United States Congress (June 12, 2013, 113th Congress)",
+     "u": "https://www.everycrsreport.com/files/20130612_97-398_ec0b4de5a2c51e4f18e80870dd46891bb5db1c1f.html"
+    },
+    {
+     "n": "H. Doc. 108-226, Asian and Pacific Islander Americans in Congress, 1900-2017: Current Members (GPO)",
+     "u": "https://www.govinfo.gov/content/pkg/GPO-CDOC-108hdoc226/pdf/GPO-CDOC-108hdoc226-3.pdf"
+    }
+   ]
+  },
+  {
+   "name": "Thanedar, Shri",
+   "display": "Shri Thanedar",
+   "bio": "T000488",
+   "ch": "House",
+   "st": "MI",
+   "dist": "13",
+   "party": "D",
+   "capac": "Executive Board",
+   "capacTitle": "Executive Board Member",
+   "basis": "Official bio: 'Born into a large family in Southern India'; immigrated to the United States",
+   "u": "https://thanedar.house.gov",
+   "cg": "https://www.congress.gov/member/shri-thanedar/T000488",
+   "bioVerified": "congress.gov API",
+   "src": [
+    {
+     "n": "House Clerk member data (bioguideID, state, district, party), published 2026-10-01",
+     "u": "https://clerk.house.gov/xml/lists/MemberData.xml"
+    },
+    {
+     "n": "Rep. Thanedar: About",
+     "u": "https://thanedar.house.gov/about"
+    }
+   ]
+  },
+  {
+   "name": "Tokuda, Jill N.",
+   "display": "Jill Tokuda",
+   "bio": "T000487",
+   "ch": "House",
+   "st": "HI",
+   "dist": "2",
+   "party": "D",
+   "capac": "Vice Chair",
+   "capacTitle": "Second Vice Chair",
+   "basis": "Official bio: her family has been in Hawai'i for four generations 'since emigrating from Okinawa'; chairs the CAPAC Native Hawaiian and Pacific Islander Task Force",
+   "u": "https://tokuda.house.gov",
+   "cg": "https://www.congress.gov/member/jill-tokuda/T000487",
+   "bioVerified": "congress.gov API",
+   "src": [
+    {
+     "n": "House Clerk member data (bioguideID, state, district, party), published 2026-10-01",
+     "u": "https://clerk.house.gov/xml/lists/MemberData.xml"
+    },
+    {
+     "n": "Rep. Tokuda: Bio",
+     "u": "https://tokuda.house.gov/about/bio"
+    },
+    {
+     "n": "CAPAC: Native Hawaiian and Pacific Islander Task Force",
+     "u": "https://capac.house.gov/issues/native-hawaiian-and-pacific-islander-task-force"
+    }
+   ]
+  },
+  {
+   "name": "Tran, Derek",
+   "display": "Derek Tran",
+   "bio": "T000491",
+   "ch": "House",
+   "st": "CA",
+   "dist": "45",
+   "party": "D",
+   "capac": "Executive Board",
+   "capacTitle": "Executive Board Member",
+   "basis": "Official bio: his father fled Vietnam after the 1975 fall of Saigon; the official bio does not use the term 'Vietnamese American'; counted in the CRS R48535 aggregate of 24",
+   "u": "https://tran.house.gov/",
+   "cg": "https://www.congress.gov/member/derek-tran/T000491",
+   "bioVerified": "bioguide.congress.gov",
+   "src": [
+    {
+     "n": "House Clerk member data (bioguideID, state, district, party), published 2026-10-01",
+     "u": "https://clerk.house.gov/xml/lists/MemberData.xml"
+    },
+    {
+     "n": "Rep. Tran: About",
+     "u": "https://tran.house.gov/about"
+    },
+    {
+     "n": "CRS R48535 Membership of the 119th Congress: A Profile (May 21, 2025)",
+     "u": "https://www.congress.gov/crs_external_products/R/PDF/R48535/R48535.2.pdf"
+    }
+   ]
+  },
+  {
+   "name": "Radewagen, Aumua Amata",
+   "display": "Aumua Amata Coleman Radewagen",
+   "bio": "R000600",
+   "ch": "Delegate",
+   "st": "AS",
+   "dist": "",
+   "party": "R",
+   "capac": "",
+   "capacTitle": "",
+   "basis": "Official bio: 'the first Republican woman of Samoan descent in Congress' and 'the most senior Republican elected federal office holder of Asian Pacific heritage'; H. Doc. 108-226 profile",
+   "u": "https://radewagen.house.gov",
+   "cg": "https://www.congress.gov/member/aumua-amata-coleman-radewagen/R000600",
+   "bioVerified": "bioguide.congress.gov",
+   "src": [
+    {
+     "n": "House Clerk member data (bioguideID, state, district, party), published 2026-10-01",
+     "u": "https://clerk.house.gov/xml/lists/MemberData.xml"
+    },
+    {
+     "n": "Del. Radewagen: About",
+     "u": "https://radewagen.house.gov/about"
+    },
+    {
+     "n": "H. Doc. 108-226, Asian and Pacific Islander Americans in Congress, 1900-2017: Current Members (GPO)",
+     "u": "https://www.govinfo.gov/content/pkg/GPO-CDOC-108hdoc226/pdf/GPO-CDOC-108hdoc226-3.pdf"
+    }
+   ]
+  },
+  {
+   "name": "King-Hinds, Kimberlyn",
+   "display": "Kimberlyn King-Hinds",
+   "bio": "K000404",
+   "ch": "Delegate",
+   "st": "MP",
+   "dist": "",
+   "party": "R",
+   "capac": "",
+   "capacTitle": "",
+   "basis": "Her official site hosts the Pew (2025) description: 'Republican Kimberlyn King-Hinds, who identifies as Pacific Islander'; official bio: born and raised on Tinian, Northern Mariana Islands",
+   "u": "https://king-hinds.house.gov/",
+   "cg": "https://www.congress.gov/member/kimberlyn-king-hinds/K000404",
+   "bioVerified": "bioguide.congress.gov",
+   "src": [
+    {
+     "n": "House Clerk member data (bioguideID, state, district, party), published 2026-10-01",
+     "u": "https://clerk.house.gov/xml/lists/MemberData.xml"
+    },
+    {
+     "n": "Del. King-Hinds: In the News (Pew text)",
+     "u": "https://king-hinds.house.gov/media/in-the-news/119th-congress-brings-firsts-women-color"
+    },
+    {
+     "n": "Del. King-Hinds: About",
+     "u": "https://king-hinds.house.gov/about"
+    },
+    {
+     "n": "Pew Research Center: 119th Congress brings new growth in racial, ethnic diversity to Capitol Hill (2025-01-21)",
+     "u": "https://www.pewresearch.org/short-reads/2025/01/21/119th-congress-brings-new-growth-in-racial-ethnic-diversity-to-capitol-hill/"
+    }
+   ]
+  }
+ ],
+ "capacMembers": [
+  {
+   "name": "Meng, Grace",
+   "bio": "M001188",
+   "ch": "House",
+   "st": "NY",
+   "dist": "6",
+   "party": "D",
+   "tier": "Leadership",
+   "title": "Chair"
+  },
+  {
+   "name": "Takano, Mark",
+   "bio": "T000472",
+   "ch": "House",
+   "st": "CA",
+   "dist": "39",
+   "party": "D",
+   "tier": "Leadership",
+   "title": "First Vice Chair"
+  },
+  {
+   "name": "Tokuda, Jill N.",
+   "bio": "T000487",
+   "ch": "House",
+   "st": "HI",
+   "dist": "2",
+   "party": "D",
+   "tier": "Leadership",
+   "title": "Second Vice Chair"
+  },
+  {
+   "name": "Bera, Ami",
+   "bio": "B001287",
+   "ch": "House",
+   "st": "CA",
+   "dist": "6",
+   "party": "D",
+   "tier": "Leadership",
+   "title": "Whip"
+  },
+  {
+   "name": "Subramanyam, Suhas",
+   "bio": "S001230",
+   "ch": "House",
+   "st": "VA",
+   "dist": "10",
+   "party": "D",
+   "tier": "Leadership",
+   "title": "Freshman Representative"
+  },
+  {
+   "name": "Chu, Judy",
+   "bio": "C001080",
+   "ch": "House",
+   "st": "CA",
+   "dist": "28",
+   "party": "D",
+   "tier": "Leadership",
+   "title": "Chair Emerita"
+  },
+  {
+   "name": "Duckworth, Tammy",
+   "bio": "D000622",
+   "ch": "Senate",
+   "st": "IL",
+   "dist": "",
+   "party": "D",
+   "tier": "Executive Board",
+   "title": ""
+  },
+  {
+   "name": "Hirono, Mazie K.",
+   "bio": "H001042",
+   "ch": "Senate",
+   "st": "HI",
+   "dist": "",
+   "party": "D",
+   "tier": "Executive Board",
+   "title": ""
+  },
+  {
+   "name": "Kim, Andy",
+   "bio": "K000394",
+   "ch": "Senate",
+   "st": "NJ",
+   "dist": "",
+   "party": "D",
+   "tier": "Executive Board",
+   "title": ""
+  },
+  {
+   "name": "Schatz, Brian",
+   "bio": "S001194",
+   "ch": "Senate",
+   "st": "HI",
+   "dist": "",
+   "party": "D",
+   "tier": "Executive Board",
+   "title": ""
+  },
+  {
+   "name": "Ansari, Yassamin",
+   "bio": "A000381",
+   "ch": "House",
+   "st": "AZ",
+   "dist": "3",
+   "party": "D",
+   "tier": "Executive Board",
+   "title": ""
+  },
+  {
+   "name": "Case, Ed",
+   "bio": "C001055",
+   "ch": "House",
+   "st": "HI",
+   "dist": "1",
+   "party": "D",
+   "tier": "Executive Board",
+   "title": ""
+  },
+  {
+   "name": "Goldman, Daniel S.",
+   "bio": "G000599",
+   "ch": "House",
+   "st": "NY",
+   "dist": "10",
+   "party": "D",
+   "tier": "Executive Board",
+   "title": ""
+  },
+  {
+   "name": "Gomez, Jimmy",
+   "bio": "G000585",
+   "ch": "House",
+   "st": "CA",
+   "dist": "34",
+   "party": "D",
+   "tier": "Executive Board",
+   "title": ""
+  },
+  {
+   "name": "Green, Al",
+   "bio": "G000553",
+   "ch": "House",
+   "st": "TX",
+   "dist": "9",
+   "party": "D",
+   "tier": "Executive Board",
+   "title": ""
+  },
+  {
+   "name": "Jayapal, Pramila",
+   "bio": "J000298",
+   "ch": "House",
+   "st": "WA",
+   "dist": "7",
+   "party": "D",
+   "tier": "Executive Board",
+   "title": ""
+  },
+  {
+   "name": "Khanna, Ro",
+   "bio": "K000389",
+   "ch": "House",
+   "st": "CA",
+   "dist": "17",
+   "party": "D",
+   "tier": "Executive Board",
+   "title": ""
+  },
+  {
+   "name": "Krishnamoorthi, Raja",
+   "bio": "K000391",
+   "ch": "House",
+   "st": "IL",
+   "dist": "8",
+   "party": "D",
+   "tier": "Executive Board",
+   "title": ""
+  },
+  {
+   "name": "Lieu, Ted",
+   "bio": "L000582",
+   "ch": "House",
+   "st": "CA",
+   "dist": "36",
+   "party": "D",
+   "tier": "Executive Board",
+   "title": ""
+  },
+  {
+   "name": "Matsui, Doris",
+   "bio": "M001163",
+   "ch": "House",
+   "st": "CA",
+   "dist": "7",
+   "party": "D",
+   "tier": "Executive Board",
+   "title": ""
+  },
+  {
+   "name": "Min, Dave",
+   "bio": "M001241",
+   "ch": "House",
+   "st": "CA",
+   "dist": "47",
+   "party": "D",
+   "tier": "Executive Board",
+   "title": ""
+  },
+  {
+   "name": "Scott, Robert",
+   "bio": "S000185",
+   "ch": "House",
+   "st": "VA",
+   "dist": "3",
+   "party": "D",
+   "tier": "Executive Board",
+   "title": ""
+  },
+  {
+   "name": "Strickland, Marilyn",
+   "bio": "S001159",
+   "ch": "House",
+   "st": "WA",
+   "dist": "10",
+   "party": "D",
+   "tier": "Executive Board",
+   "title": ""
+  },
+  {
+   "name": "Thanedar, Shri",
+   "bio": "T000488",
+   "ch": "House",
+   "st": "MI",
+   "dist": "13",
+   "party": "D",
+   "tier": "Executive Board",
+   "title": ""
+  },
+  {
+   "name": "Tran, Derek",
+   "bio": "T000491",
+   "ch": "House",
+   "st": "CA",
+   "dist": "45",
+   "party": "D",
+   "tier": "Executive Board",
+   "title": ""
+  },
+  {
+   "name": "Booker, Cory A.",
+   "bio": "B001288",
+   "ch": "Senate",
+   "st": "NJ",
+   "dist": "",
+   "party": "D",
+   "tier": "Senate Associate",
+   "title": ""
+  },
+  {
+   "name": "Cortez Masto, Catherine",
+   "bio": "C001113",
+   "ch": "Senate",
+   "st": "NV",
+   "dist": "",
+   "party": "D",
+   "tier": "Senate Associate",
+   "title": ""
+  },
+  {
+   "name": "Gillibrand, Kirsten E.",
+   "bio": "G000555",
+   "ch": "Senate",
+   "st": "NY",
+   "dist": "",
+   "party": "D",
+   "tier": "Senate Associate",
+   "title": ""
+  },
+  {
+   "name": "Padilla, Alex",
+   "bio": "P000145",
+   "ch": "Senate",
+   "st": "CA",
+   "dist": "",
+   "party": "D",
+   "tier": "Senate Associate",
+   "title": ""
+  },
+  {
+   "name": "Rosen, Jacky",
+   "bio": "R000608",
+   "ch": "Senate",
+   "st": "NV",
+   "dist": "",
+   "party": "D",
+   "tier": "Senate Associate",
+   "title": ""
+  },
+  {
+   "name": "Aguilar, Pete",
+   "bio": "A000371",
+   "ch": "House",
+   "st": "CA",
+   "dist": "33",
+   "party": "D",
+   "tier": "House Associate",
+   "title": ""
+  },
+  {
+   "name": "Barragán, Nanette Diaz",
+   "bio": "B001300",
+   "ch": "House",
+   "st": "CA",
+   "dist": "44",
+   "party": "D",
+   "tier": "House Associate",
+   "title": ""
+  },
+  {
+   "name": "Bell, Wesley",
+   "bio": "B001324",
+   "ch": "House",
+   "st": "MO",
+   "dist": "1",
+   "party": "D",
+   "tier": "House Associate",
+   "title": ""
+  },
+  {
+   "name": "Bonamici, Suzanne",
+   "bio": "B001278",
+   "ch": "House",
+   "st": "OR",
+   "dist": "1",
+   "party": "D",
+   "tier": "House Associate",
+   "title": ""
+  },
+  {
+   "name": "Boyle, Brendan F.",
+   "bio": "B001296",
+   "ch": "House",
+   "st": "PA",
+   "dist": "2",
+   "party": "D",
+   "tier": "House Associate",
+   "title": ""
+  },
+  {
+   "name": "Carbajal, Salud O.",
+   "bio": "C001112",
+   "ch": "House",
+   "st": "CA",
+   "dist": "24",
+   "party": "D",
+   "tier": "House Associate",
+   "title": ""
+  },
+  {
+   "name": "Cisneros, Gilbert",
+   "bio": "C001123",
+   "ch": "House",
+   "st": "CA",
+   "dist": "31",
+   "party": "D",
+   "tier": "House Associate",
+   "title": ""
+  },
+  {
+   "name": "Correa, J.",
+   "bio": "C001110",
+   "ch": "House",
+   "st": "CA",
+   "dist": "46",
+   "party": "D",
+   "tier": "House Associate",
+   "title": ""
+  },
+  {
+   "name": "DelBene, Suzan",
+   "bio": "D000617",
+   "ch": "House",
+   "st": "WA",
+   "dist": "1",
+   "party": "D",
+   "tier": "House Associate",
+   "title": ""
+  },
+  {
+   "name": "DeSaulnier, Mark",
+   "bio": "D000623",
+   "ch": "House",
+   "st": "CA",
+   "dist": "10",
+   "party": "D",
+   "tier": "House Associate",
+   "title": ""
+  },
+  {
+   "name": "Dingell, Debbie",
+   "bio": "D000624",
+   "ch": "House",
+   "st": "MI",
+   "dist": "6",
+   "party": "D",
+   "tier": "House Associate",
+   "title": ""
+  },
+  {
+   "name": "Fletcher, Lizzie",
+   "bio": "F000468",
+   "ch": "House",
+   "st": "TX",
+   "dist": "7",
+   "party": "D",
+   "tier": "House Associate",
+   "title": ""
+  },
+  {
+   "name": "Foushee, Valerie P.",
+   "bio": "F000477",
+   "ch": "House",
+   "st": "NC",
+   "dist": "4",
+   "party": "D",
+   "tier": "House Associate",
+   "title": ""
+  },
+  {
+   "name": "Garamendi, John",
+   "bio": "G000559",
+   "ch": "House",
+   "st": "CA",
+   "dist": "8",
+   "party": "D",
+   "tier": "House Associate",
+   "title": ""
+  },
+  {
+   "name": "Garcia, Robert",
+   "bio": "G000598",
+   "ch": "House",
+   "st": "CA",
+   "dist": "42",
+   "party": "D",
+   "tier": "House Associate",
+   "title": ""
+  },
+  {
+   "name": "Gottheimer, Josh",
+   "bio": "G000583",
+   "ch": "House",
+   "st": "NJ",
+   "dist": "5",
+   "party": "D",
+   "tier": "House Associate",
+   "title": ""
+  },
+  {
+   "name": "Harder, Josh",
+   "bio": "H001090",
+   "ch": "House",
+   "st": "CA",
+   "dist": "9",
+   "party": "D",
+   "tier": "House Associate",
+   "title": ""
+  },
+  {
+   "name": "Horsford, Steven",
+   "bio": "H001066",
+   "ch": "House",
+   "st": "NV",
+   "dist": "4",
+   "party": "D",
+   "tier": "House Associate",
+   "title": ""
+  },
+  {
+   "name": "Jacobs, Sara",
+   "bio": "J000305",
+   "ch": "House",
+   "st": "CA",
+   "dist": "51",
+   "party": "D",
+   "tier": "House Associate",
+   "title": ""
+  },
+  {
+   "name": "Kamlager-Dove, Sydney",
+   "bio": "K000400",
+   "ch": "House",
+   "st": "CA",
+   "dist": "37",
+   "party": "D",
+   "tier": "House Associate",
+   "title": ""
+  },
+  {
+   "name": "Kennedy, Timothy M.",
+   "bio": "K000402",
+   "ch": "House",
+   "st": "NY",
+   "dist": "26",
+   "party": "D",
+   "tier": "House Associate",
+   "title": ""
+  },
+  {
+   "name": "Latimer, George",
+   "bio": "L000606",
+   "ch": "House",
+   "st": "NY",
+   "dist": "16",
+   "party": "D",
+   "tier": "House Associate",
+   "title": ""
+  },
+  {
+   "name": "Lee, Susie",
+   "bio": "L000590",
+   "ch": "House",
+   "st": "NV",
+   "dist": "3",
+   "party": "D",
+   "tier": "House Associate",
+   "title": ""
+  },
+  {
+   "name": "Liccardo, Sam T.",
+   "bio": "L000607",
+   "ch": "House",
+   "st": "CA",
+   "dist": "16",
+   "party": "D",
+   "tier": "House Associate",
+   "title": ""
+  },
+  {
+   "name": "McBath, Lucy",
+   "bio": "M001208",
+   "ch": "House",
+   "st": "GA",
+   "dist": "6",
+   "party": "D",
+   "tier": "House Associate",
+   "title": ""
+  },
+  {
+   "name": "McClain Delaney, April",
+   "bio": "M001232",
+   "ch": "House",
+   "st": "MD",
+   "dist": "6",
+   "party": "D",
+   "tier": "House Associate",
+   "title": ""
+  },
+  {
+   "name": "Meeks, Gregory W.",
+   "bio": "M001137",
+   "ch": "House",
+   "st": "NY",
+   "dist": "5",
+   "party": "D",
+   "tier": "House Associate",
+   "title": ""
+  },
+  {
+   "name": "Menendez, Robert",
+   "bio": "M001226",
+   "ch": "House",
+   "st": "NJ",
+   "dist": "8",
+   "party": "D",
+   "tier": "House Associate",
+   "title": ""
+  },
+  {
+   "name": "Mullin, Kevin",
+   "bio": "M001225",
+   "ch": "House",
+   "st": "CA",
+   "dist": "15",
+   "party": "D",
+   "tier": "House Associate",
+   "title": ""
+  },
+  {
+   "name": "Nadler, Jerrold",
+   "bio": "N000002",
+   "ch": "House",
+   "st": "NY",
+   "dist": "12",
+   "party": "D",
+   "tier": "House Associate",
+   "title": ""
+  },
+  {
+   "name": "Panetta, Jimmy",
+   "bio": "P000613",
+   "ch": "House",
+   "st": "CA",
+   "dist": "19",
+   "party": "D",
+   "tier": "House Associate",
+   "title": ""
+  },
+  {
+   "name": "Peters, Scott",
+   "bio": "P000608",
+   "ch": "House",
+   "st": "CA",
+   "dist": "50",
+   "party": "D",
+   "tier": "House Associate",
+   "title": "",
+   "note": "capac.house.gov/members prints CA-52; Clerk lists CA-50"
+  },
+  {
+   "name": "Pressley, Ayanna",
+   "bio": "P000617",
+   "ch": "House",
+   "st": "MA",
+   "dist": "7",
+   "party": "D",
+   "tier": "House Associate",
+   "title": ""
+  },
+  {
+   "name": "Raskin, Jamie",
+   "bio": "R000606",
+   "ch": "House",
+   "st": "MD",
+   "dist": "8",
+   "party": "D",
+   "tier": "House Associate",
+   "title": ""
+  },
+  {
+   "name": "Rivas, Luz M.",
+   "bio": "R000620",
+   "ch": "House",
+   "st": "CA",
+   "dist": "29",
+   "party": "D",
+   "tier": "House Associate",
+   "title": ""
+  },
+  {
+   "name": "Ross, Deborah",
+   "bio": "R000305",
+   "ch": "House",
+   "st": "NC",
+   "dist": "2",
+   "party": "D",
+   "tier": "House Associate",
+   "title": ""
+  },
+  {
+   "name": "Salinas, Andrea",
+   "bio": "S001226",
+   "ch": "House",
+   "st": "OR",
+   "dist": "6",
+   "party": "D",
+   "tier": "House Associate",
+   "title": ""
+  },
+  {
+   "name": "Sánchez, Linda",
+   "bio": "S001156",
+   "ch": "House",
+   "st": "CA",
+   "dist": "38",
+   "party": "D",
+   "tier": "House Associate",
+   "title": ""
+  },
+  {
+   "name": "Schakowsky, Janice",
+   "bio": "S001145",
+   "ch": "House",
+   "st": "IL",
+   "dist": "9",
+   "party": "D",
+   "tier": "House Associate",
+   "title": ""
+  },
+  {
+   "name": "Schrier, Kim",
+   "bio": "S001216",
+   "ch": "House",
+   "st": "WA",
+   "dist": "8",
+   "party": "D",
+   "tier": "House Associate",
+   "title": ""
+  },
+  {
+   "name": "Sherman, Brad",
+   "bio": "S000344",
+   "ch": "House",
+   "st": "CA",
+   "dist": "32",
+   "party": "D",
+   "tier": "House Associate",
+   "title": ""
+  },
+  {
+   "name": "Simon, Lateefah",
+   "bio": "S001231",
+   "ch": "House",
+   "st": "CA",
+   "dist": "12",
+   "party": "D",
+   "tier": "House Associate",
+   "title": ""
+  },
+  {
+   "name": "Smith, Adam",
+   "bio": "S000510",
+   "ch": "House",
+   "st": "WA",
+   "dist": "9",
+   "party": "D",
+   "tier": "House Associate",
+   "title": ""
+  },
+  {
+   "name": "Stanton, Greg",
+   "bio": "S001211",
+   "ch": "House",
+   "st": "AZ",
+   "dist": "4",
+   "party": "D",
+   "tier": "House Associate",
+   "title": ""
+  },
+  {
+   "name": "Stevens, Haley M.",
+   "bio": "S001215",
+   "ch": "House",
+   "st": "MI",
+   "dist": "11",
+   "party": "D",
+   "tier": "House Associate",
+   "title": ""
+  },
+  {
+   "name": "Suozzi, Thomas R.",
+   "bio": "S001201",
+   "ch": "House",
+   "st": "NY",
+   "dist": "3",
+   "party": "D",
+   "tier": "House Associate",
+   "title": ""
+  },
+  {
+   "name": "Sykes, Emilia Strong",
+   "bio": "S001223",
+   "ch": "House",
+   "st": "OH",
+   "dist": "13",
+   "party": "D",
+   "tier": "House Associate",
+   "title": ""
+  },
+  {
+   "name": "Tonko, Paul",
+   "bio": "T000469",
+   "ch": "House",
+   "st": "NY",
+   "dist": "20",
+   "party": "D",
+   "tier": "House Associate",
+   "title": ""
+  },
+  {
+   "name": "Torres, Norma J.",
+   "bio": "T000474",
+   "ch": "House",
+   "st": "CA",
+   "dist": "35",
+   "party": "D",
+   "tier": "House Associate",
+   "title": ""
+  },
+  {
+   "name": "Trahan, Lori",
+   "bio": "T000482",
+   "ch": "House",
+   "st": "MA",
+   "dist": "3",
+   "party": "D",
+   "tier": "House Associate",
+   "title": ""
+  },
+  {
+   "name": "Vargas, Juan",
+   "bio": "V000130",
+   "ch": "House",
+   "st": "CA",
+   "dist": "52",
+   "party": "D",
+   "tier": "House Associate",
+   "title": ""
+  },
+  {
+   "name": "Velázquez, Nydia",
+   "bio": "V000081",
+   "ch": "House",
+   "st": "NY",
+   "dist": "7",
+   "party": "D",
+   "tier": "House Associate",
+   "title": ""
+  },
+  {
+   "name": "Walkinshaw, James",
+   "bio": "W000831",
+   "ch": "House",
+   "st": "VA",
+   "dist": "11",
+   "party": "D",
+   "tier": "House Associate",
+   "title": ""
+  },
+  {
+   "name": "Waters, Maxine",
+   "bio": "W000187",
+   "ch": "House",
+   "st": "CA",
+   "dist": "43",
+   "party": "D",
+   "tier": "House Associate",
+   "title": ""
+  },
+  {
+   "name": "Watson Coleman, Bonnie",
+   "bio": "W000822",
+   "ch": "House",
+   "st": "NJ",
+   "dist": "12",
+   "party": "D",
+   "tier": "House Associate",
+   "title": ""
+  },
+  {
+   "name": "Menefee, Christian D.",
+   "bio": "M001245",
+   "ch": "House",
+   "st": "TX",
+   "dist": "18",
+   "party": "D",
+   "tier": "House Associate",
+   "title": "",
+   "note": "Added per CAPAC press release 2026-10-26 (not yet on members page)"
+  }
+ ],
+ "capacLeadership": [
+  {
+   "role": "Chair",
+   "name": "Grace Meng",
+   "bio": "M001188",
+   "st": "NY",
+   "dist": "6"
+  },
+  {
+   "role": "First Vice Chair",
+   "name": "Mark Takano",
+   "bio": "T000472",
+   "st": "CA",
+   "dist": "39"
+  },
+  {
+   "role": "Second Vice Chair",
+   "name": "Jill Tokuda",
+   "bio": "T000487",
+   "st": "HI",
+   "dist": "2"
+  },
+  {
+   "role": "Whip",
+   "name": "Ami Bera",
+   "bio": "B001287",
+   "st": "CA",
+   "dist": "6"
+  },
+  {
+   "role": "Freshman Representative",
+   "name": "Suhas Subramanyam",
+   "bio": "S001230",
+   "st": "VA",
+   "dist": "10"
+  },
+  {
+   "role": "Chair Emerita",
+   "name": "Judy Chu",
+   "bio": "C001080",
+   "st": "CA",
+   "dist": "28"
+  }
+ ],
+ "capacStatedCount": {
+  "count": 86,
+  "basis": "CAPAC press release 2026-10-26: 'composed of 86 Members of Congress'; capac.house.gov home page still reads 83; members page names 85 (before Menefee)",
+  "u": "https://capac.house.gov/press-release/capac-welcomes-new-associate-member-rep-christian-menefee-tx-18"
+ },
+ "src": [
+  {
+   "n": "U.S. House Clerk: Member data XML (published 2026-10-01)",
+   "u": "https://clerk.house.gov/xml/lists/MemberData.xml"
+  },
+  {
+   "n": "U.S. Senate: senators contact information XML",
+   "u": "https://www.senate.gov/general/contact_information/senators_cfm.xml"
+  },
+  {
+   "n": "house.gov: Representatives directory",
+   "u": "https://www.house.gov/representatives"
+  },
+  {
+   "n": "CAPAC: 119th Congress Membership",
+   "u": "https://capac.house.gov/members"
+  },
+  {
+   "n": "CAPAC: home page",
+   "u": "https://capac.house.gov/"
+  },
+  {
+   "n": "CAPAC: Welcomes New Associate Member Rep. Christian Menefee (TX-18), 2026-10-26",
+   "u": "https://capac.house.gov/press-release/capac-welcomes-new-associate-member-rep-christian-menefee-tx-18"
+  },
+  {
+   "n": "CAPAC: Welcomes New Associate Members Reps. Greg Stanton and Luz Rivas, 2026-07-09",
+   "u": "https://capac.house.gov/press-release/capac-welcomes-new-associate-members-reps-greg-stanton-az-04-and-luz-rivas-ca-29"
+  },
+  {
+   "n": "CAPAC: Welcomes New Associate Member Rep. Andrea Salinas, 2026-02-06",
+   "u": "https://capac.house.gov/press-release/capac-welcomes-new-associate-member-rep-andrea-salinas"
+  },
+  {
+   "n": "CAPAC: Welcomes New Associate Member Rep. James Walkinshaw, 2025-11-18",
+   "u": "https://capac.house.gov/press-release/capac-welcomes-new-associate-member-rep-james-walkinshaw"
+  },
+  {
+   "n": "CAPAC: Hits Record Membership of 83, 2025-05-28",
+   "u": "https://capac.house.gov/press-release/capac-hits-record-membership-83-largest-history"
+  },
+  {
+   "n": "CAPAC: Welcomes New Members for the 119th Congress, 2025-02-07",
+   "u": "https://capac.house.gov/press-release/capac-welcomes-new-members-119th-congress"
+  },
+  {
+   "n": "CAPAC: Announces Newly Elected Leadership for the 119th Congress, 2024-12-04",
+   "u": "https://capac.house.gov/press-release/capac-announces-newly-elected-leadership-119th-congress"
+  },
+  {
+   "n": "CAPAC: Purpose, Mission & Goals",
+   "u": "https://capac.house.gov/about-us/purpose-mission-goals"
+  },
+  {
+   "n": "CRS R48535, Membership of the 119th Congress: A Profile (May 21, 2025)",
+   "u": "https://www.congress.gov/crs_external_products/R/PDF/R48535/R48535.2.pdf"
+  },
+  {
+   "n": "CRS 97-398, Asian Pacific Americans in the United States Congress (June 12, 2013)",
+   "u": "https://www.everycrsreport.com/files/20130612_97-398_ec0b4de5a2c51e4f18e80870dd46891bb5db1c1f.html"
+  },
+  {
+   "n": "H. Doc. 108-226, Asian and Pacific Islander Americans in Congress, 1900-2017: Current Members (GPO)",
+   "u": "https://www.govinfo.gov/content/pkg/GPO-CDOC-108hdoc226/pdf/GPO-CDOC-108hdoc226-3.pdf"
+  },
+  {
+   "n": "APAICS: Record-Breaking Numbers of AA & NH/PI Candidates in the 2024 General Election",
+   "u": "https://www.apaics.org/post/record-breaking-numbers-of-aa-nh-pi-candidates-in-the-2024-general-election"
+  },
+  {
+   "n": "Pew Research Center: 119th Congress brings new growth in racial, ethnic diversity to Capitol Hill",
+   "u": "https://www.pewresearch.org/short-reads/2025/01/21/119th-congress-brings-new-growth-in-racial-ethnic-diversity-to-capitol-hill/"
+  },
+  {
+   "n": "congress.gov API: members of the 119th Congress (current members)",
+   "u": "https://api.congress.gov/v3/member/congress/119?currentMember=true"
+  },
+  {
+   "n": "Bioguide: Biographical Directory of the United States Congress",
+   "u": "https://bioguide.congress.gov/"
+  }
+ ]
+}

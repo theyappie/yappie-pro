@@ -1,0 +1,1076 @@
+{
+ "area": "alienland",
+ "asOf": "2026-11-02",
+ "method": "Landscape from NALC 50-state ag-land compilations and 2025/2026 recaps, Committee of 100 tracker (8/12/2026), Leonine/FOCUS (9/8/2026), Wirescreen (10/2025). Statutes or bills read on legislature sites for AZ FL ID IA KS LA MA MN MO NC NE NY OH OK SC SD TN TX UT VA WV; other states from NALC statute text. Court status from 5th/11th Cir. opinions and CourtListener RECAP dockets.",
+ "cells": {
+  "AL": {
+   "s": "partial",
+   "t": "Foreign-adversary 'foreign principals' barred from farm/forest land and land within 10 miles of bases or critical sites",
+   "law": "Ala. Code § 35-1-1.1 (Alabama Property Protection Act; 2023 HB 379)",
+   "y": 2023,
+   "src": [
+    {
+     "n": "NALC compilation: Alabama (current through 2025 session)",
+     "u": "https://nationalaglawcenter.org/wp-content/uploads/assets/aglandownership/Alabama.pdf",
+     "p": false
+    },
+    {
+     "n": "Maynard Nexsen: legislatures limit property ownership by foreign adversaries (2023)",
+     "u": "https://www.maynardnexsen.com/publication-legislatures-nationwide-take-steps-to-limit-property-ownership-by-foreign-adversaries",
+     "p": false
+    }
+   ],
+   "q": "no foreign principal shall acquire title to, or acquire a controlling interest in, any of the following",
+   "x": "Countries: China, Iran, North Korea, Russia (not Taiwan) plus OFAC-listed governments; applies to acquisitions on/after 8/1/2023. Statute text per NALC. No court challenge found."
+  },
+  "AK": {
+   "s": "none",
+   "t": "No restriction found; Alaska absent from NALC 50-state compilation and from 2025-26 trackers reviewed",
+   "law": "",
+   "y": null,
+   "src": [
+    {
+     "n": "NALC: Statutes Regulating Ownership of Agricultural Land (state index)",
+     "u": "https://nationalaglawcenter.org/state-compilations/aglandownership/",
+     "p": false
+    },
+    {
+     "n": "Committee of 100: Laws and Bills Restricting Foreign Property Ownership (8/12/2026)",
+     "u": "https://www.committee100.org/our-work/federal-and-state-bills-prohibiting-property-ownership-by-foreign-individuals-and-entities/",
+     "p": false
+    },
+    {
+     "n": "Wirescreen: foreign adversary restrictions in state property laws (10/2025)",
+     "u": "https://wirescreen.ai/insights/national-security-property-law",
+     "p": false
+    }
+   ],
+   "q": "",
+   "x": "Alaska statutes and 2025-26 Alaska bills were not searched directly."
+  },
+  "AZ": {
+   "s": "partial",
+   "t": "All real property: adversary nations, their agents and controlled firms barred; widened in 2026",
+   "law": "A.R.S. § 33-443 (SB 1082, Ch. 253, 2025; SB 1683, Ch. 240, 2026)",
+   "y": 2025,
+   "src": [
+    {
+     "n": "A.R.S. § 33-443 (azleg.gov)",
+     "u": "https://www.azleg.gov/ars/33/00443.htm",
+     "p": true
+    },
+    {
+     "n": "Arizona Laws 2026, Ch. 240 (SB 1683)",
+     "u": "https://www.azleg.gov/legtext/57leg/2R/laws/0240.htm",
+     "p": true
+    },
+    {
+     "n": "Arizona Laws 2025, Ch. 253 (SB 1082)",
+     "u": "https://www.azleg.gov/legtext/57leg/1R/laws/0253.pdf",
+     "p": true
+    },
+    {
+     "n": "Committee of 100: Laws and Bills Restricting Foreign Property Ownership (8/12/2026)",
+     "u": "https://www.committee100.org/our-work/federal-and-state-bills-prohibiting-property-ownership-by-foreign-individuals-and-entities/",
+     "p": false
+    }
+   ],
+   "q": "a foreign adversary nation or a foreign adversary agent may not, directly or indirectly, purchase, own, lease, acquire by grant or devise",
+   "x": "15% interest threshold. SB 1683's 'agent' adds 'foreign person' (31 CFR 802.221), possibly reaching individuals; Committee of 100 reads it as government-only. Approved 6/22/2026, immediate effect. No suit found."
+  },
+  "AR": {
+   "s": "partial",
+   "t": "'Prohibited foreign parties' barred from farmland and from farmland within 10 miles of critical infrastructure",
+   "law": "Ark. Code §§ 18-11-801 to -808 (Act 636 of 2023, as amended 2025)",
+   "y": 2023,
+   "lit": "Jones Eagle LLC v. Ward (E.D. Ark. 4:24-cv-990): PI vs. enforcement 12/9/24 (preemption). 8th Cir. No. 25-1047 argued 1/14/26; no ruling found.",
+   "src": [
+    {
+     "n": "NALC compilation: Arkansas (current through 2025 session)",
+     "u": "https://nationalaglawcenter.org/wp-content/uploads/assets/aglandownership/Arkansas.pdf",
+     "p": false
+    },
+    {
+     "n": "NALC: Foreign Ownership of Agricultural Land (litigation tracker, upd. 6/26/2026)",
+     "u": "https://nationalaglawcenter.org/foreign-investments-in-ag/",
+     "p": false
+    },
+    {
+     "n": "CourtListener RECAP: Jones Eagle LLC v. Ward dockets",
+     "u": "https://www.courtlistener.com/?q=%22Jones+Eagle%22+Ward&type=r&order_by=dateFiled+desc",
+     "p": false
+    }
+   ],
+   "q": "a prohibited foreign party shall not acquire by grant, purchase, lease, devise, descent, or otherwise any interest in agricultural land in this state",
+   "x": "Resident aliens may hold farmland. First state enforcement (2023 divestiture order, Syngenta-linked ~160 acres). Separate 2025 Act 174 on crypto mining is also litigated (Ark. Cryptomining Ass'n v. York)."
+  },
+  "CA": {
+   "s": "none",
+   "t": "No restriction; SB 1084 (2022) passed the legislature but was vetoed; state constitution gives aliens same rights",
+   "law": "",
+   "y": null,
+   "src": [
+    {
+     "n": "NALC compilation: California (current through 2024 session)",
+     "u": "https://nationalaglawcenter.org/wp-content/uploads/assets/aglandownership/California.pdf",
+     "p": false
+    },
+    {
+     "n": "NALC: Foreign Ownership of Agricultural Land (enactment timeline)",
+     "u": "https://nationalaglawcenter.org/foreign-investments-in-ag/",
+     "p": false
+    }
+   ],
+   "q": "",
+   "x": "CA Const. art. I s.20 and Civ. Code s.671 permit alien ownership. 2025-26 bills were not individually checked."
+  },
+  "CO": {
+   "s": "none",
+   "t": "No restriction found in NALC compilation or in the 2025-26 trackers reviewed",
+   "law": "",
+   "y": null,
+   "src": [
+    {
+     "n": "NALC compilation: Colorado (current only through 2021 session)",
+     "u": "https://nationalaglawcenter.org/wp-content/uploads/assets/aglandownership/Colorado.pdf",
+     "p": false
+    },
+    {
+     "n": "Wirescreen: foreign adversary restrictions in state property laws (10/2025)",
+     "u": "https://wirescreen.ai/insights/national-security-property-law",
+     "p": false
+    }
+   ],
+   "q": "",
+   "x": "NALC's Colorado file is stale (2021) and lists only the constitutional permission clause; Colorado is absent from the Wirescreen and Committee of 100 enacted lists."
+  },
+  "CT": {
+   "s": "none",
+   "t": "No restriction found; Connecticut statute gives aliens the same property rights",
+   "law": "",
+   "y": null,
+   "src": [
+    {
+     "n": "NALC compilation: Connecticut (current through 2024 session)",
+     "u": "https://nationalaglawcenter.org/wp-content/uploads/assets/aglandownership/Connecticut.pdf",
+     "p": false
+    },
+    {
+     "n": "Wirescreen: foreign adversary restrictions in state property laws (10/2025)",
+     "u": "https://wirescreen.ai/insights/national-security-property-law",
+     "p": false
+    }
+   ],
+   "q": "",
+   "x": "CGS s.47-7a is a permission clause. 2025-26 bills were not individually checked."
+  },
+  "DC": {
+   "s": "none",
+   "t": "No restriction found; DC is not covered by NALC's compilation and does not appear in trackers reviewed",
+   "law": "",
+   "y": null,
+   "src": [
+    {
+     "n": "NALC: Statutes Regulating Ownership of Agricultural Land (state index)",
+     "u": "https://nationalaglawcenter.org/state-compilations/aglandownership/",
+     "p": false
+    },
+    {
+     "n": "Committee of 100: Laws and Bills Restricting Foreign Property Ownership (8/12/2026)",
+     "u": "https://www.committee100.org/our-work/federal-and-state-bills-prohibiting-property-ownership-by-foreign-individuals-and-entities/",
+     "p": false
+    }
+   ],
+   "q": "",
+   "x": "D.C. Code and Council bills were not searched directly."
+  },
+  "DE": {
+   "s": "none",
+   "t": "No restriction found; Wirescreen lists Delaware among five states with no such proposal or law",
+   "law": "",
+   "y": null,
+   "src": [
+    {
+     "n": "NALC compilation: Delaware (current through 2024 session)",
+     "u": "https://nationalaglawcenter.org/wp-content/uploads/assets/aglandownership/Delaware.pdf",
+     "p": false
+    },
+    {
+     "n": "Wirescreen: foreign adversary restrictions in state property laws (10/2025)",
+     "u": "https://wirescreen.ai/insights/national-security-property-law",
+     "p": false
+    }
+   ],
+   "q": "",
+   "x": "25 Del. C. ss.305-308 are permission clauses."
+  },
+  "FL": {
+   "s": "enacted",
+   "t": "Bars China-linked persons from most real property; 7 countries' principals barred from farmland and base-adjacent land",
+   "law": "Fla. Stat. §§ 692.201-692.205 (SB 264; ch. 2023-33)",
+   "y": 2023,
+   "lit": "Shen v. Simpson (11th Cir. 23-12737): 11/4/25 affirmed denial of PI on registration/affidavit rules; purchase ban not reached (standing). Closed 12/31/25.",
+   "src": [
+    {
+     "n": "Fla. Stat. 692.204 (2026): PRC purchase prohibition",
+     "u": "https://www.flsenate.gov/Laws/Statutes/2026/692.204",
+     "p": true
+    },
+    {
+     "n": "Fla. Stat. 692.203 (2025): military/critical infrastructure",
+     "u": "https://www.flsenate.gov/Laws/Statutes/2025/692.203",
+     "p": true
+    },
+    {
+     "n": "11th Cir. opinion, Shen v. Commissioner, No. 23-12737 (11/4/2025)",
+     "u": "https://media.ca11.uscourts.gov/opinions/pub/files/202312737.pdf",
+     "p": true
+    },
+    {
+     "n": "ACLU of Florida: Shen v. Simpson",
+     "u": "https://www.aclufl.org/?p=20823",
+     "p": false
+    },
+    {
+     "n": "CourtListener RECAP search (Jones Eagle query; lists Shen v. Simpson dockets)",
+     "u": "https://www.courtlistener.com/?q=%22Jones+Eagle%22+Ward&type=r&order_by=dateFiled+desc",
+     "p": false
+    }
+   ],
+   "q": "The following persons or entities may not directly or indirectly own, have a controlling interest in, or acquire by purchase, grant, devise, or descent any interest",
+   "x": "Countries: China, Russia, Iran, N. Korea, Cuba, Venezuela (Maduro regime), Syria. Eff. 7/1/2023. China-domiciled non-citizens may buy 1 home up to 2 acres, 5+ miles from a base. ACLU-FL: Shen voluntarily dismissed."
+  },
+  "GA": {
+   "s": "partial",
+   "t": "Foreign-adversary 'nonresident aliens' barred from farmland and land within 10 miles of military bases",
+   "law": "O.C.G.A. § 2-1-7 (2024 SB 420; amended 2025 HB 358)",
+   "y": 2024,
+   "src": [
+    {
+     "n": "NALC compilation: Georgia (current through 2025 session)",
+     "u": "https://nationalaglawcenter.org/wp-content/uploads/assets/aglandownership/Georgia.pdf",
+     "p": false
+    }
+   ],
+   "q": "no nonresident alien shall acquire directly or indirectly any possessory interest in agricultural land or land within a ten-mile radius of any military base",
+   "x": "Covers agents of adversary governments (natural persons) and adversary-domiciled or 25%-owned entities. Residential property excluded. Holders as of 6/30/2024 must dispose by 6/30/2027. No suit found."
+  },
+  "HI": {
+   "s": "none",
+   "t": "No private-land restriction found; only public-land eligibility rules (citizenship for state land applicants)",
+   "law": "",
+   "y": null,
+   "src": [
+    {
+     "n": "NALC compilation: Hawaii (current through 2024 session)",
+     "u": "https://nationalaglawcenter.org/wp-content/uploads/assets/aglandownership/Hawaii.pdf",
+     "p": false
+    },
+    {
+     "n": "NALC: Statutes Regulating Ownership of Agricultural Land (state index)",
+     "u": "https://nationalaglawcenter.org/state-compilations/aglandownership/",
+     "p": false
+    }
+   ],
+   "q": "",
+   "x": "NALC lists Hawaii (Organic Act s.73; HRS s.171-68) as a public-land-only rule; judgment call: scored none because it limits only state-owned land."
+  },
+  "ID": {
+   "s": "partial",
+   "t": "Foreign-adversary principals barred from farmland, water, mining claims, mineral rights; governments also forest land",
+   "law": "Idaho Code § 55-103 (2025 H356, S1149)",
+   "y": 2025,
+   "src": [
+    {
+     "n": "Idaho Code 55-103 (legislature.idaho.gov)",
+     "u": "https://legislature.idaho.gov/statutesrules/idstat/Title55/T55CH1/SECT55-103/",
+     "p": true
+    },
+    {
+     "n": "NALC: 2025 Legislative Recap (Idaho, Kentucky, Texas, Utah, West Virginia)",
+     "u": "https://nationalaglawcenter.org/2025-legislative-recap-continued-expansion-of-state-level-foreign-ownership-restrictions/",
+     "p": false
+    }
+   ],
+   "q": "a foreign principal from a foreign adversary shall not purchase, acquire, or hold any controlling interest, except a de minimis indirect interest, in agricultural land",
+   "x": "Countries per NALC: China, Cuba, Iran, N. Korea, Russia, Syria, Venezuela. Eff. 7/1/2025; divestment, registration, AG enforcement, whistleblower reward. No court challenge found."
+  },
+  "IL": {
+   "s": "partial",
+   "t": "Reporting only: state Agricultural Foreign Investment Disclosure Act; no purchase ban found",
+   "law": "765 ILCS 50/1 to 50/8",
+   "y": null,
+   "src": [
+    {
+     "n": "NALC compilation: Illinois (current through 2025 session)",
+     "u": "https://nationalaglawcenter.org/wp-content/uploads/assets/aglandownership/Illinois.pdf",
+     "p": false
+    }
+   ],
+   "q": "This Act shall be known as the Agricultural Foreign Investment Disclosure Act.",
+   "x": "NALC lists no prohibition and reporting under 765 ILCS 50. Enactment year not confirmed; 2025-26 bills not individually checked."
+  },
+  "IN": {
+   "s": "enacted",
+   "t": "Bars adversary-country governments, firms and nonresident-alien citizens from buying Indiana real property",
+   "law": "SEA 256, P.L. 131-2026 (builds on HEA 1183, 2024)",
+   "y": 2026,
+   "src": [
+    {
+     "n": "Indiana Senate Republicans: SEA 256 ceremonially signed (4/30/2026)",
+     "u": "https://www.indianasenaterepublicans.com/koch-s-bill-to-stop-foreign-adversaries-from-buying-indiana-land-ceremonially-signed-into-law",
+     "p": false
+    },
+    {
+     "n": "NALC: Indiana expands foreign ownership restrictions (3/2026)",
+     "u": "https://nationalaglawcenter.org/indiana-expands-foreign-ownership-restrictions-through-newly-enacted-state-law/",
+     "p": false
+    },
+    {
+     "n": "Committee of 100: Laws and Bills Restricting Foreign Property Ownership (8/12/2026)",
+     "u": "https://www.committee100.org/our-work/federal-and-state-bills-prohibiting-property-ownership-by-foreign-individuals-and-entities/",
+     "p": false
+    }
+   ],
+   "q": "Senate Enrolled Act 256 prevents hostile countries like China and Iran from buying any land in Indiana.",
+   "x": "Eff. 7/1/2026. C100 lists China, Russia, N. Korea, Iran; NALC also lists Cuba, Venezuela. Citizens, LPRs, asylees exempt. Statute text not reached (per NALC/C100/press release). No suit found."
+  },
+  "IA": {
+   "s": "partial",
+   "t": "Nonresident aliens, foreign businesses and governments barred from acquiring agricultural land",
+   "law": "Iowa Code ch. 9I (s. 9I.3)",
+   "y": null,
+   "src": [
+    {
+     "n": "Iowa Code 9I.3 (legis.iowa.gov)",
+     "u": "https://www.legis.iowa.gov/docs/code/9I.3.pdf",
+     "p": true
+    },
+    {
+     "n": "NALC compilation: Iowa (current through 2025 session)",
+     "u": "https://nationalaglawcenter.org/wp-content/uploads/assets/aglandownership/Iowa.pdf",
+     "p": false
+    }
+   ],
+   "q": "A nonresident alien, foreign business or foreign government, or an agent, trustee or fiduciary thereof, shall not purchase or otherwise acquire agricultural land in this state.",
+   "x": "Older general farmland law (grandfathering date 1/1/1980); NALC lists 2024 SF 574 and SF 2204. Leonine lists an Iowa 2026 measure; not confirmed. No suit found."
+  },
+  "KS": {
+   "s": "partial",
+   "t": "Foreign principals of 6 'countries of concern' barred from non-residential land within 100 miles of military bases",
+   "law": "Kansas Land and Military Installation Protection Act (2025 House Sub. for SB 9)",
+   "y": 2025,
+   "src": [
+    {
+     "n": "Kansas House Sub. for SB 9, enrolled (kslegislature.gov)",
+     "u": "https://www.kslegislature.gov/li/b2025_26/measures/documents/sb9_enrolled.pdf",
+     "p": true
+    },
+    {
+     "n": "Kansas Legislature bill status API (SB 9: approved by Governor 4/7/2025)",
+     "u": "https://www.kslegislature.gov/li/api/v13/rev-1/bill_status/",
+     "p": true
+    }
+   ],
+   "q": "no foreign principal shall directly or indirectly acquire any interest in any real property located within 100 miles of the boundary of any military installation",
+   "x": "Countries: China (incl. Hong Kong), Cuba, Iran, N. Korea, Russia, Venezuela. Residential real property excluded. Approved by Governor 4/7/2025; effective on publication in the statute book. No suit found."
+  },
+  "KY": {
+   "s": "partial",
+   "t": "Nonresident aliens and businesses tied to ITAR-proscribed countries barred from public and private farmland",
+   "law": "2025 Ky. Acts ch. 84 (HB 315)",
+   "y": 2025,
+   "src": [
+    {
+     "n": "NALC compilation: Kentucky (current through 2025 sessions)",
+     "u": "https://nationalaglawcenter.org/wp-content/uploads/assets/aglandownership/Kentucky.pdf",
+     "p": false
+    },
+    {
+     "n": "NALC: 2025 Legislative Recap",
+     "u": "https://nationalaglawcenter.org/2025-legislative-recap-continued-expansion-of-state-level-foreign-ownership-restrictions/",
+     "p": false
+    }
+   ],
+   "q": "shall be prohibited from: (a) The purchase, lease, or acquisition of any interest in public or private agricultural land located in the Commonwealth of Kentucky",
+   "x": "Countries under 22 CFR 126.1 (China, Iran, N. Korea, Syria, others); also bars state farm-program participation. Eff. 6/27/2025 per NALC. No suit found."
+  },
+  "LA": {
+   "s": "partial",
+   "t": "Adversary governments and OFAC-listed persons barred from immovable property; farmland rules; 2026 near-base ban",
+   "law": "La. R.S. 9:2717.1; R.S. 3:3613-3619; Act 845 of 2026 (HB 816)",
+   "y": 2023,
+   "src": [
+    {
+     "n": "NALC compilation: Louisiana (current through 2025 session)",
+     "u": "https://nationalaglawcenter.org/wp-content/uploads/assets/aglandownership/Louisiana.pdf",
+     "p": false
+    },
+    {
+     "n": "Louisiana Legislature: HB 816 (2026), Act 845",
+     "u": "https://legis.la.gov/legis/BillInfo.aspx?s=26RS&b=HB816&sbi=y",
+     "p": true
+    },
+    {
+     "n": "Louisiana Legislature: SB 200 (2026), Act 474",
+     "u": "https://legis.la.gov/legis/BillInfo.aspx?s=26RS&b=SB200&sbi=y",
+     "p": true
+    }
+   ],
+   "q": "No foreign adversary or person connected with a foreign adversary may purchase, lease, or otherwise acquire immovable property in this state.",
+   "x": "9:2717.1 (eff. 8/1/2023): 'foreign adversary' = 15 CFR 7.4(a) governments/individuals also on OFAC list, plus entities they control. HB 816 signed 6/8/2026, eff. 8/1/2026 (property near military sites)."
+  },
+  "ME": {
+   "s": "none",
+   "t": "No purchase restriction found; only a general farmland-interest reporting law for corporations and partnerships",
+   "law": "",
+   "y": null,
+   "src": [
+    {
+     "n": "NALC compilation: Maine (current through 2025 session)",
+     "u": "https://nationalaglawcenter.org/wp-content/uploads/assets/aglandownership/Maine.pdf",
+     "p": false
+    }
+   ],
+   "q": "",
+   "x": "7 MRS ch. 31 (Agricultural Land Interest Act) requires entity reports (AFIDA copy suffices); not foreign-specific, so scored none. 2025-26 bills not individually checked."
+  },
+  "MD": {
+   "s": "none",
+   "t": "No restriction found; statute lets any alien 'who is not an enemy' own property; ITAR-country bills did not pass",
+   "law": "",
+   "y": null,
+   "src": [
+    {
+     "n": "Md. Code, Real Prop. 14-101 (mgaleg.maryland.gov)",
+     "u": "https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=grp&section=14-101",
+     "p": true
+    },
+    {
+     "n": "NALC: Foreign Ownership of Agricultural Land (failed bills: MD HB 855, HB 471)",
+     "u": "https://nationalaglawcenter.org/foreign-investments-in-ag/",
+     "p": false
+    }
+   ],
+   "q": "",
+   "x": "NALC calls this a conditional rule; judgment call: scored none because it is permissive. HB 471 (2025, ITAR countries) not enacted per NALC; 2026 bills not checked."
+  },
+  "MA": {
+   "s": "none",
+   "t": "No law; H.141 (foreign governments, farmland) was sent to a study order on 3/19/2026",
+   "law": "",
+   "y": null,
+   "src": [
+    {
+     "n": "Massachusetts Legislature: H.141 (194th General Court) bill history",
+     "u": "https://malegislature.gov/Bills/194/H141",
+     "p": true
+    },
+    {
+     "n": "NALC compilation: Massachusetts (current through 2025 session)",
+     "u": "https://nationalaglawcenter.org/wp-content/uploads/assets/aglandownership/Massachusetts.pdf",
+     "p": false
+    }
+   ],
+   "q": "",
+   "x": "Connolly bills H.2425/H.2746/H.3061 propose a surcharge on alien/nonresident buyers, not a purchase ban."
+  },
+  "MI": {
+   "s": "none",
+   "t": "No restriction found; statute lets any alien acquire and hold land",
+   "law": "",
+   "y": null,
+   "src": [
+    {
+     "n": "NALC compilation: Michigan (current through 2025 session)",
+     "u": "https://nationalaglawcenter.org/wp-content/uploads/assets/aglandownership/Michigan.pdf",
+     "p": false
+    },
+    {
+     "n": "Wirescreen: foreign adversary restrictions in state property laws (10/2025)",
+     "u": "https://wirescreen.ai/insights/national-security-property-law",
+     "p": false
+    }
+   ],
+   "q": "",
+   "x": "MCL 554.135. The Michigan Legislature site could not be queried, so 2025-26 bills are unverified."
+  },
+  "MN": {
+   "s": "partial",
+   "t": "Only US citizens and permanent residents may hold farmland; entities need 80% US ownership",
+   "law": "Minn. Stat. § 500.221",
+   "y": null,
+   "src": [
+    {
+     "n": "Minn. Stat. 500.221 (revisor.mn.gov)",
+     "u": "https://www.revisor.mn.gov/statutes/cite/500.221",
+     "p": true
+    }
+   ],
+   "q": "no natural person shall acquire directly or indirectly any interest in agricultural land unless the person is a citizen of the United States or a permanent resident alien of the United States",
+   "x": "Older general alien-farmland law (agricultural land incl. leaseholds). Enactment year not confirmed. 2025-26 bills not individually checked."
+  },
+  "MS": {
+   "s": "partial",
+   "t": "Foreign-adversary nonresident aliens barred from farm/forest land; older nonresident-alien land ban also on books",
+   "law": "Miss. Code §§ 89-27-1 et seq.; § 89-1-23",
+   "y": 2024,
+   "src": [
+    {
+     "n": "NALC compilation: Mississippi (current through 2025 session)",
+     "u": "https://nationalaglawcenter.org/wp-content/uploads/assets/aglandownership/Mississippi.pdf",
+     "p": false
+    },
+    {
+     "n": "NALC: Foreign Ownership of Agricultural Land (2026 list incl. MS SB 2341)",
+     "u": "https://nationalaglawcenter.org/foreign-investments-in-ag/",
+     "p": false
+    }
+   ],
+   "q": "nonresident aliens shall not hereafter acquire or hold land",
+   "x": "89-27 reaches majority-owned forest/ag land of nonresident aliens domiciled in adversary countries. 89-1-23 is broader but old (escheat). SB 2341 (2026) amendment not read. No suit found."
+  },
+  "MO": {
+   "s": "partial",
+   "t": "Aliens and foreign businesses barred from farmland once foreign holdings exceed 1% of state agricultural acreage",
+   "law": "RSMo §§ 442.560-442.592 (s. 442.571)",
+   "y": null,
+   "src": [
+    {
+     "n": "RSMo 442.571 (revisor.mo.gov)",
+     "u": "https://revisor.mo.gov/main/OneSection.aspx?section=442.571",
+     "p": true
+    }
+   ],
+   "q": "no alien or foreign business shall acquire by grant, purchase, devise, descent or otherwise agricultural land in this state if the total aggregate alien and foreign ownership",
+   "x": "Farmland only; reporting to Dept. of Agriculture. Enactment year not confirmed. No suit found."
+  },
+  "MT": {
+   "s": "partial",
+   "t": "Foreign adversaries barred from critical infrastructure, farmland, and property with line of sight to military sites",
+   "law": "Mont. Code § 35-30-103 (2023)",
+   "y": 2023,
+   "src": [
+    {
+     "n": "NALC compilation: Montana (current through 2025 session)",
+     "u": "https://nationalaglawcenter.org/wp-content/uploads//assets/aglandownership/Montana.pdf",
+     "p": false
+    },
+    {
+     "n": "Wirescreen: foreign adversary restrictions in state property laws (10/2025)",
+     "u": "https://wirescreen.ai/insights/national-security-property-law",
+     "p": false
+    }
+   ],
+   "q": "buy, lease, or rent critical infrastructure, land used for agricultural production, or real property or a residence that has a direct line of sight to any part of a military installation",
+   "x": "Adversary = Commerce list (15 CFR 7.4) governments and non-government persons, plus corporations headquartered in or controlled by them. Divest within 1 year, then sheriff auction. No suit found."
+  },
+  "NE": {
+   "s": "enacted",
+   "t": "Nonresident aliens, foreign corporations and governments barred from acquiring real estate; limited exceptions",
+   "law": "Neb. Rev. Stat. §§ 76-3701 to 76-3717 (LB 1301, 2024; LB 7, 2025)",
+   "y": 2024,
+   "src": [
+    {
+     "n": "Neb. Rev. Stat. 76-3703 (nebraskalegislature.gov)",
+     "u": "https://nebraskalegislature.gov/laws/statutes.php?statute=76-3703",
+     "p": true
+    },
+    {
+     "n": "Neb. Rev. Stat. 76-3701: Foreign-owned Real Estate National Security Act",
+     "u": "https://nebraskalegislature.gov/laws/statutes.php?statute=76-3701",
+     "p": true
+    },
+    {
+     "n": "Nebraska LB 1301 (2024) slip law",
+     "u": "https://nebraskalegislature.gov/FloorDocs/108/PDF/Slip/LB1301.pdf",
+     "p": true
+    }
+   ],
+   "q": "Shall not purchase, acquire title to, or take any real estate or any leasehold interest extending for a period for more than five years",
+   "x": "Operative 1/1/2025. Exempts CFIUS 'excepted foreign states' except OFAC-listed or 15 CFR 7.4 'restricted entities'. LB 7 (2025) redefines nonresident alien (183-day presence). No suit found."
+  },
+  "NV": {
+   "s": "none",
+   "t": "No restriction found; Wirescreen lists Nevada among five states with no such proposal or law",
+   "law": "",
+   "y": null,
+   "src": [
+    {
+     "n": "NALC compilation: Nevada (current through 2025 session)",
+     "u": "https://nationalaglawcenter.org/wp-content/uploads/assets/aglandownership/Nevada.pdf",
+     "p": false
+    },
+    {
+     "n": "Wirescreen: foreign adversary restrictions in state property laws (10/2025)",
+     "u": "https://wirescreen.ai/insights/national-security-property-law",
+     "p": false
+    }
+   ],
+   "q": "",
+   "x": "NRS 111.055 is a permission clause. Nevada legislature does not meet in 2026."
+  },
+  "NH": {
+   "s": "unclear",
+   "t": "A Sept 2026 tracker lists New Hampshire among states with a 2026 enacted measure; statute not reached",
+   "law": "",
+   "y": null,
+   "src": [
+    {
+     "n": "Leonine Public Affairs: Foreign ownership rules expand across the states (9/8/2026)",
+     "u": "https://leoninepublicaffairs.com/foreign-ownership-rules-expand-across-the-states/",
+     "p": false
+    },
+    {
+     "n": "NALC compilation: New Hampshire (current through 2025 session)",
+     "u": "https://nationalaglawcenter.org/wp-content/uploads/assets/aglandownership/New-Hampshire.pdf",
+     "p": false
+    }
+   ],
+   "q": "Mississippi , Nebraska , New Hampshire , North Carolina , Oklahoma",
+   "x": "gc.nh.gov could not be reached. Leonine gives no bill number or scope; NALC (through 2025) shows no NH prohibition. Needs the bill number to classify."
+  },
+  "NJ": {
+   "s": "none",
+   "t": "No restriction found; statute gives 'alien friends' the same real estate rights as citizens",
+   "law": "",
+   "y": null,
+   "src": [
+    {
+     "n": "NALC compilation: New Jersey (current through 2025 session)",
+     "u": "https://nationalaglawcenter.org/wp-content/uploads/assets/aglandownership/New-Jersey.pdf",
+     "p": false
+    }
+   ],
+   "q": "",
+   "x": "N.J.S.A. 46:3-18 is a conditional permission rule (enemy aliens implicitly excluded); judgment call: scored none. NJ bills not checked."
+  },
+  "NM": {
+   "s": "none",
+   "t": "No restriction found; Wirescreen lists New Mexico among five states with no such proposal or law",
+   "law": "",
+   "y": null,
+   "src": [
+    {
+     "n": "NALC compilation: New Mexico (current through 2025 session)",
+     "u": "https://nationalaglawcenter.org/wp-content/uploads//assets/aglandownership/New-Mexico.pdf",
+     "p": false
+    },
+    {
+     "n": "Wirescreen: foreign adversary restrictions in state property laws (10/2025)",
+     "u": "https://wirescreen.ai/insights/national-security-property-law",
+     "p": false
+    }
+   ],
+   "q": "",
+   "x": "NALC shows no prohibition or permission clause."
+  },
+  "NY": {
+   "s": "pending",
+   "t": "Bill A9031/S8490 would bar sale or lease of NY real property to the PRC or CCP; held in committee, no law yet",
+   "law": "",
+   "y": null,
+   "src": [
+    {
+     "n": "NY Assembly: A09031 (2025-26) summary, actions, text",
+     "u": "https://assembly.state.ny.us/leg/?bn=A09031&term=2025&Summary=Y&Actions=Y&Text=Y",
+     "p": true
+    },
+    {
+     "n": "NALC compilation: New York (current through 2025 session)",
+     "u": "https://nationalaglawcenter.org/wp-content/uploads/assets/aglandownership/New-York.pdf",
+     "p": false
+    }
+   ],
+   "q": "Prohibits the sale or lease of any property in the state to the People's Republic of China or the Chinese communist party.",
+   "x": "Held for consideration in Judiciary 5/18/2026; dies 12/31/2026 absent action. NY Real Prop. Law s.10 currently permits alien ownership. Other NY bills not searched."
+  },
+  "NC": {
+   "s": "partial",
+   "t": "Governments/entities of ITAR-restricted countries barred from farmland and land within 50 miles of military bases",
+   "law": "N.C. S.L. 2026-54 (HB 133), new G.S. ch. 64 article",
+   "y": 2026,
+   "src": [
+    {
+     "n": "N.C. Session Law 2026-54 (House Bill 133)",
+     "u": "https://www.ncleg.gov/Sessions/2025/Bills/House/PDF/H133v6.pdf",
+     "p": true
+    },
+    {
+     "n": "N.C. General Assembly: H133 bill page (signed 7/7/2026)",
+     "u": "https://www.ncleg.gov/BillLookUp/2025/H133",
+     "p": true
+    }
+   ],
+   "q": "no prohibited foreign party shall purchase, acquire, lease, or hold any direct interest in the following",
+   "x": "Farmland plus land within 50 miles of a military installation; 1-year divestment, deed affidavit, registration. Signed 7/7/2026. Committee of 100 describes it as government/business only."
+  },
+  "ND": {
+   "s": "partial",
+   "t": "Adversary governments/entities barred from all real property; non-citizen individuals limited on farmland",
+   "law": "N.D.C.C. § 47-01-09 (2023 SB 2371); ch. 47-10.1",
+   "y": 2023,
+   "src": [
+    {
+     "n": "NALC compilation: North Dakota (current through 2025 session)",
+     "u": "https://nationalaglawcenter.org/wp-content/uploads/assets/aglandownership/North-Dakota.pdf",
+     "p": false
+    },
+    {
+     "n": "NALC: Soil for Sale? Part Four (AZ, NC, ND)",
+     "u": "https://nationalaglawcenter.org/?p=87885",
+     "p": false
+    }
+   ],
+   "q": "the following governments or entities may not purchase or otherwise acquire title to real property in this state",
+   "x": "Per NALC article: SB 2371 (2023) bars Commerce-list 'foreign adversary' governments/entities from all real property. Ch. 47-10.1 limits non-citizen farmland (160-acre cap per NALC article). Statute text via NALC."
+  },
+  "OH": {
+   "s": "partial",
+   "t": "Persons on a Secretary of State registry may not acquire farmland; no ban on other property found",
+   "law": "Ohio R.C. § 5301.256 (HB 33, 2023)",
+   "y": 2023,
+   "src": [
+    {
+     "n": "Ohio R.C. 5301.256 (codes.ohio.gov)",
+     "u": "https://codes.ohio.gov/ohio-revised-code/section-5301.256",
+     "p": true
+    },
+    {
+     "n": "NALC compilation: Ohio (current through 2025 session)",
+     "u": "https://nationalaglawcenter.org/wp-content/uploads/assets/aglandownership/Ohio.pdf",
+     "p": false
+    }
+   ],
+   "q": "no person listed in the registry published by the secretary of state under division (G) of this section",
+   "x": "Effective 10/3/2023. Farmland only. Ohio 2025-26 bills (136th GA) were not searched. No suit found."
+  },
+  "OK": {
+   "s": "enacted",
+   "t": "Non-citizens and adversary governments barred from owning Oklahoma land; deeds need compliance affidavit",
+   "law": "60 O.S. § 121 et seq. (as amended 2023-2026); 2026 HB 3431, SB 893",
+   "y": 2024,
+   "src": [
+    {
+     "n": "NALC compilation: Oklahoma (current through 2025 session)",
+     "u": "https://nationalaglawcenter.org/wp-content/uploads/assets/aglandownership/Oklahoma.pdf",
+     "p": false
+    },
+    {
+     "n": "Oklahoma HB 3431 (2026), enrolled (oklegislature.gov)",
+     "u": "https://www.oklegislature.gov/cf_pdf/2025-26%20ENR/HB/HB3431%20ENR.PDF",
+     "p": true
+    },
+    {
+     "n": "Oklahoma SB 893 (2026), enrolled (oklegislature.gov)",
+     "u": "https://www.oklegislature.gov/cf_pdf/2025-26%20ENR/SB/SB893%20ENR.PDF",
+     "p": true
+    }
+   ],
+   "q": "No alien or any person who is not a citizen of the United States or foreign government adversary shall acquire title to or own land in this state",
+   "x": "Excludes oil, gas, minerals; bona fide resident aliens exempt (s.122). 'Adversary' = State Dept. hostile/CPC list. HB 3431 adds leasing eff. 11/1/2026; SB 893 farm and near-base limits. Enactment of both per NALC/C100."
+  },
+  "OR": {
+   "s": "none",
+   "t": "No private-land restriction found; only purchases of state-owned lands are limited to citizens and declarants",
+   "law": "",
+   "y": null,
+   "src": [
+    {
+     "n": "NALC compilation: Oregon (current through 2025 session)",
+     "u": "https://nationalaglawcenter.org/wp-content/uploads/assets/aglandownership/Oregon.pdf",
+     "p": false
+    }
+   ],
+   "q": "",
+   "x": "ORS 273.255 limits applicants to buy state lands; judgment call: scored none because it covers only state-owned land."
+  },
+  "PA": {
+   "s": "partial",
+   "t": "Nonresident aliens and foreign governments limited to 100 acres of farmland",
+   "law": "68 P.S. §§ 28, 41-47",
+   "y": null,
+   "src": [
+    {
+     "n": "NALC compilation: Pennsylvania (current through 2025 session)",
+     "u": "https://nationalaglawcenter.org/wp-content/uploads/assets/aglandownership/Pennsylvania.pdf",
+     "p": false
+    }
+   ],
+   "q": "An alien, who is not a resident of a state or territory of the United States or of the District of Columbia, and a foreign government shall not acquire an interest in agricultural land",
+   "x": "Older general farmland statute; enactment year not confirmed. Pennsylvania site could not be queried, so 2025-26 bills are unverified."
+  },
+  "RI": {
+   "s": "none",
+   "t": "No restriction found; Wirescreen lists Rhode Island among five states with no such proposal or law",
+   "law": "",
+   "y": null,
+   "src": [
+    {
+     "n": "NALC compilation: Rhode Island (current through 2025 session)",
+     "u": "https://nationalaglawcenter.org/wp-content/uploads/assets/aglandownership/Rhode-Island.pdf",
+     "p": false
+    },
+    {
+     "n": "Wirescreen: foreign adversary restrictions in state property laws (10/2025)",
+     "u": "https://wirescreen.ai/insights/national-security-property-law",
+     "p": false
+    }
+   ],
+   "q": "",
+   "x": "34 R.I. Gen. Laws s.34-2-1 is a permission clause."
+  },
+  "SC": {
+   "s": "partial",
+   "t": "Dormant 500,000-acre cap on aliens' holdings; S.1065 (2026) to bar aliens and adversary-linked owners sits in committee",
+   "law": "S.C. Code §§ 27-13-30, 27-13-40; S.C. Const. art. III § 35",
+   "y": null,
+   "src": [
+    {
+     "n": "S.C. Code 27-13 (scstatehouse.gov)",
+     "u": "https://www.scstatehouse.gov/code/t27c013.php",
+     "p": true
+    },
+    {
+     "n": "S.C. Legislature: S.1065 (2025-26) bill page",
+     "u": "https://www.scstatehouse.gov/sess126_2025-2026/bills/1065.htm",
+     "p": true
+    }
+   ],
+   "q": "shall own or control within the limits of this State more than five hundred thousand acres of land",
+   "x": "S.1065 introduced 3/26/2026, referred to Senate Education, no later action; Committee of 100 says it did not pass. Scored partial (existing cap), not pending."
+  },
+  "SD": {
+   "s": "partial",
+   "t": "Entities and persons from 6 adversary countries barred from farmland; broader SB 60 (2026) passed legislature",
+   "law": "SDCL ch. 43-2A; 2026 SB 40 and SB 60",
+   "y": 2024,
+   "src": [
+    {
+     "n": "NALC compilation: South Dakota (current through 2025 session)",
+     "u": "https://nationalaglawcenter.org/wp-content/uploads/assets/aglandownership/South-Dakota.pdf",
+     "p": false
+    },
+    {
+     "n": "South Dakota SB 60 (2026), enrolled",
+     "u": "https://mylrc.sdlegislature.gov/api/Documents/305645.pdf",
+     "p": true
+    },
+    {
+     "n": "Leonine Public Affairs: Foreign ownership rules expand across the states (9/8/2026)",
+     "u": "https://leoninepublicaffairs.com/foreign-ownership-rules-expand-across-the-states/",
+     "p": false
+    }
+   ],
+   "q": "A prohibited entity may not own agricultural land in this state",
+   "x": "Countries: China, Cuba, Iran, N. Korea, Russia, Venezuela. SB 60 as enrolled bars them from all real property while a base exists; lawful-status individuals exempt. No signature seen; Leonine lists SD as enacted."
+  },
+  "TN": {
+   "s": "enacted",
+   "t": "Citizens/residents of ITAR-proscribed countries (e.g., China) and controlled firms barred from farm and non-farm land",
+   "law": "Tenn. Code §§ 66-2-301 to -309; Pub. Ch. 733 (2026 SB 2424)",
+   "y": 2026,
+   "lit": "Committee of 100 (8/2026) counts 1 lawsuit against Tennessee's foreign-property law; case not identified or verified here.",
+   "src": [
+    {
+     "n": "Tennessee SB 2424 (2026) bill text",
+     "u": "https://www.capitol.tn.gov/Bills/114/Bill/SB2424.pdf",
+     "p": true
+    },
+    {
+     "n": "Tennessee General Assembly: SB 2424 bill page (Pub. Ch. 733)",
+     "u": "https://wapp.capitol.tn.gov/apps/BillInfo/Default.aspx?BillNumber=SB2424&ga=114",
+     "p": true
+    },
+    {
+     "n": "NALC compilation: Tennessee (current through 2025 session)",
+     "u": "https://nationalaglawcenter.org/wp-content/uploads/assets/aglandownership/Tennessee.pdf",
+     "p": false
+    }
+   ],
+   "q": "shall not acquire by grant, purchase, devise, descent, or otherwise an interest in non-agricultural land in this state",
+   "x": "Signed 5/4/2026, eff. 7/1/2026; extends the 2023 farmland ban and business-only non-farm ban to individuals. Resident aliens excluded. Committee of 100 summarizes it as government-only; bill text is broader."
+  },
+  "TX": {
+   "s": "enacted",
+   "t": "Bars governments, entities and domiciliaries of China, Iran, N. Korea, Russia from buying any Texas real property",
+   "law": "Tex. Prop. Code ch. 5, subch. H, §§ 5.251-5.259 (SB 17, 2025)",
+   "y": 2025,
+   "lit": "Wang v. Paxton: 5th Cir. affirmed dismissal (standing) 12/11/25. Huang v. Paxton (5th Cir. 25-51034) and HXXB v. Paxton (W.D. Tex. 1:25-cv-1981) pending.",
+   "src": [
+    {
+     "n": "Texas SB 17 (89R), enrolled text",
+     "u": "https://capitol.texas.gov/tlodocs/89R/billtext/html/SB00017F.htm",
+     "p": true
+    },
+    {
+     "n": "5th Cir. opinion, Wang v. Paxton, No. 25-20354 (12/11/2025)",
+     "u": "https://www.ca5.uscourts.gov/Opinions/pub/25/25-20354-CV0.pdf",
+     "p": true
+    },
+    {
+     "n": "CourtListener RECAP: Huang v. Paxton and other SB 17 dockets",
+     "u": "https://www.courtlistener.com/?q=Huang+v.+Paxton+SB+17&type=r&order_by=dateFiled+desc",
+     "p": false
+    },
+    {
+     "n": "NALC: Federal court dismisses challenge to Texas SB 17",
+     "u": "https://nationalaglawcenter.org/federal-court-dismisses-challenge-to-texas-newly-enacted-foreign-ownership-law/",
+     "p": false
+    }
+   ],
+   "q": "may not purchase or otherwise acquire an interest in real property in this state",
+   "x": "Signed 6/20/2025, eff. 9/1/2025. Governor may add countries. Exempts US citizens, LPRs; some lawfully present residents may buy a homestead. AG enforces. Huang PI denied 12/9/2025; HXXB claims dismissed 7/23/2026."
+  },
+  "UT": {
+   "s": "partial",
+   "t": "All land, but only 'restricted foreign entities' (adversary-government-owned or controlled, 1260H firms) are barred",
+   "law": "Utah Code §§ 63L-13-101 to -204 (2023; HB 516 2024, HB 430 2025, HB 291 2026)",
+   "y": 2023,
+   "src": [
+    {
+     "n": "NALC compilation: Utah (current through 2025 session)",
+     "u": "https://nationalaglawcenter.org/wp-content/uploads/assets/aglandownership/Utah.pdf",
+     "p": false
+    },
+    {
+     "n": "Utah HB 291 (2026), enrolled",
+     "u": "https://le.utah.gov/Session/2026/bills/enrolled/HB0291.pdf",
+     "p": true
+    },
+    {
+     "n": "Utah HB 430 (2025), enrolled",
+     "u": "https://le.utah.gov/Session/2025/bills/enrolled/HB0430.pdf",
+     "p": true
+    }
+   ],
+   "q": "a restricted foreign entity may not acquire an interest in land in this state",
+   "x": "Restricted entity: owned/controlled by governments of China, Iran, N. Korea, Russia, or DoD 1260H firms. Individuals not covered. HB 430 (eff. 5/7/2025) adds a crime for buying on their behalf. No suit found."
+  },
+  "VT": {
+   "s": "none",
+   "t": "No restriction found; Wirescreen lists Vermont among five states with no such proposal or law",
+   "law": "",
+   "y": null,
+   "src": [
+    {
+     "n": "NALC compilation: Vermont (current through 2025 session)",
+     "u": "https://nationalaglawcenter.org/wp-content/uploads/assets/aglandownership/Vermont.pdf",
+     "p": false
+    },
+    {
+     "n": "Wirescreen: foreign adversary restrictions in state property laws (10/2025)",
+     "u": "https://wirescreen.ai/insights/national-security-property-law",
+     "p": false
+    }
+   ],
+   "q": "",
+   "x": "Vt. Const. ch. II s.66 is a permission clause."
+  },
+  "VA": {
+   "s": "partial",
+   "t": "Foreign adversaries barred from acquiring agricultural land; violating acquisitions void",
+   "law": "Va. Code §§ 55.1-507, 55.1-508 (2023 cc. 765, 796)",
+   "y": 2023,
+   "src": [
+    {
+     "n": "Va. Code 55.1-508 (law.lis.virginia.gov)",
+     "u": "https://law.lis.virginia.gov/vacode/title55.1/chapter5.1/section55.1-508/",
+     "p": true
+    },
+    {
+     "n": "Va. Code 55.1-507 definitions",
+     "u": "https://law.lis.virginia.gov/vacode/title55.1/chapter5/section55.1-507/",
+     "p": true
+    }
+   ],
+   "q": "no foreign adversary shall acquire any interest in agricultural land in the Commonwealth",
+   "x": "'Foreign adversary' per 15 CFR 7.4; applies on/after 7/1/2023; interest vests in the Commonwealth. 2026 session changes not checked. No suit found."
+  },
+  "WA": {
+   "s": "none",
+   "t": "No restriction found; statute lets any alien acquire and hold land",
+   "law": "",
+   "y": null,
+   "src": [
+    {
+     "n": "NALC compilation: Washington (current through 2025 session)",
+     "u": "https://nationalaglawcenter.org/wp-content/uploads/assets/aglandownership/Washington.pdf",
+     "p": false
+    },
+    {
+     "n": "Wirescreen: foreign adversary restrictions in state property laws (10/2025)",
+     "u": "https://wirescreen.ai/insights/national-security-property-law",
+     "p": false
+    }
+   ],
+   "q": "",
+   "x": "RCW 64.16.005. 2025-26 bills were not individually checked."
+  },
+  "WV": {
+   "s": "enacted",
+   "t": "Businesses controlled by PRC citizens/government (or parties named by state officials) barred from all real estate",
+   "law": "W. Va. Code §§ 37-3A-1 to -5 (2025 HB 2961)",
+   "y": 2025,
+   "src": [
+    {
+     "n": "W. Va. Code 37-3A-3 (code.wvlegislature.gov)",
+     "u": "https://code.wvlegislature.gov/37-3A-3/",
+     "p": true
+    },
+    {
+     "n": "W. Va. Code 37-3A-2 (definitions)",
+     "u": "https://code.wvlegislature.gov/37-3A-2/",
+     "p": true
+    },
+    {
+     "n": "NALC: 2025 Legislative Recap",
+     "u": "https://nationalaglawcenter.org/2025-legislative-recap-continued-expansion-of-state-level-foreign-ownership-restrictions/",
+     "p": false
+    }
+   ],
+   "q": "A prohibited foreign-party-controlled business may not acquire or own, directly or indirectly, any interest in any real estate in this state, including mineral rights.",
+   "x": "Prohibited foreign party: PRC citizens/residents (not US citizens/residents), PRC government, entities they control, or parties named by state officials; Taiwan excluded. Eff. 7/1/2025; existing holdings divest."
+  },
+  "WI": {
+   "s": "partial",
+   "t": "Nonresident aliens and foreign corporations (or 20%+ foreign-owned entities) limited to 640 acres of land",
+   "law": "Wis. Stat. § 710.02",
+   "y": null,
+   "src": [
+    {
+     "n": "NALC compilation: Wisconsin (current through 2025 session)",
+     "u": "https://nationalaglawcenter.org/wp-content/uploads/assets/aglandownership/Wisconsin.pdf",
+     "p": false
+    }
+   ],
+   "q": "may not acquire, own or hold any interest, directly or indirectly, except an interest used to secure repayment of a debt incurred in good faith, in more than 640 acres of land in this state",
+   "x": "Older general alien-ownership cap, not country-specific; statute text per NALC (official page unreachable). Enactment year not confirmed."
+  },
+  "WY": {
+   "s": "partial",
+   "t": "Reporting and investigation of conveyances in critical infrastructure zones involving designated countries or persons",
+   "law": "Wyo. Stat. §§ 19-13-501, 19-13-502",
+   "y": null,
+   "src": [
+    {
+     "n": "NALC compilation: Wyoming (current through 2025 session)",
+     "u": "https://nationalaglawcenter.org/wp-content/uploads/assets/aglandownership/Wyoming.pdf",
+     "p": false
+    }
+   ],
+   "q": "shall, upon reasonable suspicion, investigate the conveyance to determine if the conveyance involves a designated country or person",
+   "x": "Report/investigate only; no purchase ban found in the text NALC reproduces. Enactment year not confirmed."
+  }
+ },
+ "notes": [
+  "Scoring rule used: 'enacted' = broad real-property coverage that reaches individuals or private persons by nationality/domicile, or non-citizens generally (FL, IN, NE, OK, TN, TX, WV). Laws limited to farmland, to military/critical-infrastructure proximity (AL, GA, KS, MT, NC, AR), or to governments/state-controlled entities (AZ, LA, ND, UT, SD) were scored 'partial' under the brief's lower-status rule; a reviewer who reads 'critical-infrastructure-adjacent' as 'enacted' can re-map those.",
+  "Source conflicts: Committee of 100 reads AZ SB 1683 and TN SB 2424 as government-only, but the AZ chaptered text adds 'foreign person' (31 CFR 802.221) to 'agent' and TN's bill text covers citizens/residents of ITAR countries. C100 and NALC list different country sets for Indiana SEA 256. NALC's July 2026 slides describe AZ SB 1082's threshold as '30% of real property'; the statute sets an interest threshold (30%, cut to 15% by SB 1683).",
+  "Web search was unavailable after mid-session, and the NH, MI, PA, OH, NJ and CA legislature sites could not be queried. 'Pending' was verified only for NY (A09031); MA H.141 and SC S.1065 were checked and are effectively dead. Other 'none' cells mean no enacted law found, with live 2025-26 bills unverified. Committee of 100 reported 7 states with 23 bills pending on 8/13/2026 without naming them.",
+  "Unconfirmed enactments: SD SB 60 (2026; enrolled text has no signature date; Leonine lists SD as enacted), OK HB 3431/SB 893 (enrolled copies lack signatures; NALC/C100 say enacted), MS SB 2341, LA SB 466/HB 192, IA/NE 2026 measures, and the NH measure (cell is 'unclear'; Leonine names NH without a bill number).",
+  "Court status: Wang v. Paxton (5th Cir. 25-20354) affirmed dismissal for lack of standing on 12/11/2025 (court opinion; RECAP shows terminated that day). Shen v. Simpson: 11th Cir. opinion 11/4/2025; RECAP shows the district case terminated 12/31/2025 and ACLU-FL says voluntarily dismissed. Jones Eagle (8th Cir. 25-1047, argued 1/14/2026) and Huang (5th Cir. 25-51034, briefs filed) rest on RECAP docket text and may lag. Secondary summaries disagree on these cases.",
+  "NALC compilations are dated by legislative session (CO through 2021; CA, CT, DE, HI through 2024; most others through 2025) and mostly cover farmland; non-farm laws (e.g., KS SB 9, NC HB 133) were found through other sources, so other non-farm military-proximity laws could be missing.",
+  "Hawaii, Oregon, Maryland, New Jersey and Maine were scored 'none' as judgment calls: each has only a public-land, conditional-permission or non-foreign-specific reporting rule. Alaska and DC are outside NALC's compilation and were not searched in their own codes.",
+  "Texas AG rulemaking (proposed Chapter 67 rules, 3/27/2026) was seen only in a secondary tracker and not verified. Statute text for IN, ND (via NALC), OK, WI, PA, IL, KY, MS, MT, GA, AL, AR, ID is from NALC compilations or trackers unless a primary source is listed in the cell."
+ ]
+}

@@ -1,0 +1,281 @@
+{
+"AL": {
+"ok": true,
+"u": "https://www.committee100.org/wp-content/uploads/2024/04/C100.23_AAPIEd_K-12_Report_V3.pdf",
+"tried": 1
+},
+"AK": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"AZ": {
+"ok": true,
+"u": "https://www.committee100.org/wp-content/uploads/2024/04/C100.23_AAPIEd_K-12_Report_V3.pdf",
+"tried": 2
+},
+"AR": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"CA": {
+"ok": true,
+"u": "https://www.leginfo.ca.gov/pub/11-12/bill/sen/sb_0001-0050/sb_48_bill_20110714_chaptered.pdf",
+"tried": 1
+},
+"CO": {
+"ok": true,
+"u": "https://leg.colorado.gov/sites/default/files/2019a_1192_signed.pdf",
+"tried": 1
+},
+"CT": {
+"ok": true,
+"u": "https://portal.ct.gov/sde/publications/teaching-asian-american-and-pacific-islander-studies/introduction",
+"tried": 1
+},
+"DE": {
+"ok": true,
+"u": "https://legis.delaware.gov/SessionLaws/Chapter?id=42062",
+"tried": 1
+},
+"DC": {
+"ok": true,
+"u": "https://www.committee100.org/wp-content/uploads/2024/04/C100.23_AAPIEd_K-12_Report_V3.pdf",
+"tried": 1
+},
+"FL": {
+"ok": true,
+"u": "https://www.flsenate.gov/Laws/Statutes/2025/1003.42",
+"tried": 1
+},
+"GA": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"HI": {
+"ok": true,
+"u": "https://lrb.hawaii.gov/const/",
+"tried": 1
+},
+"ID": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"IL": {
+"ok": true,
+"u": "https://www.isbe.net/Documents/TEAACH-Act-Fact-Sheet.pdf",
+"tried": 2
+},
+"IN": {
+"ok": true,
+"u": "https://www.committee100.org/wp-content/uploads/2024/04/C100.23_AAPIEd_K-12_Report_V3.pdf",
+"tried": 1
+},
+"IA": {
+"ok": true,
+"u": "https://www.committee100.org/our-work/k-12-asian-american-and-pacific-islander-and-ethnic-studies-in-the-united-states/",
+"tried": 1
+},
+"KS": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"KY": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"LA": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"ME": {
+"ok": true,
+"u": "https://legislature.maine.gov/legis/bills/getPDF.asp?paper=HP0616&item=3&snum=132",
+"tried": 2
+},
+"MD": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"MA": {
+"ok": true,
+"u": "https://malegislature.gov/Bills/194/H604",
+"tried": 1
+},
+"MI": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"MN": {
+"ok": true,
+"u": "https://www.committee100.org/wp-content/uploads/2024/04/C100.23_AAPIEd_K-12_Report_V3.pdf",
+"tried": 1
+},
+"MS": {
+"ok": true,
+"u": "https://www.committee100.org/wp-content/uploads/2024/04/C100.23_AAPIEd_K-12_Report_V3.pdf",
+"tried": 1
+},
+"MO": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"MT": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"NE": {
+"ok": true,
+"u": "https://nebraskalegislature.gov/laws/statutes.php?statute=79-719",
+"tried": 1
+},
+"NV": {
+"ok": true,
+"u": "https://www.leg.state.nv.us/nrs/nrs-389.html",
+"tried": 1
+},
+"NH": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"NJ": {
+"ok": true,
+"u": "https://repo.njstatelib.org//bitstreams/45b07dd3-9000-46bc-ac05-891896c92514/download",
+"tried": 1
+},
+"NM": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"NY": {
+"ok": true,
+"u": "https://www.governor.ny.gov/news/governor-hochul-signs-legislation-assess-asian-american-native-hawaiian-and-pacific-islander",
+"tried": 2
+},
+"NC": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"ND": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"OH": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"OK": {
+"ok": true,
+"u": "https://www.committee100.org/our-work/k-12-asian-american-and-pacific-islander-and-ethnic-studies-in-the-united-states/",
+"tried": 1
+},
+"OR": {
+"ok": true,
+"u": "https://olis.oregonlegislature.gov/liz/2017R1/Downloads/MeasureDocument/HB2845/Enrolled",
+"tried": 1
+},
+"PA": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"RI": {
+"ok": true,
+"u": "https://webserver.rilegislature.gov/Statutes/TITLE16/16-22/16-22-36.htm",
+"tried": 1
+},
+"SC": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"SD": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"TN": {
+"ok": true,
+"u": "https://www.committee100.org/wp-content/uploads/2024/04/C100.23_AAPIEd_K-12_Report_V3.pdf",
+"tried": 1
+},
+"TX": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"UT": {
+"ok": true,
+"u": "https://le.utah.gov/~2022/bills/sbillenr/SB0244.pdf",
+"tried": 1
+},
+"VT": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"VA": {
+"ok": true,
+"u": "https://www.committee100.org/wp-content/uploads/2024/04/C100.23_AAPIEd_K-12_Report_V3.pdf",
+"tried": 1
+},
+"WA": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"WV": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"WI": {
+"ok": false,
+"u": null,
+"tried": 3
+},
+"WY": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+}
+}

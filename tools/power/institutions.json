@@ -1,0 +1,691 @@
+{
+  "asOf": "2026-11-02",
+  "notes": [
+    "All records built from pages fetched on 2026-11-02. The shared WebSearch budget ran out mid-task, so bodies not found before that point (see next notes) were left out rather than guessed.",
+    "Federal: EO 14031 (the order that re-established the White House Initiative on AANHPI and the President's Advisory Commission) is listed among the orders rescinded by EO 14148 (Federal Register 2025-01-28). whitehouse.gov/aanhpi returned HTTP 404 on 2026-11-02. No successor body was found in the sources fetched; no 2026 reinstatement was found.",
+    "Not confirmed (no fetched source, so omitted): state AAPI commissions in Texas, Colorado, Georgia and Nevada; AAPI bodies of the cities of Los Angeles, New York, Seattle, San Francisco and Honolulu; a Washington State legislative AAPI caucus; AAPI-specific offices at HHS, Education, Labor and USDA. Only Interior's Office of Native Hawaiian Relations was confirmed at federal agency level.",
+    "Status wording: 'active' means a fetched page dated or live in 2025-2026 shows the body operating. 'unclear' means the body exists in fetched sources but the latest evidence is older or undated (dates given in x). Several legislative caucuses are 'unclear' for that reason, not because they are known to have ended.",
+    "Pages that blocked automated fetching (HTTP 403 or bot check): dos.ny.gov, mass.gov, mn.gov/capm, oha.org (OHA facts came from a separate fetch of the OHA about page), capitol.hawaii.gov, ilga.gov (TLS error). Their URLs are listed as official URLs but were not opened directly.",
+    "NCAPA: the member page's meta description says 41 members but the page body lists 45 (45 recorded). The page shows no organization website links (only a LEAD Filipino link and a malformed aapidata.com link), so each URL was checked by fetching the organization's own site and matching its name. Nine members have u '' and unverified true because their sites could not be fetched or matched.",
+    "Excluded on purpose: appealforcommunities.org and njamf.com. Both domains returned unrelated commercial content (gambling and jewelry text) when fetched, so they are not listed as APPEAL's or NJAMF's websites. Verify the current domains by hand.",
+    "Advancing Justice: AAJC's affiliation page (fetched) says the affiliation has four members: AAJC (Washington, DC), Atlanta, Chicago and Southern California. Asian Law Caucus is not listed there, and advancingjustice-alc.org now redirects to asianlawcaucus.org. ALC is therefore not recorded as a current member.",
+    "Stop AAPI Hate: its Who We Are page names three founders (AAPI Equity Alliance, Chinese for Affirmative Action, the Asian American Studies Department at San Francisco State University), founded March 19, 2020. The brief's 'Asian Pacific Policy and Planning Council' does not appear on that page. The SF State department's website could not be fetched, so its URL is blank.",
+    "Asian American Federation: its member page shows 35 member agencies and 22 partner agencies only as logo links, with no names in the page text. Member names were taken from each organization's own site title. Six members whose sites could not be fetched carry unverified true. Partner agencies are not recorded here.",
+    "Maryland's Governor's Commission on South-Asian American Affairs (EO 01.01.2025.04) is included because the Maryland Manual lists it beside the Asian-Pacific American commission. The Maryland Manual text for the APA commission was cut off in the fetched copy before the 2025 changes; check it against the current manual.",
+    "Territories: Guam, CNMI and American Samoa entries are existence-only (status unclear). Each is a government office for indigenous or Pacific Islander affairs, not a general AAPI commission."
+  ],
+  "bodies": [
+    {
+      "id": "whiaanhpi",
+      "n": "White House Initiative on Asian Americans, Native Hawaiians, and Pacific Islanders",
+      "lvl": "federal",
+      "st": "",
+      "est": 1999,
+      "by": "EO 14031 (May 28, 2021) re-established it; EO 14148 (published 2025-01-28) rescinded EO 14031",
+      "appt": "Created by presidential executive order; was housed at HHS under EO 14031",
+      "status": "ended",
+      "u": "https://www.whitehouse.gov/presidential-actions/2025/01/initial-rescissions-of-harmful-executive-orders-and-actions/",
+      "x": "EO 14148 lists EO 14031 as rescinded. whitehouse.gov/aanhpi returned 404 on 2026-11-02. First created by EO 13125 (1999) per Wikipedia. No successor found.",
+      "src": [
+        {"n": "Initial Rescissions of Harmful Executive Orders and Actions (EO 14148), whitehouse.gov", "u": "https://www.whitehouse.gov/presidential-actions/2025/01/initial-rescissions-of-harmful-executive-orders-and-actions/"},
+        {"n": "EO 14148, Federal Register 2025-01901 (govinfo)", "u": "https://www.govinfo.gov/content/pkg/FR-2025-01-28/html/2025-01901.htm"},
+        {"n": "CAPAC Chair statement on dissolving the White House Initiative (Jan 21, 2025)", "u": "https://capac.house.gov/press-release/capac-chair-statement-president-trumps-executive-order-dissolve-white-house"},
+        {"n": "White House AANHPI Commission Shuttered By Executive Order (American Community Media, Jan 29, 2025)", "u": "https://americancommunitymedia.org/race-relations/white-house-aanhpi-commission-shuttered-by-executive-order/"},
+        {"n": "whitehouse.gov/aanhpi (HTTP 404 when fetched 2026-11-02)", "u": "https://www.whitehouse.gov/aanhpi/"},
+        {"n": "White House Initiative on AANHPI (Wikipedia, secondary)", "u": "https://en.wikipedia.org/wiki/White_House_Initiative_on_Asian_Americans,_Native_Hawaiians,_and_Pacific_Islanders"}
+      ]
+    },
+    {
+      "id": "pacaanhpi",
+      "n": "President's Advisory Commission on Asian Americans, Native Hawaiians, and Pacific Islanders",
+      "lvl": "federal",
+      "st": "",
+      "est": null,
+      "by": "EO 14031 (May 28, 2021); rescinded by EO 14148 (published 2025-01-28)",
+      "appt": "Appointed by the President; was within HHS under EO 14031",
+      "status": "ended",
+      "u": "https://www.govinfo.gov/content/pkg/FR-2025-01-28/html/2025-01901.htm",
+      "x": "Ended with EO 14031. Final reports were issued before closing (Jan 2025) per Wikipedia. No successor commission found in fetched sources.",
+      "src": [
+        {"n": "EO 14148, Federal Register 2025-01901 (govinfo)", "u": "https://www.govinfo.gov/content/pkg/FR-2025-01-28/html/2025-01901.htm"},
+        {"n": "White House AANHPI Commission Shuttered By Executive Order (American Community Media)", "u": "https://americancommunitymedia.org/race-relations/white-house-aanhpi-commission-shuttered-by-executive-order/"},
+        {"n": "White House Initiative on AANHPI (Wikipedia, secondary)", "u": "https://en.wikipedia.org/wiki/White_House_Initiative_on_Asian_Americans,_Native_Hawaiians,_and_Pacific_Islanders"}
+      ]
+    },
+    {
+      "id": "doi-onhr",
+      "n": "Office of Native Hawaiian Relations (U.S. Department of the Interior)",
+      "lvl": "federal",
+      "st": "",
+      "est": 1995,
+      "by": "Established by Congress within Interior in 1995 and 2004, per Interior's ONHR page",
+      "appt": "Interior office; the Assistant Secretary for Policy, Management and Budget administers the federal Hawaiian Home Lands Trust duties",
+      "status": "active",
+      "u": "https://www.doi.gov/node/58076",
+      "x": "Page was live on 2026-11-02 and describes consultation with the Native Hawaiian community and Hawaiian Home Lands oversight. Statute citation not given on the page text fetched.",
+      "src": [
+        {"n": "About the Office of Native Hawaiian Relations, doi.gov", "u": "https://www.doi.gov/node/58076"}
+      ]
+    },
+    {
+      "id": "ca-capiaa",
+      "n": "California Commission on Asian and Pacific Islander American Affairs (CAPIAA)",
+      "lvl": "state",
+      "st": "CA",
+      "est": null,
+      "by": "Cal. Gov. Code section 8256 (commission established in state government)",
+      "appt": "13 members: 5 by the Governor, 4 by the Senate Rules Committee, 4 by the Assembly Speaker",
+      "status": "active",
+      "u": "https://capiaa.ca.gov/",
+      "x": "Advises the Governor and Legislature. Statute text says initial terms began Jan 1, 2004; original creation year not stated in fetched text. Site live 2026-11-02.",
+      "src": [
+        {"n": "California Commission on APIA Affairs (official site)", "u": "https://capiaa.ca.gov/"},
+        {"n": "California Government Code section 8256", "u": "https://california.public.law/codes/government_code_section_8256"}
+      ]
+    },
+    {
+      "id": "wa-capaa",
+      "n": "Washington State Commission on Asian Pacific American Affairs (CAPAA)",
+      "lvl": "state",
+      "st": "WA",
+      "est": 1974,
+      "by": "Chapter 43.117 RCW; RCW 43.117.030 (1974 ex.s. c 140; 1995 c 67)",
+      "appt": "Advisory board of 12 commissioners appointed by the Governor; state agency in the office of the governor",
+      "status": "active",
+      "u": "https://capaa.wa.gov/",
+      "x": "RCW 43.117.030 says the existing Asian American advisory council became the commission. Site shows a 2023-2026 strategic plan.",
+      "src": [
+        {"n": "About the Commission, capaa.wa.gov", "u": "https://capaa.wa.gov/about/"},
+        {"n": "RCW 43.117.030 Commission established", "u": "https://app.leg.wa.gov/RCW/default.aspx?cite=43.117.030"}
+      ]
+    },
+    {
+      "id": "ma-aapic",
+      "n": "Massachusetts Asian American & Pacific Islanders Commission (AAPIC)",
+      "lvl": "state",
+      "st": "MA",
+      "est": null,
+      "by": "Described as a permanent state body; authorizing statute not stated in fetched sources",
+      "appt": "21 commissioners appointed by the Governor, Senate President, Treasurer, Secretary of State, House Speaker, Attorney General and Auditor",
+      "status": "active",
+      "u": "https://aapicommission.org/",
+      "x": "2025-2026 annual report (June 2026) lists new commissioners sworn in 2025 under the State Treasurer. Mass.gov page names it affiliated with the Office of the State Treasurer.",
+      "src": [
+        {"n": "AAPIC Annual Report 2025-2026", "u": "https://aapicommission.org/wp-content/uploads/2026/06/AAPIC_Annual_Report_2025_2026.pdf"},
+        {"n": "Asian American & Pacific Islanders Commission (AAPIC), Mass.gov", "u": "https://www.mass.gov/orgs/asian-american-commission"}
+      ]
+    },
+    {
+      "id": "md-gcapaa",
+      "n": "Governor's Commission on Asian Pacific American Affairs (Maryland)",
+      "lvl": "state",
+      "st": "MD",
+      "est": 1992,
+      "by": "Executive Order 01.01.1992.14 (June 1992); renamed by EO 01.01.1999.21",
+      "appt": "Created by the Governor; sits in the Governor's Office of Community Initiatives",
+      "status": "active",
+      "u": "https://governor.maryland.gov/community-initiatives/ethnic-commissions/asian-pacific-american-affairs",
+      "x": "Started as the Governor's Advisory Committee on Asian-Pacific American Affairs. Moved to the Office of Community Initiatives in 2007 (EO 01.01.2007.18). Governor's page current for 2026.",
+      "src": [
+        {"n": "Maryland Manual: Governor's Office of Community Initiatives", "u": "https://msa.maryland.gov/msa/mdmanual/08conoff/coord/community/html/08commf.html"},
+        {"n": "Governor's Commission on Asian Pacific American Affairs, governor.maryland.gov", "u": "https://governor.maryland.gov/community-initiatives/ethnic-commissions/asian-pacific-american-affairs"}
+      ]
+    },
+    {
+      "id": "md-gcsaaa",
+      "n": "Governor's Commission on South-Asian American Affairs (Maryland)",
+      "lvl": "state",
+      "st": "MD",
+      "est": 2025,
+      "by": "Executive Order 01.01.2025.04",
+      "appt": "Created by the Governor; sits in the Governor's Office of Community Initiatives",
+      "status": "unclear",
+      "u": "https://msa.maryland.gov/msa/mdmanual/08conoff/coord/community/html/08commf.html",
+      "x": "Listed only in the Maryland Manual among the Governor's five ethnic commissions; no separate commission page was fetched, so operating status is unconfirmed.",
+      "src": [
+        {"n": "Maryland Manual: Governor's Office of Community Initiatives", "u": "https://msa.maryland.gov/msa/mdmanual/08conoff/coord/community/html/08commf.html"}
+      ]
+    },
+    {
+      "id": "ny-aapi-commission",
+      "n": "New York State Asian American and Pacific Islander Commission",
+      "lvl": "state",
+      "st": "NY",
+      "est": 2023,
+      "by": "Bill A3301/S1051, signed by Gov. Hochul in November 2023",
+      "appt": "Appointed by the Governor; housed in the NYS Department of State per press report",
+      "status": "active",
+      "u": "https://dos.ny.gov/aapi-commission",
+      "x": "Six appointments announced May 28, 2024 (Governor's release). Latest fetched source is May 2024; the DOS page returned 403 to automated fetch and was not opened.",
+      "src": [
+        {"n": "Governor Hochul Announces Appointments to the AAPI Commission (May 28, 2024)", "u": "https://www.governor.ny.gov/news/governor-hochul-announces-appointments-asian-american-and-pacific-islander-commission"},
+        {"n": "State to establish AAPI commission, Queens Chronicle (Nov 22, 2023)", "u": "https://www.qchron.com/editions/queenswide/state-to-establish-aapi-commission/article_f4d4c1ad-da26-5066-b3e0-3265b175858e.html"}
+      ]
+    },
+    {
+      "id": "nj-aapic",
+      "n": "New Jersey Asian American Pacific Islander Commission",
+      "lvl": "state",
+      "st": "NJ",
+      "est": 2021,
+      "by": "P.L.2021, c.304 (N.J.S.A. 52:16A-128 et seq.); established November 2021",
+      "appt": "30 public members: Governor appoints 27 plus the chair; Secretary of State appoints 1; 2 on Senate President and Assembly Speaker recommendations",
+      "status": "active",
+      "u": "https://nj.gov/state/njaapic/index.shtml",
+      "x": "Created in the executive branch, within the Department of State. Department of State statutes page shows 'Last updated 07/24/26'.",
+      "src": [
+        {"n": "NJ Department of State: NJ AAPI Commission", "u": "https://nj.gov/state/njaapic/index.shtml"},
+        {"n": "NJ Department of State: Statutes & Rules, NJ AAPI Commission", "u": "https://www.nj.gov/state/dos-statutes-nj-asian-american-pacific-islander-commission.shtml"}
+      ]
+    },
+    {
+      "id": "va-vaab",
+      "n": "Virginia Asian Advisory Board (VAAB)",
+      "lvl": "state",
+      "st": "VA",
+      "est": 2001,
+      "by": "Code of Virginia section 2.2-2448 et seq. (2001, c. 566)",
+      "appt": "Governor appoints the 26 members (citizen and other members per section 2.2-2449)",
+      "status": "active",
+      "u": "https://www.vaab.virginia.gov/",
+      "x": "Advisory board in the executive branch; advises the Governor on economic and cultural links with Asian nations and on issues affecting Asian American communities. Site live 2026-11-02.",
+      "src": [
+        {"n": "Code of Virginia Article 17: Virginia-Asian Advisory Board", "u": "https://law.lis.virginia.gov/vacodefull/title2.2/chapter24/article17/"},
+        {"n": "Virginia Asian Advisory Board (official site)", "u": "https://www.vaab.virginia.gov/new"}
+      ]
+    },
+    {
+      "id": "pa-gaca-aapi",
+      "n": "Pennsylvania Governor's Advisory Commission on AAPI Affairs",
+      "lvl": "state",
+      "st": "PA",
+      "est": null,
+      "by": "Executive Order 2023-11 (Gov. Shapiro), per the Governor's press release",
+      "appt": "Commissioners announced by the Governor's office; 28 for 2025-27",
+      "status": "active",
+      "u": "https://www.pa.gov/governor/newsroom/2025-press-releases/governor-s-advisory-commission-on-aapi-affairs-announces-2025-27",
+      "x": "Release dated Aug 8, 2025 names a Chair and Vice Chair. EO number comes from the release's link; the order text and exact date were not fetched. Appointing authority not stated on the page.",
+      "src": [
+        {"n": "Governor's Advisory Commission on AAPI Affairs Announces 2025-27 Commissioners (pa.gov)", "u": "https://www.pa.gov/governor/newsroom/2025-press-releases/governor-s-advisory-commission-on-aapi-affairs-announces-2025-27"}
+      ]
+    },
+    {
+      "id": "mn-capm",
+      "n": "Council on Asian-Pacific Minnesotans (CAPM)",
+      "lvl": "state",
+      "st": "MN",
+      "est": null,
+      "by": "Minn. Stat. 15.0145; 2015 Minn. Laws ch. 77, art. 2, sec. 3 (Legislative Reference Library record covers 2015 onward)",
+      "appt": "15 voting members: 11 public members appointed by the Governor and 4 legislators",
+      "status": "active",
+      "u": "https://mn.gov/capm/",
+      "x": "Advises the Governor and Legislature. The 15-member structure is the statute's rule for each ethnic council it covers. mn.gov/capm returned a bot-check redirect, so the site was not opened.",
+      "src": [
+        {"n": "Council on Asian-Pacific Minnesotans, Legislative Reference Library", "u": "https://www.lrl.mn.gov/agencies/detail?AgencyID=2222"},
+        {"n": "Minnesota Statutes 15.0145", "u": "https://revisor.mn.gov/statutes/cite/15.0145"}
+      ]
+    },
+    {
+      "id": "mi-mapaac",
+      "n": "Michigan Asian Pacific American Affairs Commission (MAPAAC)",
+      "lvl": "state",
+      "st": "MI",
+      "est": 2005,
+      "by": "Executive Order 2005-10 (Gov. Granholm); made permanent by Public Act 536 of 2008",
+      "appt": "State commission within the Office of Global Michigan; appointment mechanism not stated in fetched text",
+      "status": "active",
+      "u": "https://www.michigan.gov/ogm/commissions/mapaac",
+      "x": "Public Act 536 of 2008 formed the Commission, an Office of Asian Pacific American Affairs and an Interagency Council. EO 2009-21 moved it further (text cut off in fetched page). Page copyright 2026.",
+      "src": [
+        {"n": "History of Commission, MAPAAC (michigan.gov)", "u": "https://www.michigan.gov/ogm/commissions/mapaac/history-of-commission"},
+        {"n": "Michigan Asian Pacific American Affairs Commission (michigan.gov)", "u": "https://www.michigan.gov/ogm/commissions/mapaac"}
+      ]
+    },
+    {
+      "id": "or-ocapia",
+      "n": "Oregon Commission on Asian and Pacific Islander Affairs (OCAPIA)",
+      "lvl": "state",
+      "st": "OR",
+      "est": null,
+      "by": "Oregon Revised Statutes chapter 185 (duties in ORS 185.620)",
+      "appt": "State advocacy commission under the Oregon Advocacy Commissions Office; appointing authority not stated in fetched text",
+      "status": "active",
+      "u": "https://www.oregon.gov/oac/ocapia/Pages/index.aspx",
+      "x": "Official page lists public meetings from Nov 6, 2026 through Nov 5, 2027. Joined Gov. Kotek's heritage-month event in May 2024 per state newsroom.",
+      "src": [
+        {"n": "OCAPIA, Oregon Advocacy Commissions Office", "u": "https://www.oregon.gov/oac/ocapia/Pages/index.aspx"},
+        {"n": "ORS 185.620 (duties of the Commission on Asian and Pacific Islander Affairs)", "u": "https://oregon.public.law/statutes/ors_185.620"},
+        {"n": "OCAPIA celebrates AANHPI Heritage Month with Gov. Kotek (May 4, 2024)", "u": "https://apps.oregon.gov/oregon-newsroom/OR/OAC/Posts/Post/Oregon-Commission-on-Asian-and-Pacific-Islander-Affairs-celebrates-AANHPI-Heritage-Month-with-Governor-Kotek-and-Community-Partners"}
+      ]
+    },
+    {
+      "id": "il-aafc",
+      "n": "Illinois Asian American Family Commission",
+      "lvl": "state",
+      "st": "IL",
+      "est": null,
+      "by": "Legislation sponsored by Rep. Theresa Mah, advanced in the House Human Services Committee in March 2019; enacted citation not fetched",
+      "appt": "15 members; initial appointments by the Governor and legislative leaders, three-year terms",
+      "status": "active",
+      "u": "https://illinoissenatedemocrats.com/caucus-news/46-senator-ram-villivalam-news/4180-three-new-appointees-named-to-asian-american-family-commission",
+      "x": "New members appointed June 2022 and Sept 2023 per fetched releases. No official commission page was fetched (ilga.gov TLS error), so u points to a legislator release.",
+      "src": [
+        {"n": "Mah Advances Plan to Create Asian American Family Commission (Illinois House Democrats, Mar 20, 2019)", "u": "https://ilhousedems.com/2019/03/20/mah-advances-plan-to-create-asian-american-family-commission/"},
+        {"n": "Three new appointees named to Asian American Family Commission (Illinois Senate Democrats, Jun 14, 2022)", "u": "https://illinoissenatedemocrats.com/caucus-news/46-senator-ram-villivalam-news/4180-three-new-appointees-named-to-asian-american-family-commission"},
+        {"n": "Aaron Del Mar appointed to Asian American Family Commission (Daily Herald, Sep 2023)", "u": "https://www.dailyherald.com/submitted/20230925/aaron-del-mar-appointed-to-asian-american-family-commission"}
+      ]
+    },
+    {
+      "id": "hi-oha",
+      "n": "Office of Hawaiian Affairs (OHA)",
+      "lvl": "state",
+      "st": "HI",
+      "est": 1978,
+      "by": "Proposed at the 1978 Hawaii Constitutional Convention and approved by voters in 1978, per OHA; first trustees invested Jan 17, 1981",
+      "appt": "Nine trustees elected statewide to four-year terms; the Board appoints the CEO (Ka Pouhana)",
+      "status": "active",
+      "u": "https://www.oha.org/",
+      "x": "Semi-autonomous state agency serving Native Hawaiians. OHA page does not name the constitutional provision. oha.org returned 403 to curl; facts come from a separate fetch of its About page.",
+      "src": [
+        {"n": "About OHA, oha.org", "u": "https://www.oha.org/about/"}
+      ]
+    },
+    {
+      "id": "hi-dhhl",
+      "n": "Department of Hawaiian Home Lands (DHHL)",
+      "lvl": "state",
+      "st": "HI",
+      "est": 1921,
+      "by": "Hawaiian Homes Commission Act, 1920, signed July 9, 1921",
+      "appt": "Hawaiian Homes Commission: nine members appointed by the Governor with Senate advice and consent",
+      "status": "active",
+      "u": "https://dhhl.hawaii.gov/",
+      "x": "The 1921 date is the federal act; the page does not give the year DHHL became a state department. Page cites Act 279 funding of $600 million.",
+      "src": [
+        {"n": "About, Department of Hawaiian Home Lands", "u": "https://dhhl.hawaii.gov/about/"}
+      ]
+    },
+    {
+      "id": "dc-moapia",
+      "n": "Mayor's Office on Asian and Pacific Islander Affairs (MOAPIA), District of Columbia",
+      "lvl": "city",
+      "st": "DC",
+      "est": 1987,
+      "by": "Created in 1987 per MOAPIA's history; part of the Mayor's Office of Community Affairs",
+      "appt": "Mayor's office; advises the Mayor, Council and District agencies",
+      "status": "active",
+      "u": "https://communityaffairs.dc.gov/moapia",
+      "x": "District of Columbia is a state-equivalent; listed as city/local level. Awards community grants (FY24 recipients listed). Page promotes AANHPI Heritage Month.",
+      "src": [
+        {"n": "Mayor's Office on Asian and Pacific Islander Affairs, communityaffairs.dc.gov", "u": "https://communityaffairs.dc.gov/moapia"}
+      ]
+    },
+    {
+      "id": "clark-county-aapicc",
+      "n": "Clark County Asian-American and Pacific Islanders Community Commission (AAPICC)",
+      "lvl": "city",
+      "st": "NV",
+      "est": 2019,
+      "by": "Re-established by the Clark County Commission in 2019 (county body, Las Vegas Valley)",
+      "appt": "Clark County Commission",
+      "status": "inactive",
+      "u": "https://www.clarkcountynv.gov/government/departments/administrative_services/asian-american-and-pacific-islanders-community-commission",
+      "x": "County page says the County Commission voted to make it permanent, but also states 'The AAPICC term has expired and is inactive.' Latest meeting archive on page is 2020.",
+      "src": [
+        {"n": "AAPICC, Clark County, Nevada", "u": "https://www.clarkcountynv.gov/government/departments/administrative_services/asian-american-and-pacific-islanders-community-commission"}
+      ]
+    },
+    {
+      "id": "denver-daapic",
+      "n": "Denver Asian American Pacific Islander Commission",
+      "lvl": "city",
+      "st": "CO",
+      "est": null,
+      "by": "Not stated on the city page fetched (bylaws linked there)",
+      "appt": "Liaison body to the Agency for Human Rights and Community Partnerships and the Mayor's office; appointing authority not stated",
+      "status": "unclear",
+      "u": "https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Human-Rights-Community-Partnerships/Commissions-Advisory-Board/Asian-American-Pacific-Islander-Commission",
+      "x": "Page lists ten members and monthly meetings but still refers to pandemic-era hybrid meetings, so the page may be out of date.",
+      "src": [
+        {"n": "Asian American Pacific Islander Commission, denvergov.org", "u": "https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Human-Rights-Community-Partnerships/Commissions-Advisory-Board/Asian-American-Pacific-Islander-Commission"}
+      ]
+    },
+    {
+      "id": "gu-dca",
+      "n": "Department of Chamorro Affairs (Guam)",
+      "lvl": "territory",
+      "st": "GU",
+      "est": null,
+      "by": "Government of Guam agency; creating law not stated in fetched pages",
+      "appt": "Government of Guam executive agency",
+      "status": "unclear",
+      "u": "https://dca.guam.gov/",
+      "x": "Listed in the GovGuam web directory. Its own site shows placeholder text and a 2020 footer, so current activity is unconfirmed. Covers Chamorro (indigenous) affairs, not all AAPI affairs.",
+      "src": [
+        {"n": "Welcome to the Department of Chamorro Affairs", "u": "https://dca.guam.gov/"},
+        {"n": "GovGuam Web Directory, Guam Legislature", "u": "https://guamlegislature.gov/govguam-web-directory/"}
+      ]
+    },
+    {
+      "id": "cnmi-iao",
+      "n": "Indigenous Affairs Office (Commonwealth of the Northern Mariana Islands)",
+      "lvl": "territory",
+      "st": "MP",
+      "est": null,
+      "by": "Office within the CNMI Office of the Governor; creating law not stated in fetched pages",
+      "appt": "Governor's office; headed by a Resident Executive per the CNMI directory",
+      "status": "unclear",
+      "u": "https://opd.gov.mp/assets/gov_directory.pdf",
+      "x": "Listed as 'Indigenous Affairs' in the CNMI government directory (undated PDF). Citizen-centric reports for it exist on CNMI sites but could not be opened. Chamorro/indigenous focus.",
+      "src": [
+        {"n": "CNMI Government Directory (opd.gov.mp)", "u": "https://opd.gov.mp/assets/gov_directory.pdf"}
+      ]
+    },
+    {
+      "id": "cnmi-cao",
+      "n": "Carolinian Affairs Office (Commonwealth of the Northern Mariana Islands)",
+      "lvl": "territory",
+      "st": "MP",
+      "est": null,
+      "by": "CNMI government office; creating law not stated in fetched pages",
+      "appt": "CNMI government; staffed by an Executive Assistant per the directory",
+      "status": "unclear",
+      "u": "https://opd.gov.mp/assets/gov_directory.pdf",
+      "x": "Listed in the CNMI government directory (undated PDF). The CNMI DCCA FY2025 report mentions Chamorro and Carolinian heritage programs. Carolinian community focus.",
+      "src": [
+        {"n": "CNMI Government Directory (opd.gov.mp)", "u": "https://opd.gov.mp/assets/gov_directory.pdf"}
+      ]
+    },
+    {
+      "id": "as-osa",
+      "n": "Office of Samoan Affairs (American Samoa Government)",
+      "lvl": "territory",
+      "st": "AS",
+      "est": null,
+      "by": "American Samoa Government office; creating law not stated in the fetched source",
+      "appt": "Headed by the Secretary of Samoan Affairs, who is sworn in with a Deputy",
+      "status": "unclear",
+      "u": "",
+      "x": "Existence rests on an undated Samoa News item showing a swearing-in. No official site was fetched, so u is blank and status and current role are unverified.",
+      "unverified": true,
+      "src": [
+        {"n": "Office of Samoan Affairs, Samoa News", "u": "https://samoanews.com/node/97402"}
+      ]
+    },
+    {
+      "id": "capac",
+      "n": "Congressional Asian Pacific American Caucus (CAPAC)",
+      "lvl": "legislative caucus",
+      "st": "",
+      "est": 1994,
+      "by": "Congressional member caucus founded in 1994 (no statute); bicameral and nonpartisan",
+      "appt": "Members of Congress; chaired by Rep. Grace Meng per the CAPAC site",
+      "status": "active",
+      "u": "https://capac.house.gov/",
+      "x": "Federal, not a state caucus. Includes Members of Congress of Asian, Native Hawaiian and Pacific Islander descent and members committed to the community, per the caucus's own statement.",
+      "src": [
+        {"n": "Purpose, Mission & Goals, CAPAC", "u": "https://capac.house.gov/about-us/purpose-mission-goals"}
+      ]
+    },
+    {
+      "id": "ca-aapilc",
+      "n": "California Asian American & Pacific Islander Legislative Caucus (AAPILC)",
+      "lvl": "legislative caucus",
+      "st": "CA",
+      "est": 2001,
+      "by": "Formed by legislators in January 2001 (Assembly Member George Nakano was inaugural chair)",
+      "appt": "Elected by caucus members; 2027-28 Chair Asm. Stephanie Nguyen, Vice Chair Sen. Christopher Cabaldon",
+      "status": "active",
+      "u": "https://aapilegcaucus.legislature.ca.gov/",
+      "x": "Caucus site announced leadership for the 2027-28 session. Its history page also notes the caucus pushed budget priorities from 2003.",
+      "src": [
+        {"n": "History of the AAPI Caucus", "u": "https://aapilegcaucus.legislature.ca.gov/history-aapi-caucus"},
+        {"n": "Caucus Announces Leadership for the 2027-28 Legislative Session", "u": "https://aapilegcaucus.legislature.ca.gov/products/california-asian-american-pacific-islander-legislative-caucus-announces-leadership-2027-28"}
+      ]
+    },
+    {
+      "id": "md-lapic",
+      "n": "Maryland Legislative Asian-American & Pacific-Islander Caucus, Inc.",
+      "lvl": "legislative caucus",
+      "st": "MD",
+      "est": 2015,
+      "by": "Created January 2015; officially reorganized as a caucus in October 2016 (Maryland Manual)",
+      "appt": "Officers elected by caucus members to one-year terms",
+      "status": "active",
+      "u": "https://2025mdmanual.msa.maryland.gov/msa/mdmanual/07leg/html/caucus/asian.html",
+      "x": "Listed in the 2025 Maryland Manual with current officers. Seeks to engage Maryland's AAPI communities and represent their goals in the General Assembly.",
+      "src": [
+        {"n": "Maryland General Assembly Caucuses: Asian-American & Pacific-Islander Caucus (2025 Maryland Manual)", "u": "https://2025mdmanual.msa.maryland.gov/msa/mdmanual/07leg/html/caucus/asian.html"}
+      ]
+    },
+    {
+      "id": "ny-apa-task-force",
+      "n": "New York State Assembly Asian Pacific American Task Force",
+      "lvl": "legislative caucus",
+      "st": "NY",
+      "est": 2017,
+      "by": "Announced May 2017 with Assembly Speaker Carl Heastie as the Legislature's first AAPI task force",
+      "appt": "Convened by Assembly members with Speaker Carl Heastie joining the 2017 announcement",
+      "status": "active",
+      "u": "",
+      "x": "Spectrum News (May 30, 2025) reports the Task Force's AAPI Summit at the Capitol. No official Assembly page was fetched, so u is blank. Called a task force, not a caucus.",
+      "src": [
+        {"n": "New York Legislators Form Asian Pacific American Task Force (NBC News, May 19, 2017)", "u": "https://www.nbcnews.com/news/asian-america/new-york-legislators-form-asian-pacific-american-task-force-advocate-n762341"},
+        {"n": "Asian Pacific American Task Force celebrates AAPI Summit (Spectrum News, May 30, 2025)", "u": "https://spectrumlocalnews.com/nys/central-ny/politics/2025/05/30/aapi-summit-at-state-capitol-"}
+      ]
+    },
+    {
+      "id": "il-house-aac",
+      "n": "Illinois House Asian American Caucus",
+      "lvl": "legislative caucus",
+      "st": "IL",
+      "est": 2012,
+      "by": "Reported in May 2012 as a new Illinois General Assembly caucus for Asian American issues",
+      "appt": "Caucus members; a whip is appointed (announced Jan 12, 2023)",
+      "status": "unclear",
+      "u": "",
+      "x": "Latest fetched source is Jan 2023 (whip appointment). The 2012 WBEZ report said the new caucus then had no Asian American members. No official caucus page fetched.",
+      "src": [
+        {"n": "Asian-Americans to have state caucus (WBEZ, May 7, 2012)", "u": "https://www.wbez.org/news/2012/05/07/asian-americans-to-have-state-caucus"},
+        {"n": "Gong-Gershowitz Named Whip of House Asian American Caucus (Jan 12, 2023)", "u": "https://www.gonggershowitz.com/?p=12464"}
+      ]
+    },
+    {
+      "id": "nj-aapi-legislative-caucus",
+      "n": "New Jersey Asian American and Pacific Islander Legislative Caucus",
+      "lvl": "legislative caucus",
+      "st": "NJ",
+      "est": 2021,
+      "by": "Formed in 2021; first meeting was a roundtable on April 30, 2021 (Insider NJ)",
+      "appt": "Seven state legislators as of April 2023; Sen. Vin Gopal succeeded Asm. Raj Mukherji as chair",
+      "status": "unclear",
+      "u": "",
+      "x": "Latest fetched source is the New Jersey Globe, April 27, 2023. No official caucus page fetched, so u is blank.",
+      "src": [
+        {"n": "Newly-Formed Asian American Legislative Caucus Will Host Panel (Insider NJ, 2021)", "u": "https://insidernj.com/press-release/newly-formed-asian-american-legislative-caucus-will-host-panel-discuss-aapi-violence-discrimination"},
+        {"n": "Gopal is new chair of AAPI Legislative Caucus (New Jersey Globe, Apr 27, 2023)", "u": "https://newjerseyglobe.com/legislature/gopal-is-new-chair-of-aapi-legislative-caucus/"}
+      ]
+    },
+    {
+      "id": "va-aapi-caucus",
+      "n": "Virginia Asian American and Pacific Islander Caucus",
+      "lvl": "legislative caucus",
+      "st": "VA",
+      "est": 2021,
+      "by": "Formed by state legislators, announced March 26, 2021",
+      "appt": "Founding members of the General Assembly, including Sen. Ghazala Hashmi and Del. Kathy Tran",
+      "status": "unclear",
+      "u": "",
+      "x": "Latest fetched source is VPM, March 2021 (formation). No official caucus page fetched, so u is blank and current status is unconfirmed.",
+      "src": [
+        {"n": "State Lawmakers Launch Asian American, Pacific Islander Caucus (VPM, Mar 26, 2021)", "u": "https://www.vpm.org/news/2021-03-26/state-lawmakers-launch-asian-american-pacific-islander-caucus"}
+      ]
+    },
+    {
+      "id": "ga-aapi-caucus",
+      "n": "Georgia Legislative Asian American Pacific Islander (AAPI) Caucus",
+      "lvl": "legislative caucus",
+      "st": "GA",
+      "est": null,
+      "by": "Bipartisan, bicameral caucus; first press conference held Jan 17, 2023 (Georgia Senate Press Office release posted Jan 19, 2023)",
+      "appt": "Eleven House and Senate members in Jan 2023; chaired then by Rep. Michelle Au",
+      "status": "unclear",
+      "u": "https://senatepress.net/georgia-legislative-aapi-caucus-holds-press-conference-to-announce-leadership-and-legislative-priorities.html",
+      "x": "Latest fetched source is January 2023. Formation date not stated on that page. u is the Senate press release, not a caucus site.",
+      "src": [
+        {"n": "Georgia Legislative AAPI Caucus Holds Press Conference (Georgia Senate Press Office, Jan 19, 2023)", "u": "https://senatepress.net/georgia-legislative-aapi-caucus-holds-press-conference-to-announce-leadership-and-legislative-priorities.html"}
+      ]
+    },
+    {
+      "id": "ma-house-asian-caucus",
+      "n": "Massachusetts House Asian Caucus",
+      "lvl": "legislative caucus",
+      "st": "MA",
+      "est": null,
+      "by": "Legislative caucus of the Massachusetts House; formation date not stated in the fetched source",
+      "appt": "House members; leadership not stated in the fetched text",
+      "status": "unclear",
+      "u": "",
+      "x": "Only source fetched is a Boston Globe item (May 3, 2021) calling on residents to support Asian-owned businesses. No official caucus page fetched.",
+      "unverified": true,
+      "src": [
+        {"n": "House Asian Caucus calls on Massachusetts to support Asian-owned businesses in May (Boston Globe, May 3, 2021)", "u": "https://www.bostonglobe.com/2021/05/03/metro/house-asian-caucus-calls-massachusetts-support-asian-owned-businesses-may"}
+      ]
+    }
+  ],
+  "coalitions": [
+    {
+      "id": "ncapa",
+      "n": "National Council of Asian Pacific Americans (NCAPA)",
+      "u": "https://www.ncapaonline.org/member-organizations/",
+      "about": "NCAPA member page lists 45 member organizations; its meta description says 41. No intro text on the page. Member sites below were verified by fetching each organization's own site.",
+      "members": [
+        {"n": "Asian Americans Advancing Justice | AAJC", "u": "https://www.advancingjustice-aajc.org/"},
+        {"n": "Asian American Psychological Association (AAPA)", "u": "https://aapaonline.org/"},
+        {"n": "Association of Asian Pacific Community Health Organizations (AAPCHO)", "u": "https://aapcho.org/"},
+        {"n": "Asian American Pacific Islander Data (AAPI Data)", "u": "https://aapidata.com/"},
+        {"n": "Asian American Scholars Forum (AASF)", "u": "https://www.aasforum.org/"},
+        {"n": "Asian Pacific Americans in Higher Education (APAHE)", "u": "", "unverified": true},
+        {"n": "Asian Pacific American Labor Alliance (APALA)", "u": "https://www.apalanet.org/"},
+        {"n": "Asian Pacific American Public Affairs (APAPA)", "u": "https://www.apapa.org/"},
+        {"n": "Asian and Pacific Islander Americans in Historic Preservation (APIAHiP)", "u": "https://apiahip.org/"},
+        {"n": "Asian and Pacific Islander American Vote (APIAVote)", "u": "https://www.apiavote.org/"},
+        {"n": "Asian Pacific Institute on Gender-Based Violence (API-GBV)", "u": "https://api-gbv.org/"},
+        {"n": "Asian Pacific Partners for Empowerment, Advocacy & Leadership (APPEAL)", "u": "", "unverified": true},
+        {"n": "Asian Real Estate Association of America (AREAA)", "u": "https://www.areaa.org/"},
+        {"n": "Act To Change", "u": "", "unverified": true},
+        {"n": "Boat People SOS (BPSOS)", "u": "https://www.bpsos.org/"},
+        {"n": "Center for Asian American Media (CAAM)", "u": "https://caamedia.org/"},
+        {"n": "Center for Asian Pacific American Women (CAPAW)", "u": "https://www.capaw.org/"},
+        {"n": "Council of Korean Americans (CKA)", "u": "", "unverified": true},
+        {"n": "Empowering Pacific Islander Communities (EPIC)", "u": "", "unverified": true},
+        {"n": "Filipino Young Leaders Program (FYLPRO)", "u": "https://fylpro.org/"},
+        {"n": "Hawaiian Council", "u": "https://www.hawaiiancouncil.org/"},
+        {"n": "Hindus for Human Rights (HFHR)", "u": "https://www.hindusforhumanrights.org/"},
+        {"n": "Hmong National Development (HND)", "u": "https://hndinc.org/"},
+        {"n": "Japanese American Citizens League (JACL)", "u": "https://jacl.org/"},
+        {"n": "Laotian American National Alliance (LANA)", "u": "", "unverified": true},
+        {"n": "LEAD Filipino", "u": "https://leadfilipino.org/"},
+        {"n": "Leadership Education for Asian Pacifics (LEAP)", "u": "https://www.leap.org/"},
+        {"n": "National Association of Asian American Professionals (NAAAP)", "u": "https://www.naaap.org/"},
+        {"n": "National Asian American Pacific Islander Mental Health Association (NAAPIMHA)", "u": "https://www.naapimha.org/"},
+        {"n": "National Asian Pacific American Families Allied for Substance Awareness & Harm Reduction (NAPAFASA)", "u": "", "unverified": true},
+        {"n": "National Asian Pacific American Women's Forum (NAPAWF)", "u": "https://napawf.org/"},
+        {"n": "National Asian Pacific Center on Aging (NAPCA)", "u": "https://www.napca.org/"},
+        {"n": "National Coalition for Asian Pacific American Community Development (National CAPACD)", "u": "https://www.nationalcapacd.org/"},
+        {"n": "National Federation of Filipino American Associations (NaFFAA)", "u": "https://naffaa.org/"},
+        {"n": "National Korean American Service & Education Consortium (NAKASEC)", "u": "https://nakasec.org/"},
+        {"n": "National Japanese American Memorial Foundation (NJAMF)", "u": "", "unverified": true},
+        {"n": "National Queer Asian Pacific Islander Alliance (NQAPIA)", "u": "https://www.nqapia.org/"},
+        {"n": "OCA-Asian Pacific American Advocates (OCA)", "u": "https://www.ocanational.org/"},
+        {"n": "Papa Ola Lokahi", "u": "https://www.papaolalokahi.org/"},
+        {"n": "South Asian Public Health Association (SAPHA)", "u": "https://sapha.org/"},
+        {"n": "Sikh American Legal Defense and Education Fund (SALDEF)", "u": "https://saldef.org/"},
+        {"n": "Sikh Coalition", "u": "https://www.sikhcoalition.org/"},
+        {"n": "Stop AAPI Hate", "u": "https://stopaapihate.org/"},
+        {"n": "Southeast Asia Resource Action Center (SEARAC)", "u": "https://searac.org/"},
+        {"n": "United Territories of Pacific Islanders Alliance (UTOPIA-WA)", "u": "", "unverified": true}
+      ],
+      "src": [
+        {"n": "Member Organizations, NCAPA", "u": "https://www.ncapaonline.org/member-organizations/"}
+      ]
+    },
+    {
+      "id": "advancing-justice",
+      "n": "Asian Americans Advancing Justice affiliation",
+      "u": "https://www.advancingjustice-aajc.org/asian-americans-advancing-justice-affiliation",
+      "about": "National affiliation of four organizations working as equal, independent partners under one name, per AAJC. Asian Law Caucus is not listed as a current member there.",
+      "members": [
+        {"n": "Asian Americans Advancing Justice | AAJC (Washington, DC)", "u": "https://www.advancingjustice-aajc.org/"},
+        {"n": "Asian Americans Advancing Justice - Atlanta", "u": "https://www.advancingjustice-atlanta.org/"},
+        {"n": "Asian Americans Advancing Justice - Chicago", "u": "https://advancingjustice-chicago.org/"},
+        {"n": "Asian Americans Advancing Justice Southern California (AJSOCAL)", "u": "https://www.ajsocal.org/"}
+      ],
+      "src": [
+        {"n": "The Asian Americans Advancing Justice Affiliation, AAJC", "u": "https://www.advancingjustice-aajc.org/asian-americans-advancing-justice-affiliation"},
+        {"n": "Asian Law Caucus (advancingjustice-alc.org now redirects here)", "u": "https://www.asianlawcaucus.org/"}
+      ]
+    },
+    {
+      "id": "stop-aapi-hate",
+      "n": "Stop AAPI Hate (founding partners)",
+      "u": "https://stopaapihate.org/",
+      "about": "Founded March 19, 2020 by community leaders from three groups, per its Who We Are page. Run as two entities: Stop AAPI Hate (501c3) and Stop AAPI Hate Action (501c4).",
+      "members": [
+        {"n": "AAPI Equity Alliance", "u": "https://aapiequityalliance.org/"},
+        {"n": "Chinese for Affirmative Action", "u": "https://caasf.org/"},
+        {"n": "Asian American Studies Department, San Francisco State University", "u": "", "unverified": true}
+      ],
+      "src": [
+        {"n": "Who We Are, Stop AAPI Hate", "u": "https://stopaapihate.org/who-we-are/"},
+        {"n": "Our Mission, Stop AAPI Hate", "u": "https://stopaapihate.org/our-mission/"}
+      ]
+    },
+    {
+      "id": "aaf-ny",
+      "n": "Asian American Federation (New York) member agencies",
+      "u": "https://www.aafederation.org/member-and-partner-agencies",
+      "about": "AAF says its members and partners are Asian-led, Asian-serving 501(c)(3) nonprofits in the New York metro area. Page lists 35 members as logo links with no names; names here come from each org's site.",
+      "members": [
+        {"n": "Apex for Youth", "u": "https://www.apexforyouth.org/"},
+        {"n": "Asian American Legal Defense and Education Fund (AALDEF)", "u": "https://www.aaldef.org/", "unverified": true},
+        {"n": "Asian Americans for Equality (AAFE)", "u": "https://www.aafe.org/"},
+        {"n": "Asian Women's Christian Association (AWCA)", "u": "https://awcanj.org/"},
+        {"n": "Asian Youth Center of New York", "u": "https://www.aycny.org/"},
+        {"n": "BCA (bca.net; full name not verified)", "u": "https://www.bca.net/", "unverified": true},
+        {"n": "Charles B. Wang Community Health Center", "u": "https://www.cbwchc.org/"},
+        {"n": "Chhaya Community Development Corporation (Chhaya CDC)", "u": "https://chhayacdc.org/"},
+        {"n": "China Institute of America", "u": "https://www.chinainstitute.org/"},
+        {"n": "CMP (Maximizing Potentials)", "u": "https://www.cmpny.org/"},
+        {"n": "Chinatown YMCA (YMCA of Greater New York)", "u": "https://ymcanyc.org/locations/chinatown-ymca"},
+        {"n": "Chinese Methodist Center Corp. (name from URL)", "u": "https://chinesemethodistcentercorp.webs.com/home.htm", "unverified": true},
+        {"n": "Chinese Progressive Association New York", "u": "https://www.cpanyc.info/"},
+        {"n": "Chinese-American Planning Council", "u": "https://www.cpc-nyc.org/"},
+        {"n": "Coalition for Asian American Children + Families (CACF)", "u": "https://www.cacf.org/"},
+        {"n": "Damayan Migrant Workers", "u": "https://www.damayanmigrants.org/"},
+        {"n": "Garden of Hope", "u": "https://www.gohny.org/"},
+        {"n": "Greater Chinatown Community Association", "u": "https://gcca.community/"},
+        {"n": "Hamilton-Madison House", "u": "https://hamiltonmadisonhouse.org/"},
+        {"n": "Homecrest Community Services", "u": "https://www.homecrest.org/"},
+        {"n": "Immigrant Social Services", "u": "https://issnyc.org/"},
+        {"n": "Indochina Sino-American Community Center (ISACC)", "u": "https://www.isacc-ny.org/"},
+        {"n": "Japanese American Social Services, Inc. (JASSI)", "u": "https://jassi.org/"},
+        {"n": "Korean American Civic Empowerment (KACE)", "u": "https://kace.org/"},
+        {"n": "Korean American Family Service Center", "u": "https://www.kafsc.org/"},
+        {"n": "KAYF (kayf.org; full name not verified)", "u": "https://www.kayf.org/", "unverified": true},
+        {"n": "Korean Community Services of Metropolitan New York", "u": "https://www.kcsny.org/"},
+        {"n": "Lower East Side Family Union", "u": "https://lesfu.org/"},
+        {"n": "MinKwon Center for Community Action", "u": "https://www.minkwon.org/"},
+        {"n": "Sakhi for South Asian Survivors", "u": "https://www.sakhi.org/"},
+        {"n": "South Asian Council for Social Services", "u": "https://www.sacssny.org/"},
+        {"n": "SAYA", "u": "https://www.saya.org/"},
+        {"n": "Womankind (name from AAF logo filename; site not reachable)", "u": "https://www.iamwomankind.org/", "unverified": true},
+        {"n": "YWCA of Queens (name from URL; site not reachable)", "u": "http://ywcaqueens.org/", "unverified": true},
+        {"n": "Flushing YMCA (YMCA of Greater New York)", "u": "https://ymcanyc.org/locations/flushing-ymca"}
+      ],
+      "src": [
+        {"n": "Member and Partner Agencies, Asian American Federation", "u": "https://www.aafederation.org/member-and-partner-agencies"}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1294 @@
+{
+ "area": "language",
+ "asOf": "2026-11-02",
+ "method": "Landscape from MPI 'New Frameworks for Language Access' (13 states + DC with cross-agency laws, Nov 2025), the California Little Hoover Commission brief (Aug 2026), NCIHC's legislation list (Jan 2024) and Wikipedia's official-language table. Each non-none state was then checked against statute, bill, session-law or agency text on official sites (DC Code, HRS, Minn. Stat., Md. Code, NRS, Mich. MCL, NJ DHS, NM HB 22, NYS OGS, WA session law, ORS, Del. Code, CO bills, MA/NC/PA pages). Web search quota ran out partway; see notes.",
+ "cells": {
+  "AL": {
+   "s": "none",
+   "t": "No state-agency language-access statute or order found in trackers checked",
+   "law": "",
+   "y": null,
+   "src": [
+    {
+     "n": "MPI: New Frameworks for Language Access (13 states + DC, Nov 2025)",
+     "u": "https://www.migrationpolicy.org/research/language-access-state-local-expansion",
+     "p": false
+    },
+    {
+     "n": "NCIHC: Language Access Legislation update (Jan 2024)",
+     "u": "https://www.ncihc.org/assets/Board-Docs/Latest%20Updates-Language%20Access%20Legislation%20April%202024.pdf",
+     "p": false
+    },
+    {
+     "n": "Wikipedia: Languages of the United States (state official-language table)",
+     "u": "https://en.wikipedia.org/wiki/Languages_of_the_United_States",
+     "p": false
+    }
+   ],
+   "q": "",
+   "x": "Official-English law (Wikipedia table). Sector laws (courts, health care, elections) not canvassed; 2026 bills not systematically checked."
+  },
+  "AK": {
+   "s": "none",
+   "t": "No state-agency language-access statute or order found in trackers checked",
+   "law": "",
+   "y": null,
+   "src": [
+    {
+     "n": "MPI: New Frameworks for Language Access (13 states + DC, Nov 2025)",
+     "u": "https://www.migrationpolicy.org/research/language-access-state-local-expansion",
+     "p": false
+    },
+    {
+     "n": "NCIHC: Language Access Legislation update (Jan 2024)",
+     "u": "https://www.ncihc.org/assets/Board-Docs/Latest%20Updates-Language%20Access%20Legislation%20April%202024.pdf",
+     "p": false
+    },
+    {
+     "n": "Wikipedia: Languages of the United States (state official-language table)",
+     "u": "https://en.wikipedia.org/wiki/Languages_of_the_United_States",
+     "p": false
+    }
+   ],
+   "q": "",
+   "x": "Official languages: English plus Alaska Native languages (Wikipedia table). Sector laws (courts, health care, elections) not canvassed; 2026 bills not systematically checked."
+  },
+  "AZ": {
+   "s": "none",
+   "t": "No state-agency language-access statute or order found in trackers checked",
+   "law": "",
+   "y": null,
+   "src": [
+    {
+     "n": "MPI: New Frameworks for Language Access (13 states + DC, Nov 2025)",
+     "u": "https://www.migrationpolicy.org/research/language-access-state-local-expansion",
+     "p": false
+    },
+    {
+     "n": "NCIHC: Language Access Legislation update (Jan 2024)",
+     "u": "https://www.ncihc.org/assets/Board-Docs/Latest%20Updates-Language%20Access%20Legislation%20April%202024.pdf",
+     "p": false
+    },
+    {
+     "n": "Wikipedia: Languages of the United States (state official-language table)",
+     "u": "https://en.wikipedia.org/wiki/Languages_of_the_United_States",
+     "p": false
+    }
+   ],
+   "q": "",
+   "x": "Official-English law since 2006 (Wikipedia table). Sector laws (courts, health care, elections) not canvassed; 2026 bills not systematically checked."
+  },
+  "AR": {
+   "s": "none",
+   "t": "No state-agency language-access statute or order found in trackers checked",
+   "law": "",
+   "y": null,
+   "src": [
+    {
+     "n": "MPI: New Frameworks for Language Access (13 states + DC, Nov 2025)",
+     "u": "https://www.migrationpolicy.org/research/language-access-state-local-expansion",
+     "p": false
+    },
+    {
+     "n": "NCIHC: Language Access Legislation update (Jan 2024)",
+     "u": "https://www.ncihc.org/assets/Board-Docs/Latest%20Updates-Language%20Access%20Legislation%20April%202024.pdf",
+     "p": false
+    },
+    {
+     "n": "Wikipedia: Languages of the United States (state official-language table)",
+     "u": "https://en.wikipedia.org/wiki/Languages_of_the_United_States",
+     "p": false
+    }
+   ],
+   "q": "",
+   "x": "Official-English law (Wikipedia table). Sector laws (courts, health care, elections) not canvassed; 2026 bills not systematically checked."
+  },
+  "CA": {
+   "s": "enacted",
+   "t": "Bilingual Services Act (1973): agencies serving many LEP residents must provide bilingual staff and translations",
+   "law": "Cal. Gov. Code §§ 7290-7299.8 (Dymally-Alatorre Bilingual Services Act)",
+   "y": 1973,
+   "src": [
+    {
+     "n": "CalHR Human Resources Manual 1003: Language Access",
+     "u": "https://hrmanual.calhr.ca.gov/Home/ManualItem/1/1003",
+     "p": true
+    },
+    {
+     "n": "Dymally-Alatorre Act statute text (Univ. Laval mirror)",
+     "u": "https://axl.cefan.ulaval.ca/amnord/californie-Loi%20Dymally-Alatorre.htm",
+     "p": false
+    },
+    {
+     "n": "CA Little Hoover Commission: Language Access Issue Brief (Aug 2026)",
+     "u": "https://lhc.ca.gov/wp-content/uploads/Language-Access-Issue-Brief-Final-Public-August-25-2026.pdf",
+     "p": false
+    }
+   ],
+   "q": "The State requires its agencies to provide services in foreign languages when specific conditions are met.",
+   "x": "Applies where non-English speakers are 5% or more of people served by an office; biennial language surveys to CalHR; local agencies covered. Official-English (Prop. 63, Wikipedia). Statute text via mirror."
+  },
+  "CO": {
+   "s": "partial",
+   "t": "Child-welfare language-access statute (2024) and a 2025 law ordering an agency assessment; no general agency mandate",
+   "law": "C.R.S. 19-3-218 (HB24-1031); HB25-1153 (Ch. 315, Laws 2025)",
+   "y": 2024,
+   "src": [
+    {
+     "n": "CO HB24-1031 session law (Ch. 327, Laws 2024)",
+     "u": "https://leg.colorado.gov/sites/default/files/documents/2024A/bills/sl/2024a_sl_327.pdf",
+     "p": true
+    },
+    {
+     "n": "CO HB25-1153 bill text (as introduced)",
+     "u": "https://leg.colorado.gov/sites/default/files/documents/2025A/bills/2025a_1153_01.pdf",
+     "p": true
+    },
+    {
+     "n": "CO HB25-1153 bill page (signed May 30, 2025)",
+     "u": "https://leg.colorado.gov/bills/hb25-1153",
+     "p": true
+    },
+    {
+     "n": "MPI: New Frameworks for Language Access (13 states + DC, Nov 2025)",
+     "u": "https://www.migrationpolicy.org/research/language-access-state-local-expansion",
+     "p": false
+    }
+   ],
+   "q": "THE COURT SHALL PROVIDE LANGUAGE ACCESS TO A CHILD OR A PARENT",
+   "x": "HB25-1153 requires a readiness assessment and report (due 12/31/2026) against an administrative 'language access universal policy'; it sets no new standard. MPI does not yet count CO. Official-English state."
+  },
+  "CT": {
+   "s": "none",
+   "t": "No state-agency language-access statute or order found; 2025 and 2026 bills did not advance past a chamber calendar",
+   "law": "",
+   "y": null,
+   "src": [
+    {
+     "n": "CT HB 6477 (2025) bill history",
+     "u": "https://prdext3.cga.ct.gov/2025/cbs/H/pdf/HB-6477.pdf",
+     "p": true
+    },
+    {
+     "n": "CT HB 5347 (2026) bill history",
+     "u": "https://prdext3.cga.ct.gov/2026/cbs/H/pdf/HB-5347.pdf",
+     "p": true
+    },
+    {
+     "n": "MPI: New Frameworks for Language Access (13 states + DC, Nov 2025)",
+     "u": "https://www.migrationpolicy.org/research/language-access-state-local-expansion",
+     "p": false
+    },
+    {
+     "n": "NCIHC: Language Access Legislation update (Jan 2024)",
+     "u": "https://www.ncihc.org/assets/Board-Docs/Latest%20Updates-Language%20Access%20Legislation%20April%202024.pdf",
+     "p": false
+    }
+   ],
+   "q": "",
+   "x": "HB 6477 passed the House 5/14/2025 and was tabled in the Senate; HB 5347 (2026) was tabled on the House calendar 3/26/2026. Neither shows later action. Sector laws not canvassed. No official-English law."
+  },
+  "DE": {
+   "s": "unclear",
+   "t": "2024 reporting and housing-assistance law carries a Sept. 30, 2026 sunset; extension not confirmed",
+   "law": "29 Del. C. ch. 106 (84 Del. Laws c. 454)",
+   "y": 2024,
+   "src": [
+    {
+     "n": "Delaware Code Title 29, ch. 106",
+     "u": "https://delcode.delaware.gov/title29/c106/",
+     "p": true
+    },
+    {
+     "n": "Delaware HB 302 (153rd GA), language access to government websites",
+     "u": "https://open.pluralpolicy.com/de/bills/153/HB302",
+     "p": false
+    },
+    {
+     "n": "MPI: New Frameworks for Language Access (13 states + DC, Nov 2025)",
+     "u": "https://www.migrationpolicy.org/research/language-access-state-local-expansion",
+     "p": false
+    }
+   ],
+   "q": "Expires Sept. 30, 2026, pursuant to 84 Del. Laws, c. 454, § 4",
+   "x": "MPI lists DE as cross-agency, but the chapter only has sampled agencies file annual reports and DOJ aid housing matters. Code still showed the expiry notice 11/2/2026. HB 302 (websites) is in House Appropriations."
+  },
+  "DC": {
+   "s": "enacted",
+   "t": "Language Access Act of 2004: District agencies must provide oral interpretation and translate vital documents",
+   "law": "D.C. Code § 2-1931 et seq. (D.C. Law 15-167)",
+   "y": 2004,
+   "src": [
+    {
+     "n": "D.C. Code § 2-1932 (oral language services)",
+     "u": "https://code.dccouncil.gov/us/dc/council/code/sections/2-1932",
+     "p": true
+    },
+    {
+     "n": "D.C. Code § 2-1933 (written language services)",
+     "u": "https://code.dccouncil.gov/us/dc/council/code/sections/2-1933",
+     "p": true
+    },
+    {
+     "n": "D.C. Code § 2-1931 (definitions)",
+     "u": "https://code.dccouncil.gov/us/dc/council/code/sections/2-1931",
+     "p": true
+    }
+   ],
+   "q": "A covered entity shall provide oral language services to a person with limited or no-English proficiency",
+   "x": "Covers District agencies and entities contracted to run programs. Translation required at 3% or 500 individuals, whichever is less, of the population served. Extra duties for agencies with major public contact."
+  },
+  "FL": {
+   "s": "none",
+   "t": "No state-agency language-access statute or order found in trackers checked",
+   "law": "",
+   "y": null,
+   "src": [
+    {
+     "n": "MPI: New Frameworks for Language Access (13 states + DC, Nov 2025)",
+     "u": "https://www.migrationpolicy.org/research/language-access-state-local-expansion",
+     "p": false
+    },
+    {
+     "n": "NCIHC: Language Access Legislation update (Jan 2024)",
+     "u": "https://www.ncihc.org/assets/Board-Docs/Latest%20Updates-Language%20Access%20Legislation%20April%202024.pdf",
+     "p": false
+    },
+    {
+     "n": "Wikipedia: Languages of the United States (state official-language table)",
+     "u": "https://en.wikipedia.org/wiki/Languages_of_the_United_States",
+     "p": false
+    }
+   ],
+   "q": "",
+   "x": "Official-English law (Wikipedia table). Sector laws (courts, health care, elections) not canvassed; 2026 bills not systematically checked."
+  },
+  "GA": {
+   "s": "none",
+   "t": "No state-agency language-access statute or order found in trackers checked",
+   "law": "",
+   "y": null,
+   "src": [
+    {
+     "n": "MPI: New Frameworks for Language Access (13 states + DC, Nov 2025)",
+     "u": "https://www.migrationpolicy.org/research/language-access-state-local-expansion",
+     "p": false
+    },
+    {
+     "n": "NCIHC: Language Access Legislation update (Jan 2024)",
+     "u": "https://www.ncihc.org/assets/Board-Docs/Latest%20Updates-Language%20Access%20Legislation%20April%202024.pdf",
+     "p": false
+    },
+    {
+     "n": "Wikipedia: Languages of the United States (state official-language table)",
+     "u": "https://en.wikipedia.org/wiki/Languages_of_the_United_States",
+     "p": false
+    }
+   ],
+   "q": "",
+   "x": "Official-English law (Wikipedia table). Sector laws (courts, health care, elections) not canvassed; 2026 bills not systematically checked."
+  },
+  "HI": {
+   "s": "enacted",
+   "t": "HRS ch. 321C: state agencies and state-funded entities must provide interpretation and translate vital documents",
+   "law": "Haw. Rev. Stat. ch. 321C",
+   "y": 2006,
+   "src": [
+    {
+     "n": "HRS 321C-3 (oral and written language services)",
+     "u": "https://data.capitol.hawaii.gov/hrscurrent/Vol06_Ch0321-0344/HRS0321C/HRS_0321C-0003.htm",
+     "p": true
+    },
+    {
+     "n": "HRS 321C-2 (definitions)",
+     "u": "https://data.capitol.hawaii.gov/hrscurrent/Vol06_Ch0321-0344/HRS0321C/HRS_0321C-0002.htm",
+     "p": true
+    },
+    {
+     "n": "HRS 321C-4 (language access plans)",
+     "u": "https://data.capitol.hawaii.gov/hrscurrent/Vol06_Ch0321-0344/HRS0321C/HRS_0321C-0004.htm",
+     "p": true
+    },
+    {
+     "n": "MPI: New Frameworks for Language Access (13 states + DC, Nov 2025)",
+     "u": "https://www.migrationpolicy.org/research/language-access-state-local-expansion",
+     "p": false
+    }
+   ],
+   "q": "Each state agency and all covered entities shall take reasonable steps to ensure meaningful access to services, programs, and activities by limited English proficient persons",
+   "x": "Covers recipients of state funds. Vital-document translation at 5% or 1,000 persons, whichever is less; agency plans. 2006 per MPI; recodified as 321C by L 2012 c 201. English and Hawaiian official."
+  },
+  "ID": {
+   "s": "none",
+   "t": "No state-agency language-access statute or order found in trackers checked",
+   "law": "",
+   "y": null,
+   "src": [
+    {
+     "n": "MPI: New Frameworks for Language Access (13 states + DC, Nov 2025)",
+     "u": "https://www.migrationpolicy.org/research/language-access-state-local-expansion",
+     "p": false
+    },
+    {
+     "n": "NCIHC: Language Access Legislation update (Jan 2024)",
+     "u": "https://www.ncihc.org/assets/Board-Docs/Latest%20Updates-Language%20Access%20Legislation%20April%202024.pdf",
+     "p": false
+    },
+    {
+     "n": "Wikipedia: Languages of the United States (state official-language table)",
+     "u": "https://en.wikipedia.org/wiki/Languages_of_the_United_States",
+     "p": false
+    }
+   ],
+   "q": "",
+   "x": "Official-English law (Wikipedia table). Sector laws (courts, health care, elections) not canvassed; 2026 bills not systematically checked."
+  },
+  "IL": {
+   "s": "enacted",
+   "t": "Language Equity and Access Act (2024): executive agencies must prepare language access plans",
+   "law": "Pub. Act 103-0723 (SB 3762)",
+   "y": 2024,
+   "src": [
+    {
+     "n": "Illinois Governor's Office of New Americans: Language Access",
+     "u": "https://gov.illinois.gov/about/ona/language-access.html",
+     "p": true
+    },
+    {
+     "n": "Illinois Public Act 103-0723 (Language Equity and Access Act)",
+     "u": "https://ilga.gov/ftp/Public%20Acts/103/103-0723.htm",
+     "p": true
+    },
+    {
+     "n": "Gov. Pritzker signs Language Equity and Access Act (Aug. 2, 2024)",
+     "u": "https://gov-pritzker-newsroom.prezly.com/gov-pritzker-signs-language-equity-and-access-act",
+     "p": true
+    }
+   ],
+   "q": "Language Equity and Access Act charges the Governor’s Office of New Americans with coordinating state activities related to language access",
+   "x": "Covers executive agencies directly responsible to the Governor; each files a plan with the Office of New Americans. Signed 8/2/2024. Official-English state. Act text read via fetch tool (TLS error on ilga.gov)."
+  },
+  "IN": {
+   "s": "none",
+   "t": "No state-agency language-access statute or order found in trackers checked",
+   "law": "",
+   "y": null,
+   "src": [
+    {
+     "n": "MPI: New Frameworks for Language Access (13 states + DC, Nov 2025)",
+     "u": "https://www.migrationpolicy.org/research/language-access-state-local-expansion",
+     "p": false
+    },
+    {
+     "n": "NCIHC: Language Access Legislation update (Jan 2024)",
+     "u": "https://www.ncihc.org/assets/Board-Docs/Latest%20Updates-Language%20Access%20Legislation%20April%202024.pdf",
+     "p": false
+    },
+    {
+     "n": "Wikipedia: Languages of the United States (state official-language table)",
+     "u": "https://en.wikipedia.org/wiki/Languages_of_the_United_States",
+     "p": false
+    }
+   ],
+   "q": "",
+   "x": "Official-English law (Wikipedia table). Sector laws (courts, health care, elections) not canvassed; 2026 bills not systematically checked."
+  },
+  "IA": {
+   "s": "none",
+   "t": "No state-agency language-access statute or order found in trackers checked",
+   "law": "",
+   "y": null,
+   "src": [
+    {
+     "n": "MPI: New Frameworks for Language Access (13 states + DC, Nov 2025)",
+     "u": "https://www.migrationpolicy.org/research/language-access-state-local-expansion",
+     "p": false
+    },
+    {
+     "n": "NCIHC: Language Access Legislation update (Jan 2024)",
+     "u": "https://www.ncihc.org/assets/Board-Docs/Latest%20Updates-Language%20Access%20Legislation%20April%202024.pdf",
+     "p": false
+    },
+    {
+     "n": "Wikipedia: Languages of the United States (state official-language table)",
+     "u": "https://en.wikipedia.org/wiki/Languages_of_the_United_States",
+     "p": false
+    }
+   ],
+   "q": "",
+   "x": "Official-English law (Wikipedia table). Sector laws (courts, health care, elections) not canvassed; 2026 bills not systematically checked."
+  },
+  "KS": {
+   "s": "none",
+   "t": "No state-agency language-access statute or order found in trackers checked",
+   "law": "",
+   "y": null,
+   "src": [
+    {
+     "n": "MPI: New Frameworks for Language Access (13 states + DC, Nov 2025)",
+     "u": "https://www.migrationpolicy.org/research/language-access-state-local-expansion",
+     "p": false
+    },
+    {
+     "n": "NCIHC: Language Access Legislation update (Jan 2024)",
+     "u": "https://www.ncihc.org/assets/Board-Docs/Latest%20Updates-Language%20Access%20Legislation%20April%202024.pdf",
+     "p": false
+    },
+    {
+     "n": "Wikipedia: Languages of the United States (state official-language table)",
+     "u": "https://en.wikipedia.org/wiki/Languages_of_the_United_States",
+     "p": false
+    }
+   ],
+   "q": "",
+   "x": "Official-English law (Wikipedia table). Sector laws (courts, health care, elections) not canvassed; 2026 bills not systematically checked."
+  },
+  "KY": {
+   "s": "none",
+   "t": "No state-agency language-access statute or order found in trackers checked",
+   "law": "",
+   "y": null,
+   "src": [
+    {
+     "n": "MPI: New Frameworks for Language Access (13 states + DC, Nov 2025)",
+     "u": "https://www.migrationpolicy.org/research/language-access-state-local-expansion",
+     "p": false
+    },
+    {
+     "n": "NCIHC: Language Access Legislation update (Jan 2024)",
+     "u": "https://www.ncihc.org/assets/Board-Docs/Latest%20Updates-Language%20Access%20Legislation%20April%202024.pdf",
+     "p": false
+    },
+    {
+     "n": "Wikipedia: Languages of the United States (state official-language table)",
+     "u": "https://en.wikipedia.org/wiki/Languages_of_the_United_States",
+     "p": false
+    }
+   ],
+   "q": "",
+   "x": "Official-English law (Wikipedia table). Sector laws (courts, health care, elections) not canvassed; 2026 bills not systematically checked."
+  },
+  "LA": {
+   "s": "none",
+   "t": "No state-agency language-access statute or order found in trackers checked",
+   "law": "",
+   "y": null,
+   "src": [
+    {
+     "n": "MPI: New Frameworks for Language Access (13 states + DC, Nov 2025)",
+     "u": "https://www.migrationpolicy.org/research/language-access-state-local-expansion",
+     "p": false
+    },
+    {
+     "n": "NCIHC: Language Access Legislation update (Jan 2024)",
+     "u": "https://www.ncihc.org/assets/Board-Docs/Latest%20Updates-Language%20Access%20Legislation%20April%202024.pdf",
+     "p": false
+    },
+    {
+     "n": "Wikipedia: Languages of the United States (state official-language table)",
+     "u": "https://en.wikipedia.org/wiki/Languages_of_the_United_States",
+     "p": false
+    }
+   ],
+   "q": "",
+   "x": "No official-English law; Wikipedia notes special status for French. Sector laws (courts, health care, elections) not canvassed; 2026 bills not systematically checked."
+  },
+  "ME": {
+   "s": "none",
+   "t": "No state-agency language-access statute or order found in trackers checked",
+   "law": "",
+   "y": null,
+   "src": [
+    {
+     "n": "MPI: New Frameworks for Language Access (13 states + DC, Nov 2025)",
+     "u": "https://www.migrationpolicy.org/research/language-access-state-local-expansion",
+     "p": false
+    },
+    {
+     "n": "NCIHC: Language Access Legislation update (Jan 2024)",
+     "u": "https://www.ncihc.org/assets/Board-Docs/Latest%20Updates-Language%20Access%20Legislation%20April%202024.pdf",
+     "p": false
+    },
+    {
+     "n": "Wikipedia: Languages of the United States (state official-language table)",
+     "u": "https://en.wikipedia.org/wiki/Languages_of_the_United_States",
+     "p": false
+    }
+   ],
+   "q": "",
+   "x": "No official-English law (Wikipedia table). Sector laws (courts, health care, elections) not canvassed; 2026 bills not systematically checked."
+  },
+  "MD": {
+   "s": "enacted",
+   "t": "State departments and programs must adopt language access plans and give LEP residents equal access",
+   "law": "Md. Code, State Gov't § 10-1101 et seq. (as amended by 2025 Ch. 434)",
+   "y": 2002,
+   "src": [
+    {
+     "n": "Md. State Gov't § 10-1103 (access to public services)",
+     "u": "https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gsg&section=10-1103&enactments=false",
+     "p": true
+    },
+    {
+     "n": "Md. State Gov't § 10-1101 (findings and policy)",
+     "u": "https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gsg&section=10-1101&enactments=false",
+     "p": true
+    },
+    {
+     "n": "Maryland HB 1473 (2025), approved as Chapter 434",
+     "u": "https://mgaleg.maryland.gov/mgawebsite/legislation/details/hb1473?ys=2025rs",
+     "p": true
+    },
+    {
+     "n": "Maryland HB 1174 (2002 session)",
+     "u": "https://mgaleg.maryland.gov/2002rs/bills/hb/hb1174f.PDF",
+     "p": true
+    }
+   ],
+   "q": "take reasonable steps to provide equal access to public services for individuals with limited English proficiency who need language assistance",
+   "x": "Original 2002 (MPI says 2003). HB 1473 (Ch. 434, eff. Oct. 1, 2025) adds disability access and a Language Advisory Group. Vital documents translated at 3% of a local office's area population."
+  },
+  "MA": {
+   "s": "partial",
+   "t": "Executive Order 615 (2023) directs executive agencies to name coordinators and adopt language access plans",
+   "law": "Executive Order No. 615 (Sept. 13, 2023)",
+   "y": 2023,
+   "src": [
+    {
+     "n": "Gov. Healey press release: EO to improve language access across state government",
+     "u": "https://www.mass.gov/news/governor-healey-signs-executive-order-to-improve-language-access-across-state-government",
+     "p": true
+    },
+    {
+     "n": "iBerkshires: Governor Improves Language Access Across State Government",
+     "u": "https://iberkshires.com/story/73166/Governor-Improves-Language-Access-Across-State-Government-.html",
+     "p": false
+    },
+    {
+     "n": "MA Bill H.3384, An Act relative to language access and inclusion",
+     "u": "https://malegislature.gov/Bills/194/H3384",
+     "p": true
+    },
+    {
+     "n": "MA Bill S.2622, An Act relative to language access and inclusion",
+     "u": "https://malegislature.gov/Bills/194/S2622",
+     "p": true
+    }
+   ],
+   "q": "The Executive Order directs executive department agencies to identify a Language Access Coordinator and develop a Language Access Plan.",
+   "x": "Executive order only; no statute found. H.3384 and S.2622 (194th Court) were referred to Ways and Means in Oct 2025; no later action shown. Order text itself not retrieved (mass.gov blocked). Official-English state."
+  },
+  "MI": {
+   "s": "enacted",
+   "t": "Acts 241 and 242 of 2023: state agencies must provide meaningful language access; Office of Global Michigan coordinates",
+   "law": "MCL 37.21-37.24 (2023 PA 241); MCL 37.11-37.14 (2023 PA 242)",
+   "y": 2023,
+   "src": [
+    {
+     "n": "Michigan Act 241 of 2023 (Meaningful Language Access to State Services Act)",
+     "u": "https://www.legislature.mi.gov/documents/mcl/pdf/mcl-Act-241-of-2023.pdf",
+     "p": true
+    },
+    {
+     "n": "Michigan Act 242 of 2023 (Statewide Meaningful Language Access Coordination Act)",
+     "u": "https://capitol.legislature.mi.gov/documents/mcl/pdf/mcl-Act-242-of-2023.pdf",
+     "p": true
+    }
+   ],
+   "q": "AN ACT to facilitate access to state services by individuals with limited English proficiency",
+   "x": "Effective Feb. 28, 2024. Covers state departments, agencies and entities. Vital documents translated at 3% of area population or 3%/500 of a local office's clients; no fees to LEP users; biennial reports."
+  },
+  "MN": {
+   "s": "enacted",
+   "t": "Agencies serving many non-English speakers must employ bilingual staff or interpreters; translations encouraged",
+   "law": "Minn. Stat. § 15.441",
+   "y": 1985,
+   "src": [
+    {
+     "n": "Minn. Stat. 15.441 Communications Services",
+     "u": "https://www.revisor.mn.gov/statutes/cite/15.441",
+     "p": true
+    },
+    {
+     "n": "MPI: New Frameworks for Language Access (13 states + DC, Nov 2025)",
+     "u": "https://www.migrationpolicy.org/research/language-access-state-local-expansion",
+     "p": false
+    }
+   ],
+   "q": "shall employ enough qualified bilingual persons in public contact positions, or enough interpreters to assist those in these positions",
+   "x": "Staffing duty is mandatory; translation of written materials and local-office materials are only 'encouraged'. The commissioner of administration sets how it applies to each agency. History line: 1Sp1985 c 17."
+  },
+  "MS": {
+   "s": "none",
+   "t": "No state-agency language-access statute or order found in trackers checked",
+   "law": "",
+   "y": null,
+   "src": [
+    {
+     "n": "MPI: New Frameworks for Language Access (13 states + DC, Nov 2025)",
+     "u": "https://www.migrationpolicy.org/research/language-access-state-local-expansion",
+     "p": false
+    },
+    {
+     "n": "NCIHC: Language Access Legislation update (Jan 2024)",
+     "u": "https://www.ncihc.org/assets/Board-Docs/Latest%20Updates-Language%20Access%20Legislation%20April%202024.pdf",
+     "p": false
+    },
+    {
+     "n": "Wikipedia: Languages of the United States (state official-language table)",
+     "u": "https://en.wikipedia.org/wiki/Languages_of_the_United_States",
+     "p": false
+    }
+   ],
+   "q": "",
+   "x": "Official-English law (Wikipedia table). Sector laws (courts, health care, elections) not canvassed; 2026 bills not systematically checked."
+  },
+  "MO": {
+   "s": "none",
+   "t": "No state-agency language-access statute or order found in trackers checked",
+   "law": "",
+   "y": null,
+   "src": [
+    {
+     "n": "MPI: New Frameworks for Language Access (13 states + DC, Nov 2025)",
+     "u": "https://www.migrationpolicy.org/research/language-access-state-local-expansion",
+     "p": false
+    },
+    {
+     "n": "NCIHC: Language Access Legislation update (Jan 2024)",
+     "u": "https://www.ncihc.org/assets/Board-Docs/Latest%20Updates-Language%20Access%20Legislation%20April%202024.pdf",
+     "p": false
+    },
+    {
+     "n": "Wikipedia: Languages of the United States (state official-language table)",
+     "u": "https://en.wikipedia.org/wiki/Languages_of_the_United_States",
+     "p": false
+    }
+   ],
+   "q": "",
+   "x": "Official-English law, constitutional since 2008 (Wikipedia table). Sector laws (courts, health care, elections) not canvassed; 2026 bills not systematically checked."
+  },
+  "MT": {
+   "s": "none",
+   "t": "No state-agency language-access statute or order found in trackers checked",
+   "law": "",
+   "y": null,
+   "src": [
+    {
+     "n": "MPI: New Frameworks for Language Access (13 states + DC, Nov 2025)",
+     "u": "https://www.migrationpolicy.org/research/language-access-state-local-expansion",
+     "p": false
+    },
+    {
+     "n": "NCIHC: Language Access Legislation update (Jan 2024)",
+     "u": "https://www.ncihc.org/assets/Board-Docs/Latest%20Updates-Language%20Access%20Legislation%20April%202024.pdf",
+     "p": false
+    },
+    {
+     "n": "Wikipedia: Languages of the United States (state official-language table)",
+     "u": "https://en.wikipedia.org/wiki/Languages_of_the_United_States",
+     "p": false
+    }
+   ],
+   "q": "",
+   "x": "Official-English law (Wikipedia table). Sector laws (courts, health care, elections) not canvassed; 2026 bills not systematically checked."
+  },
+  "NE": {
+   "s": "none",
+   "t": "No state-agency language-access statute or order found in trackers checked",
+   "law": "",
+   "y": null,
+   "src": [
+    {
+     "n": "MPI: New Frameworks for Language Access (13 states + DC, Nov 2025)",
+     "u": "https://www.migrationpolicy.org/research/language-access-state-local-expansion",
+     "p": false
+    },
+    {
+     "n": "NCIHC: Language Access Legislation update (Jan 2024)",
+     "u": "https://www.ncihc.org/assets/Board-Docs/Latest%20Updates-Language%20Access%20Legislation%20April%202024.pdf",
+     "p": false
+    },
+    {
+     "n": "Wikipedia: Languages of the United States (state official-language table)",
+     "u": "https://en.wikipedia.org/wiki/Languages_of_the_United_States",
+     "p": false
+    }
+   ],
+   "q": "",
+   "x": "Official-English law (Wikipedia table). Sector laws (courts, health care, elections) not canvassed; 2026 bills not systematically checked."
+  },
+  "NV": {
+   "s": "enacted",
+   "t": "NRS 232.0081 requires each Executive Department agency to develop and biennially revise a language access plan",
+   "law": "Nev. Rev. Stat. 232.0081 (SB 318, 2021)",
+   "y": 2021,
+   "src": [
+    {
+     "n": "Nevada Revised Statutes ch. 232 (NRS 232.0081)",
+     "u": "https://www.leg.state.nv.us/nrs/nrs-232.html",
+     "p": true
+    },
+    {
+     "n": "NCIHC: Language Access Legislation update (Jan 2024)",
+     "u": "https://www.ncihc.org/assets/Board-Docs/Latest%20Updates-Language%20Access%20Legislation%20April%202024.pdf",
+     "p": false
+    },
+    {
+     "n": "MPI: New Frameworks for Language Access (13 states + DC, Nov 2025)",
+     "u": "https://www.migrationpolicy.org/research/language-access-state-local-expansion",
+     "p": false
+    }
+   ],
+   "q": "The head of each agency of the Executive Department shall designate one or more employees of the agency to be responsible for developing and biennially revising a language access plan",
+   "x": "Plans must assess needs and recommend expanding language services. Bill SB 318 and year 2021 per MPI (NCIHC also cites 2021 for NRS 232.0081); NRS history line not matched to SB 318."
+  },
+  "NH": {
+   "s": "none",
+   "t": "No state-agency language-access statute or order found in trackers checked",
+   "law": "",
+   "y": null,
+   "src": [
+    {
+     "n": "MPI: New Frameworks for Language Access (13 states + DC, Nov 2025)",
+     "u": "https://www.migrationpolicy.org/research/language-access-state-local-expansion",
+     "p": false
+    },
+    {
+     "n": "NCIHC: Language Access Legislation update (Jan 2024)",
+     "u": "https://www.ncihc.org/assets/Board-Docs/Latest%20Updates-Language%20Access%20Legislation%20April%202024.pdf",
+     "p": false
+    },
+    {
+     "n": "Wikipedia: Languages of the United States (state official-language table)",
+     "u": "https://en.wikipedia.org/wiki/Languages_of_the_United_States",
+     "p": false
+    }
+   ],
+   "q": "",
+   "x": "Official-English law (Wikipedia table). Sector laws (courts, health care, elections) not canvassed; 2026 bills not systematically checked."
+  },
+  "NJ": {
+   "s": "enacted",
+   "t": "P.L. 2023, c.263: executive agencies serving the public must translate vital documents and provide interpretation",
+   "law": "P.L. 2023, c.263 (S2459/A3837)",
+   "y": 2024,
+   "src": [
+    {
+     "n": "NJ DHS Office of New Americans: NJ Language Access Law",
+     "u": "https://nj.gov/humanservices/njnewamericans/language-access/law",
+     "p": true
+    },
+    {
+     "n": "NJ DHS: Gov. Murphy signs immigrants' rights legislation (Jan. 12, 2024)",
+     "u": "https://nj.gov/humanservices/news/pressreleases/2024/approved/20240112b.shtml",
+     "p": true
+    },
+    {
+     "n": "NCIHC: Language Access Legislation update (Jan 2024)",
+     "u": "https://www.ncihc.org/assets/Board-Docs/Latest%20Updates-Language%20Access%20Legislation%20April%202024.pdf",
+     "p": false
+    }
+   ],
+   "q": "provide for the translation of certain documents and services in languages other than English",
+   "x": "Covers Executive Branch agencies providing direct public services. Each needs a coordinator and plan; vital documents into the seven most common LEP languages; signage. Signed Jan. 12, 2024."
+  },
+  "NM": {
+   "s": "enacted",
+   "t": "2022 law requires each state department to adopt a language access plan, annual assessment and report",
+   "law": "HB 22 (Laws 2022, Ch. 18), amending NMSA 1978 § 9-1-5",
+   "y": 2022,
+   "src": [
+    {
+     "n": "NM HB 22 (2022) bill text",
+     "u": "https://nmlegis.gov/Sessions/22%20Regular/bills/house/HB0022.html",
+     "p": true
+    },
+    {
+     "n": "NM HB 22 (2022) as passed",
+     "u": "https://nmlegis.gov/Sessions/22%20Regular/final/HB0022.pdf",
+     "p": true
+    },
+    {
+     "n": "NM HB 22 fiscal impact report (LFC)",
+     "u": "https://nmlegis.gov/Sessions/22%20Regular/firs/HB0022.PDF",
+     "p": true
+    },
+    {
+     "n": "LegiScan: NM HB22 (2022), signed as Chapter 18",
+     "u": "https://legiscan.com/NM/text/HB22/2022",
+     "p": false
+    }
+   ],
+   "q": "develop and implement a departmental plan to provide meaningful access to state programs for individuals with limited English proficiency",
+   "x": "Adds a duty to every department secretary's powers: annual public assessment, plan with interpretation, translation and bilingual staffing, annual report. Effective July 1, 2022 (LFC); chapter no. per LegiScan."
+  },
+  "NY": {
+   "s": "enacted",
+   "t": "Exec. Law 202-a (2022): agencies must interpret and translate vital documents into 12 languages and file plans",
+   "law": "N.Y. Executive Law § 202-a",
+   "y": 2022,
+   "src": [
+    {
+     "n": "NY Office of General Services: New York State Language Access Law",
+     "u": "https://ogs.ny.gov/node/36771",
+     "p": true
+    },
+    {
+     "n": "N.Y. Executive Law § 202-a text (NewYork.Public.Law)",
+     "u": "https://newyork.public.law/laws/n.y._executive_law_section_202-a",
+     "p": false
+    }
+   ],
+   "q": "all State agencies that interact with the public must provide interpretation services in any language with respect to the provision of agency services or benefits",
+   "x": "Applies to agencies providing direct public services; coordinators, biennial plans, interpretation in the person's primary language. Enacted April 2022 in the FY2023 budget, effective July 1, 2022. Codified EO 26."
+  },
+  "NC": {
+   "s": "partial",
+   "t": "Governor's Office language access policy and plan template for cabinet agencies (Dec 2024); not a statute or EO",
+   "law": "NC Language Access Policy and Coordination Plan (Governor's Office, Dec. 2024)",
+   "y": 2024,
+   "src": [
+    {
+     "n": "NC Governor's Office: Language Access Policy and Coordination Plan (PDF)",
+     "u": "https://files.nc.gov/nc/documents/2024-12/Final%20Master%20POLICY%20Language%20Access%20Policy%20Coordination%20Plan%2012.23.24.pdf",
+     "p": true
+    },
+    {
+     "n": "NC Governor: North Carolina Launches Language Access Resources (Dec. 30, 2024)",
+     "u": "https://governor.nc.gov/news/press-releases/2024/12/30/north-carolina-launches-language-access-resources-state-government",
+     "p": true
+    },
+    {
+     "n": "NC.gov: Language Access Plans for State Agencies",
+     "u": "https://nc.gov/languageaccess",
+     "p": true
+    }
+   ],
+   "q": "This proposed language access policy aims to provide guidance for the State of North Carolina’s cabinet agencies, executive offices, and departments",
+   "x": "Executive policy; the PDF is titled a proposed policy. Agencies have posted plans. Status under the administration that took office in 2025 not confirmed. MPI counts NC as cross-agency. Official-English state."
+  },
+  "ND": {
+   "s": "none",
+   "t": "No state-agency language-access statute or order found in trackers checked",
+   "law": "",
+   "y": null,
+   "src": [
+    {
+     "n": "MPI: New Frameworks for Language Access (13 states + DC, Nov 2025)",
+     "u": "https://www.migrationpolicy.org/research/language-access-state-local-expansion",
+     "p": false
+    },
+    {
+     "n": "NCIHC: Language Access Legislation update (Jan 2024)",
+     "u": "https://www.ncihc.org/assets/Board-Docs/Latest%20Updates-Language%20Access%20Legislation%20April%202024.pdf",
+     "p": false
+    },
+    {
+     "n": "Wikipedia: Languages of the United States (state official-language table)",
+     "u": "https://en.wikipedia.org/wiki/Languages_of_the_United_States",
+     "p": false
+    }
+   ],
+   "q": "",
+   "x": "Official-English law (Wikipedia table). Sector laws (courts, health care, elections) not canvassed; 2026 bills not systematically checked."
+  },
+  "OH": {
+   "s": "none",
+   "t": "No state-agency language-access statute or order found in trackers checked",
+   "law": "",
+   "y": null,
+   "src": [
+    {
+     "n": "MPI: New Frameworks for Language Access (13 states + DC, Nov 2025)",
+     "u": "https://www.migrationpolicy.org/research/language-access-state-local-expansion",
+     "p": false
+    },
+    {
+     "n": "NCIHC: Language Access Legislation update (Jan 2024)",
+     "u": "https://www.ncihc.org/assets/Board-Docs/Latest%20Updates-Language%20Access%20Legislation%20April%202024.pdf",
+     "p": false
+    },
+    {
+     "n": "Wikipedia: Languages of the United States (state official-language table)",
+     "u": "https://en.wikipedia.org/wiki/Languages_of_the_United_States",
+     "p": false
+    }
+   ],
+   "q": "",
+   "x": "No official-English law in Wikipedia table (may be dated). Sector laws (courts, health care, elections) not canvassed; 2026 bills not systematically checked."
+  },
+  "OK": {
+   "s": "none",
+   "t": "No state-agency language-access statute or order found in trackers checked",
+   "law": "",
+   "y": null,
+   "src": [
+    {
+     "n": "MPI: New Frameworks for Language Access (13 states + DC, Nov 2025)",
+     "u": "https://www.migrationpolicy.org/research/language-access-state-local-expansion",
+     "p": false
+    },
+    {
+     "n": "NCIHC: Language Access Legislation update (Jan 2024)",
+     "u": "https://www.ncihc.org/assets/Board-Docs/Latest%20Updates-Language%20Access%20Legislation%20April%202024.pdf",
+     "p": false
+    },
+    {
+     "n": "Wikipedia: Languages of the United States (state official-language table)",
+     "u": "https://en.wikipedia.org/wiki/Languages_of_the_United_States",
+     "p": false
+    }
+   ],
+   "q": "",
+   "x": "Official-English law since 2010 (Wikipedia table). Sector laws (courts, health care, elections) not canvassed; 2026 bills not systematically checked."
+  },
+  "OR": {
+   "s": "partial",
+   "t": "Health-care sector only: providers must use registry interpreters for patients who prefer another language",
+   "law": "ORS 413.550-413.559 (2021 c.453)",
+   "y": 2021,
+   "src": [
+    {
+     "n": "Oregon Revised Statutes ch. 413 (ORS 413.550-413.561)",
+     "u": "https://www.oregonlegislature.gov/bills_laws/ors/ors413.html",
+     "p": true
+    },
+    {
+     "n": "MPI: New Frameworks for Language Access (13 states + DC, Nov 2025)",
+     "u": "https://www.migrationpolicy.org/research/language-access-state-local-expansion",
+     "p": false
+    },
+    {
+     "n": "NCIHC: Language Access Legislation update (Jan 2024)",
+     "u": "https://www.ncihc.org/assets/Board-Docs/Latest%20Updates-Language%20Access%20Legislation%20April%202024.pdf",
+     "p": false
+    }
+   ],
+   "q": "a health care provider shall work with a health care interpreter from the health care interpreter registry administered by the Oregon Health Authority",
+   "x": "ORS 413.559 added by 2021 c.453; MPI also notes Oregon's health-care interpreter certification law. No cross-agency statute found in MPI or NCIHC trackers. No official-English law (English Plus resolution, Wikipedia)."
+  },
+  "PA": {
+   "s": "partial",
+   "t": "Governor's EO 2024-01 directs language-access strategies; Office of Administration runs an agency program (2025)",
+   "law": "Executive Order 2024-01",
+   "y": 2024,
+   "src": [
+    {
+     "n": "PA DGS: Shapiro Administration expands access to multilingual resources (Aug. 2025)",
+     "u": "https://www.pa.gov/agencies/dgs/newsroom/shapiro-administration-expands-access-to-multilingual-resources-",
+     "p": true
+    }
+   ],
+   "q": "including the development strategies to enhance language access for individuals with limited English proficiency",
+   "x": "Executive action only. EO text not retrieved; relies on the state press release. Language Access Management Program covers agencies under the Governor's jurisdiction. No statute found. Not on MPI's cross-agency list."
+  },
+  "RI": {
+   "s": "none",
+   "t": "No state-agency language-access statute or order found in trackers checked",
+   "law": "",
+   "y": null,
+   "src": [
+    {
+     "n": "MPI: New Frameworks for Language Access (13 states + DC, Nov 2025)",
+     "u": "https://www.migrationpolicy.org/research/language-access-state-local-expansion",
+     "p": false
+    },
+    {
+     "n": "NCIHC: Language Access Legislation update (Jan 2024)",
+     "u": "https://www.ncihc.org/assets/Board-Docs/Latest%20Updates-Language%20Access%20Legislation%20April%202024.pdf",
+     "p": false
+    },
+    {
+     "n": "Wikipedia: Languages of the United States (state official-language table)",
+     "u": "https://en.wikipedia.org/wiki/Languages_of_the_United_States",
+     "p": false
+    }
+   ],
+   "q": "",
+   "x": "No official-English law; English Plus resolution since 1992 (Wikipedia table). Sector laws (courts, health care, elections) not canvassed; 2026 bills not systematically checked."
+  },
+  "SC": {
+   "s": "none",
+   "t": "No state-agency language-access statute or order found in trackers checked",
+   "law": "",
+   "y": null,
+   "src": [
+    {
+     "n": "MPI: New Frameworks for Language Access (13 states + DC, Nov 2025)",
+     "u": "https://www.migrationpolicy.org/research/language-access-state-local-expansion",
+     "p": false
+    },
+    {
+     "n": "NCIHC: Language Access Legislation update (Jan 2024)",
+     "u": "https://www.ncihc.org/assets/Board-Docs/Latest%20Updates-Language%20Access%20Legislation%20April%202024.pdf",
+     "p": false
+    },
+    {
+     "n": "Wikipedia: Languages of the United States (state official-language table)",
+     "u": "https://en.wikipedia.org/wiki/Languages_of_the_United_States",
+     "p": false
+    }
+   ],
+   "q": "",
+   "x": "Official-English law (Wikipedia table). Sector laws (courts, health care, elections) not canvassed; 2026 bills not systematically checked."
+  },
+  "SD": {
+   "s": "none",
+   "t": "No state-agency language-access statute or order found in trackers checked",
+   "law": "",
+   "y": null,
+   "src": [
+    {
+     "n": "MPI: New Frameworks for Language Access (13 states + DC, Nov 2025)",
+     "u": "https://www.migrationpolicy.org/research/language-access-state-local-expansion",
+     "p": false
+    },
+    {
+     "n": "NCIHC: Language Access Legislation update (Jan 2024)",
+     "u": "https://www.ncihc.org/assets/Board-Docs/Latest%20Updates-Language%20Access%20Legislation%20April%202024.pdf",
+     "p": false
+    },
+    {
+     "n": "Wikipedia: Languages of the United States (state official-language table)",
+     "u": "https://en.wikipedia.org/wiki/Languages_of_the_United_States",
+     "p": false
+    }
+   ],
+   "q": "",
+   "x": "Official-English law (Wikipedia table also lists Sioux). Sector laws (courts, health care, elections) not canvassed; 2026 bills not systematically checked."
+  },
+  "TN": {
+   "s": "none",
+   "t": "No state-agency language-access statute or order found in trackers checked",
+   "law": "",
+   "y": null,
+   "src": [
+    {
+     "n": "MPI: New Frameworks for Language Access (13 states + DC, Nov 2025)",
+     "u": "https://www.migrationpolicy.org/research/language-access-state-local-expansion",
+     "p": false
+    },
+    {
+     "n": "NCIHC: Language Access Legislation update (Jan 2024)",
+     "u": "https://www.ncihc.org/assets/Board-Docs/Latest%20Updates-Language%20Access%20Legislation%20April%202024.pdf",
+     "p": false
+    },
+    {
+     "n": "Wikipedia: Languages of the United States (state official-language table)",
+     "u": "https://en.wikipedia.org/wiki/Languages_of_the_United_States",
+     "p": false
+    }
+   ],
+   "q": "",
+   "x": "Official-English law (Wikipedia table). Sector laws (courts, health care, elections) not canvassed; 2026 bills not systematically checked."
+  },
+  "TX": {
+   "s": "none",
+   "t": "No state-agency language-access statute or order found in trackers checked",
+   "law": "",
+   "y": null,
+   "src": [
+    {
+     "n": "MPI: New Frameworks for Language Access (13 states + DC, Nov 2025)",
+     "u": "https://www.migrationpolicy.org/research/language-access-state-local-expansion",
+     "p": false
+    },
+    {
+     "n": "NCIHC: Language Access Legislation update (Jan 2024)",
+     "u": "https://www.ncihc.org/assets/Board-Docs/Latest%20Updates-Language%20Access%20Legislation%20April%202024.pdf",
+     "p": false
+    },
+    {
+     "n": "Wikipedia: Languages of the United States (state official-language table)",
+     "u": "https://en.wikipedia.org/wiki/Languages_of_the_United_States",
+     "p": false
+    }
+   ],
+   "q": "",
+   "x": "No official-English law (Wikipedia table). Sector laws (courts, health care, elections) not canvassed; 2026 bills not systematically checked."
+  },
+  "UT": {
+   "s": "none",
+   "t": "No state-agency language-access statute or order found in trackers checked",
+   "law": "",
+   "y": null,
+   "src": [
+    {
+     "n": "MPI: New Frameworks for Language Access (13 states + DC, Nov 2025)",
+     "u": "https://www.migrationpolicy.org/research/language-access-state-local-expansion",
+     "p": false
+    },
+    {
+     "n": "NCIHC: Language Access Legislation update (Jan 2024)",
+     "u": "https://www.ncihc.org/assets/Board-Docs/Latest%20Updates-Language%20Access%20Legislation%20April%202024.pdf",
+     "p": false
+    },
+    {
+     "n": "Wikipedia: Languages of the United States (state official-language table)",
+     "u": "https://en.wikipedia.org/wiki/Languages_of_the_United_States",
+     "p": false
+    }
+   ],
+   "q": "",
+   "x": "Official English, amended in 2021 to 'official but not English only' (Wikipedia table). Sector laws (courts, health care, elections) not canvassed; 2026 bills not systematically checked."
+  },
+  "VT": {
+   "s": "none",
+   "t": "No state-agency language-access statute or order found in trackers checked",
+   "law": "",
+   "y": null,
+   "src": [
+    {
+     "n": "MPI: New Frameworks for Language Access (13 states + DC, Nov 2025)",
+     "u": "https://www.migrationpolicy.org/research/language-access-state-local-expansion",
+     "p": false
+    },
+    {
+     "n": "NCIHC: Language Access Legislation update (Jan 2024)",
+     "u": "https://www.ncihc.org/assets/Board-Docs/Latest%20Updates-Language%20Access%20Legislation%20April%202024.pdf",
+     "p": false
+    },
+    {
+     "n": "Wikipedia: Languages of the United States (state official-language table)",
+     "u": "https://en.wikipedia.org/wiki/Languages_of_the_United_States",
+     "p": false
+    }
+   ],
+   "q": "",
+   "x": "No official-English law (Wikipedia table). Sector laws (courts, health care, elections) not canvassed; 2026 bills not systematically checked."
+  },
+  "VA": {
+   "s": "none",
+   "t": "No state-agency language-access statute or order found; 2022 agency-policy bills reported only as introduced",
+   "law": "",
+   "y": null,
+   "src": [
+    {
+     "n": "Voices for Virginia's Children: Increasing Language Access Equity in Virginia",
+     "u": "https://vakids.org/posts/increasing-language-access-equity-in-virginia",
+     "p": false
+    },
+    {
+     "n": "Axios Richmond: English-only order and Virginia's language access (Mar. 2025)",
+     "u": "https://www.axios.com/local/richmond/2025/03/10/english-only-trump-order-virginia-impact",
+     "p": false
+    },
+    {
+     "n": "MPI: New Frameworks for Language Access (13 states + DC, Nov 2025)",
+     "u": "https://www.migrationpolicy.org/research/language-access-state-local-expansion",
+     "p": false
+    }
+   ],
+   "q": "",
+   "x": "SB 270 and HB 1049 (agency language access policies) were described as introduced; outcome not confirmed. A 2021 audit found agencies fell short. 2026 session not checked. Official-English law (Wikipedia)."
+  },
+  "WA": {
+   "s": "partial",
+   "t": "2026 statute sets state policy and orders uniform agency language-access guidelines (due Dec. 2027)",
+   "law": "Ch. 142, Laws of 2026 (SHB 2475); new chapter in Title 43 RCW",
+   "y": 2026,
+   "src": [
+    {
+     "n": "WA SHB 2475 session law (Ch. 142, Laws of 2026)",
+     "u": "https://lawfilesext.leg.wa.gov/biennium/2025-26/Pdf/Bills/Session%20Laws/House/2475-S.SL.pdf",
+     "p": true
+    },
+    {
+     "n": "WA Senate Bill Report, SHB 2475 (Feb. 27, 2026)",
+     "u": "https://lawfilesext.leg.wa.gov/biennium/2025-26/Htm/Bill%20Reports/Senate/2475-S%20SBR%20WM%20TA%2026.htm",
+     "p": true
+    }
+   ],
+   "q": "Requires the Office of Equity to develop uniform guidelines for state agencies to provide consistent delivery of language-accessible public programs, activities, and services.",
+   "x": "Covers all executive agencies but sets guidelines and reporting (agency reports due 6/30/2028), no appropriation, and says it creates no new rights. Rated partial as a framework law; editors may upgrade."
+  },
+  "WV": {
+   "s": "none",
+   "t": "No state-agency language-access statute or order found in trackers checked",
+   "law": "",
+   "y": null,
+   "src": [
+    {
+     "n": "MPI: New Frameworks for Language Access (13 states + DC, Nov 2025)",
+     "u": "https://www.migrationpolicy.org/research/language-access-state-local-expansion",
+     "p": false
+    },
+    {
+     "n": "NCIHC: Language Access Legislation update (Jan 2024)",
+     "u": "https://www.ncihc.org/assets/Board-Docs/Latest%20Updates-Language%20Access%20Legislation%20April%202024.pdf",
+     "p": false
+    },
+    {
+     "n": "Wikipedia: Languages of the United States (state official-language table)",
+     "u": "https://en.wikipedia.org/wiki/Languages_of_the_United_States",
+     "p": false
+    }
+   ],
+   "q": "",
+   "x": "Official-English law since 2016 (Wikipedia table). Sector laws (courts, health care, elections) not canvassed; 2026 bills not systematically checked."
+  },
+  "WI": {
+   "s": "none",
+   "t": "No state-agency language-access statute or order found in trackers checked",
+   "law": "",
+   "y": null,
+   "src": [
+    {
+     "n": "MPI: New Frameworks for Language Access (13 states + DC, Nov 2025)",
+     "u": "https://www.migrationpolicy.org/research/language-access-state-local-expansion",
+     "p": false
+    },
+    {
+     "n": "NCIHC: Language Access Legislation update (Jan 2024)",
+     "u": "https://www.ncihc.org/assets/Board-Docs/Latest%20Updates-Language%20Access%20Legislation%20April%202024.pdf",
+     "p": false
+    },
+    {
+     "n": "Wikipedia: Languages of the United States (state official-language table)",
+     "u": "https://en.wikipedia.org/wiki/Languages_of_the_United_States",
+     "p": false
+    }
+   ],
+   "q": "",
+   "x": "No official-English law (Wikipedia table). Sector laws (courts, health care, elections) not canvassed; 2026 bills not systematically checked."
+  },
+  "WY": {
+   "s": "none",
+   "t": "No state-agency language-access statute or order found in trackers checked",
+   "law": "",
+   "y": null,
+   "src": [
+    {
+     "n": "MPI: New Frameworks for Language Access (13 states + DC, Nov 2025)",
+     "u": "https://www.migrationpolicy.org/research/language-access-state-local-expansion",
+     "p": false
+    },
+    {
+     "n": "NCIHC: Language Access Legislation update (Jan 2024)",
+     "u": "https://www.ncihc.org/assets/Board-Docs/Latest%20Updates-Language%20Access%20Legislation%20April%202024.pdf",
+     "p": false
+    },
+    {
+     "n": "Wikipedia: Languages of the United States (state official-language table)",
+     "u": "https://en.wikipedia.org/wiki/Languages_of_the_United_States",
+     "p": false
+    }
+   ],
+   "q": "",
+   "x": "Official-English law (Wikipedia table). Sector laws (courts, health care, elections) not canvassed; 2026 bills not systematically checked."
+  }
+ },
+ "notes": [
+  "Web-search quota ran out partway through. Every state marked none rests on the MPI table (13 states + DC, Nov 2025), the NCIHC list (Jan 2024), the CA Little Hoover Commission brief (Aug 2026) and spot checks, not on a state-by-state statute search. 2026 enactments after those trackers (like Washington's) may be missing.",
+  "Sector laws (court interpreters, health care, elections, 911, schools) were not canvassed state by state. Most states likely have court-interpreter rules or health-care provisions (NHeLP says every state had several health-care provisions as of 2019). Partial was assigned only to Oregon and Colorado for sector laws, because those surfaced in sources read; other states may deserve partial.",
+  "Delaware is unclear: 29 Del. C. ch. 106 (2024) is a sampled-agency reporting and housing-assistance law that expires Sept. 30, 2026 per the Code. The Code page still showed the expiry notice on 2026-11-02 and no extension was found. MPI lists Delaware as cross-agency.",
+  "Washington's 2026 law (SHB 2475, Ch. 142) is rated partial because it sets policy, guidelines (due 12/1/2027) and agency reports (6/30/2028) rather than a direct service mandate, and states it creates no new rights. Reviewers may prefer enacted.",
+  "MPI counts MA (EO 615), NC (Governor's Office policy) and DE as cross-agency. Here MA and NC are partial (executive action, no statute found) and DE is unclear. Pennsylvania (EO 2024-01 plus a 2025 program) is not on MPI's list; its EO text was not retrieved, only a state press release.",
+  "Pending bills: no state without a law was confirmed to have a live bill. MA H.3384 and S.2622 sit in Ways and Means (last action Oct 2025) but MA is already partial. CT bills (2025 HB 6477, SB 955; 2026 HB 5347) show no action past a chamber calendar. DE HB 302 (government websites) sits in House Appropriations. Bills in states not checked may exist.",
+  "Year conventions: Hawaii 2006 (MPI, NCIHC) although the chapter was recodified as 321C by L 2012 c 201; Maryland 2002 per NCIHC and the 2002 bill (MPI says 2003); NJ 2024 is the signing year (P.L. 2023, c.263); Michigan 2023 acts took effect Feb. 28, 2024.",
+  "Access problems: capitol.hawaii.gov, nysenate.gov, mass.gov and California's leginfo blocked automated fetches; text came from data.capitol.hawaii.gov, NewYork.Public.Law plus the NY OGS page, a press release, and CalHR plus a university mirror of the statute. ilga.gov failed TLS checks in curl, so Illinois Act text was read through the fetch tool; the quote comes from the Governor's ONA page.",
+  "Official-English status comes from Wikipedia's state table (secondary, may be dated; for example it shows Ohio and Texas as no). Official-English laws are noted in x but did not change any status.",
+  "NM: the enrolled bill (final PDF) was read to confirm the new subsection (11); the quote is taken from the HTML bill page because the PDF has line numbers inside the phrase. The signing (Ch. 18) comes from LegiScan only."
+ ]
+}

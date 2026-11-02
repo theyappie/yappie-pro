@@ -1,0 +1,1149 @@
+{
+ "area": "hate",
+ "asOf": "2026-11-02",
+ "method": "Aggregate trackers: MAP Equality Maps and MAP state citations PDF (data as of Nov 2, 2026), Brennan Center state table (2020), Lawyers' Committee state FAQs (2018). Primary statute text read on legislature/official sites for most states (cited with p:true); mirrors (Public.Law, FindLaw) or secondary trackers only where noted in x. SC/WY: bill pages, WACH report, Wyoming Legislature bill data.",
+ "cells": {
+  "AL": {
+   "s": "enacted",
+   "t": "Enhanced penalties for crimes motivated by race, color, religion, national origin, ethnicity or disability.",
+   "law": "Ala. Code § 13A-5-13",
+   "y": 1994,
+   "src": [
+    {
+     "n": "Alabama Legislature SB50 (2013) bill text amending 13A-5-13",
+     "u": "https://alison.legislature.state.al.us/files/pdf/SearchableInstruments/2013RS/PrintFiles/SB50-Int.pdf",
+     "p": true
+    },
+    {
+     "n": "Lawyers' Committee Hate Crime FAQs: Alabama (2018)",
+     "u": "https://8449nohate.org/wp-content/uploads/2018/02/AL.FAQ_.pdf",
+     "p": false
+    },
+    {
+     "n": "MAP: Criminal Justice: Hate Crime Laws (state citations, 2026)",
+     "u": "https://mapresearch.org/wp-content/uploads/2026/02/citations-hate-crime.pdf",
+     "p": false
+    }
+   ],
+   "q": "motivated by the victim's actual or perceived race, color, religion, national origin, ethnicity, or physical or mental disability",
+   "x": "No sexual orientation/gender identity. Statute text not reached; per Alabama bill synopses (2010, 2013), Lawyers' Committee FAQ and MAP. MAP: no state hate-crime data-collection mandate."
+  },
+  "AK": {
+   "s": "enacted",
+   "t": "Aggravating sentencing factor for offenses aimed at a victim by race, ancestry, national origin and other traits.",
+   "law": "Alaska Stat. § 12.55.155(c)(22)",
+   "y": 1982,
+   "src": [
+    {
+     "n": "Alaska Statutes AS 12.55.155 (print view)",
+     "u": "https://www.akleg.gov/basis/statutes.asp?media=print&secStart=12.55.155&secEnd=12.55.155",
+     "p": true
+    },
+    {
+     "n": "MAP: Criminal Justice: Hate Crime Laws (state citations, 2026)",
+     "u": "https://mapresearch.org/wp-content/uploads/2026/02/citations-hate-crime.pdf",
+     "p": false
+    }
+   ],
+   "q": "the defendant knowingly directed the conduct constituting the offense at a victim because of that person's race, sex, color, creed, physical or mental disability, ancestry, or national origin",
+   "x": "Statute lists 'creed' rather than 'religion'. No sexual orientation/gender identity. MAP: no state hate-crime data-collection mandate."
+  },
+  "AZ": {
+   "s": "enacted",
+   "t": "Aggravating sentencing factor for malice toward a victim by race, national origin, religion and other groups.",
+   "law": "Ariz. Rev. Stat. § 13-701(D)(15); § 41-1750(A)(3)",
+   "y": null,
+   "src": [
+    {
+     "n": "Arizona Revised Statutes 13-701",
+     "u": "https://www.azleg.gov/ars/13/00701.htm",
+     "p": true
+    },
+    {
+     "n": "Arizona Revised Statutes 41-1750",
+     "u": "https://www.azleg.gov/ars/41/01750.htm",
+     "p": true
+    },
+    {
+     "n": "MAP: Criminal Justice: Hate Crime Laws (state citations, 2026)",
+     "u": "https://mapresearch.org/wp-content/uploads/2026/02/citations-hate-crime.pdf",
+     "p": false
+    }
+   ],
+   "q": "committed the crime out of malice toward a victim because of the victim's identity in a group listed in section 41-1750",
+   "x": "Groups: race, color, religion, national origin, sexual orientation, gender, antisemitism, disability. MAP: state requires hate-crime data collection."
+  },
+  "AR": {
+   "s": "partial",
+   "t": "Delayed parole release for violent felonies when the victim was selected for group membership; race/ethnicity not named.",
+   "law": "Ark. Code § 5-4-405 (Act 681 of 2021, SB 622)",
+   "y": 2021,
+   "src": [
+    {
+     "n": "Arkansas Act 681 of 2021 (SB 622), Ark. Code 5-4-405",
+     "u": "https://www.arkleg.state.ar.us/Acts/FTPDocument?path=%2FACTS%2F2021R%2FPublic%2F&file=681.pdf&ddBienniumSession=2021%2F2021R",
+     "p": true
+    },
+    {
+     "n": "MAP: Criminal Justice: Hate Crime Laws (state citations, 2026)",
+     "u": "https://mapresearch.org/wp-content/uploads/2026/02/citations-hate-crime.pdf",
+     "p": false
+    },
+    {
+     "n": "Lawyers' Committee Hate Crime FAQs: Arkansas (2018)",
+     "u": "https://8449nohate.org/wp-content/uploads/2018/02/AR.FAQ_.pdf",
+     "p": false
+    }
+   ],
+   "q": "purposely selected the victim because the victim was a member of or was associated with a recognizable and identifiable group or class",
+   "x": "Covers 'mental, physical, biological, cultural, political, or religious' characteristics; race/ethnicity/national origin not listed. MAP does not count it as a hate-crime law. No 2025-26 bill checked."
+  },
+  "CA": {
+   "s": "enacted",
+   "t": "Hate crime defined to include nationality, race or ethnicity, religion; Penal Code 422.55 et seq.",
+   "law": "Cal. Penal Code § 422.55 et seq. (Title 11.6)",
+   "y": null,
+   "src": [
+    {
+     "n": "California Penal Code 422.55 (California.Public.Law mirror)",
+     "u": "https://california.public.law/codes/ca_penal_code_section_422.55",
+     "p": false
+    },
+    {
+     "n": "MAP: Criminal Justice: Hate Crime Laws (state citations, 2026)",
+     "u": "https://mapresearch.org/wp-content/uploads/2026/02/citations-hate-crime.pdf",
+     "p": false
+    }
+   ],
+   "q": "“Hate crime” means a criminal act committed, in whole or in part, because of one or more of the following actual or perceived characteristics of the victim",
+   "x": "Also disability, gender, sexual orientation, association with such persons. Statute read via California.Public.Law mirror (leginfo blocked). MAP: state requires hate-crime data collection."
+  },
+  "CO": {
+   "s": "enacted",
+   "t": "Bias-motivated crime offense covering race, ancestry, national origin, religion, disability and sexual orientation.",
+   "law": "Colo. Rev. Stat. § 18-9-121",
+   "y": 1988,
+   "src": [
+    {
+     "n": "Colorado C.R.S. 18-9-121 (Colorado.Public.Law mirror)",
+     "u": "https://colorado.public.law/statutes/crs_18-9-121",
+     "p": false
+    },
+    {
+     "n": "MAP: Criminal Justice: Hate Crime Laws (state citations, 2026)",
+     "u": "https://mapresearch.org/wp-content/uploads/2026/02/citations-hate-crime.pdf",
+     "p": false
+    }
+   ],
+   "q": "because of that person’s actual or perceived race, color, religion, ancestry, national origin, physical or mental disability, or sexual orientation",
+   "x": "MAP also lists transgender identity as separately enumerated (SB24-189). Statute read via Colorado.Public.Law mirror. MAP: state requires hate-crime data collection."
+  },
+  "CT": {
+   "s": "enacted",
+   "t": "Intimidation based on bigotry or bias offenses covering race, religion, ethnicity; consolidated by P.A. 26-77 (2026).",
+   "law": "Conn. Gen. Stat. §§ 53a-181j to 53a-181l; P.A. 26-77 (2026)",
+   "y": 1990,
+   "src": [
+    {
+     "n": "Connecticut Hate Crime Laws (Division of Criminal Justice, 2021)",
+     "u": "https://portal.ct.gov/hatecrimes/-/media/Hatecrimes/Connecticut-Hate-Crime-Laws-September-2021DCJ.pdf",
+     "p": true
+    },
+    {
+     "n": "Connecticut SB 90 (2026) bill history, Public Act 26-77",
+     "u": "https://prdext2.cga.ct.gov/2026/cbs/S/pdf/SB-0090.pdf",
+     "p": true
+    },
+    {
+     "n": "MAP: Criminal Justice: Hate Crime Laws (state citations, 2026)",
+     "u": "https://mapresearch.org/wp-content/uploads/2026/02/citations-hate-crime.pdf",
+     "p": false
+    }
+   ],
+   "q": "actual or perceived race, religion, ethnicity, disability, sex, sexual orientation or gender identity or expression",
+   "x": "Also disability, sex, sexual orientation, gender identity/expression. Text is the 2021 DCJ compilation; P.A. 26-77 (signed 5/26/2026) revised it, text not reviewed. MAP: state requires hate-crime data collection."
+  },
+  "DE": {
+   "s": "enacted",
+   "t": "Hate crime offense with graded penalties; covers race, color, national origin, ancestry, religion.",
+   "law": "11 Del. C. § 1304",
+   "y": 1995,
+   "src": [
+    {
+     "n": "Delaware Code Title 11, Ch. 5, Subch. VII (11 Del. C. 1304)",
+     "u": "https://delcode.delaware.gov/title11/c005/sc07/index.html",
+     "p": true
+    },
+    {
+     "n": "MAP: Criminal Justice: Hate Crime Laws (state citations, 2026)",
+     "u": "https://mapresearch.org/wp-content/uploads/2026/02/citations-hate-crime.pdf",
+     "p": false
+    }
+   ],
+   "q": "motivated in whole or in part by a belief or perception regarding the race, religion, color, disability, sexual orientation, sex, age, gender identity, national origin, or ancestry",
+   "x": "Also disability, sexual orientation, sex, age, gender identity. MAP: no state hate-crime data-collection mandate."
+  },
+  "DC": {
+   "s": "enacted",
+   "t": "Bias-related crime penalty enhancement (up to 1.5x) for race, national origin, religion and many other traits.",
+   "law": "D.C. Code §§ 22-3701 to 22-3703",
+   "y": 1990,
+   "src": [
+    {
+     "n": "D.C. Code 22-3701 Definitions (bias-related crime)",
+     "u": "https://code.dccouncil.gov/us/dc/council/code/sections/22-3701",
+     "p": true
+    },
+    {
+     "n": "D.C. Code 22-3703 Bias-related crime (penalty)",
+     "u": "https://code.dccouncil.gov/us/dc/council/code/sections/22-3703",
+     "p": true
+    },
+    {
+     "n": "D.C. Code 22-3702 Collection and publication of data",
+     "u": "https://code.dccouncil.gov/us/dc/council/code/sections/22-3702",
+     "p": true
+    },
+    {
+     "n": "MAP: Criminal Justice: Hate Crime Laws (state citations, 2026)",
+     "u": "https://mapresearch.org/wp-content/uploads/2026/02/citations-hate-crime.pdf",
+     "p": false
+    }
+   ],
+   "q": "demonstrates an accused’s prejudice based on the actual or perceived race, color, religion, national origin",
+   "x": "Also sex, age, sexual orientation, gender identity/expression, disability and others. Data: Mayor must compile data (22-3702); MAP notes police reporting is voluntary. D.C. Law 8-121 eff. 5/8/1990."
+  },
+  "FL": {
+   "s": "enacted",
+   "t": "Penalty reclassification when a crime evidences prejudice based on race, ancestry, ethnicity, national origin, religion.",
+   "law": "Fla. Stat. § 775.085",
+   "y": 1989,
+   "src": [
+    {
+     "n": "Florida Statutes 775.085",
+     "u": "https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0700-0799/0775/Sections/0775.085.html",
+     "p": true
+    },
+    {
+     "n": "MAP: Criminal Justice: Hate Crime Laws (state citations, 2026)",
+     "u": "https://mapresearch.org/wp-content/uploads/2026/02/citations-hate-crime.pdf",
+     "p": false
+    }
+   ],
+   "q": "evidences prejudice based on the race, color, ancestry, ethnicity, religion, sexual orientation, national origin, homeless status, or advanced age of the victim",
+   "x": "Also sexual orientation, homeless status, advanced age. MAP: state requires hate-crime data collection."
+  },
+  "GA": {
+   "s": "enacted",
+   "t": "Sentence enhancement for offenses targeting victims by race, national origin, religion and more (HB 426, 2020).",
+   "law": "O.C.G.A. §§ 17-10-17, 17-10-18, 17-4-20.2 (HB 426, 2020)",
+   "y": 2020,
+   "src": [
+    {
+     "n": "Georgia HB 426 (2020) as signed",
+     "u": "https://gov.georgia.gov/document/2020-signed-legislation/hb-426/download",
+     "p": true
+    },
+    {
+     "n": "MAP: Criminal Justice: Hate Crime Laws (state citations, 2026)",
+     "u": "https://mapresearch.org/wp-content/uploads/2026/02/citations-hate-crime.pdf",
+     "p": false
+    }
+   ],
+   "q": "actual or perceived race, color, religion, national origin, sex, sexual orientation, gender, mental disability, or physical disability",
+   "x": "Replaced a law struck down in 2004. Also sex, sexual orientation, gender, disability. Requires police 'Bias Crime Report' (17-4-20.2); MAP: state data collection required."
+  },
+  "HI": {
+   "s": "enacted",
+   "t": "Extended prison terms for hate-crime offenders targeting race, ethnicity, national origin, religion and more.",
+   "law": "Haw. Rev. Stat. § 706-662(6)",
+   "y": 2001,
+   "src": [
+    {
+     "n": "Hawaii Revised Statutes 706-662",
+     "u": "https://data.capitol.hawaii.gov/hrscurrent/Vol14_Ch0701-0853/HRS0706/HRS_0706-0662.htm",
+     "p": true
+    },
+    {
+     "n": "MAP: Criminal Justice: Hate Crime Laws (state citations, 2026)",
+     "u": "https://mapresearch.org/wp-content/uploads/2026/02/citations-hate-crime.pdf",
+     "p": false
+    }
+   ],
+   "q": "because of hostility toward the actual or perceived race, religion, disability, ethnicity, national origin, gender identity or expression, or sexual orientation of any person",
+   "x": "Applies to offenses against persons and property (ch. 707, 708, 711). Also disability, gender identity/expression, sexual orientation. MAP: state requires hate-crime data collection."
+  },
+  "ID": {
+   "s": "enacted",
+   "t": "Malicious harassment offense covering race, color, religion, ancestry and national origin.",
+   "law": "Idaho Code § 18-7902",
+   "y": 1983,
+   "src": [
+    {
+     "n": "Idaho Code 18-7902 Malicious harassment",
+     "u": "https://legislature.idaho.gov/statutesrules/idstat/title18/t18ch79/sect18-7902/",
+     "p": true
+    },
+    {
+     "n": "MAP: Criminal Justice: Hate Crime Laws (state citations, 2026)",
+     "u": "https://mapresearch.org/wp-content/uploads/2026/02/citations-hate-crime.pdf",
+     "p": false
+    }
+   ],
+   "q": "because of that person’s race, color, religion, ancestry, or national origin",
+   "x": "No sexual orientation/gender identity. MAP: data collection required (Idaho Code 67-2915) but not for those categories."
+  },
+  "IL": {
+   "s": "enacted",
+   "t": "Hate crime offense covering race, ancestry, national origin, religion, plus citizenship and immigration status.",
+   "law": "720 ILCS 5/12-7.1",
+   "y": 1983,
+   "src": [
+    {
+     "n": "720 ILCS 5/12-7.1 Hate crime (Illinois General Assembly)",
+     "u": "https://www.ilga.gov/Documents/legislation/ilcs/documents/072000050K12-7.1.htm",
+     "p": true
+    },
+    {
+     "n": "Lawyers' Committee Hate Crime FAQs: Illinois (2018)",
+     "u": "https://8449nohate.org/wp-content/uploads/2018/02/IL.FAQ_.pdf",
+     "p": false
+    },
+    {
+     "n": "MAP: Criminal Justice: Hate Crime Laws (state citations, 2026)",
+     "u": "https://mapresearch.org/wp-content/uploads/2026/02/citations-hate-crime.pdf",
+     "p": false
+    }
+   ],
+   "q": "Protected traits include: race, color, creed, religion, ancestry, gender, sexual orientation, physical or mental disability, or national origin",
+   "x": "Current ilga.gov text (read via fetch tool) also lists citizenship and immigration status; FAQ is 2018. MAP: state requires hate-crime data collection."
+  },
+  "IN": {
+   "s": "partial",
+   "t": "Judges may weigh offender bias as a sentencing aggravator; the statute names no protected groups.",
+   "law": "Ind. Code § 35-38-1-7.1(a)(12) (SEA 198, 2019)",
+   "y": 2019,
+   "src": [
+    {
+     "n": "Indiana SEA 198 (2019), amending IC 35-38-1-7.1",
+     "u": "https://iga.in.gov/pdf-documents/121/2019/senate/bills/SB0198/SB0198.05.ENRH.pdf",
+     "p": true
+    },
+    {
+     "n": "MAP: Criminal Justice: Hate Crime Laws (state citations, 2026)",
+     "u": "https://mapresearch.org/wp-content/uploads/2026/02/citations-hate-crime.pdf",
+     "p": false
+    },
+    {
+     "n": "Brennan Center: State Hate Crimes Statutes (2020)",
+     "u": "https://www.brennancenter.org/our-work/research-reports/state-hate-crimes-statutes",
+     "p": false
+    },
+    {
+     "n": "Lawyers' Committee Hate Crime FAQs: Indiana (2018)",
+     "u": "https://8449nohate.org/wp-content/uploads/2018/02/IN.FAQ_.pdf",
+     "p": false
+    }
+   ],
+   "q": "The person committed the offense with bias due to the victim's or the group's real or perceived characteristic, trait, belief, practice, association, or other attribute the court chooses to consider",
+   "x": "Discretionary aggravator; mentions attributes in IC 10-13-3-1. MAP and Brennan do not count it as a hate-crime law. MAP: bias-crime data collection required."
+  },
+  "IA": {
+   "s": "enacted",
+   "t": "Hate crime offense covering race, ancestry, national origin, religion and more.",
+   "law": "Iowa Code § 729A.2",
+   "y": 1992,
+   "src": [
+    {
+     "n": "Iowa Code 729A.2",
+     "u": "https://www.legis.iowa.gov/docs/code/729A.2.pdf",
+     "p": true
+    },
+    {
+     "n": "MAP: Criminal Justice: Hate Crime Laws (state citations, 2026)",
+     "u": "https://mapresearch.org/wp-content/uploads/2026/02/citations-hate-crime.pdf",
+     "p": false
+    }
+   ],
+   "q": "because of the person’s race, color, religion, ancestry, national origin, political affiliation, sex, sexual orientation, age, or disability",
+   "x": "Also political affiliation, sex, sexual orientation, age, disability, association. MAP: state requires hate-crime data collection."
+  },
+  "KS": {
+   "s": "enacted",
+   "t": "Aggravating factor for sentencing departures when an offense is motivated by race, ethnicity, national origin, religion.",
+   "law": "Kan. Stat. § 21-6815(c)(2)(C)",
+   "y": 1992,
+   "src": [
+    {
+     "n": "Kansas K.S.A. 21-6815",
+     "u": "https://www.ksrevisor.gov/statutes/chapters/ch21/021_068_0015.html",
+     "p": true
+    },
+    {
+     "n": "MAP: Criminal Justice: Hate Crime Laws (state citations, 2026)",
+     "u": "https://mapresearch.org/wp-content/uploads/2026/02/citations-hate-crime.pdf",
+     "p": false
+    }
+   ],
+   "q": "The offense was motivated entirely or in part by the race, color, religion, ethnicity, national origin or sexual orientation of the victim",
+   "x": "Nonexclusive aggravating factor for upward departure, not a separate offense. Also sexual orientation. MAP: no state hate-crime data-collection mandate."
+  },
+  "KY": {
+   "s": "enacted",
+   "t": "Penalty enhancement for offenses motivated by race, color, religion, sexual orientation or national origin.",
+   "law": "Ky. Rev. Stat. § 532.031",
+   "y": 1998,
+   "src": [
+    {
+     "n": "Lawyers' Committee Hate Crime FAQs: Kentucky (2018)",
+     "u": "https://8449nohate.org/wp-content/uploads/2018/02/KY.FAQ_.pdf",
+     "p": false
+    },
+    {
+     "n": "MAP: Criminal Justice: Hate Crime Laws (state citations, 2026)",
+     "u": "https://mapresearch.org/wp-content/uploads/2026/02/citations-hate-crime.pdf",
+     "p": false
+    }
+   ],
+   "q": "actual or perceived race, color, religion, sexual orientation, or national origin",
+   "x": "Also first-responder employment. Statute text not reached; per Lawyers' Committee FAQ (2018) and MAP. MAP: state requires hate-crime data collection."
+  },
+  "LA": {
+   "s": "enacted",
+   "t": "Hate crime statute covering race, ancestry, national origin, religion and more for listed offenses.",
+   "law": "La. R.S. 14:107.2",
+   "y": 1997,
+   "src": [
+    {
+     "n": "Louisiana R.S. 14:107.2 Hate crimes",
+     "u": "https://legis.la.gov/Legis/Law.aspx?d=78262",
+     "p": true
+    },
+    {
+     "n": "MAP: Criminal Justice: Hate Crime Laws (state citations, 2026)",
+     "u": "https://mapresearch.org/wp-content/uploads/2026/02/citations-hate-crime.pdf",
+     "p": false
+    }
+   ],
+   "q": "because of actual or perceived race, age, sex, religion, color, creed, disability, sexual orientation, national origin, or ancestry",
+   "x": "Also age, sex, creed, disability, sexual orientation, organization membership, first-responder employment. MAP: data collection relies on voluntary agency reporting."
+  },
+  "ME": {
+   "s": "enacted",
+   "t": "Sentencing provision weighs victim selection by race, ancestry, national origin, religion; plus Civil Rights Act.",
+   "law": "17-A M.R.S. § 1501(8)(B); 5 M.R.S. § 4684-A; 17 M.R.S. § 2931",
+   "y": 1989,
+   "src": [
+    {
+     "n": "Maine 17-A M.R.S. 1501 Purposes (sentencing)",
+     "u": "https://legislature.maine.gov/statutes/17-A/title17-Asec1501.html",
+     "p": true
+    },
+    {
+     "n": "Maine 5 M.R.S. 4684-A Civil rights",
+     "u": "https://legislature.maine.gov/statutes/5/title5sec4684-A.html",
+     "p": true
+    },
+    {
+     "n": "MAP: Criminal Justice: Hate Crime Laws (state citations, 2026)",
+     "u": "https://mapresearch.org/wp-content/uploads/2026/02/citations-hate-crime.pdf",
+     "p": false
+    },
+    {
+     "n": "Brennan Center: State Hate Crimes Statutes (2020)",
+     "u": "https://www.brennancenter.org/our-work/research-reports/state-hate-crimes-statutes",
+     "p": false
+    }
+   ],
+   "q": "because of the race, color, religion, sex, ancestry, national origin, physical or mental disability, sexual orientation, gender identity or homelessness of the victim",
+   "x": "Sentencing-purposes factor, not a stand-alone offense; 5 MRSA 4684-A (civil rights act) is civil. Also sex, disability, SO, gender identity, homelessness. MAP: state requires hate-crime data collection."
+  },
+  "MD": {
+   "s": "enacted",
+   "t": "Hate-crime law bars crimes motivated by race, color, national origin, religion and more.",
+   "law": "Md. Code, Crim. Law §§ 10-301, 10-304",
+   "y": null,
+   "src": [
+    {
+     "n": "Maryland Criminal Law 10-304",
+     "u": "https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gcr&section=10-304&enactments=false",
+     "p": true
+    },
+    {
+     "n": "MAP: Criminal Justice: Hate Crime Laws (state citations, 2026)",
+     "u": "https://mapresearch.org/wp-content/uploads/2026/02/citations-hate-crime.pdf",
+     "p": false
+    }
+   ],
+   "q": "Motivated either in whole or in substantial part by another person’s or group’s race, color, religious beliefs, sexual orientation, sex, gender identity, disability, or national origin",
+   "x": "Also sex, sexual orientation, gender identity, disability, homelessness. MAP: state requires hate-crime data collection."
+  },
+  "MA": {
+   "s": "enacted",
+   "t": "Hate crime offense covering race, color, religion, national origin and more (G.L. c. 265 s. 39).",
+   "law": "Mass. Gen. Laws ch. 265, § 39",
+   "y": 1983,
+   "src": [
+    {
+     "n": "Massachusetts G.L. c. 265 s. 39",
+     "u": "https://malegislature.gov/Laws/GeneralLaws/PartIV/TitleI/Chapter265/Section39",
+     "p": true
+    },
+    {
+     "n": "MAP: Criminal Justice: Hate Crime Laws (state citations, 2026)",
+     "u": "https://mapresearch.org/wp-content/uploads/2026/02/citations-hate-crime.pdf",
+     "p": false
+    }
+   ],
+   "q": "with the intent to intimidate such person because of such person's race, color, religion, national origin, sexual orientation, gender identity, or disability",
+   "x": "Also sexual orientation, gender identity, disability. MAP: state requires hate-crime data collection."
+  },
+  "MI": {
+   "s": "enacted",
+   "t": "Hate crime offense covering race, ethnicity, national origin, religion; expanded by 2024 PA 259 (eff. Apr. 2, 2025).",
+   "law": "Mich. Comp. Laws § 750.147b (2024 PA 259)",
+   "y": 1989,
+   "src": [
+    {
+     "n": "Michigan MCL 750.147b Hate crime",
+     "u": "https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-750-147b",
+     "p": true
+    },
+    {
+     "n": "MAP: Criminal Justice: Hate Crime Laws (state citations, 2026)",
+     "u": "https://mapresearch.org/wp-content/uploads/2026/02/citations-hate-crime.pdf",
+     "p": false
+    }
+   ],
+   "q": "(h) Ethnicity. (i) National origin.",
+   "x": "Original 'ethnic intimidation' law eff. 1989; rewritten eff. 4/2/2025 to add sex, sexual orientation, gender identity/expression, disability, age. MAP: state requires hate-crime data collection."
+  },
+  "MN": {
+   "s": "enacted",
+   "t": "Bias-motivated assault law covering race, ethnicity, national origin, religion and more.",
+   "law": "Minn. Stat. § 609.2231, subd. 4 (see also § 363A.03)",
+   "y": 1989,
+   "src": [
+    {
+     "n": "Minnesota Statutes 609.2231",
+     "u": "https://www.revisor.mn.gov/statutes/cite/609.2231",
+     "p": true
+    },
+    {
+     "n": "MAP: Criminal Justice: Hate Crime Laws (state citations, 2026)",
+     "u": "https://mapresearch.org/wp-content/uploads/2026/02/citations-hate-crime.pdf",
+     "p": false
+    }
+   ],
+   "q": "because of the victim's or another's actual or perceived race, color, ethnicity, religion, sex, gender, sexual orientation, gender identity, gender expression, age, national origin, or disability",
+   "x": "Also sex, gender, sexual orientation, gender identity/expression, age, disability. MAP: state requires hate-crime data collection."
+  },
+  "MS": {
+   "s": "enacted",
+   "t": "Penalty enhancement (up to double) for crimes motivated by race, ancestry, ethnicity, national origin, religion.",
+   "law": "Miss. Code § 99-19-301 et seq.",
+   "y": 1994,
+   "src": [
+    {
+     "n": "Lawyers' Committee Hate Crime FAQs: Mississippi (2018)",
+     "u": "https://8449nohate.org/wp-content/uploads/2018/02/MS.FAQ_.pdf",
+     "p": false
+    },
+    {
+     "n": "MAP: Criminal Justice: Hate Crime Laws (state citations, 2026)",
+     "u": "https://mapresearch.org/wp-content/uploads/2026/02/citations-hate-crime.pdf",
+     "p": false
+    }
+   ],
+   "q": "a penalty enhancement can be levied against the perpetrator if a criminal offense was committed because of the person’s (1) race, (2) color, (3) ancestry, (4) ethnicity",
+   "x": "Also gender and first-responder employment; no sexual orientation/gender identity. Statute text not reached; per Lawyers' Committee FAQ (2018) and MAP. MAP: no state hate-crime data-collection mandate."
+  },
+  "MO": {
+   "s": "enacted",
+   "t": "Hate offense enhancement for crimes motivated by race, color, religion, national origin and more.",
+   "law": "Mo. Rev. Stat. § 557.035",
+   "y": 1999,
+   "src": [
+    {
+     "n": "Missouri RSMo 557.035",
+     "u": "https://revisor.mo.gov/main/OneSection.aspx?section=557.035",
+     "p": true
+    },
+    {
+     "n": "MAP: Criminal Justice: Hate Crime Laws (state citations, 2026)",
+     "u": "https://mapresearch.org/wp-content/uploads/2026/02/citations-hate-crime.pdf",
+     "p": false
+    }
+   ],
+   "q": "knowingly motivated because of race, color, religion, national origin, sex, sexual orientation or disability of the victim or victims",
+   "x": "Applies to listed offenses. Also sex, sexual orientation, disability. MAP: no state hate-crime data-collection mandate."
+  },
+  "MT": {
+   "s": "enacted",
+   "t": "Malicious intimidation or harassment offense covering race, creed, religion, color and national origin.",
+   "law": "Mont. Code § 45-5-221",
+   "y": 1989,
+   "src": [
+    {
+     "n": "Montana MCA 45-5-221",
+     "u": "https://mca.legmt.gov/bills/mca/title_0450/chapter_0050/part_0020/section_0210/0450-0050-0020-0210.html",
+     "p": true
+    },
+    {
+     "n": "MAP: Criminal Justice: Hate Crime Laws (state citations, 2026)",
+     "u": "https://mapresearch.org/wp-content/uploads/2026/02/citations-hate-crime.pdf",
+     "p": false
+    }
+   ],
+   "q": "because of another person's race, creed, religion, color, national origin, or involvement in civil rights or human rights activities",
+   "x": "No sexual orientation/gender identity. MAP: no state hate-crime data-collection mandate."
+  },
+  "NE": {
+   "s": "enacted",
+   "t": "Enhanced penalty for listed offenses committed because of race, ancestry, national origin, religion and more.",
+   "law": "Neb. Rev. Stat. §§ 28-110 to 28-114",
+   "y": 1997,
+   "src": [
+    {
+     "n": "Nebraska Revised Statutes 28-111",
+     "u": "https://nebraskalegislature.gov/laws/statutes.php?statute=28-111",
+     "p": true
+    },
+    {
+     "n": "MAP: Criminal Justice: Hate Crime Laws (state citations, 2026)",
+     "u": "https://mapresearch.org/wp-content/uploads/2026/02/citations-hate-crime.pdf",
+     "p": false
+    }
+   ],
+   "q": "because of the person's race, color, religion, ancestry, national origin, gender, sexual orientation, age, or disability",
+   "x": "Also gender, sexual orientation, age, disability, association. MAP: data collection relies on voluntary agency reporting."
+  },
+  "NV": {
+   "s": "enacted",
+   "t": "Added prison term for listed crimes committed because of race, national origin, religion and more.",
+   "law": "Nev. Rev. Stat. § 193.1675",
+   "y": 1995,
+   "src": [
+    {
+     "n": "Nevada NRS Chapter 193 (NRS 193.1675)",
+     "u": "https://www.leg.state.nv.us/nrs/nrs-193.html",
+     "p": true
+    },
+    {
+     "n": "MAP: Criminal Justice: Hate Crime Laws (state citations, 2026)",
+     "u": "https://mapresearch.org/wp-content/uploads/2026/02/citations-hate-crime.pdf",
+     "p": false
+    }
+   ],
+   "q": "actual or perceived race, color, religion, national origin, physical or mental disability, sexual orientation or gender identity or expression",
+   "x": "Also disability, sexual orientation, gender identity/expression. MAP: state requires hate-crime data collection."
+  },
+  "NH": {
+   "s": "enacted",
+   "t": "Extended-term sentencing when a crime is motivated by hostility toward race, religion, national origin and more.",
+   "law": "N.H. Rev. Stat. § 651:6, I(f)",
+   "y": 1990,
+   "src": [
+    {
+     "n": "Lawyers' Committee Hate Crime FAQs: New Hampshire (2018)",
+     "u": "https://8449nohate.org/wp-content/uploads/2018/02/NH.FAQ_.pdf",
+     "p": false
+    },
+    {
+     "n": "MAP: Criminal Justice: Hate Crime Laws (state citations, 2026)",
+     "u": "https://mapresearch.org/wp-content/uploads/2026/02/citations-hate-crime.pdf",
+     "p": false
+    }
+   ],
+   "q": "hostility towards the victim’s religion, race, creed, sexual orientation, . . . national origin or sex",
+   "x": "Also creed, sexual orientation, sex, gender identity (MAP). Statute text not reached (gc.nh.gov blocked); per Lawyers' Committee FAQ (2018) and MAP. MAP: no state hate-crime data-collection mandate."
+  },
+  "NJ": {
+   "s": "enacted",
+   "t": "Bias intimidation offense covering race, color, religion, national origin, ethnicity and more.",
+   "law": "N.J. Stat. § 2C:16-1",
+   "y": 1990,
+   "src": [
+    {
+     "n": "Lawyers' Committee Hate Crime FAQs: New Jersey (2018)",
+     "u": "https://8449nohate.org/wp-content/uploads/2018/02/NJ.FAQ_.pdf",
+     "p": false
+    },
+    {
+     "n": "MAP: Criminal Justice: Hate Crime Laws (state citations, 2026)",
+     "u": "https://mapresearch.org/wp-content/uploads/2026/02/citations-hate-crime.pdf",
+     "p": false
+    }
+   ],
+   "q": "because of their race, color, religion, gender, disability, sexual orientation, gender identity or expression, national origin, or ethnicity",
+   "x": "Also gender, disability, sexual orientation, gender identity/expression. Statute text not reached; per Lawyers' Committee FAQ (2018) and MAP. MAP: state requires hate-crime data collection."
+  },
+  "NM": {
+   "s": "enacted",
+   "t": "Enhanced sentence for crimes motivated by race, religion, national origin, ancestry and more.",
+   "law": "N.M. Stat. § 31-18B-3",
+   "y": 2003,
+   "src": [
+    {
+     "n": "Lawyers' Committee Hate Crime FAQs: New Mexico (2018)",
+     "u": "https://8449nohate.org/wp-content/uploads/2018/02/NM.FAQ_.pdf",
+     "p": false
+    },
+    {
+     "n": "MAP: Criminal Justice: Hate Crime Laws (state citations, 2026)",
+     "u": "https://mapresearch.org/wp-content/uploads/2026/02/citations-hate-crime.pdf",
+     "p": false
+    }
+   ],
+   "q": "N.M. Stat. Section 31-18B-3 provides enhanced punishment for a crime when motivated by hate",
+   "x": "FAQ lists race, religion, color, national origin, ancestry, age, disability, gender, SO, gender identity. Text not reached. MAP: law requires submitting data to the FBI under federal HCSA, not to the state."
+  },
+  "NY": {
+   "s": "enacted",
+   "t": "Hate crime law (Penal Law art. 485) covering race, national origin, ancestry, religion and more.",
+   "law": "N.Y. Penal Law art. 485 (§ 485.05)",
+   "y": 2000,
+   "src": [
+    {
+     "n": "N.Y. Penal Law 485.05 (NewYork.Public.Law mirror)",
+     "u": "https://newyork.public.law/laws/n.y._penal_law_section_485.05",
+     "p": false
+    },
+    {
+     "n": "MAP: Criminal Justice: Hate Crime Laws (state citations, 2026)",
+     "u": "https://mapresearch.org/wp-content/uploads/2026/02/citations-hate-crime.pdf",
+     "p": false
+    }
+   ],
+   "q": "because of a belief or perception regarding the race, color, national origin, ancestry, gender, gender identity or expression, religion, religious practice",
+   "x": "Statute read via NewYork.Public.Law mirror (nysenate.gov blocked). MAP: data collection relies on voluntary agency reporting."
+  },
+  "NC": {
+   "s": "enacted",
+   "t": "Higher penalty classes for crimes because of race, color, religion, nationality or country of origin.",
+   "law": "N.C. Gen. Stat. §§ 14-3(c), 14-401.14, 15A-1340.16",
+   "y": 1991,
+   "src": [
+    {
+     "n": "North Carolina G.S. 14-3",
+     "u": "https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_14/GS_14-3.html",
+     "p": true
+    },
+    {
+     "n": "North Carolina G.S. 14-401.14 Ethnic intimidation",
+     "u": "https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_14/GS_14-401.14.html",
+     "p": true
+    },
+    {
+     "n": "North Carolina H961 (2025) Hate Crimes Prevention Act, bill summary",
+     "u": "https://webservices.ncleg.gov/BillDigests/2025/H961",
+     "p": true
+    },
+    {
+     "n": "MAP: Criminal Justice: Hate Crime Laws (state citations, 2026)",
+     "u": "https://mapresearch.org/wp-content/uploads/2026/02/citations-hate-crime.pdf",
+     "p": false
+    }
+   ],
+   "q": "because of the victim's race, color, religion, nationality, or country of origin",
+   "x": "No sexual orientation/gender identity. H961 (2025, 'Hate Crimes Prevention Act') would add a felony enhancement and ethnicity/gender; its status was not checked. MAP: no state hate-crime data-collection mandate."
+  },
+  "ND": {
+   "s": "partial",
+   "t": "Misdemeanor for force or threats against someone using public facilities because of race or national origin.",
+   "law": "N.D. Cent. Code § 12.1-14-04",
+   "y": 1973,
+   "src": [
+    {
+     "n": "North Dakota Century Code ch. 12.1-14",
+     "u": "https://ndlegis.gov/cencode/t12-1c14.pdf",
+     "p": true
+    },
+    {
+     "n": "MAP: Criminal Justice: Hate Crime Laws (state citations, 2026)",
+     "u": "https://mapresearch.org/wp-content/uploads/2026/02/citations-hate-crime.pdf",
+     "p": false
+    },
+    {
+     "n": "Brennan Center: State Hate Crimes Statutes (2020)",
+     "u": "https://www.brennancenter.org/our-work/research-reports/state-hate-crimes-statutes",
+     "p": false
+    }
+   ],
+   "q": "Injures, intimidates, or interferes with another because of his sex, race, color, religion, or national origin",
+   "x": "Civil-rights-style offense tied to use of public facilities, no general bias enhancement; MAP notes some researchers do not count it. MAP: no state hate-crime data-collection mandate."
+  },
+  "OH": {
+   "s": "partial",
+   "t": "Ethnic intimidation raises certain menacing, property-damage and harassment offenses a degree; assault not covered.",
+   "law": "Ohio Rev. Code § 2927.12",
+   "y": 1987,
+   "src": [
+    {
+     "n": "Ohio Revised Code 2927.12 Ethnic intimidation",
+     "u": "https://codes.ohio.gov/ohio-revised-code/section-2927.12",
+     "p": true
+    },
+    {
+     "n": "MAP: Criminal Justice: Hate Crime Laws (state citations, 2026)",
+     "u": "https://mapresearch.org/wp-content/uploads/2026/02/citations-hate-crime.pdf",
+     "p": false
+    }
+   ],
+   "q": "by reason of the race, color, religion, or national origin of another person or group of persons",
+   "x": "Covers race, color, religion, national origin but only listed offenses (menacing, criminal damaging/mischief, telecom harassment). Lower of enacted/partial chosen. MAP: no state hate-crime data-collection mandate."
+  },
+  "OK": {
+   "s": "enacted",
+   "t": "Malicious intimidation or harassment offense covering race, ancestry, national origin, religion and disability.",
+   "law": "21 Okla. Stat. § 850",
+   "y": 1987,
+   "src": [
+    {
+     "n": "Oklahoma Statutes Title 21 (21 O.S. 850)",
+     "u": "https://www.oklegislature.gov/OK_Statutes/CompleteTitles/os21.rtf",
+     "p": true
+    },
+    {
+     "n": "MAP: Criminal Justice: Hate Crime Laws (state citations, 2026)",
+     "u": "https://mapresearch.org/wp-content/uploads/2026/02/citations-hate-crime.pdf",
+     "p": false
+    }
+   ],
+   "q": "because of that person's race, color, religion, ancestry, national origin or disability",
+   "x": "No sexual orientation/gender identity. OSBI must run a standardized bias-crime reporting system (subsec. F). MAP: state requires hate-crime data collection."
+  },
+  "OR": {
+   "s": "enacted",
+   "t": "Bias crime offenses (2nd/1st degree) covering race, color, religion, national origin and more.",
+   "law": "Or. Rev. Stat. §§ 166.155, 166.165",
+   "y": 1981,
+   "src": [
+    {
+     "n": "Oregon Revised Statutes ch. 166 (ORS 166.155)",
+     "u": "https://www.oregonlegislature.gov/bills_laws/ors/ors166.html",
+     "p": true
+    },
+    {
+     "n": "MAP: Criminal Justice: Hate Crime Laws (state citations, 2026)",
+     "u": "https://mapresearch.org/wp-content/uploads/2026/02/citations-hate-crime.pdf",
+     "p": false
+    }
+   ],
+   "q": "race, color, religion, gender identity, sexual orientation, disability or national origin",
+   "x": "Also gender identity, sexual orientation, disability. MAP: state requires hate-crime data collection."
+  },
+  "PA": {
+   "s": "enacted",
+   "t": "Ethnic intimidation raises the grade of listed offenses motivated by race, color, religion or national origin.",
+   "law": "18 Pa. C.S. § 2710",
+   "y": 1982,
+   "src": [
+    {
+     "n": "Pennsylvania 18 Pa.C.S. 2710 Ethnic intimidation",
+     "u": "https://www.legis.state.pa.us/WU01/LI/LI/CT/HTM/18/00.027.010.000..HTM",
+     "p": true
+    },
+    {
+     "n": "MAP: Criminal Justice: Hate Crime Laws (state citations, 2026)",
+     "u": "https://mapresearch.org/wp-content/uploads/2026/02/citations-hate-crime.pdf",
+     "p": false
+    }
+   ],
+   "q": "with malicious intention toward the race, color, religion or national origin of another individual or group of individuals",
+   "x": "2002 amendments adding ancestry, SO and gender identity were held unconstitutional in Marcavage v. Rendell (2007). MAP: state requires hate-crime data collection."
+  },
+  "RI": {
+   "s": "enacted",
+   "t": "Hate Crimes Sentencing Act: mandatory minimum for crimes from hatred of race, national origin, ancestry, religion.",
+   "law": "R.I. Gen. Laws § 12-19-38",
+   "y": 1998,
+   "src": [
+    {
+     "n": "Rhode Island General Laws 12-19-38",
+     "u": "https://webserver.rilegislature.gov/Statutes/TITLE12/12-19/12-19-38.htm",
+     "p": true
+    },
+    {
+     "n": "MAP: Criminal Justice: Hate Crime Laws (state citations, 2026)",
+     "u": "https://mapresearch.org/wp-content/uploads/2026/02/citations-hate-crime.pdf",
+     "p": false
+    }
+   ],
+   "q": "because of the actor’s hatred or animus toward the actual or perceived disability, religion, color, race, national origin or ancestry, sexual orientation, or gender",
+   "x": "Also disability, sexual orientation, gender. MAP: state requires hate-crime data collection."
+  },
+  "SC": {
+   "s": "none",
+   "t": "No state hate-crime statute; Pinckney Hate Crimes Act (H.3039/S.247) stalled in the Senate.",
+   "law": "",
+   "y": null,
+   "src": [
+    {
+     "n": "MAP: Criminal Justice: Hate Crime Laws (state citations, 2026)",
+     "u": "https://mapresearch.org/wp-content/uploads/2026/02/citations-hate-crime.pdf",
+     "p": false
+    },
+    {
+     "n": "MAP Equality Maps: Hate Crime Laws (data as of Nov 2, 2026)",
+     "u": "https://www.lgbtmap.org/equality-maps/hate_crime_laws",
+     "p": false
+    },
+    {
+     "n": "South Carolina H.3039 Pinckney Hate Crimes Act (2025-26)",
+     "u": "https://www.scstatehouse.gov/sess126_2025-2026/bills/3039.htm",
+     "p": true
+    },
+    {
+     "n": "South Carolina S.247 Pinckney Hate Crimes Act (2025-26)",
+     "u": "https://www.scstatehouse.gov/sess126_2025-2026/bills/247.htm",
+     "p": true
+    },
+    {
+     "n": "WACH: SC hate crime bill advances but time is almost out (May 13, 2026)",
+     "u": "https://abcnews4.com/news/state/when-will-it-be-our-turn-sc-hate-crime-bill-advances-but-time-is-almost-outclementacpinckneyhatecrimesactwendellgilliardhamiltongranttylerbaileyjarvismckenziehatecrimevictimsouthcarolina",
+     "p": false
+    }
+   ],
+   "q": "",
+   "x": "H.3039/S.247 not enacted (MAP, Nov 2, 2026). WACH 5/13/2026: session ending 5/14, bill expected to restart in Jan. Final action not confirmed."
+  },
+  "SD": {
+   "s": "enacted",
+   "t": "Malicious intimidation or harassment felony covering race, ethnicity, religion, ancestry and national origin.",
+   "law": "S.D. Codified Laws § 22-19B-1",
+   "y": 1993,
+   "src": [
+    {
+     "n": "South Dakota Codified Law 22-19B-1",
+     "u": "https://sdlegislature.gov/api/Statutes/22-19B-1.html?all=true",
+     "p": true
+    },
+    {
+     "n": "MAP: Criminal Justice: Hate Crime Laws (state citations, 2026)",
+     "u": "https://mapresearch.org/wp-content/uploads/2026/02/citations-hate-crime.pdf",
+     "p": false
+    }
+   ],
+   "q": "because of that person's or group of persons' race, ethnicity, religion, ancestry, or national origin",
+   "x": "No sexual orientation/gender identity. MAP: no state hate-crime data-collection mandate."
+  },
+  "TN": {
+   "s": "enacted",
+   "t": "Sentencing enhancement factor for victim selection by race, national origin, ancestry, religion and more.",
+   "law": "Tenn. Code § 40-35-114(17)",
+   "y": 2000,
+   "src": [
+    {
+     "n": "Tennessee Attorney General Opinion 19-01 (quotes TCA 40-35-114(17))",
+     "u": "https://www.tn.gov/content/dam/tn/attorneygeneral/documents/ops/2019/op19-01.pdf",
+     "p": true
+    },
+    {
+     "n": "MAP: Criminal Justice: Hate Crime Laws (state citations, 2026)",
+     "u": "https://mapresearch.org/wp-content/uploads/2026/02/citations-hate-crime.pdf",
+     "p": false
+    }
+   ],
+   "q": "because of the defendant's belief or perception regarding the race, religion, color, disability, sexual orientation, national origin, ancestry or gender of that person",
+   "x": "Advisory enhancement factor, not a separate offense. Also disability, sexual orientation, gender (AG Op. 19-01 applies it to transgender victims). MAP: no state hate-crime data-collection mandate."
+  },
+  "TX": {
+   "s": "enacted",
+   "t": "Hate-crime finding bumps punishment one level for bias against race, national origin, ancestry, religion and more.",
+   "law": "Tex. Code Crim. Proc. art. 42.014; Tex. Penal Code § 12.47",
+   "y": 1993,
+   "src": [
+    {
+     "n": "Texas Code Crim. Proc. art. 42.014 (Texas.Public.Law mirror)",
+     "u": "https://texas.public.law/statutes/tex._code_of_crim._proc._article_42.014",
+     "p": false
+    },
+    {
+     "n": "Texas Penal Code 12.47 (Texas.Public.Law mirror)",
+     "u": "https://texas.public.law/statutes/tex._penal_code_section_12.47",
+     "p": false
+    },
+    {
+     "n": "MAP: Criminal Justice: Hate Crime Laws (state citations, 2026)",
+     "u": "https://mapresearch.org/wp-content/uploads/2026/02/citations-hate-crime.pdf",
+     "p": false
+    }
+   ],
+   "q": "because of the defendant’s bias or prejudice against a group identified by race, color, disability, religion, national origin or ancestry, age, gender, or sexual preference",
+   "x": "Read via Texas.Public.Law mirror. Applies to Penal Code Title 5 and listed property offenses. Also disability, age, gender, sexual preference. MAP: state requires hate-crime data collection."
+  },
+  "UT": {
+   "s": "enacted",
+   "t": "Victim-targeting penalty enhancement covering race, ethnicity, ancestry, national origin, religion and more.",
+   "law": "Utah Code § 76-3-203.14",
+   "y": 2019,
+   "src": [
+    {
+     "n": "Utah Code 76-3-203.14 Victim targeting penalty enhancement",
+     "u": "https://le.utah.gov/xcode/Title76/Chapter3/C76-3-S203.14_2019051420190514.html",
+     "p": true
+    },
+    {
+     "n": "MAP: Criminal Justice: Hate Crime Laws (state citations, 2026)",
+     "u": "https://mapresearch.org/wp-content/uploads/2026/02/citations-hate-crime.pdf",
+     "p": false
+    }
+   ],
+   "q": "A defendant is subject to enhanced penalties under Subsection (3) if the defendant intentionally selects",
+   "x": "Eff. 5/14/2019 (SB 103). 'Personal attributes' include ancestry, ethnicity, national origin, race, religion, SO, gender identity, disability, age and more. MAP: data collection relies on voluntary agency reporting."
+  },
+  "VT": {
+   "s": "enacted",
+   "t": "Hate-motivated crime penalties covering race, national origin, ancestry, religion and more; amended 2025.",
+   "law": "13 V.S.A. § 1455 (2025 Act 8)",
+   "y": 1990,
+   "src": [
+    {
+     "n": "Vermont 13 V.S.A. ch. 31 (13 V.S.A. 1455)",
+     "u": "https://legislature.vermont.gov/statutes/fullchapter/13/031",
+     "p": true
+    },
+    {
+     "n": "MAP: Criminal Justice: Hate Crime Laws (state citations, 2026)",
+     "u": "https://mapresearch.org/wp-content/uploads/2026/02/citations-hate-crime.pdf",
+     "p": false
+    }
+   ],
+   "q": "“protected category” includes race, color, religion, national origin, sex, ancestry, age, service in the U.S. Armed Forces or the National Guard, disability",
+   "x": "Eff. 5/12/1990; amended by 2025 Act 8 (eff. 7/1/2025). Also sex, age, military service, disability, sexual orientation, gender identity. MAP: no state hate-crime data-collection mandate."
+  },
+  "VA": {
+   "s": "enacted",
+   "t": "Enhanced assault penalties when victim chosen for race, religion, color, ethnic or national origin and more.",
+   "law": "Va. Code § 18.2-57(A)(2), (B)",
+   "y": 1994,
+   "src": [
+    {
+     "n": "Virginia Code 18.2-57",
+     "u": "https://law.lis.virginia.gov/vacode/title18.2/chapter4/section18.2-57/",
+     "p": true
+    },
+    {
+     "n": "MAP: Criminal Justice: Hate Crime Laws (state citations, 2026)",
+     "u": "https://mapresearch.org/wp-content/uploads/2026/02/citations-hate-crime.pdf",
+     "p": false
+    }
+   ],
+   "q": "because of his race, religious conviction, gender, disability, gender identity, sexual orientation, color, or ethnic or national origin",
+   "x": "Also gender, disability, gender identity, sexual orientation (added 2020). MAP: state requires hate-crime data collection."
+  },
+  "WA": {
+   "s": "enacted",
+   "t": "Hate crime offense (malicious harassment) covering race, ancestry, national origin, religion and more.",
+   "law": "Wash. Rev. Code § 9A.36.080",
+   "y": 1981,
+   "src": [
+    {
+     "n": "Washington RCW 9A.36.080 Malicious harassment",
+     "u": "https://app.leg.wa.gov/RCW/default.aspx?cite=9A.36.080",
+     "p": true
+    },
+    {
+     "n": "MAP: Criminal Justice: Hate Crime Laws (state citations, 2026)",
+     "u": "https://mapresearch.org/wp-content/uploads/2026/02/citations-hate-crime.pdf",
+     "p": false
+    }
+   ],
+   "q": "because of their perception of another person's race, color, religion, ancestry, national origin, gender, sexual orientation, gender expression or identity",
+   "x": "Also gender, sexual orientation, gender expression/identity, disability. MAP: state requires hate-crime data collection."
+  },
+  "WV": {
+   "s": "enacted",
+   "t": "Criminal penalties and sentencing aggravation for violence or intimidation based on race, ancestry, national origin.",
+   "law": "W. Va. Code § 61-6-21",
+   "y": null,
+   "src": [
+    {
+     "n": "West Virginia Code 61-6-21",
+     "u": "https://code.wvlegislature.gov/61-6-21/",
+     "p": true
+    },
+    {
+     "n": "MAP: Criminal Justice: Hate Crime Laws (state citations, 2026)",
+     "u": "https://mapresearch.org/wp-content/uploads/2026/02/citations-hate-crime.pdf",
+     "p": false
+    }
+   ],
+   "q": "because of their race, color, religion, ancestry, national origin, political affiliation or sex",
+   "x": "Also political affiliation, sex; no sexual orientation/gender identity. MAP: no state hate-crime data-collection mandate."
+  },
+  "WI": {
+   "s": "enacted",
+   "t": "Penalty enhancement for crimes targeting victims by race, religion, national origin, ancestry and more.",
+   "law": "Wis. Stat. § 939.645",
+   "y": 1987,
+   "src": [
+    {
+     "n": "Wisconsin Stat. 939.645 (FindLaw, current to Jan. 1, 2025)",
+     "u": "https://codes.findlaw.com/wi/crimes-ch-938-to-951/wi-st-939-645/",
+     "p": false
+    },
+    {
+     "n": "Lawyers' Committee Hate Crime FAQs: Wisconsin (2018)",
+     "u": "https://8449nohate.org/wp-content/uploads/2018/02/WI.FAQ_.pdf",
+     "p": false
+    },
+    {
+     "n": "MAP: Criminal Justice: Hate Crime Laws (state citations, 2026)",
+     "u": "https://mapresearch.org/wp-content/uploads/2026/02/citations-hate-crime.pdf",
+     "p": false
+    }
+   ],
+   "q": "enhanced penalties if crime victims are intentionally targeted due to race, religion, color, disability, sexual orientation, national origin, or ancestry",
+   "x": "Also color, disability, sexual orientation. Official docs.legis.wisconsin.gov unreachable here; per FindLaw mirror, Lawyers' Committee FAQ and MAP. MAP: no state hate-crime data-collection mandate."
+  },
+  "WY": {
+   "s": "none",
+   "t": "No state hate-crime statute found; no hate or bias bill in the 2025 or 2026 Wyoming sessions.",
+   "law": "",
+   "y": null,
+   "src": [
+    {
+     "n": "MAP: Criminal Justice: Hate Crime Laws (state citations, 2026)",
+     "u": "https://mapresearch.org/wp-content/uploads/2026/02/citations-hate-crime.pdf",
+     "p": false
+    },
+    {
+     "n": "MAP Equality Maps: Hate Crime Laws (data as of Nov 2, 2026)",
+     "u": "https://www.lgbtmap.org/equality-maps/hate_crime_laws",
+     "p": false
+    },
+    {
+     "n": "Wyoming Legislature bill data, 2025 session (all bills)",
+     "u": "https://wyoleg.gov/LsoService/api/BillInformation/2025",
+     "p": true
+    },
+    {
+     "n": "Wyoming Legislature bill data, 2026 session (all bills)",
+     "u": "https://wyoleg.gov/LsoService/api/BillInformation/2026",
+     "p": true
+    },
+    {
+     "n": "WACH: SC hate crime bill advances but time is almost out (May 13, 2026)",
+     "u": "https://abcnews4.com/news/state/when-will-it-be-our-turn-sc-hate-crime-bill-advances-but-time-is-almost-outclementacpinckneyhatecrimesactwendellgilliardhamiltongranttylerbaileyjarvismckenziehatecrimevictimsouthcarolina",
+     "p": false
+    }
+   ],
+   "q": "",
+   "x": "Searched catch/bill titles of 556 (2025) and 335 (2026) bills for hate, bias, ethnic, race, national-origin terms; no match."
+  }
+ },
+ "notes": [
+  "y is the year the state's bias-crime provision was first enacted per MAP's citations or the statute's own history; MAP's table column 'Year Hate Crime Law Passed' mostly dates sexual-orientation/gender-identity additions, so it was not used. null = not established from sources read.",
+  "Statute text not reached for KY, MS, NH, NJ, NM (support from Lawyers' Committee FAQ 2018 and MAP only) and AL (Legislature bill synopses 2010/2013 plus FAQ). WI read via FindLaw mirror; CA, CO, NY, TX via Public.Law mirrors; IL via ilga.gov through a fetch tool; CT text is the 2021 DCJ compilation.",
+  "Connecticut P.A. 26-77 (SB 90, signed 5/26/2026) revised and consolidated the hate-crime statutes; the new text was not reviewed, and status stays enacted based on the prior statute and the Act's title.",
+  "Arkansas and Indiana are partial: Ark. Code 5-4-405 (Act 681 of 2021) and IC 35-38-1-7.1(a)(12) (2019) address victim-group or bias selection without naming race, ethnicity or national origin. MAP and Brennan do not count either as a hate-crime law; ADL and others may differ.",
+  "North Dakota (civil-rights-style offense limited to use of public facilities) and Ohio (ethnic intimidation limited to menacing, property-damage and harassment offenses) are partial under the 'choose the lower status' rule; some trackers count both as having hate-crime laws.",
+  "Enacted entries that are sentencing factors or enhancements rather than stand-alone offenses include AK, AZ, KS, KY, MS, NM, TN, TX, ME and WI; Alaska's list says 'creed' rather than 'religion'.",
+  "South Carolina: H.3039/S.247 (Pinckney Hate Crimes Act) were not enacted; a May 13, 2026 report said the session ended May 14 with the bill expected to stall. Marked none rather than pending because no evidence shows the bill alive after adjournment; final action not independently confirmed.",
+  "Wyoming: no hate-crime statute per MAP and WACH (May 2026); a title search of all 2025 and 2026 bills in the Legislature's data found no hate or bias bill, so none rather than pending.",
+  "The web-search budget ran out before sweeps for 2025-26 bills that would amend existing statutes; amending bills are mentioned only where seen (North Carolina H961, 2025). Mississippi bills to expand categories (e.g., HB 364 of 2024, died in committee) were not tracked for 2026.",
+  "Data-collection remarks in x come from MAP's citations document and describe whether a state mandates collection; they do not state whether reports go to the FBI except for New Mexico."
+ ]
+}

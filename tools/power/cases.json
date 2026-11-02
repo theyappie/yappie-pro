@@ -1,0 +1,1086 @@
+{
+  "asOf": "2026-11-02",
+  "notes": [
+    "Status lines give the latest event I could verify on a fetched docket or primary page; the date in each status is the date of that event. Anything after it was not checked.",
+    "The web-search budget ran out mid-session. Topics from the brief I could not confirm and left out: H-1B $100,000 fee litigation (docket pages would not load), Southeast Asian refugee removal and TPS cases, public charge, hate-crime prosecutions of national significance, Section 203 language-assistance cases, census race-category cases, and Maui wildfire / Red Hill cases (no source tying them to AAPI or Native Hawaiian communities was found).",
+    "AANAPISI: I found no lawsuit specific to AANAPISI. The Education Department stopped operating AANAPISI and other minority-serving institution programs after a Dec. 2, 2025 DOJ Office of Legal Counsel opinion (OCA and CAPAC statements). The Hispanic-Serving Institutions suit (Tennessee v. Department of Education) is the related litigation.",
+    "Docket numbers I could not verify are marked in the dkt text. Cases flagged unverified: Jones Eagle v. Ward (docket numbers and any 2026 ruling not checked) and Mathis v. County of Siskiyou (court and docket not stated in the source).",
+    "For amicus entries, the x field gives the side stated on the brief cover where I read it. Positions are not otherwise characterized.",
+    "The AAPI link for DHS v. League of Women Voters, W.M.M. v. Trump, Genalo v. Black and Louisiana v. Callais rests on filings or statements by AAPI organizations, not on a case-specific finding about AAPI communities.",
+    "Source conflicts: ALC dates the Supreme Court's USPS stay denial Sept. 15, the Supreme Court docket says Sept. 14 (docket used). Press reports of the Fifth Circuit Wang v. Paxton ruling say both Wednesday and Thursday (Dec. 10 or 11, 2025). ALC's Dec. 23, 2025 release says the California CDL suit was filed that day; the court order says the petition was filed 12/29/25.",
+    "A summary of the ALC release on Trump v. Barbara said Justices Kavanaugh and Barrett joined the majority; the Supreme Court docket shows Kavanaugh concurring in the judgment and dissenting in part. The docket entry is used and is the place to read the vote.",
+    "OCA-Asian Pacific American Advocates v. Rubio: the Clearinghouse summary still says 'ongoing' but its docket entries show judgment on 2026-08-20; the docket entries are used."
+  ],
+  "cases": [
+    {
+      "id": "trump-v-barbara",
+      "n": "Trump v. Barbara (Barbara v. Trump)",
+      "ct": "U.S. Supreme Court (cert. before judgment to 1st Cir.); D.N.H.",
+      "dkt": "S. Ct. No. 25-365; 1st Cir. No. 25-1861; D.N.H. No. 25-cv-244-JL-AJ",
+      "filed": "2025",
+      "status": "Argued 2026-04-01; affirmed 2026-06-30; judgment issued 2026-08-03. New-EO motions in D.N.H. withdrawn 2026-09-28 and refiled as Nathan v. Trump.",
+      "sum": "Class action challenging Executive Order 14160, which would deny citizenship to some U.S.-born children of parents unlawfully or temporarily present. The Court affirmed, holding the order invalid.",
+      "u": "https://www.supremecourt.gov/docket/docketfiles/html/public/25-365.html",
+      "t": [
+        "IMMIGRATION",
+        "CIVIL RIGHTS",
+        "COURTS"
+      ],
+      "st": [],
+      "orgs": [
+        {
+          "n": "Asian Law Caucus",
+          "role": "counsel",
+          "u": "https://www.asianlawcaucus.org/news-resources/news/birthright-citizenship-decision-supreme-court-statement-co-counsel",
+          "x": "Listed with ACLU, ACLU of NH/Maine/Mass., Legal Defense Fund and Democracy Defenders Fund as counsel for the Barbara plaintiffs."
+        },
+        {
+          "n": "New Hampshire Indonesian Community Support",
+          "role": "party",
+          "u": "https://www.asianlawcaucus.org/news-resources/news/birthright-citizenship-executive-order",
+          "x": "Plaintiff in the predecessor suit New Hampshire Indonesian Community Support v. Trump, 765 F. Supp. 3d 102 (D.N.H. 2025), filed 2025-01-20."
+        },
+        {
+          "n": "National Asian Pacific American Bar Association",
+          "role": "amicus",
+          "u": "https://www.supremecourt.gov/DocketPDF/25/25-365/397324/20260225170453727_25-365_Amicus%20Brief.pdf",
+          "x": "With 48 affiliated bar associations; brief supports respondents (affirmance of the injunction)."
+        },
+        {
+          "n": "Asian American Legal Defense and Education Fund",
+          "role": "amicus",
+          "u": "https://www.supremecourt.gov/DocketPDF/25/25-365/399418/20260226154602752_Birthright%20Citizenship%20S.%20Ct.%20Amicus%20Brief.pdf",
+          "x": "Joined Korematsu Center brief and 71 other organizations; brief supports respondents."
+        },
+        {
+          "n": "South Asian American Justice Collaborative",
+          "role": "amicus",
+          "u": "https://www.supremecourt.gov/DocketPDF/25/25-365/399897/20260303183227143_260223a%20AC%20Brief%20for%20efiling.pdf.pdf",
+          "x": "Lead amicus; brief supports respondents."
+        },
+        {
+          "n": "Sikh Coalition",
+          "role": "amicus",
+          "u": "https://www.supremecourt.gov/DocketPDF/25/25-365/399897/20260303183227143_260223a%20AC%20Brief%20for%20efiling.pdf.pdf",
+          "x": "Co-amicus on the South Asian American Justice Collaborative brief."
+        },
+        {
+          "n": "Sikh American Legal Defense and Education Fund",
+          "role": "amicus",
+          "u": "https://www.supremecourt.gov/DocketPDF/25/25-365/399897/20260303183227143_260223a%20AC%20Brief%20for%20efiling.pdf.pdf",
+          "x": "Co-amicus on the South Asian American Justice Collaborative brief."
+        },
+        {
+          "n": "Asian Americans Advancing Justice Southern California",
+          "role": "amicus",
+          "u": "https://www.supremecourt.gov/DocketPDF/25/25-365/399897/20260303183227143_260223a%20AC%20Brief%20for%20efiling.pdf.pdf",
+          "x": "Co-amicus on the South Asian American Justice Collaborative brief."
+        },
+        {
+          "n": "Chinese American Legal Defense Alliance",
+          "role": "amicus",
+          "u": "https://www.supremecourt.gov/DocketPDF/25/25-365/397261/20260225125920004_25-365%20Brief.pdf",
+          "x": "Brief supports respondents."
+        }
+      ],
+      "src": [
+        {
+          "n": "Supreme Court docket No. 25-365",
+          "u": "https://www.supremecourt.gov/docket/docketfiles/html/public/25-365.html"
+        },
+        {
+          "n": "CRS Legal Sidebar LSB11468: Trump v. Barbara",
+          "u": "https://www.everycrsreport.com/reports/LSB11468.html"
+        },
+        {
+          "n": "ALC: new motions responding to latest executive order (2026-09-09)",
+          "u": "https://www.asianlawcaucus.org/news-resources/news/trump-v-barbara-supplemental-motions-birthright-citizenship"
+        }
+      ]
+    },
+    {
+      "id": "oca-apaa-v-rubio",
+      "n": "OCA-Asian Pacific American Advocates v. Rubio",
+      "ct": "U.S. District Court, D.D.C. (Judge Timothy J. Kelly)",
+      "dkt": "1:25-cv-00287",
+      "filed": "2025-01-30",
+      "status": "2026-08-20: after Trump v. Barbara, court lifted stay, granted plaintiffs' partial summary judgment, entered judgment for individual plaintiffs, closed case.",
+      "sum": "OCA and individual plaintiffs challenged Executive Order 14160 on birthright citizenship under the Citizenship Clause, 8 U.S.C. 1401 and the APA; an amended complaint added equal protection and class claims.",
+      "u": "https://clearinghouse.net/case/45987/",
+      "t": [
+        "IMMIGRATION",
+        "CIVIL RIGHTS",
+        "COURTS"
+      ],
+      "st": [],
+      "orgs": [
+        {
+          "n": "OCA - Asian Pacific American Advocates",
+          "role": "party",
+          "u": "https://clearinghouse.net/case/45987/",
+          "x": "Organizational plaintiff alongside Jane Doe #1, Jane Doe #2 and Baby Doe #1."
+        },
+        {
+          "n": "Asian Americans Advancing Justice - AAJC",
+          "role": "counsel",
+          "u": "https://www.ocahouston.org/press/federal-court-strikes-down-trump-birthright-citizenship-executive-order-citing-the-barbara-scotus-ruling",
+          "x": "With the Washington Lawyers' Committee and Arnold & Porter."
+        }
+      ],
+      "src": [
+        {
+          "n": "Civil Rights Litigation Clearinghouse: OCA-Asian Pacific American Advocates v. Rubio",
+          "u": "https://clearinghouse.net/case/45987/"
+        },
+        {
+          "n": "OCA: federal court strikes down EO citing Barbara ruling (2026-08-20)",
+          "u": "https://www.ocahouston.org/press/federal-court-strikes-down-trump-birthright-citizenship-executive-order-citing-the-barbara-scotus-ruling"
+        }
+      ]
+    },
+    {
+      "id": "nathan-v-trump",
+      "n": "Nathan v. Trump",
+      "ct": "U.S. District Court, D.D.C.",
+      "dkt": "D.D.C. case number not stated on the ACLU or ALC pages",
+      "filed": "2026-09-28",
+      "status": "Filed 2026-09-28 against an executive order signed in early August 2026 that again targets birthright citizenship; no later event verified.",
+      "sum": "Challenge to a new executive order on birthright citizenship, brought on behalf of people it covers, after the Barbara plaintiffs withdrew related requests in New Hampshire when the judge treated it as a new suit.",
+      "u": "https://www.aclu.org/cases/nathan-v-trump",
+      "t": [
+        "IMMIGRATION",
+        "CIVIL RIGHTS"
+      ],
+      "st": [],
+      "orgs": [
+        {
+          "n": "Asian Law Caucus",
+          "role": "counsel",
+          "u": "https://www.asianlawcaucus.org/news-resources/news/birthright-citizenship-nathan-v-trump-challenge",
+          "x": "Co-counsel with ACLU, ACLU of NH/Maine/Mass./D.C., Legal Defense Fund and Democracy Defenders Fund."
+        }
+      ],
+      "src": [
+        {
+          "n": "ACLU case page: Nathan v. Trump",
+          "u": "https://www.aclu.org/cases/nathan-v-trump"
+        },
+        {
+          "n": "ALC: advocates file lawsuit challenging new birthright citizenship order (2026-09-28)",
+          "u": "https://www.asianlawcaucus.org/news-resources/news/birthright-citizenship-nathan-v-trump-challenge"
+        }
+      ]
+    },
+    {
+      "id": "cedc-v-bessent",
+      "n": "Community Economic Development Center of Southeastern Massachusetts v. Bessent",
+      "ct": "U.S. District Court, D. Mass. (Judge Indira Talwani); 1st Cir. appeal",
+      "dkt": "1:25-cv-12822; 1st Cir. No. 26-1329",
+      "filed": "2025-09-30",
+      "status": "2026-02-05 preliminary relief vs ICE defendants (IRS-ICE sharing stayed); 2026-09-10 plaintiffs moved on ICE contractors and SSA data. No ruling verified.",
+      "sum": "Immigrant-serving groups challenge federal sharing of IRS and Social Security data with immigration enforcement, including a Korean American organization as plaintiff.",
+      "u": "https://clearinghouse.net/case/47018/",
+      "t": [
+        "IMMIGRATION",
+        "GOVERNMENT",
+        "CIVIL RIGHTS"
+      ],
+      "st": [
+        "MA"
+      ],
+      "orgs": [
+        {
+          "n": "National Korean American Service & Education Consortium (NAKASEC)",
+          "role": "party",
+          "u": "https://www.asianlawcaucus.org/news-resources/news/cedc-v-bessent-motions-release-discovery",
+          "x": "One of four plaintiff organizations; name appears as National Korean American Service and Education(al) Consortium in the sources."
+        },
+        {
+          "n": "Asian Law Caucus",
+          "role": "counsel",
+          "u": "https://www.asianlawcaucus.org/news-resources/news/cedc-v-bessent-motions-release-discovery",
+          "x": "With Greater Boston Legal Services and Keker, Van Nest & Peters."
+        }
+      ],
+      "src": [
+        {
+          "n": "Civil Rights Litigation Clearinghouse: CEDC v. Bessent",
+          "u": "https://clearinghouse.net/case/47018/"
+        },
+        {
+          "n": "ALC: motions seek answers on unlawful transfers of protected data (2026-09-10)",
+          "u": "https://www.asianlawcaucus.org/news-resources/news/cedc-v-bessent-motions-release-discovery"
+        }
+      ]
+    },
+    {
+      "id": "doe-v-gordon-ca-cdl",
+      "n": "John Doe 1, et al. v. Steve Gordon, et al. (California DMV commercial driver's licenses)",
+      "ct": "Superior Court of California, County of Alameda (Judge Karin Schwartz)",
+      "dkt": "25CV161994",
+      "filed": "2025-12",
+      "status": "2026-03-02: writ of mandate granted in part; DMV to let about 20,000 non-domiciled drivers reapply and reissue CDLs. Later events not verified.",
+      "sum": "Immigrant commercial drivers and the Jakara Movement challenged California DMV's cancellation of about 20,000 non-domiciled commercial licenses without a right to challenge, reapply or request a hearing.",
+      "u": "https://www.asianlawcaucus.org/news-resources/news/cdl-driver-ruling-ca-dmv",
+      "t": [
+        "ECONOMY",
+        "IMMIGRATION",
+        "CIVIL RIGHTS"
+      ],
+      "st": [
+        "CA"
+      ],
+      "orgs": [
+        {
+          "n": "Asian Law Caucus",
+          "role": "counsel",
+          "u": "https://www.asianlawcaucus.org/news-resources/news/cdl-class-action-ca-dmv-cancellation-2",
+          "x": "With Sikh Coalition and Weil, Gotshal & Manges."
+        },
+        {
+          "n": "Sikh Coalition",
+          "role": "counsel",
+          "u": "https://www.asianlawcaucus.org/news-resources/news/cdl-class-action-ca-dmv-cancellation-2"
+        },
+        {
+          "n": "Jakara Movement",
+          "role": "party",
+          "u": "https://www.asianlawcaucus.org/news-resources/news/cdl-class-action-ca-dmv-cancellation-2",
+          "x": "Suit brought on behalf of the Jakara Movement and five commercial drivers."
+        }
+      ],
+      "src": [
+        {
+          "n": "Alameda Superior Court order, 2026-03-02 (hosted by ALC)",
+          "u": "https://cdn.craft.cloud/5cd1c590-65ba-4ad2-a52c-b55e67f8f04b/assets/media/Programs/Workers-Rights/CDL_CA_DMV_030226_Decision_WR.pdf"
+        },
+        {
+          "n": "ALC: ruling in favor of immigrant truckers' rights (2026-03-03)",
+          "u": "https://www.asianlawcaucus.org/news-resources/news/cdl-driver-ruling-ca-dmv"
+        }
+      ],
+      "x": "Filing date: ALC release says 2025-12-23; the court order says the petition was filed 12/29/25."
+    },
+    {
+      "id": "rivera-lujan-v-fmcsa",
+      "n": "Jorge Rivera Lujan, et al. v. Federal Motor Carrier Safety Administration",
+      "ct": "U.S. Court of Appeals, D.C. Circuit",
+      "dkt": "No. 26-1032 (consolidated with 26-1046)",
+      "filed": "2026",
+      "status": "AAPI groups filed an amicus brief supporting petitioners on 2026-06-22; oral argument not yet scheduled as of that brief. Later events not verified.",
+      "sum": "Petition for review of FMCSA's final rule 'Restoring Integrity to the Issuance of Non-Domiciled Commercial Drivers Licenses (CDL)', 91 Fed. Reg. 7044. Sikh and other AAPI groups filed amicus for petitioners.",
+      "u": "https://cdn.craft.cloud/5cd1c590-65ba-4ad2-a52c-b55e67f8f04b/assets/media/Programs/Workers-Rights/Lujan_FMCSA_amicus_ALC_WR_260622.pdf",
+      "t": [
+        "ECONOMY",
+        "IMMIGRATION",
+        "CIVIL RIGHTS"
+      ],
+      "st": [],
+      "orgs": [
+        {
+          "n": "Sikh Coalition",
+          "role": "amicus",
+          "u": "https://cdn.craft.cloud/5cd1c590-65ba-4ad2-a52c-b55e67f8f04b/assets/media/Programs/Workers-Rights/Lujan_FMCSA_amicus_ALC_WR_260622.pdf",
+          "x": "Counsel for amici; brief supports petitioners."
+        },
+        {
+          "n": "Asian Law Caucus",
+          "role": "amicus",
+          "u": "https://cdn.craft.cloud/5cd1c590-65ba-4ad2-a52c-b55e67f8f04b/assets/media/Programs/Workers-Rights/Lujan_FMCSA_amicus_ALC_WR_260622.pdf",
+          "x": "Counsel for amici; brief supports petitioners."
+        },
+        {
+          "n": "Sikh American Legal Defense and Education Fund",
+          "role": "amicus",
+          "u": "https://cdn.craft.cloud/5cd1c590-65ba-4ad2-a52c-b55e67f8f04b/assets/media/Programs/Workers-Rights/Lujan_FMCSA_amicus_ALC_WR_260622.pdf"
+        },
+        {
+          "n": "Chinese for Affirmative Action",
+          "role": "amicus",
+          "u": "https://cdn.craft.cloud/5cd1c590-65ba-4ad2-a52c-b55e67f8f04b/assets/media/Programs/Workers-Rights/Lujan_FMCSA_amicus_ALC_WR_260622.pdf"
+        },
+        {
+          "n": "Stop AAPI Hate",
+          "role": "amicus",
+          "u": "https://cdn.craft.cloud/5cd1c590-65ba-4ad2-a52c-b55e67f8f04b/assets/media/Programs/Workers-Rights/Lujan_FMCSA_amicus_ALC_WR_260622.pdf"
+        },
+        {
+          "n": "South Asian Network",
+          "role": "amicus",
+          "u": "https://cdn.craft.cloud/5cd1c590-65ba-4ad2-a52c-b55e67f8f04b/assets/media/Programs/Workers-Rights/Lujan_FMCSA_amicus_ALC_WR_260622.pdf"
+        },
+        {
+          "n": "South Asian American Justice Collaborative",
+          "role": "amicus",
+          "u": "https://cdn.craft.cloud/5cd1c590-65ba-4ad2-a52c-b55e67f8f04b/assets/media/Programs/Workers-Rights/Lujan_FMCSA_amicus_ALC_WR_260622.pdf"
+        },
+        {
+          "n": "Asian American Legal Defense and Education Fund",
+          "role": "amicus",
+          "u": "https://cdn.craft.cloud/5cd1c590-65ba-4ad2-a52c-b55e67f8f04b/assets/media/Programs/Workers-Rights/Lujan_FMCSA_amicus_ALC_WR_260622.pdf"
+        },
+        {
+          "n": "Asian Americans Advancing Justice - AAJC",
+          "role": "amicus",
+          "u": "https://cdn.craft.cloud/5cd1c590-65ba-4ad2-a52c-b55e67f8f04b/assets/media/Programs/Workers-Rights/Lujan_FMCSA_amicus_ALC_WR_260622.pdf"
+        },
+        {
+          "n": "South Asian Legal Defense Fund",
+          "role": "amicus",
+          "u": "https://cdn.craft.cloud/5cd1c590-65ba-4ad2-a52c-b55e67f8f04b/assets/media/Programs/Workers-Rights/Lujan_FMCSA_amicus_ALC_WR_260622.pdf"
+        },
+        {
+          "n": "Mekong NYC",
+          "role": "amicus",
+          "u": "https://cdn.craft.cloud/5cd1c590-65ba-4ad2-a52c-b55e67f8f04b/assets/media/Programs/Workers-Rights/Lujan_FMCSA_amicus_ALC_WR_260622.pdf"
+        },
+        {
+          "n": "Jakara Movement",
+          "role": "amicus",
+          "u": "https://cdn.craft.cloud/5cd1c590-65ba-4ad2-a52c-b55e67f8f04b/assets/media/Programs/Workers-Rights/Lujan_FMCSA_amicus_ALC_WR_260622.pdf"
+        },
+        {
+          "n": "United Sikhs",
+          "role": "amicus",
+          "u": "https://cdn.craft.cloud/5cd1c590-65ba-4ad2-a52c-b55e67f8f04b/assets/media/Programs/Workers-Rights/Lujan_FMCSA_amicus_ALC_WR_260622.pdf"
+        }
+      ],
+      "src": [
+        {
+          "n": "Amicus brief of Sikh Coalition, Asian Law Caucus and others, D.C. Cir. No. 26-1032 (dated 2026-06-22)",
+          "u": "https://cdn.craft.cloud/5cd1c590-65ba-4ad2-a52c-b55e67f8f04b/assets/media/Programs/Workers-Rights/Lujan_FMCSA_amicus_ALC_WR_260622.pdf"
+        },
+        {
+          "n": "ALC: federal court pause on interim final rule (2025-11-13)",
+          "u": "https://www.asianlawcaucus.org/news-resources/news/stay-dot-interim-final-rule-nondomiciled-cdl"
+        },
+        {
+          "n": "Related: New York v. DOT, 2d Cir. No. 26-1097, amicus brief of Sikh Coalition and ALC (2026-07-13)",
+          "u": "https://cdn.craft.cloud/5cd1c590-65ba-4ad2-a52c-b55e67f8f04b/assets/media/Programs/Workers-Rights/NYvDOT_FMCSA_Asian-Law-Caucus_Amicus_July-2026.pdf"
+        }
+      ]
+    },
+    {
+      "id": "sffa-v-harvard-unc",
+      "n": "Students for Fair Admissions, Inc. v. President and Fellows of Harvard College; Students for Fair Admissions, Inc. v. University of North Carolina",
+      "ct": "U.S. Supreme Court",
+      "dkt": "20-1199; 21-707",
+      "filed": "2021-02-25",
+      "status": "Decided 2023-06-29: judgments reversed; Court held Harvard's and UNC's admissions programs violate the Equal Protection Clause. Judgments issued 2023-07-31.",
+      "sum": "Students for Fair Admissions challenged race-conscious admissions at Harvard and UNC; Asian American organizations filed briefs on both sides. SFFA is also a plaintiff in Tennessee v. Department of Education (2025).",
+      "u": "https://www.supremecourt.gov/docket/docketfiles/html/public/20-1199.html",
+      "t": [
+        "EDUCATION",
+        "CIVIL RIGHTS",
+        "COURTS"
+      ],
+      "st": [],
+      "orgs": [
+        {
+          "n": "Asian Americans Advancing Justice",
+          "role": "amicus",
+          "u": "https://www.supremecourt.gov/DocketPDF/20/20-1199/232519/20220801174908763_AAAJ_Amicus%20Main%20EFILE%20Aug%2001%2022.pdf",
+          "x": "Brief of Asian Americans Advancing Justice and 37 organizations; supports respondents."
+        },
+        {
+          "n": "National Asian Pacific American Bar Association",
+          "role": "amicus",
+          "u": "https://www.supremecourt.gov/DocketPDF/20/20-1199/232362/20220801140645092_20-1199%2021-707%20bsac%20National%20Asian%20Pacific%20American%20Bar%20Association%20And%20National%20LGBTQ%20Bar%20Association.pdf",
+          "x": "With the National LGBTQ+ Bar Association; supports respondents."
+        },
+        {
+          "n": "Asian American Legal Defense and Education Fund",
+          "role": "amicus",
+          "u": "https://www.supremecourt.gov/DocketPDF/20/20-1199/232267/20220801090234268_20-1199%20Amicus%20Brief%20of%20Asian%20American%20Legal%20Defense%20and%20Education%20Fund.pdf",
+          "x": "Brief of AALDEF et al.; supports respondents."
+        },
+        {
+          "n": "Asian American Coalition for Education",
+          "role": "amicus",
+          "u": "https://www.supremecourt.gov/DocketPDF/20/20-1199/222864/20220509170313641_20-1199%20and%2021-707%20Amicus%20Brief.pdf",
+          "x": "Brief supports petitioner."
+        },
+        {
+          "n": "Asian American Legal Foundation",
+          "role": "amicus",
+          "u": "https://www.supremecourt.gov/DocketPDF/20/20-1199/222864/20220509170313641_20-1199%20and%2021-707%20Amicus%20Brief.pdf",
+          "x": "Co-amicus with Asian American Coalition for Education; supports petitioner."
+        }
+      ],
+      "src": [
+        {
+          "n": "Supreme Court docket No. 20-1199",
+          "u": "https://www.supremecourt.gov/docket/docketfiles/html/public/20-1199.html"
+        },
+        {
+          "n": "Supreme Court docket No. 21-707",
+          "u": "https://www.supremecourt.gov/docket/docketfiles/html/public/21-707.html"
+        },
+        {
+          "n": "Slip opinion and syllabus, No. 20-1199 (June 29, 2023)",
+          "u": "https://www.supremecourt.gov/opinions/22pdf/20-1199_hgdj.pdf"
+        }
+      ]
+    },
+    {
+      "id": "coalition-for-tj-v-fairfax",
+      "n": "Coalition for TJ v. Fairfax County School Board",
+      "ct": "U.S. Supreme Court (from 4th Cir. No. 22-1280)",
+      "dkt": "23-170; 4th Cir. 22-1280",
+      "filed": "2023-08-21",
+      "status": "Certiorari denied 2024-02-20; Justice Alito, joined by Justice Thomas, dissented from the denial.",
+      "sum": "Parents' group challenged the 2020 admissions overhaul at Thomas Jefferson High School for Science and Technology as discriminating against Asian American applicants. Fourth Circuit reversed the district court's ruling.",
+      "u": "https://www.supremecourt.gov/docket/docketfiles/html/public/23-170.html",
+      "t": [
+        "EDUCATION",
+        "CIVIL RIGHTS",
+        "COURTS"
+      ],
+      "st": [
+        "VA"
+      ],
+      "orgs": [
+        {
+          "n": "Asian American Coalition for Education",
+          "role": "amicus",
+          "u": "https://www.supremecourt.gov/DocketPDF/23/23-170/280219/20230922125600529_23-170%20Amici%20Brief.pdf",
+          "x": "With Asian American Legal Foundation and Friends of Lowell Foundation; supports petitioner."
+        },
+        {
+          "n": "Asian American Legal Foundation",
+          "role": "amicus",
+          "u": "https://www.supremecourt.gov/DocketPDF/23/23-170/280219/20230922125600529_23-170%20Amici%20Brief.pdf",
+          "x": "Supports petitioner."
+        },
+        {
+          "n": "Chinese American Citizens Alliance of Greater New York",
+          "role": "amicus",
+          "u": "https://www.supremecourt.gov/DocketPDF/23/23-170/280273/20230922160600033_23-170%20Amicus%20CACAGNY%20Final.pdf",
+          "x": "Brief supports the petition for certiorari."
+        }
+      ],
+      "src": [
+        {
+          "n": "Supreme Court docket No. 23-170",
+          "u": "https://www.supremecourt.gov/docket/docketfiles/html/public/23-170.html"
+        },
+        {
+          "n": "Duane Morris: Supreme Court declines to hear challenge to race-conscious secondary school admissions policy",
+          "u": "https://blogs.duanemorris.com/updateeducation/2024/03/01/supreme-court-declines-to-hear-challenge-to-race-conscious-secondary-school-admissions-policy/"
+        }
+      ],
+      "x": "Fourth Circuit decision date (2023-05-23) is from the Supreme Court docket; the 'reversed' description is from the Duane Morris summary, which also says three justices dissented, while the docket shows Alito joined by Thomas."
+    },
+    {
+      "id": "tennessee-v-department-of-education",
+      "n": "State of Tennessee v. United States Department of Education",
+      "ct": "U.S. District Court, E.D. Tenn. (Judge Katherine A. Crytzer)",
+      "dkt": "3:25-cv-00270",
+      "filed": "2025-06-11",
+      "status": "Pending. HACU's motions to dismiss and for judgment on the pleadings were briefed through 2026-03-23, the latest docket entry I verified. No ruling verified.",
+      "sum": "Tennessee and Students for Fair Admissions challenge the Hispanic-Serving Institutions grant program; DOJ said it would not defend it. Separately, ED ended AANAPISI and other MSI programs after a Dec. 2025 OLC opinion.",
+      "u": "https://clearinghouse.net/case/47937/",
+      "t": [
+        "EDUCATION",
+        "CIVIL RIGHTS",
+        "GOVERNMENT"
+      ],
+      "st": [
+        "TN"
+      ],
+      "orgs": [
+        {
+          "n": "OCA - Asian Pacific American Advocates",
+          "role": "statement",
+          "u": "https://www.ocahouston.org/press/oca-condemns-us-department-of-education-for-ending-grant-funding-for-minority-serving-institutions",
+          "x": "Statement (2025-09-12) opposing ED's end of MSI grants including AANAPISI; not a filing in this case."
+        }
+      ],
+      "src": [
+        {
+          "n": "Civil Rights Litigation Clearinghouse: Tennessee v. Department of Education",
+          "u": "https://clearinghouse.net/case/47937/"
+        },
+        {
+          "n": "AP: Justice Dept. declines to defend grants for Hispanic-serving colleges (2025-08-22)",
+          "u": "https://cfjctoday.com/2025/08/22/justice-dept-declines-to-defend-grants-for-hispanic-serving-colleges-calling-them-unconstitutional/"
+        },
+        {
+          "n": "CAPAC Chair Meng statement on ED ending minority-serving institution programs (2025-12-20)",
+          "u": "https://capac.house.gov/press-release/capac-chair-meng-denounces-education-department-ending-funding-minority-serving"
+        }
+      ]
+    },
+    {
+      "id": "shen-v-simpson",
+      "n": "Shen v. Commissioner, Florida Department of Agriculture and Consumer Services (Shen v. Simpson)",
+      "ct": "U.S. District Court, N.D. Fla.; U.S. Court of Appeals, 11th Cir.",
+      "dkt": "N.D. Fla. 4:23-cv-00208-AW-MAF; 11th Cir. No. 23-12737",
+      "filed": "2023-05-22",
+      "status": "11th Cir. held 2-1 on 2025-11-04 plaintiffs lacked standing for the purchase restriction; ACLU lists case closed after voluntary dismissal (2025-12-31).",
+      "sum": "Chinese citizens living in Florida and a brokerage challenged SB 264, which restricts property purchases by people domiciled in China and other designated countries.",
+      "u": "https://media.ca11.uscourts.gov/opinions/pub/files/202312737.pdf",
+      "t": [
+        "HOUSING",
+        "CIVIL RIGHTS",
+        "IMMIGRATION"
+      ],
+      "st": [
+        "FL"
+      ],
+      "orgs": [
+        {
+          "n": "Asian American Legal Defense and Education Fund",
+          "role": "counsel",
+          "u": "https://www.aclu.org/press-releases/federal-court-appeal-in-miami-over-floridas-discriminatory-housing-law",
+          "x": "Listed with ACLU, ACLU of Florida, DeHeng Law Office and Quinn Emanuel as organizations representing plaintiffs."
+        }
+      ],
+      "src": [
+        {
+          "n": "Eleventh Circuit opinion, No. 23-12737 (Nov. 4, 2025), 158 F.4th 1227",
+          "u": "https://media.ca11.uscourts.gov/opinions/pub/files/202312737.pdf"
+        },
+        {
+          "n": "ACLU case page: Shen v. Simpson",
+          "u": "https://www.aclu.org/cases/shen-v-simpson"
+        },
+        {
+          "n": "Civil Rights Litigation Clearinghouse: Shen v. Simpson",
+          "u": "https://clearinghouse.net/case/44294/"
+        }
+      ]
+    },
+    {
+      "id": "wang-v-paxton",
+      "n": "Wang v. Paxton (Texas SB 17)",
+      "ct": "U.S. District Court, S.D. Tex. (Judge Charles Eskridge); U.S. Court of Appeals, 5th Cir.",
+      "dkt": "S.D. Tex. 4:25-cv-03103; 5th Cir. number not verified",
+      "filed": "2025-07-03",
+      "status": "Dismissed for lack of standing Aug. 2025; Fifth Circuit affirmed Dec. 2025 (Dec. 10 or 11), leaving SB 17 in effect. No later event verified.",
+      "sum": "Chinese citizens on nonimmigrant visas in Texas challenged SB 17, which bars people domiciled in China, Iran, North Korea and Russia from acquiring most Texas real estate. Courts held the law did not cover them.",
+      "u": "https://dockets.justia.com/docket/texas/txsdce/4:2025cv03103/2016990",
+      "t": [
+        "HOUSING",
+        "CIVIL RIGHTS",
+        "IMMIGRATION"
+      ],
+      "st": [
+        "TX"
+      ],
+      "orgs": [
+        {
+          "n": "Chinese American Legal Defense Alliance",
+          "role": "counsel",
+          "u": "https://www.tpr.org/news/2025-12-11/appeals-court-rejects-lawsuit-over-texas-foreign-land-buyers-law",
+          "x": "Legal director Justin Sadowsky represented the plaintiff."
+        }
+      ],
+      "src": [
+        {
+          "n": "National Agricultural Law Center: federal court dismisses challenge to Texas foreign ownership law",
+          "u": "https://nationalaglawcenter.org/federal-court-dismisses-challenge-to-texas-newly-enacted-foreign-ownership-law/"
+        },
+        {
+          "n": "Texas Public Radio: appeals court rejects lawsuit over Texas foreign land buyers law (2025-12-11)",
+          "u": "https://www.tpr.org/news/2025-12-11/appeals-court-rejects-lawsuit-over-texas-foreign-land-buyers-law"
+        }
+      ]
+    },
+    {
+      "id": "jones-eagle-v-ward",
+      "n": "Jones Eagle, LLC v. Ward (Arkansas Acts 636 and 174)",
+      "ct": "U.S. District Court (district not stated in source); U.S. Court of Appeals, 8th Cir.",
+      "dkt": "not verified",
+      "filed": null,
+      "status": "Appeal of a Dec. 2024 preliminary injunction was pending in the 8th Cir. when amicus briefs were filed 2025-08-12. Later developments not verified.",
+      "sum": "Challenge to Arkansas laws restricting land ownership by 'foreign parties'; a U.S.-citizen business owner originally from China was referred for investigation. Plaintiff argues preemption and equal protection.",
+      "u": "https://cij.rutgers.edu/wp-content/uploads/2025/08/Civil-Rights-Groups-File-Amicus-Brief-in-8th-Circuit-to-Challenge-Arkansass-Discriminatory-Land-Laws-8.26.25-1.pdf",
+      "t": [
+        "HOUSING",
+        "CIVIL RIGHTS",
+        "IMMIGRATION"
+      ],
+      "st": [
+        "AR"
+      ],
+      "unverified": true,
+      "orgs": [
+        {
+          "n": "Asian American Legal Defense and Education Fund",
+          "role": "amicus",
+          "u": "https://cij.rutgers.edu/wp-content/uploads/2025/08/Civil-Rights-Groups-File-Amicus-Brief-in-8th-Circuit-to-Challenge-Arkansass-Discriminatory-Land-Laws-8.26.25-1.pdf",
+          "x": "Joined brief supporting the constitutional challenge."
+        },
+        {
+          "n": "Asian Americans Advancing Justice - Chicago",
+          "role": "amicus",
+          "u": "https://cij.rutgers.edu/wp-content/uploads/2025/08/Civil-Rights-Groups-File-Amicus-Brief-in-8th-Circuit-to-Challenge-Arkansass-Discriminatory-Land-Laws-8.26.25-1.pdf"
+        },
+        {
+          "n": "Asian Americans Advancing Justice - Atlanta",
+          "role": "amicus",
+          "u": "https://cij.rutgers.edu/wp-content/uploads/2025/08/Civil-Rights-Groups-File-Amicus-Brief-in-8th-Circuit-to-Challenge-Arkansass-Discriminatory-Land-Laws-8.26.25-1.pdf"
+        },
+        {
+          "n": "Asian Americans Advancing Justice - Southern California",
+          "role": "amicus",
+          "u": "https://cij.rutgers.edu/wp-content/uploads/2025/08/Civil-Rights-Groups-File-Amicus-Brief-in-8th-Circuit-to-Challenge-Arkansass-Discriminatory-Land-Laws-8.26.25-1.pdf"
+        },
+        {
+          "n": "Asian Americans Advancing Justice - AAJC",
+          "role": "amicus",
+          "u": "https://cij.rutgers.edu/wp-content/uploads/2025/08/Civil-Rights-Groups-File-Amicus-Brief-in-8th-Circuit-to-Challenge-Arkansass-Discriminatory-Land-Laws-8.26.25-1.pdf"
+        },
+        {
+          "n": "Asian Law Caucus",
+          "role": "amicus",
+          "u": "https://cij.rutgers.edu/wp-content/uploads/2025/08/Civil-Rights-Groups-File-Amicus-Brief-in-8th-Circuit-to-Challenge-Arkansass-Discriminatory-Land-Laws-8.26.25-1.pdf"
+        },
+        {
+          "n": "Chinese American Legal Defense Alliance",
+          "role": "amicus",
+          "u": "https://cij.rutgers.edu/wp-content/uploads/2025/08/Civil-Rights-Groups-File-Amicus-Brief-in-8th-Circuit-to-Challenge-Arkansass-Discriminatory-Land-Laws-8.26.25-1.pdf"
+        },
+        {
+          "n": "Chinese for Affirmative Action",
+          "role": "amicus",
+          "u": "https://cij.rutgers.edu/wp-content/uploads/2025/08/Civil-Rights-Groups-File-Amicus-Brief-in-8th-Circuit-to-Challenge-Arkansass-Discriminatory-Land-Laws-8.26.25-1.pdf"
+        },
+        {
+          "n": "Committee of 100",
+          "role": "amicus",
+          "u": "https://cij.rutgers.edu/wp-content/uploads/2025/08/Civil-Rights-Groups-File-Amicus-Brief-in-8th-Circuit-to-Challenge-Arkansass-Discriminatory-Land-Laws-8.26.25-1.pdf"
+        },
+        {
+          "n": "Conference of Asian Pacific American Law Faculty",
+          "role": "amicus",
+          "u": "https://cij.rutgers.edu/wp-content/uploads/2025/08/Civil-Rights-Groups-File-Amicus-Brief-in-8th-Circuit-to-Challenge-Arkansass-Discriminatory-Land-Laws-8.26.25-1.pdf"
+        },
+        {
+          "n": "National Korean American Service & Education Consortium",
+          "role": "amicus",
+          "u": "https://cij.rutgers.edu/wp-content/uploads/2025/08/Civil-Rights-Groups-File-Amicus-Brief-in-8th-Circuit-to-Challenge-Arkansass-Discriminatory-Land-Laws-8.26.25-1.pdf"
+        },
+        {
+          "n": "Stop AAPI Hate",
+          "role": "amicus",
+          "u": "https://cij.rutgers.edu/wp-content/uploads/2025/08/Civil-Rights-Groups-File-Amicus-Brief-in-8th-Circuit-to-Challenge-Arkansass-Discriminatory-Land-Laws-8.26.25-1.pdf"
+        },
+        {
+          "n": "National Asian Pacific American Bar Association",
+          "role": "amicus",
+          "u": "https://cij.rutgers.edu/wp-content/uploads/2025/08/Civil-Rights-Groups-File-Amicus-Brief-in-8th-Circuit-to-Challenge-Arkansass-Discriminatory-Land-Laws-8.26.25-1.pdf"
+        },
+        {
+          "n": "National Filipino American Lawyers Association",
+          "role": "amicus",
+          "u": "https://cij.rutgers.edu/wp-content/uploads/2025/08/Civil-Rights-Groups-File-Amicus-Brief-in-8th-Circuit-to-Challenge-Arkansass-Discriminatory-Land-Laws-8.26.25-1.pdf"
+        }
+      ],
+      "src": [
+        {
+          "n": "Rutgers Center for Immigrant Justice: civil rights groups file amicus brief in 8th Circuit (2025-08-26)",
+          "u": "https://cij.rutgers.edu/wp-content/uploads/2025/08/Civil-Rights-Groups-File-Amicus-Brief-in-8th-Circuit-to-Challenge-Arkansass-Discriminatory-Land-Laws-8.26.25-1.pdf"
+        }
+      ],
+      "x": "Source says the plaintiff is represented by the Korematsu Center (UC Irvine) and Kutak Rock; district court, docket numbers, filing date and any 2026 ruling not checked."
+    },
+    {
+      "id": "ryan-v-watson",
+      "n": "Ryan v. Watson",
+      "ct": "U.S. District Court, D. Haw.",
+      "dkt": "D. Haw. case number not stated in the sources",
+      "filed": "2026-06-01",
+      "status": "Pending. Scheduling conference set for October 2026 (2026-08-04 report); Hawaii says it will defend the Hawaiian Homes program. Later events not verified.",
+      "sum": "A non-Native Hawaiian resident denied a Hawaiian Home Lands lease under the 50% Native Hawaiian ancestry rule sues DHHL's chair, the Interior Secretary and the U.S., alleging equal protection and due process violations.",
+      "u": "https://pacificlegal.org/case/ryan-watson-hawaii-racial-requirement",
+      "t": [
+        "HOUSING",
+        "PACIFIC",
+        "CIVIL RIGHTS"
+      ],
+      "st": [
+        "HI"
+      ],
+      "orgs": [
+        {
+          "n": "Sovereign Council of Hawaiian Homestead Associations",
+          "role": "statement",
+          "u": "https://wtop.com/national/2026/06/a-lawsuit-challenges-hawaii-homestead-leases-limited-to-those-with-50-hawaiian-blood/",
+          "x": "Senior adviser Robin Puanani Danner quoted in AP report; organization aims to protect the 1921 Act. Not a party."
+        }
+      ],
+      "src": [
+        {
+          "n": "Hawaii Public Radio: federal lawsuit challenges Hawaiian Home Lands blood-quantum requirement (2026-06-04)",
+          "u": "https://www.hawaiipublicradio.org/local-news/2026-06-04/federal-lawsuit-challenges-hawaii-homestead-hawaiian-blood-quantum-requirement"
+        },
+        {
+          "n": "Aloha State Daily: Hawaiian Homes Commission lawsuit continues after evictions averted (2026-08-04)",
+          "u": "https://alohastatedaily.com/2026/08/04/hawaiian-homes-commission-lawsuit-continues-after-evictions-averted/"
+        },
+        {
+          "n": "Pacific Legal Foundation case page: Ryan v. Watson",
+          "u": "https://pacificlegal.org/case/ryan-watson-hawaii-racial-requirement"
+        }
+      ]
+    },
+    {
+      "id": "kalahiki-v-watson",
+      "n": "Kalahiki v. Watson (David Kalahiki and Linda Twitchell v. Kali Watson)",
+      "ct": "U.S. District Court, D. Haw.",
+      "dkt": "D. Haw. case number not stated in the sources",
+      "filed": "2026-07-24",
+      "status": "First Amended Complaint filed 2026-09-14. Evictions on hold by agreement until the case ends or 2027-06-01; scheduling conference set for October 2026.",
+      "sum": "Two residents of a DHHL-owned apartment complex on Kauai, served eviction notices for not meeting the blood-quantum requirement, challenge the policy under the Equal Protection Clause. The State says it will defend.",
+      "u": "https://pacificlegal.org/case/kalahiki-twitchell-hawaii-blood-quantum-eviction/",
+      "t": [
+        "HOUSING",
+        "PACIFIC",
+        "CIVIL RIGHTS"
+      ],
+      "st": [
+        "HI"
+      ],
+      "orgs": [],
+      "src": [
+        {
+          "n": "Pacific Legal Foundation case page: Kalahiki and Twitchell v. Watson",
+          "u": "https://pacificlegal.org/case/kalahiki-twitchell-hawaii-blood-quantum-eviction/"
+        },
+        {
+          "n": "Aloha State Daily: Hawaiian Homes Commission lawsuit continues after evictions averted (2026-08-04)",
+          "u": "https://alohastatedaily.com/2026/08/04/hawaiian-homes-commission-lawsuit-continues-after-evictions-averted/"
+        },
+        {
+          "n": "Hawaii News Now: DHHL responds to lawsuit over evictions (2026-07-29)",
+          "u": "https://www.hawaiinewsnow.com/2026/07/29/dhhl-responds-lawsuit-over-evictions-non-native-hawaiians/"
+        }
+      ]
+    },
+    {
+      "id": "louisiana-v-callais",
+      "n": "Louisiana v. Callais (with Robinson v. Callais)",
+      "ct": "U.S. Supreme Court (direct appeal from W.D. La.)",
+      "dkt": "24-109; 24-110; W.D. La. 3:24-cv-00122",
+      "filed": "2024-08-01",
+      "status": "2026-04-29: judgment affirmed and remanded (Alito, J., for the Court; Kagan, J., dissenting); judgment issued 2026-05-04; motion to recall denied 2026-05-06.",
+      "sum": "Redistricting case over Louisiana's congressional map and Section 2 of the Voting Rights Act. AAJC and AALDEF filed amicus briefs supporting the Robinson appellants.",
+      "u": "https://www.supremecourt.gov/docket/docketfiles/html/public/24-109.html",
+      "t": [
+        "ELECTIONS",
+        "CIVIL RIGHTS",
+        "COURTS"
+      ],
+      "st": [
+        "LA"
+      ],
+      "orgs": [
+        {
+          "n": "Asian Americans Advancing Justice - AAJC",
+          "role": "amicus",
+          "u": "https://www.supremecourt.gov/DocketPDF/24/24-109/373613/20250903193825015_24-109-24-110acLawyersCommitteeForCivilRightsUnderLaw.pdf",
+          "x": "Joined Lawyers' Committee brief (2025-09-03) in support of Robinson appellants; also joined the 2024-12-26 brief."
+        },
+        {
+          "n": "Asian American Legal Defense and Education Fund",
+          "role": "amicus",
+          "u": "https://www.supremecourt.gov/DocketPDF/24/24-109/373613/20250903193825015_24-109-24-110acLawyersCommitteeForCivilRightsUnderLaw.pdf",
+          "x": "Joined Lawyers' Committee brief (2025-09-03) in support of Robinson appellants; also joined the 2024-12-26 brief."
+        },
+        {
+          "n": "Asian Law Caucus",
+          "role": "statement",
+          "u": "https://www.asianlawcaucus.org/news-resources/news/louisiana-v-callais-scotus-decision",
+          "x": "Statement on the decision by Executive Director Aarti Kohli."
+        }
+      ],
+      "src": [
+        {
+          "n": "Supreme Court docket No. 24-109",
+          "u": "https://www.supremecourt.gov/docket/docketfiles/html/public/24-109.html"
+        },
+        {
+          "n": "ALC statement on Louisiana v. Callais",
+          "u": "https://www.asianlawcaucus.org/news-resources/news/louisiana-v-callais-scotus-decision"
+        }
+      ]
+    },
+    {
+      "id": "usps-v-california-mail-ballot-rule",
+      "n": "United States Postal Service v. California (Ballot Mail for Federal Elections rule)",
+      "ct": "U.S. Supreme Court (stay application); 1st Cir.; D. Mass.",
+      "dkt": "S. Ct. No. 26A305 (26A297 withdrawn); 1st Cir. Nos. 26-2029, 26-2031",
+      "filed": "2026-09-06",
+      "status": "2026-09-14: Supreme Court denied the government's stay, leaving the 2026-09-04 D. Mass. injunction in place (Kavanaugh concurring; Alito, Thomas dissenting).",
+      "sum": "States and voter groups challenge a USPS rule under Executive Order 14399 on mail ballots for federal elections. AAJC is counsel for respondents; ALC led an amicus brief of 20 groups.",
+      "u": "https://www.supremecourt.gov/docket/docketfiles/html/public/26A305.html",
+      "t": [
+        "ELECTIONS",
+        "GOVERNMENT",
+        "CIVIL RIGHTS"
+      ],
+      "st": [],
+      "orgs": [
+        {
+          "n": "Asian Americans Advancing Justice - AAJC",
+          "role": "counsel",
+          "u": "https://www.supremecourt.gov/docket/docketfiles/html/public/26A305.html",
+          "x": "Counsel (Noah Butsch Baron) for respondents League of Women Voters of Massachusetts et al."
+        },
+        {
+          "n": "Asian Law Caucus",
+          "role": "amicus",
+          "u": "https://www.supremecourt.gov/DocketPDF/26/26A305/423664/20260909164525794_2026.09.09%20ALC%20Brief%20SCOTUS%20Oppose%20Stay.pdf",
+          "x": "Brief filed 2026-09-09 opposing the stay."
+        },
+        {
+          "n": "Asian American Legal Defense and Education Fund",
+          "role": "amicus",
+          "u": "https://www.supremecourt.gov/DocketPDF/26/26A305/423664/20260909164525794_2026.09.09%20ALC%20Brief%20SCOTUS%20Oppose%20Stay.pdf"
+        },
+        {
+          "n": "Asian Americans Advancing Justice - Atlanta",
+          "role": "amicus",
+          "u": "https://www.supremecourt.gov/DocketPDF/26/26A305/423664/20260909164525794_2026.09.09%20ALC%20Brief%20SCOTUS%20Oppose%20Stay.pdf"
+        },
+        {
+          "n": "South Asian American Justice Collaborative",
+          "role": "amicus",
+          "u": "https://www.supremecourt.gov/DocketPDF/26/26A305/423664/20260909164525794_2026.09.09%20ALC%20Brief%20SCOTUS%20Oppose%20Stay.pdf"
+        },
+        {
+          "n": "AAPI Equity Alliance",
+          "role": "amicus",
+          "u": "https://www.supremecourt.gov/DocketPDF/26/26A305/423664/20260909164525794_2026.09.09%20ALC%20Brief%20SCOTUS%20Oppose%20Stay.pdf"
+        },
+        {
+          "n": "Arizona Asian American Native Hawaiian and Pacific Islander for Equity",
+          "role": "amicus",
+          "u": "https://www.supremecourt.gov/DocketPDF/26/26A305/423664/20260909164525794_2026.09.09%20ALC%20Brief%20SCOTUS%20Oppose%20Stay.pdf"
+        },
+        {
+          "n": "Asian Americans Advancing Justice of Southern California",
+          "role": "amicus",
+          "u": "https://www.supremecourt.gov/DocketPDF/26/26A305/423664/20260909164525794_2026.09.09%20ALC%20Brief%20SCOTUS%20Oppose%20Stay.pdf"
+        },
+        {
+          "n": "Asian Americans and Pacific Islanders of New Jersey",
+          "role": "amicus",
+          "u": "https://www.supremecourt.gov/DocketPDF/26/26A305/423664/20260909164525794_2026.09.09%20ALC%20Brief%20SCOTUS%20Oppose%20Stay.pdf"
+        },
+        {
+          "n": "Asian Law Alliance",
+          "role": "amicus",
+          "u": "https://www.supremecourt.gov/DocketPDF/26/26A305/423664/20260909164525794_2026.09.09%20ALC%20Brief%20SCOTUS%20Oppose%20Stay.pdf"
+        },
+        {
+          "n": "Chinese for Affirmative Action",
+          "role": "amicus",
+          "u": "https://www.supremecourt.gov/DocketPDF/26/26A305/423664/20260909164525794_2026.09.09%20ALC%20Brief%20SCOTUS%20Oppose%20Stay.pdf"
+        },
+        {
+          "n": "LEAD Filipino",
+          "role": "amicus",
+          "u": "https://www.supremecourt.gov/DocketPDF/26/26A305/423664/20260909164525794_2026.09.09%20ALC%20Brief%20SCOTUS%20Oppose%20Stay.pdf"
+        },
+        {
+          "n": "Mekong NYC",
+          "role": "amicus",
+          "u": "https://www.supremecourt.gov/DocketPDF/26/26A305/423664/20260909164525794_2026.09.09%20ALC%20Brief%20SCOTUS%20Oppose%20Stay.pdf"
+        },
+        {
+          "n": "SAATH",
+          "role": "amicus",
+          "u": "https://www.supremecourt.gov/DocketPDF/26/26A305/423664/20260909164525794_2026.09.09%20ALC%20Brief%20SCOTUS%20Oppose%20Stay.pdf"
+        },
+        {
+          "n": "Sikh American Legal Defense and Education Fund",
+          "role": "amicus",
+          "u": "https://www.supremecourt.gov/DocketPDF/26/26A305/423664/20260909164525794_2026.09.09%20ALC%20Brief%20SCOTUS%20Oppose%20Stay.pdf"
+        },
+        {
+          "n": "Stop AAPI Hate",
+          "role": "amicus",
+          "u": "https://www.supremecourt.gov/DocketPDF/26/26A305/423664/20260909164525794_2026.09.09%20ALC%20Brief%20SCOTUS%20Oppose%20Stay.pdf"
+        }
+      ],
+      "src": [
+        {
+          "n": "Supreme Court docket No. 26A305",
+          "u": "https://www.supremecourt.gov/docket/docketfiles/html/public/26A305.html"
+        },
+        {
+          "n": "ALC: civil rights groups urge Supreme Court to block USPS rule (2026-09-10)",
+          "u": "https://www.asianlawcaucus.org/news-resources/news/usps-v-ca-amicus-scotus"
+        },
+        {
+          "n": "ALC: Supreme Court blocks USPS mail voting restrictions (2026-09-15)",
+          "u": "https://www.asianlawcaucus.org/news-resources/news/supreme-court-blocks-trump-usps-mail-voting-restrictions"
+        }
+      ]
+    },
+    {
+      "id": "dhs-v-league-of-women-voters-save",
+      "n": "Department of Homeland Security v. League of Women Voters (SAVE database)",
+      "ct": "U.S. Supreme Court (stay application); D.C. Cir.; D.D.C.",
+      "dkt": "S. Ct. No. 26A308; D.C. Cir. No. 26-5243; D.D.C. No. 25-cv-3501",
+      "filed": "2026-09-08",
+      "status": "2026-09-25: Supreme Court stayed the 2026-06-22 D.D.C. order pending appeal and any certiorari; Jackson, Sotomayor and Kagan dissented.",
+      "sum": "Voting groups challenged DHS's expanded SAVE citizenship-verification system for state voter registration and list maintenance. Asian Law Caucus issued a statement citing risks to naturalized citizens.",
+      "u": "https://www.supremecourt.gov/docket/docketfiles/html/public/26A308.html",
+      "t": [
+        "ELECTIONS",
+        "IMMIGRATION",
+        "GOVERNMENT"
+      ],
+      "st": [],
+      "orgs": [
+        {
+          "n": "Asian Law Caucus",
+          "role": "statement",
+          "u": "https://www.asianlawcaucus.org/news-resources/news/scotus-decision-save-data",
+          "x": "Public statement (2026-09-29) only; not a party, counsel or amicus on the docket."
+        }
+      ],
+      "src": [
+        {
+          "n": "Supreme Court docket No. 26A308",
+          "u": "https://www.supremecourt.gov/docket/docketfiles/html/public/26A308.html"
+        },
+        {
+          "n": "Ballotpedia News: Supreme Court allows use of expanded SAVE system (2026-09-25)",
+          "u": "https://news.ballotpedia.org/2026/09/25/u-s-supreme-court-allows-use-of-expanded-save-system-ahead-of-the-november-elections/"
+        }
+      ]
+    },
+    {
+      "id": "mathis-v-county-of-siskiyou",
+      "n": "Mathis, et al. v. County of Siskiyou, et al.",
+      "ct": "court not stated in the sources",
+      "dkt": "not verified",
+      "filed": null,
+      "status": "Traffic-stop and lien claims settled 2025-12-29; water-access claims settled 2026-06-30 per Asian Law Caucus. Court approval or dismissal not verified.",
+      "sum": "Class civil-rights suit by Siskiyou County residents, most of them Asian American, alleging race-based traffic stops, property liens and water-access restrictions in the Shasta Vista subdivision.",
+      "u": "https://www.asianlawcaucus.org/news-resources/news/settlement-mathis-county-of-siskiyou-water",
+      "t": [
+        "CIVIL RIGHTS",
+        "HOUSING"
+      ],
+      "st": [
+        "CA"
+      ],
+      "unverified": true,
+      "orgs": [
+        {
+          "n": "Asian Law Caucus",
+          "role": "counsel",
+          "u": "https://www.asianlawcaucus.org/news-resources/news/settlement-mathis-county-of-siskiyou-water",
+          "x": "With ACLU Foundation of Northern California and Covington & Burling."
+        }
+      ],
+      "src": [
+        {
+          "n": "ALC: settlement reached in Mathis v. County of Siskiyou (2026-06-30)",
+          "u": "https://www.asianlawcaucus.org/news-resources/news/settlement-mathis-county-of-siskiyou-water"
+        },
+        {
+          "n": "ALC: Siskiyou County settles claims over race-based traffic stops (2025-12-29)",
+          "u": "https://www.asianlawcaucus.org/news-resources/news/siskiyou-county-traffic-stops-settlement"
+        }
+      ],
+      "x": "Court and docket number are not given on the ALC pages; the AAPI link is the plaintiffs' community and ALC's role as counsel."
+    },
+    {
+      "id": "wmm-v-trump-alien-enemies-act",
+      "n": "W.M.M. v. Trump (Alien Enemies Act)",
+      "ct": "U.S. Court of Appeals, 5th Cir. (en banc); N.D. Tex.",
+      "dkt": "5th Cir. No. 25-10534; N.D. Tex. No. 1:25-cv-59",
+      "filed": "2025",
+      "status": "2026-08-13: en banc order denied adding class representatives after named petitioners were removed; ALC reports dismissal without a ruling on the Act.",
+      "sum": "Venezuelan detainees challenged removals under the Alien Enemies Act of 1798. The Japanese American Citizens League and over 60 AAPI organizations filed amicus citing the WWII incarceration.",
+      "u": "https://www.ca5.uscourts.gov/opinions/pub/25/25-10534-CV2.pdf",
+      "t": [
+        "IMMIGRATION",
+        "CIVIL RIGHTS",
+        "COURTS"
+      ],
+      "st": [],
+      "orgs": [
+        {
+          "n": "Japanese American Citizens League",
+          "role": "amicus",
+          "u": "https://cdn.craft.cloud/5cd1c590-65ba-4ad2-a52c-b55e67f8f04b/assets/media/Programs/NSCR/2025.06.02-JACL-Amicus-Brief-FINAL-2.pdf",
+          "x": "Lead amicus with over 60 other Asian American and Pacific Islander organizations; brief supports petitioners-appellants."
+        },
+        {
+          "n": "Asian Law Caucus",
+          "role": "amicus",
+          "u": "https://cdn.craft.cloud/5cd1c590-65ba-4ad2-a52c-b55e67f8f04b/assets/media/Programs/NSCR/2025.06.02-JACL-Amicus-Brief-FINAL-2.pdf",
+          "x": "Counsel on the JACL brief (Carl Takei)."
+        },
+        {
+          "n": "Asian Americans Advancing Justice - AAJC",
+          "role": "amicus",
+          "u": "https://cdn.craft.cloud/5cd1c590-65ba-4ad2-a52c-b55e67f8f04b/assets/media/Programs/NSCR/2025.06.02-JACL-Amicus-Brief-FINAL-2.pdf",
+          "x": "Counsel on the JACL brief (Noah Baron)."
+        }
+      ],
+      "src": [
+        {
+          "n": "Fifth Circuit en banc published order, No. 25-10534 (Aug. 13, 2026)",
+          "u": "https://www.ca5.uscourts.gov/opinions/pub/25/25-10534-CV2.pdf"
+        },
+        {
+          "n": "ALC: civil rights groups call for accountability over Alien Enemies Act (2026-08-14)",
+          "u": "https://www.asianlawcaucus.org/news-resources/news/wmm-v-trump-dismissal-alien-enemies-act"
+        }
+      ]
+    },
+    {
+      "id": "genalo-v-black",
+      "n": "Genalo v. Black",
+      "ct": "U.S. Supreme Court (from 2d Cir. No. 22-70)",
+      "dkt": "25-886",
+      "filed": "2026-01-28",
+      "status": "Cert. granted 2026-06-15 and set for argument 2026-10-13; dismissed 2026-09-11 on a joint stipulation under Rule 46 (three days after the amicus briefs).",
+      "sum": "Whether the government may hold people in prolonged mandatory immigration detention without a bond hearing. Asian Law Caucus, SAAJCO and Sikh Coalition filed an amicus brief supporting the respondent on 2026-09-08.",
+      "u": "https://www.supremecourt.gov/docket/docketfiles/html/public/25-886.html",
+      "t": [
+        "IMMIGRATION",
+        "CIVIL RIGHTS",
+        "COURTS"
+      ],
+      "st": [],
+      "orgs": [
+        {
+          "n": "Asian Law Caucus",
+          "role": "amicus",
+          "u": "https://cdn.craft.cloud/5cd1c590-65ba-4ad2-a52c-b55e67f8f04b/assets/media/Programs/Immigrant-Rights/Genalo-v.-Black_Amicus_IR_260908.pdf",
+          "x": "With AILA, American Immigration Council and RAICES; brief supports respondent."
+        },
+        {
+          "n": "South Asian American Justice Collaborative",
+          "role": "amicus",
+          "u": "https://cdn.craft.cloud/5cd1c590-65ba-4ad2-a52c-b55e67f8f04b/assets/media/Programs/Immigrant-Rights/Genalo-v.-Black_Amicus_IR_260908.pdf"
+        },
+        {
+          "n": "Sikh Coalition",
+          "role": "amicus",
+          "u": "https://cdn.craft.cloud/5cd1c590-65ba-4ad2-a52c-b55e67f8f04b/assets/media/Programs/Immigrant-Rights/Genalo-v.-Black_Amicus_IR_260908.pdf"
+        }
+      ],
+      "src": [
+        {
+          "n": "Supreme Court docket No. 25-886",
+          "u": "https://www.supremecourt.gov/docket/docketfiles/html/public/25-886.html"
+        },
+        {
+          "n": "ALC: organizations urge Supreme Court to protect against unchecked prolonged immigration detention (2026-09-08)",
+          "u": "https://www.asianlawcaucus.org/news-resources/news/prolonged-immigration-detention-genalovblack-amicus"
+        }
+      ]
+    }
+  ]
+}

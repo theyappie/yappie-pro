@@ -1,0 +1,290 @@
+{
+"AL": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"AK": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"AZ": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"AR": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"CA": {
+"ok": true,
+"u": "https://hrmanual.calhr.ca.gov/Home/ManualItem/1/1003",
+"tried": 1
+},
+"CO": {
+"ok": true,
+"u": "https://leg.colorado.gov/sites/default/files/documents/2024A/bills/sl/2024a_sl_327.pdf",
+"tried": 1
+},
+"CT": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"DE": {
+"ok": true,
+"u": "https://delcode.delaware.gov/title29/c106/",
+"tried": 1
+},
+"DC": {
+"ok": true,
+"u": "https://code.dccouncil.gov/us/dc/council/code/sections/2-1932",
+"tried": 1
+},
+"FL": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"GA": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"HI": {
+"ok": true,
+"u": "https://data.capitol.hawaii.gov/hrscurrent/Vol06_Ch0321-0344/HRS0321C/HRS_0321C-0003.htm",
+"tried": 1
+},
+"ID": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"IL": {
+"ok": true,
+"u": "https://gov.illinois.gov/about/ona/language-access.html",
+"tried": 1
+},
+"IN": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"IA": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"KS": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"KY": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"LA": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"ME": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"MD": {
+"ok": true,
+"u": "https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gsg&section=10-1103&enactments=false",
+"tried": 1
+},
+"MA": {
+"ok": true,
+"u": "https://iberkshires.com/story/73166/Governor-Improves-Language-Access-Across-State-Government-.html",
+"tried": 2
+},
+"MI": {
+"ok": true,
+"u": "https://www.legislature.mi.gov/documents/mcl/pdf/mcl-Act-241-of-2023.pdf",
+"tried": 1
+},
+"MN": {
+"ok": true,
+"u": "https://www.revisor.mn.gov/statutes/cite/15.441",
+"tried": 1
+},
+"MS": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"MO": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"MT": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"NE": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"NV": {
+"ok": true,
+"u": "https://www.leg.state.nv.us/nrs/nrs-232.html",
+"tried": 1
+},
+"NH": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"NJ": {
+"ok": true,
+"u": "https://nj.gov/humanservices/njnewamericans/language-access/law",
+"tried": 1
+},
+"NM": {
+"ok": true,
+"u": "https://nmlegis.gov/Sessions/22%20Regular/bills/house/HB0022.html",
+"tried": 1
+},
+"NY": {
+"ok": true,
+"u": "https://ogs.ny.gov/node/36771",
+"tried": 1
+},
+"NC": {
+"ok": true,
+"u": "https://files.nc.gov/nc/documents/2024-12/Final%20Master%20POLICY%20Language%20Access%20Policy%20Coordination%20Plan%2012.23.24.pdf",
+"tried": 1
+},
+"ND": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"OH": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"OK": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"OR": {
+"ok": true,
+"u": "https://www.oregonlegislature.gov/bills_laws/ors/ors413.html",
+"tried": 1
+},
+"PA": {
+"ok": true,
+"u": "https://www.pa.gov/agencies/dgs/newsroom/shapiro-administration-expands-access-to-multilingual-resources-",
+"tried": 1
+},
+"RI": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"SC": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"SD": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"TN": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"TX": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"UT": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"VT": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"VA": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"WA": {
+"ok": true,
+"u": "https://lawfilesext.leg.wa.gov/biennium/2025-26/Htm/Bill%20Reports/Senate/2475-S%20SBR%20WM%20TA%2026.htm",
+"tried": 2
+},
+"WV": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"WI": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+},
+"WY": {
+"ok": null,
+"u": null,
+"tried": 0,
+"skip": true
+}
+}

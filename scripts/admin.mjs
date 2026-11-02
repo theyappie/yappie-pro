@@ -9,7 +9,7 @@ export const STATE_FILE = "admin.json", PENDING_FILE = "pending.json";
 export const EDIT_FIELDS = ["h", "m", "s", "u", "d", "k", "t", "tx", "cm", "st", "rl", "rt"]; // headline, summary, source, link, date, section, topic, extra topics, communities, states, policy relevancy, research type
 export const MAX_EXTRA_TOPICS = 4; // a story has one main topic ("t") and up to this many more ("tx")
 export const RESEARCH_TYPES = ["poll", "report", "data", "none"]; // rt: a survey ("poll"), a report, data, or "none" (not a research item); no rt = the site's rules decide
-export const LIMITS = { topics: 30, communities: 30, newsKinds: 8, words: 40, sourceKinds: 500, blocked: 200 };
+export const LIMITS = { topics: 30, communities: 30, newsKinds: 8, words: 40, sourceKinds: 500, blocked: 200, hubs: 40 };
 export const NEWS_BASE_KINDS = ["community", "news"]; // "AAPI Media" and "Mainstream": the News page's two built-in categories
 export const BREAKING_LABELS = { breaking: "Breaking", urgent: "Urgent", important: "Important" }; // the red, flashing label an item carries while it is marked
 export const BREAKING_HOURS = [2, 6, 12, 24, 48]; // what the dashboard offers; any whole number of hours from 2 to 72 is accepted (the shortest is 2 so the item is on the page for at least an hour even after the few minutes the site needs to update)
@@ -25,6 +25,8 @@ export const emptySettings = () => ({
   newsKinds: [],   // News page categories the owner added besides AAPI Media and Mainstream: { k, label }
   sourceKinds: {}, // source name -> News page category key ("community" = AAPI Media, "news" = Mainstream, or one of newsKinds)
   blocked: {},     // source name -> when the owner blocked it: all its stories are taken off the site and nothing new is collected from it
+  hubs: [],        // topic hubs the owner added besides the starter set in hubs.json: { k, label, blurb, words } (words: the keywords that put a story, policy item or statement in the hub)
+  hubsOff: [],     // keys of starter hubs (hubs.json) the owner hid
   builtin: { topics: {}, communities: {}, kinds: {} }, // changes to the built-in ones, by key: { label?: a new name, off?: true (removed), to?: for a removed News category, the category its sources go to }
 });
 export const emptyState = () => ({
@@ -89,6 +91,13 @@ export function normalizeState(raw) {
       }
     }
     if (isObj(raw.settings.sourceKinds)) for (const [n, k] of Object.entries(raw.settings.sourceKinds)) { if (Object.keys(s.settings.sourceKinds).length >= LIMITS.sourceKinds) break; const name = line(n, 80); if (name && typeof k === "string" && KEY_OK.kind.test(k) && k.length <= KEY_MAX.kind) s.settings.sourceKinds[name] = k; }
+    const hubSeen = new Set();
+    for (const e of arr(raw.settings.hubs)) {
+      if (!isObj(e) || typeof e.k !== "string" || !HUB_KEY.test(e.k) || e.k.length > HUB_KEY_MAX || hubSeen.has(e.k) || s.settings.hubs.length >= LIMITS.hubs) continue;
+      const label = line(e.label, 40); if (!label) continue;
+      hubSeen.add(e.k); s.settings.hubs.push({ k: e.k, label, blurb: line(e.blurb, 200), words: cleanWords(e.words) });
+    }
+    s.settings.hubsOff = [...new Set(arr(raw.settings.hubsOff).filter(x => typeof x === "string" && HUB_KEY.test(x) && x.length <= HUB_KEY_MAX))].slice(0, 100);
     if (isObj(raw.settings.blocked)) for (const [n, t] of Object.entries(raw.settings.blocked)) { if (Object.keys(s.settings.blocked).length >= LIMITS.blocked) break; const name = line(n, 80); if (name && nameKey(name)) s.settings.blocked[name] = typeof t === "string" ? t.slice(0, 40) : ""; }
   }
   for (const k of ["edits", "orig", "article", "approved", "held", "pinned", "featured", "deleted"]) if (isObj(raw[k])) for (const [id, v] of Object.entries(raw[k])) if (validId(id) && v != null && (k === "approved" || k === "held" || k === "pinned" || isObj(v) || (k === "featured" && typeof v === "string"))) s[k][id] = v;
@@ -98,7 +107,8 @@ export function normalizeState(raw) {
 }
 
 /** Sets of valid values, built from taxonomy.json. The label maps are used to keep the owner's own names apart from the built-in ones. */
-export const taxSets = t => ({
+export const taxSets = (t, hubs) => ({
+  hubs: new Map(arr(hubs?.hubs).filter(h => isObj(h) && typeof h.k === "string" && typeof h.label === "string").map(h => [h.k, h])), // the starter topic hubs (hubs.json)
   topics: new Set(arr(t?.topics).map(x => x.k)), communities: new Set(arr(t?.communities).map(x => x.k)),
   states: new Set(arr(t?.states).map(x => x[0])), kinds: new Set(Object.keys(t?.kinds ?? {})), defaultTopic: t?.default ?? "CULTURE",
   labels: { topic: new Set(arr(t?.topics).map(x => String(x.label).toLowerCase())), community: new Set(arr(t?.communities).map(x => String(x.label).toLowerCase())), kind: new Set(Object.values(t?.kinds ?? {}).map(x => String(x).toLowerCase())) },
@@ -134,6 +144,48 @@ export const wordsPattern = words => {
   const alts = cleanWords(words).map(w => w.replace(/[.*+?^${}()|[\]\\\/]/g, "\\$&").replace(/\s+/g, "\\s+"));
   return alts.length ? `(?<![A-Za-z0-9])(?:${alts.join("|")})(?:s|es)?(?![A-Za-z0-9])` : "(?!)"; // "(?!)" never matches: a topic without keywords is only given by hand
 };
+
+// ---------------------------------------------------------------- topic hubs: one page per issue that gathers the news, policy items, statements and research about it
+export const HUB_KEY = /^[a-z0-9]+(?:-[a-z0-9]+)*$/, HUB_KEY_MAX = 40;
+const hubKeyOf = label => line(label, 60).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, HUB_KEY_MAX).replace(/-+$/, "");
+/** The hubs in use: the starter hubs (hubs.json) the owner has not hidden, then the owner's own. Each: { k, label, blurb, words, own? }. */
+export function hubList(starter, settings) {
+  const off = new Set(arr(settings?.hubsOff)), seen = new Set(), out = [];
+  for (const h of arr(starter)) {
+    if (!isObj(h) || typeof h.k !== "string" || !HUB_KEY.test(h.k) || seen.has(h.k)) continue;
+    const label = line(h.label, 40); if (!label) continue;
+    seen.add(h.k); if (!off.has(h.k)) out.push({ k: h.k, label, blurb: line(h.blurb, 200), words: cleanWords(h.words, 200) });
+  }
+  for (const h of arr(settings?.hubs)) if (!seen.has(h.k)) { seen.add(h.k); out.push({ k: h.k, label: h.label, blurb: h.blurb ?? "", words: cleanWords(h.words), own: true }); }
+  return out;
+}
+/** A function that gives the keys of the hubs a story belongs to, from the text it is given (headline, summary). Keywords match as whole words in any capitals. */
+export function hubTagger(list) {
+  const hubs = arr(list).map(h => ({ k: h.k, re: new RegExp(wordsPattern(h.words), "i") })).filter(h => h.re.source !== "(?!)");
+  return (...texts) => { const t = texts.map(x => String(x ?? "")).join(" "); const hit = []; for (const h of hubs) if (h.re.test(t)) hit.push(h.k); return hit.slice(0, 6); };
+}
+/** What the public page needs to know about the hubs (names and descriptions, never keywords). */
+export const feedHubs = list => arr(list).map(h => ({ k: h.k, label: h.label, ...(h.blurb ? { blurb: h.blurb } : {}) }));
+function cleanHubs(list, starter, old) {
+  if (!Array.isArray(list)) throw new AdminError("The list could not be read.");
+  if (list.length > LIMITS.hubs) throw new AdminError(`You can add at most ${LIMITS.hubs} hubs.`);
+  const oldKeys = new Set(old.map(o => o.k)), used = new Set(starter.keys()), names = new Set([...starter.values()].map(h => String(h.label).toLowerCase())), out = [];
+  for (const it of list) {
+    if (!isObj(it)) throw new AdminError("The list could not be read.");
+    const label = line(it.label, 40);
+    if (!label) throw new AdminError("Every hub needs a name.");
+    if (names.has(label.toLowerCase())) throw new AdminError(`There is already a hub called “${label}”. Choose a different name.`);
+    const k = typeof it.k === "string" && oldKeys.has(it.k) ? it.k : hubKeyOf(label);
+    if (!k || !HUB_KEY.test(k)) throw new AdminError(`The hub name “${label}” needs some letters or numbers (A to Z, 0 to 9).`);
+    if (used.has(k)) throw new AdminError(`There is already a hub called “${label}”. Choose a different name.`);
+    used.add(k); names.add(label.toLowerCase());
+    const words = cleanWords(it.words, Infinity);
+    if (!words.length) throw new AdminError(`Add at least one keyword to “${label}”, so stories can be matched to it.`);
+    if (words.length > LIMITS.words) throw new AdminError(`“${label}” has more than ${LIMITS.words} keywords.`);
+    out.push({ k, label, blurb: line(it.blurb, 200), words });
+  }
+  return out;
+}
 
 /** The News categories in use: AAPI Media ("community") and Mainstream ("news") unless the owner removed them, plus the owner's own. redirect: a removed built-in category -> the category its sources go to. */
 export function kindState(settings) {
@@ -437,6 +489,7 @@ function dropKeys(s, type, gone, fallback) {
  *  breaking {ids, hours?, label?} · unbreaking {ids}  (red, flashing, at the top of its page for "hours" hours; label: breaking, urgent or important)
  *  edit {id, patch, orig?, article?} · editMany {edits:[{id, patch, orig?}]} · revert {id} · add {item, article?, pin?, feature?, breaking?: {hours?, label?}} · settings {approval}
  *  topics {list:[{k?, label, words}]} · communities {list} · newsKinds {list:[{k?, label}]}  (the owner's own: the whole list is sent)
+ *  hubs {list:[{k?, label, blurb?, words}], off:[starter hub keys]}  (topic hubs: the owner's own, the whole list is sent; off: hubs from hubs.json they hid)
  *  sourceKinds {sources:[name], kind: key | null}  (which News page category a source belongs to; null = back to the usual one)
  *  blockSources {sources:[name]} · unblockSources {sources:[name]}  (a blocked source: all its stories are taken off the site, and nothing new is collected from it)
  * ctx: { X: taxSets(...) of taxonomy.json, now?: ms, inPlace?: true }. Returns { state, summary, ids, id? }. Throws AdminError for a request that is not allowed.
@@ -539,6 +592,17 @@ export function applyOp(state, op, args, ctx) {
       out.summary = [added.length && one(added.length, added, "Added"), gone.length && one(gone.length, gone, "Removed"), removed.length && one(removed.length, removed.map(k => ({ label: nmOld(k) })), "Removed"), restored.length && one(restored.length, restored.map(k => ({ label: nm(k) })), "Restored"),
         renamed.length && (renamed.length === 1 ? `Renamed the ${noun} “${nmOld(renamed[0])}” to “${nm(renamed[0])}”` : `Renamed ${plural(renamed.length, noun)}`), changed.length && one(changed.length, changed, "Changed")]
         .filter(Boolean).join(", ").replace(/^(.)/, c => c.toUpperCase()) || `Changed where the sources of a removed ${noun} go`; break;
+    }
+    case "hubs": {
+      const old = s.settings.hubs, starter = BX.hubs ?? new Map(), list = args?.list === undefined ? old : cleanHubs(args.list, starter, old);
+      const offOld = s.settings.hubsOff, off = args?.off === undefined ? offOld : [...new Set(arr(args.off).filter(k => typeof k === "string" && HUB_KEY.test(k) && k.length <= HUB_KEY_MAX))].slice(0, 100);
+      const before = new Map(old.map(x => [x.k, x])), nowK = new Set(list.map(x => x.k));
+      const added = list.filter(x => !before.has(x.k)), gone = old.filter(x => !nowK.has(x.k)), changed = list.filter(x => before.has(x.k) && JSON.stringify(before.get(x.k)) !== JSON.stringify(x));
+      const hid = off.filter(k => !offOld.includes(k)), shown = offOld.filter(k => !off.includes(k));
+      if (!added.length && !gone.length && !changed.length && !hid.length && !shown.length) throw new AdminError("Nothing to change.");
+      s.settings.hubs = list; s.settings.hubsOff = off;
+      const nm = k => starter.get(k)?.label ?? k, one = (xs, verb, f = x => x.label) => xs.length === 1 ? `${verb} the hub “${f(xs[0])}”` : `${verb} ${plural(xs.length, "hub")}`;
+      out.summary = [added.length && one(added, "Added"), gone.length && one(gone, "Removed"), changed.length && one(changed, "Changed"), hid.length && one(hid, "Hid", nm), shown.length && one(shown, "Showed", nm)].filter(Boolean).join(", ").replace(/^(.)/, c => c.toUpperCase()); break;
     }
     case "sourceKinds": {
       const names = uniq(arr(args?.sources).map(x => line(x, 80)).filter(Boolean)).slice(0, LIMITS.sourceKinds);

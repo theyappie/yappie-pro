@@ -6,7 +6,7 @@ import { fileURLToPath } from "node:url";
 import { XMLParser } from "fast-xml-parser";
 import { makeTagger, TAXO_PATH } from "./tag.mjs";
 import { makeEnglishCheck } from "./lang.mjs";
-import { normalizeState, applyEdits, breakingOn, placeOf, withCustom, newsKindKeys, kindState, feedTaxo } from "./admin.mjs";
+import { normalizeState, applyEdits, breakingOn, placeOf, withCustom, newsKindKeys, kindState, feedTaxo, hubList, hubTagger, feedHubs } from "./admin.mjs";
 
 const CFG = process.env.SOURCES ?? fileURLToPath(new URL("../sources.json", import.meta.url));
 const OUT = process.env.OUT ?? fileURLToPath(new URL("../data/feed.json", import.meta.url));
@@ -72,6 +72,10 @@ const OWNER_BLOCK = new Set(Object.keys(A.settings.blocked).flatMap(n => [normNa
 function ownerBlocked(n) { return OWNER_BLOCK.size > 0 && [normName(n), normName(noTld(n))].some(k => k && OWNER_BLOCK.has(k)); }
 const TAXO_BASE = JSON.parse(await readFile(TAXO_PATH, "utf8")), TAXO = withCustom(TAXO_BASE, A.settings); // TAXO: taxonomy.json plus the owner's own topics (with their keywords), communities and categories
 const TG = makeTagger(TAXO);
+// Topic hubs: the starter hubs in hubs.json (minus any the owner hid) and the owner's own. Every item on the site is matched to them on every run (headline and summary), so a new or changed hub applies to everything already stored.
+const HUBS_PATH = process.env.HUBS ?? fileURLToPath(new URL("../hubs.json", import.meta.url));
+let HUB_STARTER = []; try { HUB_STARTER = JSON.parse(await readFile(HUBS_PATH, "utf8")).hubs ?? []; } catch { /* no starter hubs */ }
+const HUBS = hubList(HUB_STARTER, A.settings), hubsOf = hubTagger(HUBS);
 const isEnglish = makeEnglishCheck(TAXO_BASE); // English-language stories only
 const CUSTOM_TOPICS = new Set(A.settings.topics.map(t => t.k)), CUSTOM_CM = new Set(A.settings.communities.map(c => c.k)), VALID_CM = new Set(TAXO.communities.map(c => c.k));
 // Policy tracker: only .gov sources. An item either names AAPI communities ("n") or touches a related issue ("i").
@@ -514,8 +518,8 @@ async function pullGovInfo(gi) {
   return [...out.values()];
 }
 
-let old = [], oldSources = [], oldTaxo = null;
-try { const prev = JSON.parse(await readFile(OUT, "utf8")); old = prev.items ?? []; oldSources = prev.sources ?? []; oldTaxo = prev.taxo ?? null; } catch {}
+let old = [], oldSources = [], oldTaxo = null, oldHubs = null;
+try { const prev = JSON.parse(await readFile(OUT, "utf8")); old = prev.items ?? []; oldSources = prev.sources ?? []; oldTaxo = prev.taxo ?? null; oldHubs = prev.hubs ?? null; } catch {}
 // Built-in topics and communities the owner removed at the last update and has restored since: stories that fit them go back to them (the page's feed.json records what was removed).
 const offNow = A.settings.builtin, nowOff = (f, key) => new Set(Object.keys(offNow[f] ?? {}).filter(k => offNow[f][k].off)), wasOff = (key) => new Set(Array.isArray(oldTaxo?.off?.[key]) ? oldTaxo.off[key] : []);
 const BACK_T = new Set([...wasOff("t")].filter(k => !nowOff("topics").has(k) && TG.valid.has(k))), BACK_CM = new Set([...wasOff("c")].filter(k => !nowOff("communities").has(k) && VALID_CM.has(k)));
@@ -602,7 +606,7 @@ const capped = (list, max) => [...list.filter(i => !held(i)).slice(0, max), ...l
 const kept = [...capped(live.filter(i => !isPolicy(i.k) && i.k !== "research"), MAX), ...capped(live.filter(i => i.k === "research"), RES_MAX), ...capped(live.filter(i => isPolicy(i.k)), POL_MAX)].sort((a, b) => b.d.localeCompare(a.d));
 const arts = new Map(kept.filter(i => i.art).map(i => [i.id, i.art]));
 const slim = o => Object.fromEntries(Object.entries(o).filter(([, v]) => !(Array.isArray(v) && !v.length) && v !== "" && v !== undefined));
-const out = kept.map(({ g, art, ...rest }) => slim(rest));
+const out = kept.map(({ g, art, hb, ...rest }) => slim({ ...rest, hb: hubsOf(rest.h, rest.m) }));
 const adir = join(dirname(OUT), "articles");
 await mkdir(adir, { recursive: true });
 // Author pages ("byu"): an author seen before is not looked up again (sources.json "authors" lists bylines whose stories live on another site, e.g. The Yappie Staff on the newsletter), and at most 6 pages are read per run.
@@ -642,7 +646,8 @@ const pendOut = waiting.slice(0, PEND_MAX).map(({ g, art, ...rest }) => {
 if (JSON.stringify(pendOut) !== JSON.stringify(oldPending) && (pendOut.length || oldPending.length)) await writeFile(join(ADMIN_DIR, "pending.json"), JSON.stringify({ generated: new Date().toISOString(), items: pendOut }));
 const pubSources = status.map(({ name, home, kind, ok, count, note }) => ({ name, home, kind, ok, count, note }));
 const taxo = feedTaxo(A.settings, TAXO_BASE); // names (never keywords) of the owner's own topics, communities and categories, new names for built-in ones and the built-in ones removed, so the page can show them
-if (JSON.stringify(out) === JSON.stringify(old) && JSON.stringify(pubSources) === JSON.stringify(oldSources) && JSON.stringify(taxo) === JSON.stringify(oldTaxo)) { console.log("No changes."); process.exit(0); }
+const hubsPub = feedHubs(HUBS).filter(h => out.some(i => i.hb?.includes(h.k))); // the page lists the hubs that have something in them
+if (JSON.stringify(out) === JSON.stringify(old) && JSON.stringify(pubSources) === JSON.stringify(oldSources) && JSON.stringify(taxo) === JSON.stringify(oldTaxo) && JSON.stringify(hubsPub.length ? hubsPub : null) === JSON.stringify(oldHubs)) { console.log("No changes."); process.exit(0); }
 await mkdir(dirname(OUT), { recursive: true });
-await writeFile(OUT, JSON.stringify({ generated: new Date().toISOString(), sources: pubSources, ...(taxo ? { taxo } : {}), items: out }));
+await writeFile(OUT, JSON.stringify({ generated: new Date().toISOString(), sources: pubSources, ...(taxo ? { taxo } : {}), ...(hubsPub.length ? { hubs: hubsPub } : {}), items: out }));
 console.log(`Wrote ${out.length} items.`);

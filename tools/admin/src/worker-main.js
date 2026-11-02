@@ -9,7 +9,7 @@ import { STATE_FILE, PENDING_FILE, STATE_MAX_BYTES, AdminError, emptyState, vali
 const COOKIE = "__Host-yp_admin", SESSION_HOURS = 12, MAX_BODY = 1_500_000;
 const LOCK_AFTER = 5, LOCK_MINUTES = 15;
 // which repository each file the dashboard reads lives in
-const RAW = { feed: ["site", "data/feed.json"], pending: ["data", PENDING_FILE], state: ["data", STATE_FILE], taxonomy: ["site", "taxonomy.json"], sources: ["site", "sources.json"] };
+const RAW = { feed: ["site", "data/feed.json"], pending: ["data", PENDING_FILE], state: ["data", STATE_FILE], taxonomy: ["site", "taxonomy.json"], sources: ["site", "sources.json"], hubs: ["site", "hubs.json"] };
 const enc = new TextEncoder(), dec = new TextDecoder();
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
@@ -166,7 +166,8 @@ async function taxonomy(env, now) {
   if (taxCache.X && now - taxCache.at < 600e3) return taxCache.X;
   const r = await rawFile(env, "taxonomy.json", "site");
   if (!r.ok) throw await ghProblem(env, r, "taxonomy.json");
-  taxCache = { at: now, X: taxSets(await r.json()) };
+  let hubs = null; try { const h = await rawFile(env, "hubs.json", "site"); if (h.ok) hubs = await h.json(); } catch { /* no starter hubs: the owner's own hubs still work */ }
+  taxCache = { at: now, X: taxSets(await r.json(), hubs) };
   return taxCache.X;
 }
 

@@ -191,7 +191,7 @@ ul.log time{color:var(--dm);min-width:170px;font-size:13px}
 "use strict";
 const CORE = (() => {
 {{CORE}}
-return { normalizeState, applyEdits, placeOf, sanitizeHtml, withCustom, newsKindKeys, kindState, nameKey, breakingOn, breakingEnd, BREAKING_LABELS, BREAKING_HOURS, MAX_EXTRA_TOPICS, LIMITS };
+return { normalizeState, applyEdits, placeOf, sanitizeHtml, withCustom, newsKindKeys, kindState, nameKey, breakingOn, breakingEnd, cleanWords, BREAKING_LABELS, BREAKING_HOURS, MAX_EXTRA_TOPICS, LIMITS };
 })();
 (() => {
 const CFG = JSON.parse(document.getElementById("cfg").textContent), NONCE = document.getElementById("cfg").nonce || "";
@@ -243,8 +243,8 @@ const stName = k => (D.tax.states.find(s => s[0] === k) || [])[1] || k;
 
 async function loadAll() {
   const names = ["feed", "pending", "state", "taxonomy", "sources"];
-  const [feed, pend, state, tax, src] = await Promise.all(names.map(n => api("/api/raw/" + n)));
-  D.feed = feed.items || []; D.pending = pend.items || []; D.S = CORE.normalizeState(state); D.taxBase = tax; D.srcKinds = src.kinds || {}; D.srcCfg = src.sources || []; RSC = null; D.ready = true;
+  const [feed, pend, state, tax, src, hubs] = await Promise.all(names.map(n => api("/api/raw/" + n)).concat(api("/api/raw/hubs").catch(() => null)));
+  D.feed = feed.items || []; D.pending = pend.items || []; D.S = CORE.normalizeState(state); D.taxBase = tax; D.srcKinds = src.kinds || {}; D.srcCfg = src.sources || []; D.hubsBase = hubs; RSC = null; D.ready = true;
   rebuild();
 }
 // a blocked source: its stories are not listed, and the site still holding some is a change not on the site yet (names are compared the way the collector does, so "Hoodline.com" and "Hoodline" are one)
@@ -741,6 +741,56 @@ function customCard(type) {
     T.words && h("p", { class: "hint" }, "Keywords match whole words in any capitals, and a plural also matches (“voucher” finds “vouchers”). Up to " + CORE.LIMITS.words + " keywords each; at most " + max + " " + T.nouns + " of your own."));
 }
 
+// Topic hubs: the issues the site has a page for (the Hubs tab). The starter hubs come with the site (hubs.json); the owner can hide any of them and add their own.
+function hubsCard() {
+  const base = (D.hubsBase && Array.isArray(D.hubsBase.hubs) ? D.hubsBase.hubs : []).filter(x => x && typeof x.k === "string" && typeof x.label === "string");
+  const cur = D.S.settings.hubs, off = new Set(D.S.settings.hubsOff), max = CORE.LIMITS.hubs;
+  const rows = cur.map(e => ({ k: e.k, label: e.label, blurb: e.blurb || "", words: (e.words || []).join("\n") }));
+  const count = k => D.feed.reduce((n, it) => n + (Array.isArray(it.hb) && it.hb.includes(k) ? 1 : 0), 0);
+  const list = h("div", { class: "cl" }), err = h("div", { class: "err", role: "alert" });
+  const add = h("button", { class: "btn", type: "button", on: { click: () => { rows.push({ label: "", blurb: "", words: "" }); paint(); [...list.querySelectorAll(".cr.mine")].pop().querySelector("input").focus(); } } }, "+ Add a hub");
+  const paint = () => {
+    clearNode(list);
+    list.append(h("div", { class: "sub" }, "Starter hubs"));
+    if (!base.length) list.append(h("p", { class: "hint" }, "The starter list (hubs.json) could not be read, so only your own hubs are shown."));
+    for (const b of base.filter(x => !off.has(x.k))) {
+      const n = count(b.k);
+      list.append(h("div", { class: "cr one bi" },
+        h("div", { class: "fl" }, h("div", { class: "nm" }, b.label), h("div", { class: "hint" }, (b.blurb || "") + " " + (n ? n.toLocaleString() + (n === 1 ? " item" : " items") + " on the site now." : "Nothing on the site yet, so it is not listed.")),
+          h("details", { class: "hint" }, h("summary", null, "Keywords it matches"), h("p", { class: "hint" }, (b.words || []).join(", ")))),
+        h("button", { class: "btn sm dng", type: "button", "aria-label": `Hide the hub ${b.label}`, on: { click: () => { off.add(b.k); paint(); } } }, "Hide")));
+    }
+    list.append(h("div", { class: "sub" }, "Your own"));
+    if (!rows.length) list.append(h("p", { class: "hint" }, "You have not added any hubs yet."));
+    rows.forEach((r, i) => list.append(h("div", { class: "cr mine" },
+      h("div", { class: "fl" }, h("div", { class: "lb" }, "Name"), h("input", { type: "text", value: r.label, maxlength: "40", placeholder: "For example: Guam sovereignty", "aria-label": `Name of hub ${i + 1}`, on: { input: e => { r.label = e.target.value; } } }),
+        h("div", { class: "lb" }, "Description (optional)"), h("input", { type: "text", value: r.blurb, maxlength: "200", placeholder: "One sentence about the issue", "aria-label": `Description of hub ${i + 1}`, on: { input: e => { r.blurb = e.target.value; } } })),
+      h("div", { class: "fl" }, h("div", { class: "lb" }, "Keywords"), h("textarea", { rows: "4", value: r.words, placeholder: "One word or phrase per line, or separated by commas", "aria-label": `Keywords of hub ${i + 1}`, on: { input: e => { r.words = e.target.value; } } })),
+      h("button", { class: "btn sm dng", type: "button", on: { click: () => { rows.splice(i, 1); paint(); } } }, "Remove"))));
+    const hid = base.filter(x => off.has(x.k));
+    if (hid.length) {
+      list.append(h("div", { class: "sub" }, "Hidden"), h("p", { class: "hint" }, "Not on the site while hidden. Show one to bring its page back."));
+      for (const b of hid) list.append(h("div", { class: "cr off one" }, h("div", { class: "fl" }, h("div", { class: "nm" }, b.label), h("div", { class: "hint" }, b.blurb || "")),
+        h("button", { class: "btn sm", type: "button", "aria-label": `Show the hub ${b.label}`, on: { click: () => { off.delete(b.k); paint(); } } }, "Show")));
+    }
+    add.disabled = rows.length >= max;
+  };
+  const save = h("button", { class: "btn pri", type: "button", on: { click: async () => {
+    err.textContent = "";
+    const bad = rows.find(r => !r.label.trim()); if (bad) { err.textContent = "Every hub needs a name. Fill it in or remove it."; return; }
+    const none = rows.find(r => !CORE.cleanWords(r.words, Infinity).length); if (none) { err.textContent = `Add at least one keyword to “${none.label.trim()}”, so stories can be matched to it.`; return; }
+    const gone = cur.filter(c => !rows.some(r => r.k === c.k));
+    if (gone.length && !(await confirmBox(`Remove ${gone.length === 1 ? "“" + gone[0].label + "”" : gone.length + " hubs"}?`, "Its page is taken off the site at the next update. The stories stay on the site.", "Remove", true))) return;
+    const res = await act("hubs", { list: rows.map(r => ({ ...(r.k ? { k: r.k } : {}), label: r.label.trim(), blurb: r.blurb.trim(), words: r.words })), off: [...off] });
+    if (!res) err.textContent = "Not saved. See the message at the bottom of the page.";
+  } } }, "Save hubs");
+  paint();
+  return h("div", { class: "card", id: "card-hubs" }, h("h2", null, "Topic hubs"),
+    h("p", null, "The Hubs tab has one page per issue (for example birthright citizenship): the news, policy items, statements and research about it in one timeline, and who has said what. A story, policy item or statement is in a hub when its headline or summary contains one of the hub’s keywords, and everything already on the site is checked again at the next update. Hide the starter hubs you do not want, or add your own."),
+    list, err, h("div", { class: "bar" }, add, save),
+    h("p", { class: "hint" }, "Keywords match whole words in any capitals, and a plural also matches (“refugee” finds “refugees”). Up to " + CORE.LIMITS.words + " keywords each; at most " + max + " hubs of your own. A hub with nothing in it is not shown on the site."));
+}
+
 // News sources: which category each one is in
 const SRC = { q: "", only: "", limit: 100 }, srcSel = new Set();
 function sourcesCard() {
@@ -872,7 +922,7 @@ function renderSettings(main) {
     opt("all", "Everything waits", " Every new story waits for you to approve it."),
     opt("custom", "Only some sources or sections wait", " New stories from the sources and sections you pick wait; the rest go live."),
     custom, h("div", null, save)),
-    customCard("topic"), customCard("community"), customCard("kind"), sourcesCard(), blockedCard(), breakingCard(), featuredCard(),
+    customCard("topic"), customCard("community"), customCard("kind"), hubsCard(), sourcesCard(), blockedCard(), breakingCard(), featuredCard(),
     h("div", { class: "card" }, h("h2", null, "How changes reach the site"), h("p", null, `Every change is saved to the private repository ${CFG.dataRepo} (the file admin.json), which is not published. It shows up on the site after the next update, usually two to three minutes after you save. “Update the site now” starts one straight away. Items you delete stay in the Trash for 180 days.`),
       h("p", null, `Sign-ins last ${CFG.hours} hours. ${CFG.kv ? "Wrong-password lockouts and sign-outs are remembered across servers." : "No KV store is attached, so lockouts and sign-outs are only remembered by one server at a time. See the setup guide to add one."}`)));
   paint();

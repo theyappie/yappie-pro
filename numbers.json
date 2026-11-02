@@ -18,6 +18,10 @@
   [
    "hate",
    "Hate and discrimination"
+  ],
+  [
+   "vote",
+   "Voting and elections"
   ]
  ],
  "sources": {
@@ -80,6 +84,71 @@
    "t": "Attorney General Bonta Releases 2024 Hate Crime Report, Highlights Continued Efforts to Combat Hate in California",
    "u": "https://oag.ca.gov/news/press-releases/attorney-general-bonta-releases-2024-hate-crime-report-highlights-continued",
    "d": "June 25, 2025"
+  },
+  "vt-u-s-census-bureau-table-2-reported-votin-168532": {
+   "o": "U.S. Census Bureau",
+   "t": "Table 2. Reported Voting and Registration, by Race, Hispanic Origin, Sex, and Age: November 2024 (Asian Alone)",
+   "u": "https://www.census.gov/data/tables/time-series/demo/voting-and-registration/p20-590.html",
+   "d": "April 2025"
+  },
+  "vt-u-s-census-bureau-table-11-reported-voti-fc6143": {
+   "o": "U.S. Census Bureau",
+   "t": "Table 11. Reported Voting and Registration Among Native and Naturalized Citizens, by Race, and Region of Origin: November 2024",
+   "u": "https://www.census.gov/data/tables/time-series/demo/voting-and-registration/p20-590.html",
+   "d": "April 2025"
+  },
+  "vt-u-s-census-bureau-table-4b-reported-voti-813274": {
+   "o": "U.S. Census Bureau",
+   "t": "Table 4b. Reported Voting and Registration of the Total Voting-Age Population, by Sex, Race and Hispanic Origin, for States: November 2024",
+   "u": "https://www.census.gov/data/tables/time-series/demo/voting-and-registration/p20-590.html",
+   "d": "April 2025"
+  },
+  "vt-u-s-census-bureau-table-2-reported-votin-d36497": {
+   "o": "U.S. Census Bureau",
+   "t": "Table 2. Reported Voting and Registration, by Race, Hispanic Origin, Sex, and Age: November 2022 (Asian Alone)",
+   "u": "https://www.census.gov/data/tables/time-series/demo/voting-and-registration/p20-586.html",
+   "d": "April 25, 2023"
+  },
+  "vt-aapi-data-2026-aapi-voters-data-and-narr-7b5b2f": {
+   "o": "AAPI Data",
+   "t": "2026 AAPI Voters Data and Narrative Toolkit",
+   "u": "https://aapidata.com/data/2026-aapi-voters-data-and-narrative-toolkit",
+   "d": "August 6, 2026"
+  },
+  "vt-apiavote-aapi-voter-demographics-data-by-e3f2e5": {
+   "o": "APIAVote",
+   "t": "AAPI Voter Demographics Data by State",
+   "u": "https://apiavote.org/policy-and-research/aapi-demographics-by-state/"
+  },
+  "vt-apiavote-new-asian-american-voter-survey-4aec11": {
+   "o": "APIAVote",
+   "t": "New Asian American Voter Survey Data: 90% of AAPI Adults Plan to Vote in 2026 Midterms as Cost-of-Living Tops Voter Concerns",
+   "u": "https://apiavote.org/new-asian-american-voter-survey-data-2026/",
+   "d": "August 26, 2026"
+  },
+  "vt-pew-research-center-the-u-s-electorate-s-6b0a16": {
+   "o": "Pew Research Center",
+   "t": "The U.S. electorate's changing racial and ethnic makeup (Pew Research Center, Sept. 10, 2026)",
+   "u": "https://www.pewresearch.org/race-and-ethnicity/2026/09/10/the-u-s-electorates-changing-racial-and-ethnic-makeup/",
+   "d": "September 10, 2026"
+  },
+  "vt-pew-research-center-key-facts-about-nati-9b4447": {
+   "o": "Pew Research Center",
+   "t": "Key facts about Native Hawaiians and Pacific Islanders in the U.S.",
+   "u": "https://www.pewresearch.org/short-reads/2026/04/22/key-facts-about-native-hawaiians-and-pacific-islanders-in-the-u-s",
+   "d": "April 22, 2026"
+  },
+  "vt-asian-americans-advancing-justice-aajc-2-d3f408": {
+   "o": "Asian Americans Advancing Justice - AAJC",
+   "t": "2024 Asian American Voter Survey (full report)",
+   "u": "https://advancingjustice-aajc.org/sites/default/files/2024-07/2024%20AAVS%20Full%20Report_FINAL.pdf",
+   "d": "July 10, 2024"
+  },
+  "vt-asian-americans-advancing-justice-aajc-a-4e9aff": {
+   "o": "Asian Americans Advancing Justice - AAJC",
+   "t": "AAPI voters in 2024 (webinar slides), 2024 American Electorate Voter Poll",
+   "u": "https://advancingjustice-aajc.org/sites/default/files/2024-12/AEVP-AAPI-Deck.pdf",
+   "d": "December 13, 2024"
   }
  },
  "items": [
@@ -1045,6 +1114,394 @@
    "st": [
     "CA"
    ]
+  },
+  {
+   "id": "vote-00",
+   "cat": "vote",
+   "v": "57.1%",
+   "t": "of Asian alone U.S. citizens 18 and over reported voting in the November 2024 election (self-reported, Current Population Survey)",
+   "y": "2024",
+   "s": "vt-u-s-census-bureau-table-2-reported-votin-168532",
+   "g": "Asian alone, citizens 18+",
+   "n": "Self-reported in a survey (the Current Population Survey), so it can run higher than counted turnout. The Census Bureau lists a margin of error of 2.2 percentage points (90% confidence)."
+  },
+  {
+   "id": "vote-01",
+   "cat": "vote",
+   "v": "65.3%",
+   "t": "of Asian alone U.S. citizens 18 and over reported being registered to vote in November 2024",
+   "y": "2024",
+   "s": "vt-u-s-census-bureau-table-2-reported-votin-168532",
+   "g": "Asian alone, citizens 18+",
+   "n": "Self-reported in a survey (the Current Population Survey), so it can run higher than counted turnout."
+  },
+  {
+   "id": "vote-02",
+   "cat": "vote",
+   "v": "41.1%",
+   "t": "of all Asian alone adults 18 and over, citizens and noncitizens together, reported voting in November 2024",
+   "y": "2024",
+   "s": "vt-u-s-census-bureau-table-2-reported-votin-168532",
+   "g": "Asian alone, total population 18+",
+   "n": "Self-reported in a survey (the Current Population Survey), so it can run higher than counted turnout."
+  },
+  {
+   "id": "vote-04",
+   "cat": "vote",
+   "v": "44%",
+   "t": "of Asian alone citizens ages 18 to 24 reported voting in November 2024",
+   "y": "2024",
+   "s": "vt-u-s-census-bureau-table-2-reported-votin-168532",
+   "g": "Asian alone, citizens 18-24",
+   "n": "Self-reported in a survey (the Current Population Survey), so it can run higher than counted turnout."
+  },
+  {
+   "id": "vote-05",
+   "cat": "vote",
+   "v": "61.1%",
+   "t": "of naturalized Asian alone citizens reported voting in November 2024",
+   "y": "2024",
+   "s": "vt-u-s-census-bureau-table-11-reported-voti-fc6143",
+   "g": "Asian alone, naturalized citizens 18+",
+   "n": "Self-reported in a survey (the Current Population Survey), so it can run higher than counted turnout."
+  },
+  {
+   "id": "vote-06",
+   "cat": "vote",
+   "v": "51.7%",
+   "t": "of native-born Asian alone citizens reported voting in November 2024",
+   "y": "2024",
+   "s": "vt-u-s-census-bureau-table-11-reported-voti-fc6143",
+   "g": "Asian alone, native-born citizens 18+",
+   "n": "Self-reported in a survey (the Current Population Survey), so it can run higher than counted turnout."
+  },
+  {
+   "id": "vote-07",
+   "cat": "vote",
+   "v": "65.3%",
+   "t": "of all U.S. citizens 18 and over, all races, reported voting in November 2024 (comparison figure)",
+   "y": "2024",
+   "s": "vt-u-s-census-bureau-table-11-reported-voti-fc6143",
+   "g": "All races, citizens 18+",
+   "n": "Self-reported in a survey (the Current Population Survey), so it can run higher than counted turnout."
+  },
+  {
+   "id": "vote-08",
+   "cat": "vote",
+   "v": "58%",
+   "t": "of Asian alone citizens in California reported voting in November 2024 (state estimate, margin of error plus or minus 4 points)",
+   "y": "2024",
+   "s": "vt-u-s-census-bureau-table-4b-reported-voti-813274",
+   "g": "Asian alone, citizens 18+, California",
+   "st": [
+    "CA"
+   ],
+   "n": "Self-reported in a survey (the Current Population Survey), so it can run higher than counted turnout."
+  },
+  {
+   "id": "vote-09",
+   "cat": "vote",
+   "v": "49.6%",
+   "t": "of Asian alone citizens in New York reported voting in November 2024 (state estimate, margin of error plus or minus 7.5 points)",
+   "y": "2024",
+   "s": "vt-u-s-census-bureau-table-4b-reported-voti-813274",
+   "g": "Asian alone, citizens 18+, New York",
+   "st": [
+    "NY"
+   ],
+   "n": "Self-reported in a survey (the Current Population Survey), so it can run higher than counted turnout."
+  },
+  {
+   "id": "vote-10",
+   "cat": "vote",
+   "v": "55.2%",
+   "t": "of Asian alone citizens in Hawaii reported voting in November 2024 (state estimate, margin of error plus or minus 5 points)",
+   "y": "2024",
+   "s": "vt-u-s-census-bureau-table-4b-reported-voti-813274",
+   "g": "Asian alone, citizens 18+, Hawaii",
+   "st": [
+    "HI"
+   ],
+   "n": "Self-reported in a survey (the Current Population Survey), so it can run higher than counted turnout."
+  },
+  {
+   "id": "vote-11",
+   "cat": "vote",
+   "v": "67.4%",
+   "t": "of Asian alone citizens in New Jersey reported voting in November 2024 (state estimate, margin of error plus or minus 7.8 points)",
+   "y": "2024",
+   "s": "vt-u-s-census-bureau-table-4b-reported-voti-813274",
+   "g": "Asian alone, citizens 18+, New Jersey",
+   "st": [
+    "NJ"
+   ],
+   "n": "Self-reported in a survey (the Current Population Survey), so it can run higher than counted turnout."
+  },
+  {
+   "id": "vote-12",
+   "cat": "vote",
+   "v": "40.2%",
+   "t": "of Asian alone U.S. citizens 18 and over reported voting in the November 2022 midterm election (self-reported, Current Population Survey)",
+   "y": "2022",
+   "s": "vt-u-s-census-bureau-table-2-reported-votin-d36497",
+   "g": "Asian alone, citizens 18+",
+   "n": "Self-reported in a survey (the Current Population Survey), so it can run higher than counted turnout."
+  },
+  {
+   "id": "vote-13",
+   "cat": "vote",
+   "v": "59.9%",
+   "t": "of Asian alone U.S. citizens 18 and over reported being registered to vote in November 2022",
+   "y": "2022",
+   "s": "vt-u-s-census-bureau-table-2-reported-votin-d36497",
+   "g": "Asian alone, citizens 18+",
+   "n": "Self-reported in a survey (the Current Population Survey), so it can run higher than counted turnout."
+  },
+  {
+   "id": "vote-14",
+   "cat": "vote",
+   "v": "16 million",
+   "t": "eligible AAPI voters in 2026, according to AAPI Data's toolkit",
+   "y": "2026",
+   "s": "vt-aapi-data-2026-aapi-voters-data-and-narr-7b5b2f",
+   "g": "Asian American and Pacific Islander eligible voters"
+  },
+  {
+   "id": "vote-15",
+   "cat": "vote",
+   "v": "1.6 million",
+   "t": "newly eligible AAPI voters since 2022, according to AAPI Data's toolkit",
+   "y": "2022-2026",
+   "s": "vt-aapi-data-2026-aapi-voters-data-and-narr-7b5b2f",
+   "g": "Asian American and Pacific Islander eligible voters"
+  },
+  {
+   "id": "vote-16",
+   "cat": "vote",
+   "v": "4,872,823",
+   "t": "eligible AAPI voters in California, the most of any state (2024 count, latest year with data)",
+   "y": "2024",
+   "s": "vt-aapi-data-2026-aapi-voters-data-and-narr-7b5b2f",
+   "g": "AAPI eligible voters, California",
+   "st": [
+    "CA"
+   ]
+  },
+  {
+   "id": "vote-17",
+   "cat": "vote",
+   "v": "64.0%",
+   "t": "of Hawaii's electorate is AAPI eligible voters, the largest state share (2024 count, latest year with data)",
+   "y": "2024",
+   "s": "vt-aapi-data-2026-aapi-voters-data-and-narr-7b5b2f",
+   "g": "AAPI share of eligible voters, Hawaii",
+   "st": [
+    "HI"
+   ],
+   "c": [
+    "NHPI"
+   ]
+  },
+  {
+   "id": "vote-18",
+   "cat": "vote",
+   "v": "41%",
+   "t": "was midterm turnout among Native Hawaiians and Pacific Islanders in 2022, per AAPI Data citing the Current Population Survey",
+   "y": "2022",
+   "s": "vt-aapi-data-2026-aapi-voters-data-and-narr-7b5b2f",
+   "g": "Native Hawaiian and Pacific Islander",
+   "c": [
+    "NHPI"
+   ]
+  },
+  {
+   "id": "vote-19",
+   "cat": "vote",
+   "v": "19%",
+   "t": "growth in the number of Asian American eligible voters between 2020 and 2024, per AAPI Data (Native Hawaiians and Pacific Islanders grew 14%)",
+   "y": "2020-2024",
+   "s": "vt-aapi-data-2026-aapi-voters-data-and-narr-7b5b2f",
+   "g": "Asian American eligible voters"
+  },
+  {
+   "id": "vote-20",
+   "cat": "vote",
+   "v": "16,172,190",
+   "t": "total eligible AAPI voters in 2024, per APIAVote's state demographics page (2024 ACS 1-year PUMS)",
+   "y": "2024",
+   "s": "vt-apiavote-aapi-voter-demographics-data-by-e3f2e5",
+   "g": "Asian American and Pacific Islander eligible voters"
+  },
+  {
+   "id": "vote-21",
+   "cat": "vote",
+   "v": "90%",
+   "t": "of AAPI registered voters said they plan to vote in the 2026 midterm elections (2026 AAPI Voter Survey, as reported by APIAVote)",
+   "y": "2026",
+   "s": "vt-apiavote-new-asian-american-voter-survey-4aec11",
+   "g": "AAPI registered voters"
+  },
+  {
+   "id": "vote-22",
+   "cat": "vote",
+   "v": "13.7 million",
+   "t": "Asian eligible voters in 2026, a Pew projection based on Census Bureau estimates",
+   "y": "2026",
+   "s": "vt-pew-research-center-the-u-s-electorate-s-6b0a16",
+   "g": "Asian eligible voters (Pew's mutually exclusive racial categories)"
+  },
+  {
+   "id": "vote-23",
+   "cat": "vote",
+   "v": "around 20%",
+   "t": "growth rate of Asian eligible voters from 2022 to 2026 (Pew projection), the fastest of any racial or ethnic group",
+   "y": "2022-2026",
+   "s": "vt-pew-research-center-the-u-s-electorate-s-6b0a16",
+   "g": "Asian eligible voters"
+  },
+  {
+   "id": "vote-24",
+   "cat": "vote",
+   "v": "37%",
+   "t": "of Hawaii's electorate is Asian eligible voters, the largest state share (Pew, 2026 projection)",
+   "y": "2026",
+   "s": "vt-pew-research-center-the-u-s-electorate-s-6b0a16",
+   "g": "Asian eligible voters, Hawaii",
+   "st": [
+    "HI"
+   ]
+  },
+  {
+   "id": "vote-25",
+   "cat": "vote",
+   "v": "35%",
+   "t": "of Asian eligible voters are U.S. born; most are naturalized citizens (Pew, 2026)",
+   "y": "2026",
+   "s": "vt-pew-research-center-the-u-s-electorate-s-6b0a16",
+   "g": "Asian eligible voters"
+  },
+  {
+   "id": "vote-26",
+   "cat": "vote",
+   "v": "1.1 million",
+   "t": "Native Hawaiians and Pacific Islanders were eligible to vote in the 50 states and D.C. in 2024 (Pew)",
+   "y": "2024",
+   "s": "vt-pew-research-center-key-facts-about-nati-9b4447",
+   "g": "Native Hawaiian and Pacific Islander eligible voters",
+   "c": [
+    "NHPI"
+   ]
+  },
+  {
+   "id": "vote-27",
+   "cat": "vote",
+   "v": "almost 60%",
+   "t": "of the Asian American citizen voting-age population turned out in 2020 (7.6 million) (2024 Asian American Voter Survey report, citing the Census Bureau)",
+   "y": "2020",
+   "s": "vt-asian-americans-advancing-justice-aajc-2-d3f408",
+   "g": "Asian American citizen voting-age population"
+  },
+  {
+   "id": "vote-28",
+   "cat": "vote",
+   "v": "46%",
+   "t": "of Asian American registered voters prefer voting by mail or dropping their ballot off over voting in person (2024 survey)",
+   "y": "2024",
+   "s": "vt-asian-americans-advancing-justice-aajc-2-d3f408",
+   "g": "Asian American registered voters"
+  },
+  {
+   "id": "vote-29",
+   "cat": "vote",
+   "v": "25%",
+   "t": "of Chinese American voters in the 2024 American Electorate Voter Poll said 2024 was the first presidential election in which they voted",
+   "y": "2024",
+   "s": "vt-asian-americans-advancing-justice-aajc-a-4e9aff",
+   "g": "Chinese American voters",
+   "c": [
+    "CN"
+   ]
+  },
+  {
+   "id": "vote-30",
+   "cat": "vote",
+   "v": "26%",
+   "t": "of Indian American voters in the 2024 American Electorate Voter Poll said 2024 was the first presidential election in which they voted",
+   "y": "2024",
+   "s": "vt-asian-americans-advancing-justice-aajc-a-4e9aff",
+   "g": "Indian American voters",
+   "c": [
+    "SA"
+   ]
+  },
+  {
+   "id": "vote-31",
+   "cat": "vote",
+   "v": "19%",
+   "t": "of Filipino American voters in the 2024 American Electorate Voter Poll said 2024 was the first presidential election in which they voted",
+   "y": "2024",
+   "s": "vt-asian-americans-advancing-justice-aajc-a-4e9aff",
+   "g": "Filipino American voters",
+   "c": [
+    "PH"
+   ]
+  },
+  {
+   "id": "vote-32",
+   "cat": "vote",
+   "v": "8%",
+   "t": "of Korean American voters in the 2024 American Electorate Voter Poll said 2024 was the first presidential election in which they voted",
+   "y": "2024",
+   "s": "vt-asian-americans-advancing-justice-aajc-a-4e9aff",
+   "g": "Korean American voters",
+   "c": [
+    "KR"
+   ]
+  },
+  {
+   "id": "vote-33",
+   "cat": "vote",
+   "v": "18%",
+   "t": "of Vietnamese American voters in the 2024 American Electorate Voter Poll said 2024 was the first presidential election in which they voted",
+   "y": "2024",
+   "s": "vt-asian-americans-advancing-justice-aajc-a-4e9aff",
+   "g": "Vietnamese American voters",
+   "c": [
+    "VN"
+   ]
+  },
+  {
+   "id": "vote-34",
+   "cat": "vote",
+   "v": "7%",
+   "t": "of Japanese American voters in the 2024 American Electorate Voter Poll said 2024 was the first presidential election in which they voted",
+   "y": "2024",
+   "s": "vt-asian-americans-advancing-justice-aajc-a-4e9aff",
+   "g": "Japanese American voters",
+   "c": [
+    "JP"
+   ]
+  },
+  {
+   "id": "vote-35",
+   "cat": "vote",
+   "v": "37%",
+   "t": "of Native Hawaiian and Pacific Islander voters in the 2024 American Electorate Voter Poll said 2024 was the first presidential election in which they voted",
+   "y": "2024",
+   "s": "vt-asian-americans-advancing-justice-aajc-a-4e9aff",
+   "g": "Native Hawaiian and Pacific Islander voters",
+   "c": [
+    "NHPI"
+   ]
+  },
+  {
+   "id": "vote-36",
+   "cat": "vote",
+   "v": "20%",
+   "t": "of AAPI voters in the 2024 American Electorate Voter Poll said 2024 was the first presidential election in which they voted",
+   "y": "2024",
+   "s": "vt-asian-americans-advancing-justice-aajc-a-4e9aff",
+   "g": "All AAPI voters"
   }
  ]
 }

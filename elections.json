@@ -1,0 +1,867 @@
+{
+ "updated": "2026-11-02",
+ "checked": "2026-11-02",
+ "note": "Dates come from the election offices, the Federal Election Commission and the news sources linked on each entry. Ballot measures are listed by topic from Ballotpedia News coverage as of November 2, 2026; their titles are Ballotpedia’s, not always the official ballot titles. No source we read tied a state measure to a particular AAPI community, so no community positions are shown yet.",
+ "dates": [
+  {
+   "id": "general-2026",
+   "d": "2026-11-03",
+   "t": "General Election Day 2026",
+   "st": [],
+   "n": "Nationwide general election; the FEC's 2026 dates table lists 11/03/2026 as the general election date for every jurisdiction in its table.",
+   "u": "https://www.fec.gov/documents/5910/2026pdates.pdf",
+   "o": "Federal Election Commission"
+  },
+  {
+   "id": "fl-senate-special-2026",
+   "d": "2026-11-03",
+   "t": "Florida U.S. Senate special election",
+   "st": [
+    "FL"
+   ],
+   "n": "Ballotpedia lists a U.S. Senate special election in Florida among the special elections called for Nov. 3, 2026.",
+   "u": "https://news.ballotpedia.org/?p=52070",
+   "o": "Ballotpedia News"
+  },
+  {
+   "id": "guam-general-2026",
+   "d": "2026-11-03",
+   "t": "Guam general election",
+   "st": [
+    "GU"
+   ],
+   "n": "Guam holds its congressional, gubernatorial and territorial Senate general election; the U.S. Vote Foundation lists registration closing Oct. 19.",
+   "u": "https://www.usvotefoundation.org/guam-election-dates-and-deadlines",
+   "o": "U.S. Vote Foundation"
+  },
+  {
+   "id": "hi-senate-specials-2026",
+   "d": "2026-11-03",
+   "t": "Hawaii state Senate special elections (Districts 18 and 19)",
+   "st": [
+    "HI"
+   ],
+   "n": "Ballotpedia lists special elections for Hawaii state Senate Districts 18 and 19 on the Nov. 3, 2026 ballot.",
+   "u": "https://news.ballotpedia.org/?p=52070",
+   "o": "Ballotpedia News"
+  },
+  {
+   "id": "la-house-open-primary-2026",
+   "d": "2026-11-03",
+   "t": "Louisiana U.S. House open primary",
+   "st": [
+    "LA"
+   ],
+   "n": "Louisiana's U.S. House races moved to the Nov. 3 ballot after Louisiana v. Callais; a candidate without a majority goes to a Dec. 12 second round.",
+   "u": "https://www.ncsl.org/elections-and-campaigns/2026-state-primary-election-dates",
+   "o": "National Conference of State Legislatures"
+  },
+  {
+   "id": "cnmi-general-2026",
+   "d": "2026-11-03",
+   "t": "Northern Mariana Islands general election",
+   "st": [
+    "MP"
+   ],
+   "n": "The CNMI Commonwealth Election Commission lists Nov. 3, 2026 as the General Election, with early voting ending Nov. 2.",
+   "u": "https://www.votecnmi.gov.mp/downloads/2026/2026_GE_Important_Dates.pdf",
+   "o": "CNMI Commonwealth Election Commission"
+  },
+  {
+   "id": "oh-senate-special-2026",
+   "d": "2026-11-03",
+   "t": "Ohio U.S. Senate special election",
+   "st": [
+    "OH"
+   ],
+   "n": "Ballotpedia lists a U.S. Senate special election in Ohio among the special elections called for Nov. 3, 2026.",
+   "u": "https://news.ballotpedia.org/?p=52070",
+   "o": "Ballotpedia News"
+  },
+  {
+   "id": "nj-mail-ballot-receipt-2026",
+   "d": "2026-11-09",
+   "t": "New Jersey deadline for mail ballots to arrive",
+   "st": [
+    "NJ"
+   ],
+   "n": "New Jersey lists absentee ballots as counted if postmarked by Election Day and received by Nov. 9, 2026.",
+   "u": "https://usvotefoundation.org/new-jersey-election-dates-and-deadlines",
+   "o": "U.S. Vote Foundation"
+  },
+  {
+   "id": "vi-runoff-2026",
+   "d": "2026-11-17",
+   "t": "U.S. Virgin Islands congressional runoff",
+   "st": [
+    "VI"
+   ],
+   "n": "The FEC's 2026 dates table lists an 11/17/2026 runoff date for the Virgin Islands' congressional contest.",
+   "u": "https://www.fec.gov/documents/5910/2026pdates.pdf",
+   "o": "Federal Election Commission"
+  },
+  {
+   "id": "guam-mail-ballot-return-2026",
+   "d": "2026-11-18",
+   "t": "Guam deadline for absentee ballots to arrive",
+   "st": [
+    "GU"
+   ],
+   "n": "Guam absentee ballots must be postmarked by Election Day and received by Nov. 18, 2026, per the U.S. Vote Foundation listing.",
+   "u": "https://www.usvotefoundation.org/guam-election-dates-and-deadlines",
+   "o": "U.S. Vote Foundation"
+  },
+  {
+   "id": "ga-runoff-2026",
+   "d": "2026-12-01",
+   "t": "Georgia general election runoff",
+   "st": [
+    "GA"
+   ],
+   "n": "Georgia.gov lists Dec. 1, 2026 as the General Election Runoff, with polls open 7 a.m. to 7 p.m.",
+   "u": "https://georgia.gov/node/34081",
+   "o": "Georgia.gov (State of Georgia)"
+  },
+  {
+   "id": "ms-runoff-2026",
+   "d": "2026-12-01",
+   "t": "Mississippi general election runoff",
+   "st": [
+    "MS"
+   ],
+   "n": "The Mississippi Secretary of State's 2026 calendar lists Dec. 1, 2026 as the General Runoff Election.",
+   "u": "https://www.sos.ms.gov/sites/default/files/publications/Election%20Calendar_2026.pdf",
+   "o": "Mississippi Secretary of State"
+  },
+  {
+   "id": "la-house-runoff-2026",
+   "d": "2026-12-12",
+   "t": "Louisiana U.S. House second round (runoff)",
+   "st": [
+    "LA"
+   ],
+   "n": "The FEC and NCSL list Dec. 12, 2026 as the runoff date for Louisiana's U.S. House races, held only where no candidate won a majority on Nov. 3.",
+   "u": "https://www.fec.gov/documents/5910/2026pdates.pdf",
+   "o": "Federal Election Commission"
+  },
+  {
+   "id": "la-bese-primary-2027",
+   "d": "2027-04-17",
+   "t": "Louisiana BESE party primary and municipal primary",
+   "st": [
+    "LA"
+   ],
+   "n": "Louisiana's 2027 calendar lists April 17 for the BESE party primary and municipal primary.",
+   "u": "https://www.sos.la.gov/ElectionsAndVoting/PublishedDocuments/ElectionsCalendar2027.pdf",
+   "o": "Louisiana Secretary of State"
+  },
+  {
+   "id": "ky-primary-2027",
+   "d": "2027-05-18",
+   "t": "Kentucky primary election",
+   "st": [
+    "KY"
+   ],
+   "n": "Kentucky's State Board of Elections lists May 18, 2027 as the primary election date (polls 6 a.m. to 6 p.m.).",
+   "u": "https://elect.ky.gov/Resources/Documents/2027%20Election%20Calendar.pdf",
+   "o": "Kentucky State Board of Elections"
+  },
+  {
+   "id": "la-bese-runoff-2027",
+   "d": "2027-05-29",
+   "t": "Louisiana second party primary and municipal general",
+   "st": [
+    "LA"
+   ],
+   "n": "Louisiana's 2027 calendar lists May 29 for the BESE second party primary and the municipal general election.",
+   "u": "https://www.sos.la.gov/ElectionsAndVoting/PublishedDocuments/ElectionsCalendar2027.pdf",
+   "o": "Louisiana Secretary of State"
+  },
+  {
+   "id": "va-primary-2027",
+   "d": "2027-06-15",
+   "t": "Virginia primary (if called by parties)",
+   "st": [
+    "VA"
+   ],
+   "n": "A Virginia local election-office calendar lists June 15, 2027 as the primary date, held only if called by party committees, for legislative and local offices.",
+   "u": "https://www.alexandriava.gov/sites/default/files/2026-03/Six%20Year%20Calendar%202026-2031%20REV%20%28w.%20Dept%20Seal%29.pdf",
+   "o": "City of Alexandria, Virginia (election office six-year calendar)"
+  },
+  {
+   "id": "ms-primary-2027",
+   "d": "2027-08-03",
+   "t": "Mississippi primary election",
+   "st": [
+    "MS"
+   ],
+   "n": "The Mississippi Secretary of State's calendar lists Aug. 3, 2027 as the 2027 primary election.",
+   "u": "https://www.sos.ms.gov/sites/default/files/publications/Election%20Calendar_2026.pdf",
+   "o": "Mississippi Secretary of State"
+  },
+  {
+   "id": "la-gov-primary-2027",
+   "d": "2027-10-09",
+   "t": "Louisiana gubernatorial primary",
+   "st": [
+    "LA"
+   ],
+   "n": "Louisiana's 2027 calendar lists Oct. 9 for the gubernatorial primary and the BESE general election.",
+   "u": "https://www.sos.la.gov/ElectionsAndVoting/PublishedDocuments/ElectionsCalendar2027.pdf",
+   "o": "Louisiana Secretary of State"
+  },
+  {
+   "id": "ky-general-2027",
+   "d": "2027-11-02",
+   "t": "Kentucky general election",
+   "st": [
+    "KY"
+   ],
+   "n": "Kentucky's State Board of Elections lists Nov. 2, 2027 as the 2027 general election date (polls 6 a.m. to 6 p.m.).",
+   "u": "https://elect.ky.gov/Resources/Documents/2027%20Election%20Calendar.pdf",
+   "o": "Kentucky State Board of Elections"
+  },
+  {
+   "id": "ms-general-2027",
+   "d": "2027-11-02",
+   "t": "Mississippi general election",
+   "st": [
+    "MS"
+   ],
+   "n": "The Mississippi Secretary of State's calendar lists Nov. 2, 2027 as the general election.",
+   "u": "https://www.sos.ms.gov/sites/default/files/publications/Election%20Calendar_2026.pdf",
+   "o": "Mississippi Secretary of State"
+  },
+  {
+   "id": "va-general-2027",
+   "d": "2027-11-02",
+   "t": "Virginia general election (state legislature and local)",
+   "st": [
+    "VA"
+   ],
+   "n": "A Virginia local election-office calendar lists Nov. 2, 2027 as the general election for the State Senate, House of Delegates and local offices.",
+   "u": "https://www.alexandriava.gov/sites/default/files/2026-03/Six%20Year%20Calendar%202026-2031%20REV%20%28w.%20Dept%20Seal%29.pdf",
+   "o": "City of Alexandria, Virginia (election office six-year calendar)"
+  },
+  {
+   "id": "la-gov-general-2027",
+   "d": "2027-11-20",
+   "t": "Louisiana gubernatorial general election",
+   "st": [
+    "LA"
+   ],
+   "n": "Louisiana's 2027 calendar lists Nov. 20 for the gubernatorial general election.",
+   "u": "https://www.sos.la.gov/ElectionsAndVoting/PublishedDocuments/ElectionsCalendar2027.pdf",
+   "o": "Louisiana Secretary of State"
+  },
+  {
+   "id": "ms-general-runoff-2027",
+   "d": "2027-11-30",
+   "t": "Mississippi general election runoff",
+   "st": [
+    "MS"
+   ],
+   "n": "The Mississippi Secretary of State's calendar lists Nov. 30, 2027 as the General Runoff Election.",
+   "u": "https://www.sos.ms.gov/sites/default/files/publications/Election%20Calendar_2026.pdf",
+   "o": "Mississippi Secretary of State"
+  },
+  {
+   "id": "dnc-sc-2028",
+   "d": "2028-01-22",
+   "t": "South Carolina Democratic primary (DNC-approved date)",
+   "st": [
+    "SC"
+   ],
+   "n": "The full DNC approved its 2028 early-state calendar in August 2026; South Carolina is first on Jan. 22, 2028. This is a party calendar.",
+   "u": "https://www.aljazeera.com/news/2026/8/15/us-democrats-finalise-major-shakeup-to-2028-presidential-primary-calendar",
+   "o": "Al Jazeera"
+  },
+  {
+   "id": "dnc-nv-2028",
+   "d": "2028-02-01",
+   "t": "Nevada Democratic primary (DNC-approved date)",
+   "st": [
+    "NV"
+   ],
+   "n": "The DNC's 2028 early-state calendar, approved in August 2026, lists Nevada on Feb. 1, 2028. This is a party calendar.",
+   "u": "https://www.aljazeera.com/news/2026/8/15/us-democrats-finalise-major-shakeup-to-2028-presidential-primary-calendar",
+   "o": "Al Jazeera"
+  },
+  {
+   "id": "dnc-nh-2028",
+   "d": "2028-02-08",
+   "t": "New Hampshire Democratic primary (DNC-approved date)",
+   "st": [
+    "NH"
+   ],
+   "n": "The DNC's 2028 early-state calendar, approved in August 2026, lists New Hampshire on Feb. 8, 2028. This is a party calendar.",
+   "u": "https://www.aljazeera.com/news/2026/8/15/us-democrats-finalise-major-shakeup-to-2028-presidential-primary-calendar",
+   "o": "Al Jazeera"
+  },
+  {
+   "id": "dnc-nm-2028",
+   "d": "2028-02-15",
+   "t": "New Mexico Democratic primary (DNC-approved date)",
+   "st": [
+    "NM"
+   ],
+   "n": "The DNC's 2028 early-state calendar, approved in August 2026, lists New Mexico on Feb. 15, 2028. This is a party calendar.",
+   "u": "https://www.aljazeera.com/news/2026/8/15/us-democrats-finalise-major-shakeup-to-2028-presidential-primary-calendar",
+   "o": "Al Jazeera"
+  },
+  {
+   "id": "dnc-mi-2028",
+   "d": "2028-02-22",
+   "t": "Michigan Democratic primary (DNC-approved date)",
+   "st": [
+    "MI"
+   ],
+   "n": "The DNC's 2028 early-state calendar, approved in August 2026, lists Michigan on Feb. 22, 2028. This is a party calendar.",
+   "u": "https://www.aljazeera.com/news/2026/8/15/us-democrats-finalise-major-shakeup-to-2028-presidential-primary-calendar",
+   "o": "Al Jazeera"
+  },
+  {
+   "id": "dnc-va-2028",
+   "d": "2028-02-29",
+   "t": "Virginia Democratic primary (DNC-approved date)",
+   "st": [
+    "VA"
+   ],
+   "n": "The DNC's 2028 early-state calendar, approved in August 2026, lists Virginia on Feb. 29, 2028. This is a party calendar.",
+   "u": "https://www.aljazeera.com/news/2026/8/15/us-democrats-finalise-major-shakeup-to-2028-presidential-primary-calendar",
+   "o": "Al Jazeera"
+  },
+  {
+   "id": "general-2028",
+   "d": "2028-11-07",
+   "t": "General Election Day 2028 (derived from federal statute)",
+   "st": [],
+   "n": "2 U.S.C. 7 sets election day as the Tuesday after the first Monday in November in even-numbered years, which falls on Nov. 7 in 2028 (date derived, not printed).",
+   "u": "https://www.govinfo.gov/content/pkg/USCODE-2024-title2/html/USCODE-2024-title2-chap1-sec7.htm",
+   "o": "U.S. Government Publishing Office (2 U.S.C. 7)"
+  }
+ ],
+ "measures": [
+  {
+   "id": "ak-bm2",
+   "st": "AK",
+   "topic": "ELECTIONS",
+   "t": "Repeal Top-Four Ranked-Choice Voting Initiative",
+   "what": "Would repeal Alaska's top-four primary and ranked-choice general election system.",
+   "how": "citizen initiative",
+   "u": "https://news.ballotpedia.org/2026/10/27/voters-will-determine-15-election-policy-ballot-measures-on-nov-3-2/",
+   "o": "Ballotpedia News",
+   "num": "Ballot Measure 2"
+  },
+  {
+   "id": "ak-bm3",
+   "st": "AK",
+   "topic": "ELECTIONS",
+   "t": "Citizenship Voting Requirement Initiative",
+   "what": "Citizen-initiated state statute that would limit voting eligibility in Alaska to U.S. citizens.",
+   "how": "citizen initiative",
+   "u": "https://news.ballotpedia.org/2026/07/08/six-citizenship-voting-measures-on-the-ballot-in-2026-continue-historical-trend/",
+   "o": "Ballotpedia News",
+   "num": "Ballot Measure 3"
+  },
+  {
+   "id": "ar-issue1",
+   "st": "AR",
+   "topic": "ELECTIONS",
+   "t": "Citizenship Voting Requirement Amendment",
+   "what": "Legislatively referred constitutional amendment that would define voting eligibility in Arkansas based on U.S. citizenship.",
+   "how": "legislatively referred",
+   "u": "https://news.ballotpedia.org/2026/07/08/six-citizenship-voting-measures-on-the-ballot-in-2026-continue-historical-trend/",
+   "o": "Ballotpedia News",
+   "num": "Issue 1"
+  },
+  {
+   "id": "az-60pct-instruction",
+   "st": "AZ",
+   "topic": "EDUCATION",
+   "t": "Require Certain School Districts to Spend 60% of Operational Spending on Direct Instruction Measure",
+   "what": "Would require large Arizona school districts to spend at least 60% of operational spending on direct instruction.",
+   "how": "legislatively referred",
+   "u": "https://news.ballotpedia.org/2026/06/16/arizona-legislature-adds-seven-measures-to-the-november-ballot-bringing-the-total-to-10-ballot-measures-for-voters-to-decide/",
+   "o": "Ballotpedia News"
+  },
+  {
+   "id": "az-grocery-tax",
+   "st": "AZ",
+   "topic": "ECONOMY",
+   "t": "Limit Local Tax Rate on Groceries to 2% of Base Price and Require Voter Approval to Increase Tax Rate Measure",
+   "what": "Would cap local tax rates on groceries in Arizona at 2% of the base price and require voter approval to raise them.",
+   "how": "legislatively referred",
+   "u": "https://news.ballotpedia.org/2026/06/16/arizona-legislature-adds-seven-measures-to-the-november-ballot-bringing-the-total-to-10-ballot-measures-for-voters-to-decide/",
+   "o": "Ballotpedia News"
+  },
+  {
+   "id": "az-photo-enforcement",
+   "st": "AZ",
+   "topic": "GOVERNMENT",
+   "t": "Prohibit New Photo Traffic Enforcement Systems Measure",
+   "what": "Would bar new photo traffic enforcement systems in Arizona and require voter approval for local governments to keep existing ones.",
+   "how": "legislatively referred",
+   "u": "https://news.ballotpedia.org/2026/06/16/arizona-legislature-adds-seven-measures-to-the-november-ballot-bringing-the-total-to-10-ballot-measures-for-voters-to-decide/",
+   "o": "Ballotpedia News"
+  },
+  {
+   "id": "az-prop142",
+   "st": "AZ",
+   "topic": "CIVIL RIGHTS",
+   "t": "Prohibit Race- or Ethnicity-Based Preferential Treatment, Public Education Offices, and Disciplinary Policies Amendment",
+   "what": "Would bar Arizona government bodies, including schools, from race- or ethnicity-based preferential treatment and from using state funds for related offices or training.",
+   "how": "legislatively referred",
+   "u": "https://news.ballotpedia.org/2026/06/16/arizona-legislature-adds-seven-measures-to-the-november-ballot-bringing-the-total-to-10-ballot-measures-for-voters-to-decide/",
+   "o": "Ballotpedia News",
+   "num": "Proposition 142"
+  },
+  {
+   "id": "az-prop144",
+   "st": "AZ",
+   "topic": "ELECTIONS",
+   "t": "Voter Identification and Citizenship Voting Requirements Amendment",
+   "what": "Would limit voting to citizens, restrict foreign election contributions, require government ID to vote and allow ballots to be tabulated at the voting location.",
+   "how": "legislatively referred",
+   "u": "https://news.ballotpedia.org/2026/06/16/arizona-legislature-adds-seven-measures-to-the-november-ballot-bringing-the-total-to-10-ballot-measures-for-voters-to-decide/",
+   "o": "Ballotpedia News",
+   "num": "Proposition 144"
+  },
+  {
+   "id": "ca-prop1",
+   "st": "CA",
+   "topic": "HOUSING",
+   "t": "Veteran and Housing Assistance Programs Bond Measure",
+   "what": "Would authorize an $11.25 billion bond for veteran and housing assistance programs in California.",
+   "how": "legislatively referred",
+   "u": "https://news.ballotpedia.org/2026/06/26/california-voters-are-set-to-decide-on-14-ballot-measures-this-fall/",
+   "o": "Ballotpedia News",
+   "num": "Proposition 1"
+  },
+  {
+   "id": "ca-prop3",
+   "st": "CA",
+   "topic": "EDUCATION",
+   "t": "Renew State Income Tax Increase for Education Funding Initiative",
+   "what": "Would make California's top marginal income tax rates permanent, with the revenue going mainly to K-12 schools.",
+   "how": "citizen initiative",
+   "u": "https://news.ballotpedia.org/2026/06/26/california-voters-are-set-to-decide-on-14-ballot-measures-this-fall/",
+   "o": "Ballotpedia News",
+   "num": "Proposition 3"
+  },
+  {
+   "id": "ca-prop37",
+   "st": "CA",
+   "topic": "HOUSING",
+   "t": "Second Mortgage Homebuyer Program and Revenue Bond Initiative",
+   "what": "Would create a second-mortgage homebuyer program in California funded by $25 billion in revenue bonds.",
+   "how": "citizen initiative",
+   "u": "https://news.ballotpedia.org/2026/06/26/california-voters-are-set-to-decide-on-14-ballot-measures-this-fall/",
+   "o": "Ballotpedia News",
+   "num": "Proposition 37"
+  },
+  {
+   "id": "ca-prop39",
+   "st": "CA",
+   "topic": "ELECTIONS",
+   "t": "Voter Identification, Citizenship Verification, and Registered Voter List Administration Initiative",
+   "what": "Would add voter identification requirements, require citizenship verification for voter registration, and change how registered-voter lists are administered in California.",
+   "how": "citizen initiative",
+   "u": "https://news.ballotpedia.org/2026/10/27/voters-will-determine-15-election-policy-ballot-measures-on-nov-3-2/",
+   "o": "Ballotpedia News",
+   "num": "Proposition 39"
+  },
+  {
+   "id": "ca-prop40",
+   "st": "CA",
+   "topic": "HEALTH",
+   "t": "One-Time Wealth Tax for State-Funded Healthcare, Education, and Food Assistance Programs Initiative",
+   "what": "Would impose a one-time 5% tax on the net worth of California billionaires, with revenue for Medi-Cal and other health coverage, K-14 education and food assistance.",
+   "how": "citizen initiative",
+   "u": "https://news.ballotpedia.org/2026/06/18/california-billionaires-tax-qualifies-for-the-november-ballot-competing-measures-pending-signature-verification/",
+   "o": "Ballotpedia News",
+   "num": "Proposition 40"
+  },
+  {
+   "id": "ca-prop42",
+   "st": "CA",
+   "topic": "ECONOMY",
+   "t": "Prohibit New Taxes on Retirement Holdings, Personal Assets, and Savings and Limit Retroactive Taxes",
+   "what": "Would bar new California taxes on retirement holdings, personal assets and savings and limit certain retroactive taxes; it was put forward in response to the billionaire tax measure.",
+   "how": "citizen initiative",
+   "u": "https://news.ballotpedia.org/2026/10/26/with-798-9-million-in-contributions-and-counting-2026-is-the-most-expensive-ballot-measure-election-cycle-in-california/",
+   "o": "Ballotpedia News",
+   "num": "Proposition 42"
+  },
+  {
+   "id": "ca-prop43",
+   "st": "CA",
+   "topic": "ECONOMY",
+   "t": "Two-Thirds Vote Requirement for Local Special Tax Initiatives and Property Tax Initiative Prohibition Amendment",
+   "what": "Would require two-thirds voter approval for citizen-initiated local special taxes in California and prohibit property taxes created by initiative.",
+   "how": "legislatively referred",
+   "u": "https://news.ballotpedia.org/2026/08/26/at-least-eight-ballot-measures-in-2026-will-address-state-initiative-and-referendum-processes-the-highest-number-since-2000/",
+   "o": "Ballotpedia News",
+   "num": "Proposition 43"
+  },
+  {
+   "id": "ca-prop44",
+   "st": "CA",
+   "topic": "HEALTH",
+   "t": "Spending Requirements for Federally Qualified Health Centers Initiative",
+   "what": "Would require California's federally qualified health centers to spend at least 90% of annual revenue on mission-related purposes.",
+   "how": "citizen initiative",
+   "u": "https://news.ballotpedia.org/2026/06/26/california-voters-are-set-to-decide-on-14-ballot-measures-this-fall/",
+   "o": "Ballotpedia News",
+   "num": "Proposition 44"
+  },
+  {
+   "id": "co-sb135",
+   "st": "CO",
+   "topic": "EDUCATION",
+   "t": "TABOR Revenue Cap Increase for K-12 Education Measure",
+   "what": "Would let Colorado keep excess tax revenue equal to its K-12 spending and send at least half of the surplus plus 2% of that year's K-12 spending to schools.",
+   "how": "legislatively referred",
+   "u": "https://news.ballotpedia.org/2026/05/13/colorado-legislature-refers-measure-to-november-ballot-that-would-allow-state-to-retain-excess-tax-revenue-above-tabor-cap-to-fund-k-12-education/",
+   "o": "Ballotpedia News"
+  },
+  {
+   "id": "co-amend84",
+   "st": "CO",
+   "topic": "ELECTIONS",
+   "t": "Require Voter Identification Number for Mail-In Ballots Initiative",
+   "what": "Would require mail-in voters in Colorado to provide an identification number along with their signature.",
+   "how": "citizen initiative",
+   "u": "https://news.ballotpedia.org/2026/10/27/voters-will-determine-15-election-policy-ballot-measures-on-nov-3-2/",
+   "o": "Ballotpedia News",
+   "num": "Amendment 84"
+  },
+  {
+   "id": "co-init195",
+   "st": "CO",
+   "topic": "ECONOMY",
+   "t": "Establish a Graduated Income Tax Amendment",
+   "what": "Would replace Colorado's flat 4.4% income tax with six brackets from 3.7% to 8.4% and remove the uniform-rate requirement from TABOR; competes with Initiative 232.",
+   "how": "citizen initiative",
+   "u": "https://news.ballotpedia.org/2026/09/03/colorado-voters-will-decide-on-a-graduated-income-tax-initiative-that-competes-with-an-income-tax-cap-measure-in-november/",
+   "o": "Ballotpedia News",
+   "num": "Initiative 195"
+  },
+  {
+   "id": "co-init232",
+   "st": "CO",
+   "topic": "ECONOMY",
+   "t": "Cap Individual and Corporate Income Tax at 4.4% Initiative",
+   "what": "Would cap Colorado individual and corporate income tax rates at 4.4% of federal taxable income; competes with the graduated income tax measure.",
+   "how": "citizen initiative",
+   "u": "https://news.ballotpedia.org/2026/09/03/colorado-voters-will-decide-on-a-graduated-income-tax-initiative-that-competes-with-an-income-tax-cap-measure-in-november/",
+   "o": "Ballotpedia News",
+   "num": "Initiative 232"
+  },
+  {
+   "id": "co-init256",
+   "st": "CO",
+   "topic": "ELECTIONS",
+   "t": "Require Commission and Supreme Court Approval for Mid-Decade Congressional Redistricting Initiative",
+   "what": "Would require any mid-decade congressional redistricting plan in Colorado to be approved by the independent redistricting commission and the state Supreme Court.",
+   "how": "citizen initiative",
+   "u": "https://news.ballotpedia.org/2026/09/02/over-the-past-two-weeks-10-new-ballot-measures-certified-across-colorado-and-nebraska-and-one-removed-from-the-ballot-in-colorado/",
+   "o": "Ballotpedia News",
+   "num": "Initiative 256"
+  },
+  {
+   "id": "fl-amend3",
+   "st": "FL",
+   "topic": "HOUSING",
+   "t": "Homestead Tax Exemptions, Property Assessments, and Spending Restrictions Amendment",
+   "what": "Would raise Florida's non-school homestead exemption, lower the assessment-increase cap for non-homestead property to 5% and limit local property-tax spending; needs 60% approval.",
+   "how": "legislatively referred",
+   "u": "https://news.ballotpedia.org/2026/06/03/florida-voters-to-decide-expanded-homestead-tax-exemption-amendment-in-november/",
+   "o": "Ballotpedia News",
+   "num": "Amendment 3"
+  },
+  {
+   "id": "hi-judicial-appointments",
+   "st": "HI",
+   "topic": "COURTS",
+   "t": "Increase Time for Senate to Act on Judicial Appointments Amendment",
+   "what": "Would extend from 30 to 60 days the time the Hawaii Senate has to act on certain judicial appointments made between April 1 and December 31.",
+   "how": "legislatively referred",
+   "u": "https://news.ballotpedia.org/2025/04/08/hawaii-voters-to-decide-in-2026-on-amendment-extending-senate-review-period-for-judicial-appointments/",
+   "o": "Ballotpedia News"
+  },
+  {
+   "id": "hi-rise-bonds",
+   "st": "HI",
+   "topic": "HOUSING",
+   "t": "Resilient Infrastructure for Shelter and Equity (RISE) Bonds Amendment",
+   "what": "Would let Hawaii counties issue RISE bonds, repaid from real property tax revenue and exempt from debt limits, to finance public works and housing and community development.",
+   "how": "legislatively referred",
+   "u": "https://news.ballotpedia.org/2026/05/08/hawaii-constitutional-amendment-on-resilient-infrastructure-for-shelter-and-equity-rise-bonds-referred-to-november-2026-ballot/",
+   "o": "Ballotpedia News"
+  },
+  {
+   "id": "in-bail",
+   "st": "IN",
+   "topic": "COURTS",
+   "t": "Bailable Offenses and Substantial Risk Standard Amendment",
+   "what": "Would allow Indiana courts to deny bail when evidence is strong and the accused poses a substantial risk to others or the community.",
+   "how": "legislatively referred",
+   "u": "https://news.ballotpedia.org/2026/06/25/all-six-criminal-justice-ballot-measures-in-2026-continue-trend-toward-increasing-criminal-penalties-and-bail-restrictions/",
+   "o": "Ballotpedia News"
+  },
+  {
+   "id": "ks-citizenship",
+   "st": "KS",
+   "topic": "ELECTIONS",
+   "t": "Citizenship Voting Requirement Amendment",
+   "what": "Legislatively referred constitutional amendment that would define voting eligibility in Kansas based on U.S. citizenship.",
+   "how": "legislatively referred",
+   "u": "https://news.ballotpedia.org/2026/07/08/six-citizenship-voting-measures-on-the-ballot-in-2026-continue-historical-trend/",
+   "o": "Ballotpedia News"
+  },
+  {
+   "id": "ma-lotsize",
+   "st": "MA",
+   "topic": "HOUSING",
+   "t": "Limit on Required Lot Size for Single-Family Homes Initiative",
+   "what": "Would limit local minimum lot-size requirements for single-family homes in Massachusetts.",
+   "how": "citizen initiative",
+   "u": "https://news.ballotpedia.org/2026/07/21/massachusetts-voters-will-decide-on-nine-ballot-measures-in-2026-tying-the-year-for-the-most-measures-on-a-massachusetts-ballot-since-1918/",
+   "o": "Ballotpedia News"
+  },
+  {
+   "id": "ma-publicdefender",
+   "st": "MA",
+   "topic": "ECONOMY",
+   "t": "Permit Collective Bargaining for Committee for Public Counsel Services Employees Initiative",
+   "what": "Would allow collective bargaining for employees of the Massachusetts public defender agency.",
+   "how": "citizen initiative",
+   "u": "https://news.ballotpedia.org/2026/07/21/massachusetts-voters-will-decide-on-nine-ballot-measures-in-2026-tying-the-year-for-the-most-measures-on-a-massachusetts-ballot-since-1918/",
+   "o": "Ballotpedia News"
+  },
+  {
+   "id": "ma-taxlimit",
+   "st": "MA",
+   "topic": "ECONOMY",
+   "t": "Change State Tax Revenue Limit Initiative",
+   "what": "Would change how the Massachusetts state tax revenue limit is calculated and count the tax on income above $1 million toward state tax revenue.",
+   "how": "citizen initiative",
+   "u": "https://news.ballotpedia.org/2026/07/21/massachusetts-voters-will-decide-on-nine-ballot-measures-in-2026-tying-the-year-for-the-most-measures-on-a-massachusetts-ballot-since-1918/",
+   "o": "Ballotpedia News"
+  },
+  {
+   "id": "ma-q3",
+   "st": "MA",
+   "topic": "ELECTIONS",
+   "t": "Top-Two Primary Elections Initiative",
+   "what": "Would create top-two primaries for Massachusetts state offices and require joint gubernatorial and lieutenant gubernatorial primary tickets.",
+   "how": "citizen initiative",
+   "u": "https://news.ballotpedia.org/2026/07/21/massachusetts-voters-will-decide-on-nine-ballot-measures-in-2026-tying-the-year-for-the-most-measures-on-a-massachusetts-ballot-since-1918/",
+   "o": "Ballotpedia News",
+   "num": "Question 3"
+  },
+  {
+   "id": "ma-q4",
+   "st": "MA",
+   "topic": "ELECTIONS",
+   "t": "Permit Same-Day Voter Registration Initiative",
+   "what": "Would establish same-day voter registration in Massachusetts.",
+   "how": "citizen initiative",
+   "u": "https://news.ballotpedia.org/2026/10/27/voters-will-determine-15-election-policy-ballot-measures-on-nov-3-2/",
+   "o": "Ballotpedia News",
+   "num": "Question 4"
+  },
+  {
+   "id": "md-redistricting",
+   "st": "MD",
+   "topic": "ELECTIONS",
+   "t": "Provide That Nothing in State Constitution Establishes Criteria for Congressional Redistricting Amendment",
+   "what": "Would limit the constitution's contiguity, compactness and equal-population criteria to legislative districts and let the legislature give the state Supreme Court original jurisdiction over congressional map challenges.",
+   "how": "legislatively referred",
+   "u": "https://news.ballotpedia.org/2026/08/06/maryland-voters-to-decide-ballot-measure-on-whether-state-constitutional-criteria-for-political-boundaries-apply-to-congressional-districts/",
+   "o": "Ballotpedia News"
+  },
+  {
+   "id": "mo-propA",
+   "st": "MO",
+   "topic": "ELECTIONS",
+   "t": "Congressional Map Referendum",
+   "what": "Referendum on a congressional map in Missouri; Ballotpedia reported it as newly certified for the November ballot in mid-September 2026.",
+   "how": "veto referendum",
+   "u": "https://news.ballotpedia.org/2026/09/16/three-measures-certified-in-the-past-two-weeks-bringing-the-2026-statewide-total-to-164-11-above-the-decade-average/",
+   "o": "Ballotpedia News",
+   "num": "Proposition A"
+  },
+  {
+   "id": "mt-ci132",
+   "st": "MT",
+   "topic": "COURTS",
+   "t": "Amendment to keep judicial elections nonpartisan",
+   "what": "Citizen-initiated constitutional amendment that would keep Montana's judicial elections nonpartisan.",
+   "how": "citizen initiative",
+   "u": "https://news.ballotpedia.org/2026/08/19/montana-secretary-of-state-certifies-three-ballot-initiatives-for-november-addressing-judicial-elections-the-initiative-power-and-corporate-contributions-to-campaigns/",
+   "o": "Ballotpedia News",
+   "num": "CI-132"
+  },
+  {
+   "id": "nc-voterid",
+   "st": "NC",
+   "topic": "ELECTIONS",
+   "t": "Require Voter Identification Amendment",
+   "what": "Legislatively referred constitutional amendment on voter identification requirements, one of six statewide voter ID measures Ballotpedia counts for 2026.",
+   "how": "legislatively referred",
+   "u": "https://news.ballotpedia.org/2026/07/27/voters-to-decide-at-least-six-statewide-voter-id-measures-in-2026-most-in-a-single-year/",
+   "o": "Ballotpedia News"
+  },
+  {
+   "id": "nv-q7",
+   "st": "NV",
+   "topic": "ELECTIONS",
+   "t": "Require Voter Identification Initiative",
+   "what": "Citizen-initiated measure that would require voter identification in Nevada elections.",
+   "how": "citizen initiative",
+   "u": "https://news.ballotpedia.org/2026/10/27/voters-will-determine-15-election-policy-ballot-measures-on-nov-3-2/",
+   "o": "Ballotpedia News",
+   "num": "Question 7"
+  },
+  {
+   "id": "oh-issue3",
+   "st": "OH",
+   "topic": "ELECTIONS",
+   "t": "Require Voter Identification Amendment",
+   "what": "Legislatively referred constitutional amendment (SJR 10) setting voter ID requirements, including photo ID for in-person voting.",
+   "how": "legislatively referred",
+   "u": "https://news.ballotpedia.org/2026/10/27/voters-will-determine-15-election-policy-ballot-measures-on-nov-3-2/",
+   "o": "Ballotpedia News",
+   "num": "Issue 3"
+  },
+  {
+   "id": "ri-highered-bond",
+   "st": "RI",
+   "topic": "EDUCATION",
+   "t": "Higher Education Facilities Bond Measure",
+   "what": "Would authorize $275 million in bonds for Rhode Island higher education facilities, part of five bond questions totaling $600 million.",
+   "how": "legislatively referred",
+   "u": "https://news.ballotpedia.org/2026/06/16/rhode-island-voters-will-weigh-in-on-five-bond-issues-in-nov-2026-included-in-the-states-budget/",
+   "o": "Ballotpedia News"
+  },
+  {
+   "id": "ri-housing-bond",
+   "st": "RI",
+   "topic": "HOUSING",
+   "t": "Housing Development Bond Measure",
+   "what": "Would authorize $120 million in bonds to build and preserve affordable and accessible housing in Rhode Island.",
+   "how": "legislatively referred",
+   "u": "https://news.ballotpedia.org/2026/06/16/rhode-island-voters-will-weigh-in-on-five-bond-issues-in-nov-2026-included-in-the-states-budget/",
+   "o": "Ballotpedia News"
+  },
+  {
+   "id": "sd-amendj",
+   "st": "SD",
+   "topic": "ELECTIONS",
+   "t": "Citizenship Voting Requirement Amendment",
+   "what": "Legislatively referred constitutional amendment that would define voting eligibility in South Dakota based on U.S. citizenship.",
+   "how": "legislatively referred",
+   "u": "https://news.ballotpedia.org/2026/07/08/six-citizenship-voting-measures-on-the-ballot-in-2026-continue-historical-trend/",
+   "o": "Ballotpedia News",
+   "num": "Constitutional Amendment J"
+  },
+  {
+   "id": "tn-amend1-bail",
+   "st": "TN",
+   "topic": "COURTS",
+   "t": "Remove Right to Bail for Certain Criminal Offenses Measure",
+   "what": "Would remove the right to bail in Tennessee for certain serious offenses when guilt is presumed strongly, such as terrorism and second-degree murder.",
+   "how": "legislatively referred",
+   "u": "https://news.ballotpedia.org/2026/06/25/all-six-criminal-justice-ballot-measures-in-2026-continue-trend-toward-increasing-criminal-penalties-and-bail-restrictions/",
+   "o": "Ballotpedia News",
+   "num": "Amendment 1"
+  },
+  {
+   "id": "va-q2",
+   "st": "VA",
+   "topic": "CIVIL RIGHTS",
+   "t": "Remove Constitutional Same-Sex Marriage Ban Amendment",
+   "what": "Would remove the same-sex marriage ban from Virginia's constitution.",
+   "how": "legislatively referred",
+   "u": "https://news.ballotpedia.org/2026/09/05/voters-will-decide-on-13-ballot-measures-to-establish-or-modify-state-constitutional-rights-in-2026/",
+   "o": "Ballotpedia News",
+   "num": "Question 2"
+  },
+  {
+   "id": "va-q3",
+   "st": "VA",
+   "topic": "ELECTIONS",
+   "t": "Voting Rights Restoration for Felons Upon Release Amendment",
+   "what": "Would amend Virginia's constitution to restore voting rights to people with felony convictions upon release.",
+   "how": "legislatively referred",
+   "u": "https://news.ballotpedia.org/2026/10/27/voters-will-determine-15-election-policy-ballot-measures-on-nov-3-2/",
+   "o": "Ballotpedia News",
+   "num": "Question 3"
+  },
+  {
+   "id": "vt-prop3",
+   "st": "VT",
+   "topic": "ECONOMY",
+   "t": "Right to Collective Bargaining Amendment",
+   "what": "Would add a right to collective bargaining to Vermont's constitution.",
+   "how": "legislatively referred",
+   "u": "https://news.ballotpedia.org/2026/09/05/voters-will-decide-on-13-ballot-measures-to-establish-or-modify-state-constitutional-rights-in-2026/",
+   "o": "Ballotpedia News",
+   "num": "Proposal 3"
+  },
+  {
+   "id": "vt-prop4",
+   "st": "VT",
+   "topic": "CIVIL RIGHTS",
+   "t": "Equal Protection of Law Amendment",
+   "what": "Would add that people are guaranteed equal protection under the law and bar denying rights based on race, ethnicity, sex, religion, disability, sexual orientation, gender identity or national origin.",
+   "how": "legislatively referred",
+   "u": "https://news.ballotpedia.org/2026/05/14/vermont-constitutional-amendment-on-equal-protection-of-the-law-headed-to-november-ballot/",
+   "o": "Ballotpedia News",
+   "num": "Proposal 4"
+  },
+  {
+   "id": "wa-income-tax",
+   "st": "WA",
+   "topic": "ECONOMY",
+   "t": "Repeal Tax on Household Income Over $1 Million and Prohibit State and Local Taxes on Income Initiative",
+   "what": "Would repeal Washington's tax on household income over $1 million and prohibit state and local taxes on income.",
+   "how": "citizen initiative",
+   "u": "https://news.ballotpedia.org/2026/07/23/over-the-past-two-weeks-10-new-ballot-measures-were-certified-in-three-states-idaho-massachusetts-and-washington/",
+   "o": "Ballotpedia News"
+  },
+  {
+   "id": "wi-nondiscrim",
+   "st": "WI",
+   "topic": "CIVIL RIGHTS",
+   "t": "Prohibit Government Discrimination or Preferential Treatment Amendment",
+   "what": "Legislatively referred amendment to Wisconsin's constitution on government discrimination and preferential treatment; Ballotpedia classes it among 2026 constitutional-rights measures.",
+   "how": "legislatively referred",
+   "u": "https://news.ballotpedia.org/2026/09/05/voters-will-decide-on-13-ballot-measures-to-establish-or-modify-state-constitutional-rights-in-2026/",
+   "o": "Ballotpedia News"
+  },
+  {
+   "id": "wv-citizenship",
+   "st": "WV",
+   "topic": "ELECTIONS",
+   "t": "Citizenship Voting Requirement Amendment",
+   "what": "Legislatively referred constitutional amendment that would define voting eligibility in West Virginia based on U.S. citizenship.",
+   "how": "legislatively referred",
+   "u": "https://news.ballotpedia.org/2026/07/08/six-citizenship-voting-measures-on-the-ballot-in-2026-continue-historical-trend/",
+   "o": "Ballotpedia News"
+  },
+  {
+   "id": "wy-init1",
+   "st": "WY",
+   "topic": "HOUSING",
+   "t": "Homeowner's Primary Residence Property Tax Exemption Measure",
+   "what": "Would exempt half of the assessed value of a primary residence from Wyoming property tax.",
+   "how": "citizen initiative",
+   "u": "https://news.ballotpedia.org/2026/08/27/voters-in-seven-states-to-decide-13-property-tax-measures-in-2026/",
+   "o": "Ballotpedia News",
+   "num": "Initiative 1"
+  }
+ ]
+}

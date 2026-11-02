@@ -833,7 +833,7 @@
     "keepPastDays": 7,
     "aheadDays": 400,
     "maxSpanDays": 21,
-    "max": 800,
+    "max": 1200,
     "hearings": { "enabled": true, "everyMinutes": 120, "lookbackDays": 30, "maxDetails": 40, "chambers": ["house", "senate"] },
     "grants": { "enabled": true, "everyMinutes": 360, "rows": 40, "max": 80, "keywords": ["Asian American", "Native Hawaiian", "Pacific Islander", "AANAPISI", "Hmong", "Southeast Asian"] },
     "feedsEveryMinutes": 60,

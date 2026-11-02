@@ -1,0 +1,1319 @@
+{
+ "updated": "2026-11-02",
+ "checked": "2026-11-02",
+ "note": "Each description is written from the organization's own website. Where a group's feed is followed by this site, its recent items are listed on its page.",
+ "orgs": [
+  {
+   "id": "the-asian-american-foundation",
+   "n": "The Asian American Foundation",
+   "ab": "Nonpartisan nonprofit that funds programs, publishes research and convenes partners on safety, belonging and prosperity for AAPI communities.",
+   "u": "https://www.taaf.org",
+   "sc": "national",
+   "hq": "",
+   "st": [],
+   "c": [],
+   "is": [
+    "CIVIL RIGHTS",
+    "ECONOMY",
+    "EDUCATION"
+   ],
+   "ty": "philanthropy",
+   "src": [
+    "The Asian American Foundation"
+   ],
+   "o": "About Us | TAAF"
+  },
+  {
+   "id": "stop-aapi-hate",
+   "n": "Stop AAPI Hate",
+   "ab": "Documents and researches anti-AAPI hate, supports survivors and backs policies against targeted hate; an affiliated 501(c)(4) does voter mobilization.",
+   "u": "https://stopaapihate.org",
+   "sc": "national",
+   "hq": "",
+   "st": [],
+   "c": [],
+   "is": [
+    "CIVIL RIGHTS",
+    "ELECTIONS"
+   ],
+   "ty": "advocacy",
+   "fd": "2020",
+   "src": [
+    "Stop AAPI Hate"
+   ],
+   "o": "Who We Are - Stop AAPI Hate Action"
+  },
+  {
+   "id": "asian-americans-advancing-justice-aajc",
+   "n": "Asian Americans Advancing Justice - AAJC",
+   "ab": "National civil rights nonprofit founded in Washington, D.C. that works on immigration, voting rights, anti-Asian hate, census, education and technology policy.",
+   "u": "https://www.advancingjustice-aajc.org",
+   "sc": "national",
+   "hq": "Washington, DC",
+   "st": [],
+   "c": [],
+   "is": [
+    "CIVIL RIGHTS",
+    "IMMIGRATION",
+    "ELECTIONS",
+    "EDUCATION"
+   ],
+   "ty": "advocacy",
+   "fd": "1991",
+   "src": [
+    "Asian Americans Advancing Justice"
+   ],
+   "o": "Who We Are | Asian Americans Advancing Justice - AAJC"
+  },
+  {
+   "id": "asian-american-journalists-association",
+   "n": "Asian American Journalists Association",
+   "ab": "Membership nonprofit that works to increase Asian American and Pacific Islander representation in newsrooms and to improve the fairness and accuracy of news coverage.",
+   "u": "https://www.aaja.org",
+   "sc": "national",
+   "hq": "",
+   "st": [],
+   "c": [],
+   "is": [
+    "CULTURE",
+    "EDUCATION"
+   ],
+   "ty": "professional association",
+   "fd": "1981",
+   "src": [
+    "AAJA"
+   ],
+   "o": "About - Asian American Journalists Association"
+  },
+  {
+   "id": "congressional-asian-pacific-american-caucus",
+   "n": "Congressional Asian Pacific American Caucus",
+   "ab": "Nonpartisan, bicameral caucus of Members of Congress that coordinates federal policy on issues affecting Asian American, Native Hawaiian and Pacific Islander communities.",
+   "u": "https://capac.house.gov",
+   "sc": "government",
+   "hq": "",
+   "st": [],
+   "c": [],
+   "is": [
+    "CIVIL RIGHTS",
+    "IMMIGRATION",
+    "HEALTH",
+    "ECONOMY"
+   ],
+   "ty": "government",
+   "fd": "1994",
+   "src": [
+    "Congressional Asian Pacific American Caucus"
+   ],
+   "o": "Purpose, Mission & Goals | Congressional Asian Pacific American Caucus (CAPAC)"
+  },
+  {
+   "id": "oca-asian-pacific-american-advocates",
+   "n": "OCA - Asian Pacific American Advocates",
+   "ab": "National organization based in Washington, D.C. dedicated to the social, political and economic well-being of Asian Americans, Native Hawaiians and Pacific Islanders.",
+   "u": "https://ocanational.org",
+   "sc": "national",
+   "hq": "Washington, DC",
+   "st": [],
+   "c": [],
+   "is": [
+    "CIVIL RIGHTS",
+    "ECONOMY"
+   ],
+   "ty": "advocacy",
+   "fd": "1973",
+   "src": [
+    "OCA National"
+   ],
+   "o": "Embracing the hopes and dreams of Asian Americans, Native Hawaiians, and Pacific Islanders"
+  },
+  {
+   "id": "aaldef",
+   "n": "Asian American Legal Defense and Education Fund",
+   "ab": "New York-based group that uses litigation, advocacy, education and organizing to protect Asian American civil rights, including immigrant, voting and workers' rights.",
+   "u": "https://aaldef.org",
+   "sc": "national",
+   "hq": "New York, NY",
+   "st": [],
+   "c": [],
+   "is": [
+    "IMMIGRATION",
+    "ELECTIONS",
+    "CIVIL RIGHTS",
+    "EDUCATION"
+   ],
+   "ty": "legal services",
+   "fd": "1974",
+   "src": [
+    "AALDEF"
+   ],
+   "o": "Asian American Legal Defense and Education Fund (AALDEF)"
+  },
+  {
+   "id": "ncapa",
+   "n": "National Council of Asian Pacific Americans",
+   "ab": "Washington, D.C. coalition of 45 national Asian American, Native Hawaiian and Pacific Islander organizations that works on shared policy priorities and public narratives.",
+   "u": "https://www.ncapaonline.org",
+   "sc": "national",
+   "hq": "Washington, DC",
+   "st": [],
+   "c": [],
+   "is": [
+    "CIVIL RIGHTS",
+    "IMMIGRATION",
+    "HEALTH",
+    "EDUCATION"
+   ],
+   "ty": "advocacy",
+   "fd": "1996",
+   "src": [
+    "NCAPA"
+   ],
+   "o": "About Us - NCAPA"
+  },
+  {
+   "id": "searac",
+   "n": "Southeast Asia Resource Action Center",
+   "ab": "National civil rights organization that builds power with communities from Cambodia, Laos and Vietnam through work on data equity, health, education and immigration.",
+   "u": "https://www.searac.org",
+   "sc": "national",
+   "hq": "",
+   "st": [],
+   "c": [
+    "SEA",
+    "VN"
+   ],
+   "is": [
+    "CIVIL RIGHTS",
+    "IMMIGRATION",
+    "HEALTH",
+    "EDUCATION"
+   ],
+   "ty": "advocacy",
+   "fd": "1979",
+   "src": [
+    "SEARAC"
+   ],
+   "o": "Our Impact - SEARAC"
+  },
+  {
+   "id": "sikh-coalition",
+   "n": "The Sikh Coalition",
+   "ab": "Nonpartisan community organization defending Sikh civil liberties through legal casework, policy advocacy, education and community programs across the United States.",
+   "u": "https://www.sikhcoalition.org",
+   "sc": "national",
+   "hq": "New York, NY",
+   "st": [],
+   "c": [
+    "SA"
+   ],
+   "is": [
+    "CIVIL RIGHTS",
+    "EDUCATION",
+    "COURTS"
+   ],
+   "ty": "advocacy",
+   "src": [
+    "Sikh Coalition"
+   ],
+   "o": "Who We Are: Mission and Values - Sikh Coalition"
+  },
+  {
+   "id": "saldef",
+   "n": "Sikh American Legal Defense and Education Fund",
+   "ab": "Washington, D.C. organization that works to empower Sikh Americans through legal referrals, legislative advocacy, civic participation, community outreach and education.",
+   "u": "https://saldef.org",
+   "sc": "national",
+   "hq": "Washington, DC",
+   "st": [],
+   "c": [
+    "SA"
+   ],
+   "is": [
+    "CIVIL RIGHTS",
+    "ELECTIONS",
+    "EDUCATION"
+   ],
+   "ty": "advocacy",
+   "src": [
+    "SALDEF"
+   ],
+   "o": "About - SALDEF"
+  },
+  {
+   "id": "napaba",
+   "n": "National Asian Pacific American Bar Association",
+   "ab": "National association of Asian Pacific American attorneys, judges, law professors and students that tracks legislation and judicial appointments and builds coalitions.",
+   "u": "https://www.napaba.org",
+   "sc": "national",
+   "hq": "",
+   "st": [],
+   "c": [],
+   "is": [
+    "CIVIL RIGHTS",
+    "COURTS",
+    "IMMIGRATION",
+    "EDUCATION"
+   ],
+   "ty": "professional association",
+   "fd": "1988",
+   "src": [
+    "NAPABA"
+   ],
+   "o": "ABOUT NAPABA"
+  },
+  {
+   "id": "napawf",
+   "n": "National Asian Pacific American Women's Forum",
+   "ab": "Community organizing and policy advocacy group for AAPI women and girls, working on reproductive health and rights, economic justice, immigrant rights and racial justice.",
+   "u": "https://www.napawf.org",
+   "sc": "national",
+   "hq": "",
+   "st": [],
+   "c": [],
+   "is": [
+    "HEALTH",
+    "ECONOMY",
+    "IMMIGRATION",
+    "CIVIL RIGHTS"
+   ],
+   "ty": "advocacy",
+   "fd": "1996",
+   "src": [
+    "NAPAWF"
+   ],
+   "o": "About - NAPAWF"
+  },
+  {
+   "id": "jacl",
+   "n": "Japanese American Citizens League",
+   "ab": "Civil rights organization that monitors threats to civil and human rights and works to preserve Japanese American heritage.",
+   "u": "https://jacl.org",
+   "sc": "national",
+   "hq": "San Francisco, CA",
+   "st": [],
+   "c": [
+    "JP"
+   ],
+   "is": [
+    "CIVIL RIGHTS",
+    "EDUCATION",
+    "CULTURE"
+   ],
+   "ty": "advocacy",
+   "fd": "1929",
+   "src": [
+    "JACL"
+   ],
+   "o": "JACL — JACL"
+  },
+  {
+   "id": "apiavote",
+   "n": "Asian and Pacific Islander American Vote",
+   "ab": "Nonpartisan nonprofit in Washington, D.C. that engages Asian American and Pacific Islander communities in voting and civic participation, including election protection.",
+   "u": "https://apiavote.org",
+   "sc": "national",
+   "hq": "Washington, DC",
+   "st": [],
+   "c": [],
+   "is": [
+    "ELECTIONS",
+    "CIVIL RIGHTS"
+   ],
+   "ty": "civic engagement",
+   "src": [
+    "APIAVote"
+   ],
+   "o": "APIAVote"
+  },
+  {
+   "id": "asian-american-scholar-forum",
+   "n": "Asian American Scholar Forum",
+   "ab": "Nonprofit promoting academic freedom, fairness and the rights of Asian American scholars, and informing policymakers and the public about Asian American issues.",
+   "u": "https://aasforum.org",
+   "sc": "national",
+   "hq": "New York, NY",
+   "st": [],
+   "c": [],
+   "is": [
+    "CIVIL RIGHTS",
+    "EDUCATION"
+   ],
+   "ty": "advocacy",
+   "fd": "2021",
+   "src": [
+    "Asian American Scholar Forum"
+   ],
+   "o": "Mission & History - Asian American Scholar Forum"
+  },
+  {
+   "id": "aapi-data",
+   "n": "AAPI Data",
+   "ab": "Research and policy organization at UC Berkeley's Asian American Research Center that publishes surveys, demographic reports and policy research on AANHPI communities.",
+   "u": "https://aapidata.com",
+   "sc": "national",
+   "hq": "Berkeley, CA",
+   "st": [],
+   "c": [],
+   "is": [
+    "GOVERNMENT"
+   ],
+   "ty": "research",
+   "src": [
+    "AAPI Data"
+   ],
+   "o": "About - AAPI Data"
+  },
+  {
+   "id": "aapip",
+   "n": "Asian Americans/Pacific Islanders in Philanthropy",
+   "ab": "National philanthropic affinity group that builds community among Asian American, Native Hawaiian and Pacific Islander funders and mobilizes resources for them.",
+   "u": "https://aapip.org",
+   "sc": "national",
+   "hq": "",
+   "st": [],
+   "c": [],
+   "is": [
+    "CIVIL RIGHTS"
+   ],
+   "ty": "philanthropy",
+   "fd": "1990",
+   "src": [
+    "AAPIP (Asian Americans / Pacific Islanders in Philanthropy)"
+   ],
+   "o": "About AAPIP - AAPIP Website"
+  },
+  {
+   "id": "potluck-asian-america",
+   "n": "Potluck Asian America",
+   "ab": "New York City nonprofit that lists and promotes AAPI-focused events and maintains a directory of Asian American organizations in Queens and Manhattan.",
+   "u": "https://www.potluckasianamerica.org",
+   "sc": "local",
+   "hq": "",
+   "st": [
+    "NY"
+   ],
+   "c": [],
+   "is": [
+    "CULTURE"
+   ],
+   "ty": "media",
+   "src": [
+    "Potluck Asian America"
+   ],
+   "o": "Potluck Asian America |"
+  },
+  {
+   "id": "advancing-justice-southern-california",
+   "n": "Asian Americans Advancing Justice Southern California",
+   "ab": "Los Angeles-based social justice group offering free legal help, impact litigation and policy advocacy for AAPI communities on immigration, civil rights and voting.",
+   "u": "https://www.ajsocal.org",
+   "sc": "regional",
+   "hq": "Los Angeles, CA",
+   "st": [
+    "CA"
+   ],
+   "c": [],
+   "is": [
+    "IMMIGRATION",
+    "CIVIL RIGHTS",
+    "ELECTIONS",
+    "HOUSING"
+   ],
+   "ty": "legal services",
+   "fd": "1983",
+   "o": "Our Mission |Asian Americans Advancing Justice Southern California"
+  },
+  {
+   "id": "asian-law-caucus",
+   "n": "Asian Law Caucus",
+   "ab": "San Francisco legal and civil rights organization combining legal services, community empowerment and policy advocacy on immigrant justice, economic security and voting.",
+   "u": "https://www.asianlawcaucus.org",
+   "sc": "state",
+   "hq": "San Francisco, CA",
+   "st": [
+    "CA"
+   ],
+   "c": [],
+   "is": [
+    "IMMIGRATION",
+    "ECONOMY",
+    "ELECTIONS",
+    "CIVIL RIGHTS"
+   ],
+   "ty": "legal services",
+   "fd": "1972",
+   "o": "Asian Law Caucus | Asian Law Caucus"
+  },
+  {
+   "id": "advancing-justice-chicago",
+   "n": "Asian Americans Advancing Justice | Chicago",
+   "ab": "Chicago group that builds power through organizing, leadership programs and advocacy on civil rights, immigration, voting and education; it provides no direct services.",
+   "u": "https://www.advancingjustice-chicago.org",
+   "sc": "state",
+   "hq": "Chicago, IL",
+   "st": [
+    "IL"
+   ],
+   "c": [],
+   "is": [
+    "CIVIL RIGHTS",
+    "IMMIGRATION",
+    "ELECTIONS",
+    "EDUCATION"
+   ],
+   "ty": "advocacy",
+   "fd": "1992",
+   "o": "About Us - Asian Americans Advancing Justice | Chicago"
+  },
+  {
+   "id": "advancing-justice-atlanta",
+   "n": "Asian Americans Advancing Justice-Atlanta",
+   "ab": "Georgia legal advocacy nonprofit doing policy advocacy, civic engagement, impact litigation and immigration legal services for AANHPI communities in the Southeast.",
+   "u": "https://advancingjustice-atlanta.org",
+   "sc": "regional",
+   "hq": "Atlanta, GA",
+   "st": [
+    "GA"
+   ],
+   "c": [],
+   "is": [
+    "CIVIL RIGHTS",
+    "IMMIGRATION",
+    "COURTS"
+   ],
+   "ty": "legal services",
+   "fd": "2010",
+   "o": "Asian Americans Advancing Justice-Atlanta"
+  },
+  {
+   "id": "asian-american-federation",
+   "n": "Asian American Federation",
+   "ab": "New York City nonprofit using research, policy advocacy and support for about 70 member agencies to raise the well-being of the pan-Asian American community.",
+   "u": "https://aafederation.org",
+   "sc": "local",
+   "hq": "New York, NY",
+   "st": [
+    "NY"
+   ],
+   "c": [],
+   "is": [
+    "HEALTH",
+    "ECONOMY",
+    "IMMIGRATION",
+    "ELECTIONS"
+   ],
+   "ty": "advocacy",
+   "fd": "1989",
+   "o": "About Us - Asian American Federation"
+  },
+  {
+   "id": "caaav-organizing-asian-communities",
+   "n": "CAAAV: Organizing Asian Communities",
+   "ab": "New York City organization that organizes working-class Asian immigrants and youth for affordable housing and against speculative development, including tenant unions.",
+   "u": "https://caaav.org",
+   "sc": "local",
+   "hq": "New York, NY",
+   "st": [
+    "NY"
+   ],
+   "c": [],
+   "is": [
+    "HOUSING"
+   ],
+   "ty": "advocacy",
+   "fd": "1986",
+   "o": "About – CAAAV: Organizing Asian Communities"
+  },
+  {
+   "id": "apapa",
+   "n": "Asian Pacific American Public Affairs (APAPA)",
+   "ab": "Sacramento-based nonprofit running youth leadership, internship and civic engagement programs, including candidate forums and a voter guide, for AAPI communities.",
+   "u": "https://www.apapa.org",
+   "sc": "state",
+   "hq": "Sacramento, CA",
+   "st": [
+    "CA"
+   ],
+   "c": [],
+   "is": [
+    "ELECTIONS",
+    "EDUCATION",
+    "GOVERNMENT"
+   ],
+   "ty": "civic engagement",
+   "o": "APAPA"
+  },
+  {
+   "id": "apiahf",
+   "n": "Asian & Pacific Islander American Health Forum",
+   "ab": "National health organization that shapes policy, mobilizes communities and strengthens programs for the health of Asian Americans, Native Hawaiians and Pacific Islanders.",
+   "u": "https://www.apiahf.org",
+   "sc": "national",
+   "hq": "San Francisco, CA",
+   "st": [],
+   "c": [],
+   "is": [
+    "HEALTH"
+   ],
+   "ty": "health",
+   "o": "HOME | APIAHF - Asian & Pacific Islander American Health Forum"
+  },
+  {
+   "id": "saalt",
+   "n": "South Asian Americans Leading Together",
+   "ab": "National organization elevating South Asian voices through work on hate violence, immigrant rights, civic engagement, reproductive justice and racial justice.",
+   "u": "https://saalt.org",
+   "sc": "national",
+   "hq": "Silver Spring, MD",
+   "st": [],
+   "c": [
+    "SA"
+   ],
+   "is": [
+    "IMMIGRATION",
+    "CIVIL RIGHTS",
+    "ELECTIONS",
+    "HEALTH"
+   ],
+   "ty": "advocacy",
+   "fd": "2000",
+   "o": "Through the Years"
+  },
+  {
+   "id": "hindu-american-foundation",
+   "n": "Hindu American Foundation",
+   "ab": "Nonpartisan nonprofit advocacy organization for the Hindu American community, producing education resources and trainings and advocating on civil rights issues.",
+   "u": "https://www.hinduamerican.org",
+   "sc": "national",
+   "hq": "Philadelphia, PA",
+   "st": [],
+   "c": [
+    "SA"
+   ],
+   "is": [
+    "CIVIL RIGHTS",
+    "EDUCATION",
+    "COURTS"
+   ],
+   "ty": "advocacy",
+   "fd": "2003",
+   "o": "About the Hindu American Foundation"
+  },
+  {
+   "id": "korean-american-coalition-los-angeles",
+   "n": "Korean American Coalition - Los Angeles",
+   "ab": "Los Angeles nonprofit promoting the civic and civil rights interests of Korean Americans through education, organizing, leadership development and coalition-building.",
+   "u": "https://kacla.org",
+   "sc": "local",
+   "hq": "Los Angeles, CA",
+   "st": [
+    "CA"
+   ],
+   "c": [
+    "KR"
+   ],
+   "is": [
+    "CIVIL RIGHTS",
+    "ELECTIONS",
+    "IMMIGRATION"
+   ],
+   "ty": "civic engagement",
+   "fd": "1983",
+   "o": "ABOUT KACLA 한미연합회 | Koreatown Nonprofit Serving Korean Americans in Los Angeles"
+  },
+  {
+   "id": "nakasec",
+   "n": "National Korean American Service and Education Consortium",
+   "ab": "National consortium giving Korean and Asian American communities a voice on immigrant justice, civic engagement and leadership development.",
+   "u": "https://nakasec.org",
+   "sc": "national",
+   "hq": "",
+   "st": [],
+   "c": [
+    "KR"
+   ],
+   "is": [
+    "IMMIGRATION",
+    "ELECTIONS",
+    "CIVIL RIGHTS"
+   ],
+   "ty": "advocacy",
+   "fd": "1994",
+   "o": "Our Story - NAKASEC"
+  },
+  {
+   "id": "korean-resource-center",
+   "n": "Korean Resource Center",
+   "ab": "Los Angeles-area nonprofit offering in-language immigration, health and housing services, education and organizing for low-income Korean and other immigrant communities.",
+   "u": "https://krcla.org",
+   "sc": "regional",
+   "hq": "Los Angeles, CA",
+   "st": [
+    "CA"
+   ],
+   "c": [
+    "KR"
+   ],
+   "is": [
+    "IMMIGRATION",
+    "HEALTH",
+    "HOUSING",
+    "EDUCATION"
+   ],
+   "ty": "direct services",
+   "fd": "1983",
+   "o": "KRC | Korean Resource Center"
+  },
+  {
+   "id": "naffaa",
+   "n": "National Federation of Filipino American Associations",
+   "ab": "National federation that advocates for Filipino Americans on immigration, civil rights and economic issues and runs leadership, civic engagement and cultural programs.",
+   "u": "https://naffaa.org",
+   "sc": "national",
+   "hq": "Washington, DC",
+   "st": [],
+   "c": [
+    "PH"
+   ],
+   "is": [
+    "IMMIGRATION",
+    "CIVIL RIGHTS",
+    "ECONOMY",
+    "ELECTIONS"
+   ],
+   "ty": "advocacy",
+   "fd": "1997",
+   "o": "About Us – NaFFAA – National Federation of Filipino American Associations"
+  },
+  {
+   "id": "vietaid",
+   "n": "Vietnamese American Initiative for Development (VietAID)",
+   "ab": "Boston community development corporation offering housing, economic development, small business help and child care in Dorchester's Fields Corner Vietnamese community.",
+   "u": "https://vietaid.org",
+   "sc": "local",
+   "hq": "Dorchester, MA",
+   "st": [
+    "MA"
+   ],
+   "c": [
+    "VN"
+   ],
+   "is": [
+    "HOUSING",
+    "ECONOMY"
+   ],
+   "ty": "direct services",
+   "fd": "1994",
+   "o": "History & Mission – VietAID"
+  },
+  {
+   "id": "boat-people-sos",
+   "n": "Boat People SOS",
+   "ab": "Nonprofit begun in 1980 as sea rescue for Vietnamese refugees; now supports refugees, immigrants and trafficking victims in the U.S. and protects asylum seekers abroad.",
+   "u": "https://bpsos.org",
+   "sc": "national",
+   "hq": "",
+   "st": [],
+   "c": [
+    "VN"
+   ],
+   "is": [
+    "IMMIGRATION",
+    "CIVIL RIGHTS"
+   ],
+   "ty": "direct services",
+   "fd": "1980",
+   "o": "Our Story"
+  },
+  {
+   "id": "hmong-national-development",
+   "n": "Hmong National Development, Inc.",
+   "ab": "National policy advocacy group for Hmong Americans working on veterans' rights, support for Hmong farmers, education access, and youth leadership and capacity building.",
+   "u": "https://hndinc.org",
+   "sc": "national",
+   "hq": "Saint Paul, MN",
+   "st": [],
+   "c": [
+    "SEA"
+   ],
+   "is": [
+    "CIVIL RIGHTS",
+    "EDUCATION",
+    "ECONOMY"
+   ],
+   "ty": "advocacy",
+   "fd": "1993",
+   "o": "About Us - Hmong National Development"
+  },
+  {
+   "id": "khmer-girls-in-action",
+   "n": "Khmer Girls in Action",
+   "ab": "Long Beach organization led by Southeast Asian women and youth working for racial, gender and economic justice through organizing, civic engagement, culture and healing.",
+   "u": "https://kgalb.org",
+   "sc": "local",
+   "hq": "Long Beach, CA",
+   "st": [
+    "CA"
+   ],
+   "c": [
+    "SEA"
+   ],
+   "is": [
+    "CIVIL RIGHTS",
+    "ELECTIONS",
+    "HEALTH"
+   ],
+   "ty": "advocacy",
+   "fd": "1997",
+   "o": "What We're About - Khmer Girls in Action"
+  },
+  {
+   "id": "empowering-pacific-islander-communities",
+   "n": "Empowering Pacific Islander Communities",
+   "ab": "Los Angeles-based national group advancing social justice for Native Hawaiian and Pacific Islander communities via advocacy, leadership, research and narrative change.",
+   "u": "https://empoweredpi.org",
+   "sc": "national",
+   "hq": "Los Angeles, CA",
+   "st": [],
+   "c": [
+    "NHPI"
+   ],
+   "is": [
+    "CIVIL RIGHTS",
+    "PACIFIC",
+    "ELECTIONS"
+   ],
+   "ty": "advocacy",
+   "fd": "2009",
+   "o": "EPIC - Empowering Pacific Islander Communities History"
+  },
+  {
+   "id": "pacific-islander-community-association-of-washington",
+   "n": "Pacific Islander Community Association of Washington",
+   "ab": "Statewide nonprofit run by Pacific Islanders offering food, family navigation, youth and elder programs and systems advocacy for Native Hawaiian and Pacific Islanders.",
+   "u": "https://www.picawa.org",
+   "sc": "state",
+   "hq": "",
+   "st": [
+    "WA"
+   ],
+   "c": [
+    "NHPI"
+   ],
+   "is": [
+    "HEALTH",
+    "HOUSING",
+    "PACIFIC"
+   ],
+   "ty": "direct services",
+   "o": "Home - Pacific Islander Community Association of WA"
+  },
+  {
+   "id": "native-hawaiian-legal-corporation",
+   "n": "Native Hawaiian Legal Corporation",
+   "ab": "Honolulu nonprofit providing legal advocates to protect Native Hawaiian identity and culture on land title, water, access, burial protection and traditional practices.",
+   "u": "https://nativehawaiianlegalcorp.org",
+   "sc": "state",
+   "hq": "Honolulu, HI",
+   "st": [
+    "HI"
+   ],
+   "c": [
+    "NHPI"
+   ],
+   "is": [
+    "COURTS",
+    "PACIFIC",
+    "CIVIL RIGHTS"
+   ],
+   "ty": "legal services",
+   "fd": "1974",
+   "o": "About Us – Native Hawaiian Legal Corporation"
+  },
+  {
+   "id": "office-of-hawaiian-affairs",
+   "n": "Office of Hawaiian Affairs",
+   "ab": "Government body: semi-autonomous Hawaii state agency, led by an elected Board of Trustees, working to improve Native Hawaiian wellbeing via advocacy, research and grants.",
+   "u": "https://www.oha.org",
+   "sc": "government",
+   "hq": "Honolulu, HI",
+   "st": [
+    "HI"
+   ],
+   "c": [
+    "NHPI"
+   ],
+   "is": [
+    "EDUCATION",
+    "HEALTH",
+    "HOUSING",
+    "ECONOMY"
+   ],
+   "ty": "government",
+   "fd": "1978",
+   "o": "About - The Office of Hawaiian Affairs (OHA)"
+  },
+  {
+   "id": "papa-ola-lokahi",
+   "n": "Papa Ola Lōkahi",
+   "ab": "Honolulu nonprofit improving the health and wellbeing of Native Hawaiians through programs in cancer prevention, chronic conditions, mental health, nutrition and policy.",
+   "u": "https://www.papaolalokahi.org",
+   "sc": "state",
+   "hq": "Honolulu, HI",
+   "st": [
+    "HI"
+   ],
+   "c": [
+    "NHPI"
+   ],
+   "is": [
+    "HEALTH",
+    "PACIFIC"
+   ],
+   "ty": "health",
+   "o": "About Us | Papa Ola Lōkahi"
+  },
+  {
+   "id": "apaics",
+   "n": "Asian Pacific American Institute for Congressional Studies",
+   "ab": "Nonpartisan nonprofit promoting Asian American and Native Hawaiian/Pacific Islander participation and representation in politics through leadership and policy programs.",
+   "u": "https://apaics.org",
+   "sc": "national",
+   "hq": "Washington, DC",
+   "st": [],
+   "c": [],
+   "is": [
+    "ELECTIONS",
+    "GOVERNMENT"
+   ],
+   "ty": "civic engagement",
+   "o": "Mission & History | APAICS"
+  },
+  {
+   "id": "committee-of-100",
+   "n": "Committee of 100",
+   "ab": "Membership organization of Chinese American leaders focused on public policy, civic engagement, arts and culture, and philanthropy, with programs on U.S.-China relations.",
+   "u": "https://committee100.org",
+   "sc": "national",
+   "hq": "New York, NY",
+   "st": [],
+   "c": [
+    "CN"
+   ],
+   "is": [
+    "GOVERNMENT",
+    "CULTURE"
+   ],
+   "ty": "advocacy",
+   "fd": "1989",
+   "o": "Members - Committee of 100"
+  },
+  {
+   "id": "asian-american-education-project",
+   "n": "The Asian American Education Project",
+   "ab": "Nonprofit offering free K-12 lesson plans, educator workshops and resources on Asian American and Pacific Islander history, including material countering stereotypes.",
+   "u": "https://www.asianamericanedu.org",
+   "sc": "national",
+   "hq": "Los Angeles, CA",
+   "st": [],
+   "c": [],
+   "is": [
+    "EDUCATION",
+    "CULTURE"
+   ],
+   "ty": "culture and history",
+   "fd": "2021",
+   "o": "AAEdu About"
+  },
+  {
+   "id": "asian-americans-for-equality",
+   "n": "Asian Americans for Equality",
+   "ab": "New York community development organization building affordable housing, supporting small businesses and homeowners, and offering tenant counseling; started in Chinatown.",
+   "u": "https://www.aafe.org",
+   "sc": "local",
+   "hq": "New York, NY",
+   "st": [
+    "NY"
+   ],
+   "c": [],
+   "is": [
+    "HOUSING",
+    "ECONOMY"
+   ],
+   "ty": "direct services",
+   "fd": "1974",
+   "o": "About Us | Asian Americans for Equality"
+  },
+  {
+   "id": "leap",
+   "n": "Leadership Education for Asian Pacifics",
+   "ab": "National nonprofit that develops Asian and Pacific Islander leaders through leadership programs, workshops, an alumni network, consulting and research on API leadership.",
+   "u": "https://www.leap.org",
+   "sc": "national",
+   "hq": "Los Angeles, CA",
+   "st": [],
+   "c": [],
+   "is": [
+    "EDUCATION"
+   ],
+   "ty": "civic engagement",
+   "fd": "1982",
+   "o": "What We Do — LEAP"
+  },
+  {
+   "id": "aapi-victory-fund",
+   "n": "AAPI Victory Fund",
+   "ab": "National political action committee that supports Asian American, Native Hawaiian and Pacific Islander candidates for elected office and works to mobilize AANHPI voters.",
+   "u": "https://www.aapivictoryfund.com",
+   "sc": "national",
+   "hq": "Washington, DC",
+   "st": [],
+   "c": [],
+   "is": [
+    "ELECTIONS",
+    "GOVERNMENT"
+   ],
+   "ty": "civic engagement",
+   "o": "What We Do — AAPI Victory Fund"
+  },
+  {
+   "id": "chinese-american-citizens-alliance",
+   "n": "Chinese American Citizens Alliance",
+   "ab": "Organization helping Chinese Americans advocate for civil rights and preserve cultural and historical heritage, with education, leadership and community service programs.",
+   "u": "https://www.cacanational.org",
+   "sc": "national",
+   "hq": "San Francisco, CA",
+   "st": [],
+   "c": [
+    "CN"
+   ],
+   "is": [
+    "CIVIL RIGHTS",
+    "EDUCATION",
+    "CULTURE"
+   ],
+   "ty": "advocacy",
+   "o": "About"
+  },
+  {
+   "id": "japanese-american-national-museum",
+   "n": "Japanese American National Museum",
+   "ab": "Los Angeles museum sharing the Japanese American experience through exhibitions, education and public programs.",
+   "u": "https://www.janm.org",
+   "sc": "national",
+   "hq": "Los Angeles, CA",
+   "st": [],
+   "c": [
+    "JP"
+   ],
+   "is": [
+    "CULTURE",
+    "EDUCATION",
+    "CIVIL RIGHTS"
+   ],
+   "ty": "culture and history",
+   "o": "About JANM | Japanese American National Museum"
+  },
+  {
+   "id": "densho",
+   "n": "Densho",
+   "ab": "Nonprofit that records oral histories and preserves primary sources on the World War II incarceration of Japanese Americans, with free online archives and lessons.",
+   "u": "https://densho.org",
+   "sc": "national",
+   "hq": "",
+   "st": [],
+   "c": [
+    "JP"
+   ],
+   "is": [
+    "CULTURE",
+    "EDUCATION",
+    "CIVIL RIGHTS"
+   ],
+   "ty": "culture and history",
+   "fd": "1996",
+   "o": "About Densho"
+  },
+  {
+   "id": "angel-island-immigration-station-foundation",
+   "n": "Angel Island Immigration Station Foundation",
+   "ab": "San Francisco nonprofit that is community steward of the Angel Island Immigration Station, preserving the site and promoting immigration history education.",
+   "u": "https://www.aiisf.org",
+   "sc": "regional",
+   "hq": "San Francisco, CA",
+   "st": [
+    "CA"
+   ],
+   "c": [],
+   "is": [
+    "IMMIGRATION",
+    "EDUCATION",
+    "CULTURE"
+   ],
+   "ty": "culture and history",
+   "fd": "1983",
+   "o": "AIISF History | Angel Island Immigration Station - San Francisco"
+  },
+  {
+   "id": "smithsonian-asian-pacific-american-center",
+   "n": "Smithsonian Asian Pacific American Center",
+   "ab": "Smithsonian Institution center that presents Asian Pacific American history, art and culture through museum experiences, digital projects and education.",
+   "u": "https://apa.si.edu",
+   "sc": "government",
+   "hq": "",
+   "st": [],
+   "c": [],
+   "is": [
+    "CULTURE",
+    "EDUCATION"
+   ],
+   "ty": "culture and history",
+   "fd": "1997",
+   "o": "Smithsonian Asian Pacific American Center"
+  },
+  {
+   "id": "museum-of-chinese-in-america",
+   "n": "Museum of Chinese in America",
+   "ab": "New York museum that preserves and presents the history of Chinese in America through exhibitions, a collection and research center, public programs and education.",
+   "u": "https://www.mocanyc.org",
+   "sc": "local",
+   "hq": "New York, NY",
+   "st": [
+    "NY"
+   ],
+   "c": [
+    "CN"
+   ],
+   "is": [
+    "CULTURE",
+    "EDUCATION"
+   ],
+   "ty": "culture and history",
+   "fd": "1980",
+   "o": "Purpose and Goals – Museum of Chinese in America"
+  },
+  {
+   "id": "asian-american-writers-workshop",
+   "n": "Asian American Writers' Workshop",
+   "ab": "New York literary nonprofit that publishes and promotes Asian diasporic writing through a magazine, reading series, workshops and fellowships for emerging writers.",
+   "u": "https://aaww.org",
+   "sc": "local",
+   "hq": "New York, NY",
+   "st": [
+    "NY"
+   ],
+   "c": [],
+   "is": [
+    "CULTURE",
+    "EDUCATION"
+   ],
+   "ty": "culture and history",
+   "o": "About Us – Asian American Writers' Workshop"
+  },
+  {
+   "id": "nextshark",
+   "n": "NextShark",
+   "ab": "Digital news outlet that publishes Asian American news, operated by NextShark, Inc.",
+   "u": "https://nextshark.com",
+   "sc": "national",
+   "hq": "",
+   "st": [],
+   "c": [],
+   "is": [
+    "CULTURE"
+   ],
+   "ty": "media",
+   "src": [
+    "NextShark"
+   ],
+   "o": "Happening Now - Latest Asian American News | NextShark"
+  },
+  {
+   "id": "south-asian-journalists-association",
+   "n": "South Asian Journalists Association",
+   "ab": "Network for training and support of South Asian-origin journalists in the U.S. and Canada, with scholarships, fellowships, awards and a focus on South Asia coverage.",
+   "u": "https://saja.org",
+   "sc": "national",
+   "hq": "",
+   "st": [],
+   "c": [
+    "SA"
+   ],
+   "is": [
+    "CULTURE"
+   ],
+   "ty": "professional association",
+   "fd": "1994",
+   "o": "SAJA | South Asian Journalists Association - About"
+  },
+  {
+   "id": "ucla-asian-american-studies-center",
+   "n": "UCLA Asian American Studies Center",
+   "ab": "University research center that supports scholarship, publications, policy research and K-12 curriculum on Asian American and Pacific Islander communities.",
+   "u": "https://www.aasc.ucla.edu",
+   "sc": "national",
+   "hq": "Los Angeles, CA",
+   "st": [],
+   "c": [],
+   "is": [
+    "EDUCATION",
+    "CULTURE"
+   ],
+   "ty": "research",
+   "o": "About | AASC"
+  },
+  {
+   "id": "uc-berkeley-asian-american-research-center",
+   "n": "Asian American Research Center at UC Berkeley",
+   "ab": "UC Berkeley research center within the Institute for the Study of Societal Issues studying Asian Americans and Asian diasporas and promoting community-campus engagement.",
+   "u": "https://issi.berkeley.edu/aarc",
+   "sc": "state",
+   "hq": "Berkeley, CA",
+   "st": [
+    "CA"
+   ],
+   "c": [],
+   "is": [
+    "EDUCATION"
+   ],
+   "ty": "research",
+   "fd": "2020",
+   "o": "About AARC | Institute for the Study of Societal Issues"
+  },
+  {
+   "id": "asian-pacific-fund",
+   "n": "Asian Pacific Fund",
+   "ab": "Bay Area philanthropic organization that mobilizes donors and supports a network of 90+ affiliate groups serving Asian American and Pacific Islander communities.",
+   "u": "https://asianpacificfund.org",
+   "sc": "regional",
+   "hq": "",
+   "st": [
+    "CA"
+   ],
+   "c": [],
+   "is": [
+    "HEALTH",
+    "CULTURE"
+   ],
+   "ty": "philanthropy",
+   "o": "About Us"
+  },
+  {
+   "id": "asian-counseling-and-referral-service",
+   "n": "Asian Counseling and Referral Service",
+   "ab": "Seattle nonprofit offering behavioral health, aging, employment, youth, immigration and civic engagement services for Asian and NHPI communities in King County.",
+   "u": "https://acrs.org",
+   "sc": "local",
+   "hq": "Seattle, WA",
+   "st": [
+    "WA"
+   ],
+   "c": [],
+   "is": [
+    "HEALTH",
+    "IMMIGRATION",
+    "ECONOMY"
+   ],
+   "ty": "direct services",
+   "o": "About Us - ACRS"
+  },
+  {
+   "id": "napca",
+   "n": "National Asian Pacific Center on Aging",
+   "ab": "National nonprofit that serves older AANHPI adults through education, advocacy, job training, a multilingual benefits helpline and health programs.",
+   "u": "https://www.napca.org",
+   "sc": "national",
+   "hq": "",
+   "st": [],
+   "c": [],
+   "is": [
+    "HEALTH",
+    "ECONOMY"
+   ],
+   "ty": "direct services",
+   "fd": "1979",
+   "o": "About NAPCA | NAPCA"
+  },
+  {
+   "id": "apala",
+   "n": "Asian Pacific American Labor Alliance, AFL-CIO",
+   "ab": "National organization of AANHPI union members and workers, with chapters nationwide, working on worker rights, immigration reform, racial justice and voter registration.",
+   "u": "https://www.apalanet.org",
+   "sc": "national",
+   "hq": "Washington, DC",
+   "st": [],
+   "c": [],
+   "is": [
+    "ECONOMY",
+    "IMMIGRATION",
+    "ELECTIONS",
+    "CIVIL RIGHTS"
+   ],
+   "ty": "advocacy",
+   "fd": "1992",
+   "o": "History - APALA"
+  },
+  {
+   "id": "aapi-equity-alliance",
+   "n": "AAPI Equity Alliance",
+   "ab": "Los Angeles coalition of community organizations, formerly the Asian Pacific Policy and Planning Council, doing policy advocacy and civic engagement for AAPI communities.",
+   "u": "https://aapiequityalliance.org",
+   "sc": "regional",
+   "hq": "Los Angeles, CA",
+   "st": [
+    "CA"
+   ],
+   "c": [],
+   "is": [
+    "HEALTH",
+    "HOUSING",
+    "ECONOMY",
+    "CIVIL RIGHTS"
+   ],
+   "ty": "advocacy",
+   "fd": "1976",
+   "o": "Asian Pacific Policy and Planning Council Is Now AAPI Equity Alliance – AAPI Equity Alliance Website"
+  },
+  {
+   "id": "washington-state-commission-on-asian-pacific-american-affairs",
+   "n": "Washington State Commission on Asian Pacific American Affairs",
+   "ab": "Government body: Washington state agency with 12 governor-appointed commissioners advocating for policies serving Asian, Native Hawaiian and Pacific Islander communities.",
+   "u": "https://capaa.wa.gov",
+   "sc": "government",
+   "hq": "",
+   "st": [
+    "WA"
+   ],
+   "c": [],
+   "is": [
+    "CIVIL RIGHTS",
+    "EDUCATION",
+    "HEALTH",
+    "ECONOMY"
+   ],
+   "ty": "government",
+   "o": "About the Commission | Washington State Commission on Asian Pacific American Affairs"
+  },
+  {
+   "id": "california-commission-on-asian-and-pacific-islander-american-affairs",
+   "n": "California Commission on Asian and Pacific Islander American Affairs",
+   "ab": "Government body: California state commission advising the Governor and Legislature on the views, needs and concerns of Asian and Pacific Islander American communities.",
+   "u": "https://capiaa.ca.gov",
+   "sc": "government",
+   "hq": "",
+   "st": [
+    "CA"
+   ],
+   "c": [],
+   "is": [
+    "CIVIL RIGHTS",
+    "GOVERNMENT",
+    "ECONOMY"
+   ],
+   "ty": "government",
+   "fd": "2004",
+   "o": "About Us | California Commission on APIA Affairs"
+  }
+ ]
+}

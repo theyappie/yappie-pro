@@ -18,6 +18,9 @@ const clip = (s, n) => { s = String(s ?? "").replace(/\s+/g, " ").trim(); if (s.
 const normTitle = s => String(s ?? "").toLowerCase().replace(/[^\p{L}\p{N}]+/gu, "");
 const dayOf = ev => ev.d.slice(0, 10);
 /** Sorting key: an all-day entry sorts before the timed ones of its day. */
+// kinds the site adds itself (not typed in the dashboard, so the dashboard code is unchanged)
+export const SYSTEM_KINDS = { comment: "Comment deadline", observance: "Observance", anniversary: "Anniversary", election: "Election date" };
+const KIND_LABEL = { ...EVENT_KINDS, ...SYSTEM_KINDS };
 export const startMs = ev => ev.d.length === 10 ? Date.parse(ev.d + "T00:00:00Z") : Date.parse(ev.d);
 /** The last moment of an event (ms): its end, or the end of its day for an all-day entry, or an hour after it starts. */
 export const endMs = ev => ev.ad || ev.d.length === 10 ? Date.parse((ev.e || ev.d).slice(0, 10) + "T23:59:59Z") : ev.e ? Date.parse(ev.e) : Date.parse(ev.d) + 36e5;
@@ -97,12 +100,12 @@ export function eventsIcs(events, now = Date.now(), host = "pro.theyappie.com") 
     L.push("BEGIN:VEVENT", `UID:${ev.id}@${host}`, `DTSTAMP:${zstamp(now)}`);
     if (ev.ad || ev.d.length === 10) { const last = (ev.e || ev.d).slice(0, 10), next = new Date(Date.parse(last + "T12:00:00Z") + DAY).toISOString().slice(0, 10); L.push(`DTSTART;VALUE=DATE:${ev.d.slice(0, 10).replace(/-/g, "")}`, `DTEND;VALUE=DATE:${next.replace(/-/g, "")}`); }
     else L.push(`DTSTART:${zstamp(Date.parse(ev.d))}`, `DTEND:${zstamp(ev.e ? Date.parse(ev.e) : Date.parse(ev.d) + 36e5)}`);
-    L.push(`SUMMARY:${icsEsc(ev.t)}`);
-    const desc = [EVENT_KINDS[ev.k] + (ev.sub ? ` (${ev.sub})` : ""), ev.o && `From ${ev.o}`, ev.m].filter(Boolean).join(". ");
+    L.push(`SUMMARY:${icsEsc(ev.nth ? `${ordinal(ev.nth)} anniversary: ${ev.t}` : ev.t)}`);
+    const desc = [KIND_LABEL[ev.k] + (ev.sub ? ` (${ev.sub})` : ""), ev.o && `From ${ev.o}`, ev.m].filter(Boolean).join(". ");
     if (desc) L.push(`DESCRIPTION:${icsEsc(desc)}`);
     if (ev.loc) L.push(`LOCATION:${icsEsc(ev.loc)}`);
     if (ev.u) L.push(`URL:${ev.u}`);
-    L.push(`CATEGORIES:${icsEsc(EVENT_KINDS[ev.k])}`, "END:VEVENT");
+    L.push(`CATEGORIES:${icsEsc(KIND_LABEL[ev.k])}`, "END:VEVENT");
   }
   L.push("END:VCALENDAR");
   return L.map(fold).join("\r\n") + "\r\n";
@@ -217,15 +220,64 @@ async function collectFeed(ctx, feed, prev) {
 
 // ---------------------------------------------------------------- putting it together
 /** The events the page shows: collected ones the owner has not hidden, plus the owner's own; only what is current; one entry for the same title on the same day. */
-export function mergeEvents({ own = [], auto = [], off = [], now = Date.now(), keepPastDays = 7, aheadDays = 400, max = 800, maxSpanDays = 0, hubsOf = () => [] }) {
+// ---------------------------------------------------------------- dates the site keeps itself
+const okDay = s => { if (typeof s !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(s)) return false; const t = Date.parse(s + "T00:00:00Z"); return !Number.isNaN(t) && new Date(t).toISOString().slice(0, 10) === s; };
+const okMd = (y, md) => typeof md === "string" && /^\d{2}-\d{2}$/.test(md) && okDay(`${y}-${md}`);
+const okId = s => typeof s === "string" && /^[a-z0-9][a-z0-9-]{0,60}$/.test(s);
+const okHttps = u => typeof u === "string" && /^https:\/\/[^\s"<>]+$/.test(u) && u.length <= 500;
+/** Observances (a month, a day, a movable holiday) and anniversaries (a day each year; nth counts the years since y), from observances.json. */
+export function observanceEvents(items, lo, hi, hubsOf = () => []) {
+  const out = [], y0 = new Date(lo).getUTCFullYear(), y1 = new Date(hi).getUTCFullYear();
+  for (const it of Array.isArray(items) ? items : []) {
+    if (!it || typeof it !== "object" || !okId(it.id) || !["observance", "anniversary"].includes(it.k) || typeof it.t !== "string" || !it.t.trim() || !okHttps(it.u)) continue;
+    const anniv = it.k === "anniversary"; if (anniv && !(Number.isInteger(it.y) && it.y > 1500 && it.y < 2200)) continue;
+    for (let Y = y0; Y <= y1; Y++) {
+      let d = "", e = "";
+      if (it.dates && typeof it.dates === "object") { const v = it.dates[String(Y)]; if (!okDay(v)) continue; d = v; }
+      else { if (!okMd(Y, it.md)) continue; d = `${Y}-${it.md}`; if (it.to) { if (!okMd(Y, it.to) || it.to < it.md) continue; e = `${Y}-${it.to}`; } }
+      const nth = anniv ? Y - it.y : 0; if (anniv && nth < 1) continue;
+      const ev = { id: `${anniv ? "ann" : "obs"}-${it.id}-${Y}`, k: it.k, t: clip(it.t, 120), d, ...(e ? { e } : {}), ad: 1, ...(anniv ? { nth, yr: it.y, ...(nth >= 5 && nth % 5 === 0 ? { mile: 1 } : {}) } : {}), ...(it.o ? { o: clip(it.o, 80) } : {}), u: it.u, ...(it.m ? { m: clip(it.m, 300) } : {}), ...(Array.isArray(it.c) && it.c.length ? { c: it.c.filter(x => typeof x === "string" && /^[A-Z]{2,4}$/.test(x)).slice(0, 8) } : {}), sys: 1 };
+      const hb = hubsOf([ev.t, ev.m].join(" ")); if (hb.length) ev.hb = hb;
+      if (endMs(ev) < lo || startMs(ev) > hi) continue;
+      out.push(ev);
+    }
+  }
+  return out;
+}
+/** Open comment periods from the Policy tracker: items in feed.json that carry a deadline (dl). */
+export function commentEvents(feedItems, lo, hi, hubsOf = () => []) {
+  const out = [];
+  for (const it of Array.isArray(feedItems) ? feedItems : []) {
+    if (!it || typeof it.h !== "string" || !okDay(it.dl) || !okHttps(it.u)) continue;
+    const ev = { id: "cmt-" + sha(it.u).slice(0, 12), k: "comment", t: clip(it.h, 160), d: it.dl, ad: 1, ...(it.ag ? { o: clip(it.ag, 80) } : {}), ...(it.ty ? { sub: clip(it.ty, 40) } : {}), u: it.u, ...(it.m ? { m: clip(it.m, 300) } : {}), sys: 1 };
+    const hb = hubsOf([ev.t, ev.m, ev.o].join(" ")); if (hb.length) ev.hb = hb;
+    if (endMs(ev) < lo || startMs(ev) > hi) continue;
+    out.push(ev);
+  }
+  return out;
+}
+/** Voting and election dates from elections.json ("dates"). */
+export function electionEvents(dates, lo, hi, hubsOf = () => []) {
+  const out = [];
+  for (const it of Array.isArray(dates) ? dates : []) {
+    if (!it || typeof it !== "object" || !okId(it.id) || typeof it.t !== "string" || !it.t.trim() || !okDay(it.d) || (it.e && (!okDay(it.e) || it.e < it.d)) || !okHttps(it.u)) continue;
+    const ev = { id: "el-" + it.id, k: "election", t: clip(it.t, 120), d: it.d, ...(it.e ? { e: it.e } : {}), ad: 1, ...(it.o ? { o: clip(it.o, 80) } : {}), u: it.u, ...(it.n ? { m: clip(it.n, 300) } : {}), ...(Array.isArray(it.st) && it.st.length ? { st: it.st.filter(x => typeof x === "string" && /^[A-Z]{2}$/.test(x)).slice(0, 60) } : {}), sys: 1 };
+    const hb = hubsOf([ev.t, ev.m].join(" ")); if (hb.length) ev.hb = hb;
+    if (endMs(ev) < lo || startMs(ev) > hi) continue;
+    out.push(ev);
+  }
+  return out;
+}
+
+export function mergeEvents({ own = [], auto = [], sys = [], off = [], now = Date.now(), keepPastDays = 7, aheadDays = 400, max = 800, maxSpanDays = 0, hubsOf = () => [] }) {
   const hide = new Set(off), lo = now - keepPastDays * DAY, hi = now + aheadDays * DAY, seen = new Set(), out = [];
-  for (const [ev, mine] of [...own.map(e => [e, true]), ...auto.filter(e => !hide.has(e.id)).map(e => [e, false])]) {
-    const c = cleanEvent(ev, false); if (!c || !c.id) continue;
+  for (const [ev, mine, ours] of [...own.map(e => [e, true, false]), ...auto.filter(e => !hide.has(e.id)).map(e => [e, false, false]), ...sys.filter(e => !hide.has(e.id)).map(e => [e, false, true])]) {
+    const c = ours ? ev : cleanEvent(ev, false); if (!c || !c.id) continue;
     if (endMs(c) < lo || startMs(c) > hi) continue;
     if (!mine && maxSpanDays > 0 && c.k === "event" && (endMs(c) - startMs(c)) / DAY > maxSpanDays) continue; // a museum exhibition that runs for months is not something to attend on a day
     const key = normTitle(c.t) + dayOf(c); if (seen.has(key)) continue; seen.add(key);
     const hb = hubsOf([c.t, c.o, c.m, c.sub].join(" "));
-    out.push({ ...c, ...(hb.length ? { hb } : {}), ...(mine ? { own: 1 } : {}) });
+    out.push(ours ? c : { ...c, ...(hb.length ? { hb } : {}), ...(mine ? { own: 1 } : {}) });
   }
   return out.sort((a, b) => startMs(a) - startMs(b) || a.t.localeCompare(b.t)).slice(0, max);
 }
@@ -270,14 +322,20 @@ export async function main(env = process.env, now = env.EVENTS_NOW ? Date.parse(
   }
   cache.feeds = nextFeeds;
   const auto = [...Object.values(cache.hearings?.seen ?? {}).map(x => x.ev).filter(Boolean), ...(cache.grants?.events ?? []), ...Object.values(nextFeeds).flatMap(x => x?.events ?? [])];
-  const events = mergeEvents({ own: A.settings.events, auto, off: A.settings.eventsOff.map(x => x.id), now, keepPastDays: cfg.keepPastDays ?? 7, aheadDays: cfg.aheadDays ?? 400, max: cfg.max ?? 800, maxSpanDays: cfg.maxSpanDays ?? 21, hubsOf });
+  // dates the site keeps itself: observances and anniversaries (observances.json), election dates (elections.json) and open comment periods (the Policy tracker in feed.json)
+  const readJson = async (file, fallback) => { try { return JSON.parse(await readFile(file, "utf8")); } catch (e) { if (e.code !== "ENOENT") console.error(`${file}: ${e.message}`); return fallback; } };
+  const lo = now - (cfg.keepPastDays ?? 7) * DAY, hi = now + (cfg.aheadDays ?? 400) * DAY;
+  const obsJ = await readJson(env.OBSERVANCES ?? join(root, "observances.json"), {}), elJ = await readJson(env.ELECTIONS ?? join(root, "elections.json"), {}), feedJ = await readJson(env.FEED ?? join(dirname(OUT), "feed.json"), {});
+  const sysObs = observanceEvents(obsJ.items, lo, hi, hubsOf), sysEl = electionEvents(elJ.dates, lo, hi, hubsOf), sysCmt = commentEvents((feedJ.items ?? []).filter(x => x && x.dl), lo, hi, hubsOf);
+  status.dates = { observances: sysObs.length, elections: sysEl.length, comments: sysCmt.length };
+  const events = mergeEvents({ own: A.settings.events, auto, sys: [...sysEl, ...sysCmt, ...sysObs], off: A.settings.eventsOff.map(x => x.id), now, keepPastDays: cfg.keepPastDays ?? 7, aheadDays: cfg.aheadDays ?? 400, max: cfg.max ?? 1200, maxSpanDays: cfg.maxSpanDays ?? 21, hubsOf });
   const hidden = auto.filter(e => A.settings.eventsOff.some(x => x.id === e.id)).length;
   await mkdir(dirname(OUT), { recursive: true });
   await writeFile(CACHE, JSON.stringify(cache));
   await writeFile(OUT, JSON.stringify({ generated: new Date(now).toISOString(), status, events }));
   await writeFile(ICS, eventsIcs(events, now));
   const up = events.filter(e => endMs(e) >= now).length;
-  console.log(`Events: ${events.length} listed (${up} upcoming; ${events.filter(e => e.own).length} typed by the owner; ${hidden} hidden by the owner). Hearings ${status.hearings ? (status.hearings.ok ? "ok" : status.hearings.note) : "off"}, grants ${status.grants ? (status.grants.ok ? "ok" : status.grants.note) : "off"}, ${status.feeds.filter(f => f.ok).length} of ${status.feeds.length} calendar feeds ok.`);
+  console.log(`Events: ${events.length} listed (${up} upcoming; ${events.filter(e => e.own).length} typed by the owner; ${hidden} hidden by the owner). Observances and anniversaries ${sysObs.length}, election dates ${sysEl.length}, comment deadlines ${sysCmt.length}. Hearings ${status.hearings ? (status.hearings.ok ? "ok" : status.hearings.note) : "off"}, grants ${status.grants ? (status.grants.ok ? "ok" : status.grants.note) : "off"}, ${status.feeds.filter(f => f.ok).length} of ${status.feeds.length} calendar feeds ok.`);
   for (const f of status.feeds) if (!f.ok) console.log(`  calendar feed "${f.name}": ${f.note}`);
   return 0;
 }

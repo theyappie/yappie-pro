@@ -1,0 +1,783 @@
+{
+ "updated": "2026-11-02",
+ "checked": "2026-11-02",
+ "note": "Observances and anniversaries are chosen by this site's editors. Each links to a page that confirms its date; movable holidays list the dates for 2026 to 2028 only.",
+ "items": [
+  {
+   "id": "aanhpi-heritage-month",
+   "k": "observance",
+   "t": "AANHPI Heritage Month",
+   "m": "Annual May heritage month honoring Asian American, Native Hawaiian and Pacific Islander history and contributions; the main yearly peak for AAPI-focused content.",
+   "u": "https://asianpacificheritage.gov/About",
+   "o": "AsianPacificHeritage.gov (joint federal agency site)",
+   "md": "05-01",
+   "to": "05-31",
+   "c": []
+  },
+  {
+   "id": "filipino-american-history-month",
+   "k": "observance",
+   "t": "Filipino American History Month",
+   "m": "Congress recognized October as Filipino American History Month starting with a 2009 Senate resolution; FANHS has marked the month since 1991.",
+   "u": "https://www.congress.gov/111/bills/sres298/BILLS-111sres298ats.pdf",
+   "o": "U.S. Senate (congress.gov)",
+   "md": "10-01",
+   "to": "10-31",
+   "c": [
+    "PH"
+   ]
+  },
+  {
+   "id": "national-day-of-remembrance",
+   "k": "observance",
+   "t": "Day of Remembrance (Japanese American incarceration)",
+   "m": "Community observance of the day in 1942 that Executive Order 9066 was signed, leading to the wartime removal and incarceration of about 120,000 people of Japanese ancestry.",
+   "u": "https://jacl.org/day-of-remembrance",
+   "o": "Japanese American Citizens League",
+   "md": "02-19",
+   "c": [
+    "JP"
+   ]
+  },
+  {
+   "id": "fred-korematsu-day",
+   "k": "observance",
+   "t": "Fred Korematsu Day of Civil Liberties and the Constitution",
+   "m": "California's annual day honoring civil rights litigant Fred Korematsu, kept on his January 30 birthday; a hook for civil liberties and immigration-policy coverage.",
+   "u": "https://www.leginfo.ca.gov/pub/09-10/bill/asm/ab_1751-1800/ab_1775_bill_20100901_enrolled.html",
+   "o": "California Legislature",
+   "md": "01-30",
+   "c": [
+    "JP"
+   ]
+  },
+  {
+   "id": "lunar-new-year",
+   "k": "observance",
+   "t": "Lunar New Year",
+   "m": "Start of the lunar year, celebrated by Chinese, Korean, Vietnamese and other Asian American communities; a major annual hook for community, business and policy content.",
+   "u": "https://publicholidays.com/lunar-new-year/",
+   "o": "PublicHolidays.com",
+   "dates": {
+    "2026": "2026-02-17",
+    "2027": "2027-02-06",
+    "2028": "2028-01-26"
+   },
+   "c": [
+    "CN",
+    "KR",
+    "VN"
+   ]
+  },
+  {
+   "id": "tet",
+   "k": "observance",
+   "t": "Tet (Vietnamese New Year)",
+   "m": "Vietnamese lunar new year, the biggest family and community holiday for Vietnamese Americans, with festivals and temple and market events in the days around it.",
+   "u": "https://timeanddate.com/holidays/vietnam/tet-new-year",
+   "o": "timeanddate.com",
+   "dates": {
+    "2026": "2026-02-17",
+    "2027": "2027-02-06",
+    "2028": "2028-01-26"
+   },
+   "c": [
+    "VN"
+   ]
+  },
+  {
+   "id": "diwali",
+   "k": "observance",
+   "t": "Diwali",
+   "m": "Festival of lights marked by Hindu, Sikh, Jain and some Buddhist communities; dates shown are the main Lakshmi Puja day and can differ by a day by region.",
+   "u": "https://publicholidays.com/diwali/",
+   "o": "PublicHolidays.com",
+   "dates": {
+    "2026": "2026-11-08",
+    "2027": "2027-10-29",
+    "2028": "2028-10-17"
+   },
+   "c": [
+    "SA"
+   ]
+  },
+  {
+   "id": "mid-autumn-festival",
+   "k": "observance",
+   "t": "Mid-Autumn Festival",
+   "m": "Harvest-moon festival on the 15th day of the eighth lunar month, celebrated with mooncakes and family gatherings by Chinese, Vietnamese and other communities.",
+   "u": "https://timeanddate.com/holidays/china/mid-autumn-festival",
+   "o": "timeanddate.com",
+   "dates": {
+    "2026": "2026-09-25",
+    "2027": "2027-09-15",
+    "2028": "2028-10-03"
+   },
+   "c": [
+    "CN",
+    "VN"
+   ]
+  },
+  {
+   "id": "chuseok",
+   "k": "observance",
+   "t": "Chuseok",
+   "m": "Korean harvest and ancestor-remembrance holiday on the 15th day of the eighth lunar month; dates shown are Chuseok day itself within a three-day Korean holiday.",
+   "u": "https://timeanddate.com/holidays/south-korea/mid-autumn-festival-day-2",
+   "o": "timeanddate.com",
+   "dates": {
+    "2026": "2026-09-25",
+    "2027": "2027-09-15",
+    "2028": "2028-10-03"
+   },
+   "c": [
+    "KR"
+   ]
+  },
+  {
+   "id": "vaisakhi",
+   "k": "observance",
+   "t": "Vaisakhi",
+   "m": "Spring harvest festival and Punjabi and Sikh new-year observance marked with parades and community events; listed dates follow the solar-calendar sources.",
+   "u": "https://publicholidays.in/vaisakh/",
+   "o": "PublicHolidays.in",
+   "dates": {
+    "2026": "2026-04-14",
+    "2027": "2027-04-14",
+    "2028": "2028-04-13"
+   },
+   "c": [
+    "SA"
+   ]
+  },
+  {
+   "id": "songkran-sea-new-year",
+   "k": "observance",
+   "t": "Songkran and Southeast Asian New Year",
+   "m": "Mid-April new year festivals in Thailand (Songkran), Laos (Pi Mai) and Cambodia (Khmer New Year), with temple and water-blessing events in diaspora communities.",
+   "u": "https://www.seameo.org/search/501",
+   "o": "Southeast Asian Ministers of Education Organization (SEAMEO)",
+   "md": "04-13",
+   "to": "04-16",
+   "c": [
+    "SEA"
+   ]
+  },
+  {
+   "id": "korean-american-day",
+   "k": "observance",
+   "t": "Korean American Day",
+   "m": "Marks the January 13, 1903 arrival of the first Korean immigrants in Hawaii; recognized by House resolutions and state proclamations and a hook for Korean American history content.",
+   "u": "https://capac.house.gov/press-release/chair-meng-co-leads-bipartisan-house-resolution-honoring-korean-american-day",
+   "o": "Congressional Asian Pacific American Caucus",
+   "md": "01-13",
+   "c": [
+    "KR"
+   ]
+  },
+  {
+   "id": "prince-kuhio-day",
+   "k": "observance",
+   "t": "Prince Jonah Kuhio Kalanianaole Day",
+   "m": "Hawaii state holiday on March 26 honoring Prince Kuhio, a Hawaiian royal and delegate to Congress; a Native Hawaiian civic and policy content hook.",
+   "u": "https://data.capitol.hawaii.gov/hrscurrent/Vol01_Ch0001-0042F/HRS0008/HRS_0008-0001.htm",
+   "o": "Hawaii State Legislature (Hawaii Revised Statutes)",
+   "md": "03-26",
+   "c": [
+    "NHPI"
+   ]
+  },
+  {
+   "id": "king-kamehameha-day",
+   "k": "observance",
+   "t": "King Kamehameha I Day",
+   "m": "Hawaii state holiday on June 11 honoring Kamehameha I, who united the Hawaiian Islands; observed with parades, lei draping and cultural events.",
+   "u": "https://data.capitol.hawaii.gov/hrscurrent/Vol01_Ch0001-0042F/HRS0008/HRS_0008-0001.htm",
+   "o": "Hawaii State Legislature (Hawaii Revised Statutes)",
+   "md": "06-11",
+   "c": [
+    "NHPI"
+   ]
+  },
+  {
+   "id": "lei-day",
+   "k": "observance",
+   "t": "Lei Day",
+   "m": "Hawaii observance on May 1, set in state law as May Day is Lei Day, celebrating lei and Hawaiian culture; it falls on the first day of AANHPI Heritage Month.",
+   "u": "https://data.capitol.hawaii.gov/sessions/session2017/HRS-Chapter-PDF's/HRS_0008.pdf",
+   "o": "Hawaii State Legislature (Hawaii Revised Statutes)",
+   "md": "05-01",
+   "c": [
+    "NHPI"
+   ]
+  },
+  {
+   "id": "hawaii-statehood-day",
+   "k": "observance",
+   "t": "Hawaii Statehood Day",
+   "m": "Hawaii state holiday on the third Friday of August marking admission as the 50th state; 2028 date is computed from the statutory third-Friday rule.",
+   "u": "https://data.capitol.hawaii.gov/hrscurrent/Vol01_Ch0001-0042F/HRS0008/HRS_0008-0001.htm",
+   "o": "Hawaii State Legislature (Hawaii Revised Statutes)",
+   "dates": {
+    "2026": "2026-08-21",
+    "2027": "2027-08-20",
+    "2028": "2028-08-18"
+   },
+   "c": [
+    "NHPI"
+   ]
+  },
+  {
+   "id": "guam-liberation-day",
+   "k": "observance",
+   "t": "Guam Liberation Day",
+   "m": "Legal public holiday in Guam on July 21 marking the 1944 liberation from Japanese occupation; a major CHamoru civic event and military-history hook.",
+   "u": "https://guamlegislature.com/Public_Laws_3rd/PL03-070.pdf",
+   "o": "Guam Legislature",
+   "md": "07-21",
+   "c": [
+    "NHPI"
+   ]
+  },
+  {
+   "id": "american-samoa-flag-day",
+   "k": "observance",
+   "t": "American Samoa Flag Day",
+   "m": "Marks the April 17, 1900 Deed of Cession of Tutuila and Aunu'u to the United States; listed as a public holiday in American Samoa and marked by Samoan communities elsewhere.",
+   "u": "https://www.govinfo.gov/link/crec/160/h/3125",
+   "o": "U.S. Congress (Congressional Record, via GovInfo)",
+   "md": "04-17",
+   "c": [
+    "NHPI"
+   ]
+  },
+  {
+   "id": "rmi-nuclear-victims-remembrance-day",
+   "k": "observance",
+   "t": "Nuclear Victims Remembrance Day (Marshall Islands)",
+   "m": "March 1 observance in the Marshall Islands recalling people harmed by U.S. nuclear testing, anchored to the 1954 Castle Bravo test; ties to compensation and Compact debates.",
+   "u": "https://www.civilbeat.org/beat/marshallese-honor-nuclear-victims-as-negotiations-with-us-continue",
+   "o": "Honolulu Civil Beat",
+   "md": "03-01",
+   "c": [
+    "NHPI"
+   ]
+  },
+  {
+   "id": "cambodian-genocide-remembrance-day",
+   "k": "observance",
+   "t": "Cambodian Genocide Remembrance Day",
+   "m": "April 17 marks the 1975 fall of Phnom Penh to the Khmer Rouge; recognized by several U.S. cities, counties and a state, and a hook for Cambodian American remembrance and refugee stories.",
+   "u": "https://www.congress.gov/119/bills/hres338/BILLS-119hres338ih.htm",
+   "o": "U.S. House of Representatives (congress.gov)",
+   "md": "04-17",
+   "c": [
+    "SEA"
+   ]
+  },
+  {
+   "id": "apa-heritage-week-law",
+   "k": "anniversary",
+   "t": "Heritage Week joint resolution signed",
+   "m": "President Carter signed Public Law 95-419 (signing date) creating Asian/Pacific American Heritage Week for 1979, the origin of today's May heritage month.",
+   "u": "https://www.govinfo.gov/content/pkg/STATUTE-92/pdf/STATUTE-92-Pg920.pdf",
+   "o": "U.S. Government Publishing Office (Statutes at Large)",
+   "md": "10-05",
+   "y": 1978,
+   "c": []
+  },
+  {
+   "id": "luzones-indios-morro-bay",
+   "k": "anniversary",
+   "t": "Luzones Indios land at Morro Bay",
+   "m": "Date cited by Congress and FANHS for the earliest documented Filipino presence in the continental U.S.; the historical anchor for Filipino American History Month.",
+   "u": "https://www.congress.gov/111/bills/sres298/BILLS-111sres298ats.pdf",
+   "o": "U.S. Senate (congress.gov)",
+   "md": "10-18",
+   "y": 1587,
+   "c": [
+    "PH"
+   ]
+  },
+  {
+   "id": "golden-spike",
+   "k": "anniversary",
+   "t": "Transcontinental railroad completed",
+   "m": "First transcontinental railroad completed at Promontory Summit, Utah; Chinese laborers built much of the Central Pacific line, a standard Heritage Month hook.",
+   "u": "https://www.nps.gov/gosp/learn/news/golden-spike-national-historical-park-to-commemorate-the-anniversary-of-the-completion-of-the-transcontinental-railroad.htm",
+   "o": "National Park Service",
+   "md": "05-10",
+   "y": 1869,
+   "c": [
+    "CN"
+   ]
+  },
+  {
+   "id": "page-act",
+   "k": "anniversary",
+   "t": "Page Act signed",
+   "m": "President Grant signed the Page Act, which targeted the immigration of Chinese women and is a common reference point for the history of federal immigration restriction.",
+   "u": "https://www.nps.gov/articles/000/ulysses-s-grant-chinese-immigration-and-the-page-act-of-1875.htm",
+   "o": "National Park Service",
+   "md": "03-03",
+   "y": 1875,
+   "c": [
+    "CN"
+   ]
+  },
+  {
+   "id": "chinese-exclusion-act",
+   "k": "anniversary",
+   "t": "Chinese Exclusion Act signed",
+   "m": "President Arthur signed the law suspending Chinese labor immigration; widely cited as the first major federal law to bar a group by national origin.",
+   "u": "https://www.archives.gov/milestone-documents/chinese-exclusion-act",
+   "o": "National Archives",
+   "md": "05-06",
+   "y": 1882,
+   "c": [
+    "CN"
+   ]
+  },
+  {
+   "id": "wong-kim-ark",
+   "k": "anniversary",
+   "t": "Wong Kim Ark decision",
+   "m": "Supreme Court decision holding that a man born in San Francisco to Chinese parents was a U.S. citizen; a frequent reference in birthright citizenship coverage.",
+   "u": "https://www.law.cornell.edu/supremecourt/text/169/649",
+   "o": "Legal Information Institute, Cornell Law School",
+   "md": "03-28",
+   "y": 1898,
+   "c": [
+    "CN"
+   ]
+  },
+  {
+   "id": "angel-island-opens",
+   "k": "anniversary",
+   "t": "Angel Island Immigration Station opens",
+   "m": "The San Francisco Bay immigration station opened; it processed Asian and other immigrants and is central to the exclusion-era history of Chinese Americans.",
+   "u": "https://nps.gov/places/u-s-immigration-station-angel-island.htm",
+   "o": "National Park Service",
+   "md": "01-21",
+   "y": 1910,
+   "c": [
+    "CN"
+   ]
+  },
+  {
+   "id": "cable-act",
+   "k": "anniversary",
+   "t": "Cable Act signed",
+   "m": "Married Women's Independent Citizenship Act; it still stripped citizenship from American women who married men 'ineligible for citizenship,' chiefly Asian immigrants.",
+   "u": "https://immigrationhistory.org/item/cable-act/",
+   "o": "immigrationhistory.org",
+   "md": "09-22",
+   "y": 1922,
+   "c": []
+  },
+  {
+   "id": "thind-decision",
+   "k": "anniversary",
+   "t": "Bhagat Singh Thind decision",
+   "m": "Supreme Court held that Bhagat Singh Thind, an Indian Sikh veteran, was not a 'white person' eligible for naturalization; a core South Asian American history hook.",
+   "u": "https://www.law.cornell.edu/supremecourt/text/261/204",
+   "o": "Legal Information Institute, Cornell Law School",
+   "md": "02-19",
+   "y": 1923,
+   "c": [
+    "SA"
+   ]
+  },
+  {
+   "id": "immigration-act-1924",
+   "k": "anniversary",
+   "t": "Immigration Act (Johnson-Reed) signed",
+   "m": "Signed by President Coolidge; set national-origins quotas and barred entry of those ineligible for citizenship, effectively ending most Asian immigration.",
+   "u": "https://loveman.sdsu.edu/docs/1924ImmigrationAct.pdf",
+   "o": "San Diego State University",
+   "md": "05-26",
+   "y": 1924,
+   "c": []
+  },
+  {
+   "id": "tydings-mcduffie-act",
+   "k": "anniversary",
+   "t": "Tydings-McDuffie Act signed",
+   "m": "President Roosevelt signed the law setting a ten-year Commonwealth period leading to Philippine independence; a key moment in Filipino American immigration history.",
+   "u": "https://www.britannica.com/print/article/611449",
+   "o": "Encyclopaedia Britannica",
+   "md": "03-24",
+   "y": 1934,
+   "c": [
+    "PH"
+   ]
+  },
+  {
+   "id": "executive-order-9066",
+   "k": "anniversary",
+   "t": "Executive Order 9066 signed",
+   "m": "President Roosevelt signed the order that led to the removal and incarceration of about 120,000 people of Japanese ancestry on the West Coast.",
+   "u": "https://www.govinfo.gov/content/pkg/CRECB-2007-pt3/html/CRECB-2007-pt3-Pg3719.htm",
+   "o": "U.S. Government Publishing Office (Congressional Record)",
+   "md": "02-19",
+   "y": 1942,
+   "c": [
+    "JP"
+   ]
+  },
+  {
+   "id": "magnuson-act",
+   "k": "anniversary",
+   "t": "Magnuson Act signed",
+   "m": "President Roosevelt signed the Magnuson Act repealing the Chinese Exclusion Acts, a milestone for Chinese immigrants' access to naturalization.",
+   "u": "https://www.congress.gov/118/bills/sres506/BILLS-118sres506is.htm",
+   "o": "U.S. Senate (congress.gov)",
+   "md": "12-17",
+   "y": 1943,
+   "c": [
+    "CN"
+   ]
+  },
+  {
+   "id": "korematsu-decision",
+   "k": "anniversary",
+   "t": "Korematsu v. United States decision",
+   "m": "Supreme Court upheld, 6-3, Fred Korematsu's conviction for violating a wartime exclusion order; a central case in civil-liberties and Japanese American history.",
+   "u": "https://www.uscourts.gov/educational-resources/educational-activities/facts-and-case-summary-korematsu-v-us",
+   "o": "Administrative Office of the U.S. Courts",
+   "md": "12-18",
+   "y": 1944,
+   "c": [
+    "JP"
+   ]
+  },
+  {
+   "id": "luce-celler-act",
+   "k": "anniversary",
+   "t": "Luce-Celler Act approved",
+   "m": "Truman approved the act opening naturalization to people of races indigenous to India and the Philippines and setting small annual immigration quotas for each.",
+   "u": "https://www.govinfo.gov/link/statute/60/416",
+   "o": "U.S. Government Publishing Office (Statutes at Large)",
+   "md": "07-02",
+   "y": 1946,
+   "c": [
+    "SA",
+    "PH"
+   ]
+  },
+  {
+   "id": "philippine-independence",
+   "k": "anniversary",
+   "t": "Philippine independence from the United States",
+   "m": "The U.S. recognized Philippine independence and the two countries signed the Treaty of General Relations in Manila; a Filipino American history hook.",
+   "u": "https://history.state.gov/countries/philippines",
+   "o": "Office of the Historian, U.S. Department of State",
+   "md": "07-04",
+   "y": 1946,
+   "c": [
+    "PH"
+   ]
+  },
+  {
+   "id": "saund-takes-seat",
+   "k": "anniversary",
+   "t": "Dalip Singh Saund takes House seat",
+   "m": "Saund of California, elected in November 1956, was sworn in as the first Asian American and first Sikh elected to Congress.",
+   "u": "https://www.history.com/this-day-in-history/dalip-singh-saund-elected-to-congress",
+   "o": "HISTORY (A&E Networks)",
+   "md": "01-03",
+   "y": 1957,
+   "c": [
+    "SA"
+   ]
+  },
+  {
+   "id": "hawaii-statehood",
+   "k": "anniversary",
+   "t": "Hawaii becomes the 50th state",
+   "m": "Eisenhower proclaimed Hawaii a state on this date; he had signed the Admission Act on March 18, 1959. Hook for Native Hawaiian and Pacific Islander history.",
+   "u": "https://www.archives.gov/federal-register/codification/proclamations/03309.html",
+   "o": "National Archives (Office of the Federal Register)",
+   "md": "08-21",
+   "y": 1959,
+   "c": [
+    "NHPI"
+   ]
+  },
+  {
+   "id": "fong-seated-senate",
+   "k": "anniversary",
+   "t": "Hiram Fong seated in the U.S. Senate",
+   "m": "Hiram Fong was seated as one of Hawaii's first two U.S. senators after statehood; he is widely recognized as the first Asian American senator.",
+   "u": "https://www.senate.gov/states/HI/timeline.htm",
+   "o": "U.S. Senate",
+   "md": "08-24",
+   "y": 1959,
+   "c": [
+    "CN",
+    "NHPI"
+   ]
+  },
+  {
+   "id": "mink-sworn-in",
+   "k": "anniversary",
+   "t": "Patsy Mink sworn into Congress",
+   "m": "Patsy Mink of Hawaii was sworn in as the first Asian American woman and first woman of color to serve in Congress.",
+   "u": "https://history.com/this-day-in-history/january-4/patsy-mink-sworn-in-first-asian-american-woman-of-color-in-congress",
+   "o": "HISTORY (A&E Networks)",
+   "md": "01-04",
+   "y": 1965,
+   "c": [
+    "JP",
+    "NHPI"
+   ]
+  },
+  {
+   "id": "immigration-and-nationality-act",
+   "k": "anniversary",
+   "t": "Immigration and Nationality Act (Hart-Celler) signed",
+   "m": "President Johnson signed the law at the Statue of Liberty; it replaced national-origins quotas and led to major growth in Asian immigration.",
+   "u": "https://www.lbjlibrary.org/news-and-press/media-kits/immigration-and-nationality-act",
+   "o": "LBJ Presidential Library",
+   "md": "10-03",
+   "y": 1965,
+   "c": []
+  },
+  {
+   "id": "fall-of-saigon",
+   "k": "anniversary",
+   "t": "Fall of Saigon",
+   "m": "Saigon fell, ending the Vietnam War and starting a refugee exodus; Vietnamese Americans mark the date as Black April, a remembrance and community-history hook.",
+   "u": "https://adst.org/2013/04/the-fall-of-saigon-april-30-1975/",
+   "o": "Association for Diplomatic Studies and Training",
+   "md": "04-30",
+   "y": 1975,
+   "c": [
+    "VN"
+   ]
+  },
+  {
+   "id": "voting-rights-act-1975",
+   "k": "anniversary",
+   "t": "Voting Rights Act language-minority amendments signed",
+   "m": "President Ford signed amendments extending protections to language minorities, expressly including Asian Americans; the basis for multilingual ballots and assistance.",
+   "u": "https://www.govinfo.gov/link/statute/89/402",
+   "o": "U.S. Government Publishing Office (Statutes at Large)",
+   "md": "08-06",
+   "y": 1975,
+   "c": []
+  },
+  {
+   "id": "refugee-act",
+   "k": "anniversary",
+   "t": "Refugee Act signed",
+   "m": "President Carter signed the law creating a standard system for admitting and resettling refugees; central to the history of Southeast Asian resettlement.",
+   "u": "https://docsteach.org/document/refugee-act/",
+   "o": "National Archives (DocsTeach)",
+   "md": "03-17",
+   "y": 1980,
+   "c": [
+    "SEA",
+    "VN"
+   ]
+  },
+  {
+   "id": "vincent-chin-death",
+   "k": "anniversary",
+   "t": "Vincent Chin dies",
+   "m": "Chin died four days after being beaten in Highland Park, Michigan on June 19, 1982; his case galvanized Asian American civil rights organizing.",
+   "u": "https://www.nps.gov/people/vincent-chin.htm",
+   "o": "National Park Service",
+   "md": "06-23",
+   "y": 1982,
+   "c": [
+    "CN"
+   ]
+  },
+  {
+   "id": "civil-liberties-act",
+   "k": "anniversary",
+   "t": "Civil Liberties Act signed",
+   "m": "President Reagan signed the law apologizing for the wartime incarceration of Japanese Americans and authorizing redress payments to survivors.",
+   "u": "https://encyclopedia.densho.org/Civil_Liberties_Act_of_1988/",
+   "o": "Densho Encyclopedia",
+   "md": "08-10",
+   "y": 1988,
+   "c": [
+    "JP"
+   ]
+  },
+  {
+   "id": "la-unrest-sa-i-gu",
+   "k": "anniversary",
+   "t": "Los Angeles unrest begins (Sa-I-Gu)",
+   "m": "The Rodney King trial verdict set off days of unrest in Los Angeles; Korean Americans call the date Sa-I-Gu (4-2-9), and Koreatown businesses were hard hit.",
+   "u": "https://www.nbcnews.com/news/asian-america/25-years-after-la-riots-koreatown-finds-strength-saigu-legacy-n749081",
+   "o": "NBC News",
+   "md": "04-29",
+   "y": 1992,
+   "c": [
+    "KR"
+   ]
+  },
+  {
+   "id": "overthrow-hawaiian-kingdom",
+   "k": "anniversary",
+   "t": "Overthrow of the Hawaiian Kingdom",
+   "m": "Queen Liliuokalani was deposed on this date; Native Hawaiian organizations mark the anniversary, and Congress cited it in the 1993 Apology Resolution.",
+   "u": "https://www.ksbe.edu/print/article/textonly/kukahekahe-the-overthrow-of-queen-liliuokalani",
+   "o": "Kamehameha Schools",
+   "md": "01-17",
+   "y": 1893,
+   "c": [
+    "NHPI"
+   ]
+  },
+  {
+   "id": "apology-resolution",
+   "k": "anniversary",
+   "t": "Apology Resolution approved",
+   "m": "Congress's joint resolution (Public Law 103-150), approved this date, apologized to Native Hawaiians for the 1893 overthrow of the Kingdom of Hawaii.",
+   "u": "https://www.govinfo.gov/content/pkg/STATUTE-107/pdf/STATUTE-107-Pg1510.pdf",
+   "o": "U.S. Government Publishing Office (Statutes at Large)",
+   "md": "11-23",
+   "y": 1993,
+   "c": [
+    "NHPI"
+   ]
+  },
+  {
+   "id": "palau-compact-takes-effect",
+   "k": "anniversary",
+   "t": "Palau Compact of Free Association takes effect",
+   "m": "The Compact with Palau took effect on this date (proclaimed Sept. 27, 1994), ending the trusteeship; COFA migrants' access to U.S. services is an ongoing policy topic.",
+   "u": "https://presidency.ucsb.edu/documents/proclamation-6726-placing-into-full-force-and-effect-the-compact-free-association-with-the",
+   "o": "The American Presidency Project, UC Santa Barbara",
+   "md": "10-01",
+   "y": 1994,
+   "c": [
+    "NHPI"
+   ]
+  },
+  {
+   "id": "rmi-compact-takes-effect",
+   "k": "anniversary",
+   "t": "Marshall Islands Compact of Free Association takes effect",
+   "m": "The Compact with the Marshall Islands took full effect on this date; it frames U.S.-RMI relations, including Marshallese residency rights in the United States.",
+   "u": "https://www.reaganlibrary.gov/research/speeches/110386a",
+   "o": "Ronald Reagan Presidential Library",
+   "md": "10-21",
+   "y": 1986,
+   "c": [
+    "NHPI"
+   ]
+  },
+  {
+   "id": "executive-order-13125",
+   "k": "anniversary",
+   "t": "Executive Order 13125 signed",
+   "m": "President Clinton signed the order creating the White House Initiative and President's Advisory Commission on Asian Americans and Pacific Islanders.",
+   "u": "https://www.govinfo.gov/content/pkg/FR-1999-06-10/html/99-14901.htm",
+   "o": "Federal Register (U.S. Government Publishing Office)",
+   "md": "06-07",
+   "y": 1999,
+   "c": []
+  },
+  {
+   "id": "hmong-veterans-naturalization-act",
+   "k": "anniversary",
+   "t": "Hmong Veterans' Naturalization Act signed",
+   "m": "President Clinton signed Public Law 106-207, easing naturalization for certain Hmong and Lao veterans who served alongside U.S. forces in Laos.",
+   "u": "https://www.govinfo.gov/content/pkg/PLAW-106publ207/html/PLAW-106publ207.htm",
+   "o": "U.S. Government Publishing Office",
+   "md": "05-26",
+   "y": 2000,
+   "c": [
+    "SEA"
+   ]
+  },
+  {
+   "id": "balbir-singh-sodhi",
+   "k": "anniversary",
+   "t": "Balbir Singh Sodhi killed",
+   "m": "Sikh business owner Balbir Singh Sodhi was shot outside his Mesa, Arizona gas station days after 9/11, widely cited as the first post-9/11 hate-crime murder.",
+   "u": "https://saldef.org/?p=547",
+   "o": "Sikh American Legal Defense and Education Fund (SALDEF)",
+   "md": "09-15",
+   "y": 2001,
+   "c": [
+    "SA"
+   ]
+  },
+  {
+   "id": "oak-creek-gurdwara-shooting",
+   "k": "anniversary",
+   "t": "Oak Creek gurdwara shooting",
+   "m": "Armed attack on worshippers at a Sikh gurdwara in Oak Creek, Wisconsin; a touchstone for Sikh community safety, hate-crime data and houses-of-worship security advocacy.",
+   "u": "https://www.fbi.gov/milwaukee/press-releases/2012/statement-on-shooting-incident-at-sikh-temple",
+   "o": "FBI Milwaukee",
+   "md": "08-05",
+   "y": 2012,
+   "c": [
+    "SA"
+   ]
+  },
+  {
+   "id": "atlanta-spa-shootings",
+   "k": "anniversary",
+   "t": "Atlanta-area spa shootings",
+   "m": "Shootings at three metro Atlanta spas killed eight people, most of them Asian women, prompting national attention to anti-Asian violence and gendered hate.",
+   "u": "https://www.ajc.com/news/spa-shootings-a-timeline-of-events-that-left-8-dead-in-metro-atlanta/UH5ZJVXV3FCY3LUPW4T6CUCSC4/.",
+   "o": "The Atlanta Journal-Constitution",
+   "md": "03-16",
+   "y": 2021,
+   "c": []
+  },
+  {
+   "id": "covid-19-hate-crimes-act",
+   "k": "anniversary",
+   "t": "COVID-19 Hate Crimes Act signed",
+   "m": "President Biden signed Public Law 117-13, directing expedited federal review of COVID-19-related hate crimes and improved hate-crime reporting.",
+   "u": "https://www.govinfo.gov/metadata/pkg/PLAW-117publ13/mods.xml",
+   "o": "U.S. Government Publishing Office (GovInfo)",
+   "md": "05-20",
+   "y": 2021,
+   "c": []
+  },
+  {
+   "id": "executive-order-14031",
+   "k": "anniversary",
+   "t": "Executive Order 14031 signed",
+   "m": "Executive order establishing the White House Initiative and Advisory Commission on Asian Americans, Native Hawaiians and Pacific Islanders; it superseded four earlier orders.",
+   "u": "https://www.govinfo.gov/content/pkg/FR-2021-06-03/html/2021-11792.htm",
+   "o": "Federal Register (U.S. Government Publishing Office)",
+   "md": "05-28",
+   "y": 2021,
+   "c": []
+  },
+  {
+   "id": "sffa-v-harvard",
+   "k": "anniversary",
+   "t": "SFFA v. Harvard decision",
+   "m": "Supreme Court ruling on race-conscious admissions at Harvard and UNC; Asian American applicants figured prominently in the case and in community responses.",
+   "u": "https://www.scotusblog.com/case-files/cases/students-for-fair-admissions-inc-v-president-fellows-of-harvard-college/",
+   "o": "SCOTUSblog",
+   "md": "06-29",
+   "y": 2023,
+   "c": []
+  },
+  {
+   "id": "lahaina-wildfire",
+   "k": "anniversary",
+   "t": "Lahaina wildfire",
+   "m": "Wildfire destroyed much of Lahaina on Maui, a historic center of Hawaiian culture; recovery, housing and land questions remain active news stories.",
+   "u": "https://lessons.wildfire.gov/incident/maui-wildfires-2023",
+   "o": "Wildfire.gov (U.S. interagency wildland fire lessons site)",
+   "md": "08-08",
+   "y": 2023,
+   "c": [
+    "NHPI"
+   ]
+  }
+ ]
+}

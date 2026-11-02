@@ -11,7 +11,7 @@ const tax0 = JSON.parse(await readFile(join(ROOT, "taxonomy.json"), "utf8"));
 const cfg = JSON.parse(await readFile(process.env.SOURCES ?? join(ROOT, "sources.json"), "utf8"));
 const feed = JSON.parse(await readFile(FEED, "utf8"));
 const tax = withFeedTaxo(tax0, feed.taxo); // plus the owner's own topics, communities and News categories (names only)
-const SITE = (process.env.SITE_URL ?? cfg.siteUrl ?? "").replace(/\/$/, "");
+const SITE = (process.env.SITE_URL ?? cfg.siteUrl ?? "").replace(/\/$/, ""), RSS_MAX = cfg.rssMax ?? 50; // "rssMax": how many of the newest stories each RSS feed lists
 const items = feed.items ?? [], stamp = new Date(feed.generated ?? Date.now());
 const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 const esc = s => String(s ?? "").replace(/[<>&"']/g, c => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;", '"': "&quot;", "'": "&apos;" }[c]));
@@ -19,7 +19,7 @@ const label = { topic: Object.fromEntries(tax.topics.map(t => [t.k, t.label])), 
 
 function rss(title, desc, list) {
   const row = x => `<item><title>${esc(x.h)}</title><link>${esc(x.u)}</link><guid isPermaLink="true">${esc(x.u)}</guid><pubDate>${new Date(x.d).toUTCString()}</pubDate>${[x.t, ...(x.tx ?? [])].map(t => `<category>${esc(label.topic[t] ?? t)}</category>`).join("")}<description>${esc([x.s, x.dl ? "Comments due " + x.dl : "", x.m].filter(Boolean).join(" · "))}</description></item>`;
-  return `<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>${esc(title)}</title><link>${esc(SITE || "https://theyappie.com")}</link><description>${esc(desc)}</description><language>en-us</language><lastBuildDate>${stamp.toUTCString()}</lastBuildDate>${list.slice(0, 50).map(row).join("")}</channel></rss>\n`;
+  return `<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>${esc(title)}</title><link>${esc(SITE || "https://theyappie.com")}</link><description>${esc(desc)}</description><language>en-us</language><lastBuildDate>${stamp.toUTCString()}</lastBuildDate>${list.slice(0, RSS_MAX).map(row).join("")}</channel></rss>\n`;
 }
 const out = new Map(), index = [];
 const add = (file, title, desc, list, group) => { if (!list.length) return; out.set(file, rss(title, desc, list)); index.push({ file: "rss/" + file, title, group, count: list.length }); };
@@ -31,7 +31,7 @@ for (const [k, l] of tax.states) add(`state-${slug(k)}.xml`, `The Yappie Pro: ${
 for (const [k, l] of Object.entries(tax.kinds)) add(`kind-${slug(k)}.xml`, `The Yappie Pro: ${l}`, `${l} items only.`, by(x => x.k === k), "kind");
 const POLK = new Set(tax.policyKinds ?? []);
 add("policy.xml", "The Yappie Pro: policy tracker", "Bills, rules, executive actions, hearings and government statements from .gov sources.", by(x => POLK.has(x.k)), "kind");
-const dl = by(x => x.dl).sort((a, b) => a.dl.localeCompare(b.dl));
+const dl = by(x => x.dl && x.dl >= stamp.toISOString().slice(0, 10)).sort((a, b) => a.dl.localeCompare(b.dl)); // only what is still open: the year's closed comment periods stay on the Policy page but are not a to-do list
 add("deadlines.xml", "The Yappie Pro: comment deadlines", "Federal Register items open for public comment, soonest deadline first.", dl, "deadlines");
 
 const dir = join(ROOT, "data/rss"); await mkdir(dir, { recursive: true });

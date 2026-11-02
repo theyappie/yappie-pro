@@ -359,8 +359,10 @@ const tbtns=(x,c,aria)=>[x.t].concat(x.tx||[]).map(t=>`<button type="button" cla
 const MAINS=()=>VIEW=="research"?["AAPI Data","Pew Research Center","AP-NORC","Associated Press"]:["The Yappie","AsAmNews","The Rebel Yellow","Joysauce"],isMainV=x=>MAINS().includes(x.s); // the outlets listed by name in the Sources filter, in this order; every other outlet is one combined "Other sources" row (News and Research each have their own list)
 const has=(x,f,v)=>f=="t"?x.t==v||(x.tx||[]).includes(v):f=="c"?(x.cm||[]).includes(v):f=="st"?(x.st||[]).includes(v):f=="k"?(RSL[v]?x.rs==v:v=="open"?!!x.dl&&dleft(x.dl)>=0:(x.k||"news")==v):f=="r"?x.rl==v:(v=="__other"?!isMainV(x):x.s==v);
 const aapiq=t=>t.replace(/aanhpi/g,"aapi");
-const qtext=x=>aapiq((x.h+" "+(x.s=="The Yappie"?x.m||"":"")+" "+x.s+" "+tl(x.t)+" "+(x.tx||[]).map(tl).join(" ")+" "+(x.cm||[]).map(k=>CL[k]).join(" ")+" "+(x.st||[]).map(k=>SLB[k]).join(" ")+" "+(x.bl||[]).map(b=>b.n).join(" ")+" "+(x.ty||"")+" "+(x.ag||"")+" "+(x.la||"")+" "+(RSL[x.rs]||"")).toLowerCase());
-const hit=(x,skip)=>FK.every(f=>f==skip||!F[f]||has(x,f,F[f]))&&(!F.q||qtext(x).includes(aapiq(F.q)));
+const _qc=new WeakMap(); // a story's searchable text is built once (a full year is thousands of stories, and every filter count asks again); a reloaded feed has new story objects, so the names in it are never stale
+const qtext=x=>{let q=_qc.get(x);if(q===undefined){q=aapiq((x.h+" "+(x.s=="The Yappie"?x.m||"":"")+" "+x.s+" "+tl(x.t)+" "+(x.tx||[]).map(tl).join(" ")+" "+(x.cm||[]).map(k=>CL[k]).join(" ")+" "+(x.st||[]).map(k=>SLB[k]).join(" ")+" "+(x.bl||[]).map(b=>b.n).join(" ")+" "+(x.ty||"")+" "+(x.ag||"")+" "+(x.la||"")+" "+(RSL[x.rs]||"")).toLowerCase());_qc.set(x,q)}return q};
+let _aqv=null,_aq="";const aq=()=>{if(_aqv!==F.q){_aqv=F.q;_aq=aapiq(F.q)}return _aq};
+const hit=(x,skip)=>FK.every(f=>f==skip||!F[f]||has(x,f,F[f]))&&(!F.q||qtext(x).includes(aq()));
 // news, policy and advocacy-statement records live in the same feed file; each tab works on its own part
 let _vs=null,_vd=null,_vv="";
 const vset=()=>{if(_vd!==D||_vv!=VIEW){_vd=D;_vv=VIEW;_vs=VIEW=="policy"?D.filter(isP):VIEW=="advocacy"?D.filter(isAdv):VIEW=="research"?D.filter(isRes):VIEW=="saved"?D:D.filter(x=>!isP(x)&&!isAdv(x)&&x.k!="research")}return _vs};
@@ -558,8 +560,9 @@ $("#brand").onclick=e=>{e.preventDefault();gsel="";VIEW="feed";F=F0();$("#q").va
 const ago=d=>{const m=Math.max(0,(REF-pd(d))/6e4);return m<60?Math.round(m)+"m":m<1440?Math.floor(m/60)+"h":Math.floor(m/1440)+"d"};
 const STOP=new Set("the and for with from after over amid says more nation aapi asian american americans pacific islander islanders news this that into their about".split(" "));
 const toks=h=>new Set(h.toLowerCase().replace(/[^a-z0-9ʻ ]+/g," ").split(/\s+/).filter(w=>w.length>3&&!STOP.has(w)));
-function cluster(){const T=D.map(x=>toks(x.h)),P=D.map((_,i)=>i),f=i=>P[i]==i?i:(P[i]=f(P[i]));
-for(let i=0;i<D.length;i++)if(!isP(D[i])&&!isAdv(D[i]))for(let j=i+1;j<D.length;j++){if(isP(D[j])||isAdv(D[j])||Math.abs(pd(D[i].d)-pd(D[j].d))>2592e5)continue;let n=0;T[i].forEach(w=>T[j].has(w)&&n++);if(n>=2&&n/(T[i].size+T[j].size-n)>=.4)P[f(i)]=f(j)}
+function cluster(){const T=D.map(x=>toks(x.h)),W=D.map(x=>+pd(x.d)),P=D.map((_,i)=>i),f=i=>{while(P[i]!=i){P[i]=P[P[i]];i=P[i]}return i};
+const srt=W.every((t,i)=>!i||W[i-1]>=t); // the feed is newest first, so with a year of stories the search for a match can stop at the first story more than 3 days older
+for(let i=0;i<D.length;i++)if(!isP(D[i])&&!isAdv(D[i]))for(let j=i+1;j<D.length;j++){const gap=Math.abs(W[i]-W[j]);if(gap>2592e5){if(srt)break;continue}if(isP(D[j])||isAdv(D[j]))continue;let n=0;T[i].forEach(w=>T[j].has(w)&&n++);if(n>=2&&n/(T[i].size+T[j].size-n)>=.4)P[f(i)]=f(j)}
 const g={};D.forEach((x,i)=>{(g[f(i)]=g[f(i)]||[]).push(x)});Object.values(g).forEach(a=>{const n=new Set(a.map(x=>x.s)).size;a.forEach(x=>{x.c=n;x.rel=a.filter(y=>y!==x&&y.s!=x.s)})})}
 const DAYF=new Intl.DateTimeFormat("en-US",{weekday:"long",month:"long",day:"numeric"}),dkey=x=>pd(x.d).toDateString();
 const dh=(x,i)=>(i==0||dkey(L[i-1])!=dkey(x))?`<div class="dh">${DAYF.format(pd(x.d))}</div>`:"";

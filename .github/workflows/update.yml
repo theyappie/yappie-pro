@@ -4,6 +4,15 @@ on:
   # The schedule below is a second, independent trigger for the case where GitHub is late with tick's schedule; the "gate" job skips it when an update began in the last 7 minutes.
   schedule: [{ cron: "17,47 * * * *" }]
   workflow_dispatch:
+    inputs:
+      backfill:
+        description: "Read every source back to keepFrom (sources.json) once, instead of only its newest stories. Takes up to two hours; updates wait meanwhile. Safe to run again."
+        type: boolean
+        default: false
+      only:
+        description: "Backfill only the sources whose name matches this (a regular expression, e.g. Civil Beat|HuffPost). Leave empty for all."
+        type: string
+        default: ""
 permissions:
   contents: write
   actions: read
@@ -31,7 +40,7 @@ jobs:
     needs: gate
     if: needs.gate.outputs.skip != 'true'
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: ${{ inputs.backfill && 150 || 10 }}
     env:
       # The admin dashboard keeps its decisions (admin.json) and the stories waiting for approval (pending.json) in a separate PRIVATE repository, because this one is public and published.
       # ADMIN_DATA_TOKEN: an Actions secret, a fine-grained token with Contents read and write on that repository. Setup: tools/admin/README.md. Without it the dashboard is not in use.
@@ -71,6 +80,9 @@ jobs:
           # optional: one free api.data.gov key (api.congress.gov/sign-up) for Congress.gov, Regulations.gov and GovInfo; without it the Policy tab skips those three
           API_DATA_GOV_KEY: ${{ secrets.API_DATA_GOV_KEY }}
           CONGRESS_API_KEY: ${{ secrets.CONGRESS_API_KEY }}
+          # started by hand with "backfill" ticked: read each source back to keepFrom (scripts/backfill.mjs)
+          BACKFILL: ${{ inputs.backfill && '1' || '' }}
+          BACKFILL_ONLY: ${{ inputs.only }}
       - run: node scripts/build-outputs.mjs
       - name: Commit feed
         run: |

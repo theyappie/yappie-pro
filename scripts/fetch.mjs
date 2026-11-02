@@ -41,7 +41,15 @@ const KEEP_BY = new Map(cfg.sources.filter(x => x.keepDays).map(x => [normName(x
 // "keepSince": "YYYY-MM-DD" keeps every story a source published on or after that day (UTC) however old it gets, and those stories do not count against the news cap ("maxItems"). Stories before that day follow the usual rule.
 const SINCE = new Map(cfg.sources.filter(x => x.keepSince).map(x => [normName(x.asName ?? x.name), Date.parse(x.keepSince + "T00:00:00Z")]).filter(([, t]) => !isNaN(t)));
 const keepOf = o => { const n = normName(o.s), base = KEEP_BY.get(n) ?? KEEP_MS, since = SINCE.get(n); return since ? Math.max(base, Date.now() - since) : base; };
-const held = o => { const t = SINCE.get(normName(o.s)); return t !== undefined && Date.parse(o.d) >= t; };
+// "keepFrom": "YYYY-MM-DD" keeps everything published on or after that day (UTC), from every source and on every page, however old it gets. Those stories are never aged out and never count against a cap ("maxItems", "researchMax", "policyMax").
+// Only the stories before that day follow the usual rules ("keepDays", "policyKeepDays" and the caps). Remove the setting to go back to a rolling window.
+const FROM = cfg.keepFrom ? Date.parse(cfg.keepFrom + "T00:00:00Z") : NaN;
+if (cfg.keepFrom && Number.isNaN(FROM)) { console.error(`"keepFrom" (${cfg.keepFrom}) is not a date like 2026-01-01.`); process.exit(1); }
+const inRange = o => !Number.isNaN(FROM) && Date.parse(o.d) >= FROM;
+const held = o => inRange(o) || (t => t !== undefined && Date.parse(o.d) >= t)(SINCE.get(normName(o.s)));
+const sinceFrom = ms => Number.isNaN(FROM) ? ms : Math.max(ms, Date.now() - FROM); // a window in days, stretched back to "keepFrom" if that is further
+const BACKFILL = /^(1|true|yes)$/i.test(process.env.BACKFILL ?? ""); // set by the update workflow's "backfill" input: read every source as far back as "keepFrom" and relax the government windows (scripts/backfill.mjs)
+if (BACKFILL && Number.isNaN(FROM)) { console.error('BACKFILL needs "keepFrom" in sources.json.'); process.exit(1); }
 const RES_MAX = cfg.researchMax ?? 150;
 const parser = new XMLParser({ ignoreAttributes: false, attributeNamePrefix: "@_", textNodeName: "#text" });
 
@@ -211,6 +219,7 @@ async function authorPage(storyUrl, name) {
 // All three produce the same kind of record, so the filtering and tagging below is shared.
 const MONTHS = "Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|June?|July?|Aug(?:ust)?|Sep(?:t(?:ember)?)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?";
 const DATE_RE = new RegExp(`\\b(${MONTHS})\\.?\\s+(\\d{1,2}),?\\s+(20\\d\\d)\\b`, "i");
+const PAGE_MAX = BACKFILL ? 5000 : 60; // a listing page shows a few dozen stories; its numbered pages, read by the backfill, add many more
 function pageRecords(html, src) {
   const want = new RegExp(src.link), hits = [];
   for (const m of html.matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/gi)) {
@@ -221,7 +230,7 @@ function pageRecords(html, src) {
     u.search = ""; u.hash = "";
     hits.push({ href: u.href, inner: m[2], at: m.index, end: m.index + m[0].length });
   }
-  const keepMs = (isPolicy(src.kind) ? (cfg.policyKeepDays ?? 120) : (cfg.keepDays ?? 30)) * 864e5, found = new Map();
+  const keepMs = sinceFrom((isPolicy(src.kind) ? (cfg.policyKeepDays ?? 120) : (cfg.keepDays ?? 30)) * 864e5), found = new Map();
   hits.forEach((h, i) => {
     // The title is inside the link. The date is inside it too, or just after it and before the next story link.
     const after = html.slice(h.end, Math.min(h.end + 800, hits[i + 1]?.at ?? Infinity));
@@ -234,13 +243,13 @@ function pageRecords(html, src) {
     // menus link to the same pages without a date, so a link counts once it has a title and a date
     if (title && !isNaN(d) && !found.has(h.href)) found.set(h.href, { title, d, dek: dk });
   });
-  return [...found].filter(([, r]) => Date.now() - r.d < keepMs).sort((a, b) => b[1].d - a[1].d).slice(0, 60)
+  return [...found].filter(([, r]) => Date.now() - r.d < keepMs).sort((a, b) => b[1].d - a[1].d).slice(0, PAGE_MAX)
     .map(([link, r]) => ({ title: r.title, link, description: r.dek, pubDate: r.d.toISOString() }));
 }
 // Some listing pages (Next.js sites such as scmp.com) ship their stories as JSON inside a <script> tag instead of as links in the HTML.
 // "embedded" names the three fields to read ({ "title": ..., "link": ..., "date": ... }); any object that has all three is a story. Dates may be ISO text or epoch seconds/milliseconds.
 function embeddedRecords(html, src) {
-  const e = src.embedded, found = new Map(), keepMs = (cfg.keepDays ?? 30) * 864e5;
+  const e = src.embedded, found = new Map(), keepMs = sinceFrom((cfg.keepDays ?? 30) * 864e5);
   const walk = o => {
     if (Array.isArray(o)) return o.forEach(walk);
     if (!o || typeof o !== "object") return;
@@ -255,11 +264,21 @@ function embeddedRecords(html, src) {
     if (!/application\/json/i.test(m[1]) && !/__NEXT_DATA__/.test(m[1])) continue;
     try { walk(JSON.parse(m[2])); } catch { /* not the data we want */ }
   }
-  return [...found].filter(([, r]) => Date.now() - r.d < keepMs && r.d - Date.now() < 864e5).sort((a, b) => b[1].d - a[1].d).slice(0, 60)
+  return [...found].filter(([, r]) => Date.now() - r.d < keepMs && r.d - Date.now() < 864e5).sort((a, b) => b[1].d - a[1].d).slice(0, PAGE_MAX)
     .map(([link, r]) => ({ title: r.title, link, description: "", pubDate: r.d.toISOString() }));
 }
 const pageText = new Map(); // two sources can read the same listing (CAPAC is in News and in Policy), so it is fetched once per run
+// With BACKFILL=1 a source is read as far back as "keepFrom" (scripts/backfill.mjs): what its feed or page shows now, then older stories by whichever way the site allows.
+let BF = null;
+if (BACKFILL) {
+  const { makeBackfill } = await import("./backfill.mjs");
+  BF = makeBackfill({ from: new Date(FROM), get: getText, parseFeed: parseItems, itemDate: it => dateOf(it), itemLink: linkOf, pageRecords, cfg, only: process.env.BACKFILL_ONLY ? new RegExp(process.env.BACKFILL_ONLY, "i") : null });
+}
 async function records(src) {
+  const base = await baseRecords(src);
+  return BF && BF.applies(src) ? BF.deep(src, base) : base;
+}
+async function baseRecords(src) {
   if (src.wp) {
     let j; try { j = JSON.parse(await getText(src.wp, "application/json")); } catch (e) { throw e instanceof SyntaxError ? new Error("Not valid JSON") : e; }
     if (!Array.isArray(j)) throw new Error("Unexpected WordPress response");
@@ -275,14 +294,17 @@ async function records(src) {
   for (let p = 2; p <= (src.pages ?? 1) && last.length; p++) {
     if (Math.min(...last.map(it => dateOf(it).getTime()).filter(t => !isNaN(t))) < floor) break;
     const u = new URL(src.feed); u.searchParams.set("paged", p);
+    const known = new Set(list.map(linkOf));
     try { last = await feedItems(u.href); } catch { break; } // past the last page, or a page that cannot be read: the pages read so far are used
+    if (!last.some(it => !known.has(linkOf(it)))) break; // a site that ignores ?paged= sends the first page again: nothing new, so stop
     list = list.concat(last);
   }
   const seenLink = new Set();
   return list.filter(it => { const l = linkOf(it); if (seenLink.has(l)) return false; seenLink.add(l); return true; }); // a story published while the pages were read can appear on two of them
 }
-async function feedItems(url) {
-  const x = parser.parse(await getText(url));
+async function feedItems(url) { return parseItems(await getText(url)); }
+function parseItems(text) {
+  const x = parser.parse(text);
   if (!x.rss && !x.feed && !x["rdf:RDF"]) throw new Error("Not a feed");
   const raw = x.rss?.channel?.item ?? x.feed?.entry ?? x["rdf:RDF"]?.item ?? [];
   return Array.isArray(raw) ? raw : [raw];
@@ -298,21 +320,22 @@ async function pull(src) {
   const onTopic = src.match ? new RegExp(src.match, "i") : AAPI; // "match": the source's own relevance pattern, used with "filter" in place of the general one (Pew writes "Asians", not "AAPI")
   const out = [], exCat = new Set((src.excludeCategories ?? []).map(normName));
   for (const it of await records(src)) {
+    const G = !!(src.google || it._g); // a Google News result: the source is a Google search, or the backfill found this story of an ordinary source through Google News ("_g")
     let h = clean(it.title), s = src.name, pubName = "";
-    if (src.google) {
+    if (G) {
       const pub = clean(it.source);
-      if (pub) { pubName = pub; s = pub; if (h.endsWith(" - " + pub)) h = h.slice(0, -(pub.length + 3)); }
+      if (pub) { pubName = pub; if (src.google) s = pub; if (h.endsWith(" - " + pub)) h = h.slice(0, -(pub.length + 3)); } // a story of an ordinary source keeps the source's own name
       if (src.asName) s = src.asName; // e.g. show Google News results from nbcnews.com as "NBC Asian America"
     }
-    const u = safeUrl(linkOf(it)), ph = src.google ? hostOf(it.source?.["@_url"] ?? "").replace(/^www\./, "") : "";
+    const u = safeUrl(linkOf(it)), ph = G ? hostOf(it.source?.["@_url"] ?? "").replace(/^www\./, "") : "";
     if (ph) learnHost(s, ph); // learned before the block check, so a stored story from a blocked publisher can be recognised later
     if (hostBlocked(hostOf(u)) || hostBlocked(ph) || nameBlocked(pubName)) continue;
     if (exCat.size && catsOf(it).some(c => exCat.has(c))) { if (u) catDropIds.add(idOf(src.kind, u)); skippedCat.push(s + ": " + h); continue; }
-    const raw = src.google ? "" : clean(it.description ?? it.summary ?? it["content:encoded"]).slice(0, 300); // used only for filtering/tagging
-    const m = src.google ? "" : dek(it.description ?? it.summary, h);
+    const raw = G ? "" : clean(it.description ?? it.summary ?? it["content:encoded"]).slice(0, 300); // used only for filtering/tagging
+    const m = G ? "" : dek(it.description ?? it.summary, h);
     const gov = isPolicy(src.kind), rl = gov ? (relOf(h + " " + raw) || (src.filter ? "" : "n")) : "";
     if (!gov && caseRe && caseRe.test(h)) continue; // on a news source skipTitle drops pages that are not stories (an author page or an archive index that a search returns)
-    if (!h || !u || (gov && (!isGov(u) || !rl)) || (!gov && src.filter && !onTopic.test(h + " " + raw))) continue;
+    if (!h || !u || (gov && (!isGov(u) || !rl)) || (!gov && src.filter && !it._g && !onTopic.test(h + " " + raw))) continue; // a story found through Google News by the AAPI words was matched on its whole text, so the headline alone is not tested again
     if (gov && rl === "i" && caseRe && caseRe.test(h)) continue; // individual court cases are not policy; releases that name the communities stay
     if (!isEnglish(h + " " + raw)) { skippedLang.push(s + ": " + h); continue; }
     if (!isOrg(src.kind) && abroadOnly(h + " " + raw)) { skipped.push(s + ": " + h); continue; }
@@ -320,7 +343,7 @@ async function pull(src) {
     if (isNaN(d) || d > Date.now() + 864e5) d = new Date();
     const full = src.fullText ? cleanBody(tx(it["content:encoded"] ?? it.content)) : "";
     // a .gov statement can also be in the Policy tracker, so it gets an id of its own here
-    const item = { id: idOf(src.kind, u), d: d.toISOString(), s, h, m, u, g: src.google ? 1 : 0, ...(ph ? { ph } : {}), k: src.kind ?? kindOf(s), ...(rl ? { rl } : {}), ...TG.all(h, raw + " " + clean(full).slice(0, 4000), d, gov ? "GOVERNMENT" : undefined) };
+    const item = { id: idOf(src.kind, u), d: d.toISOString(), s, h, m, u, g: G ? 1 : 0, ...(ph ? { ph } : {}), k: src.kind ?? kindOf(s), ...(rl ? { rl } : {}), ...TG.all(h, raw + " " + clean(full).slice(0, 4000), d, gov ? "GOVERNMENT" : undefined) };
     if (full) { const img = heroOf(it, full); item.v = 1; item.art = { by: clean(it["dc:creator"] ?? it.author?.name), img, body: tidyBody(full, img) }; }
     out.push(item);
   }
@@ -328,6 +351,9 @@ async function pull(src) {
 }
 
 const sentences = (abs, max = 280) => { const sents = abs.match(/[^.!?]+[.!?]+(\s|$)/g) ?? [abs]; let m = ""; for (const t of sents) { if ((m + t).trim().length > max) break; m = (m + t).trim() + " "; } return m.trim(); };
+// A backfill reads the government sources back to "keepFrom" in one go: the whole period, bigger pages, and a bigger share of the API allowance (sources.json "backfill.gov"). Closed comment periods count too, because the aim is the year's record, not what is open now.
+const GOVB = BACKFILL ? (cfg.backfill?.gov ?? {}) : {}, FROM_DAY = Number.isNaN(FROM) ? "" : new Date(FROM).toISOString().slice(0, 10);
+if (BACKFILL) LIM.left = GOVB.apiRequests ?? 600;
 const FRFIELDS = ["title", "abstract", "type", "subtype", "html_url", "publication_date", "signing_date", "executive_order_number", "comments_close_on", "agency_names", "document_number"];
 async function frGet(api, params) {
   const q = new URLSearchParams(params);
@@ -341,22 +367,23 @@ async function frGet(api, params) {
 // Federal Register (free API, no key). Rules and notices: documents that name AAPI communities, plus rules that touch a related issue and are still open for comment.
 // The API has no filter on the comment deadline, so that check is made here.
 async function pullFR(fr) {
-  const since = new Date(Date.now() - (fr.days ?? 45) * 864e5).toISOString().slice(0, 10), today = new Date().toISOString().slice(0, 10);
+  const since = BACKFILL ? FROM_DAY : new Date(Date.now() - (fr.days ?? 45) * 864e5).toISOString().slice(0, 10), today = new Date().toISOString().slice(0, 10);
+  const perTerm = BACKFILL ? (GOVB.frPerTerm ?? 500) : (fr.perTerm ?? 40), maxPages = BACKFILL ? (GOVB.frPages ?? 8) : (fr.pages ?? 4);
   const skip = fr.skipTitle ? new RegExp(fr.skipTitle, "i") : null, out = new Map();
   const passes = [...(fr.terms ?? []).map(t => [t, "n"]), ...(fr.issueTerms ?? []).map(t => [t, "i"])];
   for (const [term, via] of passes) {
-    const params = { per_page: String(fr.perTerm ?? 40), order: "newest", "conditions[term]": term, "conditions[publication_date][gte]": since };
+    const params = { per_page: String(perTerm), order: "newest", "conditions[term]": term, "conditions[publication_date][gte]": since };
     if (via === "i") params._types = ["RULE", "PRORULE"];
     const rows = [];
-    for (let page = 1, kept = 0; page <= (fr.pages ?? 4); page++) { // boilerplate notices (skipTitle) must not use up the per-term allowance
+    for (let page = 1, kept = 0; page <= maxPages; page++) { // boilerplate notices (skipTitle) must not use up the per-term allowance
       const got = await frGet(fr.api, { ...params, page: String(page) });
       rows.push(...got); kept += got.filter(r => !(skip && skip.test(clean(r.title)))).length;
-      if (got.length < (fr.perTerm ?? 40) || kept >= (fr.perTerm ?? 40)) break;
+      if (got.length < perTerm || (!BACKFILL && kept >= perTerm)) break; // a backfill reads every page of the period
     }
     for (const r of rows) {
       const h = clean(r.title), u = safeUrl(r.html_url), abs = clean(r.abstract), ag = (r.agency_names ?? []).slice(0, 2).join(" / ");
       const dl = /^\d{4}-\d\d-\d\d$/.test(r.comments_close_on ?? "") ? r.comments_close_on : "";
-      const rl = AAPI.test(h + " " + abs) ? "n" : (via === "i" && dl >= today && ISSUE.test(h + " " + abs + " " + ag)) ? "i" : "";
+      const rl = AAPI.test(h + " " + abs) ? "n" : (via === "i" && (BACKFILL || dl >= today) && ISSUE.test(h + " " + abs + " " + ag)) ? "i" : ""; // normally a related-issue rule is listed only while it is open for comment
       if (!h || !u || !isGov(u) || out.has(u) || (skip && skip.test(h)) || !rl) continue;
       const d = new Date((r.publication_date ?? "") + "T12:00:00Z");
       if (r.document_number) FR_DOCS.add(r.document_number);
@@ -369,9 +396,9 @@ async function pullFR(fr) {
 // Executive actions: executive orders, proclamations and memoranda from the Federal Register's presidential documents.
 // A document found through an AAPI term is marked "n" (names communities); one found only through an issue term is "i" (related issue).
 async function pullExec(ex) {
-  const since = new Date(Date.now() - (ex.days ?? 120) * 864e5).toISOString().slice(0, 10), out = new Map(), skipI = ex.skipTitle ? new RegExp(ex.skipTitle, "i") : null;
+  const since = BACKFILL ? FROM_DAY : new Date(Date.now() - (ex.days ?? 120) * 864e5).toISOString().slice(0, 10), out = new Map(), skipI = ex.skipTitle ? new RegExp(ex.skipTitle, "i") : null;
   for (const [via, terms] of [["n", ex.terms ?? []], ["i", ex.issueTerms ?? []]]) for (const term of terms) {
-    const params = { per_page: String(ex.perTerm ?? 40), order: "newest", "conditions[term]": term, "conditions[publication_date][gte]": since, _types: ["PRESDOCU"] };
+    const params = { per_page: String(BACKFILL ? (GOVB.execPerTerm ?? 500) : (ex.perTerm ?? 40)), order: "newest", "conditions[term]": term, "conditions[publication_date][gte]": since, _types: ["PRESDOCU"] };
     for (const r of await frGet(ex.api, params)) {
       const h = clean(r.title), u = safeUrl(r.html_url);
       if (!h || !u || !isGov(u)) continue;
@@ -393,10 +420,10 @@ async function pullBills(cg) {
   if (!API_KEY) return null;
   const api = (process.env.CONGRESS_API ?? cg.api ?? "https://api.congress.gov/v3").replace(/\/$/, "");
   const cong = cg.congress ?? Math.floor((new Date().getUTCFullYear() - 1789) / 2) + 1;
-  const from = new Date(Date.now() - (cg.days ?? 10) * 864e5).toISOString().replace(/\.\d+Z$/, "Z");
+  const from = new Date(BACKFILL ? FROM : Date.now() - (cg.days ?? 10) * 864e5).toISOString().replace(/\.\d+Z$/, "Z");
   const pages = async (path, field) => {
     const rows = [];
-    for (let p = 0; p < (cg.maxPages ?? 6); p++) {
+    for (let p = 0; p < (BACKFILL ? (GOVB.congressPages ?? 60) : (cg.maxPages ?? 6)); p++) {
       const q = new URLSearchParams({ format: "json", limit: "250", offset: String(p * 250), fromDateTime: from, sort: "updateDate desc" }), url = `${api}/${path}/${cong}?${q}`;
       if (!canAsk(url)) break;
       let got; try { got = (await keyed(url))[field] ?? []; } catch (e) { throw new Error(`${path}: ${e.message}`); }
@@ -433,16 +460,21 @@ async function pullRegs(rg) {
   const api = (rg.api ?? "https://api.regulations.gov/v4").replace(/\/$/, ""), today = new Date().toISOString().slice(0, 10), fr = cfg.federalRegister ?? {};
   const skipRe = rg.skipTitle ?? fr.skipTitle, skip = skipRe ? new RegExp(skipRe, "i") : null, out = new Map();
   const passes = [...(rg.terms ?? fr.terms ?? []).map(t => [t, "n"]), ...(rg.issueTerms ?? fr.issueTerms ?? []).map(t => [t, "i"])];
-  for (const [term, via] of passes) {
-    const url = api + "/documents?" + new URLSearchParams({ "filter[searchTerm]": term, "filter[commentEndDate][ge]": today, sort: "-postedDate", "page[size]": String(rg.pageSize ?? 25) });
+  // normally only documents open for comment right now; a backfill takes every document posted since "keepFrom" (a notice found only through a related-issue word is left out, there are too many)
+  const size = BACKFILL ? 250 : (rg.pageSize ?? 25);
+  for (const [term, via] of passes) for (let pg = 1; pg <= (BACKFILL ? (GOVB.regsPages ?? 4) : 1); pg++) {
+    const q = BACKFILL ? { "filter[searchTerm]": term, "filter[postedDate][ge]": FROM_DAY, sort: "-postedDate", "page[size]": String(size), "page[number]": String(pg) } : { "filter[searchTerm]": term, "filter[commentEndDate][ge]": today, sort: "-postedDate", "page[size]": String(size) };
+    const url = api + "/documents?" + new URLSearchParams(q);
     if (!canAsk(url)) break;
-    for (const r of (await keyed(url)).data ?? []) {
+    const rows = (await keyed(url)).data ?? [];
+    for (const r of rows) {
       const a = r.attributes ?? {}, h = clean(a.title), u = safeUrl(`https://www.regulations.gov/document/${r.id}`), dl = String(a.commentEndDate ?? "").slice(0, 10);
-      const rl = AAPI.test(h) ? "n" : (via === "i" && ISSUE.test(h)) ? "i" : "";
-      if (!h || !u || out.has(u) || a.withdrawn || !rl || dl < today || !["Proposed Rule", "Rule", "Notice"].includes(a.documentType) || (a.frDocNum && FR_DOCS.has(a.frDocNum)) || (skip && skip.test(h))) continue;
+      const rl = AAPI.test(h) ? "n" : (via === "i" && ISSUE.test(h) && !(BACKFILL && a.documentType === "Notice")) ? "i" : "";
+      if (!h || !u || out.has(u) || a.withdrawn || !rl || (!BACKFILL && dl < today) || !["Proposed Rule", "Rule", "Notice"].includes(a.documentType) || (a.frDocNum && FR_DOCS.has(a.frDocNum)) || (skip && skip.test(h))) continue;
       const d = new Date(a.postedDate ?? Date.now());
-      out.set(u, { id: createHash("sha1").update(u).digest("hex").slice(0, 12), d: isNaN(d) ? new Date().toISOString() : d.toISOString(), s: "Regulations.gov", h, m: "", u, g: 0, k: "official", ty: a.documentType, ag: clean(a.agencyId), rl, dl, ...TG.all(h, "", d, "GOVERNMENT") });
+      out.set(u, { id: createHash("sha1").update(u).digest("hex").slice(0, 12), d: isNaN(d) ? new Date().toISOString() : d.toISOString(), s: "Regulations.gov", h, m: "", u, g: 0, k: "official", ty: a.documentType, ag: clean(a.agencyId), rl, ...(dl ? { dl } : {}), ...TG.all(h, "", d, "GOVERNMENT") });
     }
+    if (rows.length < size) break;
   }
   return [...out.values()];
 }
@@ -454,11 +486,11 @@ const titleCase = t => t === t.toUpperCase() ? t.toLowerCase().replace(/(^|[\s(\
 async function pullGovInfo(gi) {
   if (!API_KEY) return null;
   const api = (gi.api ?? "https://api.govinfo.gov").replace(/\/$/, ""), fr = cfg.federalRegister ?? {}, cols = (gi.collections ?? Object.keys(GI)).filter(c => GI[c]);
-  const since = new Date(Date.now() - (gi.days ?? 120) * 864e5).toISOString().slice(0, 10), out = new Map();
+  const since = BACKFILL ? FROM_DAY : new Date(Date.now() - (gi.days ?? 120) * 864e5).toISOString().slice(0, 10), out = new Map();
   for (const [via, terms] of [["n", gi.terms ?? fr.terms ?? []], ["i", gi.issueTerms ?? fr.issueTerms ?? []]]) {
     if (!terms.length || !cols.length) continue;
     const query = `collection:(${cols.join(" OR ")}) AND publishdate:range(${since},) AND title:(${terms.join(" OR ")})`;
-    for (let page = 0, mark = "*"; page < (gi.maxPages ?? 2); page++) {
+    for (let page = 0, mark = "*"; page < (BACKFILL ? (GOVB.govinfoPages ?? 20) : (gi.maxPages ?? 2)); page++) {
       if (!canAsk(api)) break;
       const j = await keyed(api + "/search", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ query, pageSize: 100, offsetMark: mark, sorts: [{ field: "publishdate", sortOrder: "DESC" }], historical: false, resultLevel: "default" }) });
       for (const r of j.results ?? []) {
@@ -504,15 +536,19 @@ await runPolicy("Federal Register (executive actions)", FR_HOME, "order", cfg.ex
 await runPolicy("Congress.gov", "https://www.congress.gov", "bill", cfg.congress?.enabled, () => pullBills(cfg.congress));
 await runPolicy("Regulations.gov", "https://www.regulations.gov", "official", cfg.regulations?.enabled, () => pullRegs(cfg.regulations));
 await runPolicy("GovInfo", "https://www.govinfo.gov", "hearing", cfg.govinfo?.enabled, () => pullGovInfo(cfg.govinfo));
-if (cfg.apiBudget || API_KEY) console.log(`API key requests this run: ${(cfg.apiBudget?.perRun ?? 150) - LIM.left} of ${cfg.apiBudget?.perRun ?? 150} allowed`);
+if (cfg.apiBudget || API_KEY) { const allowed = BACKFILL ? (GOVB.apiRequests ?? 600) : (cfg.apiBudget?.perRun ?? 150); console.log(`API key requests this run: ${allowed - LIM.left} of ${allowed} allowed`); }
+if (BF) BF.print();
 console.log(status.map(s => `${s.ok ? "OK  " : "FAIL"} ${s.name}: ${s.ok ? s.count + " items" + (s.note ? " (" + s.note + ")" : "") : s.error}`).join("\n"));
-if (skippedLang.length) console.log("Skipped (not in English):\n  " + skippedLang.join("\n  "));
-if (skippedCat.length) console.log("Skipped (excluded category):\n  " + skippedCat.join("\n  "));
-if (skipped.length) console.log("Skipped (not about U.S. AAPI communities):\n  " + skipped.join("\n  "));
+const lines = (title, list) => { if (list.length) console.log(`${title}${list.length > 60 ? ` (${list.length}; the first 60)` : ""}:\n  ` + list.slice(0, 60).join("\n  ")); }; // a backfill skips thousands, so the log shows a sample
+lines("Skipped (not in English)", skippedLang);
+lines("Skipped (excluded category)", skippedCat);
+lines("Skipped (not about U.S. AAPI communities)", skipped);
 if (!status.some(s => s.ok)) { console.error("All sources failed; keeping previous data."); process.exit(1); }
 
 fresh.sort((a, b) => a.g - b.g); // direct outlets win over Google News duplicates
-const seen = new Set(), seenId = new Set(), items = [], now = Date.now();
+const seen = new Set(), seenAt = new Map(), seenId = new Set(), items = [], now = Date.now();
+// The same story turns up under two addresses (the outlet's own and Google News'), so a headline already taken within these days is a repeat. A year of stories holds headlines that repeat for real ("Weekly roundup"), months apart.
+const SAME_STORY_MS = 12 * 864e5;
 const keepFR = (cfg.federalRegister?.keepCommentsDays ?? 120) * 864e5, today = new Date().toISOString().slice(0, 10);
 const POL_KEEP = (cfg.policyKeepDays ?? 120) * 864e5, POL_MAX = cfg.policyMax ?? 300;
 // Stored items from before a rules change are re-tagged so every item has the current topic, communities, states and bills.
@@ -540,20 +576,25 @@ for (const it0 of [...fresh.map(renamed).map(settle), ...old.map(retag), ...oldP
   const pol = isPolicy(it.k);
   if (pol && !govItem(it)) continue; // the Policy tracker takes .gov sources only
   const k = pol ? it.u : it.h.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim().slice(0, 70); // companion bills can share a title, so policy items are told apart by link
-  const open = it.dl && it.dl >= today && now - new Date(it.d) < keepFR;
-  if (!k || seen.has(k) || seenId.has(it.id) || (now - new Date(it.d) > (pol ? POL_KEEP : keepOf(it)) && !open && !A.pinned[it.id])) continue;
+  const open = it.dl && it.dl >= today && now - new Date(it.d) < keepFR, at = Date.parse(it.d);
+  const repeat = pol ? seen.has(k) : (seenAt.get(k) ?? []).some(t => Math.abs(t - at) < SAME_STORY_MS);
+  if (!k || repeat || seenId.has(it.id) || (now - new Date(it.d) > (pol ? POL_KEEP : keepOf(it)) && !open && !A.pinned[it.id] && !inRange(it))) continue;
   if (!pol && ((!isOrg(it.k) && abroadOnly(it.h + " " + (it.m ?? ""))) || !isEnglish(it.h + " " + (it.m ?? "")))) continue;
-  seen.add(k); seenId.add(it.id); items.push(it);
+  if (pol) seen.add(k); else seenAt.set(k, [...(seenAt.get(k) ?? []), at]);
+  seenId.add(it.id); items.push(it);
 }
 if (gateLog.length) console.log(`Dropped (a gated site: only the stories its gate allows are kept): ${gateLog.length}\n  ` + gateLog.slice(0, 40).join("\n  "));
 if (offTopicLog.length) console.log(`Dropped (headline does not name AAPI communities): ${offTopicLog.length}\n  ` + offTopicLog.slice(0, 40).join("\n  "));
 // The owner's decisions: items added by hand or restored from the trash join the others (kept, or aged out like any other unless "kept permanently"); edits go on top of what was collected; an item that needs approval goes to the waiting list.
 const oldIds = new Set(old.map(i => i.id)), oldPendIds = new Set(oldPending.map(i => i.id));
-for (const m of A.added) if (!A.deleted[m.id] && !seenId.has(m.id) && (A.pinned[m.id] || now - Date.parse(m.d) <= keepOf(m))) { seenId.add(m.id); items.push({ ...m, g: 1 }); }
+for (const m of A.added) if (!A.deleted[m.id] && !seenId.has(m.id) && (A.pinned[m.id] || inRange(m) || now - Date.parse(m.d) <= keepOf(m))) { seenId.add(m.id); items.push({ ...m, g: 1 }); }
 const live = [], waiting = [];
-for (const it0 of items) { const it = applyEdits(it0, A); (placeOf(A, it, { live: oldIds.has(it.id), pending: oldPendIds.has(it.id) }) === "pending" ? waiting : live).push(it); }
+// A story the backfill found is the owner's own request for the year's record, so it goes live even when new stories wait for approval; one the owner already holds back, or that already waits, stays as it is.
+for (const it0 of items) { const it = applyEdits(it0, A); (placeOf(A, it, { live: oldIds.has(it.id) || (BACKFILL && !oldPendIds.has(it.id)), pending: oldPendIds.has(it.id) }) === "pending" ? waiting : live).push(it); }
 live.sort((a, b) => b.d.localeCompare(a.d)); waiting.sort((a, b) => b.d.localeCompare(a.d));
-const kept = [...live.filter(i => !isPolicy(i.k) && i.k !== "research" && !held(i)).slice(0, MAX), ...live.filter(i => !isPolicy(i.k) && i.k !== "research" && held(i)), ...live.filter(i => i.k === "research").slice(0, RES_MAX), ...live.filter(i => isPolicy(i.k)).slice(0, POL_MAX)].sort((a, b) => b.d.localeCompare(a.d));
+// News, Research and Policy are each capped, except the stories that are held (published on or after "keepFrom", or from a source with "keepSince"): those are all kept.
+const capped = (list, max) => [...list.filter(i => !held(i)).slice(0, max), ...list.filter(held)];
+const kept = [...capped(live.filter(i => !isPolicy(i.k) && i.k !== "research"), MAX), ...capped(live.filter(i => i.k === "research"), RES_MAX), ...capped(live.filter(i => isPolicy(i.k)), POL_MAX)].sort((a, b) => b.d.localeCompare(a.d));
 const arts = new Map(kept.filter(i => i.art).map(i => [i.id, i.art]));
 const slim = o => Object.fromEntries(Object.entries(o).filter(([, v]) => !(Array.isArray(v) && !v.length) && v !== "" && v !== undefined));
 const out = kept.map(({ g, art, ...rest }) => slim(rest));

@@ -28,7 +28,7 @@ const deadlines = all.filter(x => x.dl && x.dl >= todayIso && x.dl <= horizon).s
 const POLICY = new Set(tax.policyKinds ?? []), groups = cluster(fresh, x => POLICY.has(x.k)), outletsOf = new Map(); groups.forEach(g => g.items.forEach(x => outletsOf.set(x, g.outlets)));
 const multi = groups.filter(g => g.outlets.length > 1).sort((a, b) => b.outlets.length - a.outlets.length).slice(0, 5);
 const tags = x => [...(x.cm ?? []).map(k => CL[k]), ...(x.st ?? []).map(k => SL[k])].filter(Boolean).join(", ");
-const KIND = { statement: "Statement", research: "Research", bill: "Bill", official: "Rule or notice", order: "Executive action", govstmt: "Government statement", hearing: "Hearing or report", community: "", news: "" };
+const KIND = { statement: "Statement", research: "Research", bill: "Bill", statebill: "State bill", official: "Rule or notice", order: "Executive action", govstmt: "Government statement", hearing: "Hearing or report", community: "", news: "" };
 const kindTag = x => POLICY.has(x.k) ? ([x.ty, x.ag === x.s ? "" : x.ag].filter(Boolean).join(" · ") || KIND[x.k]) : (KIND[x.k] ?? "");
 const line = x => ({ h: x.h, u: x.u, meta: [x.s, kindTag(x), day(x.d), tags(x), (x.bl ?? []).map(b => b.n).join(", ")].filter(Boolean).join(" · "), cov: (outletsOf.get(x)?.length ?? 1) > 1 ? ` (also covered by ${outletsOf.get(x).length - 1} other outlet${outletsOf.get(x).length > 2 ? "s" : ""})` : "" });
 

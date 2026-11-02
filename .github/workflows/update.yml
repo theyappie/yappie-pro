@@ -80,6 +80,8 @@ jobs:
           # optional: one free api.data.gov key (api.congress.gov/sign-up) for Congress.gov, Regulations.gov and GovInfo; without it the Policy tab skips those three
           API_DATA_GOV_KEY: ${{ secrets.API_DATA_GOV_KEY }}
           CONGRESS_API_KEY: ${{ secrets.CONGRESS_API_KEY }}
+          # optional: a free Open States key (open.pluralpolicy.com/accounts/profile) for state bills on the Policy tab; without it that source is skipped
+          OPENSTATES_API_KEY: ${{ secrets.OPENSTATES_API_KEY }}
           # started by hand with "backfill" ticked: read each source back to keepFrom (scripts/backfill.mjs)
           BACKFILL: ${{ inputs.backfill && '1' || '' }}
           BACKFILL_ONLY: ${{ inputs.only }}

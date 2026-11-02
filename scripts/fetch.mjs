@@ -460,6 +460,50 @@ async function pullBills(cg) {
   });
 }
 
+// Open States API v3 (free key from https://open.pluralpolicy.com/accounts/profile/, read from OPENSTATES_API_KEY): state bills whose title or summary names AAPI communities. A free key allows only a modest number of
+// requests, so a run asks about each term for at most maxPages pages, spaces its requests out, and the whole check happens only every everyMinutes (the time of the last check is kept in data/openstates-state.json).
+const OS_KEY = process.env.OPENSTATES_API_KEY || "";
+const NO_OS_KEY = "skipped: no API key set (OPENSTATES_API_KEY)";
+const STATE_CODE = new Map(TAXO.states.map(([k, n]) => [n.toLowerCase(), k]));
+if (STATE_CODE.has("washington, d.c.")) STATE_CODE.set("district of columbia", STATE_CODE.get("washington, d.c.")); // Open States calls it the District of Columbia
+async function pullStateBills(os) {
+  if (!OS_KEY) return null;
+  const stFile = join(dirname(OUT), "openstates-state.json"), every = (os.everyMinutes ?? 180) * 60000, now0 = Date.now();
+  let last = 0; if (!BACKFILL) { try { last = Date.parse(JSON.parse(await readFile(stFile, "utf8")).at) || 0; } catch {} }
+  if (last && now0 >= last && now0 - last < every) { const r = []; r.note = `checked ${Math.max(1, Math.round((now0 - last) / 60000))} minutes ago; next check in about ${Math.max(1, Math.round((every - (now0 - last)) / 60000))} minutes`; return r; }
+  const api = (process.env.OPENSTATES_API ?? os.api ?? "https://v3.openstates.org").replace(/\/$/, "");
+  const since = new Date(BACKFILL ? FROM : now0 - (os.days ?? 14) * 864e5).toISOString().slice(0, 10);
+  const delay = Number(process.env.OPENSTATES_DELAY_MS ?? os.delayMs ?? 7000), sleep = ms => ms > 0 ? new Promise(r => setTimeout(r, ms)) : null;
+  let left = BACKFILL ? (os.backfillRequests ?? 120) : (os.maxRequests ?? 12), stopped = "", perPage = os.perPage ?? 20, asked = 0;
+  const found = new Map();
+  const keep = b => {
+    const h = clean(b.title), ab = clean((Array.isArray(b.abstracts) ? b.abstracts : []).map(a => a?.abstract).find(Boolean) ?? ""), u = String(b.openstates_url ?? ""), ident = clean(b.identifier);
+    if (!h || !ident || !/^https:\/\/openstates\.org\//i.test(u) || found.has(u)) return;
+    if (!AAPI.test(h + " " + ab)) return; // the search matches the whole text of a bill; only a bill whose title or summary names the communities is listed
+    const name = clean(b.jurisdiction?.name), code = STATE_CODE.get(name.toLowerCase()) ?? "", when = String(b.latest_action_date || b.updated_at || "").slice(0, 10);
+    const d = new Date(/^\d{4}-\d{2}-\d{2}$/.test(when) ? when + "T12:00:00Z" : Date.now());
+    found.set(u, { id: createHash("sha1").update(u).digest("hex").slice(0, 12), d: isNaN(d) ? new Date().toISOString() : d.toISOString(), s: "Open States", h, m: sentences(ab), u, g: 0, k: "statebill", ty: ident.slice(0, 40), ag: name, rl: "n",
+      ...(b.latest_action_description ? { la: clean(b.latest_action_description).slice(0, 200) } : {}), ...TG.all(h, ab, d, "GOVERNMENT"), ...(code ? { st: [code] } : {}) });
+  };
+  terms: for (const term of os.terms ?? ["Asian American", "Pacific Islander", "Native Hawaiian", "AAPI", "Hmong"]) {
+    for (let page = 1; page <= (os.maxPages ?? 2); page++) {
+      if (left <= 0) { stopped ||= "stopped early: this run's request budget is used up"; break terms; }
+      left--; if (asked++) await sleep(delay);
+      const q = new URLSearchParams({ q: term, updated_since: since, per_page: String(perPage), page: String(page) }); q.append("include", "abstracts");
+      let res = await fetch(`${api}/bills?${q}`, { headers: { ...GOV_UA, "x-api-key": OS_KEY }, signal: AbortSignal.timeout(30000) });
+      if (res.status === 422 && perPage > 10) { perPage = 10; q.set("per_page", "10"); await sleep(delay); res = await fetch(`${api}/bills?${q}`, { headers: { ...GOV_UA, "x-api-key": OS_KEY }, signal: AbortSignal.timeout(30000) }); }
+      if (res.status === 429) { stopped = "stopped early: rate limited (HTTP 429)"; break terms; }
+      if (res.status === 401 || res.status === 403) throw new Error(`the API key was refused (HTTP ${res.status})`);
+      if (!res.ok) throw new Error("bills: HTTP " + res.status);
+      const j = await res.json(), rows = Array.isArray(j.results) ? j.results : [];
+      rows.forEach(keep);
+      if (page >= (Number(j.pagination?.max_page) || 1) || !rows.length) break;
+    }
+  }
+  try { await mkdir(dirname(stFile), { recursive: true }); await writeFile(stFile, JSON.stringify({ at: new Date().toISOString(), requests: asked }) + "\n"); } catch {}
+  const out = [...found.values()]; if (stopped) out.note = stopped; return out;
+}
+
 // Regulations.gov (API v4): documents that are open for comment right now. The list view carries no summary, so relevance is judged on the title.
 // Federal Register documents already listed by pullFR (same document number) are not repeated.
 async function pullRegs(rg) {
@@ -534,10 +578,10 @@ await Promise.all(cfg.sources.filter(s => s.enabled !== false && !foreignSources
   catch (e) { status.push({ name: s.name, home: s.home, kind: s.kind ?? kindOf(s.asName ?? s.name), ok: false, error: String(e.message ?? e) }); }
 }));
 const FR_HOME = "https://www.federalregister.gov";
-const runPolicy = async (name, home, kind, on, fn) => {
+const runPolicy = async (name, home, kind, on, fn, noKey = NO_KEY) => {
   if (!on) return;
   const stopNote = () => { const n = LIM.stopped; LIM.stopped = ""; return n ? { note: n } : {}; };
-  try { const r = await fn(); if (r === null) status.push({ name, home, kind, ok: true, count: 0, note: NO_KEY }); else { fresh.push(...r); status.push({ name, home, kind, ok: true, count: r.length, ...stopNote() }); } }
+  try { const r = await fn(); if (r === null) status.push({ name, home, kind, ok: true, count: 0, note: noKey }); else { fresh.push(...r); status.push({ name, home, kind, ok: true, count: r.length, ...(r.note ? { note: r.note } : stopNote()) }); } }
   catch (e) { status.push({ name, home, kind, ok: false, error: String(e.message ?? e), ...stopNote() }); }
 };
 await runPolicy("Federal Register", FR_HOME, "official", cfg.federalRegister?.enabled, () => pullFR(cfg.federalRegister));
@@ -545,6 +589,7 @@ await runPolicy("Federal Register (executive actions)", FR_HOME, "order", cfg.ex
 await runPolicy("Congress.gov", "https://www.congress.gov", "bill", cfg.congress?.enabled, () => pullBills(cfg.congress));
 await runPolicy("Regulations.gov", "https://www.regulations.gov", "official", cfg.regulations?.enabled, () => pullRegs(cfg.regulations));
 await runPolicy("GovInfo", "https://www.govinfo.gov", "hearing", cfg.govinfo?.enabled, () => pullGovInfo(cfg.govinfo));
+await runPolicy("Open States", "https://openstates.org", "statebill", cfg.openStates?.enabled, () => pullStateBills(cfg.openStates), NO_OS_KEY);
 if (cfg.apiBudget || API_KEY) { const allowed = BACKFILL ? (GOVB.apiRequests ?? 600) : (cfg.apiBudget?.perRun ?? 150); console.log(`API key requests this run: ${allowed - LIM.left} of ${allowed} allowed`); }
 if (BF) BF.print();
 console.log(status.map(s => `${s.ok ? "OK  " : "FAIL"} ${s.name}: ${s.ok ? s.count + " items" + (s.note ? " (" + s.note + ")" : "") : s.error}`).join("\n"));
@@ -583,7 +628,7 @@ for (const it0 of [...fresh.map(renamed).map(settle), ...old.map(retag), ...oldP
   if (gateFails(it)) { gateLog.push(it.s + ": " + it.h); continue; }
   if (offTopic(it)) { offTopicLog.push(it.s + ": " + it.h); continue; }
   const pol = isPolicy(it.k);
-  if (pol && !govItem(it)) continue; // the Policy tracker takes .gov sources only
+  if (pol && it.k !== "statebill" && !govItem(it)) continue; // the Policy tracker takes .gov sources only (state bills come through Open States, whose pages link to each legislature)
   const k = pol ? it.u : it.h.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim().slice(0, 70); // companion bills can share a title, so policy items are told apart by link
   const open = it.dl && it.dl >= today && now - new Date(it.d) < keepFR, at = Date.parse(it.d);
   const repeat = pol ? seen.has(k) : (seenAt.get(k) ?? []).some(t => Math.abs(t - at) < SAME_STORY_MS);

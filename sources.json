@@ -816,6 +816,18 @@
   },
   "policyKeepDays": 120,
   "policyMax": 300,
+  "openStates": {
+    "_note": "State bills (Open States v3). Needs the free OPENSTATES_API_KEY secret; without it this source is skipped. Only bills whose title or summary names the community are kept. Asks at most every everyMinutes, using at most maxRequests calls, so the free plan's limits are respected.",
+    "enabled": true,
+    "api": "https://v3.openstates.org",
+    "everyMinutes": 180,
+    "perPage": 20,
+    "maxPages": 2,
+    "maxRequests": 12,
+    "days": 14,
+    "delayMs": 7000,
+    "terms": ["Asian American", "Pacific Islander", "Native Hawaiian", "AAPI", "Hmong"]
+  },
   "events": {
     "_note": "Events and funding deadlines (scripts/events.mjs). hearings: committee meetings from the Congress.gov API (needs the free api.data.gov key), kept only when they are about the issues the site follows. grants: open Grants.gov opportunities that match the keywords. feeds: starter calendar feeds (iCalendar); the site owner adds more, or stops following these, in the admin dashboard (Settings, Event calendars).",
     "keepPastDays": 7,

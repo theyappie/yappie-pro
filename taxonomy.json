@@ -553,6 +553,7 @@
   "statement": "Statements",
   "research": "Research",
   "bill": "Legislation",
+  "statebill": "State legislation",
   "official": "Rules & notices",
   "order": "Executive actions",
   "govstmt": "Government statements",
@@ -560,6 +561,7 @@
  },
  "policyKinds": [
   "bill",
+  "statebill",
   "official",
   "order",
   "govstmt",

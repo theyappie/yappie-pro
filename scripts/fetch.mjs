@@ -6,7 +6,7 @@ import { fileURLToPath } from "node:url";
 import { XMLParser } from "fast-xml-parser";
 import { makeTagger, TAXO_PATH } from "./tag.mjs";
 import { makeEnglishCheck } from "./lang.mjs";
-import { normalizeState, applyEdits, placeOf } from "./admin.mjs";
+import { normalizeState, applyEdits, placeOf, withCustom, newsKindKeys, feedTaxo } from "./admin.mjs";
 
 const CFG = process.env.SOURCES ?? fileURLToPath(new URL("../sources.json", import.meta.url));
 const OUT = process.env.OUT ?? fileURLToPath(new URL("../data/feed.json", import.meta.url));
@@ -50,8 +50,19 @@ const parser = new XMLParser({ ignoreAttributes: false, attributeNamePrefix: "@_
 const AAPI = /\b(asian[- ]americans?|aapi|aanhpi|nhpi|pacific islanders?|native hawaiians?|hawai\S*|guam|chamorro|samoa\w*|micronesia\w*|marshallese|cofa|palau|tongan|fijian|filipino|chinese americans?|korean americans?|japanese americans?|hmong|cambodian|laotian|south asian|indian americans?|sikh|stop aapi hate|anti-asian|chinatown|little tokyo|koreatown|japantown|little saigon|manilatown|nisei|sansei|yonsei|issei|nikkei|jacl|manzanar|tule lake|heart mountain)\b/i;
 
 // Tags (topic, communities, states, bills) come from taxonomy.json, which the page and the PHP collector read too.
-const TG = makeTagger();
-const isEnglish = makeEnglishCheck(JSON.parse(await readFile(TAXO_PATH, "utf8"))); // English-language stories only
+// The owner's decisions from the admin dashboard (admin.json: edits, deleted and approved items, items added by hand, topics, communities and News categories of their own; see scripts/admin.mjs) and the items waiting for approval (pending.json).
+// They are private, so on the real site they live in a separate private repository that the update job checks out; ADMIN_DIR is that folder. Without ADMIN_DIR they sit next to feed.json (for a local run).
+// They are read first because the owner's own topics and communities are part of the tagger.
+const ADMIN_DIR = process.env.ADMIN_DIR || dirname(OUT);
+if (process.env.ADMIN_DIR && !(await stat(ADMIN_DIR).then(x => x.isDirectory(), () => false))) { console.error(`ADMIN_DIR (${ADMIN_DIR}) is not a folder; stopping so the owner's decisions are not skipped.`); process.exit(1); }
+let A = normalizeState(null), oldPending = [];
+try { A = normalizeState(JSON.parse(await readFile(join(ADMIN_DIR, "admin.json"), "utf8"))); }
+catch (e) { if (e.code !== "ENOENT") { console.error("admin.json cannot be read (" + e.message + "); keeping the previous data so the owner's decisions are not lost."); process.exit(1); } } // no file: no decisions yet
+try { oldPending = JSON.parse(await readFile(join(ADMIN_DIR, "pending.json"), "utf8")).items ?? []; } catch { /* nothing waiting */ }
+const TAXO_BASE = JSON.parse(await readFile(TAXO_PATH, "utf8")), TAXO = withCustom(TAXO_BASE, A.settings); // TAXO: taxonomy.json plus the owner's own topics (with their keywords), communities and categories
+const TG = makeTagger(TAXO);
+const isEnglish = makeEnglishCheck(TAXO_BASE); // English-language stories only
+const CUSTOM_TOPICS = new Set(A.settings.topics.map(t => t.k)), CUSTOM_CM = new Set(A.settings.communities.map(c => c.k)), VALID_CM = new Set(TAXO.communities.map(c => c.k));
 // Policy tracker: only .gov sources. An item either names AAPI communities ("n") or touches a related issue ("i").
 const POLICY = TG.policyKinds, ISSUE = TG.issue, isPolicy = k => POLICY.has(k);
 const isGov = u => /(^|\.)gov$/.test(hostOf(u));
@@ -93,7 +104,17 @@ const skipped = [];
 // Where a story belongs. A story that links to a .gov address moves from News to the Policy page. "routes" in sources.json send a named site or publisher to another page (Asian Law Caucus to Advocacy).
 const govHost = h => /(^|\.)gov$/.test(h ?? "");
 const govItem = o => govHost(hostOf(o.u)) || pubHosts(o).some(govHost);
-const NEWS_KINDS = new Set(["news", "community"]);
+const NEWS_KINDS = newsKindKeys(A.settings); // the News page's categories: AAPI Media ("community"), Mainstream ("news") and the owner's own
+const BASE_KINDS = new Set(Object.keys(TAXO_BASE.kinds ?? {}));
+const SRC_KIND = new Map(Object.entries(A.settings.sourceKinds).filter(([, k]) => NEWS_KINDS.has(k)).map(([n, k]) => [normName(n), k])); // the owner's choice of category for a source (dashboard)
+// The category of a News story follows its source: the owner's choice if there is one, otherwise sources.json ("kinds"). Statements, Research and the Policy kinds are not News categories and stay as they are.
+const EXPLICIT = new Map(cfg.sources.filter(x => x.kind).flatMap(x => [x.name, x.asName].filter(Boolean).map(n => [normName(n), x.kind]))); // a source typed in sources.json ("kind") keeps that type
+const withSourceKind = o => {
+  const inNews = NEWS_KINDS.has(o.k);
+  if (!inNews && BASE_KINDS.has(o.k)) return o;
+  const base = EXPLICIT.get(normName(o.s)) ?? kindOf(o.s), want = SRC_KIND.get(normName(o.s)) ?? (NEWS_KINDS.has(base) ? base : inNews ? o.k : "news"); // a category the owner has since removed falls back to the source's usual one
+  return want === o.k ? o : { ...o, k: want };
+};
 const inList = (h, list) => !!h && list.some(d => h === d || h.endsWith("." + d));
 const ROUTES = (cfg.routes ?? []).map(r => { const hosts = (r.hosts ?? []).map(h => h.toLowerCase()); return { kind: r.kind, hosts, names: new Set([...(r.names ?? []), ...hosts].flatMap(n => [normName(n), normName(noTld(n))]).filter(Boolean)) }; });
 const routeOf = o => ROUTES.find(r => inList(hostOf(o.u), r.hosts) || pubHosts(o).some(h => inList(h, r.hosts)) || r.names.has(normName(o.s)) || r.names.has(normName(noTld(o.s))))?.kind;
@@ -457,16 +478,8 @@ async function pullGovInfo(gi) {
   return [...out.values()];
 }
 
-let old = [], oldSources = [];
-try { const prev = JSON.parse(await readFile(OUT, "utf8")); old = prev.items ?? []; oldSources = prev.sources ?? []; } catch {}
-// The owner's decisions from the admin dashboard (admin.json: edits, deleted and approved items, items added by hand; see scripts/admin.mjs) and the items waiting for approval (pending.json).
-// They are private, so on the real site they live in a separate private repository that the update job checks out; ADMIN_DIR is that folder. Without ADMIN_DIR they sit next to feed.json (for a local run).
-const ADMIN_DIR = process.env.ADMIN_DIR || dirname(OUT);
-if (process.env.ADMIN_DIR && !(await stat(ADMIN_DIR).then(x => x.isDirectory(), () => false))) { console.error(`ADMIN_DIR (${ADMIN_DIR}) is not a folder; stopping so the owner's decisions are not skipped.`); process.exit(1); }
-let A = normalizeState(null), oldPending = [];
-try { A = normalizeState(JSON.parse(await readFile(join(ADMIN_DIR, "admin.json"), "utf8"))); }
-catch (e) { if (e.code !== "ENOENT") { console.error("admin.json cannot be read (" + e.message + "); keeping the previous data so the owner's decisions are not lost."); process.exit(1); } } // no file: no decisions yet
-try { oldPending = JSON.parse(await readFile(join(ADMIN_DIR, "pending.json"), "utf8")).items ?? []; } catch { /* nothing waiting */ }
+let old = [], oldSources = [], oldTaxo = null;
+try { const prev = JSON.parse(await readFile(OUT, "utf8")); old = prev.items ?? []; oldSources = prev.sources ?? []; oldTaxo = prev.taxo ?? null; } catch {}
 const PEND_MAX = cfg.pendingMax ?? 500;
 const status = [], fresh = [];
 const foreignSources = cfg.sources.filter(s => s.enabled !== false && !s.google && hostForeign(hostOf(s.feed ?? s.page ?? s.wp)));
@@ -504,7 +517,9 @@ const POL_KEEP = (cfg.policyKeepDays ?? 120) * 864e5, POL_MAX = cfg.policyMax ??
 const renamed = o => { const s = cfg.renames?.[o.s]; return s ? { ...o, s } : o; };
 const retag = o => {
   const tg = TG.all(o.h, o.m ?? "", o.d, isPolicy(o.k) ? "GOVERNMENT" : undefined), force = !!process.env.RETAG, s = cfg.renames?.[o.s] ?? o.s;
-  return { ...o, s, g: 1, k: o.k ?? kindOf(s), t: !force && VALID.has(o.t) ? o.t : tg.t, cm: !force && o.cm ? o.cm : tg.cm, st: !force && o.st ? o.st : tg.st, bl: !force && o.bl ? o.bl : tg.bl };
+  // The owner's own topics and communities also apply to stories already stored (a new keyword finds old stories too); a story keeps its other tags. A removed topic or community of the owner's is dropped.
+  const keptCm = force || !Array.isArray(o.cm) ? [] : o.cm.filter(c => VALID_CM.has(c)), cm = [...new Set([...(keptCm.length ? keptCm : tg.cm), ...tg.cm.filter(c => CUSTOM_CM.has(c))])];
+  return { ...o, s, g: 1, k: o.k ?? kindOf(s), t: CUSTOM_TOPICS.has(tg.t) ? tg.t : !force && VALID.has(o.t) ? o.t : tg.t, cm, st: !force && o.st ? o.st : tg.st, bl: !force && o.bl ? o.bl : tg.bl };
 };
 learnHosts([...old, ...fresh, ...old.map(renamed), ...fresh.map(renamed)]); // a publisher shown under its new name keeps its web address
 const offTopicLog = [], gateLog = [];
@@ -512,7 +527,7 @@ for (const it0 of [...fresh.map(renamed), ...old.map(retag), ...oldPending.map(r
   if (catDropIds.has(it0.id)) continue; // a story in an excluded category, stored by an earlier run
   if (A.deleted[it0.id]) continue; // deleted in the admin dashboard: never collected again
   if (blocked(it0)) continue; // a blocked site, or a site on a non-U.S. domain, is dropped from stored stories too
-  const it = reroute(it0);
+  const it = reroute(withSourceKind(it0));
   if (gateFails(it)) { gateLog.push(it.s + ": " + it.h); continue; }
   if (offTopic(it)) { offTopicLog.push(it.s + ": " + it.h); continue; }
   const pol = isPolicy(it.k);
@@ -573,7 +588,8 @@ const pendOut = waiting.slice(0, PEND_MAX).map(({ g, art, ...rest }) => {
 });
 if (JSON.stringify(pendOut) !== JSON.stringify(oldPending) && (pendOut.length || oldPending.length)) await writeFile(join(ADMIN_DIR, "pending.json"), JSON.stringify({ generated: new Date().toISOString(), items: pendOut }));
 const pubSources = status.map(({ name, home, kind, ok, count, note }) => ({ name, home, kind, ok, count, note }));
-if (JSON.stringify(out) === JSON.stringify(old) && JSON.stringify(pubSources) === JSON.stringify(oldSources)) { console.log("No changes."); process.exit(0); }
+const taxo = feedTaxo(A.settings); // names (never keywords) of the owner's own topics, communities and categories, so the page can show them
+if (JSON.stringify(out) === JSON.stringify(old) && JSON.stringify(pubSources) === JSON.stringify(oldSources) && JSON.stringify(taxo) === JSON.stringify(oldTaxo)) { console.log("No changes."); process.exit(0); }
 await mkdir(dirname(OUT), { recursive: true });
-await writeFile(OUT, JSON.stringify({ generated: new Date().toISOString(), sources: pubSources, items: out }));
+await writeFile(OUT, JSON.stringify({ generated: new Date().toISOString(), sources: pubSources, ...(taxo ? { taxo } : {}), items: out }));
 console.log(`Wrote ${out.length} items.`);

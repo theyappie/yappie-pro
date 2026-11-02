@@ -3,12 +3,14 @@
 import { readFile, writeFile, mkdir, readdir, unlink } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { withFeedTaxo } from "./admin.mjs";
 
 const ROOT = fileURLToPath(new URL("..", import.meta.url));
 const FEED = process.env.OUT ?? join(ROOT, "data/feed.json");
-const tax = JSON.parse(await readFile(join(ROOT, "taxonomy.json"), "utf8"));
+const tax0 = JSON.parse(await readFile(join(ROOT, "taxonomy.json"), "utf8"));
 const cfg = JSON.parse(await readFile(process.env.SOURCES ?? join(ROOT, "sources.json"), "utf8"));
 const feed = JSON.parse(await readFile(FEED, "utf8"));
+const tax = withFeedTaxo(tax0, feed.taxo); // plus the owner's own topics, communities and News categories (names only)
 const SITE = (process.env.SITE_URL ?? cfg.siteUrl ?? "").replace(/\/$/, "");
 const items = feed.items ?? [], stamp = new Date(feed.generated ?? Date.now());
 const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");

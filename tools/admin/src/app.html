@@ -124,6 +124,25 @@ legend{font-weight:650;font-size:13px;padding:0 6px}
 .opt input{margin-top:4px;accent-color:var(--ac)}
 .opt b{display:block}
 .srcs{max-height:280px;overflow:auto;border:1px solid var(--ln);border-radius:8px;padding:8px;display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:4px 12px;margin:8px 0}
+.cl{display:grid;gap:12px;margin:10px 0}
+.cr{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr) auto;gap:10px 12px;align-items:start;padding:12px;border:1px solid var(--ln);border-radius:10px;background:var(--bg)}
+.cr.one{grid-template-columns:minmax(0,1fr) auto}
+.cr .btn{align-self:end}
+.cr input,.cr textarea{border:1px solid var(--ln);background:var(--pn);border-radius:8px;padding:8px 10px;width:100%}
+.cr textarea{min-height:70px;resize:vertical}
+.hint{font-size:13px;color:var(--dm)}
+.srclist{border:1px solid var(--ln);border-radius:10px;max-height:540px;overflow:auto;background:var(--pn)}
+.srow{display:grid;grid-template-columns:minmax(0,1fr) 110px minmax(150px,230px);gap:8px 12px;align-items:center;padding:8px 12px;border-top:1px solid var(--ln)}
+.srow:first-child{border-top:0}
+.srow.ch{background:color-mix(in srgb,var(--sel) 55%,transparent)}
+.srow .nm{overflow-wrap:anywhere;font-weight:600}
+.srow .ct{font-size:12.5px;color:var(--dm)}
+.srow select{width:100%;border:1px solid var(--ln);background:var(--pn);border-radius:8px;padding:6px 8px}
+.srcbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:8px 0}
+.srcbar.sel{padding:8px 12px;border-radius:10px;background:var(--sel)}
+.srcbar input[type=search],.srcbar select{border:1px solid var(--ln);background:var(--pn);border-radius:8px;padding:8px 10px;max-width:100%}
+.srcbar input[type=search]{flex:1 1 220px;min-width:0}
+@media (max-width:620px){.cr,.cr.one{grid-template-columns:1fr}.srow{grid-template-columns:1fr}}
 ul.log{list-style:none;margin:0;padding:0}
 ul.log li{display:flex;gap:12px;padding:10px 4px;border-top:1px solid var(--ln);flex-wrap:wrap}
 ul.log li:first-child{border-top:0}
@@ -164,7 +183,7 @@ ul.log time{color:var(--dm);min-width:170px;font-size:13px}
 "use strict";
 const CORE = (() => {
 {{CORE}}
-return { normalizeState, applyEdits, placeOf, sanitizeHtml };
+return { normalizeState, applyEdits, placeOf, sanitizeHtml, withCustom, newsKindKeys, LIMITS };
 })();
 (() => {
 const CFG = JSON.parse(document.getElementById("cfg").textContent), NONCE = document.getElementById("cfg").nonce || "";
@@ -205,7 +224,7 @@ async function api(path, body) {
 }
 
 // ---------------------------------------------------------------- data
-const D = { S: CORE.normalizeState(null), feed: [], pending: [], tax: { topics: [], communities: [], states: [], kinds: {}, default: "CULTURE" }, srcCfg: [], live: [], wait: [], trash: [], rows: new Map(), ready: false };
+const D = { S: CORE.normalizeState(null), feed: [], pending: [], tax: { topics: [], communities: [], states: [], kinds: {}, default: "CULTURE" }, taxBase: null, srcKinds: {}, srcCfg: [], live: [], wait: [], trash: [], rows: new Map(), ready: false };
 const F = { q: "", src: "", kind: "", topic: "", cm: "", st: "", only: "", sort: "new", limit: 100 };
 let TAB = "live", sel = new Set(), busy = false;
 const kindLabel = k => D.tax.kinds[k] || k || "";
@@ -216,11 +235,12 @@ const stName = k => (D.tax.states.find(s => s[0] === k) || [])[1] || k;
 async function loadAll() {
   const names = ["feed", "pending", "state", "taxonomy", "sources"];
   const [feed, pend, state, tax, src] = await Promise.all(names.map(n => api("/api/raw/" + n)));
-  D.feed = feed.items || []; D.pending = pend.items || []; D.S = CORE.normalizeState(state); D.tax = tax; D.srcCfg = src.sources || []; D.ready = true;
+  D.feed = feed.items || []; D.pending = pend.items || []; D.S = CORE.normalizeState(state); D.taxBase = tax; D.srcKinds = src.kinds || {}; D.srcCfg = src.sources || []; RSC = null; D.ready = true;
   rebuild();
 }
 function rebuild() {
   const S = D.S, rows = new Map();
+  if (D.taxBase) D.tax = CORE.withCustom(D.taxBase, S.settings); // the built-in topics, communities and sections plus the owner's own
   const put = (it, where) => { if (!rows.has(it.id)) rows.set(it.id, { id: it.id, raw: it, where }); };
   for (const it of D.feed) put(it, "live");
   for (const it of D.pending) put(it, "pending");
@@ -265,7 +285,7 @@ async function act(op, args, { undo, quiet } = {}) {
   busy = true; setStatus();
   try {
     const r = await api("/api/op", { op, args });
-    D.S = CORE.normalizeState(r.state); rebuild(); render();
+    const y = scrollY; D.S = CORE.normalizeState(r.state); rebuild(); render(); if (TAB === "settings") scrollTo(0, y);
     if (!quiet) toast(r.summary, undo ? { undo: () => undo(r) } : {});
     pollSoon(); return r;
   } catch (e) { toast(e.message, { bad: true }); return null; }
@@ -396,7 +416,7 @@ function rowEl(r) {
   if (r.dirty && !isTrash) badges.push(h("span", { class: "b wait" }, r.target !== r.where && r.where !== "new" ? (r.target === "live" ? "Going live…" : "Moving to waiting…") : "Updating…"));
   if (isTrash) badges.push(h("span", { class: "b" }, "Deleted " + fmtDay(r.trash.at)));
   if (r.noCopy) badges.push(h("span", { class: "b wait" }, "No saved copy"));
-  const tags = [it.k && h("span", { class: "chip k" }, kindLabel(it.k)), it.t && h("span", { class: "chip" }, topicLabel(it.t)), (it.cm || []).map(c => h("span", { class: "chip" }, cmLabel(c))), (it.st || []).map(s => h("span", { class: "chip" }, s))];
+  const tags = [it.k && h("span", { class: "chip k" }, kindLabel(it.k)), isPol(it.k) && RLAB[it.rl] && h("span", { class: "chip" }, RLAB[it.rl]), !isPol(it.k) && it.rt && h("span", { class: "chip" }, it.rt === "none" ? "Not research" : rtLabels()[it.rt] || it.rt), it.t && h("span", { class: "chip" }, topicLabel(it.t)), (it.cm || []).map(c => h("span", { class: "chip" }, cmLabel(c))), (it.st || []).map(s => h("span", { class: "chip" }, s))];
   const acts = isTrash ? [!r.noCopy && h("button", { class: "btn sm pri", type: "button", on: { click: () => doRestore(ids) } }, "Restore")] : [
     TAB === "waiting" ? h("button", { class: "btn sm pri", type: "button", on: { click: () => doApprove(ids) } }, "Approve") : h("button", { class: "btn sm", type: "button", on: { click: () => doHold(ids) } }, "Move to waiting"),
     h("button", { class: "btn sm", type: "button", on: { click: () => openEditor(r) } }, "Edit"),
@@ -429,12 +449,15 @@ function openRetag(ids) {
   const rows = ids.map(id => D.rows.get(id)).filter(Boolean), cmBox = new Set(), stBox = new Set();
   const kindSel = h("select", null, h("option", { value: "" }, "Leave as is"), Object.entries(D.tax.kinds).map(([k, l]) => h("option", { value: k }, l)));
   const topicSel = h("select", null, h("option", { value: "" }, "Leave as is"), D.tax.topics.map(t => h("option", { value: t.k }, t.label)));
+  const rlSel = h("select", { "aria-label": "Policy relevancy" }, h("option", { value: "" }, "Leave as is"), Object.entries(RLAB).map(([v, l]) => h("option", { value: v }, l)));
+  const rtSel = h("select", { "aria-label": "Research type" }, [["", "Leave as is"], ["auto", "Automatic"], ["report", rtLabels().report], ["poll", rtLabels().poll], ["data", rtLabels().data], ["none", "Not on the Research page"]].map(([v, l]) => h("option", { value: v }, l)));
   const mode = name => h("select", { "aria-label": name }, [["", "Leave as is"], ["add", "Add these"], ["set", "Replace with these"], ["clear", "Remove all"]].map(([v, l]) => h("option", { value: v }, l)));
   const cmMode = mode("Communities"), stMode = mode("States");
   const checks = (list, set) => list.map(([v, l]) => h("label", { class: "chk" }, h("input", { type: "checkbox", on: { change: e => e.target.checked ? set.add(v) : set.delete(v) } }), l));
   const err = h("div", { class: "err", role: "alert" });
   const body = [h("p", null, `Change the tags on ${plural(rows.length, "item")}. Only the fields you change are touched.`),
     h("div", { class: "two" }, h("div", { class: "fl" }, h("label", null, "Section"), kindSel), h("div", { class: "fl" }, h("label", null, "Topic"), topicSel)),
+    h("div", { class: "two" }, h("div", { class: "fl" }, h("label", null, "Policy relevancy"), rlSel, h("div", { class: "hint" }, "Policy items only.")), h("div", { class: "fl" }, h("label", null, "Research page type"), rtSel, h("div", { class: "hint" }, "Everything except Policy items."))),
     h("fieldset", null, h("legend", null, "Communities"), cmMode, h("div", { class: "checks" }, checks(D.tax.communities.map(c => [c.k, c.label]), cmBox))),
     h("fieldset", null, h("legend", null, "States"), stMode, h("div", { class: "stlist" }, checks(D.tax.states.map(s => [s[0], s[1]]), stBox))), err];
   const go = h("button", { class: "btn pri", type: "button", on: { click: async () => {
@@ -444,6 +467,9 @@ function openRetag(ids) {
       const setF = (f, v, same) => { if (!same) { patch[f] = v; orig[f] = it[f] ?? null; } };
       if (kindSel.value) setF("k", kindSel.value, it.k === kindSel.value);
       if (topicSel.value) setF("t", topicSel.value, it.t === topicSel.value);
+      const kNew = kindSel.value || it.k;
+      if (rlSel.value && isPol(kNew)) setF("rl", rlSel.value, it.rl === rlSel.value);
+      if (rtSel.value && !isPol(kNew) && !(rtSel.value === "none" && kNew === "research")) { const v = rtSel.value === "auto" ? null : rtSel.value; setF("rt", v, (it.rt || null) === v); }
       for (const [m, set, f] of [[cmMode, cmBox, "cm"], [stMode, stBox, "st"]]) {
         const cur = it[f] || [], pick = [...set]; let nv = null;
         if (m.value === "add") nv = [...new Set([...cur, ...pick])]; else if (m.value === "set") nv = pick; else if (m.value === "clear") nv = []; else continue;
@@ -451,7 +477,7 @@ function openRetag(ids) {
       }
       if (Object.keys(patch).length) edits.push({ id: r.id, patch, orig });
     }
-    if (!edits.length) { err.textContent = "Nothing would change. Pick a new section, topic, community or state."; return; }
+    if (!edits.length) { err.textContent = "Nothing would change. Pick a new section, topic, policy relevancy, research type, community or state."; return; }
     go.disabled = true; const res = await act("editMany", { edits }); go.disabled = false; if (res) { dlg.close(); sel.clear(); render(); }
   } } }, "Apply to " + plural(rows.length, "item"));
   openDialog("Retag items", body, [h("button", { class: "btn", type: "button", on: { click: () => dlg.close() } }, "Cancel"), go]);
@@ -467,7 +493,7 @@ async function openEditor(row) {
     try { const base = row.raw.art || (row.where === "live" ? await api("/api/article/" + id) : {}); art0 = { ...art0, ...base, ...(S.article[id] || {}) }; }
     catch (e) { toast("The story text could not be loaded: " + e.message, { bad: true }); return; }
   }
-  const hint = f => f in col && col[f] != null && col[f] !== "" ? h("div", { class: "coll" }, "Collected: " + (Array.isArray(col[f]) ? col[f].join(", ") : f === "d" ? fmt(col[f]) : f === "k" ? kindLabel(col[f]) : f === "t" ? topicLabel(col[f]) : col[f])) : null;
+  const hint = f => f in col && col[f] != null && col[f] !== "" ? h("div", { class: "coll" }, "Collected: " + (Array.isArray(col[f]) ? col[f].join(", ") : f === "d" ? fmt(col[f]) : f === "k" ? kindLabel(col[f]) : f === "t" ? topicLabel(col[f]) : f === "rl" ? RLAB[col[f]] || col[f] : f === "rt" ? (col[f] === "none" ? "Not on the Research page" : rtLabels()[col[f]] || col[f]) : col[f])) : null;
   const inp = (f, label, o = {}, extra) => { const el = h(o.area ? "textarea" : "input", { type: o.area ? undefined : o.type || "text", id: "f-" + f, value: o.value ?? it[f] ?? "", rows: o.area ? 3 : undefined, maxlength: o.max, required: o.req, placeholder: o.ph, list: undefined }); if (o.list) el.setAttribute("list", o.list); return [el, h("div", { class: "fl" }, h("label", { for: "f-" + f }, label), el, o.hint && h("div", { class: "hint" }, o.hint), hint(f), extra)]; };
   const [hEl, hRow] = inp("h", "Headline", { req: true, max: 300 });
   const [mEl, mRow] = inp("m", "Summary (optional)", { area: true, max: 700, hint: "Shown under the headline in lists." });
@@ -476,6 +502,19 @@ async function openEditor(row) {
   const [dEl, dRow] = inp("d", "Date", { type: "datetime-local", value: toLocal(it.d) });
   const kEl = h("select", { id: "f-k" }, Object.entries(D.tax.kinds).map(([k, l]) => h("option", { value: k }, l))); kEl.value = it.k || "community";
   const tEl = h("select", { id: "f-t" }, D.tax.topics.map(t => h("option", { value: t.k }, t.label))); tEl.value = it.t || D.tax.default;
+  // Policy items: how closely the item concerns AAPIs. Everything else: what kind of research it is on the Research page (automatic = decided from the headline and summary, as on the public site).
+  const rlEl = h("select", { id: "f-rl" }, !RLAB[it.rl] && h("option", { value: "" }, "Not set"), Object.entries(RLAB).map(([v, l]) => h("option", { value: v }, l))); rlEl.value = RLAB[it.rl] ? it.rl : "";
+  const rtEl = h("select", { id: "f-rt" }); const rtTag = h("div", { class: "hint" });
+  const fillRt = () => {
+    const keep = rtEl.value, auto = autoRes({ ...it, k: kEl.value, rt: undefined }), RT = rtLabels();
+    clearNode(rtEl); rtEl.append(h("option", { value: "" }, "Automatic (" + (auto ? RT[auto] : "not on the Research page") + ")"), h("option", { value: "report" }, RT.report), h("option", { value: "poll" }, RT.poll), h("option", { value: "data" }, RT.data), kEl.value !== "research" && h("option", { value: "none" }, "Not on the Research page"));
+    rtEl.value = [...rtEl.options].some(o => o.value === keep) ? keep : "";
+  };
+  rtEl.value = it.rt || ""; { const keepRt = it.rt || ""; fillRt(); rtEl.value = [...rtEl.options].some(o => o.value === keepRt) ? keepRt : ""; }
+  const rlRow = h("div", { class: "fl" }, h("label", { for: "f-rl" }, "Policy relevancy"), rlEl, h("div", { class: "hint" }, "Whether this item “Impacts AAPIs” or is a “Related issue” on the Policy page."), hint("rl"));
+  const rtRow = h("div", { class: "fl" }, h("label", { for: "f-rt" }, "Research page type"), rtEl, h("div", { class: "hint" }, "Report, Survey or Data on the Research page. Automatic reads the headline and summary."), hint("rt"));
+  const showKindFields = () => { const pol = isPol(kEl.value); rlRow.hidden = !pol; rtRow.hidden = pol; if (!pol) fillRt(); };
+  kEl.addEventListener("change", showKindFields); showKindFields();
   const cmSet = new Set(it.cm || []), stSet = new Set(it.st || []);
   const cmChecks = D.tax.communities.map(c => h("label", { class: "chk" }, h("input", { type: "checkbox", checked: cmSet.has(c.k), on: { change: e => e.target.checked ? cmSet.add(c.k) : cmSet.delete(c.k) } }), c.label));
   const stFilter = h("input", { type: "search", placeholder: "Find a state", "aria-label": "Find a state", on: { input: e => { const q = e.target.value.trim().toLowerCase(); for (const l of stList.children) l.hidden = !!q && !l.textContent.toLowerCase().includes(q); } } });
@@ -501,7 +540,7 @@ async function openEditor(row) {
   const keepEl = h("input", { type: "checkbox", id: "f-keep", checked: isNew });
   const err = h("div", { class: "err", role: "alert" });
 
-  const body = [hRow, mRow, h("div", { class: "two" }, sRow, uRow), h("div", { class: "two" }, dRow, h("div", { class: "fl" }, h("label", { for: "f-k" }, "Section"), kEl, hint("k"))), h("div", { class: "fl" }, h("label", { for: "f-t" }, "Topic"), tEl, hint("t")),
+  const body = [hRow, mRow, h("div", { class: "two" }, sRow, uRow), h("div", { class: "two" }, dRow, h("div", { class: "fl" }, h("label", { for: "f-k" }, "Section"), kEl, hint("k"))), h("div", { class: "fl" }, h("label", { for: "f-t" }, "Topic"), tEl, hint("t")), rlRow, rtRow,
     h("fieldset", null, h("legend", null, "Communities"), h("div", { class: "checks" }, cmChecks)), h("fieldset", null, h("legend", null, "States"), stFilter, stList),
     (isNew || it.v === 1) && h("label", { class: "chk" }, withArt, isNew ? "I am writing the story text here (it opens inside The Yappie Pro)" : "Story text is kept on this site"),
     (isNew || it.v === 1) && artBox,
@@ -509,6 +548,7 @@ async function openEditor(row) {
 
   const collect = () => {
     const out = { h: hEl.value.trim(), m: mEl.value.trim(), s: sEl.value.trim(), u: uEl.value.trim(), k: kEl.value, t: tEl.value, cm: [...cmSet], st: [...stSet] };
+    if (isPol(out.k)) { if (rlEl.value) out.rl = rlEl.value; } else if (rtEl.value) out.rt = rtEl.value;
     const dv = dEl.value; out.d = dv && dv !== toLocal(it.d) ? new Date(dv).toISOString() : it.d;
     return out;
   };
@@ -525,6 +565,8 @@ async function openEditor(row) {
       const patch = {}, orig = {};
       for (const f of ["h", "m", "s", "u", "k", "t", "d"]) { const a = v[f] ?? "", b = it[f] ?? ""; if (a !== b) { patch[f] = v[f]; orig[f] = it[f] ?? null; } }
       for (const f of ["cm", "st"]) if (!sameSet(v[f], it[f])) { patch[f] = v[f]; orig[f] = it[f] ?? null; }
+      if (isPol(v.k)) { if (v.rl && v.rl !== (it.rl || "")) { patch.rl = v.rl; orig.rl = it.rl ?? null; } }
+      else if ((v.rt || "") !== (it.rt || "")) { patch.rt = v.rt || null; orig.rt = it.rt ?? null; }
       const a1 = artNow(), article = {}; if (it.v === 1) for (const f of ["by", "byu", "img", "body"]) if (a1[f] !== (art0[f] || "")) article[f] = a1[f];
       if (!Object.keys(patch).length && !Object.keys(article).length) { dlg.close(); if (approve) doApprove([id]); else toast("No changes to save."); return; }
       const args = { id, orig }; if (Object.keys(patch).length) args.patch = patch; if (Object.keys(article).length) args.article = article;
@@ -543,6 +585,107 @@ async function openEditor(row) {
   foot.push(h("button", { class: "btn pri", type: "button", on: { click: () => save(false) } }, isNew ? "Add item" : "Save"));
   openDialog(isNew ? "Add an item" : "Edit item", body, foot);
   hEl.focus();
+}
+
+// ---------------------------------------------------------------- policy relevancy, research type
+const RLAB = { n: "Impacts AAPIs", i: "Related issue" };
+const isPol = k => (D.tax.policyKinds || []).includes(k);
+const rtLabels = () => (D.tax.research && D.tax.research.labels) || { poll: "Survey", report: "Report", data: "Data" };
+let RSC = null;
+// which kind of research an item is when nobody has chosen: the same rule as the public site (taxonomy.json "research")
+function autoRes(it) {
+  if (isPol(it.k)) return "";
+  if (!RSC) { const R = D.tax.research || {}; try { RSC = { ign: new RegExp(R.ignore || "$^", "gi"), r: ["poll", "report", "data"].map(k => [k, new RegExp(R[k] || "$^", "i")]) }; } catch { RSC = { ign: /$^/g, r: [] }; } }
+  const t = ((it.h || "") + " " + (it.m || "")).replace(RSC.ign, " ");
+  for (const [k, re] of RSC.r) if (re.test(t)) return k;
+  return it.k === "research" ? (/norc|poll|survey/i.test(it.s || "") ? "poll" : "report") : "";
+}
+
+// ---------------------------------------------------------------- the owner's own topics, communities and News categories
+const CUSTOM = {
+  topic: { op: "topics", noun: "topic", nouns: "topics", title: "Topics", words: true, ph: "For example: Housing vouchers",
+    intro: "The subjects stories are filed under (the Topic filter on the site). Add your own and give it keywords: a new story that mentions one of them is filed under your topic instead of a built-in one, and stories already on the site are checked too. A topic without keywords is given by hand (Edit, or Retag for many at once).",
+    gone: "Stories filed under it are sorted into another topic again at the next update, and your edits that used it are dropped." },
+  community: { op: "communities", noun: "community", nouns: "communities", title: "Communities", words: true, ph: "For example: Bhutanese",
+    intro: "The communities stories can be tagged with (the Community filter). Add your own with keywords: a story that mentions one is tagged with your community, as well as any built-in ones. Without keywords you tag by hand.",
+    gone: "It is taken off every story that carries it at the next update." },
+  kind: { op: "newsKinds", noun: "category", nouns: "categories", title: "News categories", words: false, ph: "For example: Faith media",
+    intro: "The News page sorts stories into AAPI Media and Mainstream. Add categories of your own, then put sources in them below. A category shows as a filter on the News page once it has stories.",
+    gone: "Sources you put in it go back to their usual category, and so do stories you moved into it by hand." },
+};
+function customCard(type) {
+  const T = CUSTOM[type], cur = D.S.settings[T.op], max = CORE.LIMITS[T.op], builtIn = type === "topic" ? D.taxBase.topics.map(x => x.label) : type === "community" ? D.taxBase.communities.map(x => x.label) : ["AAPI Media", "Mainstream"];
+  const rows = cur.map(e => ({ k: e.k, label: e.label, words: (e.words || []).join("\n") }));
+  const list = h("div", { class: "cl" }), err = h("div", { class: "err", role: "alert" });
+  const add = h("button", { class: "btn", type: "button", on: { click: () => { rows.push({ label: "", words: "" }); paint(); list.lastChild.querySelector("input").focus(); } } }, "+ Add a " + T.noun);
+  const paint = () => {
+    clearNode(list);
+    if (!rows.length) list.append(h("p", { class: "hint" }, `You have not added any ${T.nouns} yet.`));
+    rows.forEach((r, i) => list.append(h("div", { class: "cr" + (T.words ? "" : " one") },
+      h("div", { class: "fl" }, h("div", { class: "lb" }, "Name"), h("input", { type: "text", value: r.label, maxlength: "40", placeholder: T.ph, "aria-label": `Name of ${T.noun} ${i + 1}`, on: { input: e => { r.label = e.target.value; } } })),
+      T.words && h("div", { class: "fl" }, h("div", { class: "lb" }, "Keywords"), h("textarea", { rows: "3", value: r.words, placeholder: "One word or phrase per line, or separated by commas", "aria-label": `Keywords of ${T.noun} ${i + 1}`, on: { input: e => { r.words = e.target.value; } } })),
+      h("button", { class: "btn sm dng", type: "button", on: { click: () => { rows.splice(i, 1); paint(); } } }, "Remove"))));
+    add.disabled = rows.length >= max;
+  };
+  const save = h("button", { class: "btn pri", type: "button", on: { click: async () => {
+    err.textContent = "";
+    if (rows.some(r => !r.label.trim())) { err.textContent = `Every ${T.noun} needs a name. Fill it in or remove it.`; return; }
+    const gone = cur.filter(c => !rows.some(r => r.k === c.k));
+    if (gone.length && !(await confirmBox(`Remove ${gone.length === 1 ? "“" + gone[0].label + "”" : gone.length + " " + T.nouns}?`, T.gone, "Remove", true))) return;
+    const res = await act(T.op, { list: rows.map(r => ({ ...(r.k ? { k: r.k } : {}), label: r.label.trim(), ...(T.words ? { words: r.words } : {}) })) });
+    if (!res) err.textContent = "Not saved. See the message at the bottom of the page.";
+  } } }, "Save " + T.nouns);
+  paint();
+  return h("div", { class: "card" }, h("h2", null, T.title), h("p", null, T.intro), h("p", { class: "hint" }, "Built in: " + builtIn.join(", ")), list, err, h("div", { class: "bar" }, add, save),
+    T.words && h("p", { class: "hint" }, "Keywords match whole words in any capitals, and a plural also matches (“voucher” finds “vouchers”). Up to " + CORE.LIMITS.words + " keywords each; at most " + max + " " + T.nouns + "."));
+}
+
+// News sources: which category each one is in
+const SRC = { q: "", only: "", limit: 100 }, srcSel = new Set();
+function sourcesCard() {
+  const S = D.S, over = S.settings.sourceKinds, keys = CORE.newsKindKeys(S.settings);
+  const baseOf = n => keys.has(D.srcKinds[n]) ? D.srcKinds[n] : "news";
+  const counts = new Map();
+  for (const r of D.live.concat(D.wait)) { const it = r.raw; if (it.s && keys.has(it.k || "news")) counts.set(it.s, (counts.get(it.s) || 0) + 1); }
+  const all = [...new Set([...counts.keys(), ...Object.keys(over)])].map(n => ({ n, count: counts.get(n) || 0, eff: keys.has(over[n]) ? over[n] : baseOf(n), changed: n in over })).sort((a, b) => a.n.localeCompare(b.n));
+  const opts = k => h("option", { value: k }, kindLabel(k));
+  async function setSources(names, kind) {
+    const prev = Object.fromEntries(names.map(n => [n, over[n] ?? null])), groups = [];
+    const same = names.filter(n => kind === baseOf(n)), diff = names.filter(n => kind !== baseOf(n));
+    if (diff.length) groups.push({ sources: diff, kind }); if (same.length) groups.push({ sources: same, kind: null });
+    const undo = async () => { const by = new Map(); for (const [n, k] of Object.entries(prev)) by.set(k, [...(by.get(k) || []), n]); for (const [k, ns] of by) await act("sourceKinds", { sources: ns, kind: k }, { quiet: true }); };
+    for (let i = 0; i < groups.length; i++) if (!(await act("sourceKinds", groups[i], i === groups.length - 1 ? { undo } : { quiet: true }))) return false;
+    return true;
+  }
+  const box = h("div", { class: "srclist" }), bulk = h("div"), head = h("div", { class: "hint" });
+  const shownRows = () => all.filter(r => (!SRC.q || r.n.toLowerCase().includes(SRC.q.toLowerCase())) && (!SRC.only || (SRC.only === "changed" ? r.changed : r.eff === SRC.only)));
+  const paintBulk = () => {
+    clearNode(bulk); if (!srcSel.size) return;
+    const to = h("select", { "aria-label": "Move the selected sources to" }, [...keys].map(opts));
+    bulk.append(h("div", { class: "srcbar sel" }, h("b", null, `${srcSel.size} ${srcSel.size === 1 ? "source" : "sources"} selected`), "Move to", to,
+      h("button", { class: "btn pri", type: "button", on: { click: async () => { const names = [...srcSel]; if (await setSources(names, to.value)) srcSel.clear(); } } }, "Move"),
+      h("button", { class: "btn", type: "button", on: { click: () => { srcSel.clear(); paintList(); paintBulk(); } } }, "Clear")));
+  };
+  const paintList = () => {
+    clearNode(box); const rows = shownRows(), shown = rows.slice(0, SRC.limit);
+    head.textContent = `${rows.length} of ${all.length} ${all.length === 1 ? "source" : "sources"}${rows.length < all.length ? " match" : ""}${all.length ? "" : ". Sources appear here once they have stories on the site."}`;
+    if (!rows.length) box.append(h("div", { class: "empty" }, "No sources match."));
+    for (const r of shown) {
+      const sel = h("select", { "aria-label": "Category of " + r.n, on: { change: e => setSources([r.n], e.target.value) } }, [...keys].map(opts)); sel.value = r.eff;
+      box.append(h("div", { class: "srow" + (r.changed ? " ch" : "") },
+        h("label", { class: "chk" }, h("input", { type: "checkbox", checked: srcSel.has(r.n), "aria-label": "Select " + r.n, on: { change: e => { e.target.checked ? srcSel.add(r.n) : srcSel.delete(r.n); paintBulk(); } } }), h("span", { class: "nm" }, r.n)),
+        h("span", { class: "ct" }, r.count ? `${r.count} ${r.count === 1 ? "story" : "stories"}` : "no stories now"), sel));
+    }
+    if (rows.length > shown.length) box.append(h("div", { class: "more" }, h("button", { class: "btn", type: "button", on: { click: () => { SRC.limit += 200; paintList(); } } }, `Show ${Math.min(200, rows.length - shown.length)} more`)));
+  };
+  const filt = h("select", { "aria-label": "Show sources", on: { change: e => { SRC.only = e.target.value; SRC.limit = 100; paintList(); } } }, h("option", { value: "" }, "All categories"), [...keys].map(opts), h("option", { value: "changed" }, "Changed by me"));
+  filt.value = SRC.only;
+  const pickAll = h("button", { class: "btn", type: "button", on: { click: () => { for (const r of shownRows()) srcSel.add(r.n); paintList(); paintBulk(); } } }, "Select all shown");
+  paintList(); paintBulk();
+  return h("div", { class: "card" }, h("h2", null, "News sources"),
+    h("p", null, "Put each source in AAPI Media, Mainstream or a category of your own. The choice applies to all of the source's stories, new and old, at the next update. A story you move by hand (Edit) keeps its own choice."),
+    h("div", { class: "srcbar" }, h("input", { type: "search", placeholder: "Find a source", "aria-label": "Find a source", value: SRC.q, on: { input: e => { SRC.q = e.target.value; SRC.limit = 100; paintList(); } } }), filt, pickAll),
+    bulk, head, box);
 }
 
 // ---------------------------------------------------------------- settings
@@ -567,6 +710,7 @@ function renderSettings(main) {
     opt("all", "Everything waits", " Every new story waits for you to approve it."),
     opt("custom", "Only some sources or sections wait", " New stories from the sources and sections you pick wait; the rest go live."),
     custom, h("div", null, save)),
+    customCard("topic"), customCard("community"), customCard("kind"), sourcesCard(),
     h("div", { class: "card" }, h("h2", null, "How changes reach the site"), h("p", null, `Every change is saved to the private repository ${CFG.dataRepo} (the file admin.json), which is not published. It shows up on the site after the next update, usually two to three minutes after you save. “Update the site now” starts one straight away. Items you delete stay in the Trash for 180 days.`),
       h("p", null, `Sign-ins last ${CFG.hours} hours. ${CFG.kv ? "Wrong-password lockouts and sign-outs are remembered across servers." : "No KV store is attached, so lockouts and sign-outs are only remembered by one server at a time. See the setup guide to add one."}`)));
   paint();

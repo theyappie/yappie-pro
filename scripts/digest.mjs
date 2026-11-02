@@ -6,11 +6,13 @@ import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createTransport } from "nodemailer";
 import { cluster } from "./cluster.mjs";
+import { withFeedTaxo } from "./admin.mjs";
 
 const ROOT = fileURLToPath(new URL("..", import.meta.url));
-const tax = JSON.parse(await readFile(join(ROOT, "taxonomy.json"), "utf8"));
+const tax0 = JSON.parse(await readFile(join(ROOT, "taxonomy.json"), "utf8"));
 const cfg = JSON.parse(await readFile(process.env.SOURCES ?? join(ROOT, "sources.json"), "utf8"));
 const feed = JSON.parse(await readFile(process.env.OUT ?? join(ROOT, "data/feed.json"), "utf8"));
+const tax = withFeedTaxo(tax0, feed.taxo); // plus the owner's own topics and communities (names only)
 const NOW = new Date(process.env.DIGEST_NOW ?? Date.now()), HOURS = +(process.env.DIGEST_HOURS ?? 36);
 const SITE = (process.env.SITE_URL ?? cfg.siteUrl ?? "").replace(/\/$/, "");
 const only = (process.env.DIGEST_TOPICS ?? "").split(",").map(s => s.trim().toUpperCase()).filter(Boolean);

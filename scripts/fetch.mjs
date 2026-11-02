@@ -386,8 +386,8 @@ async function pull(src) {
     const m = G ? "" : dek(it.description ?? it.summary, h);
     const gov = isPolicy(src.kind), rl = gov ? (relOf(h + " " + raw) || (src.filter ? "" : "n")) : "";
     if (!gov && caseRe && caseRe.test(h)) continue; // on a news source skipTitle drops pages that are not stories (an author page or an archive index that a search returns)
-    // a government source must be on a .gov address unless it is marked "official" (a state commission whose own site is a .org); "communityOnly" keeps only the items that name the communities, not those found through a related issue
-    if (!h || !u || (gov && ((!isGov(u) && !src.official) || !rl || (src.communityOnly && rl !== "n"))) || (!gov && src.filter && !it._g && !onTopic.test(h + " " + raw))) continue; // a story found through Google News by the AAPI words was matched on its whole text, so the headline alone is not tested again
+    // a government source must be on a .gov address unless it is marked "official" (a state commission whose own site is a .org); "communityOnly" keeps only the items that name the communities, not those found through a related issue; "match" (a pattern) keeps only the items whose headline or text also match it, for an office whose every release mentions its own state (Hawaii)
+    if (!h || !u || (gov && ((!isGov(u) && !src.official) || !rl || (src.communityOnly && rl !== "n") || (src.match && !onTopic.test(h + " " + raw)))) || (!gov && src.filter && !it._g && !onTopic.test(h + " " + raw))) continue; // a story found through Google News by the AAPI words was matched on its whole text, so the headline alone is not tested again
     if (gov && rl === "i" && caseRe && caseRe.test(h)) continue; // individual court cases are not policy; releases that name the communities stay
     if (!isEnglish(h + " " + raw)) { skippedLang.push(s + ": " + h); continue; }
     if (!isOrg(src.kind) && abroadOnly(h + " " + raw)) { skipped.push(s + ": " + h); continue; }

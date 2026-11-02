@@ -92,12 +92,12 @@ export function parseIcs(text, o = {}) {
 const icsEsc = t => String(t ?? "").replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\r?\n/g, "\\n");
 const fold = l => { if (Buffer.byteLength(l) <= 74) return l; const parts = []; let s = l, first = true; while (Buffer.byteLength(s) > (first ? 74 : 73)) { let n = first ? 74 : 73; while (Buffer.byteLength(s.slice(0, n)) > (first ? 74 : 73)) n--; parts.push(s.slice(0, n)); s = s.slice(n); first = false; } parts.push(s); return parts.join("\r\n "); };
 const zstamp = ms => new Date(ms).toISOString().replace(/[-:]/g, "").replace(/\.\d+/, "");
-/** The calendar file people subscribe to: every upcoming event. */
+/** The calendar file people subscribe to: every upcoming event. DTSTAMP is the event's own start, not the time of this run, so the file only changes when an event does (each commit adds to the repository's size for good). */
 export function eventsIcs(events, now = Date.now(), host = "pro.theyappie.com") {
   const L = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//The Yappie Pro//Events and funding//EN", "CALSCALE:GREGORIAN", "X-WR-CALNAME:The Yappie Pro: events and funding deadlines"];
   for (const ev of events) {
     if (endMs(ev) < now) continue;
-    L.push("BEGIN:VEVENT", `UID:${ev.id}@${host}`, `DTSTAMP:${zstamp(now)}`);
+    L.push("BEGIN:VEVENT", `UID:${ev.id}@${host}`, `DTSTAMP:${zstamp(Date.parse(ev.d) || now)}`);
     if (ev.ad || ev.d.length === 10) { const last = (ev.e || ev.d).slice(0, 10), next = new Date(Date.parse(last + "T12:00:00Z") + DAY).toISOString().slice(0, 10); L.push(`DTSTART;VALUE=DATE:${ev.d.slice(0, 10).replace(/-/g, "")}`, `DTEND;VALUE=DATE:${next.replace(/-/g, "")}`); }
     else L.push(`DTSTART:${zstamp(Date.parse(ev.d))}`, `DTEND:${zstamp(ev.e ? Date.parse(ev.e) : Date.parse(ev.d) + 36e5)}`);
     L.push(`SUMMARY:${icsEsc(ev.nth ? `${ordinal(ev.nth)} anniversary: ${ev.t}` : ev.t)}`);

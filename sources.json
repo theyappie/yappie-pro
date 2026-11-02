@@ -817,6 +817,130 @@
       "home": "https://www.pihoa.org",
       "feed": "https://www.pihoa.org/feed/",
       "kind": "statement"
+    },
+    {
+      "name": "Chinese for Affirmative Action",
+      "home": "https://caasf.org",
+      "feed": "https://caasf.org/feed/",
+      "kind": "statement"
+    },
+    {
+      "name": "Chinese American Planning Council",
+      "home": "https://www.cpc-nyc.org",
+      "feed": "https://www.cpc-nyc.org/rss.xml",
+      "kind": "statement",
+      "dropTitle": "\\b(celebrates?|welcomes|fair|festival|enjoy|visit)\\b"
+    },
+    {
+      "name": "Asian Americans Advancing Justice-Chicago",
+      "home": "https://advancingjustice-chicago.org",
+      "feed": "https://advancingjustice-chicago.org/feed/",
+      "kind": "statement",
+      "dropTitle": "^protected:"
+    },
+    {
+      "name": "NaFFAA",
+      "home": "https://naffaa.org",
+      "feed": "https://naffaa.org/feed/",
+      "kind": "statement",
+      "dropTitle": "\\b(recap|announces \\d+(?:th|st|nd|rd) national empowerment conference)\\b"
+    },
+    {
+      "name": "LEAD Filipino",
+      "home": "https://leadfilipino.org",
+      "feed": "https://leadfilipino.org/feed/",
+      "kind": "statement",
+      "dropTitle": "\\b(apply before|recap of)\\b"
+    },
+    {
+      "name": "Asian Pacific Institute on Gender-Based Violence",
+      "home": "https://api-gbv.org",
+      "feed": "https://api-gbv.org/feed/",
+      "kind": "statement"
+    },
+    {
+      "name": "Papa Ola Lōkahi",
+      "home": "https://www.papaolalokahi.org",
+      "feed": "https://www.papaolalokahi.org/feed",
+      "kind": "statement",
+      "dropTitle": "\\b(job openings?|hiring|poi for|are you native hawaiian and pregnant)\\b"
+    },
+    {
+      "name": "Native Hawaiian Legal Corporation",
+      "home": "https://nativehawaiianlegalcorp.org",
+      "feed": "https://nativehawaiianlegalcorp.org/feed/",
+      "kind": "statement",
+      "dropTitle": "\\b(welcomes its|annual report|lonoikamakahiki)\\b|\\?\\s*$"
+    },
+    {
+      "name": "Pacific Islander Community Association of Washington",
+      "home": "https://www.picawa.org",
+      "feed": "https://www.picawa.org/feed/",
+      "kind": "statement"
+    },
+    {
+      "name": "Gold House",
+      "home": "https://goldhouse.org",
+      "wp": "https://goldhouse.org/wp-json/wp/v2/news?per_page=20&_fields=link,title,date_gmt,excerpt"
+    },
+    {
+      "name": "Ka Wai Ola",
+      "home": "https://kawaiola.news",
+      "feed": "https://kawaiola.news/feed/",
+      "dropTitle": "advertising section|^ka wai ola \\|"
+    },
+    {
+      "name": "International Examiner",
+      "home": "https://iexaminer.org",
+      "feed": "https://iexaminer.org/feed/",
+      "dropTitle": "events calendar"
+    },
+    {
+      "name": "Sampan",
+      "home": "https://www.sampan.org",
+      "feed": "https://www.sampan.org/blog-feed.xml"
+    },
+    {
+      "name": "Densho",
+      "home": "https://densho.org",
+      "feed": "https://densho.org/feed/",
+      "dropTitle": "\\b(educator spotlight|book review roundup|gala)\\b"
+    },
+    {
+      "name": "Pacific Island Times",
+      "home": "https://www.pacificislandtimes.com",
+      "feed": "https://www.pacificislandtimes.com/blog-feed.xml",
+      "filter": true
+    },
+    {
+      "name": "Samoa News",
+      "home": "https://www.samoanews.com",
+      "feed": "https://www.samoanews.com/rss1.xml",
+      "filter": true
+    },
+    {
+      "name": "Hawaii Governor",
+      "home": "https://governor.hawaii.gov",
+      "feed": "https://governor.hawaii.gov/feed/",
+      "kind": "govstmt",
+      "filter": true,
+      "match": "\\b(native hawaiians?|kanaka|hawaiian (?:homelands?|home lands?|affairs|history|language|culture|kingdom)|asian americans?|aapi|aanhpi|nhpi|pacific islanders?|pacific (?:studies|islands?)|compact of free association|cofa|micronesia\\w*|marshallese|chuukese|filipino\\w*|japanese americans?|chinese americans?|korean americans?|samoan\\w*|tongan|immigra\\w+|language access|census|civil rights|anti-asian|hate (?:crimes?|incidents?))\\b"
+    },
+    {
+      "name": "Rep. Jill Tokuda",
+      "home": "https://tokuda.house.gov",
+      "feed": "https://tokuda.house.gov/rss/feeds/",
+      "kind": "govstmt",
+      "filter": true,
+      "match": "\\b(native hawaiians?|kanaka|hawaiian (?:homelands?|home lands?|affairs|history|language|culture|kingdom)|asian americans?|aapi|aanhpi|nhpi|pacific islanders?|pacific (?:studies|islands?)|compact of free association|cofa|micronesia\\w*|marshallese|chuukese|filipino\\w*|japanese americans?|chinese americans?|korean americans?|samoan\\w*|tongan|immigra\\w+|language access|census|civil rights|anti-asian|hate (?:crimes?|incidents?))\\b"
+    },
+    {
+      "name": "Rep. Ed Case",
+      "home": "https://case.house.gov",
+      "feed": "https://case.house.gov/news/rss.aspx",
+      "kind": "govstmt",
+      "filter": true,
+      "match": "\\b(native hawaiians?|kanaka|hawaiian (?:homelands?|home lands?|affairs|history|language|culture|kingdom)|asian americans?|aapi|aanhpi|nhpi|pacific islanders?|pacific (?:studies|islands?)|compact of free association|cofa|micronesia\\w*|marshallese|chuukese|filipino\\w*|japanese americans?|chinese americans?|korean americans?|samoan\\w*|tongan|immigra\\w+|language access|census|civil rights|anti-asian|hate (?:crimes?|incidents?))\\b"
     }
   ],
   "_excludeNote": "Sites listed here are never shown, including their subdomains. excludeNames covers a publisher name that Google News shows without a web address. Stored stories from these sites are removed on the next update.",
@@ -957,7 +1081,7 @@
   "pacificNations": "\\b(fiji|tonga|samoa|vanuatu|tuvalu|kiribati|nauru|palau|marshall islands|federated states of micronesia|cook islands?|niue|tokelau|papua new guinea|bougainville|solomon islands?|new caledonia|french polynesia|tahiti|wallis and futuna|pitcairn|south pacific|pacific islands|pacific island (?:nations?|countries|states|governments?|leaders?)|pacific (?:nations|leaders|region|forum)|melanesian spearhead group)\\b",
   "usTie": "\\b(united states|u\\.s\\.|usa|america\\w*|trump|biden|obama|white house|pentagon|washington|capitol hill|congress\\w*|senators?|state department|usaid|peace corps|indo-?pacific|indopacom|compact of free association|cofa|free association|compact (?:funding|negotiations?|renewal|trust fund)|nuclear|radiation|runit|bikini|enewetak|castle bravo|climate|sea[- ]level|rising seas?|global warming|loss and damage|cop\\d+|guam|chamorros?|chamoru|mariana\\w*|saipan|tinian|cnmi|american samoa|hawai\\S*|native hawaiians?|kanaka|honolulu|maui|oahu|kauai|pearl harbor|aapi|aanhpi|nhpi|asian americans?|alabama|arizona|california|colorado|connecticut|delaware|florida|georgia|idaho|illinois|indiana|iowa|kansas|kentucky|louisiana|maine|maryland|massachusetts|michigan|minnesota|mississippi|missouri|montana|nebraska|nevada|new hampshire|new jersey|new mexico|new york|north carolina|north dakota|ohio|oklahoma|oregon|pennsylvania|rhode island|south carolina|south dakota|tennessee|texas|utah|vermont|virginia|west virginia|wisconsin|wyoming|alaska|arkansas|los angeles|san francisco|seattle|portland|salt lake|springdale|oakland|san diego|sacramento|chicago|houston|dallas|phoenix|las vegas|denver|atlanta|boston|philadelphia|miami|new orleans)\\b",
   "usTieCase": "\\b(?:U\\.?S\\.?(?:A\\.?)?(?![\\w$])|(?:ICE|FBI|DHS|NOAA|FEMA)\\b)",
-  "usOutlets": "(?:^|\\.)(?:guampdn\\.com|postguam\\.com|kuam\\.com|islapublic\\.org|mvguam\\.com|mvariety\\.com|saipantribune\\.com|samoanews\\.com|civilbeat\\.org|staradvertiser\\.com|hawaiinewsnow\\.com|khon2\\.com|kitv\\.com|hawaiitribune-herald\\.com|bigislandnow\\.com|mauinow\\.com|kauainownews\\.com|hawaiipublicradio\\.org)$",
+  "usOutlets": "(?:^|\\.)(?:guampdn\\.com|postguam\\.com|kuam\\.com|islapublic\\.org|mvguam\\.com|mvariety\\.com|saipantribune\\.com|samoanews\\.com|pacificislandtimes\\.com|civilbeat\\.org|staradvertiser\\.com|hawaiinewsnow\\.com|khon2\\.com|kitv\\.com|hawaiitribune-herald\\.com|bigislandnow\\.com|mauinow\\.com|kauainownews\\.com|hawaiipublicradio\\.org)$",
   "_travelNote": "Travel and celebrity trips. A news story that uses a Pacific place only as a destination (a TV star's exhausting trip to Guam, a K-pop idol's honeymoon in Hawaii) is dropped when it names one of the travelPlaces together with one of the travelWords and does not name the communities (communityPattern). Local coverage of tourism, such as visitor counts or vacation-rental rules, is not matched. Statements, policy items, research and the community outlets are not checked, and a story the owner pinned or featured stays.",
   "travelPlaces": "\\b(guam|hawai\\S*|honolulu|maui|oahu|kauai|saipan|tinian|rota|cnmi|marianas?|samoa|fiji|tonga|palau|tahiti|cook islands|marshall islands|micronesia|polynesia|pacific islands?)\\b",
   "travelWords": "\\b(honeymoons?|getaways?|itinerar(?:y|ies)|travel (?:guide|tips|diary|vlog)|sightseeing|things to do|best (?:beaches|resorts)|where to (?:stay|eat)|tv (?:stars?|shows?|celebrit\\w+)|celebrit(?:y|ies)|k-?pop (?:idols?|stars?)|variety shows?|mukbang|vlog\\w*|trip (?:experience|diary|review|vlog)|packing list)\\b",
@@ -1012,6 +1136,7 @@
     "Sampan"
   ],
   "communityPattern": "\\b(asian[- ]?americans?|asian[- ]pacific(?: american| islander)s?|(?<!:)aapi(?!\\s+director)|aanhpi|nhpi|pacific islanders?|pacific islands?|pasifika|pacific (?:peoples?|communit\\w+|nations?|leaders?)|polynesian\\w*|melanesian\\w*|marshall islands|cook islanders?|native hawaiians?|kanaka|chamorros?|chamorus?|chamoru|marshallese|micronesians?|samoans?|tongans?|fijians?|palauans?|filipinos?|filipinas?|hmong|cambodians?|laotians?|south asians?|southeast asians?|east asians?|sikhs?|stop aapi hate|anti-asian|asian (?:voters?|communit\\w+|immigrants?|students?|families|women|men|businesses|elders|seniors|residents|leaders|lawmakers|candidates|population|hate|youth|workers|neighbors|diaspora|enrollment|owned)|(?:chinese|korean|japanese|indian|vietnamese|taiwanese|pakistani|bangladeshi|nepali|nepalese|burmese|thai|indonesian|malaysian|sri lankan|bhutanese|hawaiian)[- ]americans?|chinatown|little tokyo|koreatown|japantown|little saigon|manilatown|nisei|sansei|yonsei|issei|nikkei|jacl|manzanar|tule lake|heart mountain)\\b",
+  "results": { "csv": "" },
   "siteUrl": "",
   "renames": {
     "The Takeaway": "The Asian American Foundation",
@@ -1081,6 +1206,23 @@
     "Center for Asian American Media": "statement",
     "AAPCHO": "statement",
     "Council of Korean Americans": "statement",
+    "Chinese for Affirmative Action": "statement",
+    "Chinese American Planning Council": "statement",
+    "Asian Americans Advancing Justice-Chicago": "statement",
+    "NaFFAA": "statement",
+    "LEAD Filipino": "statement",
+    "Asian Pacific Institute on Gender-Based Violence": "statement",
+    "Papa Ola Lōkahi": "statement",
+    "Native Hawaiian Legal Corporation": "statement",
+    "Pacific Islander Community Association of Washington": "statement",
+    "Gold House": "community",
+    "Ka Wai Ola": "community",
+    "International Examiner": "community",
+    "Sampan": "community",
+    "Densho": "community",
+    "Hawaii Governor": "govstmt",
+    "Rep. Jill Tokuda": "govstmt",
+    "Rep. Ed Case": "govstmt",
     "The White House": "govstmt"
   },
   "federalRegister": {

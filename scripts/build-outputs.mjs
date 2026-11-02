@@ -17,9 +17,11 @@ const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, 
 const esc = s => String(s ?? "").replace(/[<>&"']/g, c => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;", '"': "&quot;", "'": "&apos;" }[c]));
 const label = { topic: Object.fromEntries(tax.topics.map(t => [t.k, t.label])), community: Object.fromEntries(tax.communities.map(c => [c.k, c.label])), state: Object.fromEntries(tax.states.map(([k, l]) => [k, l])), kind: tax.kinds };
 
+// A feed's lastBuildDate is the date of its newest story, not the time of this run, so a file whose stories did not change is byte for byte the same and is not committed again (each commit adds to the repository's size for good).
+const built = list => { const t = list.slice(0, RSS_MAX).reduce((m, x) => Math.max(m, Date.parse(x.d) || 0), 0); return t ? new Date(t) : stamp; };
 function rss(title, desc, list) {
   const row = x => `<item><title>${esc(x.h)}</title><link>${esc(x.u)}</link><guid isPermaLink="true">${esc(x.u)}</guid><pubDate>${new Date(x.d).toUTCString()}</pubDate>${[x.t, ...(x.tx ?? [])].map(t => `<category>${esc(label.topic[t] ?? t)}</category>`).join("")}<description>${esc([x.s, x.dl ? "Comments due " + x.dl : "", x.m].filter(Boolean).join(" · "))}</description></item>`;
-  return `<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>${esc(title)}</title><link>${esc(SITE || "https://theyappie.com")}</link><description>${esc(desc)}</description><language>en-us</language><lastBuildDate>${stamp.toUTCString()}</lastBuildDate>${list.slice(0, RSS_MAX).map(row).join("")}</channel></rss>\n`;
+  return `<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>${esc(title)}</title><link>${esc(SITE || "https://theyappie.com")}</link><description>${esc(desc)}</description><language>en-us</language><lastBuildDate>${built(list).toUTCString()}</lastBuildDate>${list.slice(0, RSS_MAX).map(row).join("")}</channel></rss>\n`;
 }
 const out = new Map(), index = [];
 const add = (file, title, desc, list, group) => { if (!list.length) return; out.set(file, rss(title, desc, list)); index.push({ file: "rss/" + file, title, group, count: list.length }); };
@@ -43,9 +45,9 @@ await writeFile(join(dir, "index.json"), JSON.stringify(index));
 const fold = l => { const b = Buffer.from(l); if (b.length <= 74) return l; const parts = []; let s = l; while (Buffer.byteLength(s) > 74) { let n = 74; while (Buffer.byteLength(s.slice(0, n)) > 74) n--; parts.push(s.slice(0, n)); s = " " + s.slice(n); } parts.push(s); return parts.join("\r\n"); };
 const ics = t => String(t ?? "").replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\r?\n/g, "\\n");
 const ymd = d => d.replace(/-/g, ""), next = d => new Date(new Date(d + "T12:00:00Z").getTime() + 864e5).toISOString().slice(0, 10).replace(/-/g, "");
-const z = stamp.toISOString().replace(/[-:]/g, "").replace(/\.\d+/, "");
+const zOf = d => new Date(Date.parse(d) || stamp).toISOString().replace(/[-:]/g, "").replace(/\.\d+/, ""); // DTSTAMP is the story's own date, for the same reason
 const lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//The Yappie Pro//Comment deadlines//EN", "CALSCALE:GREGORIAN", "X-WR-CALNAME:AAPI comment deadlines"];
-for (const x of dl) lines.push("BEGIN:VEVENT", `UID:${x.id}@yappie-pro`, `DTSTAMP:${z}`, `DTSTART;VALUE=DATE:${ymd(x.dl)}`, `DTEND;VALUE=DATE:${next(x.dl)}`, `SUMMARY:${ics("Comments due: " + x.h)}`, `URL:${x.u}`, `DESCRIPTION:${ics([x.ty, x.ag, x.m].filter(Boolean).join(" | ") + "\n" + x.u)}`, "END:VEVENT");
+for (const x of dl) lines.push("BEGIN:VEVENT", `UID:${x.id}@yappie-pro`, `DTSTAMP:${zOf(x.d)}`, `DTSTART;VALUE=DATE:${ymd(x.dl)}`, `DTEND;VALUE=DATE:${next(x.dl)}`, `SUMMARY:${ics("Comments due: " + x.h)}`, `URL:${x.u}`, `DESCRIPTION:${ics([x.ty, x.ag, x.m].filter(Boolean).join(" | ") + "\n" + x.u)}`, "END:VEVENT");
 lines.push("END:VCALENDAR");
 await writeFile(join(ROOT, "data/deadlines.ics"), lines.map(fold).join("\r\n") + "\r\n");
 console.log(`Wrote ${out.size} RSS feeds and ${dl.length} calendar events.`);

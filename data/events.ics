@@ -5,7 +5,7 @@ CALSCALE:GREGORIAN
 X-WR-CALNAME:The Yappie Pro: events and funding deadlines
 BEGIN:VEVENT
 UID:f0c11da25e1b@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART;VALUE=DATE:20261101
 DTEND;VALUE=DATE:20261108
 SUMMARY:Kate Rigg with Slanty Eyed Mama
@@ -21,7 +21,7 @@ CATEGORIES:Event or webinar
 END:VEVENT
 BEGIN:VEVENT
 UID:gfc4042d3df5@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART;VALUE=DATE:20261102
 DTEND;VALUE=DATE:20261103
 SUMMARY:Emergency Citrus Disease Research and Extension Pre-Applications
@@ -33,7 +33,7 @@ CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
 UID:f7ba6218719d@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART:20261102T233000Z
 DTEND:20261103T010000Z
 SUMMARY:King of the Yees: Lauren Yee\, Francis Jue and David Henry Hwang
@@ -49,7 +49,7 @@ CATEGORIES:Event or webinar
 END:VEVENT
 BEGIN:VEVENT
 UID:g9555b56ebfa@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART;VALUE=DATE:20261103
 DTEND;VALUE=DATE:20261104
 SUMMARY:BJA FY 2026 Edward Byrne Memorial Justice Assistance Grant (JAG) P
@@ -61,8 +61,105 @@ URL:https://www.grants.gov/search-results-detail/363712
 CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
+UID:cmt-5160228586c2@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20261103
+DTEND;VALUE=DATE:20261104
+SUMMARY:Decennial Census of the Population of Americans\; Proposed Residen
+ ce Criteria and Proposed Regulations for Demographic Questions
+DESCRIPTION:Comment deadline (Proposed Rule). From USBC
+URL:https://www.regulations.gov/document/USBC-2026-0628-0001
+CATEGORIES:Comment deadline
+END:VEVENT
+BEGIN:VEVENT
+UID:el-fl-senate-special-2026@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20261103
+DTEND;VALUE=DATE:20261104
+SUMMARY:Florida U.S. Senate special election
+DESCRIPTION:Election date. From Ballotpedia News. Ballotpedia lists a U.S.
+  Senate special election in Florida among the special elections called fo
+ r Nov. 3\, 2026.
+URL:https://news.ballotpedia.org/?p=52070
+CATEGORIES:Election date
+END:VEVENT
+BEGIN:VEVENT
+UID:el-general-2026@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20261103
+DTEND;VALUE=DATE:20261104
+SUMMARY:General Election Day 2026
+DESCRIPTION:Election date. From Federal Election Commission. Nationwide ge
+ neral election\; the FEC's 2026 dates table lists 11/03/2026 as the gener
+ al election date for every jurisdiction in its table.
+URL:https://www.fec.gov/documents/5910/2026pdates.pdf
+CATEGORIES:Election date
+END:VEVENT
+BEGIN:VEVENT
+UID:el-guam-general-2026@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20261103
+DTEND;VALUE=DATE:20261104
+SUMMARY:Guam general election
+DESCRIPTION:Election date. From U.S. Vote Foundation. Guam holds its congr
+ essional\, gubernatorial and territorial Senate general election\; the U.
+ S. Vote Foundation lists registration closing Oct. 19.
+URL:https://www.usvotefoundation.org/guam-election-dates-and-deadlines
+CATEGORIES:Election date
+END:VEVENT
+BEGIN:VEVENT
+UID:el-hi-senate-specials-2026@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20261103
+DTEND;VALUE=DATE:20261104
+SUMMARY:Hawaii state Senate special elections (Districts 18 and 19)
+DESCRIPTION:Election date. From Ballotpedia News. Ballotpedia lists specia
+ l elections for Hawaii state Senate Districts 18 and 19 on the Nov. 3\, 2
+ 026 ballot.
+URL:https://news.ballotpedia.org/?p=52070
+CATEGORIES:Election date
+END:VEVENT
+BEGIN:VEVENT
+UID:el-la-house-open-primary-2026@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20261103
+DTEND;VALUE=DATE:20261104
+SUMMARY:Louisiana U.S. House open primary
+DESCRIPTION:Election date. From National Conference of State Legislatures.
+  Louisiana's U.S. House races moved to the Nov. 3 ballot after Louisiana 
+ v. Callais\; a candidate without a majority goes to a Dec. 12 second roun
+ d.
+URL:https://www.ncsl.org/elections-and-campaigns/2026-state-primary-electi
+ on-dates
+CATEGORIES:Election date
+END:VEVENT
+BEGIN:VEVENT
+UID:el-cnmi-general-2026@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20261103
+DTEND;VALUE=DATE:20261104
+SUMMARY:Northern Mariana Islands general election
+DESCRIPTION:Election date. From CNMI Commonwealth Election Commission. The
+  CNMI Commonwealth Election Commission lists Nov. 3\, 2026 as the General
+  Election\, with early voting ending Nov. 2.
+URL:https://www.votecnmi.gov.mp/downloads/2026/2026_GE_Important_Dates.pdf
+CATEGORIES:Election date
+END:VEVENT
+BEGIN:VEVENT
+UID:el-oh-senate-special-2026@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20261103
+DTEND;VALUE=DATE:20261104
+SUMMARY:Ohio U.S. Senate special election
+DESCRIPTION:Election date. From Ballotpedia News. Ballotpedia lists a U.S.
+  Senate special election in Ohio among the special elections called for N
+ ov. 3\, 2026.
+URL:https://news.ballotpedia.org/?p=52070
+CATEGORIES:Election date
+END:VEVENT
+BEGIN:VEVENT
 UID:g5b26db22a01@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART;VALUE=DATE:20261104
 DTEND;VALUE=DATE:20261105
 SUMMARY:NSF Small Business Innovation Research / Small Business Technology
@@ -76,7 +173,7 @@ CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
 UID:f9a280150a35@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART:20261104T163000Z
 DTEND:20261104T230000Z
 SUMMARY:2026 AAPI Trailblazers Conference: Owning Our Stories in the Age o
@@ -93,7 +190,7 @@ CATEGORIES:Event or webinar
 END:VEVENT
 BEGIN:VEVENT
 UID:f5f25b09aae1@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART:20261104T230000Z
 DTEND:20261105T010000Z
 SUMMARY:What America Means to Me\, a Writing Workshop With Ed Lin
@@ -109,7 +206,7 @@ CATEGORIES:Event or webinar
 END:VEVENT
 BEGIN:VEVENT
 UID:f5a507310c49@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART:20261104T233000Z
 DTEND:20261105T014900Z
 SUMMARY:Poetry
@@ -125,7 +222,7 @@ CATEGORIES:Event or webinar
 END:VEVENT
 BEGIN:VEVENT
 UID:f644a28b7b34@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART:20261105T000000Z
 DTEND:20261105T013000Z
 SUMMARY:Traces of Home
@@ -139,8 +236,62 @@ URL:https://potluckasianamerica.org/event/traces-of-home/
 CATEGORIES:Event or webinar
 END:VEVENT
 BEGIN:VEVENT
+UID:obs-diwali-2026@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20261108
+DTEND;VALUE=DATE:20261109
+SUMMARY:Diwali
+DESCRIPTION:Observance. From PublicHolidays.com. Festival of lights marked
+  by Hindu\, Sikh\, Jain and some Buddhist communities\; dates shown are t
+ he main Lakshmi Puja day and can differ by a day by region.
+URL:https://publicholidays.com/diwali/
+CATEGORIES:Observance
+END:VEVENT
+BEGIN:VEVENT
+UID:el-nj-mail-ballot-receipt-2026@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20261109
+DTEND;VALUE=DATE:20261110
+SUMMARY:New Jersey deadline for mail ballots to arrive
+DESCRIPTION:Election date. From U.S. Vote Foundation. New Jersey lists abs
+ entee ballots as counted if postmarked by Election Day and received by No
+ v. 9\, 2026.
+URL:https://usvotefoundation.org/new-jersey-election-dates-and-deadlines
+CATEGORIES:Election date
+END:VEVENT
+BEGIN:VEVENT
+UID:cmt-832b8bc05d18@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20261109
+DTEND;VALUE=DATE:20261110
+SUMMARY:Optional Practical Training Fees
+DESCRIPTION:Comment deadline (Proposed Rule). From Homeland Security Depar
+ tment. S. workers. The following fees would apply for each F-1 nonimmigra
+ nt student to engage in OPT through a Student and Exchange Visitor Progra
+ m-certified institution: $70\,000 for initial OPT\; and $30\,000 for any 
+ subsequent OPT.
+URL:https://www.federalregister.gov/documents/2026/10/08/2026-20660/option
+ al-practical-training-fees
+CATEGORIES:Comment deadline
+END:VEVENT
+BEGIN:VEVENT
+UID:cmt-8c9b9e4e1eba@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20261110
+DTEND;VALUE=DATE:20261111
+SUMMARY:Eliminating the Discretionary 60-Day Grace Period
+DESCRIPTION:Comment deadline (Proposed Rule). From Homeland Security Depar
+ tment. 1(l)(2) to restore its previous and long- standing policy of not p
+ roviding aliens in certain nonimmigrant classifications (and their depend
+ ents) with an up to 60-day grace period upon cessation of employment prio
+ r to the expiration of the alien's authorized period of stay.
+URL:https://www.federalregister.gov/documents/2026/09/11/2026-18631/elimin
+ ating-the-discretionary-60-day-grace-period
+CATEGORIES:Comment deadline
+END:VEVENT
+BEGIN:VEVENT
 UID:g38f1bf69b14@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART;VALUE=DATE:20261110
 DTEND;VALUE=DATE:20261111
 SUMMARY:FY 2027 COPS-OJP Constitutional Protections for Parents - A NASRO 
@@ -153,7 +304,7 @@ CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
 UID:gaccf414075d@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART;VALUE=DATE:20261113
 DTEND;VALUE=DATE:20261114
 SUMMARY:Museum Grants for African American History and Culture (2027)
@@ -165,7 +316,7 @@ CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
 UID:gb562698a171@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART;VALUE=DATE:20261113
 DTEND;VALUE=DATE:20261114
 SUMMARY:Museum Grants for American Latino History and Culture (2027)
@@ -177,7 +328,7 @@ CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
 UID:g79497e5d7e3@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART;VALUE=DATE:20261113
 DTEND;VALUE=DATE:20261114
 SUMMARY:Native American Library Services Basic Grant (2027)
@@ -189,7 +340,7 @@ CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
 UID:gfef3676c9c6@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART;VALUE=DATE:20261113
 DTEND;VALUE=DATE:20261114
 SUMMARY:Native American Library Services Enhancement Grants (2027)
@@ -201,7 +352,7 @@ CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
 UID:g706baa4bfc4@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART;VALUE=DATE:20261113
 DTEND;VALUE=DATE:20261114
 SUMMARY:Native American/Native Hawaiian Museum Services (2027)
@@ -213,7 +364,7 @@ CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
 UID:gf184bebeda8@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART;VALUE=DATE:20261113
 DTEND;VALUE=DATE:20261114
 SUMMARY:Native Hawaiian Library Services Grants (2027)
@@ -224,8 +375,33 @@ URL:https://www.grants.gov/search-results-detail/363763
 CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
+UID:cmt-f0f969572aaa@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20261113
+DTEND;VALUE=DATE:20261114
+SUMMARY:Removing 30-Day Refugee Termination Notice
+DESCRIPTION:Comment deadline (Rule). From Homeland Security Department
+URL:https://www.federalregister.gov/documents/2026/10/14/2026-20956/removi
+ ng-30-day-refugee-termination-notice
+CATEGORIES:Comment deadline
+END:VEVENT
+BEGIN:VEVENT
+UID:cmt-28c212996917@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20261113
+DTEND;VALUE=DATE:20261114
+SUMMARY:Removing Deference to Prior USCIS Determinations of Eligibility
+DESCRIPTION:Comment deadline (Proposed Rule). From Homeland Security Depar
+ tment. S. S. 1(c)(5)\, which generally provides that USCIS gives deferenc
+ e to a prior approval involving the same facts when adjudicating a reques
+ t to extend a petition for an alien's employment or stay. S. workers.
+URL:https://www.federalregister.gov/documents/2026/10/14/2026-20941/removi
+ ng-deference-to-prior-uscis-determinations-of-eligibility
+CATEGORIES:Comment deadline
+END:VEVENT
+BEGIN:VEVENT
 UID:g8a87047c805@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART;VALUE=DATE:20261114
 DTEND;VALUE=DATE:20261115
 SUMMARY:Cooperative Agreement for Affiliated Partner with the North Atlant
@@ -238,7 +414,7 @@ CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
 UID:gb2777ec3747@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART;VALUE=DATE:20261114
 DTEND;VALUE=DATE:20261115
 SUMMARY:Cooperative Agreement for Affiliated Partner with the Pacific Nort
@@ -251,7 +427,7 @@ CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
 UID:gde7e6f8338b@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART;VALUE=DATE:20261114
 DTEND;VALUE=DATE:20261115
 SUMMARY:Cooperative Agreement for Affiliated Partner with the Rocky Mounta
@@ -264,7 +440,7 @@ CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
 UID:g39de6383449@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART;VALUE=DATE:20261117
 DTEND;VALUE=DATE:20261118
 SUMMARY:Native Entities Grant Program
@@ -276,7 +452,7 @@ CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
 UID:g44aace469bc@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART;VALUE=DATE:20261117
 DTEND;VALUE=DATE:20261118
 SUMMARY:Tribal Broadband Connectivity Program
@@ -287,8 +463,20 @@ URL:https://www.grants.gov/search-results-detail/362843
 CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
+UID:el-vi-runoff-2026@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20261117
+DTEND;VALUE=DATE:20261118
+SUMMARY:U.S. Virgin Islands congressional runoff
+DESCRIPTION:Election date. From Federal Election Commission. The FEC's 202
+ 6 dates table lists an 11/17/2026 runoff date for the Virgin Islands' con
+ gressional contest.
+URL:https://www.fec.gov/documents/5910/2026pdates.pdf
+CATEGORIES:Election date
+END:VEVENT
+BEGIN:VEVENT
 UID:g262c5cae64e@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART;VALUE=DATE:20261118
 DTEND;VALUE=DATE:20261119
 SUMMARY:DARRP Restoration Implementation Grants (2026)
@@ -299,8 +487,20 @@ URL:https://www.grants.gov/search-results-detail/363758
 CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
+UID:el-guam-mail-ballot-return-2026@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20261118
+DTEND;VALUE=DATE:20261119
+SUMMARY:Guam deadline for absentee ballots to arrive
+DESCRIPTION:Election date. From U.S. Vote Foundation. Guam absentee ballot
+ s must be postmarked by Election Day and received by Nov. 18\, 2026\, per
+  the U.S. Vote Foundation listing.
+URL:https://www.usvotefoundation.org/guam-election-dates-and-deadlines
+CATEGORIES:Election date
+END:VEVENT
+BEGIN:VEVENT
 UID:f96929b49ebc@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART:20261118T190000Z
 DTEND:20261118T200000Z
 SUMMARY:Filipinx Affinity Space: Talambuhay\, Paglilingkod & Kapwa
@@ -316,7 +516,7 @@ CATEGORIES:Event or webinar
 END:VEVENT
 BEGIN:VEVENT
 UID:g44e7f799d2e@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART;VALUE=DATE:20261119
 DTEND;VALUE=DATE:20261120
 SUMMARY:Easement Restoration and Stewardship
@@ -328,7 +528,7 @@ CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
 UID:g4d46fa51174@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART;VALUE=DATE:20261119
 DTEND;VALUE=DATE:20261120
 SUMMARY:Improved quality of life of persons with disabilities in provinces
@@ -340,8 +540,36 @@ URL:https://www.grants.gov/search-results-detail/364047
 CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
+UID:ann-apology-resolution-2026@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20261123
+DTEND;VALUE=DATE:20261124
+SUMMARY:33rd anniversary: Apology Resolution approved
+DESCRIPTION:Anniversary. From U.S. Government Publishing Office (Statutes 
+ at Large). Congress's joint resolution (Public Law 103-150)\, approved th
+ is date\, apologized to Native Hawaiians for the 1893 overthrow of the Ki
+ ngdom of Hawaii.
+URL:https://www.govinfo.gov/content/pkg/STATUTE-107/pdf/STATUTE-107-Pg1510
+ .pdf
+CATEGORIES:Anniversary
+END:VEVENT
+BEGIN:VEVENT
+UID:cmt-5ca04f41efe6@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20261128
+DTEND;VALUE=DATE:20261129
+SUMMARY:Notice of Proposed Information Collection Requests: IMLS Native Ha
+ waiian Library Services Grant Program Notice of Funding Opportunity
+DESCRIPTION:Comment deadline (Notice). From National Foundation on the Art
+ s and the Humanities / Institute of Museum and…
+URL:https://www.federalregister.gov/documents/2026/09/28/2026-19768/notice
+ -of-proposed-information-collection-requests-imls-native-hawaiian-library
+ -services-grant
+CATEGORIES:Comment deadline
+END:VEVENT
+BEGIN:VEVENT
 UID:g7ef36364947@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART;VALUE=DATE:20261130
 DTEND;VALUE=DATE:20261201
 SUMMARY:Cooperative Agreement for affiliated Partner with Hawai&#699\;i-Pa
@@ -354,7 +582,7 @@ CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
 UID:gddaea891e2b@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART;VALUE=DATE:20261130
 DTEND;VALUE=DATE:20261201
 SUMMARY:Cooperative Agreement for affiliated Partner with the Californian 
@@ -367,7 +595,7 @@ CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
 UID:gf7d85c3bdac@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART;VALUE=DATE:20261130
 DTEND;VALUE=DATE:20261201
 SUMMARY:Cooperative Agreement for affiliated Partner with the Chesapeake W
@@ -380,7 +608,7 @@ CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
 UID:gd30f5960a39@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART;VALUE=DATE:20261130
 DTEND;VALUE=DATE:20261201
 SUMMARY:Cooperative Agreement for affiliated Partner with the Colorado Pla
@@ -393,7 +621,7 @@ CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
 UID:gb5a3f1970dd@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART;VALUE=DATE:20261130
 DTEND;VALUE=DATE:20261201
 SUMMARY:Cooperative Agreement for affiliated Partner with the Great Lakes-
@@ -406,7 +634,7 @@ CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
 UID:gc58a058b7b6@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART;VALUE=DATE:20261130
 DTEND;VALUE=DATE:20261201
 SUMMARY:Cooperative Agreement for affiliated Partner with the Great Plains
@@ -419,7 +647,7 @@ CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
 UID:g43cc3974dca@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART;VALUE=DATE:20261130
 DTEND;VALUE=DATE:20261201
 SUMMARY:Cooperative Agreement for affiliated Partner with the Pacific Nort
@@ -432,7 +660,7 @@ CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
 UID:g609629246d0@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART;VALUE=DATE:20261130
 DTEND;VALUE=DATE:20261201
 SUMMARY:F26AS00023 FY2026 Prescott Marine Mammal Rescue and Response Grant
@@ -444,8 +672,20 @@ URL:https://www.grants.gov/search-results-detail/363992
 CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
+UID:el-ga-runoff-2026@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20261201
+DTEND;VALUE=DATE:20261202
+SUMMARY:Georgia general election runoff
+DESCRIPTION:Election date. From Georgia.gov (State of Georgia). Georgia.go
+ v lists Dec. 1\, 2026 as the General Election Runoff\, with polls open 7 
+ a.m. to 7 p.m.
+URL:https://georgia.gov/node/34081
+CATEGORIES:Election date
+END:VEVENT
+BEGIN:VEVENT
 UID:g72c1d1aab58@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART;VALUE=DATE:20261201
 DTEND;VALUE=DATE:20261202
 SUMMARY:John H. Prescott Marine Mammal Rescue Assistance Grant
@@ -456,8 +696,21 @@ URL:https://www.grants.gov/search-results-detail/363929
 CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
+UID:el-ms-runoff-2026@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20261201
+DTEND;VALUE=DATE:20261202
+SUMMARY:Mississippi general election runoff
+DESCRIPTION:Election date. From Mississippi Secretary of State. The Missis
+ sippi Secretary of State's 2026 calendar lists Dec. 1\, 2026 as the Gener
+ al Runoff Election.
+URL:https://www.sos.ms.gov/sites/default/files/publications/Election%20Cal
+ endar_2026.pdf
+CATEGORIES:Election date
+END:VEVENT
+BEGIN:VEVENT
 UID:g6b8bb53243b@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART;VALUE=DATE:20261201
 DTEND;VALUE=DATE:20261202
 SUMMARY:National Center for Construction Safety and Health Research and Tr
@@ -470,7 +723,7 @@ CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
 UID:g34f19c6ad95@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART;VALUE=DATE:20261203
 DTEND;VALUE=DATE:20261204
 SUMMARY:The Science\, Mathematics and Research for Transformation (SMART) 
@@ -483,7 +736,7 @@ CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
 UID:g771be53637c@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART;VALUE=DATE:20261207
 DTEND;VALUE=DATE:20261208
 SUMMARY:MPPEP Phase 3 Invasive Wild-Caught Catfish
@@ -495,7 +748,7 @@ CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
 UID:g7522a62956d@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART;VALUE=DATE:20261208
 DTEND;VALUE=DATE:20261209
 SUMMARY:Great Lakes Restoration Initiative: Community Forest and Open Spac
@@ -508,7 +761,7 @@ CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
 UID:g9b1bed32ca4@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART;VALUE=DATE:20261211
 DTEND;VALUE=DATE:20261212
 SUMMARY:Southeast New England Program (SNEP) Innovative Restoration Grants
@@ -519,8 +772,46 @@ URL:https://www.grants.gov/search-results-detail/364125
 CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
+UID:el-la-house-runoff-2026@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20261212
+DTEND;VALUE=DATE:20261213
+SUMMARY:Louisiana U.S. House second round (runoff)
+DESCRIPTION:Election date. From Federal Election Commission. The FEC and N
+ CSL list Dec. 12\, 2026 as the runoff date for Louisiana's U.S. House rac
+ es\, held only where no candidate won a majority on Nov. 3.
+URL:https://www.fec.gov/documents/5910/2026pdates.pdf
+CATEGORIES:Election date
+END:VEVENT
+BEGIN:VEVENT
+UID:ann-magnuson-act-2026@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20261217
+DTEND;VALUE=DATE:20261218
+SUMMARY:83rd anniversary: Magnuson Act signed
+DESCRIPTION:Anniversary. From U.S. Senate (congress.gov). President Roosev
+ elt signed the Magnuson Act repealing the Chinese Exclusion Acts\, a mile
+ stone for Chinese immigrants' access to naturalization.
+URL:https://www.congress.gov/118/bills/sres506/BILLS-118sres506is.htm
+CATEGORIES:Anniversary
+END:VEVENT
+BEGIN:VEVENT
+UID:ann-korematsu-decision-2026@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20261218
+DTEND;VALUE=DATE:20261219
+SUMMARY:82nd anniversary: Korematsu v. United States decision
+DESCRIPTION:Anniversary. From Administrative Office of the U.S. Courts. Su
+ preme Court upheld\, 6-3\, Fred Korematsu's conviction for violating a wa
+ rtime exclusion order\; a central case in civil-liberties and Japanese Am
+ erican history.
+URL:https://www.uscourts.gov/educational-resources/educational-activities/
+ facts-and-case-summary-korematsu-v-us
+CATEGORIES:Anniversary
+END:VEVENT
+BEGIN:VEVENT
 UID:g0e7ea991d81@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART;VALUE=DATE:20261228
 DTEND;VALUE=DATE:20261229
 SUMMARY:FY 2027 Crash Causal Factors Program
@@ -532,7 +823,7 @@ CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
 UID:ge10f5ff3821@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART;VALUE=DATE:20261231
 DTEND;VALUE=DATE:20270101
 SUMMARY:SEFSC Bluefin Tuna Research Program
@@ -543,8 +834,34 @@ URL:https://www.grants.gov/search-results-detail/363729
 CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
+UID:ann-saund-takes-seat-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20270103
+DTEND;VALUE=DATE:20270104
+SUMMARY:70th anniversary: Dalip Singh Saund takes House seat
+DESCRIPTION:Anniversary. From HISTORY (A&E Networks). Saund of California\
+ , elected in November 1956\, was sworn in as the first Asian American and
+  first Sikh elected to Congress.
+URL:https://www.history.com/this-day-in-history/dalip-singh-saund-elected-
+ to-congress
+CATEGORIES:Anniversary
+END:VEVENT
+BEGIN:VEVENT
+UID:ann-mink-sworn-in-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20270104
+DTEND;VALUE=DATE:20270105
+SUMMARY:62nd anniversary: Patsy Mink sworn into Congress
+DESCRIPTION:Anniversary. From HISTORY (A&E Networks). Patsy Mink of Hawaii
+  was sworn in as the first Asian American woman and first woman of color 
+ to serve in Congress.
+URL:https://history.com/this-day-in-history/january-4/patsy-mink-sworn-in-
+ first-asian-american-woman-of-color-in-congress
+CATEGORIES:Anniversary
+END:VEVENT
+BEGIN:VEVENT
 UID:gef7ed035584@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART;VALUE=DATE:20270107
 DTEND;VALUE=DATE:20270108
 SUMMARY:Intervention Research to Improve Native American Health (R34 Clini
@@ -557,7 +874,7 @@ CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
 UID:g36b59b7b1f9@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART;VALUE=DATE:20270111
 DTEND;VALUE=DATE:20270112
 SUMMARY:Harvest to Hallways: National School Lunch Program\, Equipment Ass
@@ -570,7 +887,7 @@ CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
 UID:g505bb65d315@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART;VALUE=DATE:20270111
 DTEND;VALUE=DATE:20270112
 SUMMARY:Title X Family Planning Services Grants
@@ -582,7 +899,7 @@ CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
 UID:gdd23c97d7a6@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART;VALUE=DATE:20270111
 DTEND;VALUE=DATE:20270112
 SUMMARY:Tribal Colleges and Universities Program (TCUP)
@@ -593,8 +910,47 @@ URL:https://www.grants.gov/search-results-detail/334326
 CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
+UID:obs-korean-american-day-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20270113
+DTEND;VALUE=DATE:20270114
+SUMMARY:Korean American Day
+DESCRIPTION:Observance. From Congressional Asian Pacific American Caucus. 
+ Marks the January 13\, 1903 arrival of the first Korean immigrants in Haw
+ aii\; recognized by House resolutions and state proclamations and a hook 
+ for Korean American history content.
+URL:https://capac.house.gov/press-release/chair-meng-co-leads-bipartisan-h
+ ouse-resolution-honoring-korean-american-day
+CATEGORIES:Observance
+END:VEVENT
+BEGIN:VEVENT
+UID:ann-overthrow-hawaiian-kingdom-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20270117
+DTEND;VALUE=DATE:20270118
+SUMMARY:134th anniversary: Overthrow of the Hawaiian Kingdom
+DESCRIPTION:Anniversary. From Kamehameha Schools. Queen Liliuokalani was d
+ eposed on this date\; Native Hawaiian organizations mark the anniversary\
+ , and Congress cited it in the 1993 Apology Resolution.
+URL:https://www.ksbe.edu/print/article/textonly/kukahekahe-the-overthrow-o
+ f-queen-liliuokalani
+CATEGORIES:Anniversary
+END:VEVENT
+BEGIN:VEVENT
+UID:ann-angel-island-opens-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20270121
+DTEND;VALUE=DATE:20270122
+SUMMARY:117th anniversary: Angel Island Immigration Station opens
+DESCRIPTION:Anniversary. From National Park Service. The San Francisco Bay
+  immigration station opened\; it processed Asian and other immigrants and
+  is central to the exclusion-era history of Chinese Americans.
+URL:https://nps.gov/places/u-s-immigration-station-angel-island.htm
+CATEGORIES:Anniversary
+END:VEVENT
+BEGIN:VEVENT
 UID:g06863bf4025@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART;VALUE=DATE:20270122
 DTEND;VALUE=DATE:20270123
 SUMMARY:National Bycatch Reduction Engineering Program (BREP) - FY2026/27
@@ -606,7 +962,7 @@ CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
 UID:g0c83208d2be@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART;VALUE=DATE:20270125
 DTEND;VALUE=DATE:20270126
 SUMMARY:Tribal Undergraduate to Graduate Research Training and Leadership 
@@ -619,7 +975,7 @@ CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
 UID:g3972d0d0648@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART;VALUE=DATE:20270125
 DTEND;VALUE=DATE:20270126
 SUMMARY:Tribal Undergraduate to Graduate Research Training and Leadership 
@@ -632,7 +988,7 @@ CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
 UID:gb70e52f8646@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART;VALUE=DATE:20270126
 DTEND;VALUE=DATE:20270127
 SUMMARY:Landscape Scale Restoration Grant Program for Non-Federal Lands
@@ -644,7 +1000,7 @@ CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
 UID:gfe0bdb49ce8@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART;VALUE=DATE:20270127
 DTEND;VALUE=DATE:20270128
 SUMMARY:Tribal Institutional Review Board Establishment and Enhancement (T
@@ -656,8 +1012,21 @@ URL:https://www.grants.gov/search-results-detail/355987
 CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
+UID:obs-fred-korematsu-day-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20270130
+DTEND;VALUE=DATE:20270131
+SUMMARY:Fred Korematsu Day of Civil Liberties and the Constitution
+DESCRIPTION:Observance. From California Legislature. California's annual d
+ ay honoring civil rights litigant Fred Korematsu\, kept on his January 30
+  birthday\; a hook for civil liberties and immigration-policy coverage.
+URL:https://www.leginfo.ca.gov/pub/09-10/bill/asm/ab_1751-1800/ab_1775_bil
+ l_20100901_enrolled.html
+CATEGORIES:Observance
+END:VEVENT
+BEGIN:VEVENT
 UID:g8abb55f1c0e@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART;VALUE=DATE:20270131
 DTEND;VALUE=DATE:20270201
 SUMMARY:Training and Employment Guidance Letter (02-26) for FY 2026 Commun
@@ -669,8 +1038,33 @@ URL:https://www.grants.gov/search-results-detail/363715
 CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
+UID:obs-lunar-new-year-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20270206
+DTEND;VALUE=DATE:20270207
+SUMMARY:Lunar New Year
+DESCRIPTION:Observance. From PublicHolidays.com. Start of the lunar year\,
+  celebrated by Chinese\, Korean\, Vietnamese and other Asian American com
+ munities\; a major annual hook for community\, business and policy conten
+ t.
+URL:https://publicholidays.com/lunar-new-year/
+CATEGORIES:Observance
+END:VEVENT
+BEGIN:VEVENT
+UID:obs-tet-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20270206
+DTEND;VALUE=DATE:20270207
+SUMMARY:Tet (Vietnamese New Year)
+DESCRIPTION:Observance. From timeanddate.com. Vietnamese lunar new year\, 
+ the biggest family and community holiday for Vietnamese Americans\, with 
+ festivals and temple and market events in the days around it.
+URL:https://timeanddate.com/holidays/vietnam/tet-new-year
+CATEGORIES:Observance
+END:VEVENT
+BEGIN:VEVENT
 UID:gec7c43878aa@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART;VALUE=DATE:20270209
 DTEND;VALUE=DATE:20270210
 SUMMARY:Climate Program Office FY 2027 - Super Intelligence/Machine Learni
@@ -684,7 +1078,7 @@ CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
 UID:g5e78c126375@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART;VALUE=DATE:20270212
 DTEND;VALUE=DATE:20270213
 SUMMARY:Advancing coastal flood protection through public-private partners
@@ -697,7 +1091,7 @@ CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
 UID:g7f39f79e222@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART;VALUE=DATE:20270214
 DTEND;VALUE=DATE:20270215
 SUMMARY:Advancing Global Health
@@ -709,7 +1103,7 @@ CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
 UID:gde7009a2901@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART;VALUE=DATE:20270219
 DTEND;VALUE=DATE:20270220
 SUMMARY:AFRL/AFOSR-Taiwan NSTC Frontiers in Materials and Nanostructures: 
@@ -722,8 +1116,142 @@ URL:https://www.grants.gov/search-results-detail/364165
 CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
+UID:ann-thind-decision-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20270219
+DTEND;VALUE=DATE:20270220
+SUMMARY:104th anniversary: Bhagat Singh Thind decision
+DESCRIPTION:Anniversary. From Legal Information Institute\, Cornell Law Sc
+ hool. Supreme Court held that Bhagat Singh Thind\, an Indian Sikh veteran
+ \, was not a 'white person' eligible for naturalization\; a core South As
+ ian American history hook.
+URL:https://www.law.cornell.edu/supremecourt/text/261/204
+CATEGORIES:Anniversary
+END:VEVENT
+BEGIN:VEVENT
+UID:obs-national-day-of-remembrance-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20270219
+DTEND;VALUE=DATE:20270220
+SUMMARY:Day of Remembrance (Japanese American incarceration)
+DESCRIPTION:Observance. From Japanese American Citizens League. Community 
+ observance of the day in 1942 that Executive Order 9066 was signed\, lead
+ ing to the wartime removal and incarceration of about 120\,000 people of 
+ Japanese ancestry.
+URL:https://jacl.org/day-of-remembrance
+CATEGORIES:Observance
+END:VEVENT
+BEGIN:VEVENT
+UID:ann-executive-order-9066-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20270219
+DTEND;VALUE=DATE:20270220
+SUMMARY:85th anniversary: Executive Order 9066 signed
+DESCRIPTION:Anniversary. From U.S. Government Publishing Office (Congressi
+ onal Record). President Roosevelt signed the order that led to the remova
+ l and incarceration of about 120\,000 people of Japanese ancestry on the 
+ West Coast.
+URL:https://www.govinfo.gov/content/pkg/CRECB-2007-pt3/html/CRECB-2007-pt3
+ -Pg3719.htm
+CATEGORIES:Anniversary
+END:VEVENT
+BEGIN:VEVENT
+UID:obs-rmi-nuclear-victims-remembrance-day-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20270301
+DTEND;VALUE=DATE:20270302
+SUMMARY:Nuclear Victims Remembrance Day (Marshall Islands)
+DESCRIPTION:Observance. From Honolulu Civil Beat. March 1 observance in th
+ e Marshall Islands recalling people harmed by U.S. nuclear testing\, anch
+ ored to the 1954 Castle Bravo test\; ties to compensation and Compact deb
+ ates.
+URL:https://www.civilbeat.org/beat/marshallese-honor-nuclear-victims-as-ne
+ gotiations-with-us-continue
+CATEGORIES:Observance
+END:VEVENT
+BEGIN:VEVENT
+UID:ann-page-act-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20270303
+DTEND;VALUE=DATE:20270304
+SUMMARY:152nd anniversary: Page Act signed
+DESCRIPTION:Anniversary. From National Park Service. President Grant signe
+ d the Page Act\, which targeted the immigration of Chinese women and is a
+  common reference point for the history of federal immigration restrictio
+ n.
+URL:https://www.nps.gov/articles/000/ulysses-s-grant-chinese-immigration-a
+ nd-the-page-act-of-1875.htm
+CATEGORIES:Anniversary
+END:VEVENT
+BEGIN:VEVENT
+UID:ann-atlanta-spa-shootings-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20270316
+DTEND;VALUE=DATE:20270317
+SUMMARY:6th anniversary: Atlanta-area spa shootings
+DESCRIPTION:Anniversary. From The Atlanta Journal-Constitution. Shootings 
+ at three metro Atlanta spas killed eight people\, most of them Asian wome
+ n\, prompting national attention to anti-Asian violence and gendered hate
+ .
+URL:https://www.ajc.com/news/spa-shootings-a-timeline-of-events-that-left-
+ 8-dead-in-metro-atlanta/UH5ZJVXV3FCY3LUPW4T6CUCSC4/.
+CATEGORIES:Anniversary
+END:VEVENT
+BEGIN:VEVENT
+UID:ann-refugee-act-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20270317
+DTEND;VALUE=DATE:20270318
+SUMMARY:47th anniversary: Refugee Act signed
+DESCRIPTION:Anniversary. From National Archives (DocsTeach). President Car
+ ter signed the law creating a standard system for admitting and resettlin
+ g refugees\; central to the history of Southeast Asian resettlement.
+URL:https://docsteach.org/document/refugee-act/
+CATEGORIES:Anniversary
+END:VEVENT
+BEGIN:VEVENT
+UID:ann-tydings-mcduffie-act-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20270324
+DTEND;VALUE=DATE:20270325
+SUMMARY:93rd anniversary: Tydings-McDuffie Act signed
+DESCRIPTION:Anniversary. From Encyclopaedia Britannica. President Roosevel
+ t signed the law setting a ten-year Commonwealth period leading to Philip
+ pine independence\; a key moment in Filipino American immigration history
+ .
+URL:https://www.britannica.com/print/article/611449
+CATEGORIES:Anniversary
+END:VEVENT
+BEGIN:VEVENT
+UID:obs-prince-kuhio-day-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20270326
+DTEND;VALUE=DATE:20270327
+SUMMARY:Prince Jonah Kuhio Kalanianaole Day
+DESCRIPTION:Observance. From Hawaii State Legislature (Hawaii Revised Stat
+ utes). Hawaii state holiday on March 26 honoring Prince Kuhio\, a Hawaiia
+ n royal and delegate to Congress\; a Native Hawaiian civic and policy con
+ tent hook.
+URL:https://data.capitol.hawaii.gov/hrscurrent/Vol01_Ch0001-0042F/HRS0008/
+ HRS_0008-0001.htm
+CATEGORIES:Observance
+END:VEVENT
+BEGIN:VEVENT
+UID:ann-wong-kim-ark-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20270328
+DTEND;VALUE=DATE:20270329
+SUMMARY:129th anniversary: Wong Kim Ark decision
+DESCRIPTION:Anniversary. From Legal Information Institute\, Cornell Law Sc
+ hool. Supreme Court decision holding that a man born in San Francisco to 
+ Chinese parents was a U.S. citizen\; a frequent reference in birthright c
+ itizenship coverage.
+URL:https://www.law.cornell.edu/supremecourt/text/169/649
+CATEGORIES:Anniversary
+END:VEVENT
+BEGIN:VEVENT
 UID:gc09b5e42318@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART;VALUE=DATE:20270331
 DTEND;VALUE=DATE:20270401
 SUMMARY:UNITED STATES MILITARY ACADEMY Broad Agency Announcement
@@ -734,8 +1262,85 @@ URL:https://www.grants.gov/search-results-detail/325932
 CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
+UID:obs-songkran-sea-new-year-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20270413
+DTEND;VALUE=DATE:20270417
+SUMMARY:Songkran and Southeast Asian New Year
+DESCRIPTION:Observance. From Southeast Asian Ministers of Education Organi
+ zation (SEAMEO). Mid-April new year festivals in Thailand (Songkran)\, La
+ os (Pi Mai) and Cambodia (Khmer New Year)\, with temple and water-blessin
+ g events in diaspora communities.
+URL:https://www.seameo.org/search/501
+CATEGORIES:Observance
+END:VEVENT
+BEGIN:VEVENT
+UID:obs-vaisakhi-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20270414
+DTEND;VALUE=DATE:20270415
+SUMMARY:Vaisakhi
+DESCRIPTION:Observance. From PublicHolidays.in. Spring harvest festival an
+ d Punjabi and Sikh new-year observance marked with parades and community 
+ events\; listed dates follow the solar-calendar sources.
+URL:https://publicholidays.in/vaisakh/
+CATEGORIES:Observance
+END:VEVENT
+BEGIN:VEVENT
+UID:obs-american-samoa-flag-day-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20270417
+DTEND;VALUE=DATE:20270418
+SUMMARY:American Samoa Flag Day
+DESCRIPTION:Observance. From U.S. Congress (Congressional Record\, via Gov
+ Info). Marks the April 17\, 1900 Deed of Cession of Tutuila and Aunu'u to
+  the United States\; listed as a public holiday in American Samoa and mar
+ ked by Samoan communities elsewhere.
+URL:https://www.govinfo.gov/link/crec/160/h/3125
+CATEGORIES:Observance
+END:VEVENT
+BEGIN:VEVENT
+UID:obs-cambodian-genocide-remembrance-day-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20270417
+DTEND;VALUE=DATE:20270418
+SUMMARY:Cambodian Genocide Remembrance Day
+DESCRIPTION:Observance. From U.S. House of Representatives (congress.gov).
+  April 17 marks the 1975 fall of Phnom Penh to the Khmer Rouge\; recogniz
+ ed by several U.S. cities\, counties and a state\, and a hook for Cambodi
+ an American remembrance and refugee stories.
+URL:https://www.congress.gov/119/bills/hres338/BILLS-119hres338ih.htm
+CATEGORIES:Observance
+END:VEVENT
+BEGIN:VEVENT
+UID:el-la-bese-primary-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20270417
+DTEND;VALUE=DATE:20270418
+SUMMARY:Louisiana BESE party primary and municipal primary
+DESCRIPTION:Election date. From Louisiana Secretary of State. Louisiana's 
+ 2027 calendar lists April 17 for the BESE party primary and municipal pri
+ mary.
+URL:https://www.sos.la.gov/ElectionsAndVoting/PublishedDocuments/Elections
+ Calendar2027.pdf
+CATEGORIES:Election date
+END:VEVENT
+BEGIN:VEVENT
+UID:ann-la-unrest-sa-i-gu-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20270429
+DTEND;VALUE=DATE:20270430
+SUMMARY:35th anniversary: Los Angeles unrest begins (Sa-I-Gu)
+DESCRIPTION:Anniversary. From NBC News. The Rodney King trial verdict set 
+ off days of unrest in Los Angeles\; Korean Americans call the date Sa-I-G
+ u (4-2-9)\, and Koreatown businesses were hard hit.
+URL:https://www.nbcnews.com/news/asian-america/25-years-after-la-riots-kor
+ eatown-finds-strength-saigu-legacy-n749081
+CATEGORIES:Anniversary
+END:VEVENT
+BEGIN:VEVENT
 UID:g6bdf0aa60cd@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART;VALUE=DATE:20270430
 DTEND;VALUE=DATE:20270501
 SUMMARY:F26AS00105 National Fish Passage Program
@@ -746,8 +1351,150 @@ URL:https://www.grants.gov/search-results-detail/363699
 CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
+UID:ann-fall-of-saigon-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20270430
+DTEND;VALUE=DATE:20270501
+SUMMARY:52nd anniversary: Fall of Saigon
+DESCRIPTION:Anniversary. From Association for Diplomatic Studies and Train
+ ing. Saigon fell\, ending the Vietnam War and starting a refugee exodus\;
+  Vietnamese Americans mark the date as Black April\, a remembrance and co
+ mmunity-history hook.
+URL:https://adst.org/2013/04/the-fall-of-saigon-april-30-1975/
+CATEGORIES:Anniversary
+END:VEVENT
+BEGIN:VEVENT
+UID:obs-aanhpi-heritage-month-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20270501
+DTEND;VALUE=DATE:20270601
+SUMMARY:AANHPI Heritage Month
+DESCRIPTION:Observance. From AsianPacificHeritage.gov (joint federal agenc
+ y site). Annual May heritage month honoring Asian American\, Native Hawai
+ ian and Pacific Islander history and contributions\; the main yearly peak
+  for AAPI-focused content.
+URL:https://asianpacificheritage.gov/About
+CATEGORIES:Observance
+END:VEVENT
+BEGIN:VEVENT
+UID:obs-lei-day-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20270501
+DTEND;VALUE=DATE:20270502
+SUMMARY:Lei Day
+DESCRIPTION:Observance. From Hawaii State Legislature (Hawaii Revised Stat
+ utes). Hawaii observance on May 1\, set in state law as May Day is Lei Da
+ y\, celebrating lei and Hawaiian culture\; it falls on the first day of A
+ ANHPI Heritage Month.
+URL:https://data.capitol.hawaii.gov/sessions/session2017/HRS-Chapter-PDF's
+ /HRS_0008.pdf
+CATEGORIES:Observance
+END:VEVENT
+BEGIN:VEVENT
+UID:ann-chinese-exclusion-act-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20270506
+DTEND;VALUE=DATE:20270507
+SUMMARY:145th anniversary: Chinese Exclusion Act signed
+DESCRIPTION:Anniversary. From National Archives. President Arthur signed t
+ he law suspending Chinese labor immigration\; widely cited as the first m
+ ajor federal law to bar a group by national origin.
+URL:https://www.archives.gov/milestone-documents/chinese-exclusion-act
+CATEGORIES:Anniversary
+END:VEVENT
+BEGIN:VEVENT
+UID:ann-golden-spike-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20270510
+DTEND;VALUE=DATE:20270511
+SUMMARY:158th anniversary: Transcontinental railroad completed
+DESCRIPTION:Anniversary. From National Park Service. First transcontinenta
+ l railroad completed at Promontory Summit\, Utah\; Chinese laborers built
+  much of the Central Pacific line\, a standard Heritage Month hook.
+URL:https://www.nps.gov/gosp/learn/news/golden-spike-national-historical-p
+ ark-to-commemorate-the-anniversary-of-the-completion-of-the-transcontinen
+ tal-railroad.htm
+CATEGORIES:Anniversary
+END:VEVENT
+BEGIN:VEVENT
+UID:el-ky-primary-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20270518
+DTEND;VALUE=DATE:20270519
+SUMMARY:Kentucky primary election
+DESCRIPTION:Election date. From Kentucky State Board of Elections. Kentuck
+ y's State Board of Elections lists May 18\, 2027 as the primary election 
+ date (polls 6 a.m. to 6 p.m.).
+URL:https://elect.ky.gov/Resources/Documents/2027%20Election%20Calendar.pd
+ f
+CATEGORIES:Election date
+END:VEVENT
+BEGIN:VEVENT
+UID:ann-covid-19-hate-crimes-act-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20270520
+DTEND;VALUE=DATE:20270521
+SUMMARY:6th anniversary: COVID-19 Hate Crimes Act signed
+DESCRIPTION:Anniversary. From U.S. Government Publishing Office (GovInfo).
+  President Biden signed Public Law 117-13\, directing expedited federal r
+ eview of COVID-19-related hate crimes and improved hate-crime reporting.
+URL:https://www.govinfo.gov/metadata/pkg/PLAW-117publ13/mods.xml
+CATEGORIES:Anniversary
+END:VEVENT
+BEGIN:VEVENT
+UID:ann-hmong-veterans-naturalization-act-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20270526
+DTEND;VALUE=DATE:20270527
+SUMMARY:27th anniversary: Hmong Veterans' Naturalization Act signed
+DESCRIPTION:Anniversary. From U.S. Government Publishing Office. President
+  Clinton signed Public Law 106-207\, easing naturalization for certain Hm
+ ong and Lao veterans who served alongside U.S. forces in Laos.
+URL:https://www.govinfo.gov/content/pkg/PLAW-106publ207/html/PLAW-106publ2
+ 07.htm
+CATEGORIES:Anniversary
+END:VEVENT
+BEGIN:VEVENT
+UID:ann-immigration-act-1924-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20270526
+DTEND;VALUE=DATE:20270527
+SUMMARY:103rd anniversary: Immigration Act (Johnson-Reed) signed
+DESCRIPTION:Anniversary. From San Diego State University. Signed by Presid
+ ent Coolidge\; set national-origins quotas and barred entry of those inel
+ igible for citizenship\, effectively ending most Asian immigration.
+URL:https://loveman.sdsu.edu/docs/1924ImmigrationAct.pdf
+CATEGORIES:Anniversary
+END:VEVENT
+BEGIN:VEVENT
+UID:ann-executive-order-14031-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20270528
+DTEND;VALUE=DATE:20270529
+SUMMARY:6th anniversary: Executive Order 14031 signed
+DESCRIPTION:Anniversary. From Federal Register (U.S. Government Publishing
+  Office). Executive order establishing the White House Initiative and Adv
+ isory Commission on Asian Americans\, Native Hawaiians and Pacific Island
+ ers\; it superseded four earlier orders.
+URL:https://www.govinfo.gov/content/pkg/FR-2021-06-03/html/2021-11792.htm
+CATEGORIES:Anniversary
+END:VEVENT
+BEGIN:VEVENT
+UID:el-la-bese-runoff-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20270529
+DTEND;VALUE=DATE:20270530
+SUMMARY:Louisiana second party primary and municipal general
+DESCRIPTION:Election date. From Louisiana Secretary of State. Louisiana's 
+ 2027 calendar lists May 29 for the BESE second party primary and the muni
+ cipal general election.
+URL:https://www.sos.la.gov/ElectionsAndVoting/PublishedDocuments/Elections
+ Calendar2027.pdf
+CATEGORIES:Election date
+END:VEVENT
+BEGIN:VEVENT
 UID:g7f53025a55b@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART;VALUE=DATE:20270602
 DTEND;VALUE=DATE:20270603
 SUMMARY:Enhancing Mechanistic Research on Precision Probiotic Therapies (R
@@ -760,7 +1507,7 @@ CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
 UID:ge5e8c7e30d6@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART;VALUE=DATE:20270602
 DTEND;VALUE=DATE:20270603
 SUMMARY:Enhancing Mechanistic Research on Precision Probiotic Therapies (R
@@ -772,8 +1519,21 @@ URL:https://www.grants.gov/search-results-detail/356925
 CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
+UID:ann-executive-order-13125-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20270607
+DTEND;VALUE=DATE:20270608
+SUMMARY:28th anniversary: Executive Order 13125 signed
+DESCRIPTION:Anniversary. From Federal Register (U.S. Government Publishing
+  Office). President Clinton signed the order creating the White House Ini
+ tiative and President's Advisory Commission on Asian Americans and Pacifi
+ c Islanders.
+URL:https://www.govinfo.gov/content/pkg/FR-1999-06-10/html/99-14901.htm
+CATEGORIES:Anniversary
+END:VEVENT
+BEGIN:VEVENT
 UID:g4352c191bd6@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART;VALUE=DATE:20270609
 DTEND;VALUE=DATE:20270610
 SUMMARY:Authority to Accept Unsolicited Proposals for Research Partnership
@@ -785,8 +1545,36 @@ URL:https://www.grants.gov/search-results-detail/362364
 CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
+UID:obs-king-kamehameha-day-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20270611
+DTEND;VALUE=DATE:20270612
+SUMMARY:King Kamehameha I Day
+DESCRIPTION:Observance. From Hawaii State Legislature (Hawaii Revised Stat
+ utes). Hawaii state holiday on June 11 honoring Kamehameha I\, who united
+  the Hawaiian Islands\; observed with parades\, lei draping and cultural 
+ events.
+URL:https://data.capitol.hawaii.gov/hrscurrent/Vol01_Ch0001-0042F/HRS0008/
+ HRS_0008-0001.htm
+CATEGORIES:Observance
+END:VEVENT
+BEGIN:VEVENT
+UID:el-va-primary-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20270615
+DTEND;VALUE=DATE:20270616
+SUMMARY:Virginia primary (if called by parties)
+DESCRIPTION:Election date. From City of Alexandria\, Virginia (election of
+ fice six-year calendar). A Virginia local election-office calendar lists 
+ June 15\, 2027 as the primary date\, held only if called by party committ
+ ees\, for legislative and local offices.
+URL:https://www.alexandriava.gov/sites/default/files/2026-03/Six%20Year%20
+ Calendar%202026-2031%20REV%20%28w.%20Dept%20Seal%29.pdf
+CATEGORIES:Election date
+END:VEVENT
+BEGIN:VEVENT
 UID:fff3b84d8122@pro.theyappie.com
-DTSTAMP:20261102T063142Z
+DTSTAMP:20261102T063329Z
 DTSTART;VALUE=DATE:20270621
 DTEND;VALUE=DATE:20270624
 SUMMARY:2027 AAPIP Conference
@@ -795,5 +1583,408 @@ DESCRIPTION:Event or webinar. From AAPIP (Asian Americans / Pacific Island
  027 in Philadelphia! Stay tuned for details and registration.
 URL:https://aapip.org/calendar-event/2027-aapip-conference/
 CATEGORIES:Event or webinar
+END:VEVENT
+BEGIN:VEVENT
+UID:ann-vincent-chin-death-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20270623
+DTEND;VALUE=DATE:20270624
+SUMMARY:45th anniversary: Vincent Chin dies
+DESCRIPTION:Anniversary. From National Park Service. Chin died four days a
+ fter being beaten in Highland Park\, Michigan on June 19\, 1982\; his cas
+ e galvanized Asian American civil rights organizing.
+URL:https://www.nps.gov/people/vincent-chin.htm
+CATEGORIES:Anniversary
+END:VEVENT
+BEGIN:VEVENT
+UID:ann-sffa-v-harvard-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20270629
+DTEND;VALUE=DATE:20270630
+SUMMARY:4th anniversary: SFFA v. Harvard decision
+DESCRIPTION:Anniversary. From SCOTUSblog. Supreme Court ruling on race-con
+ scious admissions at Harvard and UNC\; Asian American applicants figured 
+ prominently in the case and in community responses.
+URL:https://www.scotusblog.com/case-files/cases/students-for-fair-admissio
+ ns-inc-v-president-fellows-of-harvard-college/
+CATEGORIES:Anniversary
+END:VEVENT
+BEGIN:VEVENT
+UID:ann-luce-celler-act-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20270702
+DTEND;VALUE=DATE:20270703
+SUMMARY:81st anniversary: Luce-Celler Act approved
+DESCRIPTION:Anniversary. From U.S. Government Publishing Office (Statutes 
+ at Large). Truman approved the act opening naturalization to people of ra
+ ces indigenous to India and the Philippines and setting small annual immi
+ gration quotas for each.
+URL:https://www.govinfo.gov/link/statute/60/416
+CATEGORIES:Anniversary
+END:VEVENT
+BEGIN:VEVENT
+UID:ann-philippine-independence-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20270704
+DTEND;VALUE=DATE:20270705
+SUMMARY:81st anniversary: Philippine independence from the United States
+DESCRIPTION:Anniversary. From Office of the Historian\, U.S. Department of
+  State. The U.S. recognized Philippine independence and the two countries
+  signed the Treaty of General Relations in Manila\; a Filipino American h
+ istory hook.
+URL:https://history.state.gov/countries/philippines
+CATEGORIES:Anniversary
+END:VEVENT
+BEGIN:VEVENT
+UID:obs-guam-liberation-day-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20270721
+DTEND;VALUE=DATE:20270722
+SUMMARY:Guam Liberation Day
+DESCRIPTION:Observance. From Guam Legislature. Legal public holiday in Gua
+ m on July 21 marking the 1944 liberation from Japanese occupation\; a maj
+ or CHamoru civic event and military-history hook.
+URL:https://guamlegislature.com/Public_Laws_3rd/PL03-070.pdf
+CATEGORIES:Observance
+END:VEVENT
+BEGIN:VEVENT
+UID:el-ms-primary-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20270803
+DTEND;VALUE=DATE:20270804
+SUMMARY:Mississippi primary election
+DESCRIPTION:Election date. From Mississippi Secretary of State. The Missis
+ sippi Secretary of State's calendar lists Aug. 3\, 2027 as the 2027 prima
+ ry election.
+URL:https://www.sos.ms.gov/sites/default/files/publications/Election%20Cal
+ endar_2026.pdf
+CATEGORIES:Election date
+END:VEVENT
+BEGIN:VEVENT
+UID:ann-oak-creek-gurdwara-shooting-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20270805
+DTEND;VALUE=DATE:20270806
+SUMMARY:15th anniversary: Oak Creek gurdwara shooting
+DESCRIPTION:Anniversary. From FBI Milwaukee. Armed attack on worshippers a
+ t a Sikh gurdwara in Oak Creek\, Wisconsin\; a touchstone for Sikh commun
+ ity safety\, hate-crime data and houses-of-worship security advocacy.
+URL:https://www.fbi.gov/milwaukee/press-releases/2012/statement-on-shootin
+ g-incident-at-sikh-temple
+CATEGORIES:Anniversary
+END:VEVENT
+BEGIN:VEVENT
+UID:ann-voting-rights-act-1975-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20270806
+DTEND;VALUE=DATE:20270807
+SUMMARY:52nd anniversary: Voting Rights Act language-minority amendments s
+ igned
+DESCRIPTION:Anniversary. From U.S. Government Publishing Office (Statutes 
+ at Large). President Ford signed amendments extending protections to lang
+ uage minorities\, expressly including Asian Americans\; the basis for mul
+ tilingual ballots and assistance.
+URL:https://www.govinfo.gov/link/statute/89/402
+CATEGORIES:Anniversary
+END:VEVENT
+BEGIN:VEVENT
+UID:ann-lahaina-wildfire-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20270808
+DTEND;VALUE=DATE:20270809
+SUMMARY:4th anniversary: Lahaina wildfire
+DESCRIPTION:Anniversary. From Wildfire.gov (U.S. interagency wildland fire
+  lessons site). Wildfire destroyed much of Lahaina on Maui\, a historic c
+ enter of Hawaiian culture\; recovery\, housing and land questions remain 
+ active news stories.
+URL:https://lessons.wildfire.gov/incident/maui-wildfires-2023
+CATEGORIES:Anniversary
+END:VEVENT
+BEGIN:VEVENT
+UID:ann-civil-liberties-act-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20270810
+DTEND;VALUE=DATE:20270811
+SUMMARY:39th anniversary: Civil Liberties Act signed
+DESCRIPTION:Anniversary. From Densho Encyclopedia. President Reagan signed
+  the law apologizing for the wartime incarceration of Japanese Americans 
+ and authorizing redress payments to survivors.
+URL:https://encyclopedia.densho.org/Civil_Liberties_Act_of_1988/
+CATEGORIES:Anniversary
+END:VEVENT
+BEGIN:VEVENT
+UID:obs-hawaii-statehood-day-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20270820
+DTEND;VALUE=DATE:20270821
+SUMMARY:Hawaii Statehood Day
+DESCRIPTION:Observance. From Hawaii State Legislature (Hawaii Revised Stat
+ utes). Hawaii state holiday on the third Friday of August marking admissi
+ on as the 50th state\; 2028 date is computed from the statutory third-Fri
+ day rule.
+URL:https://data.capitol.hawaii.gov/hrscurrent/Vol01_Ch0001-0042F/HRS0008/
+ HRS_0008-0001.htm
+CATEGORIES:Observance
+END:VEVENT
+BEGIN:VEVENT
+UID:ann-hawaii-statehood-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20270821
+DTEND;VALUE=DATE:20270822
+SUMMARY:68th anniversary: Hawaii becomes the 50th state
+DESCRIPTION:Anniversary. From National Archives (Office of the Federal Reg
+ ister). Eisenhower proclaimed Hawaii a state on this date\; he had signed
+  the Admission Act on March 18\, 1959. Hook for Native Hawaiian and Pacif
+ ic Islander history.
+URL:https://www.archives.gov/federal-register/codification/proclamations/0
+ 3309.html
+CATEGORIES:Anniversary
+END:VEVENT
+BEGIN:VEVENT
+UID:ann-fong-seated-senate-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20270824
+DTEND;VALUE=DATE:20270825
+SUMMARY:68th anniversary: Hiram Fong seated in the U.S. Senate
+DESCRIPTION:Anniversary. From U.S. Senate. Hiram Fong was seated as one of
+  Hawaii's first two U.S. senators after statehood\; he is widely recogniz
+ ed as the first Asian American senator.
+URL:https://www.senate.gov/states/HI/timeline.htm
+CATEGORIES:Anniversary
+END:VEVENT
+BEGIN:VEVENT
+UID:ann-balbir-singh-sodhi-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20270915
+DTEND;VALUE=DATE:20270916
+SUMMARY:26th anniversary: Balbir Singh Sodhi killed
+DESCRIPTION:Anniversary. From Sikh American Legal Defense and Education Fu
+ nd (SALDEF). Sikh business owner Balbir Singh Sodhi was shot outside his 
+ Mesa\, Arizona gas station days after 9/11\, widely cited as the first po
+ st-9/11 hate-crime murder.
+URL:https://saldef.org/?p=547
+CATEGORIES:Anniversary
+END:VEVENT
+BEGIN:VEVENT
+UID:obs-chuseok-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20270915
+DTEND;VALUE=DATE:20270916
+SUMMARY:Chuseok
+DESCRIPTION:Observance. From timeanddate.com. Korean harvest and ancestor-
+ remembrance holiday on the 15th day of the eighth lunar month\; dates sho
+ wn are Chuseok day itself within a three-day Korean holiday.
+URL:https://timeanddate.com/holidays/south-korea/mid-autumn-festival-day-2
+CATEGORIES:Observance
+END:VEVENT
+BEGIN:VEVENT
+UID:obs-mid-autumn-festival-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20270915
+DTEND;VALUE=DATE:20270916
+SUMMARY:Mid-Autumn Festival
+DESCRIPTION:Observance. From timeanddate.com. Harvest-moon festival on the
+  15th day of the eighth lunar month\, celebrated with mooncakes and famil
+ y gatherings by Chinese\, Vietnamese and other communities.
+URL:https://timeanddate.com/holidays/china/mid-autumn-festival
+CATEGORIES:Observance
+END:VEVENT
+BEGIN:VEVENT
+UID:ann-cable-act-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20270922
+DTEND;VALUE=DATE:20270923
+SUMMARY:105th anniversary: Cable Act signed
+DESCRIPTION:Anniversary. From immigrationhistory.org. Married Women's Inde
+ pendent Citizenship Act\; it still stripped citizenship from American wom
+ en who married men 'ineligible for citizenship\,' chiefly Asian immigrant
+ s.
+URL:https://immigrationhistory.org/item/cable-act/
+CATEGORIES:Anniversary
+END:VEVENT
+BEGIN:VEVENT
+UID:obs-filipino-american-history-month-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20271001
+DTEND;VALUE=DATE:20271101
+SUMMARY:Filipino American History Month
+DESCRIPTION:Observance. From U.S. Senate (congress.gov). Congress recogniz
+ ed October as Filipino American History Month starting with a 2009 Senate
+  resolution\; FANHS has marked the month since 1991.
+URL:https://www.congress.gov/111/bills/sres298/BILLS-111sres298ats.pdf
+CATEGORIES:Observance
+END:VEVENT
+BEGIN:VEVENT
+UID:ann-palau-compact-takes-effect-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20271001
+DTEND;VALUE=DATE:20271002
+SUMMARY:33rd anniversary: Palau Compact of Free Association takes effect
+DESCRIPTION:Anniversary. From The American Presidency Project\, UC Santa B
+ arbara. The Compact with Palau took effect on this date (proclaimed Sept.
+  27\, 1994)\, ending the trusteeship\; COFA migrants' access to U.S. serv
+ ices is an ongoing policy topic.
+URL:https://presidency.ucsb.edu/documents/proclamation-6726-placing-into-f
+ ull-force-and-effect-the-compact-free-association-with-the
+CATEGORIES:Anniversary
+END:VEVENT
+BEGIN:VEVENT
+UID:ann-immigration-and-nationality-act-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20271003
+DTEND;VALUE=DATE:20271004
+SUMMARY:62nd anniversary: Immigration and Nationality Act (Hart-Celler) si
+ gned
+DESCRIPTION:Anniversary. From LBJ Presidential Library. President Johnson 
+ signed the law at the Statue of Liberty\; it replaced national-origins qu
+ otas and led to major growth in Asian immigration.
+URL:https://www.lbjlibrary.org/news-and-press/media-kits/immigration-and-n
+ ationality-act
+CATEGORIES:Anniversary
+END:VEVENT
+BEGIN:VEVENT
+UID:ann-apa-heritage-week-law-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20271005
+DTEND;VALUE=DATE:20271006
+SUMMARY:49th anniversary: Heritage Week joint resolution signed
+DESCRIPTION:Anniversary. From U.S. Government Publishing Office (Statutes 
+ at Large). President Carter signed Public Law 95-419 (signing date) creat
+ ing Asian/Pacific American Heritage Week for 1979\, the origin of today's
+  May heritage month.
+URL:https://www.govinfo.gov/content/pkg/STATUTE-92/pdf/STATUTE-92-Pg920.pd
+ f
+CATEGORIES:Anniversary
+END:VEVENT
+BEGIN:VEVENT
+UID:el-la-gov-primary-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20271009
+DTEND;VALUE=DATE:20271010
+SUMMARY:Louisiana gubernatorial primary
+DESCRIPTION:Election date. From Louisiana Secretary of State. Louisiana's 
+ 2027 calendar lists Oct. 9 for the gubernatorial primary and the BESE gen
+ eral election.
+URL:https://www.sos.la.gov/ElectionsAndVoting/PublishedDocuments/Elections
+ Calendar2027.pdf
+CATEGORIES:Election date
+END:VEVENT
+BEGIN:VEVENT
+UID:ann-luzones-indios-morro-bay-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20271018
+DTEND;VALUE=DATE:20271019
+SUMMARY:440th anniversary: Luzones Indios land at Morro Bay
+DESCRIPTION:Anniversary. From U.S. Senate (congress.gov). Date cited by Co
+ ngress and FANHS for the earliest documented Filipino presence in the con
+ tinental U.S.\; the historical anchor for Filipino American History Month
+ .
+URL:https://www.congress.gov/111/bills/sres298/BILLS-111sres298ats.pdf
+CATEGORIES:Anniversary
+END:VEVENT
+BEGIN:VEVENT
+UID:ann-rmi-compact-takes-effect-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20271021
+DTEND;VALUE=DATE:20271022
+SUMMARY:41st anniversary: Marshall Islands Compact of Free Association tak
+ es effect
+DESCRIPTION:Anniversary. From Ronald Reagan Presidential Library. The Comp
+ act with the Marshall Islands took full effect on this date\; it frames U
+ .S.-RMI relations\, including Marshallese residency rights in the United 
+ States.
+URL:https://www.reaganlibrary.gov/research/speeches/110386a
+CATEGORIES:Anniversary
+END:VEVENT
+BEGIN:VEVENT
+UID:obs-diwali-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20271029
+DTEND;VALUE=DATE:20271030
+SUMMARY:Diwali
+DESCRIPTION:Observance. From PublicHolidays.com. Festival of lights marked
+  by Hindu\, Sikh\, Jain and some Buddhist communities\; dates shown are t
+ he main Lakshmi Puja day and can differ by a day by region.
+URL:https://publicholidays.com/diwali/
+CATEGORIES:Observance
+END:VEVENT
+BEGIN:VEVENT
+UID:el-ky-general-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20271102
+DTEND;VALUE=DATE:20271103
+SUMMARY:Kentucky general election
+DESCRIPTION:Election date. From Kentucky State Board of Elections. Kentuck
+ y's State Board of Elections lists Nov. 2\, 2027 as the 2027 general elec
+ tion date (polls 6 a.m. to 6 p.m.).
+URL:https://elect.ky.gov/Resources/Documents/2027%20Election%20Calendar.pd
+ f
+CATEGORIES:Election date
+END:VEVENT
+BEGIN:VEVENT
+UID:el-ms-general-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20271102
+DTEND;VALUE=DATE:20271103
+SUMMARY:Mississippi general election
+DESCRIPTION:Election date. From Mississippi Secretary of State. The Missis
+ sippi Secretary of State's calendar lists Nov. 2\, 2027 as the general el
+ ection.
+URL:https://www.sos.ms.gov/sites/default/files/publications/Election%20Cal
+ endar_2026.pdf
+CATEGORIES:Election date
+END:VEVENT
+BEGIN:VEVENT
+UID:el-va-general-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20271102
+DTEND;VALUE=DATE:20271103
+SUMMARY:Virginia general election (state legislature and local)
+DESCRIPTION:Election date. From City of Alexandria\, Virginia (election of
+ fice six-year calendar). A Virginia local election-office calendar lists 
+ Nov. 2\, 2027 as the general election for the State Senate\, House of Del
+ egates and local offices.
+URL:https://www.alexandriava.gov/sites/default/files/2026-03/Six%20Year%20
+ Calendar%202026-2031%20REV%20%28w.%20Dept%20Seal%29.pdf
+CATEGORIES:Election date
+END:VEVENT
+BEGIN:VEVENT
+UID:el-la-gov-general-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20271120
+DTEND;VALUE=DATE:20271121
+SUMMARY:Louisiana gubernatorial general election
+DESCRIPTION:Election date. From Louisiana Secretary of State. Louisiana's 
+ 2027 calendar lists Nov. 20 for the gubernatorial general election.
+URL:https://www.sos.la.gov/ElectionsAndVoting/PublishedDocuments/Elections
+ Calendar2027.pdf
+CATEGORIES:Election date
+END:VEVENT
+BEGIN:VEVENT
+UID:ann-apology-resolution-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20271123
+DTEND;VALUE=DATE:20271124
+SUMMARY:34th anniversary: Apology Resolution approved
+DESCRIPTION:Anniversary. From U.S. Government Publishing Office (Statutes 
+ at Large). Congress's joint resolution (Public Law 103-150)\, approved th
+ is date\, apologized to Native Hawaiians for the 1893 overthrow of the Ki
+ ngdom of Hawaii.
+URL:https://www.govinfo.gov/content/pkg/STATUTE-107/pdf/STATUTE-107-Pg1510
+ .pdf
+CATEGORIES:Anniversary
+END:VEVENT
+BEGIN:VEVENT
+UID:el-ms-general-runoff-2027@pro.theyappie.com
+DTSTAMP:20261102T063329Z
+DTSTART;VALUE=DATE:20271130
+DTEND;VALUE=DATE:20271201
+SUMMARY:Mississippi general election runoff
+DESCRIPTION:Election date. From Mississippi Secretary of State. The Missis
+ sippi Secretary of State's calendar lists Nov. 30\, 2027 as the General R
+ unoff Election.
+URL:https://www.sos.ms.gov/sites/default/files/publications/Election%20Cal
+ endar_2026.pdf
+CATEGORIES:Election date
 END:VEVENT
 END:VCALENDAR

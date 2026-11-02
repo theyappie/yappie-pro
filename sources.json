@@ -506,6 +506,142 @@
       "link": "^/press-release/[^/]+$",
       "kind": "govstmt",
       "backfill": {"modes": ["page"], "pageParam": "page", "pages": 40}
+    },
+    {
+      "name": "Massachusetts AAPI Commission",
+      "home": "https://aapicommission.org",
+      "feed": "https://aapicommission.org/feed/",
+      "kind": "govstmt",
+      "official": true,
+      "noQuery": true
+    },
+    {
+      "name": "California Commission on Asian and Pacific Islander American Affairs",
+      "home": "https://capiaa.ca.gov",
+      "feed": "https://capiaa.ca.gov/feed/",
+      "kind": "govstmt",
+      "dropTitle": "\\bmeetings?\\b"
+    },
+    {
+      "name": "California Asian American & Pacific Islander Legislative Caucus",
+      "home": "https://aapilegcaucus.legislature.ca.gov",
+      "feed": "https://aapilegcaucus.legislature.ca.gov/rss.xml",
+      "kind": "govstmt",
+      "dropLink": "/photo-album/"
+    },
+    {
+      "name": "Washington Commission on Asian Pacific American Affairs",
+      "home": "https://capaa.wa.gov",
+      "page": "https://capaa.wa.gov/about/news",
+      "link": "^/about/news/20\\d\\d/[^/]+/?$",
+      "kind": "govstmt",
+      "numericDates": true
+    },
+    {
+      "name": "Office of Hawaiian Affairs",
+      "home": "https://www.oha.org",
+      "feed": "https://www.oha.org/news/feed/",
+      "kind": "govstmt",
+      "official": true,
+      "filter": true
+    },
+    {
+      "name": "U.S. Commission on Civil Rights",
+      "home": "https://www.usccr.gov",
+      "feed": "https://www.usccr.gov/feed",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true
+    },
+    {
+      "name": "California Attorney General",
+      "home": "https://oag.ca.gov",
+      "feed": "https://oag.ca.gov/news/feed",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "skipTitle": "\\b(sentenced|sentencing|pleads?|pleaded|guilty|convicted|indicted|indictment|charged|arrested|arrests?|smuggl\\w+|charges (for|against)|fraud (ring|scheme)|marriage fraud)\\b"
+    },
+    {
+      "name": "California Civil Rights Department",
+      "home": "https://calcivilrights.ca.gov",
+      "feed": "https://calcivilrights.ca.gov/feed/",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true
+    },
+    {
+      "name": "California Governor",
+      "home": "https://www.gov.ca.gov",
+      "feed": "https://www.gov.ca.gov/feed/",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true
+    },
+    {
+      "name": "California Governor",
+      "home": "https://www.gov.ca.gov",
+      "feed": "https://www.gov.ca.gov/category/proclamations/feed/",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true
+    },
+    {
+      "name": "Washington Attorney General",
+      "home": "https://www.atg.wa.gov",
+      "feed": "https://www.atg.wa.gov/news/news-releases-rss",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "skipTitle": "\\b(sentenced|sentencing|pleads?|pleaded|guilty|convicted|indicted|indictment|charged|arrested|arrests?|smuggl\\w+|charges (for|against)|fraud (ring|scheme)|marriage fraud)\\b"
+    },
+    {
+      "name": "Georgia Governor",
+      "home": "https://gov.georgia.gov",
+      "feed": "https://gov.georgia.gov/rss.xml",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true
+    },
+    {
+      "name": "Georgia Attorney General",
+      "home": "https://law.georgia.gov",
+      "feed": "https://law.georgia.gov/rss.xml",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "skipTitle": "\\b(sentenced|sentencing|pleads?|pleaded|guilty|convicted|indicted|indictment|charged|arrested|arrests?|smuggl\\w+|charges (for|against)|fraud (ring|scheme)|marriage fraud)\\b"
+    },
+    {
+      "name": "Oregon Department of Justice",
+      "home": "https://doj.state.or.us",
+      "feed": "https://doj.state.or.us/feed",
+      "kind": "govstmt",
+      "official": true,
+      "filter": true,
+      "communityOnly": true,
+      "skipTitle": "\\b(sentenced|sentencing|pleads?|pleaded|guilty|convicted|indicted|indictment|charged|arrested|arrests?|smuggl\\w+|charges (for|against)|fraud (ring|scheme)|marriage fraud)\\b"
+    },
+    {
+      "name": "Illinois Governor",
+      "home": "https://gov-pritzker-newsroom.prezly.com",
+      "feed": "https://gov-pritzker-newsroom.prezly.com/feed",
+      "kind": "govstmt",
+      "official": true,
+      "filter": true,
+      "communityOnly": true
+    },
+    {
+      "name": "APAICS",
+      "home": "https://www.apaics.org",
+      "feed": "https://www.apaics.org/blog-feed.xml",
+      "kind": "statement"
+    },
+    {
+      "name": "Pacific Island Health Officers Association",
+      "home": "https://www.pihoa.org",
+      "feed": "https://www.pihoa.org/feed/",
+      "kind": "statement"
     }
   ],
   "_excludeNote": "Sites listed here are never shown, including their subdomains. excludeNames covers a publisher name that Google News shows without a web address. Stored stories from these sites are removed on the next update.",
@@ -820,13 +956,13 @@
     "_note": "State bills (Open States v3). Needs the free OPENSTATES_API_KEY secret; without it this source is skipped. Only bills whose title or summary names the community are kept. Asks at most every everyMinutes, using at most maxRequests calls, so the free plan's limits are respected.",
     "enabled": true,
     "api": "https://v3.openstates.org",
-    "everyMinutes": 180,
+    "everyMinutes": 240,
     "perPage": 20,
     "maxPages": 2,
-    "maxRequests": 12,
+    "maxRequests": 30,
     "days": 14,
     "delayMs": 7000,
-    "terms": ["Asian American", "Pacific Islander", "Native Hawaiian", "AAPI", "Hmong"]
+    "terms": ["Asian American", "Pacific Islander", "Native Hawaiian", "AAPI", "Hmong", "Filipino", "Samoan", "Chamorro", "Guam", "Sikh", "South Asian", "Cambodian", "Marshallese", "Micronesia"]
   },
   "events": {
     "_note": "Events and funding deadlines (scripts/events.mjs). hearings: committee meetings from the Congress.gov API (needs the free api.data.gov key), kept only when they are about the issues the site follows. grants: open Grants.gov opportunities that match the keywords. feeds: starter calendar feeds (iCalendar); the site owner adds more, or stops following these, in the admin dashboard (Settings, Event calendars).",

@@ -244,6 +244,7 @@ function pageRecords(html, src) {
     const title = clean(/<h[1-6]\b[^>]*>([\s\S]*?)<\/h[1-6]>/i.exec(h.inner)?.[1] ?? /<(div|span|p|strong)\b[^>]*class=["'][^"']*(?:title|heading)[^"']*["'][^>]*>([\s\S]*?)<\/\1>/i.exec(h.inner)?.[2] ?? h.inner).replace(/\s*[↗→»›]+\s*$/, "");
     let d = new Date(/<time\b[^>]*\bdatetime=["']([^"']+)["']/i.exec(h.inner + after)?.[1] ?? "");
     if (isNaN(d)) for (const where of [h.inner, after]) { const x = DATE_RE.exec(clean(where)); if (x) { d = new Date(`${x[1].slice(0, 3)} ${x[2]}, ${x[3]} 12:00:00 UTC`); break; } }
+    if (isNaN(d) && src.numericDates) for (const where of [h.inner, after]) { const x = /\b(\d{1,2})\/(\d{1,2})\/(20\d\d)\b/.exec(clean(where)); if (x) { d = new Date(Date.UTC(+x[3], +x[1] - 1, +x[2], 12)); break; } } // "numericDates": the listing writes dates as 09/23/2026
     // some listings show no dates at all; "idDate" names the part of the link that is a Mongo-style id (HuffPost: ..._n_<24 hex>), whose first 8 hex digits are the creation time in epoch seconds
     if (isNaN(d) && src.idDate) { const x = new RegExp(src.idDate).exec(h.href); if (x) d = new Date(parseInt(x[1].slice(0, 8), 16) * 1e3); }
     const dk = [...h.inner.matchAll(/<p\b[^>]*>([\s\S]*?)<\/p>/gi)].map(x => clean(x[1])).find(x => x.length >= 25) ?? ""; // the publisher's own summary, only when it sits inside the link
@@ -326,6 +327,8 @@ async function pull(src) {
   const caseRe = src.skipTitle ? new RegExp(src.skipTitle, "i") : null;
   const onTopic = src.match ? new RegExp(src.match, "i") : AAPI; // "match": the source's own relevance pattern, used with "filter" in place of the general one (Pew writes "Asians", not "AAPI")
   const out = [], exCat = new Set((src.excludeCategories ?? []).map(normName));
+  // "dropTitle" / "dropLink": items of this source whose headline / address match are not wanted (a commission's meeting notices, a caucus's photo albums)
+  const dropT = src.dropTitle ? new RegExp(src.dropTitle, "i") : null, dropL = src.dropLink ? new RegExp(src.dropLink, "i") : null;
   for (const it of await records(src)) {
     const G = !!(src.google || it._g); // a Google News result: the source is a Google search, or the backfill found this story of an ordinary source through Google News ("_g")
     let h = clean(it.title), s = src.name, pubName = "";
@@ -334,15 +337,17 @@ async function pull(src) {
       if (pub) { pubName = pub; if (src.google) s = pub; if (h.endsWith(" - " + pub)) h = h.slice(0, -(pub.length + 3)); } // a story of an ordinary source keeps the source's own name
       if (src.asName) s = src.asName; // e.g. show Google News results from nbcnews.com as "NBC Asian America"
     }
-    const u = safeUrl(linkOf(it)), ph = G ? hostOf(it.source?.["@_url"] ?? "").replace(/^www\./, "") : "";
+    const u0 = safeUrl(linkOf(it)), u = src.noQuery ? u0.replace(/[?#].*$/, "") : u0, ph = G ? hostOf(it.source?.["@_url"] ?? "").replace(/^www\./, "") : "";
     if (ph) learnHost(s, ph); // learned before the block check, so a stored story from a blocked publisher can be recognised later
     if (hostBlocked(hostOf(u)) || hostBlocked(ph) || nameBlocked(pubName) || ownerBlocked(pubName)) continue;
+    if ((dropT && dropT.test(h)) || (dropL && dropL.test(u))) continue;
     if (exCat.size && catsOf(it).some(c => exCat.has(c))) { if (u) catDropIds.add(idOf(src.kind, u)); skippedCat.push(s + ": " + h); continue; }
     const raw = G ? "" : clean(it.description ?? it.summary ?? it["content:encoded"]).slice(0, 300); // used only for filtering/tagging
     const m = G ? "" : dek(it.description ?? it.summary, h);
     const gov = isPolicy(src.kind), rl = gov ? (relOf(h + " " + raw) || (src.filter ? "" : "n")) : "";
     if (!gov && caseRe && caseRe.test(h)) continue; // on a news source skipTitle drops pages that are not stories (an author page or an archive index that a search returns)
-    if (!h || !u || (gov && (!isGov(u) || !rl)) || (!gov && src.filter && !it._g && !onTopic.test(h + " " + raw))) continue; // a story found through Google News by the AAPI words was matched on its whole text, so the headline alone is not tested again
+    // a government source must be on a .gov address unless it is marked "official" (a state commission whose own site is a .org); "communityOnly" keeps only the items that name the communities, not those found through a related issue
+    if (!h || !u || (gov && ((!isGov(u) && !src.official) || !rl || (src.communityOnly && rl !== "n"))) || (!gov && src.filter && !it._g && !onTopic.test(h + " " + raw))) continue; // a story found through Google News by the AAPI words was matched on its whole text, so the headline alone is not tested again
     if (gov && rl === "i" && caseRe && caseRe.test(h)) continue; // individual court cases are not policy; releases that name the communities stay
     if (!isEnglish(h + " " + raw)) { skippedLang.push(s + ": " + h); continue; }
     if (!isOrg(src.kind) && abroadOnly(h + " " + raw)) { skipped.push(s + ": " + h); continue; }
@@ -350,7 +355,7 @@ async function pull(src) {
     if (isNaN(d) || d > Date.now() + 864e5) d = new Date();
     const full = src.fullText ? cleanBody(tx(it["content:encoded"] ?? it.content)) : "";
     // a .gov statement can also be in the Policy tracker, so it gets an id of its own here
-    const item = { id: idOf(src.kind, u), d: d.toISOString(), s, h, m, u, g: G ? 1 : 0, ...(ph ? { ph } : {}), k: src.kind ?? kindOf(s), ...(rl ? { rl } : {}), ...TG.all(h, raw + " " + clean(full).slice(0, 4000), d, gov ? "GOVERNMENT" : undefined) };
+    const item = { id: idOf(src.kind, u), d: d.toISOString(), s, h, m, u, g: G ? 1 : 0, ...(ph ? { ph } : {}), ...(gov && src.official ? { of: 1 } : {}), k: src.kind ?? kindOf(s), ...(rl ? { rl } : {}), ...TG.all(h, raw + " " + clean(full).slice(0, 4000), d, gov ? "GOVERNMENT" : undefined) };
     if (full) { const img = heroOf(it, full); item.v = 1; item.art = { by: clean(it["dc:creator"] ?? it.author?.name), img, body: tidyBody(full, img) }; }
     out.push(item);
   }
@@ -628,7 +633,7 @@ for (const it0 of [...fresh.map(renamed).map(settle), ...old.map(retag), ...oldP
   if (gateFails(it)) { gateLog.push(it.s + ": " + it.h); continue; }
   if (offTopic(it)) { offTopicLog.push(it.s + ": " + it.h); continue; }
   const pol = isPolicy(it.k);
-  if (pol && it.k !== "statebill" && !govItem(it)) continue; // the Policy tracker takes .gov sources only (state bills come through Open States, whose pages link to each legislature)
+  if (pol && it.k !== "statebill" && !govItem(it) && !it.of) continue; // "of": an official body on a non-.gov address (a state commission); the Policy tracker takes .gov sources only (state bills come through Open States, whose pages link to each legislature)
   const k = pol ? it.u : it.h.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim().slice(0, 70); // companion bills can share a title, so policy items are told apart by link
   const open = it.dl && it.dl >= today && now - new Date(it.d) < keepFR, at = Date.parse(it.d);
   const repeat = pol ? seen.has(k) : (seenAt.get(k) ?? []).some(t => Math.abs(t - at) < SAME_STORY_MS);

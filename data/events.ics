@@ -140,6 +140,18 @@ URL:https://www.grants.gov/search-results-detail/362551
 CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
+UID:g8040f7e7e2d@pro.theyappie.com
+DTSTAMP:20261106T000000Z
+DTSTART;VALUE=DATE:20261106
+DTEND;VALUE=DATE:20261107
+SUMMARY:BJA FY 2026 Byrne State Crisis Intervention Formula Program
+DESCRIPTION:Funding or fellowship deadline (Federal grant). From USDOJ-OJP
+ -BJA. Closing date for applications. Opportunity O-BJA-2026-172690\, open
+  since 2026-08-27\, posted.
+URL:https://www.grants.gov/search-results-detail/363725
+CATEGORIES:Funding or fellowship deadline
+END:VEVENT
+BEGIN:VEVENT
 UID:obs-diwali-2026@pro.theyappie.com
 DTSTAMP:20261108T000000Z
 DTSTART;VALUE=DATE:20261108
@@ -877,6 +889,19 @@ DESCRIPTION:Anniversary. From National Park Service. The San Francisco Bay
   is central to the exclusion-era history of Chinese Americans.
 URL:https://nps.gov/places/u-s-immigration-station-angel-island.htm
 CATEGORIES:Anniversary
+END:VEVENT
+BEGIN:VEVENT
+UID:g185aca9cead@pro.theyappie.com
+DTSTAMP:20270121T000000Z
+DTSTART;VALUE=DATE:20270121
+DTEND;VALUE=DATE:20270122
+SUMMARY:FY27 Guidelines for Brownfield Assessment Grants (Community-wide A
+ ssessment Grants for States and Tribes)
+DESCRIPTION:Funding or fellowship deadline (Federal grant). From EPA. Clos
+ ing date for applications. Opportunity EPA-OLEM-OBLR-26-04\, open since 2
+ 026-11-02\, posted.
+URL:https://www.grants.gov/search-results-detail/364200
+CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
 UID:g06863bf4025@pro.theyappie.com

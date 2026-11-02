@@ -29,6 +29,11 @@ const login = read("src/login.html").replace("{{LOGO}}", () => logoUri), app = r
 if (login.includes("{{LOGO}}")) throw new Error("login.html: {{LOGO}} was not replaced");
 for (const [n, t] of [["login.html", login], ["app.html", app]]) if (/<\/script\s*>\s*<\/script/i.test(t)) throw new Error(n + " looks wrong");
 
+// the site's own icons (the files pro.theyappie.com uses, from the repository root) are served by the Worker at the same addresses, so the browser tab shows the same icon
+const iconFile = (name, type, magic) => { const buf = readFileSync(join(root, name)); if (!magic(buf)) throw new Error(name + " is not the kind of image it should be"); return [type, buf.toString("base64")]; };
+const png = b => b.length > 8 && b.subarray(0, 8).equals(Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a])), ico = b => b.length > 6 && b.readUInt16LE(0) === 0 && b.readUInt16LE(2) === 1;
+const icons = { "/favicon.ico": iconFile("favicon.ico", "image/x-icon", ico), "/favicon-32.png": iconFile("favicon-32.png", "image/png", png), "/apple-touch-icon.png": iconFile("apple-touch-icon.png", "image/png", png) };
+
 let main = read("src/worker-main.js");
 const imp = /^import \{[^}]*\} from "\.\.\/\.\.\/\.\.\/scripts\/admin\.mjs";\r?\n/m;
 if (!imp.test(main)) throw new Error("worker-main.js: the import of scripts/admin.mjs was not found");
@@ -43,6 +48,8 @@ const out = `// The Yappie Pro admin: one Cloudflare Worker (login page, dashboa
 ${coreBody}
 // ---- pages ----
 const UI = { login: ${JSON.stringify(login)}, app: ${JSON.stringify(app)} };
+
+const ICONS = ${JSON.stringify(icons)};
 
 // ---- Worker ----
 ${main}`;

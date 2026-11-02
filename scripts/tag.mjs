@@ -6,19 +6,19 @@ export const TAXO_PATH = fileURLToPath(new URL("../taxonomy.json", import.meta.u
 export function makeTagger(tax = JSON.parse(readFileSync(TAXO_PATH, "utf8"))) {
   const pre = tax.pre.map(([a, b]) => [new RegExp(a, "g"), b]);
   const prep = s => pre.reduce((t, [re, b]) => t.replace(re, b), String(s ?? ""));
-  const topics = tax.topics.map(t => ({ k: t.k, w: t.w ?? 1, re: new RegExp(t.re, "gi") }));
+  const topics = tax.topics.map(t => ({ k: t.k, w: t.w ?? 1, re: new RegExp(t.re, "gi") })), valid = new Set(tax.topics.map(t => t.k));
   const comms = tax.communities.map(c => ({ k: c.k, re: new RegExp(c.re, "i") }));
   const states = tax.states.map(([k, , re]) => ({ k, re: new RegExp("\\b(?:" + re + ")\\b", "i") }));
   const billRe = new RegExp(tax.bill, "g");
   const count = (re, s) => (s.match(re) ?? []).length;
   const ord = n => n + (["th", "st", "nd", "rd"][(n % 100 >> 3) ^ 1 && n % 10 < 4 ? n % 10 : 0]);
   return {
-    valid: new Set(tax.topics.map(t => t.k)),
+    valid,
     policyKinds: new Set(tax.policyKinds ?? []),
     issue: new RegExp(tax.policy?.issue ?? "$^", "i"),
     topic(h, raw = "", def = tax.default) {
       const H = prep(h), X = prep(raw);
-      let best = def, top = 0;
+      let best = valid.has(def) ? def : tax.default, top = 0; // a default the owner has removed (for example "Government & policy" for a government item) gives way to the catch-all topic
       for (const t of topics) { const sc = (2 * count(t.re, H) + count(t.re, X)) * t.w; if (sc > top) { top = sc; best = t.k; } }
       return best;
     },

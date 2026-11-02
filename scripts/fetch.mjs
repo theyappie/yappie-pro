@@ -6,7 +6,7 @@ import { fileURLToPath } from "node:url";
 import { XMLParser } from "fast-xml-parser";
 import { makeTagger, TAXO_PATH } from "./tag.mjs";
 import { makeEnglishCheck } from "./lang.mjs";
-import { normalizeState, applyEdits, placeOf, withCustom, newsKindKeys, feedTaxo } from "./admin.mjs";
+import { normalizeState, applyEdits, placeOf, withCustom, newsKindKeys, kindState, feedTaxo } from "./admin.mjs";
 
 const CFG = process.env.SOURCES ?? fileURLToPath(new URL("../sources.json", import.meta.url));
 const OUT = process.env.OUT ?? fileURLToPath(new URL("../data/feed.json", import.meta.url));
@@ -104,15 +104,16 @@ const skipped = [];
 // Where a story belongs. A story that links to a .gov address moves from News to the Policy page. "routes" in sources.json send a named site or publisher to another page (Asian Law Caucus to Advocacy).
 const govHost = h => /(^|\.)gov$/.test(h ?? "");
 const govItem = o => govHost(hostOf(o.u)) || pubHosts(o).some(govHost);
-const NEWS_KINDS = newsKindKeys(A.settings); // the News page's categories: AAPI Media ("community"), Mainstream ("news") and the owner's own
+const NEWS_KINDS = newsKindKeys(A.settings), KIND_OFF = kindState(A.settings).redirect; // the News page's categories in use: AAPI Media ("community"), Mainstream ("news") unless the owner removed them, and the owner's own. KIND_OFF: a removed one -> the category its sources go to
 const BASE_KINDS = new Set(Object.keys(TAXO_BASE.kinds ?? {}));
 const SRC_KIND = new Map(Object.entries(A.settings.sourceKinds).filter(([, k]) => NEWS_KINDS.has(k)).map(([n, k]) => [normName(n), k])); // the owner's choice of category for a source (dashboard)
 // The category of a News story follows its source: the owner's choice if there is one, otherwise sources.json ("kinds"). Statements, Research and the Policy kinds are not News categories and stay as they are.
 const EXPLICIT = new Map(cfg.sources.filter(x => x.kind).flatMap(x => [x.name, x.asName].filter(Boolean).map(n => [normName(n), x.kind]))); // a source typed in sources.json ("kind") keeps that type
 const withSourceKind = o => {
-  const inNews = NEWS_KINDS.has(o.k);
+  const inNews = NEWS_KINDS.has(o.k) || KIND_OFF.has(o.k), isNews = k => NEWS_KINDS.has(k) || KIND_OFF.has(k);
   if (!inNews && BASE_KINDS.has(o.k)) return o;
-  const base = EXPLICIT.get(normName(o.s)) ?? kindOf(o.s), want = SRC_KIND.get(normName(o.s)) ?? (NEWS_KINDS.has(base) ? base : inNews ? o.k : "news"); // a category the owner has since removed falls back to the source's usual one
+  const base = EXPLICIT.get(normName(o.s)) ?? kindOf(o.s), pick = SRC_KIND.get(normName(o.s)) ?? (isNews(base) ? base : inNews ? o.k : "news"); // a category the owner has since removed falls back to the source's usual one
+  const want = KIND_OFF.get(pick) ?? pick; // a built-in category the owner removed: its sources go to the category they chose
   return want === o.k ? o : { ...o, k: want };
 };
 const inList = (h, list) => !!h && list.some(d => h === d || h.endsWith("." + d));
@@ -480,6 +481,9 @@ async function pullGovInfo(gi) {
 
 let old = [], oldSources = [], oldTaxo = null;
 try { const prev = JSON.parse(await readFile(OUT, "utf8")); old = prev.items ?? []; oldSources = prev.sources ?? []; oldTaxo = prev.taxo ?? null; } catch {}
+// Built-in topics and communities the owner removed at the last update and has restored since: stories that fit them go back to them (the page's feed.json records what was removed).
+const offNow = A.settings.builtin, nowOff = (f, key) => new Set(Object.keys(offNow[f] ?? {}).filter(k => offNow[f][k].off)), wasOff = (key) => new Set(Array.isArray(oldTaxo?.off?.[key]) ? oldTaxo.off[key] : []);
+const BACK_T = new Set([...wasOff("t")].filter(k => !nowOff("topics").has(k) && TG.valid.has(k))), BACK_CM = new Set([...wasOff("c")].filter(k => !nowOff("communities").has(k) && VALID_CM.has(k)));
 const PEND_MAX = cfg.pendingMax ?? 500;
 const status = [], fresh = [];
 const foreignSources = cfg.sources.filter(s => s.enabled !== false && !s.google && hostForeign(hostOf(s.feed ?? s.page ?? s.wp)));
@@ -518,12 +522,15 @@ const renamed = o => { const s = cfg.renames?.[o.s]; return s ? { ...o, s } : o;
 const retag = o => {
   const tg = TG.all(o.h, o.m ?? "", o.d, isPolicy(o.k) ? "GOVERNMENT" : undefined), force = !!process.env.RETAG, s = cfg.renames?.[o.s] ?? o.s;
   // The owner's own topics and communities also apply to stories already stored (a new keyword finds old stories too); a story keeps its other tags. A removed topic or community of the owner's is dropped.
-  const keptCm = force || !Array.isArray(o.cm) ? [] : o.cm.filter(c => VALID_CM.has(c)), cm = [...new Set([...(keptCm.length ? keptCm : tg.cm), ...tg.cm.filter(c => CUSTOM_CM.has(c))])];
-  return { ...o, s, g: 1, k: o.k ?? kindOf(s), t: CUSTOM_TOPICS.has(tg.t) ? tg.t : !force && VALID.has(o.t) ? o.t : tg.t, cm, st: !force && o.st ? o.st : tg.st, bl: !force && o.bl ? o.bl : tg.bl };
+  const keptCm = force || !Array.isArray(o.cm) ? [] : o.cm.filter(c => VALID_CM.has(c)), cm = [...new Set([...(keptCm.length ? keptCm : tg.cm), ...tg.cm.filter(c => CUSTOM_CM.has(c) || BACK_CM.has(c))])]; // a built-in community the owner has just restored is found on old stories again
+  const t = CUSTOM_TOPICS.has(tg.t) || BACK_T.has(tg.t) ? tg.t : !force && VALID.has(o.t) ? o.t : tg.t;
+  return { ...o, s, g: 1, k: o.k ?? kindOf(s), t, ...(Array.isArray(o.tx) ? { tx: o.tx.filter(k => VALID.has(k) && k !== t) } : {}), cm, st: !force && o.st ? o.st : tg.st, bl: !force && o.bl ? o.bl : tg.bl };
 };
+// A story that is new in this run is tagged with the topics and communities in use now; one that names a topic or community the owner has since removed (a government item filed under "Government & policy", say) gets the usual replacement.
+const settle = o => ({ ...o, ...(VALID.has(o.t) ? {} : { t: TAXO.default }), ...(Array.isArray(o.cm) && o.cm.some(c => !VALID_CM.has(c)) ? { cm: o.cm.filter(c => VALID_CM.has(c)) } : {}) });
 learnHosts([...old, ...fresh, ...old.map(renamed), ...fresh.map(renamed)]); // a publisher shown under its new name keeps its web address
 const offTopicLog = [], gateLog = [];
-for (const it0 of [...fresh.map(renamed), ...old.map(retag), ...oldPending.map(retag)]) {
+for (const it0 of [...fresh.map(renamed).map(settle), ...old.map(retag), ...oldPending.map(retag)]) {
   if (catDropIds.has(it0.id)) continue; // a story in an excluded category, stored by an earlier run
   if (A.deleted[it0.id]) continue; // deleted in the admin dashboard: never collected again
   if (blocked(it0)) continue; // a blocked site, or a site on a non-U.S. domain, is dropped from stored stories too
@@ -588,7 +595,7 @@ const pendOut = waiting.slice(0, PEND_MAX).map(({ g, art, ...rest }) => {
 });
 if (JSON.stringify(pendOut) !== JSON.stringify(oldPending) && (pendOut.length || oldPending.length)) await writeFile(join(ADMIN_DIR, "pending.json"), JSON.stringify({ generated: new Date().toISOString(), items: pendOut }));
 const pubSources = status.map(({ name, home, kind, ok, count, note }) => ({ name, home, kind, ok, count, note }));
-const taxo = feedTaxo(A.settings); // names (never keywords) of the owner's own topics, communities and categories, so the page can show them
+const taxo = feedTaxo(A.settings, TAXO_BASE); // names (never keywords) of the owner's own topics, communities and categories, new names for built-in ones and the built-in ones removed, so the page can show them
 if (JSON.stringify(out) === JSON.stringify(old) && JSON.stringify(pubSources) === JSON.stringify(oldSources) && JSON.stringify(taxo) === JSON.stringify(oldTaxo)) { console.log("No changes."); process.exit(0); }
 await mkdir(dirname(OUT), { recursive: true });
 await writeFile(OUT, JSON.stringify({ generated: new Date().toISOString(), sources: pubSources, ...(taxo ? { taxo } : {}), items: out }));

@@ -6,7 +6,8 @@
 // Both files are kept in a separate PRIVATE repository (see tools/admin/README.md), because this site's own repository is public and published.
 
 export const STATE_FILE = "admin.json", PENDING_FILE = "pending.json";
-export const EDIT_FIELDS = ["h", "m", "s", "u", "d", "k", "t", "cm", "st", "rl", "rt"]; // headline, summary, source, link, date, section, topic, communities, states, policy relevancy, research type
+export const EDIT_FIELDS = ["h", "m", "s", "u", "d", "k", "t", "tx", "cm", "st", "rl", "rt"]; // headline, summary, source, link, date, section, topic, extra topics, communities, states, policy relevancy, research type
+export const MAX_EXTRA_TOPICS = 4; // a story has one main topic ("t") and up to this many more ("tx")
 export const RESEARCH_TYPES = ["poll", "report", "data", "none"]; // rt: a survey ("poll"), a report, data, or "none" (not a research item); no rt = the site's rules decide
 export const LIMITS = { topics: 30, communities: 30, newsKinds: 8, words: 40, sourceKinds: 500 };
 export const NEWS_BASE_KINDS = ["community", "news"]; // "AAPI Media" and "Mainstream": the News page's two built-in categories
@@ -21,11 +22,12 @@ export const emptySettings = () => ({
   communities: [], // communities the owner added: { k, label, words }
   newsKinds: [],   // News page categories the owner added besides AAPI Media and Mainstream: { k, label }
   sourceKinds: {}, // source name -> News page category key ("community" = AAPI Media, "news" = Mainstream, or one of newsKinds)
+  builtin: { topics: {}, communities: {}, kinds: {} }, // changes to the built-in ones, by key: { label?: a new name, off?: true (removed), to?: for a removed News category, the category its sources go to }
 });
 export const emptyState = () => ({
   v: 1, updated: "",
   settings: emptySettings(),
-  edits: {},    // id -> { h, m, s, u, d, k, t, cm, st, rl, rt } values that replace the collected ones (null removes an optional field)
+  edits: {},    // id -> { h, m, s, u, d, k, t, tx, cm, st, rl, rt } values that replace the collected ones (null removes an optional field)
   orig: {},     // id -> the values before the first edit, so an edit can be reverted
   article: {},  // id -> { by, img, body, byu } text of an in-portal article written or changed by hand
   approved: {}, // id -> when; an item the owner approved (it goes live even when approval is required)
@@ -59,6 +61,16 @@ export function normalizeState(raw) {
         seen.add(type + e.k); s.settings[f].push(type === "kind" ? { k: e.k, label } : { k: e.k, label, words: cleanWords(e.words) });
       }
     }
+    for (const [type, f] of Object.entries(BFIELD)) {
+      const m = raw.settings.builtin?.[f]; if (!isObj(m)) continue;
+      for (const [k, v] of Object.entries(m)) {
+        if (Object.keys(s.settings.builtin[f]).length >= 100) break;
+        if (!KEY_OK[type].test(k) || k.length > KEY_MAX[type] || !isObj(v)) continue;
+        const e = {}, label = line(v.label, 40); if (label) e.label = label;
+        if (v.off === true) { e.off = true; if (type === "kind" && typeof v.to === "string" && KEY_OK.kind.test(v.to) && v.to.length <= KEY_MAX.kind) e.to = v.to; }
+        if (Object.keys(e).length) s.settings.builtin[f][k] = e;
+      }
+    }
     if (isObj(raw.settings.sourceKinds)) for (const [n, k] of Object.entries(raw.settings.sourceKinds)) { if (Object.keys(s.settings.sourceKinds).length >= LIMITS.sourceKinds) break; const name = line(n, 80); if (name && typeof k === "string" && KEY_OK.kind.test(k) && k.length <= KEY_MAX.kind) s.settings.sourceKinds[name] = k; }
   }
   for (const k of ["edits", "orig", "article", "approved", "held", "pinned", "deleted"]) if (isObj(raw[k])) for (const [id, v] of Object.entries(raw[k])) if (validId(id) && v != null && (k === "approved" || k === "held" || k === "pinned" || isObj(v))) s[k][id] = v;
@@ -72,9 +84,11 @@ export const taxSets = t => ({
   states: new Set(arr(t?.states).map(x => x[0])), kinds: new Set(Object.keys(t?.kinds ?? {})), defaultTopic: t?.default ?? "CULTURE",
   labels: { topic: new Set(arr(t?.topics).map(x => String(x.label).toLowerCase())), community: new Set(arr(t?.communities).map(x => String(x.label).toLowerCase())), kind: new Set(Object.values(t?.kinds ?? {}).map(x => String(x).toLowerCase())) },
   kindLabel: new Map(Object.entries(t?.kinds ?? {})),
+  topicLabel: new Map(arr(t?.topics).map(x => [x.k, String(x.label)])), communityLabel: new Map(arr(t?.communities).map(x => [x.k, String(x.label)])),
 });
 
 // ---------------------------------------------------------------- the owner's own topics, communities and News categories
+const BFIELD = { topic: "topics", community: "communities", kind: "kinds" }; // where each type's changes to the built-in ones are kept (settings.builtin)
 const KEY_OK = { topic: /^[A-Z0-9]+(?: [A-Z0-9]+)*$/, community: /^[A-Z0-9]+$/, kind: /^[a-z0-9]+(?:-[a-z0-9]+)*$/ };
 const KEY_MAX = { topic: 30, community: 16, kind: 24 };
 const CUSTOM_WEIGHT = 3; // a story that contains one of the owner's keywords is filed under the owner's topic, unless a built-in topic has far more matches
@@ -102,56 +116,88 @@ export const wordsPattern = words => {
   return alts.length ? `(?<![A-Za-z0-9])(?:${alts.join("|")})(?:s|es)?(?![A-Za-z0-9])` : "(?!)"; // "(?!)" never matches: a topic without keywords is only given by hand
 };
 
-/** The taxonomy with the owner's own topics, communities and categories added (for the collector's tagger, the RSS builder and the dashboard). */
+/** The News categories in use: AAPI Media ("community") and Mainstream ("news") unless the owner removed them, plus the owner's own. redirect: a removed built-in category -> the category its sources go to. */
+export function kindState(settings) {
+  const b = settings?.builtin?.kinds ?? {}, custom = arr(settings?.newsKinds).filter(k => !RESERVED_KINDS.has(k.k)).map(k => k.k);
+  let off = NEWS_BASE_KINDS.filter(k => b[k]?.off === true);
+  if (off.length === NEWS_BASE_KINDS.length && !custom.length) off = []; // the News page always keeps one category
+  const active = new Set([...NEWS_BASE_KINDS.filter(k => !off.includes(k)), ...custom]), first = [...active][0];
+  return { active, off: new Set(off), redirect: new Map(off.map(k => [k, active.has(b[k].to) ? b[k].to : first])) };
+}
+/** The News page categories: AAPI Media and Mainstream (unless removed), plus the owner's own. */
+export const newsKindKeys = settings => kindState(settings).active;
+const bOff = (settings, type) => { const m = settings?.builtin?.[BFIELD[type]] ?? {}; return new Set(Object.keys(m).filter(k => m[k]?.off === true)); };
+const bLabel = (settings, type, k) => { const l = settings?.builtin?.[BFIELD[type]]?.[k]?.label; return typeof l === "string" && l ? l : null; };
+
+/** The taxonomy with the owner's changes: built-in topics and communities they removed left out, built-in names they changed, and their own topics, communities and categories added (for the collector's tagger, the RSS builder and the dashboard). */
 export function withCustom(tax, settings) {
-  const topics = [...arr(tax?.topics)], communities = [...arr(tax?.communities)], kinds = { ...(tax?.kinds ?? {}) };
-  const tk = new Set(topics.map(t => t.k)), ck = new Set(communities.map(c => c.k));
-  for (const t of arr(settings?.topics)) if (!tk.has(t.k)) { tk.add(t.k); topics.push({ k: t.k, label: t.label, re: wordsPattern(t.words), w: CUSTOM_WEIGHT, custom: true }); }
-  for (const c of arr(settings?.communities)) if (!ck.has(c.k)) { ck.add(c.k); communities.push({ k: c.k, label: c.label, re: wordsPattern(c.words), custom: true }); }
-  for (const k of arr(settings?.newsKinds)) if (!(k.k in kinds) && !RESERVED_KINDS.has(k.k)) kinds[k.k] = k.label;
+  const offT = bOff(settings, "topic"), offC = bOff(settings, "community"), ks = kindState(settings);
+  const allT = new Set(arr(tax?.topics).map(t => t.k)), allC = new Set(arr(tax?.communities).map(c => c.k));
+  const topics = arr(tax?.topics).filter(t => !offT.has(t.k) || t.k === tax.default).map(t => bLabel(settings, "topic", t.k) ? { ...t, label: bLabel(settings, "topic", t.k) } : t);
+  const communities = arr(tax?.communities).filter(c => !offC.has(c.k)).map(c => bLabel(settings, "community", c.k) ? { ...c, label: bLabel(settings, "community", c.k) } : c);
+  const kinds = {}; for (const [k, l] of Object.entries(tax?.kinds ?? {})) if (!ks.off.has(k)) kinds[k] = NEWS_BASE_KINDS.includes(k) && bLabel(settings, "kind", k) ? bLabel(settings, "kind", k) : l;
+  for (const t of arr(settings?.topics)) if (!allT.has(t.k)) { allT.add(t.k); topics.push({ k: t.k, label: t.label, re: wordsPattern(t.words), w: CUSTOM_WEIGHT, custom: true }); }
+  for (const c of arr(settings?.communities)) if (!allC.has(c.k)) { allC.add(c.k); communities.push({ k: c.k, label: c.label, re: wordsPattern(c.words), custom: true }); }
+  for (const k of arr(settings?.newsKinds)) if (!(k.k in (tax?.kinds ?? {})) && !RESERVED_KINDS.has(k.k)) kinds[k.k] = k.label;
   return { ...tax, topics, communities, kinds };
 }
-/** The valid values with the owner's own ones added. */
+/** The valid values with the owner's changes: their own ones added, the built-in ones they removed left out (off: what was removed). */
 export function extendSets(X, settings) {
-  const topics = new Set(X.topics), communities = new Set(X.communities), kinds = new Set(X.kinds), kindLabel = new Map(X.kindLabel);
+  const offT = bOff(settings, "topic"), offC = bOff(settings, "community"), ks = kindState(settings);
+  const topics = new Set([...X.topics].filter(k => !offT.has(k) || k === X.defaultTopic)), communities = new Set([...X.communities].filter(k => !offC.has(k))), kinds = new Set([...X.kinds].filter(k => !ks.off.has(k))), kindLabel = new Map();
+  for (const [k, l] of X.kindLabel) if (!ks.off.has(k)) kindLabel.set(k, NEWS_BASE_KINDS.includes(k) && bLabel(settings, "kind", k) ? bLabel(settings, "kind", k) : l);
   for (const t of arr(settings?.topics)) topics.add(t.k);
   for (const c of arr(settings?.communities)) communities.add(c.k);
   for (const k of arr(settings?.newsKinds)) if (!RESERVED_KINDS.has(k.k)) { kinds.add(k.k); kindLabel.set(k.k, k.label); }
-  return { ...X, topics, communities, kinds, kindLabel };
+  return { ...X, topics, communities, kinds, kindLabel, off: { topics: new Set([...offT].filter(k => k !== X.defaultTopic)), communities: offC, kinds: ks.redirect } };
 }
-/** The News page categories: AAPI Media and Mainstream, plus the owner's own. */
-export const newsKindKeys = settings => new Set([...NEWS_BASE_KINDS, ...arr(settings?.newsKinds).map(k => k.k)]);
-/** What the public page needs to know about the owner's own topics, communities and categories (labels only, never keywords), or null when there are none. */
-export function feedTaxo(settings) {
+/** What the public page needs to know about the owner's topics, communities and categories (names only, never keywords): their own ones (t, c, kl), new names for built-in ones (rn) and built-in ones they removed (off). null when there is nothing. tax: taxonomy.json (to keep its catch-all topic). */
+export function feedTaxo(settings, tax) {
   const t = arr(settings?.topics).map(x => [x.k, x.label]), c = arr(settings?.communities).map(x => [x.k, x.label]), kl = Object.fromEntries(arr(settings?.newsKinds).filter(k => !RESERVED_KINDS.has(k.k)).map(k => [k.k, k.label]));
-  return t.length || c.length || Object.keys(kl).length ? { ...(t.length ? { t } : {}), ...(c.length ? { c } : {}), ...(Object.keys(kl).length ? { kl } : {}) } : null;
+  const ks = kindState(settings), offT = [...bOff(settings, "topic")].filter(k => k !== tax?.default).sort(), offC = [...bOff(settings, "community")].sort(), offK = [...ks.off].sort();
+  const names = (type, off) => { const m = settings?.builtin?.[BFIELD[type]] ?? {}; return Object.fromEntries(Object.keys(m).filter(k => typeof m[k]?.label === "string" && m[k].label && !off.includes(k) && (type !== "kind" || NEWS_BASE_KINDS.includes(k))).sort().map(k => [k, m[k].label])); };
+  const rt = names("topic", offT), rc = names("community", offC), rk = names("kind", offK);
+  const rn = { ...(Object.keys(rt).length ? { t: rt } : {}), ...(Object.keys(rc).length ? { c: rc } : {}), ...(Object.keys(rk).length ? { k: rk } : {}) };
+  const off = { ...(offT.length ? { t: offT } : {}), ...(offC.length ? { c: offC } : {}), ...(offK.length ? { k: offK } : {}) };
+  const o = { ...(t.length ? { t } : {}), ...(c.length ? { c } : {}), ...(Object.keys(kl).length ? { kl } : {}), ...(Object.keys(rn).length ? { rn } : {}), ...(Object.keys(off).length ? { off } : {}) };
+  return Object.keys(o).length ? o : null;
 }
 
-/** The taxonomy plus the names of the owner's own topics, communities and categories, as the collector publishes them in feed.json ("taxo"). For the programs that read the feed (RSS, daily brief) and the page. */
+/** The taxonomy plus what the collector published in feed.json ("taxo"): the owner's own topics, communities and categories, new names, and what they removed. For the programs that read the feed (RSS, daily brief) and the page. */
 export function withFeedTaxo(tax, taxo) {
   if (!isObj(taxo)) return tax;
   const pairs = a => arr(a).filter(x => Array.isArray(x) && typeof x[0] === "string" && typeof x[1] === "string");
-  const topics = [...tax.topics], communities = [...tax.communities], kinds = { ...tax.kinds };
+  const off = isObj(taxo.off) ? taxo.off : {}, rn = isObj(taxo.rn) ? taxo.rn : {}, offT = new Set(arr(off.t)), offC = new Set(arr(off.c)), offK = new Set(arr(off.k));
+  const nm = (m, k) => isObj(m) && typeof m[k] === "string" && m[k] ? m[k] : null;
+  const topics = tax.topics.filter(x => !offT.has(x.k) || x.k === tax.default).map(x => nm(rn.t, x.k) ? { ...x, label: nm(rn.t, x.k) } : x), communities = tax.communities.filter(x => !offC.has(x.k)).map(x => nm(rn.c, x.k) ? { ...x, label: nm(rn.c, x.k) } : x);
+  const kinds = Object.fromEntries(Object.entries(tax.kinds ?? {}).filter(([k]) => !offK.has(k)).map(([k, l]) => [k, nm(rn.k, k) ?? l]));
   for (const [k, label] of pairs(taxo.t)) if (!topics.some(x => x.k === k)) topics.push({ k, label });
   for (const [k, label] of pairs(taxo.c)) if (!communities.some(x => x.k === k)) communities.push({ k, label });
   if (isObj(taxo.kl)) for (const [k, label] of Object.entries(taxo.kl)) if (typeof label === "string" && !(k in kinds)) kinds[k] = label;
   return { ...tax, topics, communities, kinds };
 }
 
-/** Validates a whole list of the owner's own entries; returns the cleaned list. old: the entries before, whose keys stay as they are. */
-function cleanCustom(type, list, X, old) {
+/** The name of every built-in topic, community or News page category as the owner sees it (a name they gave it, or the original). entries: settings.builtin for that type. */
+function effLabels(type, BX, entries) {
+  const base = type === "topic" ? BX.topicLabel : type === "community" ? BX.communityLabel : BX.kindLabel;
+  return new Map([...base].map(([k, l]) => { const own = (type !== "kind" || NEWS_BASE_KINDS.includes(k)) && isObj(entries?.[k]) ? line(entries[k].label, 40) : ""; return [k, own || String(l)]; }));
+}
+
+/** Validates a whole list of the owner's own entries; returns the cleaned list. old: the entries before, whose keys stay as they are. eff: effLabels(...) of the built-in ones. */
+function cleanCustom(type, list, X, old, eff) {
   const noun = { topic: "topic", community: "community", kind: "category" }[type], max = LIMITS[{ topic: "topics", community: "communities", kind: "newsKinds" }[type]];
   if (!Array.isArray(list)) throw new AdminError("The list could not be read.");
   if (list.length > max) throw new AdminError(`You can add at most ${max} ${noun === "community" ? "communities" : noun + "s"}.`);
   const baseKeys = type === "topic" ? X.topics : type === "community" ? X.communities : X.kinds, oldKeys = new Set(old.map(o => o.k));
-  const used = new Set(baseKeys), names = new Set(X.labels?.[type] ?? []), out = [];
+  const used = new Set(baseKeys), names = new Set([...eff.values()].map(l => l.toLowerCase())), out = [];
   for (const it of list) {
     if (!isObj(it)) throw new AdminError("The list could not be read.");
     const label = line(it.label, 40);
     if (!label) throw new AdminError(`Every ${noun} needs a name.`);
     const k = typeof it.k === "string" && oldKeys.has(it.k) ? it.k : keyOf(type, label);
     if (!k || !KEY_OK[type].test(k)) throw new AdminError(`The ${noun} name “${label}” needs some letters or numbers (A to Z, 0 to 9).`);
-    if (used.has(k) || names.has(label.toLowerCase()) || (type === "kind" && RESERVED_KINDS.has(k))) throw new AdminError(`There is already a ${noun} called “${label}”. Choose a different name.`);
+    if (names.has(label.toLowerCase()) || (type === "kind" && RESERVED_KINDS.has(k))) throw new AdminError(`There is already a ${noun} called “${label}”. Choose a different name.`);
+    if (used.has(k)) throw new AdminError(eff.has(k) ? `“${label}” is too close to the built-in ${noun} now called “${eff.get(k)}”. Choose a different name.` : `There is already a ${noun} called “${label}”. Choose a different name.`);
     used.add(k); names.add(label.toLowerCase());
     if (type === "kind") { out.push({ k, label }); continue; }
     const all = cleanWords(it.words, Infinity);
@@ -160,6 +206,42 @@ function cleanCustom(type, list, X, old) {
   }
   return out;
 }
+
+/**
+ * Validates the owner's changes to the built-in topics, communities or News categories: { KEY: { label?, off?, to? } } (label: a new name; off: removed; to: for a removed category, where its sources go).
+ * custom: the owner's own entries of that type, as they will be. Returns the cleaned map; an entry that changes nothing is left out.
+ */
+function cleanBuiltin(type, raw, BX, custom) {
+  const noun = { topic: "topic", community: "community", kind: "category" }[type];
+  if (!isObj(raw)) throw new AdminError("The list could not be read.");
+  const base = type === "topic" ? BX.topicLabel : type === "community" ? BX.communityLabel : new Map(NEWS_BASE_KINDS.filter(k => BX.kindLabel.has(k)).map(k => [k, BX.kindLabel.get(k)]));
+  for (const k of Object.keys(raw)) if (!base.has(k)) throw new AdminError(`Unknown ${noun}.`);
+  const taken = new Set(custom.map(c => c.label.toLowerCase())), shown = new Map(), out = {};
+  if (type === "kind") for (const [k, l] of BX.kindLabel) if (!base.has(k)) taken.add(String(l).toLowerCase()); // Statements, Research and the Policy sections
+  for (const [k, orig] of base) {
+    const v = isObj(raw[k]) ? raw[k] : {}, label = line(v.label, 40), e = {};
+    if (label && label !== orig) e.label = label;
+    if (v.off === true) {
+      if (type === "topic" && k === BX.defaultTopic) throw new AdminError(`“${e.label ?? orig}” is where stories that match no other topic are filed, so it cannot be removed. You can rename it.`);
+      e.off = true;
+    }
+    const name = (e.label ?? orig).toLowerCase();
+    if (taken.has(name) || shown.has(name)) throw new AdminError(`There is already a ${noun} called “${e.label ?? orig}”. Choose a different name.`);
+    shown.set(name, k);
+    if (e.label || e.off) out[k] = e;
+  }
+  if (type === "kind") {
+    const targets = new Set([...base.keys()].filter(k => !out[k]?.off).concat(custom.map(c => c.k)));
+    for (const k of Object.keys(out)) if (out[k].off) {
+      if (!targets.size) throw new AdminError("The News page needs at least one category.");
+      const to = raw[k].to, name = out[k].label ?? base.get(k);
+      if (typeof to !== "string" || !targets.has(to)) throw new AdminError(`Choose where the sources of “${name}” go.`);
+      out[k].to = to;
+    }
+  }
+  return out;
+}
+const canonBuiltin = m => JSON.stringify(Object.keys(m).sort().map(k => [k, m[k].label ?? null, m[k].off === true, m[k].to ?? null]));
 
 // ---------------------------------------------------------------- cleaning what the owner types
 
@@ -186,6 +268,7 @@ export function cleanPatch(p, X, now = Date.now()) {
   if ("d" in p) { const v = cleanDate(p.d, now); v ? f.d = v : errors.push("The date is not valid (it cannot be more than 2 days ahead)."); }
   if ("k" in p) { X.kinds.has(p.k) ? f.k = p.k : errors.push("Unknown section."); }
   if ("t" in p) { X.topics.has(p.t) ? f.t = p.t : errors.push("Unknown topic."); }
+  if ("tx" in p) { const a = uniq(arr(p.tx)).filter(k => k !== f.t); a.every(c => X.topics.has(c)) ? a.length > MAX_EXTRA_TOPICS ? errors.push(`A story can have at most ${MAX_EXTRA_TOPICS} extra topics besides its main one.`) : f.tx = a.length ? a : null : errors.push("Unknown topic."); }
   if ("cm" in p) { const a = uniq(arr(p.cm)); a.every(c => X.communities.has(c)) ? f.cm = a.length ? a : null : errors.push("Unknown community."); }
   if ("st" in p) { const a = uniq(arr(p.st)); a.every(c => X.states.has(c)) ? f.st = a.length ? a : null : errors.push("Unknown state."); }
   if ("rl" in p) { p.rl === "n" || p.rl === "i" ? f.rl = p.rl : errors.push("Choose “Impacts AAPIs” or “Related issue”."); }
@@ -246,9 +329,11 @@ export function cleanArticle(a) {
 /** A whole item (a copy kept for restoring, or an item added by hand): known fields only. */
 export function cleanItem(it, X, now = Date.now()) {
   if (!isObj(it)) throw new AdminError("The item is missing.");
-  const { fields, errors } = cleanPatch({ h: it.h, s: it.s, u: it.u, d: it.d ?? new Date(now).toISOString(), k: it.k ?? "news", t: it.t ?? X.defaultTopic, ...("m" in it ? { m: it.m } : {}), ...("cm" in it ? { cm: it.cm } : {}), ...("st" in it ? { st: it.st } : {}) }, X, now);
+  const kk = it.k ?? "news", tt = it.t ?? X.defaultTopic, off = X.off; // a topic, community or category the owner has since removed (on a copy made just before): the usual replacement
+  const { fields, errors } = cleanPatch({ h: it.h, s: it.s, u: it.u, d: it.d ?? new Date(now).toISOString(), k: off?.kinds?.get(kk) ?? kk, t: off?.topics?.has(tt) ? X.defaultTopic : tt, ...("m" in it ? { m: it.m } : {}), ...("cm" in it ? { cm: off && Array.isArray(it.cm) ? it.cm.filter(c => !off.communities.has(c)) : it.cm } : {}), ...("st" in it ? { st: it.st } : {}) }, X, now);
   if (errors.length) throw new AdminError(errors[0]);
   const o = { id: it.id, d: fields.d, s: fields.s, h: fields.h, ...(fields.m ? { m: fields.m } : {}), u: fields.u, k: fields.k, t: fields.t, ...(fields.cm ? { cm: fields.cm } : {}), ...(fields.st ? { st: fields.st } : {}) };
+  if ("tx" in it) { const r = cleanPatch({ t: o.t, tx: Array.isArray(it.tx) ? it.tx.filter(k => !off?.topics?.has(k)) : it.tx }, X, now); if (r.errors.length) throw new AdminError(r.errors[0]); if (r.fields.tx) o.tx = r.fields.tx; }
   if (it.rl === "n" || it.rl === "i") o.rl = it.rl;
   if (RESEARCH_TYPES.includes(it.rt)) o.rt = it.rt;
   for (const [k, n] of [["ty", 120], ["ag", 40], ["la", 80], ["ph", 120]]) if (typeof it[k] === "string" && it[k]) o[k] = line(it[k], n);
@@ -267,6 +352,7 @@ export function applyEdits(it, s) {
   const e = s.edits[it.id];
   let o = it;
   if (e) { o = { ...it }; for (const f of EDIT_FIELDS) if (f in e) { if (e[f] === null) delete o[f]; else o[f] = e[f]; } }
+  if (Array.isArray(o.tx)) { const a = o.tx.filter(k => k !== o.t); if (a.length !== o.tx.length) { if (o === it) o = { ...it }; if (a.length) o.tx = a; else delete o.tx; } } // the main topic is not repeated among the extra ones
   if (s.article[it.id]?.body) o = o === it ? { ...it, v: 1 } : (o.v = 1, o);
   return o;
 }
@@ -296,10 +382,11 @@ export function purge(s, now = Date.now()) {
   return s;
 }
 
-/** After the owner removes a topic, community or category of their own: forget it wherever it was used by hand, so nothing points at something that no longer exists. */
-function dropKeys(s, type, gone, X) {
+/** After the owner removes a topic, community or category (their own, or a built-in one): forget it wherever it was used by hand, so nothing points at something that no longer exists. fallback(key): what an item added by hand that used it gets instead. */
+function dropKeys(s, type, gone, fallback) {
   const G = new Set(gone), field = type === "topic" ? "t" : type === "community" ? "cm" : "k";
   const fixEdit = o => { // a record of hand changes: a change that used the removed value is dropped (the collected value is used again)
+    if (isObj(o) && type === "topic" && Array.isArray(o.tx)) { const a = o.tx.filter(c => !G.has(c)); if (a.length) o.tx = a; else delete o.tx; }
     if (!isObj(o) || !(field in o)) return;
     if (field === "cm") { if (!Array.isArray(o.cm)) return; const a = o.cm.filter(c => !G.has(c)); if (a.length) o.cm = a; else delete o.cm; }
     else if (G.has(o[field])) delete o[field];
@@ -308,8 +395,9 @@ function dropKeys(s, type, gone, X) {
   for (const [id, o] of Object.entries(s.orig)) { for (const f of Object.keys(o)) if (!(f in (s.edits[id] ?? {}))) delete o[f]; if (!Object.keys(o).length) delete s.orig[id]; } // nothing left to revert on an item whose hand changes were dropped
   const fixItem = it => { // a whole item kept by hand
     if (!isObj(it)) return;
+    if (type === "topic" && Array.isArray(it.tx)) { const a = it.tx.filter(c => !G.has(c)); if (a.length) it.tx = a; else delete it.tx; }
     if (field === "cm") { if (Array.isArray(it.cm)) { const a = it.cm.filter(c => !G.has(c)); if (a.length) it.cm = a; else delete it.cm; } }
-    else if (G.has(it[field])) it[field] = field === "t" ? X.defaultTopic : "news";
+    else if (G.has(it[field])) it[field] = fallback(it[field]);
   };
   for (const it of s.added) fixItem(it);
   for (const d of Object.values(s.deleted)) fixItem(d.item);
@@ -365,7 +453,7 @@ export function applyOp(state, op, args, ctx) {
         if (!Object.keys(fields).length && !Object.keys(art).length) throw new AdminError("Nothing to change.");
         // the values before the first edit, so it can be reverted; a field that had no value goes back to none (only summary, communities and states can be empty)
         const o = (s.orig[e.id] ??= {}), was = isObj(e.orig) ? cleanPatch(Object.fromEntries(Object.entries(e.orig).filter(([f]) => f in fields)), X, ctx.now).fields : {};
-        for (const f of Object.keys(fields)) if (!(f in o)) { if (f in was) o[f] = was[f]; else if (["m", "cm", "st", "rl", "rt"].includes(f) && !(isObj(e.orig) && f in e.orig && e.orig[f])) o[f] = null; }
+        for (const f of Object.keys(fields)) if (!(f in o)) { if (f in was) o[f] = was[f]; else if (["m", "tx", "cm", "st", "rl", "rt"].includes(f) && !(isObj(e.orig) && f in e.orig && e.orig[f])) o[f] = null; }
         if (fields.rt === null) { delete o.rt; if (s.edits[e.id]) delete s.edits[e.id].rt; delete fields.rt; } // "automatic" again: nothing to remember
         if (!Object.keys(o).length) delete s.orig[e.id];
         if (Object.keys(fields).length) s.edits[e.id] = { ...(s.edits[e.id] ?? {}), ...fields };
@@ -397,14 +485,22 @@ export function applyOp(state, op, args, ctx) {
       out.summary = a.mode === "off" ? "New items go live without approval" : a.mode === "all" ? "Every new item waits for approval" : `New items from ${plural(sources.length, "source")} and ${plural(kinds.length, "section")} wait for approval`; break;
     }
     case "topics": case "communities": case "newsKinds": {
-      const type = { topics: "topic", communities: "community", newsKinds: "kind" }[op], old = s.settings[op], noun = { topic: "topic", community: "community", kind: "category" }[type];
-      const list = cleanCustom(type, args?.list, BX, old), now = new Set(list.map(x => x.k)), before = new Map(old.map(x => [x.k, x]));
+      const type = { topics: "topic", communities: "community", newsKinds: "kind" }[op], f = BFIELD[type], old = s.settings[op], oldB = s.settings.builtin[f], noun = { topic: "topic", community: "community", kind: "category" }[type];
+      const rawB = args?.builtin === undefined ? oldB : args.builtin; // the changes to the built-in ones (omitted: they stay as they are)
+      const list = args?.list === undefined ? old : cleanCustom(type, args.list, BX, old, effLabels(type, BX, isObj(rawB) ? rawB : {}));
+      const newB = cleanBuiltin(type, rawB, BX, list), now = new Set(list.map(x => x.k)), before = new Map(old.map(x => [x.k, x]));
       const added = list.filter(x => !before.has(x.k)), gone = old.filter(x => !now.has(x.k)), changed = list.filter(x => before.has(x.k) && JSON.stringify(before.get(x.k)) !== JSON.stringify(x));
-      if (!added.length && !gone.length && !changed.length) throw new AdminError("Nothing to change.");
-      s.settings[op] = list;
-      if (gone.length) dropKeys(s, type, gone.map(x => x.k), BX);
-      const one = (n, x, verb) => n === 1 ? `${verb} the ${noun} “${x[0].label}”` : `${verb} ${plural(n, noun)}`;
-      out.summary = [added.length && one(added.length, added, "Added"), gone.length && one(gone.length, gone, "Removed"), changed.length && one(changed.length, changed, "Changed")].filter(Boolean).join(", ").replace(/^(.)/, c => c.toUpperCase()); break;
+      const offBefore = new Set(Object.keys(oldB).filter(k => oldB[k].off)), offAfter = new Set(Object.keys(newB).filter(k => newB[k].off));
+      const removed = [...offAfter].filter(k => !offBefore.has(k)), restored = [...offBefore].filter(k => !offAfter.has(k));
+      const nameBefore = effLabels(type, BX, oldB), nameAfter = effLabels(type, BX, newB), renamed = [...nameAfter.keys()].filter(k => !offAfter.has(k) && !offBefore.has(k) && nameBefore.get(k) !== nameAfter.get(k));
+      if (!added.length && !gone.length && !changed.length && canonBuiltin(oldB) === canonBuiltin(newB)) throw new AdminError("Nothing to change.");
+      s.settings[op] = list; s.settings.builtin[f] = newB;
+      const goneKeys = [...gone.map(x => x.k), ...removed];
+      if (goneKeys.length) { const ks = kindState(s.settings); dropKeys(s, type, goneKeys, k => type === "topic" ? BX.defaultTopic : ks.redirect.get(k) ?? (ks.active.has("news") ? "news" : [...ks.active][0])); }
+      const one = (n, x, verb) => n === 1 ? `${verb} the ${noun} “${x[0].label ?? x[0]}”` : `${verb} ${plural(n, noun)}`, nm = k => nameAfter.get(k) ?? k, nmOld = k => nameBefore.get(k) ?? k;
+      out.summary = [added.length && one(added.length, added, "Added"), gone.length && one(gone.length, gone, "Removed"), removed.length && one(removed.length, removed.map(k => ({ label: nmOld(k) })), "Removed"), restored.length && one(restored.length, restored.map(k => ({ label: nm(k) })), "Restored"),
+        renamed.length && (renamed.length === 1 ? `Renamed the ${noun} “${nmOld(renamed[0])}” to “${nm(renamed[0])}”` : `Renamed ${plural(renamed.length, noun)}`), changed.length && one(changed.length, changed, "Changed")]
+        .filter(Boolean).join(", ").replace(/^(.)/, c => c.toUpperCase()) || `Changed where the sources of a removed ${noun} go`; break;
     }
     case "sourceKinds": {
       const names = uniq(arr(args?.sources).map(x => line(x, 80)).filter(Boolean)).slice(0, LIMITS.sourceKinds);

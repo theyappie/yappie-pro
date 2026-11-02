@@ -22,7 +22,7 @@ const safe = u => /^https?:\/\//.test(u) ? esc(u) : "#";
 const day = d => new Date(d + (d.length > 10 ? "" : "T12:00:00Z")).toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "America/New_York" });
 const long = new Date(NOW).toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", timeZone: "America/New_York" });
 
-const all = feed.items ?? [], fresh = all.filter(x => NOW - new Date(x.d) <= HOURS * 36e5 && NOW - new Date(x.d) > -864e5 && (!only.length || only.includes(x.t)));
+const all = feed.items ?? [], fresh = all.filter(x => NOW - new Date(x.d) <= HOURS * 36e5 && NOW - new Date(x.d) > -864e5 && (!only.length || only.includes(x.t) || (x.tx ?? []).some(t => only.includes(t))));
 const todayIso = NOW.toISOString().slice(0, 10), horizon = new Date(NOW.getTime() + 21 * 864e5).toISOString().slice(0, 10);
 const deadlines = all.filter(x => x.dl && x.dl >= todayIso && x.dl <= horizon).sort((a, b) => a.dl.localeCompare(b.dl));
 const POLICY = new Set(tax.policyKinds ?? []), groups = cluster(fresh, x => POLICY.has(x.k)), outletsOf = new Map(); groups.forEach(g => g.items.forEach(x => outletsOf.set(x, g.outlets)));

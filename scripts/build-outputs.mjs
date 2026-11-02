@@ -18,14 +18,14 @@ const esc = s => String(s ?? "").replace(/[<>&"']/g, c => ({ "<": "&lt;", ">": "
 const label = { topic: Object.fromEntries(tax.topics.map(t => [t.k, t.label])), community: Object.fromEntries(tax.communities.map(c => [c.k, c.label])), state: Object.fromEntries(tax.states.map(([k, l]) => [k, l])), kind: tax.kinds };
 
 function rss(title, desc, list) {
-  const row = x => `<item><title>${esc(x.h)}</title><link>${esc(x.u)}</link><guid isPermaLink="true">${esc(x.u)}</guid><pubDate>${new Date(x.d).toUTCString()}</pubDate><category>${esc(label.topic[x.t] ?? x.t)}</category><description>${esc([x.s, x.dl ? "Comments due " + x.dl : "", x.m].filter(Boolean).join(" · "))}</description></item>`;
+  const row = x => `<item><title>${esc(x.h)}</title><link>${esc(x.u)}</link><guid isPermaLink="true">${esc(x.u)}</guid><pubDate>${new Date(x.d).toUTCString()}</pubDate>${[x.t, ...(x.tx ?? [])].map(t => `<category>${esc(label.topic[t] ?? t)}</category>`).join("")}<description>${esc([x.s, x.dl ? "Comments due " + x.dl : "", x.m].filter(Boolean).join(" · "))}</description></item>`;
   return `<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>${esc(title)}</title><link>${esc(SITE || "https://theyappie.com")}</link><description>${esc(desc)}</description><language>en-us</language><lastBuildDate>${stamp.toUTCString()}</lastBuildDate>${list.slice(0, 50).map(row).join("")}</channel></rss>\n`;
 }
 const out = new Map(), index = [];
 const add = (file, title, desc, list, group) => { if (!list.length) return; out.set(file, rss(title, desc, list)); index.push({ file: "rss/" + file, title, group, count: list.length }); };
 const by = (fn) => items.filter(fn);
 add("all.xml", "The Yappie Pro: all stories", "Every story in the index, newest first.", items, "all");
-for (const t of tax.topics) add(`topic-${slug(t.k)}.xml`, `The Yappie Pro: ${t.label}`, `${t.label} stories.`, by(x => x.t === t.k), "topic");
+for (const t of tax.topics) add(`topic-${slug(t.k)}.xml`, `The Yappie Pro: ${t.label}`, `${t.label} stories.`, by(x => x.t === t.k || x.tx?.includes(t.k)), "topic");
 for (const c of tax.communities) add(`community-${slug(c.k)}.xml`, `The Yappie Pro: ${c.label}`, `Stories mentioning ${c.label} communities.`, by(x => x.cm?.includes(c.k)), "community");
 for (const [k, l] of tax.states) add(`state-${slug(k)}.xml`, `The Yappie Pro: ${l}`, `Stories mentioning ${l}.`, by(x => x.st?.includes(k)), "state");
 for (const [k, l] of Object.entries(tax.kinds)) add(`kind-${slug(k)}.xml`, `The Yappie Pro: ${l}`, `${l} items only.`, by(x => x.k === k), "kind");

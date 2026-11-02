@@ -17,6 +17,7 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
 const b64u = bytes => { let s = ""; for (const b of new Uint8Array(bytes)) s += String.fromCharCode(b); return btoa(s).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, ""); };
 const unb64u = s => Uint8Array.from(atob(String(s).replace(/-/g, "+").replace(/_/g, "/")), c => c.charCodeAt(0));
 const toB64 = text => { const b = enc.encode(text); let s = ""; for (let i = 0; i < b.length; i += 0x8000) s += String.fromCharCode(...b.subarray(i, i + 0x8000)); return btoa(s); };
+const bytesOf = b64 => { const bin = atob(b64), u = new Uint8Array(bin.length); for (let i = 0; i < bin.length; i++) u[i] = bin.charCodeAt(i); return u; };
 const fromB64 = b64 => { const bin = atob(b64.replace(/\s/g, "")), u = new Uint8Array(bin.length); for (let i = 0; i < bin.length; i++) u[i] = bin.charCodeAt(i); return dec.decode(u); };
 const hmac = async (key, data) => { const k = await crypto.subtle.importKey("raw", typeof key === "string" ? enc.encode(key) : key, { name: "HMAC", hash: "SHA-256" }, false, ["sign"]); return new Uint8Array(await crypto.subtle.sign("HMAC", k, enc.encode(data))); };
 const same = (a, b) => { if (a.length !== b.length) return false; let d = 0; for (let i = 0; i < a.length; i++) d |= a[i] ^ b[i]; return d === 0; };
@@ -33,7 +34,7 @@ const fail = (error, status = 400, extra = {}) => json({ ok: false, error }, sta
 const page = (html, nonce, status = 200, { fonts = false, ...extra } = {}) => new Response(html, {
   status, headers: {
     ...SECURITY, "content-type": "text/html; charset=utf-8", "x-frame-options": "DENY", ...extra,
-    "content-security-policy": `default-src 'none'; script-src 'nonce-${nonce}'; style-src 'nonce-${nonce}'${fonts ? " https://use.typekit.net https://p.typekit.net" : ""}; font-src ${fonts ? "https://use.typekit.net" : "'none'"}; img-src https: data:; connect-src 'self'; form-action 'self'; base-uri 'none'; frame-ancestors 'none'; frame-src about:`,
+    "content-security-policy": `default-src 'none'; script-src 'nonce-${nonce}'; style-src 'nonce-${nonce}'${fonts ? " https://use.typekit.net https://p.typekit.net" : ""}; font-src ${fonts ? "https://use.typekit.net" : "'none'"}; img-src 'self' https: data:; connect-src 'self'; form-action 'self'; base-uri 'none'; frame-ancestors 'none'; frame-src about:`,
   },
 });
 const attr = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -216,6 +217,13 @@ async function route(req, env, ctx) {
   const url = new URL(req.url), path = url.pathname.replace(/\/+$/, "") || "/", now = Date.now(), method = req.method;
 
   if (path === "/robots.txt") return new Response("User-agent: *\nDisallow: /\n", { headers: { ...SECURITY, "content-type": "text/plain" } });
+
+  // The site's own icons (the same files as pro.theyappie.com), public like any favicon: a browser asks for them without being signed in.
+  if (Object.hasOwn(ICONS, path)) {
+    if (method !== "GET" && method !== "HEAD") return new Response("Method not allowed", { status: 405, headers: { ...SECURITY, allow: "GET, HEAD" } });
+    const [type, b64] = ICONS[path];
+    return new Response(method === "HEAD" ? null : bytesOf(b64), { headers: { ...SECURITY, "content-type": type, "cache-control": "public, max-age=86400" } });
+  }
 
   if (path === "/") {
     if (method !== "GET" && method !== "HEAD") return fail("Method not allowed.", 405);

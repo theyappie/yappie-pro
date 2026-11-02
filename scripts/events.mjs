@@ -273,7 +273,7 @@ export function mergeEvents({ own = [], auto = [], sys = [], off = [], now = Dat
   const hide = new Set(off), lo = now - keepPastDays * DAY, hi = now + aheadDays * DAY, seen = new Set(), out = [];
   for (const [ev, mine, ours] of [...own.map(e => [e, true, false]), ...auto.filter(e => !hide.has(e.id)).map(e => [e, false, false]), ...sys.filter(e => !hide.has(e.id)).map(e => [e, false, true])]) {
     const c = ours ? ev : cleanEvent(ev, false); if (!c || !c.id) continue;
-    if (endMs(c) < lo || startMs(c) > hi) continue;
+    if (endMs(c) < lo || (startMs(c) > hi && c.k !== "election")) continue; // voting dates are listed by the editors, so none is cut off by the look-ahead window
     if (!mine && maxSpanDays > 0 && c.k === "event" && (endMs(c) - startMs(c)) / DAY > maxSpanDays) continue; // a museum exhibition that runs for months is not something to attend on a day
     const key = normTitle(c.t) + dayOf(c); if (seen.has(key)) continue; seen.add(key);
     const hb = hubsOf([c.t, c.o, c.m, c.sub].join(" "));
@@ -326,7 +326,7 @@ export async function main(env = process.env, now = env.EVENTS_NOW ? Date.parse(
   const readJson = async (file, fallback) => { try { return JSON.parse(await readFile(file, "utf8")); } catch (e) { if (e.code !== "ENOENT") console.error(`${file}: ${e.message}`); return fallback; } };
   const lo = now - (cfg.keepPastDays ?? 7) * DAY, hi = now + (cfg.aheadDays ?? 400) * DAY;
   const obsJ = await readJson(env.OBSERVANCES ?? join(root, "observances.json"), {}), elJ = await readJson(env.ELECTIONS ?? join(root, "elections.json"), {}), feedJ = await readJson(env.FEED ?? join(dirname(OUT), "feed.json"), {});
-  const sysObs = observanceEvents(obsJ.items, lo, hi, hubsOf), sysEl = electionEvents(elJ.dates, lo, hi, hubsOf), sysCmt = commentEvents((feedJ.items ?? []).filter(x => x && x.dl), lo, hi, hubsOf);
+  const sysObs = observanceEvents(obsJ.items, lo, hi, hubsOf), sysEl = electionEvents(elJ.dates, lo, Infinity, hubsOf), sysCmt = commentEvents((feedJ.items ?? []).filter(x => x && x.dl), lo, hi, hubsOf);
   status.dates = { observances: sysObs.length, elections: sysEl.length, comments: sysCmt.length };
   const events = mergeEvents({ own: A.settings.events, auto, sys: [...sysEl, ...sysCmt, ...sysObs], off: A.settings.eventsOff.map(x => x.id), now, keepPastDays: cfg.keepPastDays ?? 7, aheadDays: cfg.aheadDays ?? 400, max: cfg.max ?? 1200, maxSpanDays: cfg.maxSpanDays ?? 21, hubsOf });
   const hidden = auto.filter(e => A.settings.eventsOff.some(x => x.id === e.id)).length;

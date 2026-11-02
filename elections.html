@@ -144,7 +144,7 @@ body.msheet{overflow:hidden}body.msheet .side{display:block;position:fixed;inset
 /* topic hubs: a list of issues (/hubs) and one page per issue (/hubs?h=...) with a "who is saying what" panel above its timeline */
 .hubhead{padding:12px 14px 14px;border-bottom:1px solid var(--ln);background:var(--pn)}.hubhead[hidden]{display:none}
 .hback{display:inline-block;margin-bottom:6px;min-height:24px;font-size:13px;font-weight:600;color:var(--ac)}
-.hblurb{margin:0 0 8px;max-width:72ch;font-size:14px;line-height:1.5;color:var(--tx)}
+
 .hstat{display:flex;flex-wrap:wrap;gap:2px 16px;font-size:13px;color:var(--dm)}.hstat b{color:var(--tx);font-weight:700}
 .wsw{margin-top:12px;border:1px solid var(--ln);border-radius:8px;background:var(--bg)}
 .wsw>summary{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 10px;padding:10px 12px;cursor:pointer;list-style:none;font-weight:700;font-size:14px;color:var(--tx)}.wsw>summary::-webkit-details-marker{display:none}
@@ -161,7 +161,7 @@ body.msheet{overflow:hidden}body.msheet .side{display:block;position:fixed;inset
 .wmr{padding:6px 12px 8px;border-top:1px solid var(--ln)}.wmr .wo{min-height:28px}
 .wnote{padding:8px 12px 10px;border-top:1px solid var(--ln);font-size:12px;line-height:1.5;color:var(--dm)}
 @media (max-width:700px){.wr{grid-template-columns:minmax(0,1fr) auto}.wr .wc{display:none}.wr .wh{grid-column:1/-1;grid-row:2}.wr .wd{grid-column:2;grid-row:1}}
-.hintro{margin:0;padding:14px 16px 0;font-size:14px;line-height:1.5;color:var(--dm)}
+
 .hdir{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px;padding:14px 16px 24px}
 .hcard{display:block;padding:14px 14px 12px;border:1px solid var(--ln);border-radius:10px;background:var(--pn);color:var(--tx)}.hcard:hover{border-color:var(--ac)}.hcard:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
 .hcard h3{margin:0 0 4px;font-size:16px;line-height:1.3}.hcard p{margin:0 0 10px;font-size:13px;line-height:1.45;color:var(--dm)}
@@ -200,12 +200,12 @@ body.msheet{overflow:hidden}body.msheet .side{display:block;position:fixed;inset
 .nmq{min-height:36px;width:min(260px,100%);padding:0 10px;border:1px solid var(--ln);border-radius:8px;background:var(--bg);color:var(--tx);font:inherit;font-size:13.5px}.nmq:focus-visible,.evsel select:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
 .nmi{display:grid;grid-template-columns:190px minmax(0,1fr);gap:4px 18px;padding:16px 0;border-bottom:1px solid var(--ln)}
 .nmv{font-size:24px;font-weight:800;line-height:1.15;overflow-wrap:anywhere}.nmt{margin:0;max-width:72ch;font-size:16px;line-height:1.4}.nms{margin:4px 0 0;font-size:13px;font-weight:600;color:var(--dm)}
-.nmlead{margin:0;padding:12px 16px 4px;max-width:72ch;font-size:14px;line-height:1.5;color:var(--dm)}
+
 .nmc,.nmn{margin:6px 0 0;max-width:72ch;font-size:13.5px;line-height:1.5;color:var(--dm)}.nmc a{color:var(--ac);text-decoration:underline}
 .g[data-v=numbers] .fbar,.g[data-v=numbers] .row.h,.g[data-v=numbers] .more,.g[data-v=numbers] .nop,.g[data-v=orgs] .fbar,.g[data-v=orgs] .row.h,.g[data-v=orgs] .more,.g[data-v=orgs] .nop{display:none}
 @media (min-width:1001px){.g[data-v=numbers],.g[data-v=orgs]{grid-template-columns:minmax(0,1fr);background:var(--bg)}.g[data-v=numbers] .rail,.g[data-v=numbers] .side,.g[data-v=orgs] .rail,.g[data-v=orgs] .side{display:none}.g[data-v=numbers]>section,.g[data-v=orgs]>section{width:100%;max-width:1040px;margin:0 auto;border-inline:1px solid var(--ln)}}
 .org{padding:16px 0;border-bottom:1px solid var(--ln)}.orh{display:flex;flex-wrap:wrap;align-items:center;gap:8px}.orh h3{margin:6px 0 2px;font-size:16.5px;line-height:1.35}.orh h3{margin:0}.org p,.orp p{margin:4px 0;max-width:72ch;font-size:14.5px;line-height:1.5}.org .orm,.org .orn{font-size:13px;color:var(--dm)}.bmw{margin:10px 0;max-width:72ch;line-height:1.5}.bmn{margin:12px 0;font-size:13px;color:var(--dm);max-width:72ch}.orp{padding:4px 16px 28px;overflow-wrap:anywhere}.orT{margin:6px 0 8px;font-size:22px;line-height:1.25}.orback{display:inline-flex;align-items:center;min-height:44px;margin:0;font-size:14px;font-weight:600}.orf{max-width:72ch;margin-top:16px}.orf dd{min-width:0}.orsl{margin:4px 0 12px}.orp .evmh{margin-top:28px}.orp .evnote{margin:24px 0 0}.orp>.orb{margin:8px 0}.orst{display:grid;grid-template-columns:110px minmax(0,1fr);gap:4px 12px;padding:8px 0;border-bottom:1px solid var(--ln);font-size:14.5px;line-height:1.45}.orst>span:first-child{color:var(--dm);font-size:13px}@media (max-width:700px){.orp{padding:2px 12px 24px}.orst{grid-template-columns:minmax(0,1fr);gap:2px;padding:10px 0}.orT{font-size:20px}.orp .orb{font-size:15px}.orf{grid-template-columns:minmax(84px,auto) minmax(0,1fr);gap:8px 12px;font-size:14px}}
-@media (max-width:700px){.nmlead{padding-inline:12px}.nmi{grid-template-columns:minmax(0,1fr);gap:2px}.nmv{font-size:22px}}
+@media (max-width:700px){.nmi{grid-template-columns:minmax(0,1fr);gap:2px}.nmv{font-size:22px}}
 .chp{display:inline-flex;align-items:center;gap:4px;position:relative;min-height:32px;padding:0 6px 0 11px;border:1px solid var(--ac);border-radius:16px;color:var(--ac);font-weight:600;font-size:13px;background:var(--pn)}
 .chp i{font-style:normal;font-size:17px;line-height:1;width:20px;height:20px;display:grid;place-items:center}.chp::after{content:"";position:absolute;inset:-6px 0}.chp:hover{background:var(--sel)}
 .chp:focus-visible,.chips .clr:focus-visible,.empty .clr:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
@@ -320,9 +320,9 @@ body.msheet{overflow:hidden}body.msheet .side{display:block;position:fixed;inset
 .hmf{border-inline-start:4px solid var(--ac)}.hmh2{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 12px;margin-bottom:12px}.hmh2 h2{margin:0}.hmsub{font-size:13px;color:var(--dm)}
 .hmfg{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:18px}
 .hmk{font-size:12.5px;font-weight:600;letter-spacing:.03em;text-transform:uppercase;color:var(--dm)}
-.hmf0 h3{margin:4px 0 8px;font-family:var(--head);font-size:26px;line-height:1.2;font-weight:600}.hmf0 p{font-size:15.5px}.hmf0 .hmrd a{font-size:14px;font-weight:600;color:var(--ac)}
-.hmfs{display:flex;flex-direction:column;gap:14px;padding-inline-start:18px;border-inline-start:1px solid var(--ln)}
-.hmf1 h3{margin:2px 0 4px;font-size:16px;line-height:1.3;font-weight:600}.hmf1 p{margin:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:13.5px;color:var(--dm)}
+.hmf0 h3{margin:4px 0 8px;font-family:var(--head);font-size:26px;line-height:1.2;font-weight:700}.hmf0 p{font-size:15.5px}.hmf0 .hmrd a{font-size:14px;font-weight:600;color:var(--ac)}
+.hmfs{display:flex;flex-direction:column;gap:24px;padding-inline-start:18px;border-inline-start:1px solid var(--ln)}
+.hmf1 h3{margin:3px 0 6px;font-size:16px;line-height:1.3;font-weight:600}.hmf1 p{margin:0;font-size:13.5px;line-height:1.45;color:var(--dm)}
 .hml{list-style:none;margin:0;padding:0}.hml>li{padding:9px 0;border-top:1px solid var(--ln)}.hml>li:first-child{border-top:0;padding-top:0}.hml>li:last-child{padding-bottom:0}
 .hmhl>a{font-size:15px;line-height:1.35;font-weight:500}.hmhl .hmm{display:block;margin-top:3px}.hmco{font-size:12px;color:var(--dm)}
 .hmhl .bkt,.hmhl .ftag{margin-right:8px}
@@ -333,7 +333,7 @@ body.msheet{overflow:hidden}body.msheet .side{display:block;position:fixed;inset
 .hmnv{font-family:var(--head);font-size:34px;line-height:1.1;font-weight:600;color:var(--ac);overflow-wrap:anywhere}.hmnt{font-weight:600}
 .hmbtn{min-height:36px;margin-top:8px;padding:0 12px;border:1px solid var(--ln);border-radius:6px;background:transparent;color:var(--tx);font-size:13px;font-weight:600}.hmbtn:hover{border-color:var(--ac);color:var(--ac)}
 .hmbtn:focus-visible,.hm a:focus-visible{outline:2px solid var(--ac);outline-offset:2px;border-radius:2px}
-.hmon{margin:0 0 2px;font-size:17px;line-height:1.3}.hmintro{margin:0;max-width:72ch;font-size:15px;line-height:1.5;color:var(--dm)}
+.hmon{margin:0 0 2px;font-size:17px;line-height:1.3}
 .o1{order:1}.o2{order:2}.o3{order:3}.o4{order:4}.o5{order:5}.o6{order:6}.o7{order:7}.o8{order:8}
 @media (max-width:800px){.hm{padding:12px}.hmcols{display:flex;flex-direction:column}.hmL,.hmR{display:contents}.hmfg{grid-template-columns:minmax(0,1fr)}.hmfs{padding-inline-start:0;border-inline-start:0;padding-top:14px;border-top:1px solid var(--ln)}.hmf0 h3{font-size:22px}.hmdt{font-size:21px}.hmev{grid-template-columns:74px minmax(0,1fr)}}
 @media (prefers-reduced-motion:reduce){.hm *{transition:none!important}}
@@ -576,7 +576,7 @@ let WSWO=null,WSWM=false;const WSWLIM=5; // WSWO: the reader folded or opened th
 const wrow=o=>`<div class="wr"><button type="button" class="wo" data-wo="${esc(o.s)}" aria-pressed="${F.s==o.s}" title="${F.s==o.s?"Show everyone again":"Show only "+esc(o.s)+" in this issue"}">${esc(o.s)}</button><span class="wc">${o.n} ${o.n>1?"items":"item"}</span><button type="button" class="wh" data-wopen="${esc(uid(o.last))}">${esc(o.last.h)}</button><span class="wd">${esc(fd(o.last.d))}</span></div>`;
 function renderHubHead(){const el=$("#hubhead"),h=VIEW=="hubs"&&curHub();if(!h){el.hidden=true;el.innerHTML="";return}
 const items=hubItems(h.k),w=wswData(h.k),nn=SINCE!=null?items.filter(x=>msOf(x)>SINCE).length:0,open=WSWO===null?!isMob():WSWO,said=WSWM?w.said:w.said.slice(0,WSWLIM),offs=WSWM?w.off:w.off.slice(0,3),more=w.said.length>WSWLIM||w.off.length>3;
-el.hidden=false;el.innerHTML=`<a class="hback" href="${hubHref("")}" data-hub="">← All issues</a>${h.blurb?`<p class="hblurb">${esc(h.blurb)}</p>`:""}<div class="hstat"><span><b>${items.length.toLocaleString()}</b> ${items.length==1?"item":"items"}${nn?` (<b>${nn.toLocaleString()}</b> new)`:""}</span><span><b>${w.said.length}</b> of ${w.total} advocacy groups have a statement here</span><span>Latest ${esc(fd(items[0].d))}</span></div>
+el.hidden=false;el.innerHTML=`<a class="hback" href="${hubHref("")}" data-hub="">← All issues</a><div class="hstat"><span><b>${items.length.toLocaleString()}</b> ${items.length==1?"item":"items"}${nn?` (<b>${nn.toLocaleString()}</b> new)`:""}</span><span><b>${w.said.length}</b> of ${w.total} advocacy groups have a statement here</span><span>Latest ${esc(fd(items[0].d))}</span></div>
 ${hubComing(h.k)}<details class="wsw"${open?" open":""}><summary>Who’s saying what<span class="wn">${w.said.length?`${w.said.length} ${w.said.length==1?"group has":"groups have"} weighed in`:"No advocacy group statement collected yet"}</span></summary>
 ${said.length?`<div class="wl">${said.map(wrow).join("")}</div>`:""}
 ${w.silent.length?`<div class="wq"><b>No statement collected yet from ${w.silent.length}:</b> ${w.silent.map(n=>esc(n)).join(", ")}</div>`:""}
@@ -585,7 +585,7 @@ ${more?`<div class="wmr"><button type="button" class="wo" data-wmore aria-expand
 <div class="wnote">From the statements this site collects from advocacy groups and official .gov pages. A group may have spoken elsewhere (social media, interviews) or under other wording.</div></details>`}
 function renderHubDir(){const hs=hubsOn().map(h=>{const it=hubItems(h.k);return{h,n:it.length,w:wswData(h.k).said.length,nw:SINCE!=null?it.filter(x=>msOf(x)>SINCE).length:0,last:it[0]}}).sort((a,b)=>pd(b.last.d)-pd(a.last.d)||a.h.label.localeCompare(b.h.label));
 $("#ttl").textContent="Issues";for(const id of["#vtool","#ptabs","#chips","#nbar","#hubhead"]){$(id).hidden=true}$("#vtool").innerHTML="";$("#chips").innerHTML="";$("#nbar").innerHTML="";$("#hubhead").innerHTML="";$("#more").innerHTML="";$("#dtl").innerHTML="";L=[];sel=0;clearTimeout(brkT);
-$("#rows").innerHTML=hs.length?`<p class="hintro">One page per issue: the news, policy items, statements and research about it in a single timeline, and who has said what.</p><div class="hdir">${hs.map(({h,n,w,nw,last})=>`<a class="hcard" href="${hubHref(h.k)}" data-hub="${esc(h.k)}"><h3>${esc(h.label)}</h3>${h.blurb?`<p>${esc(h.blurb)}</p>`:""}<div class="hmeta"><span><b>${n.toLocaleString()}</b> ${n==1?"item":"items"}</span><span><b>${w}</b> ${w==1?"group":"groups"} weighed in</span>${nw?`<span class="hnw">${nw.toLocaleString()} new</span>`:""}<span>Latest ${esc(fd(last.d))}</span></div></a>`).join("")}</div>`:`<div class="empty">No issues yet. They appear here as soon as the site finds stories, policy items or statements about an issue it follows.</div>`;
+$("#rows").innerHTML=hs.length?`<div class="hdir">${hs.map(({h,n,w,nw,last})=>`<a class="hcard" href="${hubHref(h.k)}" data-hub="${esc(h.k)}"><h3>${esc(h.label)}</h3><div class="hmeta"><span><b>${n.toLocaleString()}</b> ${n==1?"item":"items"}</span><span><b>${w}</b> ${w==1?"group":"groups"} weighed in</span>${nw?`<span class="hnw">${nw.toLocaleString()} new</span>`:""}<span>Latest ${esc(fd(last.d))}</span></div></a>`).join("")}</div>`:`<div class="empty">No issues yet. They appear here as soon as the site finds stories, policy items or statements about an issue it follows.</div>`;
 if(!viewing)document.title=baseTitle}
 function openHub(k){closeSheet(()=>{F=F0();$("#q").value="";sel=0;gsel="";shown=PAGE;feedY=0;try{history.pushState(null,"",hubHref(k))}catch(e){location.href=hubHref(k);return}route();window.scrollTo(0,0)})}
 function renderPtabs(){const w=$("#ptabs"),pol=VIEW=="policy",rsv=VIEW=="research",on=pol||VIEW=="feed"||rsv;w.hidden=!on;if(!on)return;
@@ -679,15 +679,14 @@ if(!EVLOAD){$("#rows").innerHTML='<div class="empty">Loading the calendar…</di
 const hubs=HUBS.filter(h=>EV.some(x=>(x.hb||[]).includes(h.k)));if(E.hub&&!hubs.some(h=>h.k==E.hub))E.hub="";
 const sts=TAXO.s.filter(([k])=>EV.some(x=>(x.st||[]).includes(k)));if(E.st&&!sts.some(a=>a[0]==E.st))E.st="";const base=EV.filter(x=>(!E.hub||(x.hb||[]).includes(E.hub))&&(!E.st||!(x.st||[]).length||x.st.includes(E.st))),cnt=k=>base.filter(x=>(!k||x.k==k)&&evLive(x)).length,kb=base.filter(x=>!E.k||x.k==E.k);
 const bar=`<div class="evbar"><div class="evseg" role="group" aria-label="Kind of event">${[["","All"]].concat(Object.keys(EVK).map(k=>[k,EVKP[k]])).map(([k,l])=>`<button type="button" data-ek="${k}" aria-pressed="${E.k==k}">${esc(l)} <i>${cnt(k)}</i></button>`).join("")}</div><div class="evseg" role="group" aria-label="View"><button type="button" data-ev="list" aria-pressed="${E.v=="list"}">List</button><button type="button" data-ev="week" aria-pressed="${E.v=="week"}">Weeks</button><button type="button" data-ev="month" aria-pressed="${E.v=="month"}">Month</button></div>${sts.length?`<label class="evsel">State <select id="evst"><option value="">All</option>${sts.map(([k,l])=>`<option value="${esc(k)}"${E.st==k?" selected":""}>${esc(l)}</option>`).join("")}</select></label>`:""}${hubs.length?`<label class="evsel">Topic <select id="evhub"><option value="">All topics</option>${hubs.map(h=>`<option value="${esc(h.k)}"${E.hub==h.k?" selected":""}>${esc(h.label)}</option>`).join("")}</select></label>`:""}${E.v=="list"?`<label class="evchk"><input type="checkbox" id="evpast"${E.past?" checked":""}> Include the past 30 days</label>`:""}</div>`;
-const sub=`<div class="evsub"><span>Get these in your calendar:</span><a href="${esc(BASE+"data/events.ics")}" download>Download the calendar file</a><button type="button" data-ecopy>Copy the address to subscribe</button></div>`;
 let body;if(E.v=="month")body=evMonthView(kb);else if(E.v=="week")body=evWeekView(kb);else{const lo=Date.now()-30*864e5,a=kb.filter(x=>evLive(x)||(E.past&&(evAd(x)?ymd(evLast(x)).getTime():Date.parse(x.e||x.d))>=lo)).sort((p,q)=>evEff(p).localeCompare(evEff(q))||evOrder(p,q));let cur="",h="";
 for(const x of a){const m=evEff(x).slice(0,7);if(m!=cur){cur=m;h+=`<div class="evmh">${esc(ymd(m+"-01").toLocaleDateString(undefined,{month:"long",year:"numeric"}))}</div>`}h+=evItem(x)}
 body=`<div class="evm0">${a.length?h:`<div class="empty">${EV.length?"Nothing upcoming matches these choices.":"No events or deadlines are listed right now."}${E.k||E.hub||E.st?' <button type="button" class="clr" data-eclr>Show all events</button>':""}</div>`}</div>`}
-$("#rows").innerHTML=bar+sub+body+``}
+$("#rows").innerHTML=bar+body+``}
 function evSet(f,focus){f();syncQS();_es=location.search;render();if(focus){const n=document.querySelector(focus);if(n)n.focus({preventScroll:true})}}
-$("#rows").addEventListener("click",e=>{if(VIEW!="events")return;const t=e.target.closest("[data-ek],[data-ev],[data-em],[data-ed],[data-eadd],[data-ecopy],[data-eclr]");if(!t)return;const d=t.dataset;
+$("#rows").addEventListener("click",e=>{if(VIEW!="events")return;const t=e.target.closest("[data-ek],[data-ev],[data-em],[data-ed],[data-eadd],[data-eclr]");if(!t)return;const d=t.dataset;
 if(d.eadd!==undefined){const x=EV.find(y=>y.id==d.eadd);if(x)evDownload(x);return}
-if(d.ecopy!==undefined){doCopy(origin()+BASE+"data/events.ics",null,"Calendar address copied. In your calendar app choose “subscribe” or “add calendar from URL” and paste it.");return}
+
 if(d.eclr!==undefined){evSet(()=>{E.k="";E.hub="";E.st=""},"");return}
 if(d.ek!==undefined)evSet(()=>{E.k=d.ek;E.day=""},`[data-ek="${d.ek}"]`);else if(d.ev)evSet(()=>{E.v=d.ev;E.day=""},`[data-ev="${d.ev}"]`);
 else if(d.em)evSet(()=>{E.m=d.em=="today"?"":d.em;E.day=""},`[data-em="${d.em}"]`);else if(d.ed!==undefined)evSet(()=>{E.day=E.day==d.ed?"":d.ed;if(E.day&&!E.m)E.m=E.day.slice(0,7)},d.ed?`.evdn[data-ed="${d.ed}"]`:"")});
@@ -698,12 +697,11 @@ document.addEventListener("click",e=>{const a=e.target.closest&&e.target.closest
 function loadEvents(){return fetch(BASE+"data/events.json",{cache:"no-cache"}).then(r=>{if(!r.ok)throw 0;return r.json()}).then(j=>{EV=(Array.isArray(j.events)?j.events:[]).filter(x=>x&&typeof x.id=="string"&&typeof x.t=="string"&&typeof x.d=="string"&&/^\d{4}-\d{2}-\d{2}/.test(x.d)&&EVK[x.k]);EVGEN=j.generated||"";EVLOAD=1;tabCounts();if(VIEW=="events"||VIEW=="home"||(VIEW=="hubs"&&HUB))render()}).catch(()=>{EVLOAD=1;if(VIEW=="events"||VIEW=="home")render()})}
 let NM={items:[],src:{},cats:[],chk:"",note:""},NMLOAD=0,_ns="";const N={k:"",c:"",st:"",q:""};
 function readN(){const p=new URLSearchParams(location.search),g=k=>p.get(k)||"";N.k=g("nk");N.c=g("nc");N.st=g("ns");N.q=g("nq").slice(0,80)}
-const nmDate=s=>/^\d{4}-\d{2}-\d{2}$/.test(s||"")?ymd(s).toLocaleDateString("en-US",{year:"numeric",month:"long",day:"numeric"}):"",nmY=y=>String(y||"").replace(/(\d)-(\d)/g,"$1–$2"),nmCom=x=>(x.c||[]).map(k=>CL[k]).filter(Boolean),nmSt=x=>(x.st||[]).map(k=>SLB[k]).filter(Boolean);
-function nmCite(x){const s=NM.src[x.s],ac=nmDate(NM.chk);return`${x.v} ${x.t}. Data year: ${nmY(x.y)}. ${x.via?`Figure from ${x.via}. `:""}Source: ${s.o}, “${s.t}”${s.d?`, ${s.d}`:""}${x.p?`, ${x.p}`:""}. ${s.u}${ac?` (accessed ${ac})`:""}.`}
+const nmY=y=>String(y||"").replace(/(\d)-(\d)/g,"$1–$2"),nmCom=x=>(x.c||[]).map(k=>CL[k]).filter(Boolean),nmSt=x=>(x.st||[]).map(k=>SLB[k]).filter(Boolean);
 function nmFind(){const q=N.q.trim().toLowerCase();return NM.items.filter(x=>(!N.c||(x.c||[]).includes(N.c))&&(!N.st||(x.st||[]).includes(N.st))&&(!q||(x.v+" "+x.t+" "+(x.g||"")+" "+nmCom(x).join(" ")+" "+nmSt(x).join(" ")+" "+x.y+" "+NM.src[x.s].o+" "+NM.src[x.s].t).toLowerCase().includes(q)))}
 const nmShown=()=>nmFind().filter(x=>!N.k||x.cat==N.k);
 function nmItem(x){const s=NM.src[x.s],who=x.g||nmCom(x).join(", "),meta=[who,nmSt(x).join(", "),nmY(x.y)].filter(Boolean).join(" · ");
-return`<article class="nmi"><div class="nmv">${esc(x.v)}</div><div><p class="nmt">${esc(x.t)}</p><p class="nms">${esc(meta)}</p><p class="nmc">${x.via?`Figure from ${esc(x.via)}. `:""}Source: <a href="${esc(s.u)}" target="_blank" rel="noopener">${esc(s.o)}: “${esc(s.t)}”</a>${s.d?`, ${esc(s.d)}`:""}${x.p?`, ${esc(x.p)}`:""}</p>${x.n?`<p class="nmn">${esc(x.n)}</p>`:""}<div class="eva"><button type="button" data-ncite="${esc(x.id)}" aria-label="Copy the citation for ${esc(x.v+" "+x.t)}">Copy citation</button></div></div></article>`}
+return`<article class="nmi"><div class="nmv">${esc(x.v)}</div><div><p class="nmt">${esc(x.t)}</p><p class="nms">${esc(meta)}</p><p class="nmc">${x.via?`Figure from ${esc(x.via)}. `:""}Source: <a href="${esc(s.u)}" target="_blank" rel="noopener">${esc(s.o)}: “${esc(s.t)}”</a>${s.d?`, ${esc(s.d)}`:""}${x.p?`, ${esc(x.p)}`:""}</p>${x.n?`<p class="nmn">${esc(x.n)}</p>`:""}</div></article>`}
 function renderNumbers(){for(const id of["#vtool","#ptabs","#chips","#nbar","#hubhead"])$(id).hidden=true;$("#vtool").innerHTML="";$("#chips").innerHTML="";$("#nbar").innerHTML="";$("#hubhead").innerHTML="";$("#more").innerHTML="";$("#dtl").innerHTML="";L=[];sel=0;clearTimeout(brkT);
 $("#ttl").textContent="Key numbers";if(!viewing)document.title="Key numbers | "+baseTitle;
 if(!NMLOAD){$("#rows").innerHTML='<div class="empty">Loading numbers…</div>';return}
@@ -712,14 +710,11 @@ const comms=TAXO.c.filter(([k])=>all.some(x=>(x.c||[]).includes(k))),sts=TAXO.s.
 {const was=N.k+"|"+N.c+"|"+N.st;if(N.c&&!comms.some(a=>a[0]==N.c))N.c="";if(N.st&&!sts.some(a=>a[0]==N.st))N.st="";if(N.k&&!NM.cats.some(a=>a[0]==N.k))N.k="";if(was!=N.k+"|"+N.c+"|"+N.st){syncQS();_ns=location.search}}
 const base=nmFind(),cnt=k=>base.filter(x=>!k||x.cat==k).length,list=nmShown(),filt=!!(N.k||N.c||N.st||N.q.trim());
 const bar=`<div class="evbar"><div class="evseg" role="group" aria-label="Kind of figure">${[["","All"]].concat(NM.cats).map(([k,l])=>`<button type="button" data-nk="${esc(k)}" aria-pressed="${N.k==k}">${esc(l)} <i>${cnt(k)}</i></button>`).join("")}</div>${comms.length?`<label class="evsel">Community <select id="nc"><option value="">All</option>${comms.map(([k,l])=>`<option value="${esc(k)}"${N.c==k?" selected":""}>${esc(l)}</option>`).join("")}</select></label>`:""}${sts.length?`<label class="evsel">State <select id="ns"><option value="">All</option>${sts.map(([k,l])=>`<option value="${esc(k)}"${N.st==k?" selected":""}>${esc(l)}</option>`).join("")}</select></label>`:""}<label class="evsel">Search <input type="search" id="nq" class="nmq" maxlength="80" value="${esc(N.q)}" autocomplete="off"></label></div>`;
-const sub=`<div class="evsub"><span>${list.length==all.length?all.length+" figures":list.length+" of "+all.length+" figures"}</span>${list.length?`<button type="button" data-ncites>Copy these ${list.length==1?"citation":list.length+" citations"}</button>`:""}${filt?`<button type="button" data-nclr>Show all figures</button>`:""}</div>`;
 let h="";if(list.length){const cs=NM.cats.concat(list.some(x=>!NM.cats.some(a=>a[0]==x.cat))?[["","More"]]:[]);for(const [k,l] of cs){const a=list.filter(x=>k?x.cat==k:!NM.cats.some(c=>c[0]==x.cat));if(a.length)h+=`<div class="evmh">${esc(l)}</div>`+a.map(nmItem).join("")}}
 else h=`<div class="empty">No figures match these choices.${filt?' <button type="button" class="clr" data-nclr>Show all figures</button>':""}</div>`;
-$("#rows").innerHTML=`<p class="nmlead">Statistics on Asian American, Native Hawaiian and Pacific Islander communities, each with its source and a ready-to-use citation.</p>`+bar+sub+`<div class="evm0">${h}</div>`}
+$("#rows").innerHTML=bar+`<div class="evm0">${h}</div>`}
 function nSet(f,focus){f();syncQS();_ns=location.search;render();if(focus){const n=document.querySelector(focus);if(n)n.focus({preventScroll:true})}}
-$("#rows").addEventListener("click",e=>{if(VIEW!="numbers")return;const t=e.target.closest("[data-nk],[data-ncite],[data-ncites],[data-nclr]");if(!t)return;const d=t.dataset;
-if(d.ncite!==undefined){const x=NM.items.find(y=>y.id==d.ncite);if(x)doCopy(nmCite(x),null,"Citation copied.");return}
-if(d.ncites!==undefined){const a=nmShown();if(a.length)doCopy(a.map(nmCite).join("\n\n"),null,a.length==1?"Citation copied.":a.length+" citations copied.");return}
+$("#rows").addEventListener("click",e=>{if(VIEW!="numbers")return;const t=e.target.closest("[data-nk],[data-nclr]");if(!t)return;const d=t.dataset;
 if(d.nclr!==undefined){nSet(()=>{N.k="";N.c="";N.st="";N.q=""},"");return}
 if(d.nk!==undefined)nSet(()=>{N.k=d.nk},`[data-nk="${d.nk}"]`)});
 $("#rows").addEventListener("change",e=>{if(VIEW!="numbers")return;if(e.target.id=="nc")nSet(()=>{N.c=e.target.value},"#nc");else if(e.target.id=="ns")nSet(()=>{N.st=e.target.value},"#ns")});
@@ -767,7 +762,7 @@ const list=orSort(orFind()),filt=!!(O.c||O.i||O.t||O.st||O.q.trim()),sl=(id,lab,
 const bar=`<div class="evbar">${sl("oc","Community",comms,O.c)}${sl("oi","Issue",iss.map(t=>[t,tl(t)]),O.i)}${sl("ot","Type",tys.map(t=>[t,orcap(t)]),O.t)}${sl("ost","State",sts,O.st)}<label class="evsel">Search <input type="search" id="oq" class="nmq" maxlength="80" value="${esc(O.q)}" autocomplete="off"></label><div class="evseg" role="group" aria-label="Order"><button type="button" data-osr="" aria-pressed="${!O.sr}">A to Z</button><button type="button" data-osr="active" aria-pressed="${O.sr=="active"}">Most active here</button></div></div>`;
 const sub=`<div class="evsub"><span>${list.length==OR.length?OR.length+" organizations":list.length+" of "+OR.length+" organizations"}${O.st?" (national groups are included in every state)":""}</span>${filt?'<button type="button" data-oclr>Show all organizations</button>':""}</div>`;
 const body=list.length?list.map(orCard).join(""):`<div class="empty">No organization matches these choices.${filt?' <button type="button" class="clr" data-oclr>Show all organizations</button>':""}</div>`;
-$("#rows").innerHTML=`<p class="nmlead">AAPI organizations, with what each does, whom it serves, and what it has said on this site. Use the filters to find who is working on an issue or in a place.</p>`+bar+sub+`<div class="evm0">${body}</div>`}
+$("#rows").innerHTML=bar+sub+`<div class="evm0">${body}</div>`}
 function oSet(f,focus){f();syncQS();_os=location.search;render();if(focus){const n=document.querySelector(focus);if(n)n.focus({preventScroll:true})}}
 $("#rows").addEventListener("click",e=>{if(VIEW!="orgs")return;const t=e.target.closest("[data-osr],[data-oclr]");if(!t)return;const d=t.dataset;if(d.oclr!==undefined){oSet(()=>{O.c="";O.i="";O.t="";O.st="";O.q=""},"");return}if(d.osr!==undefined)oSet(()=>{O.sr=d.osr},`[data-osr="${d.osr}"]`)});
 $("#rows").addEventListener("change",e=>{if(VIEW!="orgs")return;const m={oc:"c",oi:"i",ot:"t",ost:"st"}[e.target.id];if(m)oSet(()=>{O[m]=e.target.value},"#"+e.target.id)});
@@ -831,21 +826,21 @@ return hmCard("hmph","hmpol o4","Policy watch",b,hmA(hmU("policy"),"Open the Pol
 function hmStmt(){const a=D.filter(isAdv).sort((p,q)=>pd(q.d)-pd(p.d)).slice(0,4);if(!a.length)return"";
 return hmCard("hmah","hmstm o5","Latest statements",`<ul class="hml">${a.map(x=>`<li class="hmhl">${hmLink(x,esc(x.h))}<span class="hmm">${esc(x.s)} · ${esc(ago(x.d))} ago</span></li>`).join("")}</ul>`,hmA(hmU("advocacy"),"All statements →"))}
 function hmNum(){if(!NM.items.length)return"";const x=NM.items[Math.floor((Math.floor(Date.parse(TODAY+"T12:00:00Z")/864e5)+3)/7)%NM.items.length],s=NM.src[x.s],who=x.g||nmCom(x).join(", "),meta=[who,nmSt(x).join(", "),nmY(x.y)].filter(Boolean).join(" · ");
-return hmCard("hmnh","hmnum o6","Number of the week",`<div class="hmnv">${esc(x.v)}</div><p class="hmnt">${esc(x.t)}</p><p class="hmm">${esc(meta)}</p><p class="hmm">Source: <a href="${esc(s.u)}" target="_blank" rel="noopener">${esc(s.o)}<span class="vh"> (opens in a new tab)</span></a>${s.d?`, ${esc(s.d)}`:""}</p><button type="button" class="hmbtn" data-hmcite="${esc(x.id)}">Copy citation</button>`,hmA(hmU("numbers"),"More key numbers →"))}
+return hmCard("hmnh","hmnum o6","Number of the week",`<div class="hmnv">${esc(x.v)}</div><p class="hmnt">${esc(x.t)}</p><p class="hmm">${esc(meta)}</p><p class="hmm">Source: <a href="${esc(s.u)}" target="_blank" rel="noopener">${esc(s.o)}<span class="vh"> (opens in a new tab)</span></a>${s.d?`, ${esc(s.d)}`:""}</p>`,hmA(hmU("numbers"),"More key numbers →"))}
 function hmHubs(){const hs=hubsOn().map(h=>({h,n:hubItems(h.k).length,last:hubItems(h.k)[0]})).sort((a,b)=>pd(b.last.d)-pd(a.last.d)).slice(0,8);if(!hs.length)return"";
 return hmCard("hmhh","hmhub o7","Issues",`<div class="hmchs">${hs.map(o=>hmA(hubHref(o.h.k),`${esc(o.h.label)} <i>${o.n}</i>`,"hmchip")).join("")}</div>`,hmA(hubHref(""),"All issues →"))}
 function hmOrg(){if(!OR.length)return"";const st=OR.map(o=>[o,orStats(o)]),act=st.filter(p=>p[1].n>0).sort((a,b)=>b[1].last-a[1].last).slice(0,10),pool=act.length?act:st,day=Math.floor(Date.parse(TODAY+"T12:00:00Z")/864e5),[o,s]=pool[day%pool.length],
 sub=[orcap(o.ty||""),ORSC[o.sc]||""].filter(Boolean).join(" · ");
-return hmCard("hmoh","hmorg o8","Organization spotlight",`<h3 class="hmon">${hmA(hrefOf("orgs")+"?og="+encodeURIComponent(o.id),esc(o.n))}</h3>${sub?`<p class="hmm">${esc(sub)}</p>`:""}${s.tot?`<p class="hmm">${s.tot.toLocaleString()} ${s.tot==1?"item":"items"} from this group on this site, latest ${esc(fdl(new Date(s.last).toISOString()))}.</p>`:""}<p class="hmm">Listing is not an endorsement.</p>`,hmA(hrefOf("orgs"),"All "+OR.length+" organizations →"))}
+return hmCard("hmoh","hmorg o8","Organization spotlight",`<h3 class="hmon">${hmA(hrefOf("orgs")+"?og="+encodeURIComponent(o.id),esc(o.n))}</h3>${sub?`<p class="hmm">${esc(sub)}</p>`:""}${s.tot?`<p class="hmm">${s.tot.toLocaleString()} ${s.tot==1?"item":"items"} from this group on this site, latest ${esc(fdl(new Date(s.last).toISOString()))}.</p>`:""}`,hmA(hrefOf("orgs"),"All "+OR.length+" organizations →"))}
 function renderHome(){_orS=null;for(const id of["#vtool","#ptabs","#chips","#nbar","#hubhead"])$(id).hidden=true;$("#vtool").innerHTML="";$("#chips").innerHTML="";$("#nbar").innerHTML="";$("#hubhead").innerHTML="";$("#more").innerHTML="";$("#dtl").innerHTML="";L=[];sel=0;clearTimeout(brkT);
 if(!viewing)document.title=baseTitle;
 if(!D.length){$("#rows").innerHTML='<div class="empty">Loading…</div>';return}
 const yap=hmYap(),top=hmTop(new Set(yap));
-$("#rows").innerHTML=`<div class="hm">${hmToday()}${SINCE==null?'<p class="hmintro">Welcome to The Yappie Pro: AAPI and mainstream news, policy, advocacy statements, research, a calendar and key numbers in one place. Start with the featured coverage and headlines below, or browse the Issues.</p>':""}${hmFeat(yap)}<div class="hmcols"><div class="hmL">${top.html}${hmPol()}${hmStmt()}</div><div class="hmR">${hmSince()}${hmSoon()}${hmNum()}${hmHubs()}${hmOrg()}</div></div></div>`;
+$("#rows").innerHTML=`<div class="hm">${hmToday()}${hmFeat(yap)}<div class="hmcols"><div class="hmL">${top.html}${hmPol()}${hmStmt()}</div><div class="hmR">${hmSince()}${hmSoon()}${hmNum()}${hmHubs()}${hmOrg()}</div></div></div>`;
 hmKick(yap[0]);
 {let nx=1/0;for(const x of top.items){if(!x.bu)continue;const t=Date.parse(x.bu);if(t>RN&&t<nx)nx=t}if(nx<1/0)brkT=setTimeout(()=>render(),Math.min(nx-Date.now()+500,2e9))}}
 document.addEventListener("click",e=>{const a=e.target.closest&&e.target.closest("a[data-hm]");if(!a||e.defaultPrevented||e.button||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;e.preventDefault();const h=a.getAttribute("href");closeSheet(()=>{F=F0();$("#q").value="";gsel="";sel=0;feedY=0;try{history.pushState(null,"",h)}catch(x){location.href=h;return}readQS();route();window.scrollTo(0,0)})});
-$("#rows").addEventListener("click",e=>{if(VIEW!="home")return;const c=e.target.closest("[data-hmcite]");if(c){const x=NM.items.find(y=>y.id==c.dataset.hmcite);if(x)doCopy(nmCite(x),null,"Citation copied.");return}if(e.target.closest("[data-hmseen]"))markSeen()});
+$("#rows").addEventListener("click",e=>{if(VIEW!="home")return;if(e.target.closest("[data-hmseen]"))markSeen()});
 const TITLES={home:"Dashboard",feed:"Top headlines",policy:"Policy tracker",advocacy:"Advocacy statements",research:"Research",hubs:"Issues",events:"Calendar",numbers:"Key numbers",orgs:"Organizations",saved:"Saved stories"};
 function render(){if(!READY)return;
 {const t=isoD(new Date());if(t!=TODAY){TODAY=t;_dr.clear()}}RN=Date.now();

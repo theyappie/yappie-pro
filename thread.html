@@ -241,6 +241,7 @@ body.msheet{overflow:hidden}body.msheet .side{display:block;position:fixed;inset
 @media (min-width:1001px){.g[data-v=thread]{grid-template-columns:minmax(0,1fr);background:var(--bg)}.g[data-v=thread] .rail,.g[data-v=thread] .side{display:none}.g[data-v=thread]>section{width:100%;max-width:1180px;margin:0 auto;border-inline:1px solid var(--ln)}}
 .tlw{margin:6px 16px 12px;max-width:80ch}.tlw .pwm{margin:12px 0}.tlw .pwm a{color:var(--ac);text-decoration:underline}
 ol.tl{list-style:none;margin:8px 0 6px 6px;padding:0;border-left:2px solid var(--ln)}.tli{position:relative;margin:0;padding:2px 0 12px 18px;font-size:14px;line-height:1.4}.tli::before{content:"";position:absolute;left:-7px;top:6px;width:10px;height:10px;border-radius:50%;background:var(--bg);border:2px solid var(--dm)}.tli.cur::before{background:var(--ac);border-color:var(--ac)}.tld{font-size:12.5px;color:var(--dm)}.tlb{overflow-wrap:anywhere}.tlb a{color:var(--tx);text-decoration:underline;text-decoration-color:var(--ln);text-underline-offset:3px}.tlb a:hover{text-decoration-color:var(--ac)}.tlc{font-size:12.5px;color:var(--dm)}.tli.cur .tlb{font-weight:600}
+.vtl .tlm{margin:2px 0 4px;font-size:12.5px;color:var(--dm)}.vtl .tlm a{color:var(--ac);text-decoration:underline}.vtl{padding-bottom:6px}
 @media (max-width:700px){.tlw{margin-inline:12px}}
 @media (max-width:700px){.nmi{grid-template-columns:minmax(0,1fr);gap:2px}.nmv{font-size:22px}}
 .chp{display:inline-flex;align-items:center;gap:4px;position:relative;min-height:32px;padding:0 6px 0 11px;border:1px solid var(--ac);border-radius:16px;color:var(--ac);font-weight:600;font-size:13px;background:var(--pn)}
@@ -914,8 +915,12 @@ for(const [k,a] of [...m]){if(a.length<2||new Set(a.map(x=>x.s)).size<2){m.delet
 const thN=a=>new Set(a.map(x=>x.s)).size,thWhen=a=>{const f=fdl(a[0].d),l=fdl(a[a.length-1].d);return f==l?f:f+" to "+l},thAt=x=>x.d.length>10?fdt(x.d):fdl(x.d);
 const thLink=x=>/^https:\/\//i.test(x.u||"")?`<a href="${esc(x.u)}" target="_blank" rel="noopener">${esc(x.h)}<span class="vh"> (opens in a new tab)</span> ↗</a>`:esc(x.h);
 const thItem=(x,cur)=>`<li class="tli${cur?" cur":""}"${cur?' aria-current="true"':""}><div class="tld">${esc(thAt(x))}</div><div class="tlb"><strong>${esc(x.s)}</strong> ${kpi(x)}${cur?esc(x.h)+' <span class="tlc">(this story)</span>':thLink(x)}</div></li>`;
-function thBlock(x,a){const cap=10;let s=0;if(a.length>cap){const i=Math.max(0,a.indexOf(x));s=Math.max(0,Math.min(i-4,a.length-cap))}const rows=a.slice(s,s+cap);
+const thWin=(x,a,cap)=>{let s=0;if(a.length>cap){const i=Math.max(0,a.indexOf(x));s=Math.max(0,Math.min(i-4,a.length-cap))}return a.slice(s,s+cap)};
+function thBlock(x,a){const cap=10,rows=thWin(x,a,cap);
 return`<div class="meta" style="margin-top:14px">Same story in ${thN(a)} outlets · ${esc(thWhen(a))}</div><ol class="tl">${rows.map(y=>thItem(y,y===x)).join("")}</ol><div class="meta">${a.length>cap?`Showing ${rows.length} of ${a.length} stories. `:""}<a href="${BASE}thread?th=${esc(x.th)}" data-hm>Open the full timeline</a></div>`}
+// the article view's right-hand pane: the timeline goes above "More ... stories"
+function thSide(x,a){const cap=10,rows=thWin(x,a,cap);
+return`<div class="ph"><h2>Same story in ${thN(a)} outlets</h2></div><div class="vsb vtl"><div class="tlm">${esc(thWhen(a))}</div><ol class="tl">${rows.map(y=>thItem(y,y===x)).join("")}</ol><div class="tlm">${a.length>cap?`Showing ${rows.length} of ${a.length} stories. `:""}<a href="${BASE}thread?th=${esc(x.th)}" data-hm>Open the full timeline</a></div></div>`}
 function renderThread(){for(const id of["#vtool","#ptabs","#chips","#nbar","#hubhead"])$(id).hidden=true;$("#vtool").innerHTML="";$("#chips").innerHTML="";$("#nbar").innerHTML="";$("#hubhead").innerHTML="";$("#more").innerHTML="";$("#dtl").innerHTML="";L=[];sel=0;clearTimeout(brkT);
 $("#ttl").textContent="Story timeline";if(!viewing)document.title="Story timeline | "+baseTitle;
 if(!D.length){$("#rows").innerHTML='<div class="empty">Loading…</div>';return}
@@ -1238,7 +1243,7 @@ byl(x.by);hero(x.img);
 const byNew=(a,b)=>pd(b.d)-pd(a.d),same=D.filter(y=>y!==x&&y.t==x.t&&part(y)==part(x)).sort(byNew).slice(0,5),tn=tl(x.t);
 const tlist=list=>{let o="";list.forEach(y=>{
 o+=`<div class="vit"><a href="${y.v?"#a/"+uid(y):esc(y.u)}"${y.v?"":' target="_blank" rel="noopener"'}><small><b>${esc(y.s)}</b></small><span>${esc(y.h)}</span></a></div>`});return o};
-$("#vside").innerHTML=`<div class="ph"><h2>More <button type="button" class="lk ac" data-f="t" data-v="${esc(x.t)}" title="Show all ${esc(tn)} stories">${esc(tn)}</button> stories</h2></div><div class="vsb">`+(same.length?tlist(same):`<div class="vnone">No other ${esc(tn)} stories yet.</div>`)+`</div>`;
+$("#vside").innerHTML=(x.th&&thIdx().get(x.th)?thSide(x,thIdx().get(x.th)):"")+`<div class="ph"><h2>More <button type="button" class="lk ac" data-f="t" data-v="${esc(x.t)}" title="Show all ${esc(tn)} stories">${esc(tn)}</button> stories</h2></div><div class="vsb">`+(same.length?tlist(same):`<div class="vnone">No other ${esc(tn)} stories yet.</div>`)+`</div>`;
 getArt(x).then(a=>{if(viewing!==x)return;
 byl(a.by,a.byu);if(a.img&&a.img!==x.img)hero(a.img)
 const b=sanitize(a.body);if(!b.childNodes.length)throw 0;$("#vbody").replaceChildren(...b.childNodes)}).catch(()=>{if(viewing!==x)return;$("#vbody").innerHTML='<div class="vnote">The full text of this story couldn’t be loaded here. Use “Read on theyappie.com” below to open the original.</div>'})}

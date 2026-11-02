@@ -379,6 +379,7 @@
    "ty": "philanthropy",
    "fd": "1990",
    "src": [
+    "AAPIP",
     "AAPIP (Asian Americans / Pacific Islanders in Philanthropy)"
    ],
    "o": "About AAPIP - AAPIP Website"
@@ -422,6 +423,9 @@
    ],
    "ty": "legal services",
    "fd": "1983",
+   "src": [
+    "Asian Americans Advancing Justice Southern California"
+   ],
    "o": "Our Mission |Asian Americans Advancing Justice Southern California"
   },
   {
@@ -443,6 +447,9 @@
    ],
    "ty": "legal services",
    "fd": "1972",
+   "src": [
+    "Asian Law Caucus"
+   ],
    "o": "Asian Law Caucus | Asian Law Caucus"
   },
   {
@@ -484,6 +491,9 @@
    ],
    "ty": "legal services",
    "fd": "2010",
+   "src": [
+    "Asian Americans Advancing Justice-Atlanta"
+   ],
    "o": "Asian Americans Advancing Justice-Atlanta"
   },
   {
@@ -505,6 +515,9 @@
    ],
    "ty": "advocacy",
    "fd": "1989",
+   "src": [
+    "Asian American Federation"
+   ],
    "o": "About Us - Asian American Federation"
   },
   {
@@ -557,6 +570,9 @@
     "HEALTH"
    ],
    "ty": "health",
+   "src": [
+    "APIAHF"
+   ],
    "o": "HOME | APIAHF - Asian & Pacific Islander American Health Forum"
   },
   {
@@ -640,6 +656,9 @@
    ],
    "ty": "advocacy",
    "fd": "1994",
+   "src": [
+    "NAKASEC"
+   ],
    "o": "Our Story - NAKASEC"
   },
   {
@@ -852,6 +871,9 @@
    ],
    "ty": "government",
    "fd": "1978",
+   "src": [
+    "Office of Hawaiian Affairs"
+   ],
    "o": "About - The Office of Hawaiian Affairs (OHA)"
   },
   {
@@ -888,6 +910,9 @@
     "GOVERNMENT"
    ],
    "ty": "civic engagement",
+   "src": [
+    "APAICS"
+   ],
    "o": "Mission & History | APAICS"
   },
   {
@@ -907,6 +932,9 @@
    ],
    "ty": "advocacy",
    "fd": "1989",
+   "src": [
+    "Committee of 100"
+   ],
    "o": "Members - Committee of 100"
   },
   {
@@ -943,6 +971,9 @@
    ],
    "ty": "direct services",
    "fd": "1974",
+   "src": [
+    "Asian Americans for Equality"
+   ],
    "o": "About Us | Asian Americans for Equality"
   },
   {
@@ -975,6 +1006,9 @@
     "GOVERNMENT"
    ],
    "ty": "civic engagement",
+   "src": [
+    "AAPI Victory Fund"
+   ],
    "o": "What We Do — AAPI Victory Fund"
   },
   {
@@ -1233,6 +1267,9 @@
    ],
    "ty": "direct services",
    "fd": "1979",
+   "src": [
+    "NAPCA"
+   ],
    "o": "About NAPCA | NAPCA"
   },
   {
@@ -1252,6 +1289,9 @@
    ],
    "ty": "advocacy",
    "fd": "1992",
+   "src": [
+    "APALA"
+   ],
    "o": "History - APALA"
   },
   {
@@ -1273,6 +1313,9 @@
    ],
    "ty": "advocacy",
    "fd": "1976",
+   "src": [
+    "AAPI Equity Alliance"
+   ],
    "o": "Asian Pacific Policy and Planning Council Is Now AAPI Equity Alliance – AAPI Equity Alliance Website"
   },
   {
@@ -1313,6 +1356,9 @@
    ],
    "ty": "government",
    "fd": "2004",
+   "src": [
+    "California Commission on Asian and Pacific Islander American Affairs"
+   ],
    "o": "About Us | California Commission on APIA Affairs"
   }
  ]

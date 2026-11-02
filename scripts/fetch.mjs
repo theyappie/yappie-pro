@@ -249,10 +249,15 @@ function pageRecords(html, src) {
   hits.forEach((h, i) => {
     // The title is inside the link. The date is inside it too, or just after it and before the next story link.
     const after = html.slice(h.end, Math.min(h.end + 800, hits[i + 1]?.at ?? Infinity));
-    const title = clean(/<h[1-6]\b[^>]*>([\s\S]*?)<\/h[1-6]>/i.exec(h.inner)?.[1] ?? /<(div|span|p|strong)\b[^>]*class=["'][^"']*(?:title|heading)[^"']*["'][^>]*>([\s\S]*?)<\/\1>/i.exec(h.inner)?.[2] ?? h.inner).replace(/\s*[↗→»›]+\s*$/, "");
-    let d = new Date(/<time\b[^>]*\bdatetime=["']([^"']+)["']/i.exec(h.inner + after)?.[1] ?? "");
-    if (isNaN(d)) for (const where of [h.inner, after]) { const x = DATE_RE.exec(clean(where)); if (x) { d = new Date(`${x[1].slice(0, 3)} ${x[2]}, ${x[3]} 12:00:00 UTC`); break; } }
-    if (isNaN(d) && src.numericDates) for (const where of [h.inner, after]) { const x = /\b(\d{1,2})\/(\d{1,2})\/(20\d\d)\b/.exec(clean(where)); if (x) { d = new Date(Date.UTC(+x[3], +x[1] - 1, +x[2], 12)); break; } } // "numericDates": the listing writes dates as 09/23/2026
+    // "before": card listings (Wix) put the date and the headline above a "Read more" button, so both are read from the page between the previous story link and this one
+    const above = src.before ? html.slice(Math.max(hits[i - 1]?.end ?? 0, h.at - 3000), h.at) : "";
+    const lastOf = (re, s) => [...s.matchAll(re)].at(-1);
+    const title = src.before ? clean(lastOf(/<h[1-6]\b[^>]*>([\s\S]*?)<\/h[1-6]>/gi, above)?.[1] ?? "") : clean(/<h[1-6]\b[^>]*>([\s\S]*?)<\/h[1-6]>/i.exec(h.inner)?.[1] ?? /<(div|span|p|strong)\b[^>]*class=["'][^"']*(?:title|heading)[^"']*["'][^>]*>([\s\S]*?)<\/\1>/i.exec(h.inner)?.[2] ?? h.inner).replace(/\s*[↗→»›]+\s*$/, "");
+    const near = src.before ? [h.inner] : [h.inner, after]; // with "before", what follows the link belongs to the next card
+    let d = new Date(/<time\b[^>]*\bdatetime=["']([^"']+)["']/i.exec(near.join(" "))?.[1] ?? "");
+    if (isNaN(d) && src.before) { const x = lastOf(new RegExp(DATE_RE.source, "gi"), clean(above)); if (x) d = new Date(`${x[1].slice(0, 3)} ${x[2]}, ${x[3]} 12:00:00 UTC`); }
+    if (isNaN(d)) for (const where of near) { const x = DATE_RE.exec(clean(where)); if (x) { d = new Date(`${x[1].slice(0, 3)} ${x[2]}, ${x[3]} 12:00:00 UTC`); break; } }
+    if (isNaN(d) && src.numericDates) for (const where of near) { const x = /\b(\d{1,2})\/(\d{1,2})\/(20\d\d)\b/.exec(clean(where)); if (x) { d = new Date(Date.UTC(+x[3], +x[1] - 1, +x[2], 12)); break; } } // "numericDates": the listing writes dates as 09/23/2026
     // some listings show no dates at all; "idDate" names the part of the link that is a Mongo-style id (HuffPost: ..._n_<24 hex>), whose first 8 hex digits are the creation time in epoch seconds
     if (isNaN(d) && src.idDate) { const x = new RegExp(src.idDate).exec(h.href); if (x) d = new Date(parseInt(x[1].slice(0, 8), 16) * 1e3); }
     const dk = [...h.inner.matchAll(/<p\b[^>]*>([\s\S]*?)<\/p>/gi)].map(x => clean(x[1])).find(x => x.length >= 25) ?? ""; // the publisher's own summary, only when it sits inside the link
@@ -331,6 +336,19 @@ const catsOf = it => [it.category].flat().filter(c => c != null).map(c => normNa
 const skippedCat = [], catDropIds = new Set();
 const idOf = (kind, u) => createHash("sha1").update(isOrg(kind) && isGov(u) ? "statement:" + u : u).digest("hex").slice(0, 12);
 
+// A headline set entirely in capitals (APIAHF writes its press releases that way) reads as shouting in a list, so it gets ordinary capitalisation; acronyms, initialisms and anything with a number stay as written.
+const KEEP_CAPS = /^(?:AAPI|AANHPI|NHPI|APIAHF|ACA|HHS|CMS|OMB|DOJ|DHS|ICE|USCIS|LEP|MMR|FY\d*|U\.?S\.?A?|SCSEP|NAPCA|IDIC|LGBTQ\+?|DACA|TPS|SNAP|WIC|HIV|AIDS|COVID(?:-19)?|DEI|FDA|CDC|NIH|EPA|FCC|FEMA|NAACP|UN|EU|AFL-CIO|HBCU|AAPCHO|SEARAC|NAKASEC|NQAPIA|NCAPA|APALA|CAAM|AAJC|AAFE|AAPIP|OHA|API|IRS|SSA|DC|NYC|NCAPIP|NAPAWF|JACL|OCA|NAPABA|CAPAC|TAAF|AANHPIS?|NHPIS?|AAPIS?)$/;
+const LOWER_WORD = /^(?:of|the|for|to|in|on|and|a|an|or|at|by|under|with|as|from|into)$/i;
+const calmCaps = t => {
+  if (t !== t.toUpperCase() || t.replace(/[^A-Za-z]/g, "").length < 12) return t;
+  const parts = t.split(/(\s+)/), last = parts.length - 1;
+  return parts.map((w, i) => {
+    const core = w.replace(/^[^A-Za-z0-9]+|[^A-Za-z0-9]+$/g, "");
+    if (!core || /\d/.test(core) || KEEP_CAPS.test(core)) return w;
+    const low = w.toLowerCase();
+    return i > 0 && i < last - 1 && LOWER_WORD.test(core) ? low : low.replace(/(^|[-(“"‘])([a-z])/g, (m, a, b) => a + b.toUpperCase());
+  }).join("").replace(/^[^A-Za-z]*[a-z]/, c => c.toUpperCase());
+};
 async function pull(src) {
   const caseRe = src.skipTitle ? new RegExp(src.skipTitle, "i") : null;
   const onTopic = src.match ? new RegExp(src.match, "i") : AAPI; // "match": the source's own relevance pattern, used with "filter" in place of the general one (Pew writes "Asians", not "AAPI")
@@ -345,6 +363,7 @@ async function pull(src) {
       if (pub) { pubName = pub; if (src.google) s = pub; if (h.endsWith(" - " + pub)) h = h.slice(0, -(pub.length + 3)); } // a story of an ordinary source keeps the source's own name
       if (src.asName) s = src.asName; // e.g. show Google News results from nbcnews.com as "NBC Asian America"
     }
+    h = calmCaps(h);
     const u0 = safeUrl(linkOf(it)), u = src.noQuery ? u0.replace(/[?#].*$/, "") : u0, ph = G ? hostOf(it.source?.["@_url"] ?? "").replace(/^www\./, "") : "";
     if (ph) learnHost(s, ph); // learned before the block check, so a stored story from a blocked publisher can be recognised later
     if (hostBlocked(hostOf(u)) || hostBlocked(ph) || nameBlocked(pubName) || ownerBlocked(pubName)) continue;

@@ -439,6 +439,156 @@
       "kind": "statement"
     },
     {
+      "name": "AAPI Equity Alliance",
+      "home": "https://aapiequityalliance.org",
+      "feed": "https://aapiequityalliance.org/category/press-releases/feed/",
+      "kind": "statement"
+    },
+    {
+      "name": "AAPI Victory Fund",
+      "home": "https://www.aapivictoryfund.com",
+      "feed": "https://www.aapivictoryfund.com/press-statements?format=rss",
+      "kind": "statement",
+      "backfill": {"modes": ["squarespace"], "json": "https://www.aapivictoryfund.com/press-statements"}
+    },
+    {
+      "name": "APIAHF",
+      "home": "https://www.apiahf.org",
+      "page": "https://www.apiahf.org/press-releases",
+      "link": "^/press-release/[^/]+$",
+      "before": true,
+      "kind": "statement"
+    },
+    {
+      "name": "APIAHF",
+      "home": "https://www.apiahf.org",
+      "page": "https://www.apiahf.org/resources",
+      "link": "^/resource/[^/]+$",
+      "kind": "statement"
+    },
+    {
+      "name": "Asian American Federation",
+      "home": "https://www.aafederation.org",
+      "wp": "https://www.aafederation.org/wp-json/wp/v2/posts?categories=9&per_page=20&_fields=link,title,date_gmt,excerpt",
+      "kind": "statement"
+    },
+    {
+      "name": "Asian American Federation",
+      "home": "https://www.aafederation.org",
+      "wp": "https://www.aafederation.org/wp-json/wp/v2/posts?categories=32&per_page=20&_fields=link,title,date_gmt,excerpt",
+      "kind": "statement"
+    },
+    {
+      "name": "Asian Americans Advancing Justice Southern California",
+      "home": "https://ajsocal.org",
+      "feed": "https://ajsocal.org/category/announcements/feed/",
+      "kind": "statement"
+    },
+    {
+      "name": "Asian Americans Advancing Justice-Atlanta",
+      "home": "https://www.advancingjustice-atlanta.org",
+      "feed": "https://www.advancingjustice-atlanta.org/news?format=rss",
+      "kind": "statement",
+      "backfill": {"modes": ["squarespace"], "json": "https://www.advancingjustice-atlanta.org/news"}
+    },
+    {
+      "name": "Asian Americans for Equality",
+      "home": "https://www.aafe.org",
+      "feed": "https://www.aafe.org/feed/",
+      "kind": "statement"
+    },
+    {
+      "name": "AAPIP",
+      "home": "https://aapip.org",
+      "feed": "https://aapip.org/news/feed/",
+      "kind": "statement"
+    },
+    {
+      "name": "AAPIP",
+      "home": "https://aapip.org",
+      "feed": "https://aapip.org/resources/feed/",
+      "kind": "statement"
+    },
+    {
+      "name": "Asian Law Caucus",
+      "home": "https://www.asianlawcaucus.org",
+      "page": "https://www.asianlawcaucus.org/news-resources/news",
+      "link": "^/news-resources/(news|perspectives|guides-reports)/[^/]+/?$",
+      "kind": "statement"
+    },
+    {
+      "name": "Asian Law Caucus",
+      "home": "https://www.asianlawcaucus.org",
+      "page": "https://www.asianlawcaucus.org/news-resources/resources",
+      "link": "^/news-resources/(news|perspectives|guides-reports)/[^/]+/?$",
+      "kind": "statement"
+    },
+    {
+      "name": "Asian Law Caucus",
+      "home": "https://www.asianlawcaucus.org",
+      "page": "https://www.asianlawcaucus.org/news-resources/perspectives",
+      "link": "^/news-resources/(news|perspectives|guides-reports)/[^/]+/?$",
+      "kind": "statement"
+    },
+    {
+      "name": "APALA",
+      "home": "https://www.apalanet.org",
+      "feed": "https://www.apalanet.org/2/feed",
+      "kind": "statement"
+    },
+    {
+      "name": "Committee of 100",
+      "home": "https://www.committee100.org",
+      "wp": "https://www.committee100.org/wp-json/wp/v2/media-center?per_page=20&_fields=link,title,date_gmt",
+      "kind": "statement"
+    },
+    {
+      "name": "NQAPIA",
+      "home": "https://www.nqapia.org",
+      "feed": "https://www.nqapia.org/statements?format=rss",
+      "kind": "statement",
+      "backfill": {"modes": ["squarespace"], "json": "https://www.nqapia.org/statements"}
+    },
+    {
+      "name": "NAKASEC",
+      "home": "https://nakasec.org",
+      "feed": "https://nakasec.org/feed/",
+      "kind": "statement"
+    },
+    {
+      "name": "National CAPACD",
+      "home": "https://www.nationalcapacd.org",
+      "feed": "https://www.nationalcapacd.org/feed/",
+      "skipTitle": "^Elementor #\\d+",
+      "kind": "statement"
+    },
+    {
+      "name": "NAPCA",
+      "home": "https://www.napca.org",
+      "page": "https://www.napca.org/press-releases",
+      "link": "^/press-releases/[^/]+$",
+      "before": true,
+      "kind": "statement"
+    },
+    {
+      "name": "Center for Asian American Media",
+      "home": "https://caamedia.org",
+      "wp": "https://caamedia.org/wp-json/wp/v2/news?per_page=20&_fields=link,title,date_gmt",
+      "kind": "statement"
+    },
+    {
+      "name": "AAPCHO",
+      "home": "https://aapcho.org",
+      "feed": "https://aapcho.org/feed/",
+      "kind": "statement"
+    },
+    {
+      "name": "Council of Korean Americans",
+      "home": "https://councilka.org",
+      "wp": "https://councilka.org/wp-json/wp/v2/posts?categories=18&per_page=20&_fields=link,title,date_gmt,excerpt",
+      "kind": "statement"
+    },
+    {
       "name": "The White House",
       "home": "https://www.whitehouse.gov",
       "feed": "https://www.whitehouse.gov/briefings-statements/feed/",
@@ -879,6 +1029,24 @@
     "JACL": "statement",
     "Asian American Scholar Forum": "statement",
     "AAPI Data": "statement",
+    "AAPI Equity Alliance": "statement",
+    "AAPI Victory Fund": "statement",
+    "APIAHF": "statement",
+    "Asian American Federation": "statement",
+    "Asian Americans Advancing Justice Southern California": "statement",
+    "Asian Americans Advancing Justice-Atlanta": "statement",
+    "Asian Americans for Equality": "statement",
+    "AAPIP": "statement",
+    "Asian Law Caucus": "statement",
+    "APALA": "statement",
+    "Committee of 100": "statement",
+    "NQAPIA": "statement",
+    "NAKASEC": "statement",
+    "National CAPACD": "statement",
+    "NAPCA": "statement",
+    "Center for Asian American Media": "statement",
+    "AAPCHO": "statement",
+    "Council of Korean Americans": "statement",
     "The White House": "govstmt"
   },
   "federalRegister": {
@@ -905,7 +1073,7 @@
       "naturalization"
     ]
   },
-  "_note": "Live-checked once on 2026-10-31 (the 20 advocacy-organization statement sources, Federal Register, Congress.gov, Regulations.gov, GovInfo, White House, Justice Department, USCIS, CAPAC). The run log prints OK/FAIL per source. skipTitle patterns drop boilerplate (see the README). Policy items must link to a .gov host. apiBudget caps the key requests per run.",
+  "_note": "Live-checked on 2026-10-31 (the 20 advocacy-organization statement sources, Federal Register, Congress.gov, Regulations.gov, GovInfo, White House, Justice Department, USCIS, CAPAC) and on 2026-11-02 (the 18 organizations added that day: AAPI Equity Alliance to Council of Korean Americans). The run log prints OK/FAIL per source. skipTitle patterns drop boilerplate (see the README). Policy items must link to a .gov host. apiBudget caps the key requests per run.",
   "executiveActions": {
     "enabled": true,
     "skipTitle": "\\b(Day|Week|Month|Anniversary)\\b.*\\b20\\d\\d$",

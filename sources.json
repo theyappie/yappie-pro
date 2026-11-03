@@ -1755,6 +1755,11 @@
       "hosts": ["independent.co.uk"],
       "names": ["The Independent", "Independent"],
       "community": true
+    },
+    {
+      "hosts": [],
+      "names": ["Idaho Attorney General"],
+      "deny": "^Labrador Letter: A Second Amendment Win at the Supreme Court"
     }
   ],
   "_pacificNote": "Pacific island nations. A story about a Pacific island country (Fiji's constitution, a Samoan prime minister, a drug-detection unit in Tonga) is not about Pacific Islander communities in the United States, so a news story that names one of the pacificNations without a tie to the U.S. is dropped from every source. A tie is any usTie word (matched ignoring case) or usTieCase word (matched exactly, so \"US\" and \"ICE\" do not match the words \"us\" and \"ice\"): the U.S. and its government and military, the Compact of Free Association, nuclear testing, climate change, and the U.S. territories and states. A gated site with \"tie\": true (rnz.co.nz) needs a tie for every story. Statements, policy items, research and the community outlets are not checked, and a story the owner pinned or featured stays. Add a word to usTie to keep more stories; remove pacificNations to turn the rule off.",

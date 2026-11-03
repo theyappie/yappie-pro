@@ -55,7 +55,7 @@ const parser = new XMLParser({ ignoreAttributes: false, attributeNamePrefix: "@_
 
 // Relevance filter for general-interest outlets (sources with "filter": true)
 // "aanhpi" stays in this pattern only so that official documents and outlets that use that spelling are still recognised; nothing shows or searches for it.
-const AAPI = /\b(asian[- ]americans?|aapi|aanhpi|nhpi|pacific islanders?|native hawaiians?|hawai\S*|guam|chamorro|samoa\w*|micronesia\w*|marshallese|cofa|palau|tongan|fijian|filipino|chinese americans?|korean americans?|japanese americans?|hmong|cambodian|laotian|south asian|indian americans?|sikh|stop aapi hate|anti-asian|chinatown|little tokyo|koreatown|japantown|little saigon|manilatown|nisei|sansei|yonsei|issei|nikkei|jacl|manzanar|tule lake|heart mountain)\b/i;
+const AAPI = /\b(asian[- ]americans?|asian[- ]pacific(?: american| islander)s?|asian (?:and|&) pacific islanders?|aapi|aanhpi|nhpi|pacific islanders?|native hawaiians?|hawai\S*|guam|chamorro|samoa\w*|micronesia\w*|marshallese|cofa|palau|tongan|fijian|filipino|chinese americans?|korean americans?|japanese americans?|hmong|cambodian|laotian|south asian|indian americans?|sikh|stop aapi hate|anti-asian|chinatown|little tokyo|koreatown|japantown|little saigon|manilatown|nisei|sansei|yonsei|issei|nikkei|jacl|manzanar|tule lake|heart mountain)\b/i;
 
 // Tags (topic, communities, states, bills) come from taxonomy.json, which the page and the PHP collector read too.
 // The owner's decisions from the admin dashboard (admin.json: edits, deleted and approved items, items added by hand, topics, communities and News categories of their own; see scripts/admin.mjs) and the items waiting for approval (pending.json).
@@ -170,12 +170,12 @@ const TRAVEL_PLACES = cfg.travelPlaces ? new RegExp(cfg.travelPlaces, "i") : nul
 const travelFluff = o => !!TRAVEL_PLACES && !!TRAVEL_WORDS && (o.k ?? "news") === "news" && !A.pinned[o.id] && !A.featured[o.id] && (t => TRAVEL_PLACES.test(t) && TRAVEL_WORDS.test(t) && !COMMUNITY.test(t))(o.h + " " + (o.m ?? ""));
 const offTopic = o => !isPolicy(o.k) && !isOrg(o.k) && hostOf(o.u) === "news.google.com" && !keys1(o.s).some(k => TRUSTED.has(k)) && !gateOf(o) && !COMMUNITY.test(o.h + " " + (o.m ?? ""));
 
-const ENT = { amp: "&", lt: "<", gt: ">", quot: '"', apos: "'", nbsp: " " };
+const ENT = { amp: "&", lt: "<", gt: ">", quot: '"', apos: "'", nbsp: " ", rsquo: "’", lsquo: "‘", rdquo: "”", ldquo: "“", ndash: "–", mdash: "—", hellip: "…" };
 const tx = n => (typeof n === "string" || typeof n === "number") ? String(n) : (n?.["#text"] ?? "");
 const clean = s => tx(s).replace(/<[^>]*>/g, " ")
   .replace(/&#x([0-9a-f]+);/gi, (_, h) => String.fromCodePoint(parseInt(h, 16)))
   .replace(/&#(\d+);/g, (_, d) => String.fromCodePoint(+d))
-  .replace(/&(amp|lt|gt|quot|apos|nbsp);/g, (_, n) => ENT[n]).replace(/\s+/g, " ").trim();
+  .replace(/&(amp|lt|gt|quot|apos|nbsp|rsquo|lsquo|rdquo|ldquo|ndash|mdash|hellip);/g, (_, n) => ENT[n]).replace(/\s+/g, " ").trim();
 // Show only a publisher-written dek/excerpt from the feed. Never generated or rewritten.
 // Auto-trimmed body excerpts ("… [...]", "appeared first on") and long text are dropped.
 const dek = (s, title) => {
@@ -250,6 +250,7 @@ const MONTHS = "Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|June?|July?
 const DATE_RE = new RegExp(`\\b(${MONTHS})\\.?\\s+(\\d{1,2}),?\\s+(20\\d\\d)\\b`, "i");
 const PAGE_MAX = BACKFILL ? 5000 : 60; // a listing page shows a few dozen stories; its numbered pages, read by the backfill, add many more
 function pageRecords(html, src) {
+  if (src.skipComments) html = html.replace(/<!--[\s\S]*?-->/g, ""); // "skipComments": a listing that keeps a second, commented-out copy of each story link (New Jersey)
   const want = new RegExp(src.link), hits = [];
   for (const m of html.matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/gi)) {
     const href = /\bhref\s*=\s*["']([^"']+)["']/i.exec(m[1])?.[1];
@@ -378,13 +379,14 @@ async function pull(src) {
       if (pub) { pubName = pub; if (src.google) s = pub; if (h.endsWith(" - " + pub)) h = h.slice(0, -(pub.length + 3)); } // a story of an ordinary source keeps the source's own name
       if (src.asName) s = src.asName; // e.g. show Google News results from nbcnews.com as "NBC Asian America"
     }
+    if (src.titleStrip) h = h.replace(new RegExp(src.titleStrip, "gi"), "").replace(/\s+/g, " ").trim(); // "titleStrip": a pattern removed from every headline of this source (a date or a release number the listing puts in the link text)
     h = calmCaps(h);
     const u0 = safeUrl(linkOf(it)), u = src.noQuery ? u0.replace(/[?#].*$/, "") : u0, ph = G ? hostOf(it.source?.["@_url"] ?? "").replace(/^www\./, "") : "";
     if (ph) learnHost(s, ph); // learned before the block check, so a stored story from a blocked publisher can be recognised later
     if (hostBlocked(hostOf(u)) || hostBlocked(ph) || nameBlocked(pubName) || ownerBlocked(pubName)) continue;
     if ((dropT && dropT.test(h)) || (dropL && dropL.test(u))) continue;
     if (exCat.size && catsOf(it).some(c => exCat.has(c))) { if (u) catDropIds.add(idOf(src.kind, u)); skippedCat.push(s + ": " + h); continue; }
-    const raw = G ? "" : clean(it.description ?? it.summary ?? it["content:encoded"]).slice(0, 300); // used only for filtering/tagging
+    const raw = G ? "" : clean(src.bodyText ? (it.description || it.summary || it["content:encoded"]) : (it.description ?? it.summary ?? it["content:encoded"])).slice(0, 300); // used only for filtering/tagging; "bodyText" falls back to the post text when the feed's description is empty (SCOTUSblog)
     const m = G ? "" : dek(it.description ?? it.summary, h);
     const gov = isPolicy(src.kind), rl = gov ? (relOf(h + " " + raw) || (src.filter ? "" : "n")) : "";
     if (!gov && caseRe && caseRe.test(h)) continue; // on a news source skipTitle drops pages that are not stories (an author page or an archive index that a search returns)

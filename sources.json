@@ -47,6 +47,15 @@
       "backfill": {"modes": ["google-site"], "site": "civilbeat.org"}
     },
     {
+      "name": "SCOTUSblog",
+      "home": "https://www.scotusblog.com",
+      "feed": "https://www.scotusblog.com/feed/",
+      "filter": true,
+      "bodyText": true,
+      "match": "\\b(asian[- ]americans?|aapi|aanhpi|nhpi|pacific islanders?|native hawaiians?|hawai\\S*|guam|samoa\\w*|northern mariana\\w*|marshallese|micronesia\\w*|filipino\\w*|hmong|sikhs?|south asian|korematsu|chinese exclusion|alien land|birthright citizenship|citizenship clause|affirmative action|race-conscious|equal protection|voting rights act|redistrict\\w+|immigra\\w+|deportations?|removal proceedings|asylum|visas?|h-1b|naturaliz\\w+|noncitizens?|alien enemies|travel ban|hate crimes?)\\b",
+      "backfill": {"modes": ["google-site"], "site": "scotusblog.com"}
+    },
+    {
       "name": "RNZ Pacific",
       "home": "https://www.rnz.co.nz/news/pacific",
       "feed": "https://www.rnz.co.nz/rss/pacific.xml",
@@ -771,6 +780,14 @@
       "skipTitle": "\\b(sentenced|sentencing|pleads?|pleaded|guilty|convicted|indicted|indictment|charged|arrested|arrests?|smuggl\\w+|charges (for|against)|fraud (ring|scheme)|marriage fraud)\\b"
     },
     {
+      "name": "Washington Governor",
+      "home": "https://governor.wa.gov",
+      "feed": "https://governor.wa.gov/rss.xml",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true
+    },
+    {
       "name": "Georgia Governor",
       "home": "https://gov.georgia.gov",
       "feed": "https://gov.georgia.gov/rss.xml",
@@ -941,6 +958,547 @@
       "kind": "govstmt",
       "filter": true,
       "match": "\\b(native hawaiians?|kanaka|hawaiian (?:homelands?|home lands?|affairs|history|language|culture|kingdom)|asian americans?|aapi|aanhpi|nhpi|pacific islanders?|pacific (?:studies|islands?)|compact of free association|cofa|micronesia\\w*|marshallese|chuukese|filipino\\w*|japanese americans?|chinese americans?|korean americans?|samoan\\w*|tongan|immigra\\w+|language access|census|civil rights|anti-asian|hate (?:crimes?|incidents?))\\b"
+    },
+    {
+      "name": "Alabama Governor",
+      "home": "https://governor.alabama.gov",
+      "feed": "https://governor.alabama.gov/feed/",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true
+    },
+    {
+      "name": "Alaska Governor",
+      "home": "https://gov.alaska.gov",
+      "feed": "https://gov.alaska.gov/category/press-releases/feed/",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true
+    },
+    {
+      "name": "Alaska Governor",
+      "home": "https://gov.alaska.gov",
+      "wp": "https://gov.alaska.gov/wp-json/wp/v2/posts?categories=25&per_page=50&_fields=link,title,date_gmt,excerpt",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true
+    },
+    {
+      "name": "Arizona Governor",
+      "home": "https://azgovernor.gov",
+      "page": "https://azgovernor.gov/news-releases",
+      "link": "^/office-arizona-governor/news/20\\d\\d/\\d\\d/[^/]+/?$",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "descAfter": true
+    },
+    {
+      "name": "Arkansas Governor",
+      "home": "https://governor.arkansas.gov",
+      "feed": "https://governor.arkansas.gov/news_post/feed/",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true
+    },
+    {
+      "name": "Delaware Governor",
+      "home": "https://governor.delaware.gov",
+      "feed": "https://news.delaware.gov/category/governor/feed/",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true
+    },
+    {
+      "name": "District of Columbia Mayor",
+      "home": "https://mayor.dc.gov",
+      "feed": "https://mayor.dc.gov/node/%2A/newsroom",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true
+    },
+    {
+      "name": "District of Columbia Office of Community Affairs",
+      "home": "https://communityaffairs.dc.gov",
+      "feed": "https://communityaffairs.dc.gov/node/%2A/newsroom",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true
+    },
+    {
+      "name": "Florida Governor",
+      "home": "https://www.flgov.com",
+      "page": "https://www.flgov.com/eog/news/press",
+      "link": "^/eog/news/press/20\\d\\d/[^/]+$",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "official": true,
+      "descAfter": true
+    },
+    {
+      "name": "Idaho Governor",
+      "home": "https://gov.idaho.gov",
+      "feed": "https://gov.idaho.gov/pressrelease/feed/",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "bodyText": true
+    },
+    {
+      "name": "Iowa Governor",
+      "home": "https://governor.iowa.gov",
+      "feed": "https://governor.iowa.gov/news/all/all/all/rss.xml",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true
+    },
+    {
+      "name": "Louisiana Governor",
+      "home": "https://gov.louisiana.gov",
+      "feed": "https://gov.louisiana.gov/news/rss",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true
+    },
+    {
+      "name": "Maryland Governor",
+      "home": "https://governor.maryland.gov",
+      "page": "https://governor.maryland.gov/news/press-releases",
+      "link": "^/news/press-releases/[^/]+$",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "descAfter": true
+    },
+    {
+      "name": "Mississippi Governor",
+      "home": "https://governorreeves.ms.gov",
+      "feed": "https://governorreeves.ms.gov/feed/",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true
+    },
+    {
+      "name": "Missouri Governor",
+      "home": "https://governor.mo.gov",
+      "feed": "https://governor.mo.gov/rss.xml",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true
+    },
+    {
+      "name": "Nebraska Governor",
+      "home": "https://governor.nebraska.gov",
+      "feed": "https://governor.nebraska.gov/rss.xml",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true
+    },
+    {
+      "name": "Nevada Governor",
+      "home": "https://gov.nv.gov",
+      "page": "https://www.gov.nv.gov/press-releases/",
+      "link": "^/press-releases/[^/]+/?$",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "descAfter": true
+    },
+    {
+      "name": "New Jersey Governor",
+      "home": "https://www.nj.gov/governor",
+      "page": "https://www.nj.gov/governor/news/2026/approved/news_archive.shtml",
+      "link": "^/governor/news/2026/approved/\\d{8}[a-z]?\\.shtml$",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "descAfter": true,
+      "numericDates": true,
+      "skipComments": true
+    },
+    {
+      "name": "New York Governor",
+      "home": "https://www.governor.ny.gov",
+      "page": "https://www.governor.ny.gov/news",
+      "link": "^/news/[^/]+$",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "descAfter": true
+    },
+    {
+      "name": "North Carolina Governor",
+      "home": "https://governor.nc.gov",
+      "feed": "https://governor.nc.gov/news/feed",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true
+    },
+    {
+      "name": "North Carolina Governor",
+      "home": "https://governor.nc.gov",
+      "page": "https://governor.nc.gov/news/procs",
+      "link": "^/governor-(?:stein-)?proclaims?-[^/]+$",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "descAfter": true
+    },
+    {
+      "name": "North Dakota Governor",
+      "home": "https://www.governor.nd.gov",
+      "feed": "https://www.governor.nd.gov/rss/news",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true
+    },
+    {
+      "name": "South Carolina Governor",
+      "home": "https://governor.sc.gov",
+      "page": "https://governor.sc.gov/news",
+      "link": "^/news/20\\d\\d-\\d\\d/[^/]+$",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "descAfter": true
+    },
+    {
+      "name": "Texas Governor",
+      "home": "https://gov.texas.gov",
+      "feed": "https://gov.texas.gov/news/rss",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true
+    },
+    {
+      "name": "Utah Governor",
+      "home": "https://governor.utah.gov",
+      "feed": "https://governor.utah.gov/feed/",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true
+    },
+    {
+      "name": "Vermont Governor",
+      "home": "https://governor.vermont.gov",
+      "feed": "https://governor.vermont.gov/taxonomy/term/3/feed",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true
+    },
+    {
+      "name": "West Virginia Governor",
+      "home": "https://governor.wv.gov",
+      "feed": "https://governor.wv.gov/rss.xml",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true
+    },
+    {
+      "name": "Wisconsin Governor",
+      "home": "https://evers.wi.gov",
+      "feed": "https://evers.wi.gov/_layouts/15/listfeed.aspx?List=DACAE722-AFDB-4E1E-A338-0CAFB44A8F98",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true
+    },
+    {
+      "name": "U.S. Virgin Islands Government",
+      "home": "https://www.vi.gov",
+      "feed": "https://www.vi.gov/feed/",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true
+    },
+    {
+      "name": "Governor of Guam",
+      "home": "https://governor.guam.gov",
+      "feed": "https://governor.guam.gov/feed/?post_type=press_release",
+      "kind": "govstmt",
+      "filter": true,
+      "match": "\\b(native hawaiians?|kanaka|hawaiian (?:homelands?|home lands?|affairs|history|language|culture|kingdom)|asian americans?|aapi|aanhpi|nhpi|pacific islanders?|pacific (?:studies|islands?)|compact of free association|cofa|micronesia\\w*|marshallese|chuukese|filipino\\w*|japanese americans?|chinese americans?|korean americans?|samoan\\w*|tongan|immigra\\w+|language access|census|civil rights|anti-asian|hate (?:crimes?|incidents?)|chamorro|chamoru|decoloni\\w+|self-determination|statehood|u\\.s\\. nationals?|birthright|citizenship|pacific islands forum)\\b"
+    },
+    {
+      "name": "American Samoa Government",
+      "home": "https://www.americansamoa.gov",
+      "page": "https://www.americansamoa.gov/pressreleases",
+      "link": "^/_files/ugd/[0-9a-f]{6}_[0-9a-f]{32}\\.pdf$",
+      "kind": "govstmt",
+      "filter": true,
+      "match": "\\b(native hawaiians?|kanaka|hawaiian (?:homelands?|home lands?|affairs|history|language|culture|kingdom)|asian americans?|aapi|aanhpi|nhpi|pacific islanders?|pacific (?:studies|islands?)|compact of free association|cofa|micronesia\\w*|marshallese|chuukese|filipino\\w*|japanese americans?|chinese americans?|korean americans?|samoan\\w*|tongan|immigra\\w+|language access|census|civil rights|anti-asian|hate (?:crimes?|incidents?)|chamorro|chamoru|decoloni\\w+|self-determination|statehood|u\\.s\\. nationals?|birthright|citizenship|pacific islands forum)\\b",
+      "numericDates": true,
+      "titleStrip": "^PR\\d+-\\d{8}\\s*-\\s*|\\s*-\\s*\\d{1,2}/\\d{1,2}/20\\d\\d$",
+      "descAfter": true
+    },
+    {
+      "name": "Alabama Attorney General",
+      "home": "https://www.alabamaag.gov",
+      "feed": "https://www.alabamaag.gov/feed/",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "skipTitle": "\\b(sentenced|sentencing|pleads?|pleaded|guilty|convicted|indicted|indictment|charged|arrested|arrests?|smuggl\\w+|charges (for|against)|fraud (ring|scheme)|marriage fraud)\\b"
+    },
+    {
+      "name": "Arizona Attorney General",
+      "home": "https://www.azag.gov",
+      "feed": "https://www.azag.gov/rss.xml",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "skipTitle": "\\b(sentenced|sentencing|pleads?|pleaded|guilty|convicted|indicted|indictment|charged|arrested|arrests?|smuggl\\w+|charges (for|against)|fraud (ring|scheme)|marriage fraud)\\b"
+    },
+    {
+      "name": "Arkansas Attorney General",
+      "home": "https://arkansasag.gov",
+      "wp": "https://arkansasag.gov/wp-json/wp/v2/news-release?per_page=20&_fields=link,title,date_gmt,excerpt",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "skipTitle": "\\b(sentenced|sentencing|pleads?|pleaded|guilty|convicted|indicted|indictment|charged|arrested|arrests?|smuggl\\w+|charges (for|against)|fraud (ring|scheme)|marriage fraud)\\b"
+    },
+    {
+      "name": "Delaware Department of Justice",
+      "home": "https://attorneygeneral.delaware.gov",
+      "feed": "https://news.delaware.gov/category/justice/feed/",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "skipTitle": "\\b(sentenced|sentencing|pleads?|pleaded|guilty|convicted|indicted|indictment|charged|arrested|arrests?|smuggl\\w+|charges (for|against)|fraud (ring|scheme)|marriage fraud)\\b"
+    },
+    {
+      "name": "District of Columbia Attorney General",
+      "home": "https://oag.dc.gov",
+      "page": "https://oag.dc.gov/newsroom",
+      "link": "^/release/[^/]+/?$",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "skipTitle": "\\b(sentenced|sentencing|pleads?|pleaded|guilty|convicted|indicted|indictment|charged|arrested|arrests?|smuggl\\w+|charges (for|against)|fraud (ring|scheme)|marriage fraud)\\b",
+      "descAfter": true
+    },
+    {
+      "name": "Idaho Attorney General",
+      "home": "https://www.ag.idaho.gov",
+      "feed": "https://www.ag.idaho.gov/feed/",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "skipTitle": "\\b(sentenced|sentencing|pleads?|pleaded|guilty|convicted|indicted|indictment|charged|arrested|arrests?|smuggl\\w+|charges (for|against)|fraud (ring|scheme)|marriage fraud)\\b"
+    },
+    {
+      "name": "Illinois Attorney General",
+      "home": "https://illinoisattorneygeneral.gov",
+      "page": "https://illinoisattorneygeneral.gov/news-room/",
+      "link": "^/news/story/[^?#]+$",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "skipTitle": "\\b(sentenced|sentencing|pleads?|pleaded|guilty|convicted|indicted|indictment|charged|arrested|arrests?|smuggl\\w+|charges (for|against)|fraud (ring|scheme)|marriage fraud)\\b",
+      "titleStrip": "^(?:January|February|March|April|May|June|July|August|September|October|November|December) \\d{1,2}, 20\\d\\d\\s+",
+      "descAfter": true
+    },
+    {
+      "name": "Iowa Attorney General",
+      "home": "https://www.iowaattorneygeneral.gov",
+      "feed": "https://www.iowaattorneygeneral.gov/newsroom/rss",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "skipTitle": "\\b(sentenced|sentencing|pleads?|pleaded|guilty|convicted|indicted|indictment|charged|arrested|arrests?|smuggl\\w+|charges (for|against)|fraud (ring|scheme)|marriage fraud)\\b"
+    },
+    {
+      "name": "Louisiana Attorney General",
+      "home": "https://www.ag.louisiana.gov",
+      "page": "https://www.ag.louisiana.gov/News/Page/1",
+      "link": "^/Article/\\d+$",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "skipTitle": "\\b(sentenced|sentencing|pleads?|pleaded|guilty|convicted|indicted|indictment|charged|arrested|arrests?|smuggl\\w+|charges (for|against)|fraud (ring|scheme)|marriage fraud)\\b",
+      "descAfter": true
+    },
+    {
+      "name": "Missouri Attorney General",
+      "home": "https://ago.mo.gov",
+      "feed": "https://ago.mo.gov/feed/",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "skipTitle": "\\b(sentenced|sentencing|pleads?|pleaded|guilty|convicted|indicted|indictment|charged|arrested|arrests?|smuggl\\w+|charges (for|against)|fraud (ring|scheme)|marriage fraud)\\b"
+    },
+    {
+      "name": "Montana Attorney General",
+      "home": "https://dojmt.gov",
+      "feed": "https://dojmt.gov/feed/",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "skipTitle": "\\b(sentenced|sentencing|pleads?|pleaded|guilty|convicted|indicted|indictment|charged|arrested|arrests?|smuggl\\w+|charges (for|against)|fraud (ring|scheme)|marriage fraud)\\b"
+    },
+    {
+      "name": "Nebraska Attorney General",
+      "home": "https://ago.nebraska.gov",
+      "feed": "https://ago.nebraska.gov/rss/news",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "skipTitle": "\\b(sentenced|sentencing|pleads?|pleaded|guilty|convicted|indicted|indictment|charged|arrested|arrests?|smuggl\\w+|charges (for|against)|fraud (ring|scheme)|marriage fraud)\\b"
+    },
+    {
+      "name": "New Jersey Attorney General",
+      "home": "https://www.njoag.gov",
+      "feed": "https://www.njoag.gov/feed/",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "skipTitle": "\\b(sentenced|sentencing|pleads?|pleaded|guilty|convicted|indicted|indictment|charged|arrested|arrests?|smuggl\\w+|charges (for|against)|fraud (ring|scheme)|marriage fraud)\\b",
+      "noQuery": true
+    },
+    {
+      "name": "New York Attorney General",
+      "home": "https://ag.ny.gov",
+      "page": "https://ag.ny.gov/press-releases",
+      "link": "^/press-release/20\\d\\d/[^/]+$",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "skipTitle": "\\b(sentenced|sentencing|pleads?|pleaded|guilty|convicted|indicted|indictment|charged|arrested|arrests?|smuggl\\w+|charges (for|against)|fraud (ring|scheme)|marriage fraud)\\b",
+      "descAfter": true
+    },
+    {
+      "name": "North Carolina Attorney General",
+      "home": "https://ncdoj.gov",
+      "feed": "https://ncdoj.gov/feed/",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "skipTitle": "\\b(sentenced|sentencing|pleads?|pleaded|guilty|convicted|indicted|indictment|charged|arrested|arrests?|smuggl\\w+|charges (for|against)|fraud (ring|scheme)|marriage fraud)\\b",
+      "noQuery": true
+    },
+    {
+      "name": "North Dakota Attorney General",
+      "home": "https://attorneygeneral.nd.gov",
+      "feed": "https://attorneygeneral.nd.gov/feed/",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "skipTitle": "\\b(sentenced|sentencing|pleads?|pleaded|guilty|convicted|indicted|indictment|charged|arrested|arrests?|smuggl\\w+|charges (for|against)|fraud (ring|scheme)|marriage fraud)\\b"
+    },
+    {
+      "name": "Ohio Attorney General",
+      "home": "https://www.ohioattorneygeneral.gov",
+      "page": "https://www.ohioattorneygeneral.gov/Media/News-Releases",
+      "link": "^/Media/News-Releases/[A-Za-z]+-20\\d\\d/[^/?#]+$",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "skipTitle": "\\b(sentenced|sentencing|pleads?|pleaded|guilty|convicted|indicted|indictment|charged|arrested|arrests?|smuggl\\w+|charges (for|against)|fraud (ring|scheme)|marriage fraud)\\b",
+      "descAfter": true,
+      "numericDates": true
+    },
+    {
+      "name": "Pennsylvania Attorney General",
+      "home": "https://www.attorneygeneral.gov",
+      "feed": "https://www.attorneygeneral.gov/feed/",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "skipTitle": "\\b(sentenced|sentencing|pleads?|pleaded|guilty|convicted|indicted|indictment|charged|arrested|arrests?|smuggl\\w+|charges (for|against)|fraud (ring|scheme)|marriage fraud)\\b"
+    },
+    {
+      "name": "South Carolina Attorney General",
+      "home": "https://www.scag.gov",
+      "page": "https://www.scag.gov/about-the-office/news/",
+      "link": "^/about-the-office/news/[^/]+/$",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "skipTitle": "\\b(sentenced|sentencing|pleads?|pleaded|guilty|convicted|indicted|indictment|charged|arrested|arrests?|smuggl\\w+|charges (for|against)|fraud (ring|scheme)|marriage fraud)\\b",
+      "descAfter": true
+    },
+    {
+      "name": "Utah Attorney General",
+      "home": "https://attorneygeneral.utah.gov",
+      "feed": "https://attorneygeneral.utah.gov/feed/",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "skipTitle": "\\b(sentenced|sentencing|pleads?|pleaded|guilty|convicted|indicted|indictment|charged|arrested|arrests?|smuggl\\w+|charges (for|against)|fraud (ring|scheme)|marriage fraud)\\b"
+    },
+    {
+      "name": "Vermont Attorney General",
+      "home": "https://ago.vermont.gov",
+      "feed": "https://ago.vermont.gov/taxonomy/term/9/feed",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "skipTitle": "\\b(sentenced|sentencing|pleads?|pleaded|guilty|convicted|indicted|indictment|charged|arrested|arrests?|smuggl\\w+|charges (for|against)|fraud (ring|scheme)|marriage fraud)\\b"
+    },
+    {
+      "name": "West Virginia Attorney General",
+      "home": "https://ago.wv.gov",
+      "feed": "https://ago.wv.gov/rss.xml",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "skipTitle": "\\b(sentenced|sentencing|pleads?|pleaded|guilty|convicted|indicted|indictment|charged|arrested|arrests?|smuggl\\w+|charges (for|against)|fraud (ring|scheme)|marriage fraud)\\b"
+    },
+    {
+      "name": "Northern Mariana Islands Attorney General",
+      "home": "https://www.cnmioag.org",
+      "feed": "https://www.cnmioag.org/feed/",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "skipTitle": "\\b(sentenced|sentencing|pleads?|pleaded|guilty|convicted|indicted|indictment|charged|arrested|arrests?|smuggl\\w+|charges (for|against)|fraud (ring|scheme)|marriage fraud)\\b",
+      "official": true,
+      "noQuery": true
+    },
+    {
+      "name": "Utah Division of Multicultural Affairs",
+      "home": "https://multicultural.utah.gov",
+      "feed": "https://multicultural.utah.gov/feed/",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true
+    },
+    {
+      "name": "South Carolina Commission for Community Advancement and Engagement",
+      "home": "https://advance.sc.gov",
+      "page": "https://advance.sc.gov/news",
+      "link": "^/about/updates/[^/]+$",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "descAfter": true
+    },
+    {
+      "name": "Washington State Human Rights Commission",
+      "home": "https://www.hum.wa.gov",
+      "page": "https://www.hum.wa.gov/about-us/news",
+      "link": "^/news/20\\d\\d/\\d\\d/[^/]+/?$",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "descAfter": true
+    },
+    {
+      "name": "Washington Senate Democrats Members of Color Caucus",
+      "home": "https://senatedemocrats.wa.gov",
+      "wp": "https://senatedemocrats.wa.gov/wp-json/wp/v2/posts?categories=91&per_page=20&_fields=link,title,date_gmt,excerpt",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true
+    },
+    {
+      "name": "Washington House Democrats Members of Color Caucus",
+      "home": "https://housedemocrats.wa.gov/mocc",
+      "feed": "https://housedemocrats.wa.gov/mocc/feed/",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true
     }
   ],
   "_excludeNote": "Sites listed here are never shown, including their subdomains. excludeNames covers a publisher name that Google News shows without a web address. Stored stories from these sites are removed on the next update.",

@@ -4,18 +4,6 @@ PRODID:-//The Yappie Pro//Events and funding//EN
 CALSCALE:GREGORIAN
 X-WR-CALNAME:The Yappie Pro: events and funding deadlines
 BEGIN:VEVENT
-UID:gfc4042d3df5@pro.theyappie.com
-DTSTAMP:20261102T000000Z
-DTSTART;VALUE=DATE:20261102
-DTEND;VALUE=DATE:20261103
-SUMMARY:Emergency Citrus Disease Research and Extension Pre-Applications
-DESCRIPTION:Funding or fellowship deadline (Federal grant). From USDA-NIFA
- . Closing date for applications. Opportunity USDA-NIFA-SCRI-012018\, open
-  since 2026-09-02\, posted.
-URL:https://www.grants.gov/search-results-detail/363785
-CATEGORIES:Funding or fellowship deadline
-END:VEVENT
-BEGIN:VEVENT
 UID:g9555b56ebfa@pro.theyappie.com
 DTSTAMP:20261103T000000Z
 DTSTART;VALUE=DATE:20261103

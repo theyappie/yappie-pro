@@ -371,7 +371,7 @@ const calmCaps = t => {
 };
 async function pull(src) {
   const caseRe = src.skipTitle ? new RegExp(src.skipTitle, "i") : null;
-  const onTopic = src.match ? new RegExp(src.match, "i") : AAPI; // "match": the source's own relevance pattern, used with "filter" in place of the general one (Pew writes "Asians", not "AAPI")
+  const onTopic = src.match === "communityPattern" ? COMMUNITY : src.match ? new RegExp(src.match, "i") : AAPI; // "match": the source's own relevance pattern, used with "filter" in place of the general one (Pew writes "Asians", not "AAPI"); "communityPattern" uses the pattern in sources.json that names the communities themselves, without bare place names (Hawaii, Guam), for governors and attorneys general whose coalitions list states
   const out = [], exCat = new Set((src.excludeCategories ?? []).map(normName));
   // "dropTitle" / "dropLink": items of this source whose headline / address match are not wanted (a commission's meeting notices, a caucus's photo albums)
   const dropT = src.dropTitle ? new RegExp(src.dropTitle, "i") : null, dropL = src.dropLink ? new RegExp(src.dropLink, "i") : null;

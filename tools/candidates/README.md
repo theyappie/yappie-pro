@@ -7,11 +7,11 @@
 
 The second command makes the Google Sheet template for entering Associated Press race calls (see "Election results" in the main README). Candidate ids look like `ca-ami-bera` and are what the sheet's `id` column uses, so keep them stable when the list is rebuilt.
 
-## Added by hand after the workbook
+## Rebuilding from a newer workbook
 
-`candidates.json` also holds candidates added directly after the workbook was compiled. If you rebuild it from the workbook, add these again:
+`candidates.json` was last rebuilt on 2026-11-02 from the workbook compiled 3 Nov 2026 (267 confirmed candidates). A rebuild replaces the whole list, so it also picks up changes to existing rows (Cyndi Munson, Oklahoma governor, now comes from the workbook with her primary result and sources) and drops anyone the workbook no longer lists as confirmed (Aisha Wahab, whom the workbook excludes as Afghan American per the owner's instruction). Nothing is added by hand any more. Ids are the state code plus the name, so they stay the same across rebuilds; a call recorded for an id that disappears is reported and skipped by `scripts/results.mjs`.
 
-- Cyndi Munson, Oklahoma governor (Democratic nominee), added 2026-11-02 at the owner's request. Source: AsAmNews, 2026-06-24.
+The builder stops on a heritage it has no group for, so a new community needs one line in `GROUPS` (the page builds its Heritage menu from the data, so nothing else changes). The workbook's "AANHPI" is written "AAPI" in the text the site shows, and its "2+ AANHPI in this race" flag is left out because the page groups races itself.
 
 ## Entering race calls without a sheet (election night)
 

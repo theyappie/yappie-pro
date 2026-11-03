@@ -14,7 +14,7 @@ GROUPS = [  # (label, pattern applied to the first phrase of the heritage text o
     ("Chinese", r"chinese|hong kong"), ("Taiwanese", r"taiwan"), ("Japanese", r"japanese|okinawan"), ("Korean", r"korean"),
     ("Filipino", r"filipin"), ("Vietnamese", r"vietnam"), ("Indian", r"\bindian\b|indian-|indo-"), ("Pakistani", r"pakistan"),
     ("Bangladeshi", r"banglad"), ("Nepali", r"nepal"), ("Sri Lankan", r"sri lank"), ("Afghan", r"afghan"),
-    ("Hmong", r"hmong"), ("Cambodian", r"cambod"), ("Thai", r"\bthai\b"),
+    ("Hmong", r"hmong"), ("Cambodian", r"cambod"), ("Thai", r"\bthai\b"), ("Indonesian", r"indonesia"),
     ("Native Hawaiian", r"native hawaiian|kanaka"), ("Samoan", r"samoan"), ("Tongan", r"tongan"), ("Pacific Islander", r"pacific islander"),
     ("South Asian", r"^south asian|south asian american"),
 ]
@@ -26,6 +26,8 @@ rows = [r for r in list(wb["Confirmed"].iter_rows(values_only=True))[1:] if r[2]
 cands, seen = [], collections.Counter()
 for r in rows:
     lv, state, name, office, party, her, seat, notes, flags, ev, src = [(c or "").strip() if isinstance(c, str) else c for c in r[:11]]
+    # The site says "AAPI" everywhere (the workbook says "AANHPI"), so the wording is changed here, in the text that is shown.
+    her, notes, seat = [re.sub(r"AANHPI", "AAPI", x or "") for x in (her, notes, seat)]
     if lv not in LV or state not in USPS: raise SystemExit(f"unexpected row: {r[:4]}")
     first = re.split(r"\s*[(;:\[]\s*", her)[0].strip().rstrip(",")
     gs = [g for g, pat in GROUPS if re.search(pat, first, re.I)]
@@ -33,7 +35,7 @@ for r in rows:
     if not gs: raise SystemExit(f"no heritage group for {name}: {her!r}")
     m = re.search(r"\((\d+) seats?\)", office) or re.search(r"(\d+)-seat", notes or "")
     base = re.sub(r"\s*\(\d+ seats?\)", "", office).strip()
-    fl = [f.strip() for f in (flags or "").split(";") if f.strip() and not f.strip().startswith("2+ AANHPI")]
+    fl = [f.strip() for f in (flags or "").split(";") if f.strip() and not re.match(r"2\+ AA", f.strip())]
     cid = f"{USPS[state].lower()}-{slug(name)}"; seen[cid] += 1
     if seen[cid] > 1: cid += f"-{seen[cid]}"
     urls = [u for u in re.split(r"[\s;]+", src or "") if re.match(r"https://", u)][:3]

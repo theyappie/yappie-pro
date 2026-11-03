@@ -227,7 +227,11 @@ const plainTerms = t => typeof t === "string" ? t.replace(/(?<![\/=.])\bAANHPI(s
 const tidyBody = (body, hero) => plainTerms(dropFooter(dropLeadPhoto(body, hero)));
 
 async function getText(url, accept) {
-  const res = await fetch(url, { headers: { "user-agent": "TheYappiePro/1.0 (open-source news index)", ...(accept ? { accept } : {}) }, signal: AbortSignal.timeout(20000) });
+  let res;
+  for (let k = 0; ; k++) { // a connection that fails or times out is tried once more; the error then says why (ETIMEDOUT, ECONNRESET, ...)
+    try { res = await fetch(url, { headers: { "user-agent": "TheYappiePro/1.0 (open-source news index)", ...(accept ? { accept } : {}) }, signal: AbortSignal.timeout(20000) }); break; }
+    catch (e) { if (k >= 1 || e?.name === "AbortError" || e?.name === "TimeoutError") throw new Error("fetch failed" + (e?.cause?.code ? " (" + e.cause.code + ")" : e?.name === "TimeoutError" ? " (timeout)" : "")); await new Promise(r => setTimeout(r, 1000 + Math.random() * 1000)); }
+  }
   if (!res.ok) throw new Error("HTTP " + res.status);
   return res.text();
 }
@@ -622,9 +626,15 @@ const foreignSources = cfg.sources.filter(s => s.enabled !== false && !s.google 
 if (foreignSources.length) console.log("Skipped (source is on a non-U.S. domain): " + [...new Set(foreignSources.map(s => s.name))].join(", "));
 const blockedSources = cfg.sources.filter(s => s.enabled !== false && ownerBlocked(s.asName ?? s.name));
 if (blockedSources.length) console.log("Skipped (blocked in the admin dashboard): " + [...new Set(blockedSources.map(s => s.asName ?? s.name))].join(", "));
-await Promise.all(cfg.sources.filter(s => s.enabled !== false && !foreignSources.includes(s) && !blockedSources.includes(s)).map(async s => {
-  try { const r = await pull(s); fresh.push(...r); status.push({ name: s.name, home: s.home, kind: s.kind ?? kindOf(s.asName ?? s.name), ok: true, count: r.length }); }
-  catch (e) { status.push({ name: s.name, home: s.home, kind: s.kind ?? kindOf(s.asName ?? s.name), ok: false, error: String(e.message ?? e) }); }
+// At most SRC_POOL sources are read at once: with some 200 at a time, connections time out on a small runner and sources fail at random.
+const SRC_POOL = 40, todo = cfg.sources.filter(s => s.enabled !== false && !foreignSources.includes(s) && !blockedSources.includes(s));
+let nextSrc = 0;
+await Promise.all(Array.from({ length: Math.min(SRC_POOL, todo.length) }, async () => {
+  while (nextSrc < todo.length) {
+    const s = todo[nextSrc++];
+    try { const r = await pull(s); fresh.push(...r); status.push({ name: s.name, home: s.home, kind: s.kind ?? kindOf(s.asName ?? s.name), ok: true, count: r.length }); }
+    catch (e) { status.push({ name: s.name, home: s.home, kind: s.kind ?? kindOf(s.asName ?? s.name), ok: false, error: String(e.message ?? e) }); }
+  }
 }));
 const FR_HOME = "https://www.federalregister.gov";
 const runPolicy = async (name, home, kind, on, fn, noKey = NO_KEY) => {

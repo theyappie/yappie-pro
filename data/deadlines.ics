@@ -4,18 +4,6 @@ PRODID:-//The Yappie Pro//Comment deadlines//EN
 CALSCALE:GREGORIAN
 X-WR-CALNAME:AAPI comment deadlines
 BEGIN:VEVENT
-UID:5160228586c2@yappie-pro
-DTSTAMP:20260910T040000Z
-DTSTART;VALUE=DATE:20261103
-DTEND;VALUE=DATE:20261104
-SUMMARY:Comments due: Decennial Census of the Population of Americans\; Pr
- oposed Residence Criteria and Proposed Regulations for Demographic Questi
- ons
-URL:https://www.regulations.gov/document/USBC-2026-0628-0001
-DESCRIPTION:Proposed Rule | USBC\nhttps://www.regulations.gov/document/USB
- C-2026-0628-0001
-END:VEVENT
-BEGIN:VEVENT
 UID:832b8bc05d18@yappie-pro
 DTSTAMP:20261008T120000Z
 DTSTART;VALUE=DATE:20261109

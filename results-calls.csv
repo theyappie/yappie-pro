@@ -1,13 +1,22 @@
 id,name,state,office,party,call,time,link,note
 ca-ami-bera,Ami Bera,CA,U.S. House CA-3,D,won,,,"https://www.yahoo.com/news/politics/articles/democrat-ami-bera-wins-reelection-053603337.html (AP wire, 4 Nov 2026 05:36 UTC)"
+ca-chuong-vo,Chuong Vo,CA,U.S. House CA-45,R,lost,,,https://www.yahoo.com/news/politics/articles/democrat-derek-tran-wins-reelection-065731992.html (AP called CA-45 for Tran)
 ca-david-pan,David Pan,CA,U.S. House CA-46,R,lost,,,"https://www.yahoo.com/news/politics/articles/democrat-lou-correa-wins-reelection-044944208.html (AP wire, 4 Nov 2026 04:49 UTC: Correa wins CA-46)"
+ca-derek-tran,Derek Tran,CA,U.S. House CA-45,D,won,,,"https://www.yahoo.com/news/politics/articles/democrat-derek-tran-wins-reelection-065731992.html (AP wire, ""WASHINGTON (AP) —"", 4 Nov 2026 06:57 UTC)"
+ca-eric-ching,Eric Ching,CA,U.S. House CA-31,R,lost,,,"https://www.yahoo.com/news/politics/articles/democrat-gil-cisneros-wins-reelection-045004947.html (AP wire, 4 Nov 2026 04:50 UTC: Cisneros wins CA-31)"
+ca-fiona-ma,Fiona Ma,CA,Lt. Governor,D,won,,,"https://www.yahoo.com/news/us/articles/democrat-fiona-ma-wins-election-042826017.html (AP wire, 4 Nov 2026 04:28 UTC)"
 ca-genevieve-angel,Genevieve Angel,CA,U.S. House CA-44,R,lost,,,"https://www.yahoo.com/news/politics/articles/democrat-nanette-barragan-wins-reelection-043506906.html (AP wire, 4 Nov 2026 04:35 UTC: Barragán wins CA-44)"
 ca-judy-chu,Judy Chu,CA,U.S. House CA-28,D,won,,,"https://www.yahoo.com/news/politics/articles/democrat-judy-chu-wins-reelection-045246244.html (AP wire, 4 Nov 2026 04:52 UTC)"
 ca-mark-takano,Mark Takano,CA,U.S. House CA-39,D,won,,,"https://www.yahoo.com/news/politics/articles/democrat-mark-takano-wins-reelection-061147609.html (AP wire, 4 Nov 2026 06:11 UTC)"
+ca-michael-masuda,Michael Masuda,CA,U.S. House CA-5,D,lost,,,"https://www.yahoo.com/news/politics/articles/republican-tom-mcclintock-wins-reelection-073322115.html (AP wire, 4 Nov 2026 07:33 UTC: McClintock wins CA-5)"
+ca-richard-pan,Richard Pan,CA,U.S. House CA-6,D,won,,,"https://www.yahoo.com/news/politics/articles/democrat-richard-pan-wins-election-070101461.html (AP wire, updated 4 Nov 2026 07:01 UTC: ""Democrat Richard Pan won election Wednesday"" in CA-6, defeating Rep. Kevin Kiley)"
 ca-ritesh-tandon,Ritesh Tandon,CA,U.S. House CA-17,R,lost,,,https://www.yahoo.com/news/politics/articles/democrat-ro-khanna-wins-reelection-053350665.html (AP called CA-17 for Khanna)
 ca-ro-khanna,Ro Khanna,CA,U.S. House CA-17,D,won,,,"https://www.yahoo.com/news/politics/articles/democrat-ro-khanna-wins-reelection-053350665.html (AP wire, 4 Nov 2026 05:33 UTC)"
+ca-rob-bonta,Rob Bonta,CA,Attorney General,D,won,,,"https://www.yahoo.com/news/politics/articles/democrat-rob-bonta-wins-reelection-042811392.html (AP wire, 4 Nov 2026 04:28 UTC)"
+ca-rudy-recile,Rudy Recile,CA,U.S. House CA-8,R,lost,,,"https://www.yahoo.com/news/politics/articles/democrat-john-garamendi-wins-reelection-044245587.html (AP wire, 4 Nov 2026 04:42 UTC: Garamendi wins CA-8)"
 ca-ted-lieu,Ted Lieu,CA,U.S. House CA-36,D,won,,,"https://www.yahoo.com/news/politics/articles/democrat-ted-lieu-wins-reelection-044007913.html (AP wire, 4 Nov 2026 04:40 UTC)"
 ca-vince-fong,Vince Fong,CA,U.S. House CA-20,R,won,,,"https://www.yahoo.com/news/politics/articles/republican-vince-fong-wins-reelection-043636427.html (AP wire, 4 Nov 2026 04:36 UTC)"
+ct-william-tong,William Tong,CT,Attorney General,D (+WFP),won,,,"https://www.yahoo.com/news/politics/articles/democrat-william-tong-wins-reelection-072016269.html (AP wire, 4 Nov 2026 07:20 UTC)"
 fl-pia-dandiya,Pia Dandiya,FL,U.S. House FL-22,D,won,,,"https://www.yahoo.com/news/politics/articles/democrat-pia-dandiya-wins-election-021136707.html (AP wire, 4 Nov 2026 02:11 UTC)"
 hi-brenton-awa,Brenton Awa,HI,U.S. House HI-2,R,lost,,,https://www.yahoo.com/news/politics/articles/democrat-jill-tokuda-wins-reelection-061836808.html (AP called HI-2 for Tokuda)
 hi-jill-tokuda,Jill Tokuda,HI,U.S. House HI-2,D,won,,,"https://www.yahoo.com/news/politics/articles/democrat-jill-tokuda-wins-reelection-061836808.html (AP wire, 4 Nov 2026 06:18 UTC: ""Democrat Jill Tokuda wins reelection to U.S. House in Hawaii's 2nd Congressional District"")"

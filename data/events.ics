@@ -4,6 +4,59 @@ PRODID:-//The Yappie Pro//Events and funding//EN
 CALSCALE:GREGORIAN
 X-WR-CALNAME:The Yappie Pro: events and funding deadlines
 BEGIN:VEVENT
+UID:f1554fc9e784@pro.theyappie.com
+DTSTAMP:20261105T000000Z
+DTSTART;VALUE=DATE:20261105
+DTEND;VALUE=DATE:20261109
+SUMMARY:Arrangements
+DESCRIPTION:Event or webinar. From Potluck Asian America. An original come
+ dy about a Pakistani American woman navigating love\, family\, and tradit
+ ion as her mother constantly “arranges” her marriage.] ‘”Arrangem
+ ents” is an original comedy by playwright\, producer\, and award-winnin
+ g journalist Jasmine Amjad that explores identity\, family\, faith\, and 
+ the…
+LOCATION:HB Studio\, 120 Bank Street\, New York\, NY\, 10014\, United Stat
+ es
+URL:https://potluckasianamerica.org/event/arrangements/
+CATEGORIES:Event or webinar
+END:VEVENT
+BEGIN:VEVENT
+UID:f7ea9a212f39@pro.theyappie.com
+DTSTAMP:20261105T230000Z
+DTSTART:20261105T230000Z
+DTEND:20261106T030000Z
+SUMMARY:Film: We Keep Us Safe: The Whores Feast and Feeding with Red Canar
+ y Song and collaborators
+DESCRIPTION:Event or webinar. From Potluck Asian America. RSVP Red Canary 
+ Song activates CTHQ with performances on the occasion of the premiere of 
+ The Whores Feast. Filmed over a shared dinner with organizers and collabo
+ rators\, the film reflects on nourishment\, labor\, chosen family\, and t
+ he collective practices of care that sustain communities through…
+LOCATION:Creative Time (CTHQ)\, 59 E 4th St\, Floor 7\, New York\, NY\, 10
+ 003\, United States
+URL:https://potluckasianamerica.org/event/film-we-keep-us-safe-the-whores-
+ feast-and-feeding-with-red-canary-song-and-collaborators/
+CATEGORIES:Event or webinar
+END:VEVENT
+BEGIN:VEVENT
+UID:f8393139f4db@pro.theyappie.com
+DTSTAMP:20261105T233000Z
+DTSTART:20261105T233000Z
+DTEND:20261106T010000Z
+SUMMARY:MOCA TALKS – Inside the Hiring Process: Insights for Your Next C
+ areer Move
+DESCRIPTION:Event or webinar. From Potluck Asian America. What happens on 
+ the other side of the hiring desk\, and how can understanding that proces
+ s help you navigate your next career move? Join the Museum of Chinese in 
+ America (MOCA) for a conversation designed for professionals in the early
+  and middle stages of their careers who are looking for a job or…
+LOCATION:Museum of Chinese in America (MOCA)\, 215 Centre Street\, New Yor
+ k\, NY\, 10013\, United States
+URL:https://potluckasianamerica.org/event/moca-talks-inside-the-hiring-pro
+ cess-insights-for-your-next-career-move/
+CATEGORIES:Event or webinar
+END:VEVENT
+BEGIN:VEVENT
 UID:g8040f7e7e2d@pro.theyappie.com
 DTSTAMP:20261106T000000Z
 DTSTART;VALUE=DATE:20261106
@@ -14,6 +67,24 @@ DESCRIPTION:Funding or fellowship deadline (Federal grant). From USDOJ-OJP
   since 2026-08-27\, posted.
 URL:https://www.grants.gov/search-results-detail/363725
 CATEGORIES:Funding or fellowship deadline
+END:VEVENT
+BEGIN:VEVENT
+UID:f68643e6faad@pro.theyappie.com
+DTSTAMP:20261106T000000Z
+DTSTART:20261106T000000Z
+DTEND:20261106T010000Z
+SUMMARY:Books & Bites with Caroline Choe\, Jimin Han\, Patricia Park\, and
+  Hyeseung Song
+DESCRIPTION:Event or webinar. From Potluck Asian America. Join us for a pa
+ nel with Caroline Choe\, Jimin Han\, Patricia Park\, and Hyeseung Song fo
+ r a cozy night discussing food motivation in their books\, along with som
+ e shared autumn eats by Caroline Choe! ABOUT THE AUTHORS Caroline Choe is
+  a chef\, artist\, teacher and writer based in New York City\, and is…
+LOCATION:Yu and Me Books\, 44 Mulberry St.\, New York\, NY\, 10013\, Unite
+ d States
+URL:https://potluckasianamerica.org/event/books-bites-with-caroline-choe-j
+ imin-han-patricia-park-and-hyeseung-song/
+CATEGORIES:Event or webinar
 END:VEVENT
 BEGIN:VEVENT
 UID:obs-diwali-2026@pro.theyappie.com

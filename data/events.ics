@@ -4,20 +4,6 @@ PRODID:-//The Yappie Pro//Events and funding//EN
 CALSCALE:GREGORIAN
 X-WR-CALNAME:The Yappie Pro: events and funding deadlines
 BEGIN:VEVENT
-UID:g5b26db22a01@pro.theyappie.com
-DTSTAMP:20261104T000000Z
-DTSTART;VALUE=DATE:20261104
-DTEND;VALUE=DATE:20261105
-SUMMARY:NSF Small Business Innovation Research / Small Business Technology
-  Transfer Phase I\, Phase II\, Fast-Track Programs: A Pilot Emphasis on S
- cientific…
-DESCRIPTION:Funding or fellowship deadline (Federal grant). From NSF. Clos
- ing date for applications. Opportunity 26-511\, open since 2026-05-22\, p
- osted.
-URL:https://www.grants.gov/search-results-detail/362551
-CATEGORIES:Funding or fellowship deadline
-END:VEVENT
-BEGIN:VEVENT
 UID:f5324a108fc4@pro.theyappie.com
 DTSTAMP:20261105T000000Z
 DTSTART:20261105T000000Z

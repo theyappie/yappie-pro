@@ -4,36 +4,6 @@ PRODID:-//The Yappie Pro//Events and funding//EN
 CALSCALE:GREGORIAN
 X-WR-CALNAME:The Yappie Pro: events and funding deadlines
 BEGIN:VEVENT
-UID:f5324a108fc4@pro.theyappie.com
-DTSTAMP:20261105T000000Z
-DTSTART:20261105T000000Z
-DTEND:20261105T020000Z
-SUMMARY:Punjab: A Changing Landscape
-DESCRIPTION:Event or webinar. From Potluck Asian America. Join us for a v 
- special talk facilitated by @puneetjsingh__ at @boyfriendcoop on Wednesda
- y\, November 4th\, 7–9 PM. This conversation will explore the past\, pr
- esent\, and future of Punjab’s land\, rivers\, and forests and the ways
-  colonialism\, development\, and climate change are shaping the region…
-LOCATION:Boyfriend Co-op\, 1157 Myrtle Ave\, Brooklyn\, New York\, 11206
-URL:https://potluckasianamerica.org/event/punjab-a-changing-landscape/
-CATEGORIES:Event or webinar
-END:VEVENT
-BEGIN:VEVENT
-UID:f4d6bd09dbe3@pro.theyappie.com
-DTSTAMP:20261105T003000Z
-DTSTART:20261105T003000Z
-DTEND:20261105T020000Z
-SUMMARY:Writing the Non-Place: On Transcultural Memory and Migration
-DESCRIPTION:Event or webinar. From Potluck Asian America. Writing the Non-
- Place: On Transcultural Memory and Migration✍️ Accent welcomes Terry 
- Nguyen @nguyenterry to teach students how to bring setting into their wri
- ting and to contend with the changing role of place in our lives as globa
- lization unsettles the landscapes that we grow attached to. This…
-URL:https://potluckasianamerica.org/event/writing-the-non-place-on-transcu
- ltural-memory-and-migration/
-CATEGORIES:Event or webinar
-END:VEVENT
-BEGIN:VEVENT
 UID:g8040f7e7e2d@pro.theyappie.com
 DTSTAMP:20261106T000000Z
 DTSTART;VALUE=DATE:20261106

@@ -210,6 +210,19 @@ URL:https://www.federalregister.gov/documents/2026/10/14/2026-20941/removi
 CATEGORIES:Comment deadline
 END:VEVENT
 BEGIN:VEVENT
+UID:gb4be123eebb@pro.theyappie.com
+DTSTAMP:20261114T000000Z
+DTSTART;VALUE=DATE:20261114
+DTEND;VALUE=DATE:20261115
+SUMMARY:Cooperative Agreement for Affiliated Partner with the Hawai&#699\;
+ i-Pacific Islands Cooperative Ecosystem Studies Unit (CESU)
+DESCRIPTION:Funding or fellowship deadline (Federal grant). From DOI-USGS1
+ . Closing date for applications. Opportunity G27AS00073\, open since 2026
+ -10-14\, posted.
+URL:https://www.grants.gov/search-results-detail/364083
+CATEGORIES:Funding or fellowship deadline
+END:VEVENT
+BEGIN:VEVENT
 UID:g8a87047c805@pro.theyappie.com
 DTSTAMP:20261114T000000Z
 DTSTART;VALUE=DATE:20261114
@@ -401,32 +414,6 @@ DESCRIPTION:Funding or fellowship deadline (Federal grant). From DOI-USGS1
  . Closing date for applications. Opportunity G27AS00081\, open since 2026
  -10-30\, posted.
 URL:https://www.grants.gov/search-results-detail/364178
-CATEGORIES:Funding or fellowship deadline
-END:VEVENT
-BEGIN:VEVENT
-UID:gf7d85c3bdac@pro.theyappie.com
-DTSTAMP:20261130T000000Z
-DTSTART;VALUE=DATE:20261130
-DTEND;VALUE=DATE:20261201
-SUMMARY:Cooperative Agreement for affiliated Partner with the Chesapeake W
- atershed Cooperative Ecosystem Studies Unit
-DESCRIPTION:Funding or fellowship deadline (Federal grant). From DOI-USGS1
- . Closing date for applications. Opportunity G27AS00082\, open since 2026
- -10-30\, posted.
-URL:https://www.grants.gov/search-results-detail/364179
-CATEGORIES:Funding or fellowship deadline
-END:VEVENT
-BEGIN:VEVENT
-UID:gd30f5960a39@pro.theyappie.com
-DTSTAMP:20261130T000000Z
-DTSTART;VALUE=DATE:20261130
-DTEND;VALUE=DATE:20261201
-SUMMARY:Cooperative Agreement for affiliated Partner with the Colorado Pla
- teau Cooperative Ecosystem Studies Unit
-DESCRIPTION:Funding or fellowship deadline (Federal grant). From DOI-USGS1
- . Closing date for applications. Opportunity G27AS00084\, open since 2026
- -10-30\, posted.
-URL:https://www.grants.gov/search-results-detail/364181
 CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT

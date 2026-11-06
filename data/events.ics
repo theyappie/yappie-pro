@@ -569,6 +569,21 @@ URL:https://www.grants.gov/search-results-detail/364193
 CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
+UID:f97a71c3d6d0@pro.theyappie.com
+DTSTAMP:20261202T230000Z
+DTSTART:20261202T230000Z
+DTEND:20261203T010000Z
+SUMMARY:NYC Chapter Holiday Gathering
+DESCRIPTION:Event or webinar. From AAPIP (Asian Americans / Pacific Island
+ ers in Philanthropy). December 2 | 6:00–8:00 PM ET Join the AAPIP-NY Ch
+ apter as we come together as a community to celebrate the season and conn
+ ect before the end of the year. While these continue to be complex and he
+ avy times for many of us\, we are reminded of the importance of gathering
+  in community\, finding moments…
+URL:https://aapip.org/calendar-event/nyc-chapter-holiday-gathering/
+CATEGORIES:Event or webinar
+END:VEVENT
+BEGIN:VEVENT
 UID:g34f19c6ad95@pro.theyappie.com
 DTSTAMP:20261203T000000Z
 DTSTART;VALUE=DATE:20261203

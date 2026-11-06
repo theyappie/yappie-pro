@@ -550,6 +550,32 @@ URL:https://www.grants.gov/search-results-detail/364008
 CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
+UID:g80a5b5d24db@pro.theyappie.com
+DTSTAMP:20261207T000000Z
+DTSTART;VALUE=DATE:20261207
+DTEND;VALUE=DATE:20261208
+SUMMARY:Cooperative Agreement for affiliated Partner with Great Rivers Coo
+ perative Ecosystem Studies Unit
+DESCRIPTION:Funding or fellowship deadline (Federal grant). From DOI-USGS1
+ . Closing date for applications. Opportunity G27AS00059\, open since 2026
+ -11-05\, posted.
+URL:https://www.grants.gov/search-results-detail/364233
+CATEGORIES:Funding or fellowship deadline
+END:VEVENT
+BEGIN:VEVENT
+UID:g1687f030b4e@pro.theyappie.com
+DTSTAMP:20261207T000000Z
+DTSTART;VALUE=DATE:20261207
+DTEND;VALUE=DATE:20261208
+SUMMARY:Cooperative Agreement for affiliated Partner with Hawai-Pacific Is
+ lands (HPI) Cooperative Ecosystem Studies Unit
+DESCRIPTION:Funding or fellowship deadline (Federal grant). From DOI-USGS1
+ . Closing date for applications. Opportunity G27AS00056\, open since 2026
+ -11-05\, posted.
+URL:https://www.grants.gov/search-results-detail/364236
+CATEGORIES:Funding or fellowship deadline
+END:VEVENT
+BEGIN:VEVENT
 UID:g771be53637c@pro.theyappie.com
 DTSTAMP:20261207T000000Z
 DTSTART;VALUE=DATE:20261207
@@ -686,6 +712,19 @@ DESCRIPTION:Anniversary. From HISTORY (A&E Networks). Patsy Mink of Hawaii
 URL:https://history.com/this-day-in-history/january-4/patsy-mink-sworn-in-
  first-asian-american-woman-of-color-in-congress
 CATEGORIES:Anniversary
+END:VEVENT
+BEGIN:VEVENT
+UID:g1c0782634dc@pro.theyappie.com
+DTSTAMP:20270105T000000Z
+DTSTART;VALUE=DATE:20270105
+DTEND;VALUE=DATE:20270106
+SUMMARY:Cooperative Agreement for affiliated Partner with Gulf Coast Coope
+ rative Ecosystem Studies Unit
+DESCRIPTION:Funding or fellowship deadline (Federal grant). From DOI-USGS1
+ . Closing date for applications. Opportunity G27AS00064\, open since 2026
+ -11-05\, posted.
+URL:https://www.grants.gov/search-results-detail/364231
+CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
 UID:gef7ed035584@pro.theyappie.com

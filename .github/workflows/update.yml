@@ -95,13 +95,6 @@ jobs:
           CONGRESS_API_KEY: ${{ secrets.CONGRESS_API_KEY }}
           # started by hand with "backfill" ticked: ask every events source again now
           EVENTS_FORCE: ${{ inputs.backfill && '1' || '' }}
-      - name: Election results (Associated Press race calls)
-        # reads the calls someone entered in the published sheet (or results-calls.csv) and writes data/results.json for the Election results page; it never stops the news update, and an unreadable sheet leaves the published calls as they were
-        continue-on-error: true
-        run: node scripts/results.mjs
-        env:
-          # optional: the address of the Google Sheet published to the web as CSV (File, Share, Publish to web); or put it in sources.json under "results"
-          RESULTS_CSV_URL: ${{ vars.RESULTS_CSV_URL }}
       - run: node scripts/build-outputs.mjs
       - name: Commit feed
         run: |

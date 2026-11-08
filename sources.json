@@ -1821,7 +1821,6 @@
     "Sampan"
   ],
   "communityPattern": "\\b(asian[- ]?americans?|asian[- ]pacific(?: american| islander)s?|(?<!:)aapi(?!\\s+director)|aanhpi|nhpi|pacific islanders?|pacific islands?|pasifika|pacific (?:peoples?|communit\\w+|nations?|leaders?)|polynesian\\w*|melanesian\\w*|marshall islands|cook islanders?|native hawaiians?|kanaka|chamorros?|chamorus?|chamoru|marshallese|micronesians?|samoans?|tongans?|fijians?|palauans?|filipinos?|filipinas?|hmong|cambodians?|laotians?|south asians?|southeast asians?|east asians?|sikhs?|stop aapi hate|anti-asian|asian (?:voters?|communit\\w+|immigrants?|students?|families|women|men|businesses|elders|seniors|residents|leaders|lawmakers|candidates|population|hate|youth|workers|neighbors|diaspora|enrollment|owned)|(?:chinese|korean|japanese|indian|vietnamese|taiwanese|pakistani|bangladeshi|nepali|nepalese|burmese|thai|indonesian|malaysian|sri lankan|bhutanese|hawaiian)[- ]americans?|chinatown|little tokyo|koreatown|japantown|little saigon|manilatown|nisei|sansei|yonsei|issei|nikkei|jacl|manzanar|tule lake|heart mountain)\\b",
-  "results": { "csv": "" },
   "siteUrl": "",
   "renames": {
     "The Takeaway": "The Asian American Foundation",

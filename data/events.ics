@@ -49,22 +49,6 @@ URL:https://publicholidays.com/diwali/
 CATEGORIES:Observance
 END:VEVENT
 BEGIN:VEVENT
-UID:fcdc8a1f503f@pro.theyappie.com
-DTSTAMP:20261108T190000Z
-DTSTART:20261108T190000Z
-DTEND:20261108T210000Z
-SUMMARY:Sushi Making Workshop
-DESCRIPTION:Event or webinar. From Potluck Asian America. Join us for a su
- shi-making workshop at Japan Village!🇯🇵 Learn about the basics of s
- ushi and rice preparation\, then make your own California roll with the o
- ption to make a second roll of tuna or salmon. Tea will be served at the 
- end of the class and each participant will get their bamboo sushi…
-LOCATION:Japan Village\, 934 3rd Avenue\, Brooklyn\, NY\, 11232\, United S
- tates
-URL:https://potluckasianamerica.org/event/sushi-making-workshop/
-CATEGORIES:Event or webinar
-END:VEVENT
-BEGIN:VEVENT
 UID:el-nj-mail-ballot-receipt-2026@pro.theyappie.com
 DTSTAMP:20261109T000000Z
 DTSTART;VALUE=DATE:20261109

@@ -4,23 +4,6 @@ PRODID:-//The Yappie Pro//Events and funding//EN
 CALSCALE:GREGORIAN
 X-WR-CALNAME:The Yappie Pro: events and funding deadlines
 BEGIN:VEVENT
-UID:f1554fc9e784@pro.theyappie.com
-DTSTAMP:20261105T000000Z
-DTSTART;VALUE=DATE:20261105
-DTEND;VALUE=DATE:20261109
-SUMMARY:Arrangements
-DESCRIPTION:Event or webinar. From Potluck Asian America. An original come
- dy about a Pakistani American woman navigating love\, family\, and tradit
- ion as her mother constantly “arranges” her marriage.] ‘”Arrangem
- ents” is an original comedy by playwright\, producer\, and award-winnin
- g journalist Jasmine Amjad that explores identity\, family\, faith\, and 
- the…
-LOCATION:HB Studio\, 120 Bank Street\, New York\, NY\, 10014\, United Stat
- es
-URL:https://potluckasianamerica.org/event/arrangements/
-CATEGORIES:Event or webinar
-END:VEVENT
-BEGIN:VEVENT
 UID:ffc039944fe4@pro.theyappie.com
 DTSTAMP:20261106T000000Z
 DTSTART;VALUE=DATE:20261106
@@ -35,18 +18,6 @@ LOCATION:Broome Street Ganesha Temple\, 430 Broome St\, 2nd Floor\, New Yo
  rk\, New York\, 10013
 URL:https://potluckasianamerica.org/event/diwali-festival/
 CATEGORIES:Event or webinar
-END:VEVENT
-BEGIN:VEVENT
-UID:obs-diwali-2026@pro.theyappie.com
-DTSTAMP:20261108T000000Z
-DTSTART;VALUE=DATE:20261108
-DTEND;VALUE=DATE:20261109
-SUMMARY:Diwali
-DESCRIPTION:Observance. From PublicHolidays.com. Festival of lights marked
-  by Hindu\, Sikh\, Jain and some Buddhist communities\; dates shown are t
- he main Lakshmi Puja day and can differ by a day by region.
-URL:https://publicholidays.com/diwali/
-CATEGORIES:Observance
 END:VEVENT
 BEGIN:VEVENT
 UID:fb6d5a115875@pro.theyappie.com

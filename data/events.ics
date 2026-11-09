@@ -20,6 +20,22 @@ URL:https://potluckasianamerica.org/event/diwali-festival/
 CATEGORIES:Event or webinar
 END:VEVENT
 BEGIN:VEVENT
+UID:f3fff4e08827@pro.theyappie.com
+DTSTAMP:20261109T000000Z
+DTSTART;VALUE=DATE:20261109
+DTEND;VALUE=DATE:20261115
+SUMMARY:Learning to Speak
+DESCRIPTION:Event or webinar. From Potluck Asian America. How do you conne
+ ct with your parents when they don’t speak English and you’re not flu
+ ent in their Chinese languages? For Annie\, through a family secret. When
+  Annie learns she’s related to Vincent Chin\, a man whose 1982 Detroit 
+ murder started an Asian American movement\, she seeks out the story…
+LOCATION:Under St Marks Theater\, 94 St Mark's Place\, New York\, NY\, 100
+ 09\, United States
+URL:https://potluckasianamerica.org/event/learning-to-speak/
+CATEGORIES:Event or webinar
+END:VEVENT
+BEGIN:VEVENT
 UID:el-nj-mail-ballot-receipt-2026@pro.theyappie.com
 DTSTAMP:20261109T000000Z
 DTSTART;VALUE=DATE:20261109

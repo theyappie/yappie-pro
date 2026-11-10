@@ -294,6 +294,19 @@ URL:https://www.fec.gov/documents/5910/2026pdates.pdf
 CATEGORIES:Election date
 END:VEVENT
 BEGIN:VEVENT
+UID:g9555b56ebfa@pro.theyappie.com
+DTSTAMP:20261118T000000Z
+DTSTART;VALUE=DATE:20261118
+DTEND;VALUE=DATE:20261119
+SUMMARY:BJA FY 2026 Edward Byrne Memorial Justice Assistance Grant (JAG) P
+ rogram&mdash\;Local Formula
+DESCRIPTION:Funding or fellowship deadline (Federal grant). From USDOJ-OJP
+ -BJA. Closing date for applications. Opportunity O-BJA-2026-172705\, open
+  since 2026-08-25\, posted.
+URL:https://www.grants.gov/search-results-detail/363712
+CATEGORIES:Funding or fellowship deadline
+END:VEVENT
+BEGIN:VEVENT
 UID:g262c5cae64e@pro.theyappie.com
 DTSTAMP:20261118T000000Z
 DTSTART;VALUE=DATE:20261118

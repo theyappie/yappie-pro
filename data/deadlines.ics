@@ -48,6 +48,16 @@ DESCRIPTION:Proposed Rule | Homeland Security Department | S. S. 1(c)(5)\,
  -determinations-of-eligibility
 END:VEVENT
 BEGIN:VEVENT
+UID:9546a5d4eb33@yappie-pro
+DTSTAMP:20261014T040000Z
+DTSTART;VALUE=DATE:20261114
+DTEND;VALUE=DATE:20261115
+SUMMARY:Comments due: Removing 30-Day Refugee Termination Notice
+URL:https://www.regulations.gov/document/USCIS-2026-0397-0001
+DESCRIPTION:Rule | USCIS\nhttps://www.regulations.gov/document/USCIS-2026-
+ 0397-0001
+END:VEVENT
+BEGIN:VEVENT
 UID:5ca04f41efe6@yappie-pro
 DTSTAMP:20260928T120000Z
 DTSTART;VALUE=DATE:20261128

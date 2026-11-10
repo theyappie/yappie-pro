@@ -4,21 +4,6 @@ PRODID:-//The Yappie Pro//Comment deadlines//EN
 CALSCALE:GREGORIAN
 X-WR-CALNAME:AAPI comment deadlines
 BEGIN:VEVENT
-UID:832b8bc05d18@yappie-pro
-DTSTAMP:20261008T120000Z
-DTSTART;VALUE=DATE:20261109
-DTEND;VALUE=DATE:20261110
-SUMMARY:Comments due: Optional Practical Training Fees
-URL:https://www.federalregister.gov/documents/2026/10/08/2026-20660/option
- al-practical-training-fees
-DESCRIPTION:Proposed Rule | Homeland Security Department | S. workers. The
-  following fees would apply for each F-1 nonimmigrant student to engage i
- n OPT through a Student and Exchange Visitor Program-certified institutio
- n: $70\,000 for initial OPT\; and $30\,000 for any subsequent OPT.\nhttps
- ://www.federalregister.gov/documents/2026/10/08/2026-20660/optional-pract
- ical-training-fees
-END:VEVENT
-BEGIN:VEVENT
 UID:8c9b9e4e1eba@yappie-pro
 DTSTAMP:20260911T120000Z
 DTSTART;VALUE=DATE:20261110

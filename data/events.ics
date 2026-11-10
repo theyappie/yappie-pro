@@ -36,33 +36,6 @@ URL:https://potluckasianamerica.org/event/learning-to-speak/
 CATEGORIES:Event or webinar
 END:VEVENT
 BEGIN:VEVENT
-UID:el-nj-mail-ballot-receipt-2026@pro.theyappie.com
-DTSTAMP:20261109T000000Z
-DTSTART;VALUE=DATE:20261109
-DTEND;VALUE=DATE:20261110
-SUMMARY:New Jersey deadline for mail ballots to arrive
-DESCRIPTION:Election date. From U.S. Vote Foundation. New Jersey lists abs
- entee ballots as counted if postmarked by Election Day and received by No
- v. 9\, 2026.
-URL:https://usvotefoundation.org/new-jersey-election-dates-and-deadlines
-CATEGORIES:Election date
-END:VEVENT
-BEGIN:VEVENT
-UID:cmt-832b8bc05d18@pro.theyappie.com
-DTSTAMP:20261109T000000Z
-DTSTART;VALUE=DATE:20261109
-DTEND;VALUE=DATE:20261110
-SUMMARY:Optional Practical Training Fees
-DESCRIPTION:Comment deadline (Proposed Rule). From Homeland Security Depar
- tment. S. workers. The following fees would apply for each F-1 nonimmigra
- nt student to engage in OPT through a Student and Exchange Visitor Progra
- m-certified institution: $70\,000 for initial OPT\; and $30\,000 for any 
- subsequent OPT.
-URL:https://www.federalregister.gov/documents/2026/10/08/2026-20660/option
- al-practical-training-fees
-CATEGORIES:Comment deadline
-END:VEVENT
-BEGIN:VEVENT
 UID:f5a819bc8a0d@pro.theyappie.com
 DTSTAMP:20261109T230000Z
 DTSTART:20261109T230000Z

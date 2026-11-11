@@ -4,22 +4,6 @@ PRODID:-//The Yappie Pro//Events and funding//EN
 CALSCALE:GREGORIAN
 X-WR-CALNAME:The Yappie Pro: events and funding deadlines
 BEGIN:VEVENT
-UID:ffc039944fe4@pro.theyappie.com
-DTSTAMP:20261106T000000Z
-DTSTART;VALUE=DATE:20261106
-DTEND;VALUE=DATE:20261111
-SUMMARY:Diwali Festival
-DESCRIPTION:Event or webinar. From Potluck Asian America. Join us as we ce
- lebrate the Festival of Lights with five days of puja and aarti. Due to t
- he large amount of devotees that want to attend\, Kali Puja on Saturday a
- nd Aarti on Saturday and Sunday is by reservation only. How reservations 
- work Registration is free. You can add a sponsorship when you…
-LOCATION:Broome Street Ganesha Temple\, 430 Broome St\, 2nd Floor\, New Yo
- rk\, New York\, 10013
-URL:https://potluckasianamerica.org/event/diwali-festival/
-CATEGORIES:Event or webinar
-END:VEVENT
-BEGIN:VEVENT
 UID:f3fff4e08827@pro.theyappie.com
 DTSTAMP:20261109T000000Z
 DTSTART;VALUE=DATE:20261109
@@ -34,34 +18,6 @@ LOCATION:Under St Marks Theater\, 94 St Mark's Place\, New York\, NY\, 100
  09\, United States
 URL:https://potluckasianamerica.org/event/learning-to-speak/
 CATEGORIES:Event or webinar
-END:VEVENT
-BEGIN:VEVENT
-UID:cmt-8c9b9e4e1eba@pro.theyappie.com
-DTSTAMP:20261110T000000Z
-DTSTART;VALUE=DATE:20261110
-DTEND;VALUE=DATE:20261111
-SUMMARY:Eliminating the Discretionary 60-Day Grace Period
-DESCRIPTION:Comment deadline (Proposed Rule). From Homeland Security Depar
- tment. 1(l)(2) to restore its previous and long- standing policy of not p
- roviding aliens in certain nonimmigrant classifications (and their depend
- ents) with an up to 60-day grace period upon cessation of employment prio
- r to the expiration of the alien's authorized period of stay.
-URL:https://www.federalregister.gov/documents/2026/09/11/2026-18631/elimin
- ating-the-discretionary-60-day-grace-period
-CATEGORIES:Comment deadline
-END:VEVENT
-BEGIN:VEVENT
-UID:g38f1bf69b14@pro.theyappie.com
-DTSTAMP:20261110T000000Z
-DTSTART;VALUE=DATE:20261110
-DTEND;VALUE=DATE:20261111
-SUMMARY:FY 2027 COPS-OJP Constitutional Protections for Parents - A NASRO 
- SRO TTA Invitational Program
-DESCRIPTION:Funding or fellowship deadline (Federal grant). From USDOJ-OJP
- -COPS. Closing date for applications. Opportunity O-COPS-2027-172808\, op
- en since 2026-10-26\, posted.
-URL:https://www.grants.gov/search-results-detail/364148
-CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
 UID:f67ef39a3d2d@pro.theyappie.com
@@ -79,23 +35,6 @@ LOCATION:Liberty Science Center\, 222 Jersey City Boulevard\, Jersey City\
  , New Jersey\, 07305
 URL:https://potluckasianamerica.org/event/celebrate-the-festival-of-lights
  -at-liberty-science-center/
-CATEGORIES:Event or webinar
-END:VEVENT
-BEGIN:VEVENT
-UID:f1615ae2b175@pro.theyappie.com
-DTSTAMP:20261110T230000Z
-DTSTART:20261110T230000Z
-DTEND:20261111T000000Z
-SUMMARY:Book Launch | Squatters by Saba Brelvi
-DESCRIPTION:Event or webinar. From Potluck Asian America. Two families col
- lide in Saba Brelvi’s THE SQUATTERS\, a gripping debut that offers a pi
- ercing exploration of female friendship\, particularly the kinds of bonds
-  forged through proximity\, motherhood\, and social performance. Emotiona
- lly incisive\, and morally unflinching\, THE SQUATTERS explores the…
-LOCATION:Yu and Me Books\, 44 Mulberry St.\, New York\, NY\, 10013\, Unite
- d States
-URL:https://potluckasianamerica.org/event/book-launch-squatters-by-saba-br
- elvi/
 CATEGORIES:Event or webinar
 END:VEVENT
 BEGIN:VEVENT

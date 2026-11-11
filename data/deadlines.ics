@@ -4,22 +4,6 @@ PRODID:-//The Yappie Pro//Comment deadlines//EN
 CALSCALE:GREGORIAN
 X-WR-CALNAME:AAPI comment deadlines
 BEGIN:VEVENT
-UID:8c9b9e4e1eba@yappie-pro
-DTSTAMP:20260911T120000Z
-DTSTART;VALUE=DATE:20261110
-DTEND;VALUE=DATE:20261111
-SUMMARY:Comments due: Eliminating the Discretionary 60-Day Grace Period
-URL:https://www.federalregister.gov/documents/2026/09/11/2026-18631/elimin
- ating-the-discretionary-60-day-grace-period
-DESCRIPTION:Proposed Rule | Homeland Security Department | 1(l)(2) to rest
- ore its previous and long- standing policy of not providing aliens in cer
- tain nonimmigrant classifications (and their dependents) with an up to 60
- -day grace period upon cessation of employment prior to the expiration of
-  the alien's authorized period of stay.\nhttps://www.federalregister.gov/
- documents/2026/09/11/2026-18631/eliminating-the-discretionary-60-day-grac
- e-period
-END:VEVENT
-BEGIN:VEVENT
 UID:f0f969572aaa@yappie-pro
 DTSTAMP:20261014T120000Z
 DTSTART;VALUE=DATE:20261113

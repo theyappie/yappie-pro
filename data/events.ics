@@ -52,6 +52,22 @@ URL:https://potluckasianamerica.org/event/what-america-means-to-me-a-writi
 CATEGORIES:Event or webinar
 END:VEVENT
 BEGIN:VEVENT
+UID:fa1111a5b9d9@pro.theyappie.com
+DTSTAMP:20261111T233000Z
+DTSTART:20261111T233000Z
+DTEND:20261112T013000Z
+SUMMARY:Chai and Chat
+DESCRIPTION:Event or webinar. From Potluck Asian America. Join us for an e
+ vening of connection\, conversation\, and sisterhood as we embrace the se
+ ason and take a little time to unwind. 🍁 A little scheduling note: For
+  November and December\, our gatherings will take place on the SECOND Wed
+ nesday of the month due to the holidays. No pressure\, no judgment —…
+LOCATION:Green Leaf Bistro\, 127-17 Liberty Ave.\, South Richmond Hill\, N
+ ew York\, 11419
+URL:https://potluckasianamerica.org/event/chai-and-chat/
+CATEGORIES:Event or webinar
+END:VEVENT
+BEGIN:VEVENT
 UID:gaccf414075d@pro.theyappie.com
 DTSTAMP:20261113T000000Z
 DTSTART;VALUE=DATE:20261113

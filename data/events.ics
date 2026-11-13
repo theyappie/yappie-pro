@@ -1879,6 +1879,20 @@ URL:https://www.congress.gov/118/bills/sres506/BILLS-118sres506is.htm
 CATEGORIES:Anniversary
 END:VEVENT
 BEGIN:VEVENT
+UID:ann-korematsu-decision-2027@pro.theyappie.com
+DTSTAMP:20271218T000000Z
+DTSTART;VALUE=DATE:20271218
+DTEND;VALUE=DATE:20271219
+SUMMARY:83rd anniversary: Korematsu v. United States decision
+DESCRIPTION:Anniversary. From Administrative Office of the U.S. Courts. Su
+ preme Court upheld\, 6-3\, Fred Korematsu's conviction for violating a wa
+ rtime exclusion order\; a central case in civil-liberties and Japanese Am
+ erican history.
+URL:https://www.uscourts.gov/educational-resources/educational-activities/
+ facts-and-case-summary-korematsu-v-us
+CATEGORIES:Anniversary
+END:VEVENT
+BEGIN:VEVENT
 UID:el-dnc-sc-2028@pro.theyappie.com
 DTSTAMP:20280122T000000Z
 DTSTART;VALUE=DATE:20280122

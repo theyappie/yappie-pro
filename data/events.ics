@@ -984,6 +984,19 @@ URL:https://www.grants.gov/search-results-detail/363912
 CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
+UID:gf75505cd7c4@pro.theyappie.com
+DTSTAMP:20270217T000000Z
+DTSTART;VALUE=DATE:20270217
+DTEND;VALUE=DATE:20270218
+SUMMARY:The State Component of the National Cooperative Geologic Mapping P
+ rogram
+DESCRIPTION:Funding or fellowship deadline (Federal grant). From DOI-USGS1
+ . Closing date for applications. Opportunity G27AS00148\, open since 2026
+ -11-13\, posted.
+URL:https://www.grants.gov/search-results-detail/364265
+CATEGORIES:Funding or fellowship deadline
+END:VEVENT
+BEGIN:VEVENT
 UID:gde7009a2901@pro.theyappie.com
 DTSTAMP:20270219T000000Z
 DTSTART;VALUE=DATE:20270219

@@ -139,6 +139,21 @@ URL:https://www.grants.gov/search-results-detail/363763
 CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
+UID:f8d0d26dda84@pro.theyappie.com
+DTSTAMP:20261113T000000Z
+DTSTART;VALUE=DATE:20261113
+DTEND;VALUE=DATE:20261116
+SUMMARY:New York Tibet Film Festival
+DESCRIPTION:Event or webinar. From Potluck Asian America. Tibet Film Festi
+ val New York is happening this weekend! Join the special celebration of T
+ ibetan cinema featuring multiple films directed by Tibetan filmmakers\, f
+ ollowed by Q&A sessions with the makers themselves. A great opportunity t
+ o discover new stories\, support Tibetan creatives\, and hear…
+LOCATION:Multiple NYC locations
+URL:https://potluckasianamerica.org/event/new-york-tibet-film-festival/
+CATEGORIES:Event or webinar
+END:VEVENT
+BEGIN:VEVENT
 UID:cmt-f0f969572aaa@pro.theyappie.com
 DTSTAMP:20261113T000000Z
 DTSTART;VALUE=DATE:20261113

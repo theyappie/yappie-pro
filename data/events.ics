@@ -67,78 +67,6 @@ URL:https://potluckasianamerica.org/event/miyan/
 CATEGORIES:Event or webinar
 END:VEVENT
 BEGIN:VEVENT
-UID:gaccf414075d@pro.theyappie.com
-DTSTAMP:20261113T000000Z
-DTSTART;VALUE=DATE:20261113
-DTEND;VALUE=DATE:20261114
-SUMMARY:Museum Grants for African American History and Culture (2027)
-DESCRIPTION:Funding or fellowship deadline (Federal grant). From IMLS. Clo
- sing date for applications. Opportunity AAHC-FY27\, open since 2026-09-01
- \, posted.
-URL:https://www.grants.gov/search-results-detail/363770
-CATEGORIES:Funding or fellowship deadline
-END:VEVENT
-BEGIN:VEVENT
-UID:gb562698a171@pro.theyappie.com
-DTSTAMP:20261113T000000Z
-DTSTART;VALUE=DATE:20261113
-DTEND;VALUE=DATE:20261114
-SUMMARY:Museum Grants for American Latino History and Culture (2027)
-DESCRIPTION:Funding or fellowship deadline (Federal grant). From IMLS. Clo
- sing date for applications. Opportunity ALHC-FY27\, open since 2026-09-01
- \, posted.
-URL:https://www.grants.gov/search-results-detail/363772
-CATEGORIES:Funding or fellowship deadline
-END:VEVENT
-BEGIN:VEVENT
-UID:g79497e5d7e3@pro.theyappie.com
-DTSTAMP:20261113T000000Z
-DTSTART;VALUE=DATE:20261113
-DTEND;VALUE=DATE:20261114
-SUMMARY:Native American Library Services Basic Grant (2027)
-DESCRIPTION:Funding or fellowship deadline (Federal grant). From IMLS. Clo
- sing date for applications. Opportunity NAG-BASIC-FY27\, open since 2026-
- 09-01\, posted.
-URL:https://www.grants.gov/search-results-detail/363767
-CATEGORIES:Funding or fellowship deadline
-END:VEVENT
-BEGIN:VEVENT
-UID:gfef3676c9c6@pro.theyappie.com
-DTSTAMP:20261113T000000Z
-DTSTART;VALUE=DATE:20261113
-DTEND;VALUE=DATE:20261114
-SUMMARY:Native American Library Services Enhancement Grants (2027)
-DESCRIPTION:Funding or fellowship deadline (Federal grant). From IMLS. Clo
- sing date for applications. Opportunity NAG-ENHANCEMENT-FY27\, open since
-  2026-09-01\, posted.
-URL:https://www.grants.gov/search-results-detail/363762
-CATEGORIES:Funding or fellowship deadline
-END:VEVENT
-BEGIN:VEVENT
-UID:g706baa4bfc4@pro.theyappie.com
-DTSTAMP:20261113T000000Z
-DTSTART;VALUE=DATE:20261113
-DTEND;VALUE=DATE:20261114
-SUMMARY:Native American/Native Hawaiian Museum Services (2027)
-DESCRIPTION:Funding or fellowship deadline (Federal grant). From IMLS. Clo
- sing date for applications. Opportunity NANH-FY27\, open since 2026-09-01
- \, posted.
-URL:https://www.grants.gov/search-results-detail/363775
-CATEGORIES:Funding or fellowship deadline
-END:VEVENT
-BEGIN:VEVENT
-UID:gf184bebeda8@pro.theyappie.com
-DTSTAMP:20261113T000000Z
-DTSTART;VALUE=DATE:20261113
-DTEND;VALUE=DATE:20261114
-SUMMARY:Native Hawaiian Library Services Grants (2027)
-DESCRIPTION:Funding or fellowship deadline (Federal grant). From IMLS. Clo
- sing date for applications. Opportunity NAG-HAWAIIAN-FY27\, open since 20
- 26-09-01\, posted.
-URL:https://www.grants.gov/search-results-detail/363763
-CATEGORIES:Funding or fellowship deadline
-END:VEVENT
-BEGIN:VEVENT
 UID:f8d0d26dda84@pro.theyappie.com
 DTSTAMP:20261113T000000Z
 DTSTART;VALUE=DATE:20261113
@@ -152,31 +80,6 @@ DESCRIPTION:Event or webinar. From Potluck Asian America. Tibet Film Festi
 LOCATION:Multiple NYC locations
 URL:https://potluckasianamerica.org/event/new-york-tibet-film-festival/
 CATEGORIES:Event or webinar
-END:VEVENT
-BEGIN:VEVENT
-UID:cmt-f0f969572aaa@pro.theyappie.com
-DTSTAMP:20261113T000000Z
-DTSTART;VALUE=DATE:20261113
-DTEND;VALUE=DATE:20261114
-SUMMARY:Removing 30-Day Refugee Termination Notice
-DESCRIPTION:Comment deadline (Rule). From Homeland Security Department
-URL:https://www.federalregister.gov/documents/2026/10/14/2026-20956/removi
- ng-30-day-refugee-termination-notice
-CATEGORIES:Comment deadline
-END:VEVENT
-BEGIN:VEVENT
-UID:cmt-28c212996917@pro.theyappie.com
-DTSTAMP:20261113T000000Z
-DTSTART;VALUE=DATE:20261113
-DTEND;VALUE=DATE:20261114
-SUMMARY:Removing Deference to Prior USCIS Determinations of Eligibility
-DESCRIPTION:Comment deadline (Proposed Rule). From Homeland Security Depar
- tment. S. S. 1(c)(5)\, which generally provides that USCIS gives deferenc
- e to a prior approval involving the same facts when adjudicating a reques
- t to extend a petition for an alien's employment or stay. S. workers.
-URL:https://www.federalregister.gov/documents/2026/10/14/2026-20941/removi
- ng-deference-to-prior-uscis-determinations-of-eligibility
-CATEGORIES:Comment deadline
 END:VEVENT
 BEGIN:VEVENT
 UID:gb4be123eebb@pro.theyappie.com

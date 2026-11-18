@@ -1,0 +1,180 @@
+name: update-feed
+on:
+  # Normally started by the "tick" workflow about every 10 minutes (tick.yml) and, where it is set up, by the Cloudflare timer (tools/cloudflare-trigger), or by hand from the Actions tab.
+  # The schedule below is one more independent trigger for the case where GitHub is late with tick's schedule. The "gate" job skips a run that comes too soon after another one.
+  schedule: [{ cron: "17,47 * * * *" }]
+  workflow_dispatch:
+    inputs:
+      backfill:
+        description: "Read every source back to keepFrom (sources.json) once, instead of only its newest stories. Takes up to two hours; updates wait meanwhile. Safe to run again."
+        type: boolean
+        default: false
+      only:
+        description: "Backfill only the sources whose name matches this (a regular expression, e.g. Civil Beat|HuffPost). Leave empty for all."
+        type: string
+        default: ""
+      allow_removal:
+        description: "Allow a large removal. An update stops, changing nothing, when its filters would remove a large share of the stored items at once (a mistake in sources.json is the usual cause). Tick this to let this one update go ahead."
+        type: boolean
+        default: false
+      now:
+        description: "Run now. An update that is started within 4 minutes after another one finished is skipped; tick this to run anyway."
+        type: boolean
+        default: false
+# Each job below asks only for the access it needs.
+permissions: {}
+concurrency: update-feed
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    permissions:
+      actions: read
+      contents: read
+    outputs:
+      skip: ${{ steps.check.outputs.skip }}
+    steps:
+      - id: check
+        env:
+          GH_TOKEN: ${{ github.token }}
+          # started by hand with one of the boxes ticked
+          BY_HAND: ${{ (inputs.backfill || inputs.allow_removal || inputs.now) && 'yes' || '' }}
+        run: |
+          set -u
+          echo "skip=false" >> "$GITHUB_OUTPUT"
+          skip() { echo "$1"; echo "skip=true" > "$GITHUB_OUTPUT"; exit 0; }
+          if [ -n "$BY_HAND" ]; then echo "Started by hand with a box ticked; running."; exit 0; fi
+          now=$(date +%s)
+          # 1. Two triggers start updates (the tick workflow and the Cloudflare timer), and now and then both fire for the same slot: the second run then begins the moment the first has finished
+          #    (77 of 600 updates in November 2026). Every update ends with a "feed:" commit by yappie-pro-bot, so such a commit made in the last 4 minutes means that an update has just finished.
+          #    A question GitHub does not answer never stops an update.
+          last=$(gh api "repos/$GITHUB_REPOSITORY/commits/$GITHUB_REF_NAME" --jq '.commit | "\(.committer.name)|\(.committer.date)|\(.message[0:5])"' 2>/dev/null || true)
+          if [ "${last%%|*}" = "yappie-pro-bot" ] && [ "${last##*|}" = "feed:" ]; then
+            when=${last#*|}; when=${when%%|*}
+            if t=$(date -d "$when" +%s 2>/dev/null); then
+              echo "The last update finished $(( now - t )) seconds ago."
+              [ $(( now - t )) -ge 240 ] || skip "An update has just finished; skipping this run. (To run anyway, start the workflow by hand with Run now ticked.)"
+            fi
+          fi
+          # 2. A run started by this workflow's own schedule is also skipped when another update began in the last 7 minutes.
+          [ "$GITHUB_EVENT_NAME" = "schedule" ] || exit 0
+          created=$(gh run list --repo "$GITHUB_REPOSITORY" --workflow update.yml --limit 5 --json databaseId,createdAt --jq "[.[] | select(.databaseId != $GITHUB_RUN_ID)][0] // empty | .createdAt" 2>/dev/null || true)
+          [ -n "$created" ] || exit 0
+          t=$(date -d "$created" +%s 2>/dev/null) || exit 0
+          echo "The previous update began $(( now - t )) seconds ago."
+          [ $(( now - t )) -ge 420 ] || skip "Too soon; skipping this scheduled run."
+          exit 0
+  update:
+    needs: gate
+    if: needs.gate.outputs.skip != 'true'
+    runs-on: ubuntu-latest
+    # The steps below have limits of their own, so one slow part cannot use up the whole job; this is the outer limit.
+    timeout-minutes: ${{ inputs.backfill && 160 || 20 }}
+    permissions:
+      contents: write
+    env:
+      # The admin dashboard keeps its decisions (admin.json) and the stories waiting for approval (pending.json) in a separate PRIVATE repository, because this one is public and published.
+      ADMIN_DATA_REPO: ${{ vars.ADMIN_DATA_REPO || 'theyappie/yappie-pro-admin' }}
+    # Who holds which access: neither checkout below keeps its access token on disk (persist-credentials: false). The token that can write to this repository is handed to the one step that
+    # publishes, and the token for the private repository (the ADMIN_DATA_TOKEN secret, a fine-grained token with Contents read and write on that repository; setup: tools/admin/README.md)
+    # to the steps that read and save it. The steps that install packages and read other sites hold no write access to anything.
+    steps:
+      # The newest commit of the branch, not the one that was current when this run was triggered: a run that waited in the queue behind another update would otherwise start from out-of-date data.
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.ref_name }}
+          persist-credentials: false
+      - uses: actions/setup-node@v5
+        with: { node-version: 24, cache: npm }
+      # --ignore-scripts: none of the packages needs an install script, so none is allowed to run one
+      - run: npm ci --ignore-scripts
+      - name: Is the admin dashboard set up?
+        id: admin
+        env:
+          TOKEN: ${{ secrets.ADMIN_DATA_TOKEN }}
+        run: |
+          if [ -n "$TOKEN" ]; then echo "on=true" >> "$GITHUB_OUTPUT"; else echo "on=false" >> "$GITHUB_OUTPUT"; echo "::notice::ADMIN_DATA_TOKEN is not set, so decisions made in the admin dashboard are not applied. See tools/admin/README.md."; fi
+      - name: Check that the admin data repository is private
+        if: steps.admin.outputs.on == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.ADMIN_DATA_TOKEN }}
+        run: |
+          set -eu
+          private=$(gh api "repos/$ADMIN_DATA_REPO" --jq .private) || { echo "::error::The admin data repository $ADMIN_DATA_REPO was not found, or ADMIN_DATA_TOKEN cannot see it."; exit 1; }
+          if [ "$private" != "true" ]; then echo "::error::$ADMIN_DATA_REPO is not private. Make it private (Settings, Danger Zone, Change visibility); stories waiting for approval would otherwise be public."; exit 1; fi
+      - name: Get the admin data
+        if: steps.admin.outputs.on == 'true'
+        uses: actions/checkout@v5
+        with:
+          repository: ${{ env.ADMIN_DATA_REPO }}
+          token: ${{ secrets.ADMIN_DATA_TOKEN }}
+          path: admin-data
+          persist-credentials: false
+      - name: Collect news and policy records
+        timeout-minutes: ${{ inputs.backfill && 150 || 9 }}
+        run: node scripts/fetch.mjs
+        env:
+          # when the admin data was fetched, the collector reads and writes it there; otherwise next to the feed
+          ADMIN_DIR: ${{ steps.admin.outputs.on == 'true' && 'admin-data' || '' }}
+          # optional: one free api.data.gov key (api.congress.gov/sign-up) for Congress.gov, Regulations.gov and GovInfo; without it the Policy tab skips those three
+          API_DATA_GOV_KEY: ${{ secrets.API_DATA_GOV_KEY }}
+          CONGRESS_API_KEY: ${{ secrets.CONGRESS_API_KEY }}
+          # optional: a free Open States key (open.pluralpolicy.com/accounts/profile) for state bills on the Policy tab; without it that source is skipped
+          OPENSTATES_API_KEY: ${{ secrets.OPENSTATES_API_KEY }}
+          # started by hand with "backfill" ticked: read each source back to keepFrom (scripts/backfill.mjs)
+          BACKFILL: ${{ inputs.backfill && '1' || '' }}
+          BACKFILL_ONLY: ${{ inputs.only }}
+          # started by hand with "Allow a large removal" ticked
+          ALLOW_LARGE_REMOVAL: ${{ inputs.allow_removal && '1' || '' }}
+      - name: Build the RSS feeds and the page's data files
+        timeout-minutes: 3
+        run: node scripts/build-outputs.mjs
+      - name: Keep the page copies and the page's security policy in step with index.html
+        # does nothing unless index.html was changed without running scripts/pages.sh (an edit made on GitHub directly, say). A mistake in the page must not stop the news, so a failure here is only reported.
+        continue-on-error: true
+        timeout-minutes: 2
+        run: bash scripts/pages.sh .
+      - name: Collect events and funding deadlines
+        # hearings (Congress.gov), grant deadlines (Grants.gov), coalition calendars and the owner's own events (scripts/events.mjs). It cannot stop the update or hold it back for long:
+        # a source that fails keeps what it returned last time, and a step that fails or runs out of time is skipped (the news collected above is published all the same).
+        continue-on-error: true
+        timeout-minutes: 3
+        run: node scripts/events.mjs
+        env:
+          ADMIN_DIR: ${{ steps.admin.outputs.on == 'true' && 'admin-data' || '' }}
+          API_DATA_GOV_KEY: ${{ secrets.API_DATA_GOV_KEY }}
+          CONGRESS_API_KEY: ${{ secrets.CONGRESS_API_KEY }}
+          # started by hand with "backfill" ticked: ask every events source again now
+          EVENTS_FORCE: ${{ inputs.backfill && '1' || '' }}
+      - name: Publish
+        # one commit for everything this run changed (the pages are rebuilt by GitHub once per commit)
+        timeout-minutes: 3
+        env:
+          PUSH_TOKEN: ${{ github.token }}
+        run: |
+          bash scripts/commit-data.sh "feed: $(date -u +%FT%TZ)" data ':(glob)*.html'
+      - name: Save the waiting list to the private repository
+        if: steps.admin.outputs.on == 'true'
+        timeout-minutes: 3
+        working-directory: admin-data
+        env:
+          PUSH_TOKEN: ${{ secrets.ADMIN_DATA_TOKEN }}
+        run: |
+          auth() { bash "$GITHUB_WORKSPACE/scripts/with-token.sh" "$@"; }
+          # asked on every run, so that a problem with the token shows up here and not only on the day there is something to save
+          auth git ls-remote -q origin HEAD > /dev/null || echo "::warning::The private repository did not answer with ADMIN_DATA_TOKEN; the waiting list may not be saved."
+          git config user.name "yappie-pro-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then echo "The waiting list has not changed."; exit 0; fi
+          git commit -q -m "pending: $(date -u +%FT%TZ)"
+          branch=$(git symbolic-ref --short -q HEAD) || { echo "::error::The checkout of the private repository is not on a branch."; exit 1; }
+          # The dashboard saves admin.json to this repository at any moment, so a push can be refused. This job only ever writes pending.json here, so keep this run's version of it.
+          for try in 1 2 3 4 5; do
+            auth git push -q origin "HEAD:$branch" && { echo "Saved."; exit 0; }
+            echo "Push refused (a change was saved in the meantime); trying again ($try of 5)."
+            sleep $((try * 3))
+            auth git fetch -q origin "$branch"
+            if ! git rebase -X theirs FETCH_HEAD; then git rebase --abort || true; git reset -q --hard FETCH_HEAD; echo "Could not combine; skipping. The next update saves the waiting list again."; exit 0; fi
+          done
+          echo "Could not push after 5 tries."; exit 1

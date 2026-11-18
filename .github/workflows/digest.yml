@@ -1,0 +1,34 @@
+name: daily-digest
+# Weekday morning brief. Writes data/digest/latest.html and, if the secrets below exist, emails it (recipients are BCC'd).
+on:
+  schedule: [{ cron: "30 12 * * 1-5" }]   # 12:30 UTC = 8:30am Eastern in summer, 7:30am in winter
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency: daily-digest
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      # the newest commit of the branch, so the brief is made from the newest feed
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.ref_name }}
+          persist-credentials: false   # the token is handed to the last step only (scripts/with-token.sh)
+      - uses: actions/setup-node@v5
+        with: { node-version: 24, cache: npm }
+      - run: npm ci --ignore-scripts
+      - run: node scripts/digest.mjs
+        env:
+          SMTP_URL: ${{ secrets.SMTP_URL }}          # e.g. smtps://user:app-password@smtp.gmail.com:465
+          DIGEST_FROM: ${{ secrets.DIGEST_FROM }}    # e.g. brief@yourorg.org
+          DIGEST_TO: ${{ secrets.DIGEST_TO }}        # comma-separated recipients
+          SITE_URL: ${{ vars.SITE_URL }}             # your public portal URL (optional)
+          DIGEST_TOPICS: ${{ vars.DIGEST_TOPICS }}   # optional, e.g. IMMIGRATION,ELECTIONS
+      - name: Commit digest
+        # tries again when an update was pushed in the meantime (the email has gone out by now, so this step must not be the reason to run the job twice)
+        env:
+          PUSH_TOKEN: ${{ github.token }}
+        run: |
+          bash scripts/commit-data.sh "digest: $(date -u +%F)" data

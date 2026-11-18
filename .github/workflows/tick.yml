@@ -1,0 +1,31 @@
+name: tick
+on:
+  # GitHub starts scheduled runs late and sometimes skips one. This job is cheap (a few seconds), so it is scheduled every 5 minutes, at minutes GitHub's scheduler is less busy with,
+  # and it starts the real update only when the last one began 7 or more minutes ago. Updates stay about 10 minutes apart, and a skipped slot is filled by the next one.
+  schedule:
+    - cron: "3,13,23,33,43,53 * * * *"
+    - cron: "8,18,28,38,48,58 * * * *"
+  workflow_dispatch:
+permissions:
+  actions: write
+  contents: read
+jobs:
+  tick:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Start an update if the last one began 7 or more minutes ago
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -eu
+          row=$(gh run list --repo "$GITHUB_REPOSITORY" --workflow update.yml --limit 1 --json status,createdAt --jq '.[0] // empty | "\(.status) \(.createdAt)"')
+          if [ -n "$row" ]; then
+            status=${row%% *}; created=${row#* }
+            if [ "$status" != "completed" ]; then echo "An update is already running or waiting."; exit 0; fi
+            age=$(( $(date +%s) - $(date -d "$created" +%s) ))
+            echo "The last update began $age seconds ago."
+            if [ "$age" -lt 420 ]; then echo "Too soon; the next tick will check again."; exit 0; fi
+          fi
+          gh workflow run update.yml --repo "$GITHUB_REPOSITORY" --ref "$GITHUB_REF_NAME"
+          echo "Update started."

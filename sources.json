@@ -1,0 +1,2412 @@
+{
+  "keepDays": 30,
+  "maxItems": 400,
+  "researchMax": 150,
+  "keepFrom": "2026-01-01",
+  "rssMax": 200,
+  "sources": [
+    {
+      "name": "AsAmNews",
+      "home": "https://asamnews.com",
+      "feed": "https://asamnews.com/feed/",
+      "backfill": {"modes": ["feed", "google-site"], "site": "asamnews.com"}
+    },
+    {
+      "name": "The Yappie",
+      "home": "https://theyappie.com",
+      "feed": "https://theyappie.com/feed/",
+      "fullText": true,
+      "pages": 10,
+      "excludeCategories": ["Press", "Newsletters"],
+      "authors": {"The Yappie Staff": "https://theyappie.com/author/andrewpeng1/"},
+      "backfill": {"modes": ["feed"]}
+    },
+    {
+      "name": "Rafu Shimpo",
+      "home": "https://rafu.com",
+      "feed": "https://rafu.com/feed/",
+      "backfill": {"site": "rafu.com"}
+    },
+    {
+      "name": "NextShark",
+      "home": "https://nextshark.com",
+      "wp": "https://nextshark.com/wp-json/wp/v2/posts?per_page=20&_fields=link,title,date_gmt,excerpt"
+    },
+    {
+      "name": "Maui Now",
+      "home": "https://mauinow.com",
+      "feed": "https://mauinow.com/feed/",
+      "filter": true,
+      "backfill": {"site": "mauinow.com"}
+    },
+    {
+      "name": "Civil Beat",
+      "home": "https://www.civilbeat.org",
+      "feed": "https://www.civilbeat.org/feed/",
+      "filter": true,
+      "backfill": {"modes": ["google-site"], "site": "civilbeat.org"}
+    },
+    {
+      "name": "SCOTUSblog",
+      "home": "https://www.scotusblog.com",
+      "feed": "https://www.scotusblog.com/feed/",
+      "filter": true,
+      "bodyText": true,
+      "match": "\\b(asian[- ]americans?|aapi|aanhpi|nhpi|pacific islanders?|native hawaiians?|hawai\\S*|guam|samoa\\w*|northern mariana\\w*|marshallese|micronesia\\w*|filipino\\w*|hmong|sikhs?|south asian|korematsu|chinese exclusion|alien land|birthright citizenship|citizenship clause|affirmative action|race-conscious|equal protection|voting rights act|redistrict\\w+|immigra\\w+|deportations?|removal proceedings|asylum|visas?|h-1b|naturaliz\\w+|noncitizens?|alien enemies|travel ban|hate crimes?)\\b",
+      "backfill": {"modes": ["google-site"], "site": "scotusblog.com", "terms": "\"Asian American\" OR AAPI OR \"Pacific Islander\" OR \"Native Hawaiian\" OR \"birthright citizenship\" OR \"affirmative action\" OR immigration OR deportation OR \"Voting Rights Act\" OR \"hate crime\""}
+    },
+    {
+      "name": "RNZ Pacific",
+      "home": "https://www.rnz.co.nz/news/pacific",
+      "feed": "https://www.rnz.co.nz/rss/pacific.xml",
+      "backfill": {"modes": ["google-site"], "site": "rnz.co.nz", "terms": "\"Pacific Islander\" OR Pasifika OR \"Pacific Islands\" OR Samoa OR Tonga OR Guam OR Hawaii"}
+    },
+    {
+      "name": "Pew Research Center",
+      "home": "https://www.pewresearch.org/topic/race-ethnicity/",
+      "wp": "https://www.pewresearch.org/wp-json/wp/v2/posts?categories=150&per_page=30&orderby=date&order=desc&_fields=link,title,date_gmt,excerpt",
+      "kind": "research",
+      "keepDays": 730,
+      "skipTitle": "^(Acknowledg\\w+|Methodology\\b.*|Appendix\\b.*|Detailed tables.*|Topline\\b.*|Chapter \\d+.*|\\d+\\.\\s.*)$",
+      "every": 60
+    },
+    {
+      "name": "Pew Research Center",
+      "home": "https://www.pewresearch.org/topic/race-ethnicity/",
+      "wp": "https://www.pewresearch.org/wp-json/wp/v2/short-read?categories=150&per_page=30&orderby=date&order=desc&_fields=link,title,date_gmt,excerpt",
+      "kind": "research",
+      "keepDays": 730,
+      "skipTitle": "^(Acknowledg\\w+|Methodology\\b.*|Appendix\\b.*|Detailed tables.*|Topline\\b.*|Chapter \\d+.*|\\d+\\.\\s.*)$",
+      "every": 60
+    },
+    {
+      "name": "Pew Research Center",
+      "home": "https://www.pewresearch.org/topic/race-ethnicity/",
+      "wp": "https://www.pewresearch.org/wp-json/wp/v2/posts?categories=28&per_page=30&orderby=date&order=desc&_fields=link,title,date_gmt,excerpt",
+      "kind": "research",
+      "keepDays": 730,
+      "skipTitle": "^(Acknowledg\\w+|Methodology\\b.*|Appendix\\b.*|Detailed tables.*|Topline\\b.*|Chapter \\d+.*|\\d+\\.\\s.*)$",
+      "filter": true,
+      "match": "\\b(asian[- ]americans?|asians? in the (?:u\\.?s\\.?|united states|america)|asian (?:adults|immigrants?|voters|population|origin|groups|households)|aapi|aanhpi|nhpi|native hawaiians?|pacific islanders?|(?:chinese|korean|japanese|indian|vietnamese|filipino|taiwanese|pakistani|bangladeshi|cambodian|laotian|burmese|nepalese) americans?|hmong|south asians?|southeast asians?)\\b",
+      "every": 60
+    },
+    {
+      "name": "Pew Research Center",
+      "home": "https://www.pewresearch.org/topic/race-ethnicity/",
+      "wp": "https://www.pewresearch.org/wp-json/wp/v2/short-read?categories=28&per_page=30&orderby=date&order=desc&_fields=link,title,date_gmt,excerpt",
+      "kind": "research",
+      "keepDays": 730,
+      "skipTitle": "^(Acknowledg\\w+|Methodology\\b.*|Appendix\\b.*|Detailed tables.*|Topline\\b.*|Chapter \\d+.*|\\d+\\.\\s.*)$",
+      "filter": true,
+      "match": "\\b(asian[- ]americans?|asians? in the (?:u\\.?s\\.?|united states|america)|asian (?:adults|immigrants?|voters|population|origin|groups|households)|aapi|aanhpi|nhpi|native hawaiians?|pacific islanders?|(?:chinese|korean|japanese|indian|vietnamese|filipino|taiwanese|pakistani|bangladeshi|cambodian|laotian|burmese|nepalese) americans?|hmong|south asians?|southeast asians?)\\b",
+      "every": 60
+    },
+    {
+      "name": "Pew Research Center",
+      "home": "https://www.pewresearch.org/topic/race-ethnicity/",
+      "wp": "https://www.pewresearch.org/wp-json/wp/v2/short-read?search=Pacific+Islander&per_page=30&orderby=date&order=desc&_fields=link,title,date_gmt,excerpt",
+      "kind": "research",
+      "keepDays": 730,
+      "skipTitle": "^(Acknowledg\\w+|Methodology\\b.*|Appendix\\b.*|Detailed tables.*|Topline\\b.*|Chapter \\d+.*|\\d+\\.\\s.*)$",
+      "filter": true,
+      "match": "\\b(asian[- ]americans?|asians? in the (?:u\\.?s\\.?|united states|america)|asian (?:adults|immigrants?|voters|population|origin|groups|households)|aapi|aanhpi|nhpi|native hawaiians?|pacific islanders?|(?:chinese|korean|japanese|indian|vietnamese|filipino|taiwanese|pakistani|bangladeshi|cambodian|laotian|burmese|nepalese) americans?|hmong|south asians?|southeast asians?)\\b",
+      "every": 60
+    },
+    {
+      "name": "Pew Research Center",
+      "home": "https://www.pewresearch.org/topic/race-ethnicity/",
+      "wp": "https://www.pewresearch.org/wp-json/wp/v2/posts?search=Pacific+Islander&per_page=30&orderby=date&order=desc&_fields=link,title,date_gmt,excerpt",
+      "kind": "research",
+      "keepDays": 730,
+      "skipTitle": "^(Acknowledg\\w+|Methodology\\b.*|Appendix\\b.*|Detailed tables.*|Topline\\b.*|Chapter \\d+.*|\\d+\\.\\s.*)$",
+      "filter": true,
+      "match": "\\b(asian[- ]americans?|asians? in the (?:u\\.?s\\.?|united states|america)|asian (?:adults|immigrants?|voters|population|origin|groups|households)|aapi|aanhpi|nhpi|native hawaiians?|pacific islanders?|(?:chinese|korean|japanese|indian|vietnamese|filipino|taiwanese|pakistani|bangladeshi|cambodian|laotian|burmese|nepalese) americans?|hmong|south asians?|southeast asians?)\\b",
+      "every": 60
+    },
+    {
+      "name": "AP-NORC",
+      "home": "https://apnorc.org/topics/aapi-data/",
+      "feed": "https://apnorc.org/topics/aapi-data/feed/",
+      "backfill": {"modes": ["feed"]}
+    },
+    {
+      "name": "Civil Beat",
+      "home": "https://www.civilbeat.org/category/native-hawaiian/",
+      "feed": "https://www.civilbeat.org/category/native-hawaiian/feed/"
+    },
+    {
+      "name": "Hawaii Public Radio",
+      "home": "https://www.hawaiipublicradio.org/tags/native-hawaiian",
+      "feed": "https://www.hawaiipublicradio.org/tags/native-hawaiian.rss",
+      "backfill": {"modes": ["google-site"], "site": "hawaiipublicradio.org", "terms": "\"Native Hawaiian\" OR \"Pacific Islander\" OR \"Asian American\" OR AAPI"}
+    },
+    {
+      "name": "South China Morning Post",
+      "home": "https://www.scmp.com/topics/asian-americans",
+      "google": true,
+      "asName": "South China Morning Post",
+      "filter": true,
+      "feed": "https://news.google.com/rss/search?q=site%3Ascmp.com+%28%22Asian+American%22+OR+%22Asian+Americans%22+OR+AAPI%29+when%3A30d&hl=en-US&gl=US&ceid=US:en"
+    },
+    {
+      "name": "The New York Times",
+      "home": "https://www.nytimes.com/topic/subject/asianamericans",
+      "google": true,
+      "asName": "The New York Times",
+      "filter": true,
+      "feed": "https://news.google.com/rss/search?q=site%3Anytimes.com+%28%22Asian+American%22+OR+%22Asian+Americans%22+OR+AAPI%29+when%3A30d&hl=en-US&gl=US&ceid=US:en"
+    },
+    {
+      "name": "Associated Press",
+      "home": "https://apnews.com/hub/asian-americans",
+      "google": true,
+      "asName": "Associated Press",
+      "filter": true,
+      "feed": "https://news.google.com/rss/search?q=site%3Aapnews.com+%28%22Asian+American%22+OR+%22Asian+Americans%22+OR+AAPI%29+when%3A30d&hl=en-US&gl=US&ceid=US:en"
+    },
+    {
+      "name": "The Juggernaut",
+      "home": "https://www.thejuggernaut.com",
+      "feed": "https://www.thejuggernaut.com/feed",
+      "backfill": {"modes": ["feed", "google-site"], "site": "thejuggernaut.com"}
+    },
+    {
+      "name": "Mochi Magazine",
+      "home": "https://www.mochimag.com",
+      "feed": "https://www.mochimag.com/feed/"
+    },
+    {
+      "name": "Angry Asian Man",
+      "home": "https://blog.angryasianman.com",
+      "feed": "https://blog.angryasianman.com/feeds/posts/default?alt=rss&redirect=false"
+    },
+    {
+      "name": "HuffPost",
+      "home": "https://www.huffpost.com/voices/asian-voices",
+      "page": "https://www.huffpost.com/voices/asian-voices",
+      "link": "^/entry/[^/]+_n_[0-9a-f]{24}$",
+      "attr": "data-vars-unit-name=\"main\"",
+      "idDate": "_n_([0-9a-f]{24})$",
+      "backfill": {"modes": ["page"], "pageParam": "page", "pages": 60}
+    },
+    {
+      "name": "Red, White and Brown",
+      "home": "https://redwhiteandbrown.substack.com/archive",
+      "google": true,
+      "asName": "Red, White and Brown",
+      "skipTitle": "^(Red, White and Brown|Archive|About|Home)$",
+      "feed": "https://news.google.com/rss/search?q=site%3Aredwhiteandbrown.substack.com+when%3A30d&hl=en-US&gl=US&ceid=US:en"
+    },
+    {
+      "name": "Pacific Citizen",
+      "home": "https://www.pacificcitizen.org",
+      "wp": "https://www.pacificcitizen.org/wp-json/wp/v2/posts?per_page=20&_fields=link,title,date_gmt,excerpt"
+    },
+    {
+      "name": "Nichi Bei",
+      "home": "https://www.nichibei.org",
+      "google": true,
+      "asName": "Nichi Bei",
+      "skipTitle": "^\\S+( \\S+)?$",
+      "feed": "https://news.google.com/rss/search?q=site%3Anichibei.org+when%3A30d&hl=en-US&gl=US&ceid=US:en"
+    },
+    {
+      "name": "Google News: AAPI",
+      "google": true,
+      "feed": "https://news.google.com/rss/search?q=%22Asian+American%22+OR+AAPI+when%3A7d&hl=en-US&gl=US&ceid=US:en"
+    },
+    {
+      "name": "Google News: Pacific Islander",
+      "google": true,
+      "feed": "https://news.google.com/rss/search?q=%22Pacific+Islander%22+OR+%22Native+Hawaiian%22+OR+%22American+Samoa%22+OR+Guam+when%3A7d&hl=en-US&gl=US&ceid=US:en"
+    },
+    {
+      "name": "Google News: Pacific Islands",
+      "google": true,
+      "feed": "https://news.google.com/rss/search?q=%28%22Pacific+Islands%22+OR+%22Pacific+Islanders%22+OR+Pasifika%29+%28climate+OR+%22sea+level%22+OR+%22deep-sea+mining%22+OR+sovereignty+OR+nuclear+OR+%22Compact+of+Free+Association%22+OR+migration%29+when%3A14d&hl=en-US&gl=US&ceid=US:en"
+    },
+    {
+      "name": "The Independent",
+      "home": "https://www.independent.co.uk/topic/pacific-islands",
+      "feed": "https://www.independent.co.uk/topic/pacific-islands/rss",
+      "backfill": false
+    },
+    {
+      "name": "The Independent",
+      "home": "https://www.independent.co.uk/topic/asian-americans",
+      "feed": "https://www.independent.co.uk/topic/asian-americans/rss",
+      "backfill": false
+    },
+    {
+      "name": "The Independent",
+      "home": "https://www.independent.co.uk/news/world/americas",
+      "feed": "https://www.independent.co.uk/news/world/americas/rss",
+      "backfill": false
+    },
+    {
+      "name": "The Independent",
+      "home": "https://www.independent.co.uk/news/world/americas/us-politics",
+      "feed": "https://www.independent.co.uk/news/world/americas/us-politics/rss",
+      "backfill": false
+    },
+    {
+      "name": "The Independent",
+      "home": "https://www.independent.co.uk",
+      "google": true,
+      "asName": "The Independent",
+      "feed": "https://news.google.com/rss/search?q=site%3Aindependent.co.uk+%28%22Asian+American%22+OR+%22Asian+Americans%22+OR+AAPI+OR+%22Pacific+Islander%22+OR+%22Pacific+Islanders%22+OR+%22Native+Hawaiian%22+OR+%22anti-Asian%22%29+when%3A30d&hl=en-US&gl=US&ceid=US:en"
+    },
+    {
+      "name": "Google News: Anti-Asian hate",
+      "google": true,
+      "feed": "https://news.google.com/rss/search?q=%22anti-Asian%22+OR+%22Stop+AAPI+Hate%22+when%3A7d&hl=en-US&gl=US&ceid=US:en"
+    },
+    {
+      "name": "Google News: Immigration",
+      "google": true,
+      "feed": "https://news.google.com/rss/search?q=%22Asian+American%22+%28immigration+OR+ICE+OR+deportation%29+when%3A7d&hl=en-US&gl=US&ceid=US:en"
+    },
+    {
+      "name": "Google News: Asian Americans",
+      "google": true,
+      "feed": "https://news.google.com/rss/search?q=%22Asian+Americans%22+when%3A7d&hl=en-US&gl=US&ceid=US:en"
+    },
+    {
+      "name": "Google News: Native Hawaiian",
+      "google": true,
+      "feed": "https://news.google.com/rss/search?q=%22Native+Hawaiian%22+OR+%22Native+Hawaiians%22+when%3A7d&hl=en-US&gl=US&ceid=US:en"
+    },
+    {
+      "name": "Google News: AAPI policy",
+      "google": true,
+      "feed": "https://news.google.com/rss/search?q=%22Asian+American%22+%28Congress+OR+legislation+OR+bill+OR+policy+OR+%22executive+order%22%29+when%3A7d&hl=en-US&gl=US&ceid=US:en"
+    },
+    {
+      "name": "Google News: Education",
+      "google": true,
+      "feed": "https://news.google.com/rss/search?q=%22Asian+American%22+%28school+OR+students+OR+university+OR+college%29+when%3A7d&hl=en-US&gl=US&ceid=US:en"
+    },
+    {
+      "name": "Google News: Health",
+      "google": true,
+      "feed": "https://news.google.com/rss/search?q=%22Asian+American%22+%28health+OR+hospital+OR+%22mental+health%22%29+when%3A7d&hl=en-US&gl=US&ceid=US:en"
+    },
+    {
+      "name": "Google News: Business",
+      "google": true,
+      "feed": "https://news.google.com/rss/search?q=%22Asian+American%22+%28business+OR+workers+OR+economy+OR+%22small+business%22%29+when%3A7d&hl=en-US&gl=US&ceid=US:en"
+    },
+    {
+      "name": "The Rebel Yellow",
+      "home": "https://www.therebelyellow.com",
+      "feed": "https://www.therebelyellow.com/feed",
+      "backfill": {"modes": ["substack"]}
+    },
+    {
+      "name": "Joysauce",
+      "home": "https://joysauce.com",
+      "feed": "https://joysauce.com/feed/"
+    },
+    {
+      "name": "NBC Asian America",
+      "home": "https://www.nbcnews.com/asian-america",
+      "google": true,
+      "asName": "NBC Asian America",
+      "feed": "https://news.google.com/rss/search?q=site%3Anbcnews.com%2Fnews%2Fasian-america+when%3A30d&hl=en-US&gl=US&ceid=US:en"
+    },
+    {
+      "name": "The Asian American Foundation",
+      "home": "https://taaf.org/newsroom",
+      "google": true,
+      "asName": "The Asian American Foundation",
+      "feed": "https://news.google.com/rss/search?q=site%3Ataaf.org%2Fblog+when%3A30d&hl=en-US&gl=US&ceid=US:en",
+      "kind": "statement",
+      "every": 30
+    },
+    {
+      "name": "The Asian American Foundation",
+      "home": "https://taaf.org/newsroom",
+      "page": "https://taaf.org/newsroom/press-releases",
+      "link": "^/news/[^/]+$",
+      "kind": "statement",
+      "backfill": {"modes": ["google-site"], "site": "taaf.org/news"},
+      "every": 30
+    },
+    {
+      "name": "Stop AAPI Hate",
+      "home": "https://stopaapihate.org",
+      "feed": "https://stopaapihate.org/category/press-releases/feed/",
+      "kind": "statement",
+      "every": 30
+    },
+    {
+      "name": "Stop AAPI Hate",
+      "home": "https://stopaapihate.org",
+      "feed": "https://stopaapihate.org/category/commentary/feed/",
+      "kind": "statement",
+      "every": 30
+    },
+    {
+      "name": "Asian Americans Advancing Justice",
+      "home": "https://www.advancingjustice-aajc.org",
+      "page": "https://www.advancingjustice-aajc.org/news-media/press-releases",
+      "link": "^/press-release/[^/]+$",
+      "kind": "statement",
+      "backfill": {"modes": ["page"], "pageParam": "page", "pages": 40},
+      "every": 30
+    },
+    {
+      "name": "AAJA",
+      "home": "https://www.aaja.org",
+      "feed": "https://www.aaja.org/category/press-release-statements/feed/",
+      "kind": "statement",
+      "every": 30
+    },
+    {
+      "name": "Congressional Asian Pacific American Caucus",
+      "home": "https://capac.house.gov",
+      "page": "https://capac.house.gov/press-releases",
+      "link": "^/press-release/[^/]+$",
+      "kind": "statement",
+      "backfill": {"modes": ["page"], "pageParam": "page", "pages": 40},
+      "every": 30
+    },
+    {
+      "name": "OCA National",
+      "home": "https://www.ocanational.org",
+      "feed": "https://www.ocanational.org/press-releases?format=rss",
+      "kind": "statement",
+      "backfill": {"modes": ["squarespace"], "json": "https://www.ocanational.org/press-releases"},
+      "every": 30
+    },
+    {
+      "name": "AALDEF",
+      "home": "https://www.aaldef.org",
+      "feed": "https://news.google.com/rss/search?q=site%3Aaaldef.org%2Fpress-release+when%3A30d&hl=en-US&gl=US&ceid=US:en",
+      "google": true,
+      "asName": "AALDEF",
+      "kind": "statement",
+      "every": 30
+    },
+    {
+      "name": "NCAPA",
+      "home": "https://www.ncapaonline.org",
+      "feed": "https://www.ncapaonline.org/feed/",
+      "kind": "statement",
+      "every": 30
+    },
+    {
+      "name": "SEARAC",
+      "home": "https://www.searac.org",
+      "feed": "https://www.searac.org/feed/",
+      "kind": "statement",
+      "every": 30
+    },
+    {
+      "name": "Sikh Coalition",
+      "home": "https://www.sikhcoalition.org",
+      "feed": "https://www.sikhcoalition.org/press-release/feed/",
+      "kind": "statement",
+      "every": 30
+    },
+    {
+      "name": "SALDEF",
+      "home": "https://saldef.org",
+      "feed": "https://saldef.org/category/press-release/feed/",
+      "kind": "statement",
+      "every": 30
+    },
+    {
+      "name": "NAPABA",
+      "home": "https://www.napaba.org",
+      "feed": "https://news.google.com/rss/search?q=site%3Anapaba.org%2Fnews+when%3A30d&hl=en-US&gl=US&ceid=US:en",
+      "google": true,
+      "asName": "NAPABA",
+      "kind": "statement",
+      "every": 30
+    },
+    {
+      "name": "NAPAWF",
+      "home": "https://napawf.org",
+      "wp": "https://napawf.org/wp-json/wp/v2/news?per_page=20&_fields=link,title,date_gmt",
+      "kind": "statement",
+      "every": 30
+    },
+    {
+      "name": "JACL",
+      "home": "https://jacl.org",
+      "feed": "https://jacl.org/statements?format=rss",
+      "kind": "statement",
+      "backfill": {"modes": ["squarespace"], "json": "https://jacl.org/statements"},
+      "every": 30
+    },
+    {
+      "name": "APIAVote",
+      "home": "https://apiavote.org",
+      "feed": "https://apiavote.org/category/press-release/feed/",
+      "kind": "statement",
+      "every": 30
+    },
+    {
+      "name": "Asian American Scholar Forum",
+      "home": "https://www.aasforum.org",
+      "feed": "https://www.aasforum.org/category/press-release/feed/",
+      "kind": "statement",
+      "every": 30
+    },
+    {
+      "name": "AAPI Data",
+      "home": "https://aapidata.com",
+      "wp": "https://aapidata.com/wp-json/wp/v2/posts?categories=13&per_page=20&_fields=link,title,date_gmt,excerpt",
+      "kind": "statement",
+      "every": 30
+    },
+    {
+      "name": "AAPI Data",
+      "home": "https://aapidata.com",
+      "wp": "https://aapidata.com/wp-json/wp/v2/posts?categories=159&per_page=20&_fields=link,title,date_gmt,excerpt",
+      "kind": "statement",
+      "every": 30
+    },
+    {
+      "name": "AAPI Data",
+      "home": "https://aapidata.com",
+      "wp": "https://aapidata.com/wp-json/wp/v2/posts?categories=8&per_page=20&_fields=link,title,date_gmt,excerpt",
+      "kind": "statement",
+      "every": 30
+    },
+    {
+      "name": "AAPI Equity Alliance",
+      "home": "https://aapiequityalliance.org",
+      "feed": "https://aapiequityalliance.org/category/press-releases/feed/",
+      "kind": "statement",
+      "every": 30
+    },
+    {
+      "name": "AAPI Victory Fund",
+      "home": "https://www.aapivictoryfund.com",
+      "feed": "https://www.aapivictoryfund.com/press-statements?format=rss",
+      "kind": "statement",
+      "backfill": {"modes": ["squarespace"], "json": "https://www.aapivictoryfund.com/press-statements"},
+      "every": 30
+    },
+    {
+      "name": "APIAHF",
+      "home": "https://www.apiahf.org",
+      "page": "https://www.apiahf.org/press-releases",
+      "link": "^/press-release/[^/]+$",
+      "before": true,
+      "kind": "statement",
+      "every": 30
+    },
+    {
+      "name": "APIAHF",
+      "home": "https://www.apiahf.org",
+      "page": "https://www.apiahf.org/resources",
+      "link": "^/resource/[^/]+$",
+      "kind": "statement",
+      "every": 30
+    },
+    {
+      "name": "Asian American Federation",
+      "home": "https://www.aafederation.org",
+      "wp": "https://www.aafederation.org/wp-json/wp/v2/posts?categories=9&per_page=20&_fields=link,title,date_gmt,excerpt",
+      "kind": "statement",
+      "every": 30
+    },
+    {
+      "name": "Asian American Federation",
+      "home": "https://www.aafederation.org",
+      "wp": "https://www.aafederation.org/wp-json/wp/v2/posts?categories=32&per_page=20&_fields=link,title,date_gmt,excerpt",
+      "kind": "statement",
+      "every": 30
+    },
+    {
+      "name": "Asian Americans Advancing Justice Southern California",
+      "home": "https://ajsocal.org",
+      "feed": "https://ajsocal.org/category/announcements/feed/",
+      "kind": "statement",
+      "every": 30
+    },
+    {
+      "name": "Asian Americans Advancing Justice-Atlanta",
+      "home": "https://www.advancingjustice-atlanta.org",
+      "feed": "https://www.advancingjustice-atlanta.org/news?format=rss",
+      "kind": "statement",
+      "backfill": {"modes": ["squarespace"], "json": "https://www.advancingjustice-atlanta.org/news"},
+      "every": 30
+    },
+    {
+      "name": "Asian Americans for Equality",
+      "home": "https://www.aafe.org",
+      "feed": "https://www.aafe.org/feed/",
+      "kind": "statement",
+      "every": 30
+    },
+    {
+      "name": "AAPIP",
+      "home": "https://aapip.org",
+      "feed": "https://aapip.org/news/feed/",
+      "kind": "statement",
+      "every": 30
+    },
+    {
+      "name": "AAPIP",
+      "home": "https://aapip.org",
+      "feed": "https://aapip.org/resources/feed/",
+      "kind": "statement",
+      "every": 30
+    },
+    {
+      "name": "Asian Law Caucus",
+      "home": "https://www.asianlawcaucus.org",
+      "page": "https://www.asianlawcaucus.org/news-resources/news",
+      "link": "^/news-resources/(news|perspectives|guides-reports)/[^/]+/?$",
+      "kind": "statement",
+      "every": 30
+    },
+    {
+      "name": "Asian Law Caucus",
+      "home": "https://www.asianlawcaucus.org",
+      "page": "https://www.asianlawcaucus.org/news-resources/resources",
+      "link": "^/news-resources/(news|perspectives|guides-reports)/[^/]+/?$",
+      "kind": "statement",
+      "every": 30
+    },
+    {
+      "name": "Asian Law Caucus",
+      "home": "https://www.asianlawcaucus.org",
+      "page": "https://www.asianlawcaucus.org/news-resources/perspectives",
+      "link": "^/news-resources/(news|perspectives|guides-reports)/[^/]+/?$",
+      "kind": "statement",
+      "every": 30
+    },
+    {
+      "name": "APALA",
+      "home": "https://www.apalanet.org",
+      "feed": "https://www.apalanet.org/2/feed",
+      "kind": "statement",
+      "every": 30
+    },
+    {
+      "name": "Committee of 100",
+      "home": "https://www.committee100.org",
+      "wp": "https://www.committee100.org/wp-json/wp/v2/media-center?per_page=20&_fields=link,title,date_gmt",
+      "kind": "statement",
+      "every": 30
+    },
+    {
+      "name": "NQAPIA",
+      "home": "https://www.nqapia.org",
+      "feed": "https://www.nqapia.org/statements?format=rss",
+      "kind": "statement",
+      "backfill": {"modes": ["squarespace"], "json": "https://www.nqapia.org/statements"},
+      "every": 30
+    },
+    {
+      "name": "NAKASEC",
+      "home": "https://nakasec.org",
+      "feed": "https://nakasec.org/feed/",
+      "kind": "statement",
+      "every": 30
+    },
+    {
+      "name": "National CAPACD",
+      "home": "https://www.nationalcapacd.org",
+      "feed": "https://www.nationalcapacd.org/feed/",
+      "skipTitle": "^Elementor #\\d+",
+      "kind": "statement",
+      "every": 30
+    },
+    {
+      "name": "NAPCA",
+      "home": "https://www.napca.org",
+      "page": "https://www.napca.org/press-releases",
+      "link": "^/press-releases/[^/]+$",
+      "before": true,
+      "kind": "statement",
+      "every": 30
+    },
+    {
+      "name": "Center for Asian American Media",
+      "home": "https://caamedia.org",
+      "wp": "https://caamedia.org/wp-json/wp/v2/news?per_page=20&_fields=link,title,date_gmt",
+      "kind": "statement",
+      "every": 30
+    },
+    {
+      "name": "AAPCHO",
+      "home": "https://aapcho.org",
+      "feed": "https://aapcho.org/feed/",
+      "kind": "statement",
+      "every": 30
+    },
+    {
+      "name": "Council of Korean Americans",
+      "home": "https://councilka.org",
+      "wp": "https://councilka.org/wp-json/wp/v2/posts?categories=18&per_page=20&_fields=link,title,date_gmt,excerpt",
+      "kind": "statement",
+      "every": 30
+    },
+    {
+      "name": "The White House",
+      "home": "https://www.whitehouse.gov",
+      "feed": "https://www.whitehouse.gov/briefings-statements/feed/",
+      "kind": "govstmt",
+      "filter": true,
+      "backfill": {"modes": ["feed"], "pages": 150},
+      "every": 30
+    },
+    {
+      "name": "The White House",
+      "home": "https://www.whitehouse.gov/news/",
+      "feed": "https://www.whitehouse.gov/news/feed/",
+      "kind": "govstmt",
+      "filter": true,
+      "backfill": {"modes": ["feed"], "pages": 150},
+      "every": 30
+    },
+    {
+      "name": "The White House",
+      "home": "https://www.whitehouse.gov/news/",
+      "page": "https://www.whitehouse.gov/news/",
+      "link": "^/(releases|fact-sheets|briefings-statements|remarks|research)/20\\d\\d/\\d\\d/[^/]+/?$",
+      "kind": "govstmt",
+      "filter": true,
+      "backfill": false,
+      "every": 30
+    },
+    {
+      "name": "The White House",
+      "home": "https://www.whitehouse.gov/news/",
+      "page": "https://www.whitehouse.gov/news/page/2/",
+      "link": "^/(releases|fact-sheets|briefings-statements|remarks|research)/20\\d\\d/\\d\\d/[^/]+/?$",
+      "kind": "govstmt",
+      "filter": true,
+      "backfill": false,
+      "every": 30
+    },
+    {
+      "name": "The White House",
+      "home": "https://www.whitehouse.gov/news/",
+      "page": "https://www.whitehouse.gov/news/page/3/",
+      "link": "^/(releases|fact-sheets|briefings-statements|remarks|research)/20\\d\\d/\\d\\d/[^/]+/?$",
+      "kind": "govstmt",
+      "filter": true,
+      "backfill": false,
+      "every": 30
+    },
+    {
+      "name": "U.S. Department of Justice",
+      "home": "https://www.justice.gov",
+      "feed": "https://www.justice.gov/news/rss?type=press_release&m=1",
+      "kind": "govstmt",
+      "filter": true,
+      "skipTitle": "\\b(sentenced|sentencing|pleads?|pleaded|guilty|convicted|indicted|indictment|charged|arrested|arrests?|smuggl\\w+|charges (for|against)|fraud (ring|scheme)|marriage fraud)\\b",
+      "backfill": {"modes": [], "sliced": {"days": 31, "cap": 10, "urls": ["https://www.justice.gov/news/rss?type=press_release&m=1&search_api_fulltext=Asian+American&start_date={from}&end_date={to}", "https://www.justice.gov/news/rss?type=press_release&m=1&search_api_fulltext=Native+Hawaiian&start_date={from}&end_date={to}", "https://www.justice.gov/news/rss?type=press_release&m=1&search_api_fulltext=Pacific+Islander&start_date={from}&end_date={to}", "https://www.justice.gov/news/rss?type=press_release&m=1&search_api_fulltext=AAPI&start_date={from}&end_date={to}", "https://www.justice.gov/news/rss?type=press_release&m=1&search_api_fulltext=anti-Asian&start_date={from}&end_date={to}", "https://www.justice.gov/news/rss?type=press_release&m=1&search_api_fulltext=Sikh&start_date={from}&end_date={to}", "https://www.justice.gov/news/rss?type=press_release&m=1&search_api_fulltext=Hmong&start_date={from}&end_date={to}", "https://www.justice.gov/news/rss?type=press_release&m=1&search_api_fulltext=Chamorro&start_date={from}&end_date={to}", "https://www.justice.gov/news/rss?type=press_release&m=1&search_api_fulltext=Filipino&start_date={from}&end_date={to}", "https://www.justice.gov/news/rss?type=press_release&m=1&search_api_fulltext=Japanese+American&start_date={from}&end_date={to}", "https://www.justice.gov/news/rss?type=press_release&m=1&search_api_fulltext=Chinese+American&start_date={from}&end_date={to}", "https://www.justice.gov/news/rss?type=press_release&m=1&search_api_fulltext=Korean+American&start_date={from}&end_date={to}", "https://www.justice.gov/news/rss?type=press_release&m=1&search_api_fulltext=Vietnamese+American&start_date={from}&end_date={to}", "https://www.justice.gov/news/rss?type=press_release&m=1&search_api_fulltext=Indian+American&start_date={from}&end_date={to}", "https://www.justice.gov/news/rss?type=press_release&m=1&search_api_fulltext=Cambodian&start_date={from}&end_date={to}", "https://www.justice.gov/news/rss?type=press_release&m=1&search_api_fulltext=Samoan&start_date={from}&end_date={to}"]}},
+      "every": 30
+    },
+    {
+      "name": "USCIS",
+      "home": "https://www.uscis.gov",
+      "feed": "https://www.uscis.gov/news/rss-feed/23269",
+      "kind": "govstmt",
+      "filter": true,
+      "skipTitle": "\\b(sentenced|sentencing|pleads?|pleaded|guilty|convicted|indicted|indictment|charged|arrested|arrests?|smuggl\\w+|charges (for|against)|fraud (ring|scheme)|marriage fraud)\\b",
+      "backfill": {"modes": ["feed"]},
+      "every": 30
+    },
+    {
+      "name": "Congressional Asian Pacific American Caucus",
+      "home": "https://capac.house.gov",
+      "page": "https://capac.house.gov/press-releases",
+      "link": "^/press-release/[^/]+$",
+      "kind": "govstmt",
+      "backfill": {"modes": ["page"], "pageParam": "page", "pages": 40},
+      "every": 30
+    },
+    {
+      "name": "Massachusetts AAPI Commission",
+      "home": "https://aapicommission.org",
+      "feed": "https://aapicommission.org/feed/",
+      "kind": "govstmt",
+      "official": true,
+      "noQuery": true,
+      "every": 30
+    },
+    {
+      "name": "California Commission on Asian and Pacific Islander American Affairs",
+      "home": "https://capiaa.ca.gov",
+      "feed": "https://capiaa.ca.gov/feed/",
+      "kind": "govstmt",
+      "dropTitle": "\\bmeetings?\\b",
+      "every": 30
+    },
+    {
+      "name": "California Asian American & Pacific Islander Legislative Caucus",
+      "home": "https://aapilegcaucus.legislature.ca.gov",
+      "feed": "https://aapilegcaucus.legislature.ca.gov/rss.xml",
+      "kind": "govstmt",
+      "dropLink": "/photo-album/",
+      "every": 30
+    },
+    {
+      "name": "Washington Commission on Asian Pacific American Affairs",
+      "home": "https://capaa.wa.gov",
+      "page": "https://capaa.wa.gov/about/news",
+      "link": "^/about/news/20\\d\\d/[^/]+/?$",
+      "kind": "govstmt",
+      "numericDates": true,
+      "every": 30
+    },
+    {
+      "name": "Office of Hawaiian Affairs",
+      "home": "https://www.oha.org",
+      "feed": "https://www.oha.org/news/feed/",
+      "kind": "govstmt",
+      "official": true,
+      "filter": true,
+      "every": 30
+    },
+    {
+      "name": "Department of Hawaiian Home Lands",
+      "home": "https://dhhl.hawaii.gov",
+      "feed": "https://dhhl.hawaii.gov/category/media-releases/feed/",
+      "kind": "govstmt",
+      "dropTitle": "\\bmeetings?\\b",
+      "every": 30
+    },
+    {
+      "name": "Department of Hawaiian Home Lands",
+      "home": "https://dhhl.hawaii.gov",
+      "feed": "https://dhhl.hawaii.gov/category/public-notice/feed/",
+      "kind": "govstmt",
+      "dropTitle": "\\bmeetings?\\b",
+      "every": 30
+    },
+    {
+      "name": "U.S. Department of the Interior",
+      "home": "https://www.doi.gov/news",
+      "page": "https://www.doi.gov/news",
+      "link": "^/pressreleases/[^/]+$",
+      "kind": "govstmt",
+      "filter": true,
+      "numericDates": true,
+      "descAfter": true,
+      "backfill": {"modes": ["page"], "pageParam": "page", "pageFrom": 1, "pages": 30},
+      "every": 30
+    },
+    {
+      "name": "U.S. Commission on Civil Rights",
+      "home": "https://www.usccr.gov",
+      "feed": "https://www.usccr.gov/feed",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "every": 30
+    },
+    {
+      "name": "California Attorney General",
+      "home": "https://oag.ca.gov",
+      "feed": "https://oag.ca.gov/news/feed",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "skipTitle": "\\b(sentenced|sentencing|pleads?|pleaded|guilty|convicted|indicted|indictment|charged|arrested|arrests?|smuggl\\w+|charges (for|against)|fraud (ring|scheme)|marriage fraud)\\b",
+      "every": 30
+    },
+    {
+      "name": "California Civil Rights Department",
+      "home": "https://calcivilrights.ca.gov",
+      "feed": "https://calcivilrights.ca.gov/feed/",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "every": 30
+    },
+    {
+      "name": "California Governor",
+      "home": "https://www.gov.ca.gov",
+      "feed": "https://www.gov.ca.gov/feed/",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "every": 30
+    },
+    {
+      "name": "California Governor",
+      "home": "https://www.gov.ca.gov",
+      "feed": "https://www.gov.ca.gov/category/proclamations/feed/",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "every": 30
+    },
+    {
+      "name": "Washington Attorney General",
+      "home": "https://www.atg.wa.gov",
+      "feed": "https://www.atg.wa.gov/news/news-releases-rss",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "skipTitle": "\\b(sentenced|sentencing|pleads?|pleaded|guilty|convicted|indicted|indictment|charged|arrested|arrests?|smuggl\\w+|charges (for|against)|fraud (ring|scheme)|marriage fraud)\\b",
+      "every": 30
+    },
+    {
+      "name": "Washington Governor",
+      "home": "https://governor.wa.gov",
+      "feed": "https://governor.wa.gov/rss.xml",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "backfill": {"site": "governor.wa.gov", "terms": "\"Asian American\" OR AAPI OR \"Pacific Islander\" OR \"Native Hawaiian\" OR \"Asian Pacific American\""},
+      "every": 30
+    },
+    {
+      "name": "Georgia Governor",
+      "home": "https://gov.georgia.gov",
+      "feed": "https://gov.georgia.gov/rss.xml",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "every": 30
+    },
+    {
+      "name": "Georgia Attorney General",
+      "home": "https://law.georgia.gov",
+      "feed": "https://law.georgia.gov/rss.xml",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "skipTitle": "\\b(sentenced|sentencing|pleads?|pleaded|guilty|convicted|indicted|indictment|charged|arrested|arrests?|smuggl\\w+|charges (for|against)|fraud (ring|scheme)|marriage fraud)\\b",
+      "every": 30
+    },
+    {
+      "name": "Oregon Department of Justice",
+      "home": "https://doj.state.or.us",
+      "feed": "https://doj.state.or.us/feed",
+      "kind": "govstmt",
+      "official": true,
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "skipTitle": "\\b(sentenced|sentencing|pleads?|pleaded|guilty|convicted|indicted|indictment|charged|arrested|arrests?|smuggl\\w+|charges (for|against)|fraud (ring|scheme)|marriage fraud)\\b",
+      "every": 30
+    },
+    {
+      "name": "Illinois Governor",
+      "home": "https://gov-pritzker-newsroom.prezly.com",
+      "feed": "https://gov-pritzker-newsroom.prezly.com/feed",
+      "kind": "govstmt",
+      "official": true,
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "every": 30
+    },
+    {
+      "name": "APAICS",
+      "home": "https://www.apaics.org",
+      "feed": "https://www.apaics.org/blog-feed.xml",
+      "kind": "statement",
+      "every": 30
+    },
+    {
+      "name": "Pacific Island Health Officers Association",
+      "home": "https://www.pihoa.org",
+      "feed": "https://www.pihoa.org/feed/",
+      "kind": "statement",
+      "every": 30
+    },
+    {
+      "name": "Chinese for Affirmative Action",
+      "home": "https://caasf.org",
+      "feed": "https://caasf.org/feed/",
+      "kind": "statement",
+      "every": 30
+    },
+    {
+      "name": "Chinese American Planning Council",
+      "home": "https://www.cpc-nyc.org",
+      "feed": "https://www.cpc-nyc.org/rss.xml",
+      "kind": "statement",
+      "dropTitle": "\\b(celebrates?|welcomes|fair|festival|enjoy|visit)\\b",
+      "every": 30
+    },
+    {
+      "name": "Asian Americans Advancing Justice-Chicago",
+      "home": "https://advancingjustice-chicago.org",
+      "feed": "https://advancingjustice-chicago.org/press-releases?format=rss",
+      "kind": "statement",
+      "dropTitle": "^protected:",
+      "every": 30
+    },
+    {
+      "name": "NaFFAA",
+      "home": "https://naffaa.org",
+      "feed": "https://naffaa.org/feed/",
+      "kind": "statement",
+      "dropTitle": "\\b(recap|announces \\d+(?:th|st|nd|rd) national empowerment conference)\\b",
+      "every": 30
+    },
+    {
+      "name": "LEAD Filipino",
+      "home": "https://leadfilipino.org",
+      "feed": "https://leadfilipino.org/feed/",
+      "kind": "statement",
+      "dropTitle": "\\b(apply before|recap of)\\b",
+      "every": 30
+    },
+    {
+      "name": "Asian Pacific Institute on Gender-Based Violence",
+      "home": "https://api-gbv.org",
+      "feed": "https://api-gbv.org/feed/",
+      "kind": "statement",
+      "every": 30
+    },
+    {
+      "name": "Papa Ola Lōkahi",
+      "home": "https://www.papaolalokahi.org",
+      "feed": "https://www.papaolalokahi.org/feed",
+      "kind": "statement",
+      "dropTitle": "\\b(job openings?|hiring|poi for|are you native hawaiian and pregnant)\\b",
+      "every": 30
+    },
+    {
+      "name": "Native Hawaiian Legal Corporation",
+      "home": "https://nativehawaiianlegalcorp.org",
+      "feed": "https://nativehawaiianlegalcorp.org/feed/",
+      "kind": "statement",
+      "dropTitle": "\\b(welcomes its|annual report|lonoikamakahiki)\\b|\\?\\s*$",
+      "every": 30
+    },
+    {
+      "name": "Pacific Islander Community Association of Washington",
+      "home": "https://www.picawa.org",
+      "feed": "https://www.picawa.org/feed/",
+      "kind": "statement",
+      "every": 30
+    },
+    {
+      "name": "AAPI New Jersey",
+      "home": "https://aapinewjersey.org",
+      "feed": "https://aapinewjersey.org/feed/",
+      "kind": "statement",
+      "dropTitle": "^(photos|sbs):",
+      "every": 60
+    },
+    {
+      "name": "Asian Counseling and Referral Service",
+      "home": "https://acrs.org",
+      "feed": "https://acrs.org/feed/",
+      "kind": "statement",
+      "dropTitle": "\\benews\\b",
+      "every": 60
+    },
+    {
+      "name": "VietAID",
+      "home": "https://vietaid.org",
+      "feed": "https://vietaid.org/feed/",
+      "kind": "statement",
+      "every": 60
+    },
+    {
+      "name": "FYLPRO",
+      "home": "https://fylpro.org",
+      "feed": "https://fylpro.org/category/press-release/feed/",
+      "kind": "statement",
+      "dropTitle": "^video:|\\b(roadshow|info sessions?|deadline extended|applications? (?:are )?now open)\\b",
+      "every": 60
+    },
+    {
+      "name": "Damayan Migrant Workers Association",
+      "home": "https://www.damayanmigrants.org",
+      "feed": "https://www.damayanmigrants.org/news?format=rss",
+      "kind": "statement",
+      "every": 60
+    },
+    {
+      "name": "Asian American Coalition for Education",
+      "home": "https://asianamericanforeducation.org",
+      "feed": "https://asianamericanforeducation.org/category/news/feed/",
+      "kind": "statement",
+      "every": 60
+    },
+    {
+      "name": "Act To Change",
+      "home": "https://acttochange.org",
+      "feed": "https://acttochange.org/feed/",
+      "kind": "statement",
+      "every": 60
+    },
+    {
+      "name": "APAHE",
+      "home": "https://apahenational.org",
+      "feed": "https://apahenational.org/feed/",
+      "kind": "statement",
+      "dropTitle": "\\b(call for proposals|exhibitors|agenda|awardees)\\b",
+      "every": 60
+    },
+    {
+      "name": "Korean American Civic Empowerment",
+      "home": "https://kace.org",
+      "feed": "https://kace.org/blog/feed/",
+      "kind": "statement",
+      "dropTitle": "\\binternship\\b",
+      "every": 60
+    },
+    {
+      "name": "Angel Island Immigration Station Foundation",
+      "home": "https://www.aiisf.org",
+      "feed": "https://www.aiisf.org/press?format=rss",
+      "kind": "statement",
+      "every": 60
+    },
+    {
+      "name": "NAAPIMHA",
+      "home": "https://www.naapimha.org",
+      "feed": "https://www.naapimha.org/blog-feed.xml",
+      "kind": "statement",
+      "every": 60
+    },
+    {
+      "name": "Asian Pacific Fund",
+      "home": "https://asianpacificfund.org",
+      "feed": "https://asianpacificfund.org/feed/",
+      "kind": "statement",
+      "every": 60
+    },
+    {
+      "name": "Chhaya CDC",
+      "home": "https://chhayacdc.org",
+      "feed": "https://chhayacdc.org/feed/",
+      "kind": "statement",
+      "every": 60
+    },
+    {
+      "name": "LEAP",
+      "home": "https://www.leap.org",
+      "feed": "https://www.leap.org/blog?format=rss",
+      "kind": "statement",
+      "dropTitle": "\\b(alumni advice|applicants?|application)\\b",
+      "every": 60
+    },
+    {
+      "name": "South Asian Network",
+      "home": "https://southasiannetwork.org",
+      "feed": "https://southasiannetwork.org/feed/",
+      "kind": "statement",
+      "every": 60
+    },
+    {
+      "name": "National Japanese American Memorial Foundation",
+      "home": "https://www.njamemorial.org",
+      "feed": "https://www.njamemorial.org/news?format=rss",
+      "kind": "statement",
+      "every": 60
+    },
+    {
+      "name": "Coalition for Asian American Children and Families",
+      "home": "https://www.cacf.org",
+      "feed": "https://www.cacf.org/resources?format=rss",
+      "kind": "statement",
+      "every": 60
+    },
+    {
+      "name": "Korean Community Services of Metropolitan New York",
+      "home": "https://www.kcsny.org",
+      "feed": "https://www.kcsny.org/blog-feed.xml",
+      "kind": "statement",
+      "dropLink": "/ko/",
+      "every": 60
+    },
+    {
+      "name": "SAPHA",
+      "home": "https://sapha.org",
+      "feed": "https://sapha.org/feed/",
+      "kind": "statement",
+      "dropTitle": "^newsletter\\b|\\bspotlight\\b",
+      "every": 60
+    },
+    {
+      "name": "United Sikhs",
+      "home": "https://unitedsikhs.org",
+      "feed": "https://unitedsikhs.org/category/press-release/feed/",
+      "kind": "statement",
+      "filter": true,
+      "match": "\\b(u\\.s\\.|united states|american?s?|congress\\w*|senat(?:e|or)s?|white house|federal|supreme court|dhs|uscis|tsa|fbi|eeoc|new york|new jersey|california|texas|illinois|michigan|pennsylvania|virginia|georgia|florida|massachusetts|ohio|arizona|nevada)\\b",
+      "every": 60
+    },
+    {
+      "name": "Hindus for Human Rights",
+      "home": "https://www.hindusforhumanrights.org",
+      "feed": "https://www.hindusforhumanrights.org/news?format=rss",
+      "kind": "statement",
+      "filter": true,
+      "match": "\\b(u\\.s\\.|united states|american?s?|congress\\w*|senat(?:e|or)s?|white house|federal|supreme court|dhs|uscis|tsa|fbi|eeoc|new york|new jersey|california|texas|illinois|michigan|pennsylvania|virginia|georgia|florida|massachusetts|ohio|arizona|nevada)\\b",
+      "every": 60
+    },
+    {
+      "name": "Hindu American Foundation",
+      "home": "https://www.hinduamerican.org",
+      "page": "https://www.hinduamerican.org/press-statements/",
+      "link": "^/(?:portfolio/)?[a-z0-9-]{12,}/?$",
+      "kind": "statement",
+      "every": 360
+    },
+    {
+      "name": "Japanese American National Museum",
+      "home": "https://www.janm.org",
+      "page": "https://www.janm.org/press",
+      "link": "^/press/release/[^/]+$",
+      "kind": "statement",
+      "every": 180
+    },
+    {
+      "name": "National Filipino American Lawyers Association",
+      "home": "https://nfala.com",
+      "page": "https://nfala.com/statements",
+      "link": "^/resources/Documents/Advocacy/Organizational(?:%20| )Statements[^/]*/[^/]+\\.pdf$",
+      "kind": "statement",
+      "titleStrip": "\\s*\\([A-Z][a-z]+\\.? \\d{1,2}, ?20\\d\\d\\)\\s*$",
+      "every": 360
+    },
+    {
+      "name": "Hmong National Development",
+      "home": "https://hndinc.org",
+      "feed": "https://hndinc.org/feed/",
+      "kind": "statement",
+      "every": 180
+    },
+    {
+      "name": "Empowering Pacific Islander Communities",
+      "home": "https://www.empoweredpi.org",
+      "feed": "https://www.empoweredpi.org/blog?format=rss",
+      "kind": "statement",
+      "every": 180
+    },
+    {
+      "name": "CAAAV",
+      "home": "https://caaav.org",
+      "feed": "https://caaav.org/feed/",
+      "kind": "statement",
+      "every": 180
+    },
+    {
+      "name": "APAPA",
+      "home": "https://www.apapa.org",
+      "feed": "https://www.apapa.org/news?format=rss",
+      "kind": "statement",
+      "every": 180
+    },
+    {
+      "name": "Gold House",
+      "home": "https://goldhouse.org",
+      "wp": "https://goldhouse.org/wp-json/wp/v2/news?per_page=20&_fields=link,title,date_gmt,excerpt"
+    },
+    {
+      "name": "Ka Wai Ola",
+      "home": "https://kawaiola.news",
+      "feed": "https://kawaiola.news/feed/",
+      "dropTitle": "advertising section|^ka wai ola \\|"
+    },
+    {
+      "name": "International Examiner",
+      "home": "https://iexaminer.org",
+      "feed": "https://iexaminer.org/feed/",
+      "dropTitle": "events calendar"
+    },
+    {
+      "name": "Sampan",
+      "home": "https://www.sampan.org",
+      "feed": "https://www.sampan.org/blog-feed.xml"
+    },
+    {
+      "name": "Densho",
+      "home": "https://densho.org",
+      "feed": "https://densho.org/feed/",
+      "dropTitle": "\\b(educator spotlight|book review roundup|gala)\\b"
+    },
+    {
+      "name": "Pacific Island Times",
+      "home": "https://www.pacificislandtimes.com",
+      "feed": "https://www.pacificislandtimes.com/blog-feed.xml",
+      "filter": true
+    },
+    {
+      "name": "Samoa News",
+      "home": "https://www.samoanews.com",
+      "feed": "https://www.samoanews.com/rss1.xml",
+      "filter": true,
+      "every": 30
+    },
+    {
+      "name": "Hawaii Governor",
+      "home": "https://governor.hawaii.gov",
+      "feed": "https://governor.hawaii.gov/feed/",
+      "kind": "govstmt",
+      "filter": true,
+      "match": "\\b(native hawaiians?|kanaka|hawaiian (?:homelands?|home lands?|affairs|history|language|culture|kingdom)|asian americans?|aapi|aanhpi|nhpi|pacific islanders?|pacific (?:studies|islands?)|compact of free association|cofa|micronesia\\w*|marshallese|chuukese|filipino\\w*|japanese americans?|chinese americans?|korean americans?|samoan\\w*|tongan|immigra\\w+|language access|census|civil rights|anti-asian|hate (?:crimes?|incidents?))\\b",
+      "every": 30
+    },
+    {
+      "name": "Rep. Jill Tokuda",
+      "home": "https://tokuda.house.gov",
+      "feed": "https://tokuda.house.gov/rss/feeds/",
+      "kind": "govstmt",
+      "filter": true,
+      "match": "\\b(native hawaiians?|kanaka|hawaiian (?:homelands?|home lands?|affairs|history|language|culture|kingdom)|asian americans?|aapi|aanhpi|nhpi|pacific islanders?|pacific (?:studies|islands?)|compact of free association|cofa|micronesia\\w*|marshallese|chuukese|filipino\\w*|japanese americans?|chinese americans?|korean americans?|samoan\\w*|tongan|immigra\\w+|language access|census|civil rights|anti-asian|hate (?:crimes?|incidents?))\\b",
+      "every": 30
+    },
+    {
+      "name": "Rep. Ed Case",
+      "home": "https://case.house.gov",
+      "feed": "https://case.house.gov/news/rss.aspx",
+      "kind": "govstmt",
+      "filter": true,
+      "match": "\\b(native hawaiians?|kanaka|hawaiian (?:homelands?|home lands?|affairs|history|language|culture|kingdom)|asian americans?|aapi|aanhpi|nhpi|pacific islanders?|pacific (?:studies|islands?)|compact of free association|cofa|micronesia\\w*|marshallese|chuukese|filipino\\w*|japanese americans?|chinese americans?|korean americans?|samoan\\w*|tongan|immigra\\w+|language access|census|civil rights|anti-asian|hate (?:crimes?|incidents?))\\b",
+      "every": 30
+    },
+    {
+      "name": "Alabama Governor",
+      "home": "https://governor.alabama.gov",
+      "feed": "https://governor.alabama.gov/feed/",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "backfill": {"site": "governor.alabama.gov", "terms": "\"Asian American\" OR AAPI OR \"Pacific Islander\" OR \"Native Hawaiian\" OR \"Asian Pacific American\""},
+      "every": 30
+    },
+    {
+      "name": "Alaska Governor",
+      "home": "https://gov.alaska.gov",
+      "feed": "https://gov.alaska.gov/category/press-releases/feed/",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "backfill": {"site": "gov.alaska.gov", "terms": "\"Asian American\" OR AAPI OR \"Pacific Islander\" OR \"Native Hawaiian\" OR \"Asian Pacific American\""},
+      "every": 30
+    },
+    {
+      "name": "Alaska Governor",
+      "home": "https://gov.alaska.gov",
+      "wp": "https://gov.alaska.gov/wp-json/wp/v2/posts?categories=25&per_page=50&_fields=link,title,date_gmt,excerpt",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "backfill": {"site": "gov.alaska.gov", "terms": "\"Asian American\" OR AAPI OR \"Pacific Islander\" OR \"Native Hawaiian\" OR \"Asian Pacific American\""},
+      "every": 30
+    },
+    {
+      "name": "Arizona Governor",
+      "home": "https://azgovernor.gov",
+      "page": "https://azgovernor.gov/news-releases",
+      "link": "^/office-arizona-governor/news/20\\d\\d/\\d\\d/[^/]+/?$",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "descAfter": true,
+      "backfill": {"site": "azgovernor.gov", "terms": "\"Asian American\" OR AAPI OR \"Pacific Islander\" OR \"Native Hawaiian\" OR \"Asian Pacific American\""},
+      "every": 30
+    },
+    {
+      "name": "Arkansas Governor",
+      "home": "https://governor.arkansas.gov",
+      "feed": "https://governor.arkansas.gov/news_post/feed/",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "backfill": {"site": "governor.arkansas.gov", "terms": "\"Asian American\" OR AAPI OR \"Pacific Islander\" OR \"Native Hawaiian\" OR \"Asian Pacific American\""},
+      "every": 30
+    },
+    {
+      "name": "Delaware Governor",
+      "home": "https://governor.delaware.gov",
+      "feed": "https://news.delaware.gov/category/governor/feed/",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "every": 30
+    },
+    {
+      "name": "District of Columbia Mayor",
+      "home": "https://mayor.dc.gov",
+      "feed": "https://mayor.dc.gov/node/%2A/newsroom",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "backfill": {"site": "mayor.dc.gov", "terms": "\"Asian American\" OR AAPI OR \"Pacific Islander\" OR \"Native Hawaiian\" OR \"Asian Pacific American\""},
+      "every": 30
+    },
+    {
+      "name": "District of Columbia Office of Community Affairs",
+      "home": "https://communityaffairs.dc.gov",
+      "feed": "https://communityaffairs.dc.gov/node/%2A/newsroom",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "backfill": {"site": "communityaffairs.dc.gov", "terms": "\"Asian American\" OR AAPI OR \"Pacific Islander\" OR \"Native Hawaiian\" OR \"Asian Pacific American\""},
+      "every": 30
+    },
+    {
+      "name": "Florida Governor",
+      "home": "https://www.flgov.com",
+      "page": "https://www.flgov.com/eog/news/press",
+      "link": "^/eog/news/press/20\\d\\d/[^/]+$",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "official": true,
+      "descAfter": true,
+      "backfill": {"site": "flgov.com", "terms": "\"Asian American\" OR AAPI OR \"Pacific Islander\" OR \"Native Hawaiian\" OR \"Asian Pacific American\""},
+      "every": 30
+    },
+    {
+      "name": "Idaho Governor",
+      "home": "https://gov.idaho.gov",
+      "feed": "https://gov.idaho.gov/pressrelease/feed/",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "bodyText": true,
+      "backfill": {"site": "gov.idaho.gov", "terms": "\"Asian American\" OR AAPI OR \"Pacific Islander\" OR \"Native Hawaiian\" OR \"Asian Pacific American\""},
+      "every": 30
+    },
+    {
+      "name": "Iowa Governor",
+      "home": "https://governor.iowa.gov",
+      "feed": "https://governor.iowa.gov/news/all/all/all/rss.xml",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "backfill": {"site": "governor.iowa.gov", "terms": "\"Asian American\" OR AAPI OR \"Pacific Islander\" OR \"Native Hawaiian\" OR \"Asian Pacific American\""},
+      "every": 30
+    },
+    {
+      "name": "Louisiana Governor",
+      "home": "https://gov.louisiana.gov",
+      "feed": "https://gov.louisiana.gov/news/rss",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "backfill": {"site": "gov.louisiana.gov", "terms": "\"Asian American\" OR AAPI OR \"Pacific Islander\" OR \"Native Hawaiian\" OR \"Asian Pacific American\""},
+      "every": 30
+    },
+    {
+      "name": "Maryland Governor",
+      "home": "https://governor.maryland.gov",
+      "page": "https://governor.maryland.gov/news/press-releases",
+      "link": "^/news/press-releases/[^/]+$",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "descAfter": true,
+      "backfill": {"site": "governor.maryland.gov", "terms": "\"Asian American\" OR AAPI OR \"Pacific Islander\" OR \"Native Hawaiian\" OR \"Asian Pacific American\""},
+      "every": 30
+    },
+    {
+      "name": "Mississippi Governor",
+      "home": "https://governorreeves.ms.gov",
+      "feed": "https://governorreeves.ms.gov/feed/",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "backfill": {"site": "governorreeves.ms.gov", "terms": "\"Asian American\" OR AAPI OR \"Pacific Islander\" OR \"Native Hawaiian\" OR \"Asian Pacific American\""},
+      "every": 30
+    },
+    {
+      "name": "Missouri Governor",
+      "home": "https://governor.mo.gov",
+      "feed": "https://governor.mo.gov/rss.xml",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "backfill": {"site": "governor.mo.gov", "terms": "\"Asian American\" OR AAPI OR \"Pacific Islander\" OR \"Native Hawaiian\" OR \"Asian Pacific American\""},
+      "every": 30
+    },
+    {
+      "name": "Nebraska Governor",
+      "home": "https://governor.nebraska.gov",
+      "feed": "https://governor.nebraska.gov/rss.xml",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "backfill": {"site": "governor.nebraska.gov", "terms": "\"Asian American\" OR AAPI OR \"Pacific Islander\" OR \"Native Hawaiian\" OR \"Asian Pacific American\""},
+      "every": 30
+    },
+    {
+      "name": "Nevada Governor",
+      "home": "https://gov.nv.gov",
+      "page": "https://www.gov.nv.gov/press-releases/",
+      "link": "^/press-releases/[^/]+/?$",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "descAfter": true,
+      "backfill": {"site": "gov.nv.gov", "terms": "\"Asian American\" OR AAPI OR \"Pacific Islander\" OR \"Native Hawaiian\" OR \"Asian Pacific American\""},
+      "every": 30
+    },
+    {
+      "name": "New Jersey Governor",
+      "home": "https://www.nj.gov/governor",
+      "page": "https://www.nj.gov/governor/news/2026/approved/news_archive.shtml",
+      "link": "^/governor/news/2026/approved/\\d{8}[a-z]?\\.shtml$",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "descAfter": true,
+      "numericDates": true,
+      "skipComments": true,
+      "backfill": {"site": "nj.gov", "terms": "\"Asian American\" OR AAPI OR \"Pacific Islander\" OR \"Native Hawaiian\" OR \"Asian Pacific American\""},
+      "every": 30
+    },
+    {
+      "name": "New York Governor",
+      "home": "https://www.governor.ny.gov",
+      "page": "https://www.governor.ny.gov/news",
+      "link": "^/news/[^/]+$",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "descAfter": true,
+      "backfill": {"site": "governor.ny.gov", "terms": "\"Asian American\" OR AAPI OR \"Pacific Islander\" OR \"Native Hawaiian\" OR \"Asian Pacific American\""},
+      "every": 30
+    },
+    {
+      "name": "North Carolina Governor",
+      "home": "https://governor.nc.gov",
+      "feed": "https://governor.nc.gov/news/feed",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "backfill": {"site": "governor.nc.gov", "terms": "\"Asian American\" OR AAPI OR \"Pacific Islander\" OR \"Native Hawaiian\" OR \"Asian Pacific American\""},
+      "every": 30
+    },
+    {
+      "name": "North Carolina Governor",
+      "home": "https://governor.nc.gov",
+      "page": "https://governor.nc.gov/news/procs",
+      "link": "^/governor-(?:stein-)?proclaims?-[^/]+$",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "descAfter": true,
+      "backfill": {"site": "governor.nc.gov", "terms": "\"Asian American\" OR AAPI OR \"Pacific Islander\" OR \"Native Hawaiian\" OR \"Asian Pacific American\""},
+      "every": 30
+    },
+    {
+      "name": "North Dakota Governor",
+      "home": "https://www.governor.nd.gov",
+      "feed": "https://www.governor.nd.gov/rss/news",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "backfill": {"site": "governor.nd.gov", "terms": "\"Asian American\" OR AAPI OR \"Pacific Islander\" OR \"Native Hawaiian\" OR \"Asian Pacific American\""},
+      "every": 30
+    },
+    {
+      "name": "South Carolina Governor",
+      "home": "https://governor.sc.gov",
+      "page": "https://governor.sc.gov/news",
+      "link": "^/news/20\\d\\d-\\d\\d/[^/]+$",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "descAfter": true,
+      "backfill": {"site": "governor.sc.gov", "terms": "\"Asian American\" OR AAPI OR \"Pacific Islander\" OR \"Native Hawaiian\" OR \"Asian Pacific American\""},
+      "every": 30
+    },
+    {
+      "name": "Texas Governor",
+      "home": "https://gov.texas.gov",
+      "feed": "https://gov.texas.gov/news/rss",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "backfill": {"site": "gov.texas.gov", "terms": "\"Asian American\" OR AAPI OR \"Pacific Islander\" OR \"Native Hawaiian\" OR \"Asian Pacific American\""},
+      "every": 30
+    },
+    {
+      "name": "Utah Governor",
+      "home": "https://governor.utah.gov",
+      "feed": "https://governor.utah.gov/feed/",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "backfill": {"site": "governor.utah.gov", "terms": "\"Asian American\" OR AAPI OR \"Pacific Islander\" OR \"Native Hawaiian\" OR \"Asian Pacific American\""},
+      "every": 30
+    },
+    {
+      "name": "Vermont Governor",
+      "home": "https://governor.vermont.gov",
+      "feed": "https://governor.vermont.gov/taxonomy/term/3/feed",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "backfill": {"site": "governor.vermont.gov", "terms": "\"Asian American\" OR AAPI OR \"Pacific Islander\" OR \"Native Hawaiian\" OR \"Asian Pacific American\""},
+      "every": 30
+    },
+    {
+      "name": "West Virginia Governor",
+      "home": "https://governor.wv.gov",
+      "feed": "https://governor.wv.gov/rss.xml",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "every": 30
+    },
+    {
+      "name": "Wisconsin Governor",
+      "home": "https://evers.wi.gov",
+      "feed": "https://evers.wi.gov/_layouts/15/listfeed.aspx?List=DACAE722-AFDB-4E1E-A338-0CAFB44A8F98",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "backfill": {"site": "evers.wi.gov", "terms": "\"Asian American\" OR AAPI OR \"Pacific Islander\" OR \"Native Hawaiian\" OR \"Asian Pacific American\""},
+      "every": 30
+    },
+    {
+      "name": "U.S. Virgin Islands Government",
+      "home": "https://www.vi.gov",
+      "feed": "https://www.vi.gov/feed/",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "backfill": {"site": "vi.gov", "terms": "\"Asian American\" OR AAPI OR \"Pacific Islander\" OR \"Native Hawaiian\" OR \"Asian Pacific American\""},
+      "every": 30
+    },
+    {
+      "name": "Governor of Guam",
+      "home": "https://governor.guam.gov",
+      "feed": "https://governor.guam.gov/feed/?post_type=press_release",
+      "kind": "govstmt",
+      "filter": true,
+      "match": "\\b(native hawaiians?|kanaka|hawaiian (?:homelands?|home lands?|affairs|history|language|culture|kingdom)|asian americans?|aapi|aanhpi|nhpi|pacific islanders?|pacific (?:studies|islands?)|compact of free association|cofa|micronesia\\w*|marshallese|chuukese|filipino\\w*|japanese americans?|chinese americans?|korean americans?|samoan\\w*|tongan|immigra\\w+|language access|census|civil rights|anti-asian|hate (?:crimes?|incidents?)|chamorro|chamoru|decoloni\\w+|self-determination|statehood|u\\.s\\. nationals?|birthright|citizenship|pacific islands forum)\\b",
+      "every": 30
+    },
+    {
+      "name": "American Samoa Government",
+      "home": "https://www.americansamoa.gov",
+      "page": "https://www.americansamoa.gov/pressreleases",
+      "link": "^/_files/ugd/[0-9a-f]{6}_[0-9a-f]{32}\\.pdf$",
+      "kind": "govstmt",
+      "filter": true,
+      "match": "\\b(native hawaiians?|kanaka|hawaiian (?:homelands?|home lands?|affairs|history|language|culture|kingdom)|asian americans?|aapi|aanhpi|nhpi|pacific islanders?|pacific (?:studies|islands?)|compact of free association|cofa|micronesia\\w*|marshallese|chuukese|filipino\\w*|japanese americans?|chinese americans?|korean americans?|samoan\\w*|tongan|immigra\\w+|language access|census|civil rights|anti-asian|hate (?:crimes?|incidents?)|chamorro|chamoru|decoloni\\w+|self-determination|statehood|u\\.s\\. nationals?|birthright|citizenship|pacific islands forum)\\b",
+      "numericDates": true,
+      "titleStrip": "^PR\\d+-\\d{8}\\s*-\\s*|\\s*-\\s*\\d{1,2}/\\d{1,2}/20\\d\\d$",
+      "descAfter": true,
+      "every": 30
+    },
+    {
+      "name": "Alabama Attorney General",
+      "home": "https://www.alabamaag.gov",
+      "feed": "https://www.alabamaag.gov/feed/",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "skipTitle": "\\b(sentenced|sentencing|pleads?|pleaded|guilty|convicted|indicted|indictment|charged|arrested|arrests?|smuggl\\w+|charges (for|against)|fraud (ring|scheme)|marriage fraud)\\b",
+      "backfill": {"site": "alabamaag.gov", "terms": "\"Asian American\" OR AAPI OR \"Pacific Islander\" OR \"Native Hawaiian\" OR \"Asian Pacific American\""},
+      "every": 30
+    },
+    {
+      "name": "Arizona Attorney General",
+      "home": "https://www.azag.gov",
+      "feed": "https://www.azag.gov/rss.xml",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "skipTitle": "\\b(sentenced|sentencing|pleads?|pleaded|guilty|convicted|indicted|indictment|charged|arrested|arrests?|smuggl\\w+|charges (for|against)|fraud (ring|scheme)|marriage fraud)\\b",
+      "backfill": {"site": "azag.gov", "terms": "\"Asian American\" OR AAPI OR \"Pacific Islander\" OR \"Native Hawaiian\" OR \"Asian Pacific American\""},
+      "every": 30
+    },
+    {
+      "name": "Arkansas Attorney General",
+      "home": "https://arkansasag.gov",
+      "wp": "https://arkansasag.gov/wp-json/wp/v2/news-release?per_page=20&_fields=link,title,date_gmt,excerpt",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "skipTitle": "\\b(sentenced|sentencing|pleads?|pleaded|guilty|convicted|indicted|indictment|charged|arrested|arrests?|smuggl\\w+|charges (for|against)|fraud (ring|scheme)|marriage fraud)\\b",
+      "backfill": {"site": "arkansasag.gov", "terms": "\"Asian American\" OR AAPI OR \"Pacific Islander\" OR \"Native Hawaiian\" OR \"Asian Pacific American\""},
+      "every": 30
+    },
+    {
+      "name": "Delaware Department of Justice",
+      "home": "https://attorneygeneral.delaware.gov",
+      "feed": "https://news.delaware.gov/category/justice/feed/",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "skipTitle": "\\b(sentenced|sentencing|pleads?|pleaded|guilty|convicted|indicted|indictment|charged|arrested|arrests?|smuggl\\w+|charges (for|against)|fraud (ring|scheme)|marriage fraud)\\b",
+      "every": 30
+    },
+    {
+      "name": "District of Columbia Attorney General",
+      "home": "https://oag.dc.gov",
+      "page": "https://oag.dc.gov/newsroom",
+      "link": "^/release/[^/]+/?$",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "skipTitle": "\\b(sentenced|sentencing|pleads?|pleaded|guilty|convicted|indicted|indictment|charged|arrested|arrests?|smuggl\\w+|charges (for|against)|fraud (ring|scheme)|marriage fraud)\\b",
+      "descAfter": true,
+      "backfill": {"site": "oag.dc.gov", "terms": "\"Asian American\" OR AAPI OR \"Pacific Islander\" OR \"Native Hawaiian\" OR \"Asian Pacific American\""},
+      "every": 30
+    },
+    {
+      "name": "Idaho Attorney General",
+      "home": "https://www.ag.idaho.gov",
+      "feed": "https://www.ag.idaho.gov/feed/",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "skipTitle": "\\b(sentenced|sentencing|pleads?|pleaded|guilty|convicted|indicted|indictment|charged|arrested|arrests?|smuggl\\w+|charges (for|against)|fraud (ring|scheme)|marriage fraud)\\b",
+      "backfill": {"site": "ag.idaho.gov", "terms": "\"Asian American\" OR AAPI OR \"Pacific Islander\" OR \"Native Hawaiian\" OR \"Asian Pacific American\""},
+      "every": 30
+    },
+    {
+      "name": "Illinois Attorney General",
+      "home": "https://illinoisattorneygeneral.gov",
+      "page": "https://illinoisattorneygeneral.gov/news-room/",
+      "link": "^/news/story/[^?#]+$",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "skipTitle": "\\b(sentenced|sentencing|pleads?|pleaded|guilty|convicted|indicted|indictment|charged|arrested|arrests?|smuggl\\w+|charges (for|against)|fraud (ring|scheme)|marriage fraud)\\b",
+      "titleStrip": "^(?:January|February|March|April|May|June|July|August|September|October|November|December) \\d{1,2}, 20\\d\\d\\s+",
+      "descAfter": true,
+      "backfill": {"site": "illinoisattorneygeneral.gov", "terms": "\"Asian American\" OR AAPI OR \"Pacific Islander\" OR \"Native Hawaiian\" OR \"Asian Pacific American\""},
+      "every": 30
+    },
+    {
+      "name": "Iowa Attorney General",
+      "home": "https://www.iowaattorneygeneral.gov",
+      "feed": "https://www.iowaattorneygeneral.gov/newsroom/rss",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "skipTitle": "\\b(sentenced|sentencing|pleads?|pleaded|guilty|convicted|indicted|indictment|charged|arrested|arrests?|smuggl\\w+|charges (for|against)|fraud (ring|scheme)|marriage fraud)\\b",
+      "backfill": {"site": "iowaattorneygeneral.gov", "terms": "\"Asian American\" OR AAPI OR \"Pacific Islander\" OR \"Native Hawaiian\" OR \"Asian Pacific American\""},
+      "every": 30
+    },
+    {
+      "name": "Louisiana Attorney General",
+      "home": "https://www.ag.louisiana.gov",
+      "page": "https://www.ag.louisiana.gov/News/Page/1",
+      "link": "^/Article/\\d+$",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "skipTitle": "\\b(sentenced|sentencing|pleads?|pleaded|guilty|convicted|indicted|indictment|charged|arrested|arrests?|smuggl\\w+|charges (for|against)|fraud (ring|scheme)|marriage fraud)\\b",
+      "descAfter": true,
+      "backfill": {"site": "ag.louisiana.gov", "terms": "\"Asian American\" OR AAPI OR \"Pacific Islander\" OR \"Native Hawaiian\" OR \"Asian Pacific American\""},
+      "every": 30
+    },
+    {
+      "name": "Missouri Attorney General",
+      "home": "https://ago.mo.gov",
+      "feed": "https://ago.mo.gov/feed/",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "skipTitle": "\\b(sentenced|sentencing|pleads?|pleaded|guilty|convicted|indicted|indictment|charged|arrested|arrests?|smuggl\\w+|charges (for|against)|fraud (ring|scheme)|marriage fraud)\\b",
+      "backfill": {"site": "ago.mo.gov", "terms": "\"Asian American\" OR AAPI OR \"Pacific Islander\" OR \"Native Hawaiian\" OR \"Asian Pacific American\""},
+      "every": 30
+    },
+    {
+      "name": "Montana Attorney General",
+      "home": "https://dojmt.gov",
+      "feed": "https://dojmt.gov/feed/",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "skipTitle": "\\b(sentenced|sentencing|pleads?|pleaded|guilty|convicted|indicted|indictment|charged|arrested|arrests?|smuggl\\w+|charges (for|against)|fraud (ring|scheme)|marriage fraud)\\b",
+      "backfill": {"site": "dojmt.gov", "terms": "\"Asian American\" OR AAPI OR \"Pacific Islander\" OR \"Native Hawaiian\" OR \"Asian Pacific American\""},
+      "every": 30
+    },
+    {
+      "name": "Nebraska Attorney General",
+      "home": "https://ago.nebraska.gov",
+      "feed": "https://ago.nebraska.gov/rss/news",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "skipTitle": "\\b(sentenced|sentencing|pleads?|pleaded|guilty|convicted|indicted|indictment|charged|arrested|arrests?|smuggl\\w+|charges (for|against)|fraud (ring|scheme)|marriage fraud)\\b",
+      "backfill": {"site": "ago.nebraska.gov", "terms": "\"Asian American\" OR AAPI OR \"Pacific Islander\" OR \"Native Hawaiian\" OR \"Asian Pacific American\""},
+      "every": 30
+    },
+    {
+      "name": "New Jersey Attorney General",
+      "home": "https://www.njoag.gov",
+      "feed": "https://www.njoag.gov/feed/",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "skipTitle": "\\b(sentenced|sentencing|pleads?|pleaded|guilty|convicted|indicted|indictment|charged|arrested|arrests?|smuggl\\w+|charges (for|against)|fraud (ring|scheme)|marriage fraud)\\b",
+      "noQuery": true,
+      "backfill": {"site": "njoag.gov", "terms": "\"Asian American\" OR AAPI OR \"Pacific Islander\" OR \"Native Hawaiian\" OR \"Asian Pacific American\""},
+      "every": 30
+    },
+    {
+      "name": "New York Attorney General",
+      "home": "https://ag.ny.gov",
+      "page": "https://ag.ny.gov/press-releases",
+      "link": "^/press-release/20\\d\\d/[^/]+$",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "skipTitle": "\\b(sentenced|sentencing|pleads?|pleaded|guilty|convicted|indicted|indictment|charged|arrested|arrests?|smuggl\\w+|charges (for|against)|fraud (ring|scheme)|marriage fraud)\\b",
+      "descAfter": true,
+      "backfill": {"site": "ag.ny.gov", "terms": "\"Asian American\" OR AAPI OR \"Pacific Islander\" OR \"Native Hawaiian\" OR \"Asian Pacific American\""},
+      "every": 30
+    },
+    {
+      "name": "North Carolina Attorney General",
+      "home": "https://ncdoj.gov",
+      "feed": "https://ncdoj.gov/feed/",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "skipTitle": "\\b(sentenced|sentencing|pleads?|pleaded|guilty|convicted|indicted|indictment|charged|arrested|arrests?|smuggl\\w+|charges (for|against)|fraud (ring|scheme)|marriage fraud)\\b",
+      "noQuery": true,
+      "backfill": {"site": "ncdoj.gov", "terms": "\"Asian American\" OR AAPI OR \"Pacific Islander\" OR \"Native Hawaiian\" OR \"Asian Pacific American\""},
+      "every": 30
+    },
+    {
+      "name": "North Dakota Attorney General",
+      "home": "https://attorneygeneral.nd.gov",
+      "feed": "https://attorneygeneral.nd.gov/feed/",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "skipTitle": "\\b(sentenced|sentencing|pleads?|pleaded|guilty|convicted|indicted|indictment|charged|arrested|arrests?|smuggl\\w+|charges (for|against)|fraud (ring|scheme)|marriage fraud)\\b",
+      "backfill": {"site": "attorneygeneral.nd.gov", "terms": "\"Asian American\" OR AAPI OR \"Pacific Islander\" OR \"Native Hawaiian\" OR \"Asian Pacific American\""},
+      "every": 30
+    },
+    {
+      "name": "Ohio Attorney General",
+      "home": "https://www.ohioattorneygeneral.gov",
+      "page": "https://www.ohioattorneygeneral.gov/Media/News-Releases",
+      "link": "^/Media/News-Releases/[A-Za-z]+-20\\d\\d/[^/?#]+$",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "skipTitle": "\\b(sentenced|sentencing|pleads?|pleaded|guilty|convicted|indicted|indictment|charged|arrested|arrests?|smuggl\\w+|charges (for|against)|fraud (ring|scheme)|marriage fraud)\\b",
+      "descAfter": true,
+      "numericDates": true,
+      "backfill": {"site": "ohioattorneygeneral.gov", "terms": "\"Asian American\" OR AAPI OR \"Pacific Islander\" OR \"Native Hawaiian\" OR \"Asian Pacific American\""},
+      "every": 30
+    },
+    {
+      "name": "Pennsylvania Attorney General",
+      "home": "https://www.attorneygeneral.gov",
+      "feed": "https://www.attorneygeneral.gov/feed/",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "skipTitle": "\\b(sentenced|sentencing|pleads?|pleaded|guilty|convicted|indicted|indictment|charged|arrested|arrests?|smuggl\\w+|charges (for|against)|fraud (ring|scheme)|marriage fraud)\\b",
+      "backfill": {"site": "attorneygeneral.gov", "terms": "\"Asian American\" OR AAPI OR \"Pacific Islander\" OR \"Native Hawaiian\" OR \"Asian Pacific American\""},
+      "every": 30
+    },
+    {
+      "name": "South Carolina Attorney General",
+      "home": "https://www.scag.gov",
+      "page": "https://www.scag.gov/about-the-office/news/",
+      "link": "^/about-the-office/news/[^/]+/$",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "skipTitle": "\\b(sentenced|sentencing|pleads?|pleaded|guilty|convicted|indicted|indictment|charged|arrested|arrests?|smuggl\\w+|charges (for|against)|fraud (ring|scheme)|marriage fraud)\\b",
+      "descAfter": true,
+      "backfill": {"site": "scag.gov", "terms": "\"Asian American\" OR AAPI OR \"Pacific Islander\" OR \"Native Hawaiian\" OR \"Asian Pacific American\""},
+      "every": 30
+    },
+    {
+      "name": "Utah Attorney General",
+      "home": "https://attorneygeneral.utah.gov",
+      "feed": "https://attorneygeneral.utah.gov/feed/",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "skipTitle": "\\b(sentenced|sentencing|pleads?|pleaded|guilty|convicted|indicted|indictment|charged|arrested|arrests?|smuggl\\w+|charges (for|against)|fraud (ring|scheme)|marriage fraud)\\b",
+      "backfill": {"site": "attorneygeneral.utah.gov", "terms": "\"Asian American\" OR AAPI OR \"Pacific Islander\" OR \"Native Hawaiian\" OR \"Asian Pacific American\""},
+      "every": 30
+    },
+    {
+      "name": "Vermont Attorney General",
+      "home": "https://ago.vermont.gov",
+      "feed": "https://ago.vermont.gov/taxonomy/term/9/feed",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "skipTitle": "\\b(sentenced|sentencing|pleads?|pleaded|guilty|convicted|indicted|indictment|charged|arrested|arrests?|smuggl\\w+|charges (for|against)|fraud (ring|scheme)|marriage fraud)\\b",
+      "backfill": {"site": "ago.vermont.gov", "terms": "\"Asian American\" OR AAPI OR \"Pacific Islander\" OR \"Native Hawaiian\" OR \"Asian Pacific American\""},
+      "every": 30
+    },
+    {
+      "name": "West Virginia Attorney General",
+      "home": "https://ago.wv.gov",
+      "feed": "https://ago.wv.gov/rss.xml",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "skipTitle": "\\b(sentenced|sentencing|pleads?|pleaded|guilty|convicted|indicted|indictment|charged|arrested|arrests?|smuggl\\w+|charges (for|against)|fraud (ring|scheme)|marriage fraud)\\b",
+      "every": 30
+    },
+    {
+      "name": "Northern Mariana Islands Attorney General",
+      "home": "https://www.cnmioag.org",
+      "feed": "https://www.cnmioag.org/feed/",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "skipTitle": "\\b(sentenced|sentencing|pleads?|pleaded|guilty|convicted|indicted|indictment|charged|arrested|arrests?|smuggl\\w+|charges (for|against)|fraud (ring|scheme)|marriage fraud)\\b",
+      "official": true,
+      "noQuery": true,
+      "backfill": {"site": "cnmioag.org", "terms": "\"Asian American\" OR AAPI OR \"Pacific Islander\" OR \"Native Hawaiian\" OR \"Asian Pacific American\""},
+      "every": 30
+    },
+    {
+      "name": "Utah Division of Multicultural Affairs",
+      "home": "https://multicultural.utah.gov",
+      "feed": "https://multicultural.utah.gov/feed/",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "backfill": {"site": "multicultural.utah.gov", "terms": "\"Asian American\" OR AAPI OR \"Pacific Islander\" OR \"Native Hawaiian\" OR \"Asian Pacific American\""},
+      "every": 30
+    },
+    {
+      "name": "South Carolina Commission for Community Advancement and Engagement",
+      "home": "https://advance.sc.gov",
+      "page": "https://advance.sc.gov/news",
+      "link": "^/about/updates/[^/]+$",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "descAfter": true,
+      "backfill": {"site": "advance.sc.gov", "terms": "\"Asian American\" OR AAPI OR \"Pacific Islander\" OR \"Native Hawaiian\" OR \"Asian Pacific American\""},
+      "every": 30
+    },
+    {
+      "name": "Washington State Human Rights Commission",
+      "home": "https://www.hum.wa.gov",
+      "page": "https://www.hum.wa.gov/about-us/news",
+      "link": "^/news/20\\d\\d/\\d\\d/[^/]+/?$",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "descAfter": true,
+      "backfill": {"site": "hum.wa.gov", "terms": "\"Asian American\" OR AAPI OR \"Pacific Islander\" OR \"Native Hawaiian\" OR \"Asian Pacific American\""},
+      "every": 30
+    },
+    {
+      "name": "Washington Senate Democrats Members of Color Caucus",
+      "home": "https://senatedemocrats.wa.gov",
+      "wp": "https://senatedemocrats.wa.gov/wp-json/wp/v2/posts?categories=91&per_page=20&_fields=link,title,date_gmt,excerpt",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "backfill": {"site": "senatedemocrats.wa.gov", "terms": "\"Asian American\" OR AAPI OR \"Pacific Islander\" OR \"Native Hawaiian\" OR \"Asian Pacific American\""},
+      "every": 30
+    },
+    {
+      "name": "Washington House Democrats Members of Color Caucus",
+      "home": "https://housedemocrats.wa.gov/mocc",
+      "feed": "https://housedemocrats.wa.gov/mocc/feed/",
+      "kind": "govstmt",
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "backfill": {"site": "housedemocrats.wa.gov", "terms": "\"Asian American\" OR AAPI OR \"Pacific Islander\" OR \"Native Hawaiian\" OR \"Asian Pacific American\""},
+      "every": 30
+    },
+    {
+      "name": "Illinois Senate Democratic Caucus",
+      "home": "https://www.illinoissenatedemocrats.com",
+      "feed": "https://www.illinoissenatedemocrats.com/caucus-news?format=feed&type=rss",
+      "kind": "govstmt",
+      "official": true,
+      "filter": true,
+      "communityOnly": true,
+      "match": "communityPattern",
+      "every": 60
+    }
+  ],
+  "_excludeNote": "Sites listed here are never shown, including their subdomains. excludeNames covers a publisher name that Google News shows without a web address. Stored stories from these sites are removed on the next update.",
+  "excludeHosts": [
+    "linkedin.com",
+    "britannica.com",
+    "newsletters.theyappie.com",
+    "hoodline.com",
+    "vietnam.vn",
+    "dainikjagranmpcg.com",
+    "kelownadailycourier.ca",
+    "nationalenquirer.co",
+    "nationalenquirer.com",
+    "sofascore.com",
+    "usresistnews.org",
+    "constitutioncenter.org",
+    "history.com",
+    "medium.com",
+    "newtelegraphng.com",
+    "rediff.com",
+    "clearancejobs.com",
+    "news.clearancejobs.com",
+    "militarywatchmagazine.com",
+    "communityimpact.com",
+    "uzdaily.uz",
+    "environmentenergyleader.com",
+    "thelocalgirl.com",
+    "dvidshub.net",
+    "myjoyonline.com",
+    "airtraveler.club",
+    "vernonreporter.com",
+    "simpleflying.com",
+    "media.unisba.ac.id",
+    "tradingview.com",
+    "emjreviews.com",
+    "v13.net",
+    "racism.org",
+    "militarnyi.com",
+    "tribune242.com",
+    "dzair-tube.dz",
+    "zona-militar.com",
+    "gurufocus.com",
+    "deccanherald.com",
+    "pressdemocrat.com",
+    "ecoportal.net",
+    "eturbonews.com",
+    "socialist-alliance.org",
+    "londondaily.news",
+    "al-monitor.com",
+    "newsgram.com",
+    "ua.news",
+    "jpost.com",
+    "publicservices.international",
+    "timesofisrael.com",
+    "rightlivelihood.org",
+    "aflcio.org",
+    "universityherald.com",
+    "yahoo.com",
+    "msn.com",
+    "aol.com",
+    "newsbreak.com",
+    "smartnews.com",
+    "lassennews.com",
+    "cedarnews.net"
+  ],
+  "excludeNames": [
+    "The National Constitution Center",
+    "National Constitution Center",
+    "Dainik Jagran MP/CG",
+    "Kelowna Daily Courier",
+    "Kelowna Courier",
+    "US Resist News",
+    "National Enquirer",
+    "New Telegraph",
+    "ClearanceJobs",
+    "Security Clearance Jobs",
+    "Military Watch Magazine",
+    "Community Impact Newspaper",
+    "Community Impact",
+    "UzDaily",
+    "Environment+Energy Leader",
+    "Environmental Leader",
+    "DVIDS",
+    "Unisba Media",
+    "EMJ",
+    "EMJ Reviews",
+    "V13 Media",
+    "Race, Racism and the Law",
+    "Militarnyi",
+    "Мілітарний",
+    "Dzair Tube",
+    "دزاير تيوب",
+    "The Press Democrat",
+    "Press Democrat",
+    "Tribune 242",
+    "Zona Militar",
+    "Deccan Herald",
+    "Simple Flying",
+    "Air Traveler Club",
+    "VernonReporter",
+    "The Local Girl",
+    "MyJoyOnline",
+    "TradingView",
+    "GuruFocus",
+    "eTurboNews",
+    "EcoPortal.net",
+    "Rediff",
+    "The Jerusalem Post",
+    "Jerusalem Post",
+    "The Times of Israel",
+    "Times of Israel",
+    "Lassen County News",
+    "Yahoo News",
+    "Yahoo Finance",
+    "Yahoo Entertainment",
+    "Yahoo Sports",
+    "Yahoo Life"
+  ],
+  "_foreignNote": "Sites on a country domain outside the U.S. (.ca, .ch, .uz, .co.uk, .com.au, and every other two-letter country ending except .us and the U.S. territories .gu .as .mp .vi .pr .um) are never shown, and a source on one is not fetched. List a site in allowHosts to let it through, and in gatedHosts to let through only some of its stories.",
+  "blockForeignDomains": true,
+  "allowHosts": ["rnz.co.nz", "independent.co.uk"],
+  "_gateNote": "A site in allowHosts can also be listed here to let through only some of its stories: a story from it (matched by its address, the address Google News reports for its publisher, or its name) is kept when its headline and summary match require (or, with community: true, name the communities in communityPattern) and do not match deny. rnz.co.nz: Pacific Islander stories only, no sports. independent.co.uk: stories about Asian American, Native Hawaiian and Pacific Islander communities only.",
+  "gatedHosts": [
+    {
+      "hosts": ["rnz.co.nz"],
+      "names": ["RNZ", "RNZ Pacific", "Radio New Zealand"],
+      "tie": true,
+      "require": "\\b(pacific islanders?|pacific islands?|pasifika|pacific (?:peoples?|communit\\w+|diaspora|nations?|leaders?|forum|region|youth|families|workers?)|south pacific|polynesia\\w*|melanesia\\w*|micronesia\\w*|oceania|samoa\\w*|tonga\\w*|fiji\\w*|vanuatu|ni-?vanuatu|tuvalu\\w*|kiribati|i-kiribati|nauru\\w*|palau\\w*|marshall islands|marshallese|cook islands?|cook islanders?|niue\\w*|tokelau\\w*|papua new guinea|bougainville|solomon islands?|solomon islanders?|new caledonia|kanak\\w*|tahiti\\w*|wallis and futuna|guam|chamorros?|chamoru|mariana\\w*|saipan|tinian|cnmi|american samoa|hawai\\S*|rapa nui|pitcairn|pohnpei|chuuk|kosrae)\\b",
+      "deny": "\\b(sports?|sporting|rugby|nrl|netball|football\\w*|soccer|cricket|basketball|volleyball|athletics|athletes?|olympi\\w+|paralympi\\w+|commonwealth games|pacific games|micronesian games|mini games|island games|arafura games|world cup|premier league|league|cup|semis|recap|half-?time|full-?time|kick-?off|line-?up|scores? (?:a |the )?(?:winner|try|goal|hat-?trick)|(?:fiji|tonga|samoa|png|cook islands|new zealand|australia|england|france|kiwis|wallabies) (?:beats?|defeats?|edges?|stuns?|downs?|upsets?|thrash\\w*|routs?)|all blacks|black ferns|silver ferns|tall blacks|tall ferns|wallabies|wallaroos|warriors|moana pasifika|drua|flying fijians|manu samoa|ikale tahi|sevens|swimm\\w+|weightlift\\w+|boxing(?! day)|boxers?|mma|ufc|golf\\w*|tennis|cycling|rowing|surf(?:ing|ers?)|sailing|triathlon|waka ama|referee\\w*|(?:gold|silver|bronze) medal\\w*|medall?ists?|fifa|ofc|nba|nfl|grand final|semi-?finals?|quarter-?finals?|tournament|try-?scorer|scrum\\w*|halfback|five-?eighth)\\b"
+    },
+    {
+      "hosts": ["independent.co.uk"],
+      "names": ["The Independent", "Independent"],
+      "community": true
+    },
+    {
+      "hosts": [],
+      "names": ["Idaho Attorney General"],
+      "deny": "^Labrador Letter: A Second Amendment Win at the Supreme Court"
+    }
+  ],
+  "_pacificNote": "Pacific island nations. A story about a Pacific island country (Fiji's constitution, a Samoan prime minister, a drug-detection unit in Tonga) is not about Pacific Islander communities in the United States, so a news story that names one of the pacificNations without a tie to the U.S. is dropped from every source. A tie is any usTie word (matched ignoring case) or usTieCase word (matched exactly, so \"US\" and \"ICE\" do not match the words \"us\" and \"ice\"): the U.S. and its government and military, the Compact of Free Association, nuclear testing, climate change, and the U.S. territories and states. A gated site with \"tie\": true (rnz.co.nz) needs a tie for every story. Statements, policy items, research and the community outlets are not checked, and a story the owner pinned or featured stays. Add a word to usTie to keep more stories; remove pacificNations to turn the rule off.",
+  "pacificNations": "\\b(fiji|tonga|samoa|vanuatu|tuvalu|kiribati|nauru|palau|marshall islands|federated states of micronesia|cook islands?|niue|tokelau|papua new guinea|bougainville|solomon islands?|new caledonia|french polynesia|tahiti|wallis and futuna|pitcairn|south pacific|pacific islands|pacific island (?:nations?|countries|states|governments?|leaders?)|pacific (?:nations|leaders|region|forum)|melanesian spearhead group)\\b",
+  "usTie": "\\b(united states|u\\.s\\.|usa|america\\w*|trump|biden|obama|white house|pentagon|washington|capitol hill|congress\\w*|senators?|state department|usaid|peace corps|indo-?pacific|indopacom|compact of free association|cofa|free association|compact (?:funding|negotiations?|renewal|trust fund)|nuclear|radiation|runit|bikini|enewetak|castle bravo|climate|sea[- ]level|rising seas?|global warming|loss and damage|cop\\d+|guam|chamorros?|chamoru|mariana\\w*|saipan|tinian|cnmi|american samoa|hawai\\S*|native hawaiians?|kanaka|honolulu|maui|oahu|kauai|pearl harbor|aapi|aanhpi|nhpi|asian americans?|alabama|arizona|california|colorado|connecticut|delaware|florida|georgia|idaho|illinois|indiana|iowa|kansas|kentucky|louisiana|maine|maryland|massachusetts|michigan|minnesota|mississippi|missouri|montana|nebraska|nevada|new hampshire|new jersey|new mexico|new york|north carolina|north dakota|ohio|oklahoma|oregon|pennsylvania|rhode island|south carolina|south dakota|tennessee|texas|utah|vermont|virginia|west virginia|wisconsin|wyoming|alaska|arkansas|los angeles|san francisco|seattle|portland|salt lake|springdale|oakland|san diego|sacramento|chicago|houston|dallas|phoenix|las vegas|denver|atlanta|boston|philadelphia|miami|new orleans)\\b",
+  "usTieCase": "\\b(?:U\\.?S\\.?(?:A\\.?)?(?![\\w$])|(?:ICE|FBI|DHS|NOAA|FEMA)\\b)",
+  "usOutlets": "(?:^|\\.)(?:guampdn\\.com|postguam\\.com|kuam\\.com|islapublic\\.org|mvguam\\.com|mvariety\\.com|saipantribune\\.com|samoanews\\.com|pacificislandtimes\\.com|civilbeat\\.org|staradvertiser\\.com|hawaiinewsnow\\.com|khon2\\.com|kitv\\.com|hawaiitribune-herald\\.com|bigislandnow\\.com|mauinow\\.com|kauainownews\\.com|hawaiipublicradio\\.org)$",
+  "_travelNote": "Travel and celebrity trips. A news story that uses a Pacific place only as a destination (a TV star's exhausting trip to Guam, a K-pop idol's honeymoon in Hawaii) is dropped when it names one of the travelPlaces together with one of the travelWords and does not name the communities (communityPattern). Local coverage of tourism, such as visitor counts or vacation-rental rules, is not matched. Statements, policy items, research and the community outlets are not checked, and a story the owner pinned or featured stays.",
+  "travelPlaces": "\\b(guam|hawai\\S*|honolulu|maui|oahu|kauai|saipan|tinian|rota|cnmi|marianas?|samoa|fiji|tonga|palau|tahiti|cook islands|marshall islands|micronesia|polynesia|pacific islands?)\\b",
+  "travelWords": "\\b(honeymoons?|getaways?|itinerar(?:y|ies)|travel (?:guide|tips|diary|vlog)|sightseeing|things to do|best (?:beaches|resorts)|where to (?:stay|eat)|tv (?:stars?|shows?|celebrit\\w+)|celebrit(?:y|ies)|k-?pop (?:idols?|stars?)|variety shows?|mukbang|vlog\\w*|trip (?:experience|diary|review|vlog)|packing list)\\b",
+  "_routesNote": "Stories from these sites or publishers are shown on the page for the kind named here, whatever source they came in through. Stories that link to a .gov address move from News to the Policy page on their own.",
+  "routes": [
+    {"kind": "statement", "hosts": ["asianlawcaucus.org"], "names": ["Asian Law Caucus"]},
+    {"kind": "statement", "hosts": ["aclu.org"], "names": ["American Civil Liberties Union", "ACLU"]},
+    {"kind": "research", "hosts": ["csis.org"], "names": ["CSIS", "CSIS | Center for Strategic and International Studies", "Center for Strategic and International Studies"]}
+  ],
+  "_relevanceNote": "Broad Google News searches can return stories that only share a word with the communities (a Guam soccer score, a stock ticker). A story found that way is shown only if its headline names the communities (communityPattern) or its publisher is listed here: local and community outlets, plus every source above. Remove a name from trustedOutlets to hold that outlet to the headline test too.",
+  "trustedOutlets": [
+    "guampdn.com",
+    "Pacific Daily News",
+    "The Guam Daily Post",
+    "Pasquines",
+    "Marianas Press",
+    "Marianas Variety",
+    "Public Radio Guam",
+    "KUAM",
+    "Saipan Tribune",
+    "Samoa News",
+    "Pacific Island Times",
+    "West Hawaii Today",
+    "KITV",
+    "KHON2",
+    "Hawaii News Now",
+    "Honolulu Star-Advertiser",
+    "Big Island Now",
+    "Hawaii Tribune-Herald",
+    "The Maui News",
+    "The Garden Island",
+    "INDIA New England News",
+    "indica News",
+    "India Tribune - Chicago",
+    "New India Abroad",
+    "The Indian EYE",
+    "South Asian Herald",
+    "NRI Pulse",
+    "Diya TV",
+    "Northwest Asian Weekly",
+    "The Korea Daily",
+    "INQUIRER.net USA",
+    "INQUIRER.net",
+    "The American Bazaar",
+    "American Community Media",
+    "Asian Law Caucus",
+    "The Asian Reporter",
+    "Asian Journal",
+    "International Examiner",
+    "Hyphen",
+    "KoreAm",
+    "Sampan"
+  ],
+  "communityPattern": "\\b(asian[- ]?americans?|asian[- ]pacific(?: american| islander)s?|(?<!:)aapi(?!\\s+director)|aanhpi|nhpi|pacific islanders?|pacific islands?|pasifika|pacific (?:peoples?|communit\\w+|nations?|leaders?)|polynesian\\w*|melanesian\\w*|marshall islands|cook islanders?|native hawaiians?|kanaka|chamorros?|chamorus?|chamoru|marshallese|micronesians?|samoans?|tongans?|fijians?|palauans?|filipinos?|filipinas?|hmong|cambodians?|laotians?|south asians?|southeast asians?|east asians?|sikhs?|stop aapi hate|anti-asian|asian (?:voters?|communit\\w+|immigrants?|students?|families|women|men|businesses|elders|seniors|residents|leaders|lawmakers|candidates|population|hate|youth|workers|neighbors|diaspora|enrollment|owned)|(?:chinese|korean|japanese|indian|vietnamese|taiwanese|pakistani|bangladeshi|nepali|nepalese|burmese|thai|indonesian|malaysian|sri lankan|bhutanese|hawaiian)[- ]americans?|chinatown|little tokyo|koreatown|japantown|little saigon|manilatown|nisei|sansei|yonsei|issei|nikkei|jacl|manzanar|tule lake|heart mountain)\\b",
+  "siteUrl": "https://pro.theyappie.com",
+  "renames": {
+    "The Takeaway": "The Asian American Foundation",
+    "AP News": "Associated Press",
+    "guampdn.com": "Pacific Daily News",
+    "INQUIRER.net USA": "INQUIRER.net",
+    "Bloomberg.com": "Bloomberg News",
+    "Dallas News": "Dallas Morning News",
+    "CAPAC": "Congressional Asian Pacific American Caucus",
+    "Washington State Department of Corrections (DOC) (.gov)": "Washington State Department of Corrections",
+    "TAAF": "The Asian American Foundation"
+  },
+  "kinds": {
+    "AsAmNews": "community",
+    "The Yappie": "community",
+    "Rafu Shimpo": "community",
+    "NextShark": "community",
+    "The Rebel Yellow": "community",
+    "Joysauce": "community",
+    "AP-NORC": "research",
+    "Pew Research Center": "research",
+    "The Juggernaut": "community",
+    "Mochi Magazine": "community",
+    "Angry Asian Man": "community",
+    "Red, White and Brown": "community",
+    "Nichi Bei": "community",
+    "Northwest Asian Weekly": "community",
+    "The Indian Eye": "community",
+    "India West": "community",
+    "India Currents": "community",
+    "International Examiner": "community",
+    "Pacific Citizen": "community",
+    "Asian Journal": "community",
+    "Hyphen": "community",
+    "Hawaii Reporter": "community",
+    "Stop AAPI Hate": "statement",
+    "Asian Americans Advancing Justice": "statement",
+    "APIAVote": "statement",
+    "SEARAC": "statement",
+    "OCA National": "statement",
+    "NAPAWF": "statement",
+    "NCAPA": "statement",
+    "The Asian American Foundation": "statement",
+    "AAJA": "statement",
+    "AALDEF": "statement",
+    "Sikh Coalition": "statement",
+    "SALDEF": "statement",
+    "NAPABA": "statement",
+    "JACL": "statement",
+    "Asian American Scholar Forum": "statement",
+    "AAPI Data": "statement",
+    "AAPI Equity Alliance": "statement",
+    "AAPI Victory Fund": "statement",
+    "APIAHF": "statement",
+    "Asian American Federation": "statement",
+    "Asian Americans Advancing Justice Southern California": "statement",
+    "Asian Americans Advancing Justice-Atlanta": "statement",
+    "Asian Americans for Equality": "statement",
+    "AAPIP": "statement",
+    "Asian Law Caucus": "statement",
+    "APALA": "statement",
+    "Committee of 100": "statement",
+    "NQAPIA": "statement",
+    "NAKASEC": "statement",
+    "National CAPACD": "statement",
+    "NAPCA": "statement",
+    "Center for Asian American Media": "statement",
+    "AAPCHO": "statement",
+    "Council of Korean Americans": "statement",
+    "Chinese for Affirmative Action": "statement",
+    "Chinese American Planning Council": "statement",
+    "Asian Americans Advancing Justice-Chicago": "statement",
+    "NaFFAA": "statement",
+    "LEAD Filipino": "statement",
+    "Asian Pacific Institute on Gender-Based Violence": "statement",
+    "Papa Ola Lōkahi": "statement",
+    "Native Hawaiian Legal Corporation": "statement",
+    "Pacific Islander Community Association of Washington": "statement",
+    "AAPI New Jersey": "statement",
+    "Asian Counseling and Referral Service": "statement",
+    "VietAID": "statement",
+    "FYLPRO": "statement",
+    "Damayan Migrant Workers Association": "statement",
+    "Asian American Coalition for Education": "statement",
+    "Act To Change": "statement",
+    "APAHE": "statement",
+    "Korean American Civic Empowerment": "statement",
+    "Angel Island Immigration Station Foundation": "statement",
+    "NAAPIMHA": "statement",
+    "Asian Pacific Fund": "statement",
+    "Chhaya CDC": "statement",
+    "LEAP": "statement",
+    "South Asian Network": "statement",
+    "National Japanese American Memorial Foundation": "statement",
+    "Coalition for Asian American Children and Families": "statement",
+    "Korean Community Services of Metropolitan New York": "statement",
+    "SAPHA": "statement",
+    "United Sikhs": "statement",
+    "Hindus for Human Rights": "statement",
+    "Hindu American Foundation": "statement",
+    "Japanese American National Museum": "statement",
+    "National Filipino American Lawyers Association": "statement",
+    "Hmong National Development": "statement",
+    "Empowering Pacific Islander Communities": "statement",
+    "CAAAV": "statement",
+    "APAPA": "statement",
+    "Gold House": "community",
+    "Ka Wai Ola": "community",
+    "International Examiner": "community",
+    "Sampan": "community",
+    "Densho": "community",
+    "Hawaii Governor": "govstmt",
+    "Rep. Jill Tokuda": "govstmt",
+    "Rep. Ed Case": "govstmt",
+    "The White House": "govstmt"
+  },
+  "federalRegister": {
+    "enabled": true,
+    "days": 45,
+    "keepCommentsDays": 120,
+    "perTerm": 40,
+    "terms": [
+      "\"Asian American\"",
+      "\"Native Hawaiian\"",
+      "\"Pacific Islander\"",
+      "AAPI",
+      "\"Compact of Free Association\"",
+      "\"Asian Pacific American\""
+    ],
+    "skipTitle": "^(Sunshine Act|Government in the Sunshine|Privacy Act of 1974|Notice of (Inventory Completion|Intended Repatriation|Intended Disposition)|Agency Information Collection Activities)",
+    "issueTerms": [
+      "immigration",
+      "\"public charge\"",
+      "\"language access\"",
+      "\"race and ethnicity\"",
+      "\"hate crimes\"",
+      "refugee",
+      "naturalization"
+    ]
+  },
+  "_note": "Live-checked on 2026-10-31 (the 20 advocacy-organization statement sources, Federal Register, Congress.gov, Regulations.gov, GovInfo, White House, Justice Department, USCIS, CAPAC) and on 2026-11-02 (the 18 organizations added that day: AAPI Equity Alliance to Council of Korean Americans). On 2026-11-15 the organizations, coalition members and caucuses that the former Power map listed were checked, and the 28 with a working feed or press page, plus the Illinois Senate Democratic Caucus feed, were added (AAPI New Jersey to APAPA); each is read once an hour or less often (\"every\", in minutes). The run log prints OK/FAIL per source. skipTitle patterns drop boilerplate (see the README). Policy items must link to a .gov host. apiBudget caps the key requests per run.",
+  "executiveActions": {
+    "enabled": true,
+    "skipTitle": "\\b(Day|Week|Month|Anniversary)\\b.*\\b20\\d\\d$",
+    "days": 120,
+    "perTerm": 40,
+    "terms": [
+      "\"Asian American\"",
+      "\"Native Hawaiian\"",
+      "\"Pacific Islander\"",
+      "AAPI",
+      "\"Compact of Free Association\"",
+      "\"Asian Pacific American\""
+    ],
+    "issueTerms": [
+      "immigration",
+      "citizenship",
+      "\"birthright\"",
+      "refugee",
+      "\"visa\"",
+      "\"language access\"",
+      "\"hate crimes\"",
+      "\"race and ethnicity\""
+    ]
+  },
+  "apiBudget": { "perRun": 150, "keepFraction": 0.25 },
+  "regulations": { "enabled": true, "api": "https://api.regulations.gov/v4", "pageSize": 25 },
+  "govinfo": { "enabled": true, "api": "https://api.govinfo.gov", "days": 180, "collections": ["PLAW", "CHRG", "CRPT", "GAOREPORTS"], "maxPages": 2,
+    "issueTerms": ["immigration", "citizenship", "\"birth tourism\"", "birthright", "refugee", "asylum", "naturalization", "\"public charge\"", "\"language access\"", "\"hate crimes\"", "census"] },
+  "congress": {
+    "enabled": true,
+    "days": 10,
+    "maxPages": 6,
+    "keyEnv": "CONGRESS_API_KEY"
+  },
+  "backfill": {
+    "delayMs": 350,
+    "retries": 3,
+    "maxPages": 400,
+    "googleWindowDays": 7,
+    "googleBroadDays": 3,
+    "googleCap": 90,
+    "deadlineMinutes": 100,
+    "gov": { "apiRequests": 600, "frPerTerm": 500, "frPages": 8, "execPerTerm": 500, "congressPages": 60, "regsPages": 4, "govinfoPages": 20 }
+  },
+  "policyKeepDays": 120,
+  "policyMax": 300,
+  "openStates": {
+    "_note": "State bills (Open States v3). Needs the free OPENSTATES_API_KEY secret; without it this source is skipped. Only bills whose title or summary names the community are kept. Asks at most every everyMinutes, using at most maxRequests calls, so the free plan's limits are respected.",
+    "enabled": true,
+    "api": "https://v3.openstates.org",
+    "everyMinutes": 240,
+    "perPage": 20,
+    "maxPages": 2,
+    "maxRequests": 30,
+    "days": 14,
+    "delayMs": 7000,
+    "terms": ["Asian American", "Pacific Islander", "Native Hawaiian", "AAPI", "Hmong", "Filipino", "Samoan", "Chamorro", "Guam", "Sikh", "South Asian", "Cambodian", "Marshallese", "Micronesia"]
+  },
+  "events": {
+    "_note": "Events and funding deadlines (scripts/events.mjs). hearings: committee meetings from the Congress.gov API (needs the free api.data.gov key), kept only when they are about the issues the site follows. grants: open Grants.gov opportunities that match the keywords. feeds: starter calendar feeds (iCalendar); the site owner adds more, or stops following these, in the admin dashboard (Settings, Event calendars).",
+    "keepPastDays": 7,
+    "aheadDays": 400,
+    "maxSpanDays": 21,
+    "max": 1200,
+    "hearings": { "enabled": true, "everyMinutes": 120, "lookbackDays": 30, "maxDetails": 40, "chambers": ["house", "senate"] },
+    "grants": { "enabled": true, "everyMinutes": 360, "rows": 40, "max": 80, "keywords": ["Asian American", "Native Hawaiian", "Pacific Islander", "AANAPISI", "Hmong", "Southeast Asian"] },
+    "feedsEveryMinutes": 60,
+    "feeds": [
+      { "name": "Potluck Asian America", "url": "https://potluckasianamerica.org/events/?ical=1" },
+      { "name": "AAPIP (Asian Americans / Pacific Islanders in Philanthropy)", "url": "https://aapip.org/?post_type=tribe_events&ical=1&eventDisplay=list" }
+    ]
+  }
+}

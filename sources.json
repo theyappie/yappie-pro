@@ -146,7 +146,8 @@
       "google": true,
       "asName": "South China Morning Post",
       "filter": true,
-      "feed": "https://news.google.com/rss/search?q=site%3Ascmp.com+%28%22Asian+American%22+OR+%22Asian+Americans%22+OR+AAPI%29+when%3A30d&hl=en-US&gl=US&ceid=US:en"
+      "feed": "https://news.google.com/rss/search?q=site%3Ascmp.com+%28%22Asian+American%22+OR+%22Asian+Americans%22+OR+AAPI%29+when%3A30d&hl=en-US&gl=US&ceid=US:en",
+      "every": 20
     },
     {
       "name": "The New York Times",
@@ -154,7 +155,8 @@
       "google": true,
       "asName": "The New York Times",
       "filter": true,
-      "feed": "https://news.google.com/rss/search?q=site%3Anytimes.com+%28%22Asian+American%22+OR+%22Asian+Americans%22+OR+AAPI%29+when%3A30d&hl=en-US&gl=US&ceid=US:en"
+      "feed": "https://news.google.com/rss/search?q=site%3Anytimes.com+%28%22Asian+American%22+OR+%22Asian+Americans%22+OR+AAPI%29+when%3A30d&hl=en-US&gl=US&ceid=US:en",
+      "every": 20
     },
     {
       "name": "Associated Press",
@@ -162,7 +164,8 @@
       "google": true,
       "asName": "Associated Press",
       "filter": true,
-      "feed": "https://news.google.com/rss/search?q=site%3Aapnews.com+%28%22Asian+American%22+OR+%22Asian+Americans%22+OR+AAPI%29+when%3A30d&hl=en-US&gl=US&ceid=US:en"
+      "feed": "https://news.google.com/rss/search?q=site%3Aapnews.com+%28%22Asian+American%22+OR+%22Asian+Americans%22+OR+AAPI%29+when%3A30d&hl=en-US&gl=US&ceid=US:en",
+      "every": 20
     },
     {
       "name": "The Juggernaut",
@@ -195,7 +198,8 @@
       "google": true,
       "asName": "Red, White and Brown",
       "skipTitle": "^(Red, White and Brown|Archive|About|Home)$",
-      "feed": "https://news.google.com/rss/search?q=site%3Aredwhiteandbrown.substack.com+when%3A30d&hl=en-US&gl=US&ceid=US:en"
+      "feed": "https://news.google.com/rss/search?q=site%3Aredwhiteandbrown.substack.com+when%3A30d&hl=en-US&gl=US&ceid=US:en",
+      "every": 20
     },
     {
       "name": "Pacific Citizen",
@@ -208,7 +212,8 @@
       "google": true,
       "asName": "Nichi Bei",
       "skipTitle": "^\\S+( \\S+)?$",
-      "feed": "https://news.google.com/rss/search?q=site%3Anichibei.org+when%3A30d&hl=en-US&gl=US&ceid=US:en"
+      "feed": "https://news.google.com/rss/search?q=site%3Anichibei.org+when%3A30d&hl=en-US&gl=US&ceid=US:en",
+      "every": 20
     },
     {
       "name": "Google News: AAPI",
@@ -218,12 +223,14 @@
     {
       "name": "Google News: Pacific Islander",
       "google": true,
-      "feed": "https://news.google.com/rss/search?q=%22Pacific+Islander%22+OR+%22Native+Hawaiian%22+OR+%22American+Samoa%22+OR+Guam+when%3A7d&hl=en-US&gl=US&ceid=US:en"
+      "feed": "https://news.google.com/rss/search?q=%22Pacific+Islander%22+OR+%22Native+Hawaiian%22+OR+%22American+Samoa%22+OR+Guam+when%3A7d&hl=en-US&gl=US&ceid=US:en",
+      "every": 20
     },
     {
       "name": "Google News: Pacific Islands",
       "google": true,
-      "feed": "https://news.google.com/rss/search?q=%28%22Pacific+Islands%22+OR+%22Pacific+Islanders%22+OR+Pasifika%29+%28climate+OR+%22sea+level%22+OR+%22deep-sea+mining%22+OR+sovereignty+OR+nuclear+OR+%22Compact+of+Free+Association%22+OR+migration%29+when%3A14d&hl=en-US&gl=US&ceid=US:en"
+      "feed": "https://news.google.com/rss/search?q=%28%22Pacific+Islands%22+OR+%22Pacific+Islanders%22+OR+Pasifika%29+%28climate+OR+%22sea+level%22+OR+%22deep-sea+mining%22+OR+sovereignty+OR+nuclear+OR+%22Compact+of+Free+Association%22+OR+migration%29+when%3A14d&hl=en-US&gl=US&ceid=US:en",
+      "every": 20
     },
     {
       "name": "The Independent",
@@ -254,17 +261,20 @@
       "home": "https://www.independent.co.uk",
       "google": true,
       "asName": "The Independent",
-      "feed": "https://news.google.com/rss/search?q=site%3Aindependent.co.uk+%28%22Asian+American%22+OR+%22Asian+Americans%22+OR+AAPI+OR+%22Pacific+Islander%22+OR+%22Pacific+Islanders%22+OR+%22Native+Hawaiian%22+OR+%22anti-Asian%22%29+when%3A30d&hl=en-US&gl=US&ceid=US:en"
+      "feed": "https://news.google.com/rss/search?q=site%3Aindependent.co.uk+%28%22Asian+American%22+OR+%22Asian+Americans%22+OR+AAPI+OR+%22Pacific+Islander%22+OR+%22Pacific+Islanders%22+OR+%22Native+Hawaiian%22+OR+%22anti-Asian%22%29+when%3A30d&hl=en-US&gl=US&ceid=US:en",
+      "every": 20
     },
     {
       "name": "Google News: Anti-Asian hate",
       "google": true,
-      "feed": "https://news.google.com/rss/search?q=%22anti-Asian%22+OR+%22Stop+AAPI+Hate%22+when%3A7d&hl=en-US&gl=US&ceid=US:en"
+      "feed": "https://news.google.com/rss/search?q=%22anti-Asian%22+OR+%22Stop+AAPI+Hate%22+when%3A7d&hl=en-US&gl=US&ceid=US:en",
+      "every": 20
     },
     {
       "name": "Google News: Immigration",
       "google": true,
-      "feed": "https://news.google.com/rss/search?q=%22Asian+American%22+%28immigration+OR+ICE+OR+deportation%29+when%3A7d&hl=en-US&gl=US&ceid=US:en"
+      "feed": "https://news.google.com/rss/search?q=%22Asian+American%22+%28immigration+OR+ICE+OR+deportation%29+when%3A7d&hl=en-US&gl=US&ceid=US:en",
+      "every": 20
     },
     {
       "name": "Google News: Asian Americans",
@@ -274,27 +284,32 @@
     {
       "name": "Google News: Native Hawaiian",
       "google": true,
-      "feed": "https://news.google.com/rss/search?q=%22Native+Hawaiian%22+OR+%22Native+Hawaiians%22+when%3A7d&hl=en-US&gl=US&ceid=US:en"
+      "feed": "https://news.google.com/rss/search?q=%22Native+Hawaiian%22+OR+%22Native+Hawaiians%22+when%3A7d&hl=en-US&gl=US&ceid=US:en",
+      "every": 20
     },
     {
       "name": "Google News: AAPI policy",
       "google": true,
-      "feed": "https://news.google.com/rss/search?q=%22Asian+American%22+%28Congress+OR+legislation+OR+bill+OR+policy+OR+%22executive+order%22%29+when%3A7d&hl=en-US&gl=US&ceid=US:en"
+      "feed": "https://news.google.com/rss/search?q=%22Asian+American%22+%28Congress+OR+legislation+OR+bill+OR+policy+OR+%22executive+order%22%29+when%3A7d&hl=en-US&gl=US&ceid=US:en",
+      "every": 20
     },
     {
       "name": "Google News: Education",
       "google": true,
-      "feed": "https://news.google.com/rss/search?q=%22Asian+American%22+%28school+OR+students+OR+university+OR+college%29+when%3A7d&hl=en-US&gl=US&ceid=US:en"
+      "feed": "https://news.google.com/rss/search?q=%22Asian+American%22+%28school+OR+students+OR+university+OR+college%29+when%3A7d&hl=en-US&gl=US&ceid=US:en",
+      "every": 30
     },
     {
       "name": "Google News: Health",
       "google": true,
-      "feed": "https://news.google.com/rss/search?q=%22Asian+American%22+%28health+OR+hospital+OR+%22mental+health%22%29+when%3A7d&hl=en-US&gl=US&ceid=US:en"
+      "feed": "https://news.google.com/rss/search?q=%22Asian+American%22+%28health+OR+hospital+OR+%22mental+health%22%29+when%3A7d&hl=en-US&gl=US&ceid=US:en",
+      "every": 30
     },
     {
       "name": "Google News: Business",
       "google": true,
-      "feed": "https://news.google.com/rss/search?q=%22Asian+American%22+%28business+OR+workers+OR+economy+OR+%22small+business%22%29+when%3A7d&hl=en-US&gl=US&ceid=US:en"
+      "feed": "https://news.google.com/rss/search?q=%22Asian+American%22+%28business+OR+workers+OR+economy+OR+%22small+business%22%29+when%3A7d&hl=en-US&gl=US&ceid=US:en",
+      "every": 30
     },
     {
       "name": "The Rebel Yellow",
@@ -312,7 +327,8 @@
       "home": "https://www.nbcnews.com/asian-america",
       "google": true,
       "asName": "NBC Asian America",
-      "feed": "https://news.google.com/rss/search?q=site%3Anbcnews.com%2Fnews%2Fasian-america+when%3A30d&hl=en-US&gl=US&ceid=US:en"
+      "feed": "https://news.google.com/rss/search?q=site%3Anbcnews.com%2Fnews%2Fasian-america+when%3A30d&hl=en-US&gl=US&ceid=US:en",
+      "every": 20
     },
     {
       "name": "The Asian American Foundation",

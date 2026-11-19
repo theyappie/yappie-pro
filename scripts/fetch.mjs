@@ -271,13 +271,20 @@ const dropFooter = body => String(body ?? "").replace(/\s*<p\b[^>]*>\s*(?:<(?:em
 const plainTerms = t => typeof t === "string" ? t.replace(/(?<![\/=.])\bAANHPI(s?)\b/g, "AAPI$1") : t;
 const tidyBody = (body, hero) => plainTerms(dropFooter(dropLeadPhoto(body, hero)));
 
-// At most HOST_MAX requests go to one site at a time. Twenty Google News searches (or six lists from one research center) asked in the same instant were sometimes all refused.
-const HOST_MAX = 2, hostBusy = new Map();
+// At most HOST_MAX requests go to one site at a time, and they start at least HOST_GAP_MS apart (one a second). Twenty Google News searches (or six lists from one research center) asked in the
+// same instant were sometimes all refused. Asked two at a time with nothing between them they fared worse: from 15 to 18 Nov 2026 Google News answered 429 to the last few searches of a run in half
+// of the runs, once fifteen or so had arrived within a few seconds. So most Google News searches now also wait their turn ("every" in sources.json): about ten are asked in a run.
+// A backfill paces its own requests (scripts/backfill.mjs).
+const HOST_MAX = 2, HOST_GAP_MS = BACKFILL ? 0 : process.env.HOST_GAP_MS === undefined ? 1000 : Math.max(0, Number(process.env.HOST_GAP_MS) || 0), hostBusy = new Map();
 async function oneSiteAtATime(url, fn) {
-  const h = hostOf(url), q = hostBusy.get(h) ?? { n: 0, waiting: [] };
+  const h = hostOf(url), q = hostBusy.get(h) ?? { n: 0, waiting: [], next: 0 };
   hostBusy.set(h, q);
   if (q.n >= HOST_MAX) await new Promise(r => q.waiting.push(r)); else q.n++;
-  try { return await fn(); } finally { const next = q.waiting.shift(); if (next) next(); else q.n--; } // the next one in line takes this place
+  try {
+    const now = Date.now(), wait = q.next - now; q.next = Math.max(now, q.next) + HOST_GAP_MS; // the next start time is taken before waiting, so two requests that arrive together are spaced as well
+    if (wait > 0) await new Promise(r => setTimeout(r, wait));
+    return await fn();
+  } finally { const next = q.waiting.shift(); if (next) next(); else q.n--; } // the next one in line takes this place
 }
 // A site that answers "too many requests" (429) or "busy" (503) is not asked again in this run: twenty Google News searches kept knocking while it was refusing all of them.
 const cooling = new Map();

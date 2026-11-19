@@ -19,43 +19,6 @@ URL:https://potluckasianamerica.org/event/doc-nyc-world-premiere-what-happ
 CATEGORIES:Event or webinar
 END:VEVENT
 BEGIN:VEVENT
-UID:g9555b56ebfa@pro.theyappie.com
-DTSTAMP:20261118T000000Z
-DTSTART;VALUE=DATE:20261118
-DTEND;VALUE=DATE:20261119
-SUMMARY:BJA FY 2026 Edward Byrne Memorial Justice Assistance Grant (JAG) P
- rogram&mdash\;Local Formula
-DESCRIPTION:Funding or fellowship deadline (Federal grant). From USDOJ-OJP
- -BJA. Closing date for applications. Opportunity O-BJA-2026-172705\, open
-  since 2026-08-25\, posted.
-URL:https://www.grants.gov/search-results-detail/363712
-CATEGORIES:Funding or fellowship deadline
-END:VEVENT
-BEGIN:VEVENT
-UID:g262c5cae64e@pro.theyappie.com
-DTSTAMP:20261118T000000Z
-DTSTART;VALUE=DATE:20261118
-DTEND;VALUE=DATE:20261119
-SUMMARY:DARRP Restoration Implementation Grants (2026)
-DESCRIPTION:Funding or fellowship deadline (Federal grant). From DOC-DOCNO
- AAERA. Closing date for applications. Opportunity NOAA-NMFS-HCPO-2026-337
- 81\, open since 2026-09-01\, posted.
-URL:https://www.grants.gov/search-results-detail/363758
-CATEGORIES:Funding or fellowship deadline
-END:VEVENT
-BEGIN:VEVENT
-UID:el-guam-mail-ballot-return-2026@pro.theyappie.com
-DTSTAMP:20261118T000000Z
-DTSTART;VALUE=DATE:20261118
-DTEND;VALUE=DATE:20261119
-SUMMARY:Guam deadline for absentee ballots to arrive
-DESCRIPTION:Election date. From U.S. Vote Foundation. Guam absentee ballot
- s must be postmarked by Election Day and received by Nov. 18\, 2026\, per
-  the U.S. Vote Foundation listing.
-URL:https://www.usvotefoundation.org/guam-election-dates-and-deadlines
-CATEGORIES:Election date
-END:VEVENT
-BEGIN:VEVENT
 UID:f0699b4815fb@pro.theyappie.com
 DTSTAMP:20261118T230000Z
 DTSTART:20261118T230000Z

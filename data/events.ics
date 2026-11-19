@@ -307,19 +307,6 @@ URL:https://aapip.org/calendar-event/nyc-chapter-holiday-gathering/
 CATEGORIES:Event or webinar
 END:VEVENT
 BEGIN:VEVENT
-UID:g34f19c6ad95@pro.theyappie.com
-DTSTAMP:20261203T000000Z
-DTSTART;VALUE=DATE:20261203
-DTEND;VALUE=DATE:20261204
-SUMMARY:The Science\, Mathematics and Research for Transformation (SMART) 
- Scholarship for Service Program Cooperative Agreement
-DESCRIPTION:Funding or fellowship deadline (Federal grant). From DOD-AMC. 
- Closing date for applications. Opportunity W911NF-27-R-A001\, open since 
- 2026-09-30\, posted.
-URL:https://www.grants.gov/search-results-detail/364008
-CATEGORIES:Funding or fellowship deadline
-END:VEVENT
-BEGIN:VEVENT
 UID:g80a5b5d24db@pro.theyappie.com
 DTSTAMP:20261207T000000Z
 DTSTART;VALUE=DATE:20261207
@@ -405,6 +392,19 @@ DESCRIPTION:Anniversary. From U.S. Senate (congress.gov). President Roosev
  stone for Chinese immigrants' access to naturalization.
 URL:https://www.congress.gov/118/bills/sres506/BILLS-118sres506is.htm
 CATEGORIES:Anniversary
+END:VEVENT
+BEGIN:VEVENT
+UID:g34f19c6ad95@pro.theyappie.com
+DTSTAMP:20261217T000000Z
+DTSTART;VALUE=DATE:20261217
+DTEND;VALUE=DATE:20261218
+SUMMARY:The Science\, Mathematics and Research for Transformation (SMART) 
+ Scholarship for Service Program Cooperative Agreement
+DESCRIPTION:Funding or fellowship deadline (Federal grant). From DOD-AMC. 
+ Closing date for applications. Opportunity W911NF-27-R-A001\, open since 
+ 2026-09-30\, posted.
+URL:https://www.grants.gov/search-results-detail/364008
+CATEGORIES:Funding or fellowship deadline
 END:VEVENT
 BEGIN:VEVENT
 UID:g7a9e25d306c@pro.theyappie.com

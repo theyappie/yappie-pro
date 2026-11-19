@@ -271,10 +271,13 @@ const dropFooter = body => String(body ?? "").replace(/\s*<p\b[^>]*>\s*(?:<(?:em
 const plainTerms = t => typeof t === "string" ? t.replace(/(?<![\/=.])\bAANHPI(s?)\b/g, "AAPI$1") : t;
 const tidyBody = (body, hero) => plainTerms(dropFooter(dropLeadPhoto(body, hero)));
 
-// At most HOST_MAX requests go to one site at a time, and they start at least HOST_GAP_MS apart (one a second). Twenty Google News searches (or six lists from one research center) asked in the
-// same instant were sometimes all refused. Asked two at a time with nothing between them they fared worse: from 15 to 18 Nov 2026 Google News answered 429 to the last few searches of a run in half
-// of the runs, once fifteen or so had arrived within a few seconds. So most Google News searches now also wait their turn ("every" in sources.json): about ten are asked in a run.
-// A backfill paces its own requests (scripts/backfill.mjs).
+// At most HOST_MAX requests go to one site at a time, and they start at least HOST_GAP_MS apart (one a second), so twenty Google News searches (or six lists from one research center) do not
+// reach a site in the same instant. A backfill paces its own requests (scripts/backfill.mjs).
+// Google News began to refuse searches (429) on 16 Nov 2026 at 19:41 UTC, 38 hours after the last change to this file: in 74 of the 75 runs until 08:15 UTC the next day, and in 108 of the 240
+// runs after that, up to 19 Nov (45%). In such a run four or five of the twenty searches (the median) had been answered before the first refusal. Another small reader of Google News saw its first
+// refusals in the same hours (github.com/pooza/google-news-rss-cleaner/pull/23).
+// What the collector does about it: it asks less ("every" in sources.json: about ten searches a run), it stops asking a site for the rest of the run once the site answers 429 or 503 (below),
+// and it asks first for what matters most (the order of asking, further down).
 const HOST_MAX = 2, HOST_GAP_MS = BACKFILL ? 0 : process.env.HOST_GAP_MS === undefined ? 1000 : Math.max(0, Number(process.env.HOST_GAP_MS) || 0), hostBusy = new Map();
 async function oneSiteAtATime(url, fn) {
   const h = hostOf(url), q = hostBusy.get(h) ?? { n: 0, waiting: [], next: 0 };
@@ -763,10 +766,13 @@ const plan = todo.map(s => {
   return { s, base, wait, prev, slow };
 });
 const results = new Array(plan.length);
+// The order of asking: first the sources that are read on every run, then the ones whose turn it is, and among those a source whose last read failed before the others. A site that answers only
+// the first few requests of a run (Google News, see above) then answers the two broad searches, and a search it refused last time is not at the back of the line again. The feed does not depend on it.
+const rank = p => !p.slow ? 0 : p.prev?.ok === false ? 1 : 2, order = plan.map((_, i) => i).sort((a, b) => rank(plan[a]) - rank(plan[b]) || a - b);
 let nextSrc = 0;
 await Promise.all(Array.from({ length: Math.min(SRC_POOL, plan.length) }, async () => {
   while (nextSrc < plan.length) {
-    const i = nextSrc++, { s, base, wait, prev, slow } = plan[i];
+    const i = order[nextSrc++], { s, base, wait, prev, slow } = plan[i];
     if (wait) { results[i] = { items: [], status: { ...base, ok: prev.ok, ...(prev.ok ? {} : { error: "the last read failed", ...(failsOf(prev) ? { r: failsOf(prev) } : {}) }), ...(prev.note ? { note: prev.note } : {}), wait: s.every } }; continue; }
     try { const r = await pull(s); results[i] = { items: r, status: { ...base, ok: true, count: r.length } }; }
     catch (e) { const error = String(e.message ?? e); results[i] = { items: [], status: { ...base, ok: false, error, ...(slow && PASSING.test(error) ? { r: Math.min(RETRIES, failsOf(prev) + 1) } : {}) } }; }

@@ -32,6 +32,23 @@ DESCRIPTION:Proposed Rule | ETA\nhttps://www.regulations.gov/document/ETA-
  2026-0133-0002
 END:VEVENT
 BEGIN:VEVENT
+UID:ce8ebacc71ff@yappie-pro
+DTSTAMP:20261119T120000Z
+DTSTART;VALUE=DATE:20270119
+DTEND;VALUE=DATE:20270120
+SUMMARY:Comments due: Customer Due Diligence Requirements for Covered Fina
+ ncial Institutions
+URL:https://www.federalregister.gov/documents/2026/11/19/2026-23614/custom
+ er-due-diligence-requirements-for-covered-financial-institutions
+DESCRIPTION:Proposed Rule | Treasury Department / Financial Crimes Enforce
+ ment Network | FinCEN is issuing this proposed rule to strengthen custome
+ r due diligence requirements under the Customer Due Diligence Rule consis
+ tent with the policy goals of\, and as directed by\, Executive Order 1440
+ 6\, Restoring Integrity to America's Financial System.\nhttps://www.feder
+ alregister.gov/documents/2026/11/19/2026-23614/customer-due-diligence-req
+ uirements-for-covered-financial-institutions
+END:VEVENT
+BEGIN:VEVENT
 UID:ceb55449978c@yappie-pro
 DTSTAMP:20261117T120000Z
 DTSTART;VALUE=DATE:20270119

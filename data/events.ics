@@ -587,6 +587,23 @@ URL:https://www.ksbe.edu/print/article/textonly/kukahekahe-the-overthrow-o
 CATEGORIES:Anniversary
 END:VEVENT
 BEGIN:VEVENT
+UID:cmt-ce8ebacc71ff@pro.theyappie.com
+DTSTAMP:20270119T000000Z
+DTSTART;VALUE=DATE:20270119
+DTEND;VALUE=DATE:20270120
+SUMMARY:Customer Due Diligence Requirements for Covered Financial Institut
+ ions
+DESCRIPTION:Comment deadline (Proposed Rule). From Treasury Department / F
+ inancial Crimes Enforcement Network. FinCEN is issuing this proposed rule
+  to strengthen customer due diligence requirements under the Customer Due
+  Diligence Rule consistent with the policy goals of\, and as directed by\
+ , Executive Order 14406\, Restoring Integrity to America's Financial Syst
+ em.
+URL:https://www.federalregister.gov/documents/2026/11/19/2026-23614/custom
+ er-due-diligence-requirements-for-covered-financial-institutions
+CATEGORIES:Comment deadline
+END:VEVENT
+BEGIN:VEVENT
 UID:cmt-ceb55449978c@pro.theyappie.com
 DTSTAMP:20270119T000000Z
 DTSTART;VALUE=DATE:20270119

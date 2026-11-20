@@ -35,6 +35,36 @@ URL:https://potluckasianamerica.org/event/rabbit-god-a-queer-chinese-fanta
 CATEGORIES:Event or webinar
 END:VEVENT
 BEGIN:VEVENT
+UID:fc9a162711e5@pro.theyappie.com
+DTSTAMP:20261120T000000Z
+DTSTART;VALUE=DATE:20261120
+DTEND;VALUE=DATE:20261207
+SUMMARY:NIKKATSU’S GOLDEN AGE OF EROS
+DESCRIPTION:Event or webinar. From Potluck Asian America. Amid the last br
+ eaths of Japan’s studio era as the strain of plummeting attendance and 
+ the rise of television brought the industry into collapse\, Japan’s old
+ est film studio\, Nikkatsu\, abandoned mainstream productions in favor of
+  erotica. An unprecedented move by any measure\, Nikkatsu’s decision…
+LOCATION:Japan Society\, 333 East 47th Street\, New York\, NY\, 10017
+URL:https://potluckasianamerica.org/event/nikkatsus-golden-age-of-eros/
+CATEGORIES:Event or webinar
+END:VEVENT
+BEGIN:VEVENT
+UID:f01b9d497bba@pro.theyappie.com
+DTSTAMP:20261120T230000Z
+DTSTART:20261120T230000Z
+DTEND:20261121T003000Z
+SUMMARY:Changing Cultures: Zhen Guo\, A Retrospective
+DESCRIPTION:Event or webinar. From Potluck Asian America. Artist Zhen Guo 
+ will discuss her recent milestone exhibition at Baruch College’s Mishki
+ n Gallery\, Changing Cultures: Zhen Guo\, A Retrospective.
+LOCATION:Asian American / Asian Research Institute – CUNY\, 25 West 43rd
+  Street\, Room 1000\, New York\, NY\, 10036
+URL:https://potluckasianamerica.org/event/changing-cultures-zhen-guo-a-ret
+ rospective/
+CATEGORIES:Event or webinar
+END:VEVENT
+BEGIN:VEVENT
 UID:ann-apology-resolution-2026@pro.theyappie.com
 DTSTAMP:20261123T000000Z
 DTSTART;VALUE=DATE:20261123

@@ -1280,6 +1280,7 @@
       "kind": "govstmt",
       "filter": true,
       "match": "\\b(native hawaiians?|kanaka|hawaiian (?:homelands?|home lands?|affairs|history|language|culture|kingdom)|asian americans?|aapi|aanhpi|nhpi|pacific islanders?|pacific (?:studies|islands?)|compact of free association|cofa|micronesia\\w*|marshallese|chuukese|filipino\\w*|japanese americans?|chinese americans?|korean americans?|samoan\\w*|tongan|immigra\\w+|language access|census|civil rights|anti-asian|hate (?:crimes?|incidents?))\\b",
+      "titleOnly": true,
       "every": 30
     },
     {

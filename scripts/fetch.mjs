@@ -518,7 +518,7 @@ async function pull(src) {
     if (hostBlocked(hostOf(u)) || hostBlocked(ph) || nameBlocked(pubName) || ownerBlocked(pubName)) continue;
     if ((dropT && dropT.test(h)) || (dropL && dropL.test(u))) continue;
     if (exCat.size && catsOf(it).some(c => exCat.has(c))) { if (u) catDropIds.add(idOf(src.kind, uGiven)); skippedCat.push(s + ": " + h); continue; }
-    const raw = G ? "" : clean(src.bodyText ? (it.description || it.summary || it["content:encoded"]) : (it.description ?? it.summary ?? it["content:encoded"])).slice(0, 300); // used only for filtering/tagging; "bodyText" falls back to the post text when the feed's description is empty (SCOTUSblog)
+    const raw = G || src.titleOnly ? "" : clean(src.bodyText ? (it.description || it.summary || it["content:encoded"]) : (it.description ?? it.summary ?? it["content:encoded"])).slice(0, 300); // used only for filtering/tagging; "bodyText" falls back to the post text when the feed's description is empty (SCOTUSblog); "titleOnly": the feed's excerpt is only a letterhead (the Hawaii governor's releases begin with the names of the governor and of the department's head, which matched "kanaka" and filed a hunting notice under Elections), so a release is judged by its headline alone
     const m = G ? "" : dek(it.description ?? it.summary, h);
     const gov = isPolicy(src.kind), rl = gov ? (relOf(h + " " + raw) || (src.filter ? "" : "n")) : "";
     if (!gov && caseRe && caseRe.test(h)) continue; // on a news source skipTitle drops pages that are not stories (an author page or an archive index that a search returns)
@@ -878,8 +878,17 @@ const offTopicLog = [], gateLog = [], pacLog = [], travelLog = [], junkLog = [];
 const titleKey = h => String(h ?? "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim(), frSeen = new Map();
 for (const o of [...fresh, ...old]) if (hostOf(o.u) === "www.federalregister.gov" && o.k === "official") { const k = titleKey(o.h), at = Date.parse(o.d); if (k && !Number.isNaN(at)) frSeen.set(k, [...(frSeen.get(k) ?? []), at]); }
 const alsoInFR = o => hostOf(o.u) === "www.regulations.gov" && (frSeen.get(titleKey(o.h)) ?? []).some(at => Math.abs(at - Date.parse(o.d)) < 4 * 864e5);
+// A source marked "titleOnly" is judged by its headlines, so a release of it whose headline does not meet the source's own "match" rule is not wanted, also when it was stored before that (the owner's pins and edits keep it).
+const TITLE_ONLY = new Map(cfg.sources.filter(x => x.titleOnly && x.match).map(x => [normName(x.name), x.match === "communityPattern" ? COMMUNITY : new RegExp(x.match, "i")]));
+const notOnTitle = o => { const r = TITLE_ONLY.size ? lk(TITLE_ONLY, o.s) : null; return !!r && !r.test(String(o.h ?? "")) && !A.pinned[o.id] && !A.featured[o.id] && typeof A.edits?.[o.id]?.h !== "string"; };
+// A government release that Google News found is the release already listed from the agency's own site when the headline is the same, the days are close and Google reports that site as the publisher
+// (the Hawaiian Home Lands' notices, a House member's or a governor's releases are read both ways). Policy records are otherwise told apart by link, so it was listed twice. Of two Google copies of one release the one with the lower id stays.
+const incoming = [...fresh.map(renamed).map(settle), ...old.map(retag), ...oldPending.map(retag)], govAt = new Map();
+for (const o0 of incoming.slice(0, fresh.length + old.length)) { const o = reroute(withSourceKind(o0)), k = headKey(o.h), at = Date.parse(o.d), site = bareHost(viaGoogle(o) ? o.ph : hostOf(o.u)); if (o.k === "govstmt" && k && site && !Number.isNaN(at)) govAt.set(k, [...(govAt.get(k) ?? []), { id: o.id, at, site, g: viaGoogle(o) }]); }
+const ownSiteTwin = o => { if (o.k !== "govstmt" || !viaGoogle(o) || !o.ph || A.pinned[o.id] || A.featured[o.id]) return false; const at = Date.parse(o.d), site = bareHost(o.ph); return (govAt.get(headKey(o.h)) ?? []).some(x => x.id !== o.id && x.site === site && Math.abs(x.at - at) < SAME_STORY_MS && (!x.g || x.id < o.id)); };
 const ruledOut = new Set(), out0 = it => { if (oldDate.has(it.id)) ruledOut.add(it.id); }; // stored stories that the rules below remove in this run (not the ones that are simply old, or that the owner deleted)
-for (const it0 of [...fresh.map(renamed).map(settle), ...old.map(retag), ...oldPending.map(retag)]) {
+const titleLog = [], twinLog = [];
+for (const it0 of incoming) {
   if (catDropIds.has(it0.id)) continue; // a story in an excluded category, stored by an earlier run
   if (A.deleted[it0.id]) continue; // deleted in the admin dashboard: never collected again
   if (blocked(it0)) { out0(it0); continue; } // a blocked site, or a site on a non-U.S. domain, is dropped from stored stories too
@@ -891,6 +900,8 @@ for (const it0 of [...fresh.map(renamed).map(settle), ...old.map(retag), ...oldP
   if (offTopic(it)) { out0(it0); offTopicLog.push(it.s + ": " + it.h); continue; }
   const pol = isPolicy(it.k);
   if (pol && it.k !== "statebill" && !govItem(it) && !it.of) { out0(it0); continue; }
+  if (pol && notOnTitle(it)) { out0(it0); titleLog.push(it.s + ": " + it.h); continue; }
+  if (pol && ownSiteTwin(it)) { out0(it0); twinLog.push(it.s + ": " + it.h); continue; }
   if (pol && alsoInFR(it) && !A.pinned[it.id] && !A.featured[it.id]) continue; // "of": an official body on a non-.gov address (a state commission); the Policy tracker takes .gov sources only (state bills come through Open States, whose pages link to each legislature)
   // A story keeps the first date it was given. Google News and a few listings report a different time on a later run (or none, which reads as "now"), and the story would otherwise move in the list each time. Policy items are different: their date is the latest action.
   if (!pol && oldDate.has(it.id) && oldDate.get(it.id) < it.d) it.d = oldDate.get(it.id);
@@ -903,6 +914,8 @@ for (const it0 of [...fresh.map(renamed).map(settle), ...old.map(retag), ...oldP
   if (pol) seen.add(k); else seenAt.set(k, [...(seenAt.get(k) ?? []), at]);
   seenId.add(it.id); items.push(it);
 }
+if (titleLog.length) console.log(`Dropped (a release whose headline does not meet its source's own rule; only its letterhead did): ${titleLog.length}\n  ` + titleLog.slice(0, 40).join("\n  "));
+if (twinLog.length) console.log(`Dropped (a Google News copy of a release that is also listed from the agency's own site): ${twinLog.length}\n  ` + twinLog.slice(0, 40).join("\n  "));
 if (junkLog.length) console.log(`Dropped (not a story: a photo's file name, an outlet's own name, a section or an archive page): ${junkLog.length}\n  ` + junkLog.slice(0, 40).join("\n  "));
 if (travelLog.length) console.log(`Dropped (a trip or celebrity story that names no community): ${travelLog.length}\n  ` + travelLog.slice(0, 40).join("\n  "));
 if (pacLog.length) console.log(`Dropped (only about Pacific island nations, no U.S. link): ${pacLog.length}\n  ` + pacLog.slice(0, 40).join("\n  "));

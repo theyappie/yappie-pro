@@ -236,13 +236,15 @@
       "name": "The Independent",
       "home": "https://www.independent.co.uk/topic/pacific-islands",
       "feed": "https://www.independent.co.uk/topic/pacific-islands/rss",
-      "backfill": false
+      "backfill": false,
+      "every": 720
     },
     {
       "name": "The Independent",
       "home": "https://www.independent.co.uk/topic/asian-americans",
       "feed": "https://www.independent.co.uk/topic/asian-americans/rss",
-      "backfill": false
+      "backfill": false,
+      "every": 720
     },
     {
       "name": "The Independent",
@@ -328,16 +330,15 @@
       "google": true,
       "asName": "NBC Asian America",
       "feed": "https://news.google.com/rss/search?q=site%3Anbcnews.com%2Fnews%2Fasian-america+when%3A30d&hl=en-US&gl=US&ceid=US:en",
-      "every": 20
+      "every": 180
     },
     {
       "name": "The Asian American Foundation",
       "home": "https://taaf.org/newsroom",
-      "google": true,
-      "asName": "The Asian American Foundation",
-      "feed": "https://news.google.com/rss/search?q=site%3Ataaf.org%2Fblog+when%3A30d&hl=en-US&gl=US&ceid=US:en",
+      "feed": "https://www.taaf.org/blog/rss.xml",
+      "titleStrip": "\\s*\\|\\s*TAAF\\s*$",
       "kind": "statement",
-      "every": 30
+      "every": 60
     },
     {
       "name": "The Asian American Foundation",
@@ -435,11 +436,18 @@
     {
       "name": "NAPABA",
       "home": "https://www.napaba.org",
+      "feed": "https://www.napaba.org/resource/rss/news.rss",
+      "kind": "statement",
+      "every": 60
+    },
+    {
+      "name": "NAPABA",
+      "home": "https://www.napaba.org",
       "feed": "https://news.google.com/rss/search?q=site%3Anapaba.org%2Fnews+when%3A30d&hl=en-US&gl=US&ceid=US:en",
       "google": true,
       "asName": "NAPABA",
       "kind": "statement",
-      "every": 30
+      "every": 60
     },
     {
       "name": "NAPAWF",
@@ -562,16 +570,16 @@
     {
       "name": "AAPIP",
       "home": "https://aapip.org",
-      "feed": "https://aapip.org/news/feed/",
+      "wp": "https://aapip.org/wp-json/wp/v2/news",
       "kind": "statement",
-      "every": 30
+      "every": 180
     },
     {
       "name": "AAPIP",
       "home": "https://aapip.org",
-      "feed": "https://aapip.org/resources/feed/",
+      "wp": "https://aapip.org/wp-json/wp/v2/resources",
       "kind": "statement",
-      "every": 30
+      "every": 180
     },
     {
       "name": "Asian Law Caucus",

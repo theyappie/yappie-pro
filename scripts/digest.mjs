@@ -25,7 +25,9 @@ const safe = u => /^https?:\/\//.test(u) ? esc(u) : "#";
 const day = d => new Date(d + (d.length > 10 ? "" : "T12:00:00Z")).toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "America/New_York" });
 const long = new Date(NOW).toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", timeZone: "America/New_York" });
 
-const all = feed.items ?? [], fresh = all.filter(x => NOW - new Date(x.d) <= HOURS * 36e5 && NOW - new Date(x.d) > -864e5 && (!only.length || only.includes(x.t) || (x.tx ?? []).some(t => only.includes(t))));
+// A caucus's press release on a .gov address is stored twice, as a statement and as a government statement; the brief lists it once (the statement).
+const all0 = feed.items ?? [], stmtLinks = new Set(all0.filter(x => x.k === "statement").map(x => x.u)), all = all0.filter(x => !(x.k === "govstmt" && stmtLinks.has(x.u)));
+const fresh = all.filter(x => NOW - new Date(x.d) <= HOURS * 36e5 && NOW - new Date(x.d) > -864e5 && (!only.length || only.includes(x.t) || (x.tx ?? []).some(t => only.includes(t))));
 const etDay = d => new Intl.DateTimeFormat("en-CA", { timeZone: "America/New_York", year: "numeric", month: "2-digit", day: "2-digit" }).format(d); // comment periods close at the end of an Eastern-time day
 const todayIso = etDay(NOW), horizon = etDay(new Date(NOW.getTime() + 21 * 864e5));
 const deadlines = all.filter(x => typeof x.dl === "string" && /^\d{4}-\d\d-\d\d$/.test(x.dl) && !Number.isNaN(Date.parse(x.dl + "T12:00:00Z")) && x.dl >= todayIso && x.dl <= horizon).sort((a, b) => a.dl.localeCompare(b.dl));

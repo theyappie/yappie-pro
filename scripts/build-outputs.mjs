@@ -26,11 +26,14 @@ function rss(title, desc, list) {
 }
 const out = new Map(), index = [];
 const add = (file, title, desc, list, group) => { if (!list.length) return; out.set(file, rss(title, desc, list)); index.push({ file: "rss/" + file, title, group, count: list.length }); };
+// A caucus's press release on a .gov address is stored twice: as a statement (Advocacy) and as a government statement (Policy). A feed that mixes the two kinds (all stories, a topic, a community, a state)
+// lists it once, as the statement; the feeds of one kind ("kind-govstmt.xml", "policy.xml") still have their own copy.
+const stmtLinks = new Set(items.filter(x => x.k === "statement").map(x => x.u)), once = list => list.filter(x => !(x.k === "govstmt" && stmtLinks.has(x.u)));
 const by = (fn) => items.filter(fn);
-add("all.xml", "The Yappie Pro: all stories", "Every story in the index, newest first.", items, "all");
-for (const t of tax.topics) add(`topic-${slug(t.k)}.xml`, `The Yappie Pro: ${t.label}`, `${t.label} stories.`, by(x => x.t === t.k || x.tx?.includes(t.k)), "topic");
-for (const c of tax.communities) add(`community-${slug(c.k)}.xml`, `The Yappie Pro: ${c.label}`, `Stories mentioning ${c.label} communities.`, by(x => x.cm?.includes(c.k)), "community");
-for (const [k, l] of tax.states) add(`state-${slug(k)}.xml`, `The Yappie Pro: ${l}`, `Stories mentioning ${l}.`, by(x => x.st?.includes(k)), "state");
+add("all.xml", "The Yappie Pro: all stories", "Every story in the index, newest first.", once(items), "all");
+for (const t of tax.topics) add(`topic-${slug(t.k)}.xml`, `The Yappie Pro: ${t.label}`, `${t.label} stories.`, once(by(x => x.t === t.k || x.tx?.includes(t.k))), "topic");
+for (const c of tax.communities) add(`community-${slug(c.k)}.xml`, `The Yappie Pro: ${c.label}`, `Stories mentioning ${c.label} communities.`, once(by(x => x.cm?.includes(c.k))), "community");
+for (const [k, l] of tax.states) add(`state-${slug(k)}.xml`, `The Yappie Pro: ${l}`, `Stories mentioning ${l}.`, once(by(x => x.st?.includes(k))), "state");
 for (const [k, l] of Object.entries(tax.kinds)) add(`kind-${slug(k)}.xml`, `The Yappie Pro: ${l}`, `${l} items only.`, by(x => x.k === k), "kind");
 const POLK = new Set(tax.policyKinds ?? []);
 
@@ -52,7 +55,13 @@ for (const [m, list] of [...months].sort((a, b) => b[0].localeCompare(a[0]))) {
   older.push({ m, n: list.length, v: createHash("sha1").update(text).digest("hex").slice(0, 10) });
 }
 for (const f of await readdir(adir)) if (f.endsWith(".json") && !months.has(f.slice(0, -5))) await unlink(join(adir, f));
-{ const text = JSON.stringify({ ...feed, items: latest, older }), file = join(DATA, "latest.json"); if (!(await sameAs(file, text))) await writeFile(file, text); }
+// latest.json is the file every open page asks for again every ten minutes. It changes only when what a reader sees changes: the stories, or the list of sources (their names, sites and kinds).
+// Whether each source's last read worked is left out (it flips on most runs; feed.json has it), and "generated" stays what it was while nothing else differs. In the 24 hours to 21 Nov 2026, 13:20 UTC,
+// 137 runs changed this file, and so made every open page download it again; in 76 of them not one story was different.
+{ const file = join(DATA, "latest.json"), rows = (Array.isArray(feed.sources) ? feed.sources : []).filter(s => s && typeof s === "object").map(({ name, home, kind }) => ({ name, home, kind }));
+  const make = generated => JSON.stringify({ ...feed, generated, sources: rows, items: latest, older });
+  let before = "", was; try { before = await readFile(file, "utf8"); was = JSON.parse(before).generated; } catch { /* no file yet, or one that cannot be read: it is written anew */ }
+  if (!(typeof was === "string" && was && make(was) === before)) await writeFile(file, make(feed.generated)); }
 
 add("policy.xml", "The Yappie Pro: policy tracker", "Bills, rules, executive actions, hearings and government statements from .gov sources.", by(x => POLK.has(x.k)), "kind");
 // A deadline is an Eastern-time day (comment periods close at 11:59 p.m. Eastern), and it must be a real day: one item with a date like 2026-13-45 used to stop this whole step.

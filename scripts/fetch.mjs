@@ -206,6 +206,15 @@ const pacificOnly = o => !!NATIONS && (o.k ?? "news") === "news" && !A.pinned[o.
 // A trip story (a TV star's trip to Guam, a K-pop idol's Hawaii honeymoon) that uses a Pacific place only as a destination and never names the communities: "travelPlaces" with "travelWords" in sources.json.
 const TRAVEL_PLACES = cfg.travelPlaces ? new RegExp(cfg.travelPlaces, "i") : null, TRAVEL_WORDS = cfg.travelWords ? new RegExp(cfg.travelWords, "i") : null;
 const travelFluff = o => !!TRAVEL_PLACES && !!TRAVEL_WORDS && (o.k ?? "news") === "news" && !A.pinned[o.id] && !A.featured[o.id] && (t => TRAVEL_PLACES.test(t) && TRAVEL_WORDS.test(t) && !COMMUNITY.test(t))(o.h + " " + (o.m ?? ""));
+// A Google News search also returns pages that are not stories: a photo's own page (its "headline" is the file's name: "20261119 lease signing 01.JPG", "IMG_9745.JPG", "DC210139"), an outlet's
+// front page (the headline is the outlet's name), an archive page ("Measles Outbreaks Archives"), a section ("Immigration"). On 21 Nov 2026 the feed held 70 photo pages of one Guam newspaper.
+// Only what Google News found is tested; an outlet's own feed lists its stories. A story the owner pinned or featured, or whose headline the owner wrote, stays.
+const FILE_TITLE = /\.(?:jpe?g|png|gif|webp|tiff?|bmp|heic|pdf|mp4|mov)$|^(?:IMG|DSC[NF]?|PXL|MVIMG|GOPR|DJI|SAM|DC|P)[-_ ]?\d{3,}\w*$|^20\d{6}(?:[ _-]|$)|^\d{6}-[A-Z]-[A-Z0-9]{5}-\d{3,4}$/i;
+const notAStory = o => {
+  if (!viaGoogle(o) || A.pinned[o.id] || A.featured[o.id] || typeof A.edits?.[o.id]?.h === "string") return false;
+  const h = String(o.h ?? "").trim(), words = h.split(/\s+/).filter(Boolean);
+  return FILE_TITLE.test(h) || words.length < 2 || normName(h) === normName(o.s) || (words.length <= 5 && / Archives$/i.test(h) && !/National Archives$/i.test(h));
+};
 const offTopic = o => !isPolicy(o.k) && !isOrg(o.k) && hostOf(o.u) === "news.google.com" && !keys1(o.s).some(k => TRUSTED.has(k)) && !gateOf(o) && !COMMUNITY.test(o.h + " " + (o.m ?? ""));
 
 const ENT = { amp: "&", lt: "<", gt: ">", quot: '"', apos: "'", nbsp: " ", rsquo: "’", lsquo: "‘", rdquo: "”", ldquo: "“", ndash: "–", mdash: "—", hellip: "…" };
@@ -223,17 +232,26 @@ const clean = (s, max = CLEAN_MAX) => tx(s).slice(0, max).replace(/<[^<>]*>/g, "
   .replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f-\u009f\ufffe\uffff]/g, " ").replace(/[\ud800-\udbff](?![\udc00-\udfff])|(?<![\ud800-\udbff])[\udc00-\udfff]/g, "").replace(/\s+/g, " ").trim();
 // Show only a publisher-written dek/excerpt from the feed. Never generated or rewritten.
 // Auto-trimmed body excerpts ("… [...]", "appeared first on") and long text are dropped.
+const CUT_LINK = /(?<=(?:…|\.\.\.|[.!?\]])\s*)(?:Read more|Read the rest|Keep reading|Continue reading\b.{0,200})\s*(?:[»›→>]|&raquo;)*\s*$/i; // only after the end of a sentence or an ellipsis: "students continue reading at home" is a sentence, not a link
 const dek = (s, title) => {
   let c = clean(s);
   // WordPress feeds add "The post <title> appeared first on <site>." after the excerpt; that footer is removed and the excerpt in front of it is kept.
   const f = c.search(/appeared first on/i);
   if (f > 0) { const j = c.lastIndexOf("The post ", f); if (j >= 0) c = c.slice(0, j).trim(); }
+  c = c.replace(CUT_LINK, "").trim(); // "... Read more", "… Continue reading <title>": the link a site puts after an excerpt it cut off, so the cut-off excerpt in front of it is recognised below
   if (c.length < 25 || c.length > 280) return "";
   if (/(…|\.\.\.|&hellip;|&#8230;)\s*\]?\s*$/.test(c) || /appeared first on/i.test(c)) return ""; // "&hellip;" is what is left of an ellipsis that the feed escaped twice
   if (c.toLowerCase().startsWith(title.toLowerCase().slice(0, 40))) return "";
   return c;
 };
 const safeUrl = u => { try { const x = new URL(String(u).trim()); return /^https?:$/.test(x.protocol) ? x.href : ""; } catch { return ""; } };
+// Some feeds add tracking labels to every link (?utm_source=rss&utm_medium=rss&utm_campaign=...). They tell the outlet where a reader came from and are not part of the address, so they are left out of the link a reader gets.
+// A story's id is still made from the address as the feed gave it, so stories stored before this rule keep their ids (saved stories, the owner's pins and edits go by id).
+const TRACKING = /^(?:utm_[a-z0-9_]+|fbclid|gclid|dclid|gbraid|wbraid|msclkid|yclid|mc_cid|mc_eid|igshid|_hsenc|_hsmi|mkt_tok)$/i;
+const untrack = u => {
+  if (typeof u !== "string" || !/[?&](?:utm_|fbclid=|gclid=|dclid=|gbraid=|wbraid=|msclkid=|yclid=|mc_[ce]id=|igshid=|_hsenc=|_hsmi=|mkt_tok=)/i.test(u)) return u;
+  try { const x = new URL(u); for (const k of [...new Set(x.searchParams.keys())]) if (TRACKING.test(k)) x.searchParams.delete(k); return x.href; } catch { return u; }
+};
 const linkOf = it => {
   const l = it.link;
   if (Array.isArray(l)) { const a = l.find(x => x["@_rel"] === "alternate") ?? l[0]; return a?.["@_href"] ?? tx(a); }
@@ -438,7 +456,9 @@ async function baseRecords(src) {
 }
 async function feedItems(url) { return parseItems(await getText(url)); }
 function parseItems(text) {
-  const x = parser.parse(text);
+  // A site that sends a web page where its feed should be (an error page, a "checking your browser" page, the page a removed feed redirects to) is "Not a feed" also when the page is one the XML reader
+  // gives up on: its own message ("Maximum nested tags exceeded") said nothing about the cause and was not retried like the passing fault it usually is.
+  let x; try { x = parser.parse(text); } catch (e) { throw new Error(/<(?:rss|feed|rdf:RDF)[\s>]/i.test(String(text).slice(0, 5000)) ? `The feed could not be read (${String(e?.message ?? e).slice(0, 80)})` : "Not a feed"); }
   if (!x.rss && !x.feed && !x["rdf:RDF"]) throw new Error("Not a feed");
   const raw = x.rss?.channel?.item ?? x.feed?.entry ?? x["rdf:RDF"]?.item ?? [];
   return Array.isArray(raw) ? raw : [raw];
@@ -484,15 +504,20 @@ async function pull(src) {
       if (src.asName) s = src.asName; // e.g. show Google News results from nbcnews.com as "NBC Asian America"
     }
     if (src.titleStrip) h = h.replace(new RegExp(src.titleStrip, "gi"), "").replace(/\s+/g, " ").trim(); // "titleStrip": a pattern removed from every headline of this source (a date or a release number the listing puts in the link text)
+    const ph = G ? bareHost(hostOf(it.source?.["@_url"] ?? "")) : "";
+    if (G) { // some outlets end their own headlines with their name ("... | News18", "... - guampdn.com"), which Google News then repeats: one such ending is removed when it is this outlet's name or site
+      const tail = /^(.+\S)\s+[|\u2013\u2014-]\s+([^|\u2013\u2014]{2,60})$/.exec(h), names = new Set([pubName, s, src.asName, ph, noTld(ph)].flatMap(n => n ? [normName(n), normName(rnS(n))] : []).filter(Boolean));
+      if (tail && (names.has(normName(tail[2])) || names.has(normName(rnS(tail[2].trim()))))) h = tail[1];
+    }
     h = calmCaps(h);
     if (h.length > HEAD_MAX) h = h.slice(0, HEAD_MAX - 1).replace(/\s+\S*$/, "") + "…"; // no headline is this long; a broken feed's would fill the page
-    const u0 = safeUrl(linkOf(it)), u = src.noQuery ? u0.replace(/[?#].*$/, "") : u0, ph = G ? bareHost(hostOf(it.source?.["@_url"] ?? "")) : "";
+    const u0 = safeUrl(linkOf(it)), uGiven = src.noQuery ? u0.replace(/[?#].*$/, "") : u0, u = untrack(uGiven);
     if (u.length > LINK_MAX) continue;
     if (src.google && lookAlike(s, ph)) { lookLog.push(`${s}: ${ph}`); s = ph; pubName = ph; }
     if (ph) learnHost(s, ph); // learned before the block check, so a stored story from a blocked publisher can be recognised later
     if (hostBlocked(hostOf(u)) || hostBlocked(ph) || nameBlocked(pubName) || ownerBlocked(pubName)) continue;
     if ((dropT && dropT.test(h)) || (dropL && dropL.test(u))) continue;
-    if (exCat.size && catsOf(it).some(c => exCat.has(c))) { if (u) catDropIds.add(idOf(src.kind, u)); skippedCat.push(s + ": " + h); continue; }
+    if (exCat.size && catsOf(it).some(c => exCat.has(c))) { if (u) catDropIds.add(idOf(src.kind, uGiven)); skippedCat.push(s + ": " + h); continue; }
     const raw = G ? "" : clean(src.bodyText ? (it.description || it.summary || it["content:encoded"]) : (it.description ?? it.summary ?? it["content:encoded"])).slice(0, 300); // used only for filtering/tagging; "bodyText" falls back to the post text when the feed's description is empty (SCOTUSblog)
     const m = G ? "" : dek(it.description ?? it.summary, h);
     const gov = isPolicy(src.kind), rl = gov ? (relOf(h + " " + raw) || (src.filter ? "" : "n")) : "";
@@ -506,7 +531,7 @@ async function pull(src) {
     if (isNaN(d) || d > Date.now() + 864e5) d = new Date();
     const full = src.fullText ? cleanBody(tx(it["content:encoded"] ?? it.content)) : "";
     // a .gov statement can also be in the Policy tracker, so it gets an id of its own here
-    const item = { id: idOf(src.kind, u), d: d.toISOString(), s, h, m, u, g: G ? 1 : 0, ...(ph ? { ph } : {}), ...(gov && src.official ? { of: 1 } : {}), k: src.kind ?? kindOf(s), ...(rl ? { rl } : {}), ...TG.all(h, raw + " " + clean(full, 80000).slice(0, 4000), d, gov ? "GOVERNMENT" : undefined) };
+    const item = { id: idOf(src.kind, uGiven), d: d.toISOString(), s, h, m, u, g: G ? 1 : 0, ...(ph ? { ph } : {}), ...(gov && src.official ? { of: 1 } : {}), k: src.kind ?? kindOf(s), ...(rl ? { rl } : {}), ...TG.all(h, raw + " " + clean(full, 80000).slice(0, 4000), d, gov ? "GOVERNMENT" : undefined) };
     if (full) { const img = heroOf(it, full); item.v = 1; item.art = { by: clean(it["dc:creator"] ?? it.author?.name).slice(0, NAME_MAX), img, body: tidyBody(full, img) }; }
     out.push(item);
   } catch (e) { bad++; why ||= String(e?.message ?? e); }
@@ -642,7 +667,7 @@ async function pullStateBills(os) {
   let left = BACKFILL ? (os.backfillRequests ?? 120) : (os.maxRequests ?? 12), stopped = "", perPage = os.perPage ?? 20, asked = 0;
   const found = new Map();
   const keep = b => {
-    const h = clean(b.title), ab = clean((Array.isArray(b.abstracts) ? b.abstracts : []).map(a => a?.abstract).find(Boolean) ?? ""), u = String(b.openstates_url ?? ""), ident = clean(b.identifier);
+    const h = calmCaps(clean(b.title)), ab = clean((Array.isArray(b.abstracts) ? b.abstracts : []).map(a => a?.abstract).find(Boolean) ?? ""), u = String(b.openstates_url ?? ""), ident = clean(b.identifier);
     if (!h || !ident || !/^https:\/\/openstates\.org\//i.test(u) || found.has(u)) return;
     if (!AAPI.test(h + " " + ab)) return; // the search matches the whole text of a bill; only a bill whose title or summary names the communities is listed
     const name = clean(b.jurisdiction?.name), code = STATE_CODE.get(name.toLowerCase()) ?? "", when = String(b.latest_action_date || b.updated_at || "").slice(0, 10);
@@ -840,13 +865,14 @@ const retag = o => {
   // The owner's own topics and communities also apply to stories already stored (a new keyword finds old stories too); a story keeps its other tags. A removed topic or community of the owner's is dropped.
   const keptCm = force || !Array.isArray(o.cm) ? [] : o.cm.filter(c => VALID_CM.has(c)), cm = [...new Set([...(keptCm.length ? keptCm : tg.cm), ...tg.cm.filter(c => CUSTOM_CM.has(c) || BACK_CM.has(c))])]; // a built-in community the owner has just restored is found on old stories again
   const t = CUSTOM_TOPICS.has(tg.t) || BACK_T.has(tg.t) ? tg.t : !force && VALID.has(o.t) ? o.t : tg.t;
-  const cutOff = typeof o.m === "string" && /(?:&hellip;|&#8230;)\s*\]?\s*$/.test(o.m); // an excerpt the feed cut off, stored before the collector recognised an ellipsis that was escaped twice
-  return { ...o, ...(cutOff ? { m: "" } : {}), s, g: 1, k: o.k ?? kindOf(s), t, ...(Array.isArray(o.tx) ? { tx: o.tx.filter(k => VALID.has(k) && k !== t) } : {}), cm, st: !force && o.st ? o.st : tg.st, bl: !force && o.bl ? o.bl : tg.bl, ...(o.dl && !isDay(o.dl) ? { dl: "" } : {}) };
+  const cutOff = typeof o.m === "string" && (/(?:&hellip;|&#8230;)\s*\]?\s*$/.test(o.m) || (CUT_LINK.test(o.m) && /(?:…|\.\.\.)\s*\]?\s*$/.test(o.m.replace(CUT_LINK, "")))); // an excerpt the feed cut off, stored before the collector recognised an ellipsis that was escaped twice, or one followed by "Read more"
+  const u = untrack(o.u), h = typeof o.h === "string" ? calmCaps(o.h) : o.h; // stored before tracking labels were left out of links, or before a headline in capitals was calmed (state bills never were)
+  return { ...o, ...(u !== o.u ? { u } : {}), ...(h !== o.h ? { h } : {}), ...(cutOff ? { m: "" } : {}), s, g: 1, k: o.k ?? kindOf(s), t, ...(Array.isArray(o.tx) ? { tx: o.tx.filter(k => VALID.has(k) && k !== t) } : {}), cm, st: !force && o.st ? o.st : tg.st, bl: !force && o.bl ? o.bl : tg.bl, ...(o.dl && !isDay(o.dl) ? { dl: "" } : {}) };
 };
 // A story that is new in this run is tagged with the topics and communities in use now; one that names a topic or community the owner has since removed (a government item filed under "Government & policy", say) gets the usual replacement.
 const settle = o => ({ ...o, ...(VALID.has(o.t) ? {} : { t: TAXO.default }), ...(Array.isArray(o.cm) && o.cm.some(c => !VALID_CM.has(c)) ? { cm: o.cm.filter(c => VALID_CM.has(c)) } : {}) });
 learnHosts([...old, ...fresh, ...old.map(renamed), ...fresh.map(renamed)]); // a publisher shown under its new name keeps its web address
-const offTopicLog = [], gateLog = [], pacLog = [], travelLog = [];
+const offTopicLog = [], gateLog = [], pacLog = [], travelLog = [], junkLog = [];
 // A rule that is open for comment is listed by the Federal Register and by Regulations.gov. The Federal Register's entry is the one kept (it has the summary); Regulations.gov's is left out when its title and day match one,
 // also among the stored items: the two lists are only compared within one run otherwise, and a rule first read from Regulations.gov stayed in the list twice.
 const titleKey = h => String(h ?? "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim(), frSeen = new Map();
@@ -861,6 +887,7 @@ for (const it0 of [...fresh.map(renamed).map(settle), ...old.map(retag), ...oldP
   if (gateFails(it)) { out0(it0); gateLog.push(it.s + ": " + it.h); continue; }
   if (pacificOnly(it)) { out0(it0); pacLog.push(it.s + ": " + it.h); continue; }
   if (travelFluff(it)) { out0(it0); travelLog.push(it.s + ": " + it.h); continue; }
+  if (notAStory(it)) { out0(it0); junkLog.push(it.s + ": " + it.h); continue; }
   if (offTopic(it)) { out0(it0); offTopicLog.push(it.s + ": " + it.h); continue; }
   const pol = isPolicy(it.k);
   if (pol && it.k !== "statebill" && !govItem(it) && !it.of) { out0(it0); continue; }
@@ -876,6 +903,7 @@ for (const it0 of [...fresh.map(renamed).map(settle), ...old.map(retag), ...oldP
   if (pol) seen.add(k); else seenAt.set(k, [...(seenAt.get(k) ?? []), at]);
   seenId.add(it.id); items.push(it);
 }
+if (junkLog.length) console.log(`Dropped (not a story: a photo's file name, an outlet's own name, a section or an archive page): ${junkLog.length}\n  ` + junkLog.slice(0, 40).join("\n  "));
 if (travelLog.length) console.log(`Dropped (a trip or celebrity story that names no community): ${travelLog.length}\n  ` + travelLog.slice(0, 40).join("\n  "));
 if (pacLog.length) console.log(`Dropped (only about Pacific island nations, no U.S. link): ${pacLog.length}\n  ` + pacLog.slice(0, 40).join("\n  "));
 if (gateLog.length) console.log(`Dropped (a gated site: only the stories its gate allows are kept): ${gateLog.length}\n  ` + gateLog.slice(0, 40).join("\n  "));

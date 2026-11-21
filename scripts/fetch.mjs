@@ -753,16 +753,23 @@ const failsOf = row => Number.isInteger(row?.r) && row.r > 0 ? Math.min(row.r, R
 const rowKey = (name, home, kind) => JSON.stringify([rnS(name), home ?? "", kind ?? ""]), prevRows = new Map(), rowSeen = new Map();
 for (const r of oldSources) { const k = rowKey(r.name, r.home, r.kind); prevRows.set(k, [...(prevRows.get(k) ?? []), r]); }
 const turnOf = (t, s) => { const P = s.every * 60e3, shift = parseInt(createHash("sha1").update(String(s.feed ?? s.page ?? s.wp ?? s.name)).digest("hex").slice(0, 8), 16) % P; return Math.floor((t + shift) / P); };
-// The turns are counted from the last run. A run that changes nothing leaves the feed file, and the time in it, as they were, so every run notes its own time in data/run.json (the page reads it too, to say when the site last checked its sources).
-const RUN_FILE = join(dirname(OUT), "run.json");
-let lastRunAt = NaN; try { lastRunAt = Date.parse(JSON.parse(await readFile(RUN_FILE, "utf8")).at); } catch { /* the first run, or an unreadable note: the feed's own time is used */ }
-const lastRun = Number.isNaN(lastRunAt) ? oldGenerated : Number.isNaN(oldGenerated) ? lastRunAt : Math.max(lastRunAt, oldGenerated);
-const noteRun = () => writeFile(RUN_FILE, JSON.stringify({ at: new Date().toISOString() }) + "\n");
+// The turns are counted from the last run. A run that changes nothing leaves the feed file, and the time in it, as they were, so every run notes its own times in data/run.json: "at", when it
+// finished (the page reads it, to say when the site last checked its sources), and "planned", when it decided whose turn it was. The turns are counted from "planned". Counted from the end of
+// the last run, a turn that began while that run was at work was seen by neither run: the one at work had already decided, and the next one found the turn already begun when the last run ended.
+// The runs start ten minutes apart to the second, so the same sources fell into that gap every time: from 15 to 21 Nov 2026, 24 of the 196 sources that wait their turn were read as little as
+// a tenth as often as their "every" says.
+const RUN_FILE = join(dirname(OUT), "run.json"), planAt = Date.now();
+let lastNote = null; try { lastNote = JSON.parse(await readFile(RUN_FILE, "utf8")); } catch { /* the first run, or an unreadable note: the feed's own time is used */ }
+const lastRunAt = Date.parse(lastNote?.at), lastPlanAt = Date.parse(lastNote?.planned);
+const lastEnd = Number.isNaN(lastRunAt) ? oldGenerated : Number.isNaN(oldGenerated) ? lastRunAt : Math.max(lastRunAt, oldGenerated);
+// "planned" is believed when the note is the last run's own: not later than its "at", and the feed not written after it (a note left behind by an older run says nothing about the last one).
+const lastRun = !Number.isNaN(lastPlanAt) && lastPlanAt <= lastRunAt && !(oldGenerated > lastRunAt) ? lastPlanAt : lastEnd;
+const noteRun = () => writeFile(RUN_FILE, JSON.stringify({ at: new Date().toISOString(), planned: new Date(planAt).toISOString() }) + "\n");
 const plan = todo.map(s => {
   const base = { name: s.name, home: s.home, kind: s.kind ?? kindOf(s.asName ?? s.name) }, k = rowKey(base.name, base.home, base.kind), n = rowSeen.get(k) ?? 0, prev = prevRows.get(k)?.[n];
   rowSeen.set(k, n + 1);
   const slow = !BACKFILL && Number.isFinite(s.every) && s.every >= 20, again = prev?.ok === false && failsOf(prev) > 0 && failsOf(prev) < RETRIES; // "again": its last read failed with a passing fault
-  const wait = slow && !again && !Number.isNaN(lastRun) && lastRun <= Date.now() && typeof prev?.ok === "boolean" && turnOf(Date.now(), s) === turnOf(lastRun, s);
+  const wait = slow && !again && !Number.isNaN(lastRun) && lastRun <= planAt && typeof prev?.ok === "boolean" && turnOf(planAt, s) === turnOf(lastRun, s);
   return { s, base, wait, prev, slow };
 });
 const results = new Array(plan.length);

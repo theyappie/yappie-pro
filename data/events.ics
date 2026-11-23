@@ -48,6 +48,21 @@ URL:https://www.govinfo.gov/content/pkg/STATUTE-107/pdf/STATUTE-107-Pg1510
 CATEGORIES:Anniversary
 END:VEVENT
 BEGIN:VEVENT
+UID:f00a65d6d688@pro.theyappie.com
+DTSTAMP:20261123T233000Z
+DTSTART:20261123T233000Z
+DTEND:20261124T015800Z
+SUMMARY:Burning
+DESCRIPTION:Event or webinar. From Potluck Asian America. Burning is the s
+ earing examination of an alienated young man\, Jongsu (Ah-in Yoo)\, a fru
+ strated introvert whose already difficult life is complicated by the appe
+ arance of two people in his orbit: first\, Haemi (newcomer Jong-seo Jun)\
+ , a spirited woman who offers the romantic possibility\, and then…
+LOCATION:Paris Theater\, 4 West 58th St.\, New York\, NY\, 10019
+URL:https://potluckasianamerica.org/event/burning/
+CATEGORIES:Event or webinar
+END:VEVENT
+BEGIN:VEVENT
 UID:cmt-5ca04f41efe6@pro.theyappie.com
 DTSTAMP:20261128T000000Z
 DTSTART;VALUE=DATE:20261128

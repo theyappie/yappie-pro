@@ -96,6 +96,22 @@ URL:https://potluckasianamerica.org/event/friendsgiving-lunch-2026/
 CATEGORIES:Event or webinar
 END:VEVENT
 BEGIN:VEVENT
+UID:f37ace1ab036@pro.theyappie.com
+DTSTAMP:20261129T000000Z
+DTSTART;VALUE=DATE:20261129
+DTEND;VALUE=DATE:20261220
+SUMMARY:Lea Salonga
+DESCRIPTION:Event or webinar. From Potluck Asian America. Ring in the holi
+ days with one of Broadway’s biggest stars\, Tony Award® winner Lea Sal
+ onga. Best known for her leading roles in Miss Saigon\, Les Misérables\,
+  Stephen Sondheim’s Old Friends\, Once On This Island\, and Allegiance\
+ , this global artist was bestowed the honor of “Disney Legend” for he
+ r…
+LOCATION:54 Below\, 254 W 54th St. Cellar\, New York\, NY
+URL:https://potluckasianamerica.org/event/lea-salonga/
+CATEGORIES:Event or webinar
+END:VEVENT
+BEGIN:VEVENT
 UID:g7ef36364947@pro.theyappie.com
 DTSTAMP:20261130T000000Z
 DTSTART;VALUE=DATE:20261130

@@ -1707,6 +1707,19 @@ URL:https://www.uscourts.gov/educational-resources/educational-activities/
 CATEGORIES:Anniversary
 END:VEVENT
 BEGIN:VEVENT
+UID:gf2f3c5419be@pro.theyappie.com
+DTSTAMP:20271231T000000Z
+DTSTART;VALUE=DATE:20271231
+DTEND;VALUE=DATE:20280101
+SUMMARY:NPS Cooperative Ecosystems Studies Units (CESU) Master Cooperative
+  Agreements
+DESCRIPTION:Funding or fellowship deadline (Federal grant). From DOI-NPS. 
+ Closing date for applications. Opportunity P23AS00132\, open since 2022-1
+ 2-22\, posted.
+URL:https://www.grants.gov/search-results-detail/345083
+CATEGORIES:Funding or fellowship deadline
+END:VEVENT
+BEGIN:VEVENT
 UID:el-dnc-sc-2028@pro.theyappie.com
 DTSTAMP:20280122T000000Z
 DTSTART;VALUE=DATE:20280122

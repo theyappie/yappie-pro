@@ -6,11 +6,13 @@ import { fileURLToPath } from "node:url";
 import { XMLParser } from "fast-xml-parser";
 import { makeTagger, TAXO_PATH } from "./tag.mjs";
 import { makeEnglishCheck } from "./lang.mjs";
+import { expandYears } from "./years.mjs";
 import { normalizeState, applyEdits, breakingOn, placeOf, withCustom, newsKindKeys, kindState, feedTaxo, hubList, hubTagger, feedHubs, renameMap, renamedTo, mergeOrgs, orgsChanged, sanitizeHtml } from "./admin.mjs";
 
 const CFG = process.env.SOURCES ?? fileURLToPath(new URL("../sources.json", import.meta.url));
 const OUT = process.env.OUT ?? fileURLToPath(new URL("../data/feed.json", import.meta.url));
 const cfg = JSON.parse(await readFile(CFG, "utf8"));
+cfg.sources = expandYears(cfg.sources); // an address with {year} in it (scripts/years.mjs)
 const BLOCK = new Set((cfg.excludeHosts ?? []).map(h => h.toLowerCase())); // sites that are never shown, with their subdomains, e.g. "medium.com"
 const hostOf = v => { try { return new URL(String(v)).hostname.toLowerCase(); } catch { return ""; } };
 // A site on a country domain outside the U.S. (.ca, .ch, .uz, .co.uk, .com.au, ...) is never shown. The U.S. and its territories (.us .gu .as .mp .vi .pr .um) count as U.S.; "allowHosts" lists exceptions.

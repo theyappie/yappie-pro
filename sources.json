@@ -1500,8 +1500,8 @@
     {
       "name": "New Jersey Governor",
       "home": "https://www.nj.gov/governor",
-      "page": "https://www.nj.gov/governor/news/2026/approved/news_archive.shtml",
-      "link": "^/governor/news/2026/approved/\\d{8}[a-z]?\\.shtml$",
+      "page": "https://www.nj.gov/governor/news/{year}/approved/news_archive.shtml",
+      "link": "^/governor/news/{year}/approved/\\d{8}[a-z]?\\.shtml$",
       "kind": "govstmt",
       "filter": true,
       "communityOnly": true,

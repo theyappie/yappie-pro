@@ -34,6 +34,22 @@ URL:https://potluckasianamerica.org/event/nikkatsus-golden-age-of-eros/
 CATEGORIES:Event or webinar
 END:VEVENT
 BEGIN:VEVENT
+UID:f7accd113ce7@pro.theyappie.com
+DTSTAMP:20261127T000000Z
+DTSTART;VALUE=DATE:20261127
+DTEND;VALUE=DATE:20261130
+SUMMARY:The Fin
+DESCRIPTION:Event or webinar. From Potluck Asian America. Park Syeyoung’
+ s THE FIN screens this weekend at @roxycinemanyc with the director in att
+ endance! 🐠 🐠 🐠 Friday November 27\, 7:00pm Sunday November 29\, 
+ 5:00pm “Co-produced by Coproduction Office (THE SQUARE\, TRIANGLE OF SA
+ DNESS)\, THE FIN takes place in a post-war version of a unified Korea\, w
+ here…
+LOCATION:Roxy Cinema\, 2 6th Avenue Cellar Level\, New York\, NY\, 10013
+URL:https://potluckasianamerica.org/event/the-fin/
+CATEGORIES:Event or webinar
+END:VEVENT
+BEGIN:VEVENT
 UID:cmt-5ca04f41efe6@pro.theyappie.com
 DTSTAMP:20261128T000000Z
 DTSTART;VALUE=DATE:20261128
@@ -46,22 +62,6 @@ URL:https://www.federalregister.gov/documents/2026/09/28/2026-19768/notice
  -of-proposed-information-collection-requests-imls-native-hawaiian-library
  -services-grant
 CATEGORIES:Comment deadline
-END:VEVENT
-BEGIN:VEVENT
-UID:fbea03afdafe@pro.theyappie.com
-DTSTAMP:20261128T170000Z
-DTSTART:20261128T170000Z
-DTEND:20261128T200000Z
-SUMMARY:Hong Kong Bakery Workshop
-DESCRIPTION:Event or webinar. From Potluck Asian America. A little taste o
- f Hong Kong\, made by you! 🧈🥚 Join us for a hands-on Hong Kong Bake
- ry Workshop where we’ll be making two beloved classics: pineapple buns 
- (菠蘿包) and Hong Kong-style egg tarts (蛋撻). Learn how to make the
- se nostalgic bakery favorites from scratch\, from shaping and baking gold
- en…
-LOCATION:Kitsby\, 393 Broadway\, 5th Floor\, New York\, NY\, 10013
-URL:https://potluckasianamerica.org/event/hong-kong-bakery-workshop/
-CATEGORIES:Event or webinar
 END:VEVENT
 BEGIN:VEVENT
 UID:g7ef36364947@pro.theyappie.com

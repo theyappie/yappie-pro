@@ -80,11 +80,11 @@ jobs:
     # to the steps that read and save it. The steps that install packages and read other sites hold no write access to anything.
     steps:
       # The newest commit of the branch, not the one that was current when this run was triggered: a run that waited in the queue behind another update would otherwise start from out-of-date data.
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: ${{ github.ref_name }}
           persist-credentials: false
-      - uses: actions/setup-node@v7
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with: { node-version: 24, cache: npm }
       # --ignore-scripts: none of the packages needs an install script, so none is allowed to run one
       - run: npm ci --ignore-scripts
@@ -104,7 +104,7 @@ jobs:
           if [ "$private" != "true" ]; then echo "::error::$ADMIN_DATA_REPO is not private. Make it private (Settings, Danger Zone, Change visibility); stories waiting for approval would otherwise be public."; exit 1; fi
       - name: Get the admin data
         if: steps.admin.outputs.on == 'true'
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           repository: ${{ env.ADMIN_DATA_REPO }}
           token: ${{ secrets.ADMIN_DATA_TOKEN }}
@@ -129,7 +129,7 @@ jobs:
       - name: Build the RSS feeds and the page's data files
         timeout-minutes: 3
         run: node scripts/build-outputs.mjs
-      - name: Keep the page copies and the page's security policy in step with index.html
+      - name: Keep the page copies, their titles and headline lists, the sitemap and the page's security policy in step with index.html and the new data
         # does nothing unless index.html was changed without running scripts/pages.sh (an edit made on GitHub directly, say). A mistake in the page must not stop the news, so a failure here is only reported.
         continue-on-error: true
         timeout-minutes: 2
@@ -159,7 +159,7 @@ jobs:
         run: |
           # .well-known (security.txt) goes in only when the folder exists: git refuses to stage a path that is not there, and that must never stop the news from being published
           extra=(); [ -d .well-known ] && extra=(.well-known)
-          bash scripts/commit-data.sh "feed: $(date -u +%FT%TZ)" data ':(glob)*.html' "${extra[@]}"
+          bash scripts/commit-data.sh "feed: $(date -u +%FT%TZ)" data ':(glob)*.html' sitemap.xml "${extra[@]}"
       - name: Save the waiting list to the private repository
         if: steps.admin.outputs.on == 'true'
         timeout-minutes: 3

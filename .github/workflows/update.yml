@@ -80,11 +80,11 @@ jobs:
     # to the steps that read and save it. The steps that install packages and read other sites hold no write access to anything.
     steps:
       # The newest commit of the branch, not the one that was current when this run was triggered: a run that waited in the queue behind another update would otherwise start from out-of-date data.
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
         with:
           ref: ${{ github.ref_name }}
           persist-credentials: false
-      - uses: actions/setup-node@v5
+      - uses: actions/setup-node@v7
         with: { node-version: 24, cache: npm }
       # --ignore-scripts: none of the packages needs an install script, so none is allowed to run one
       - run: npm ci --ignore-scripts
@@ -104,7 +104,7 @@ jobs:
           if [ "$private" != "true" ]; then echo "::error::$ADMIN_DATA_REPO is not private. Make it private (Settings, Danger Zone, Change visibility); stories waiting for approval would otherwise be public."; exit 1; fi
       - name: Get the admin data
         if: steps.admin.outputs.on == 'true'
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
         with:
           repository: ${{ env.ADMIN_DATA_REPO }}
           token: ${{ secrets.ADMIN_DATA_TOKEN }}

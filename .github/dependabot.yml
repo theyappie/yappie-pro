@@ -1,0 +1,24 @@
+# Keeps the build's own tools current: at most one pull request a month for the actions the workflows use and one for the two npm packages.
+# Nothing is merged by itself; the owner reads each one and merges it (or closes it).
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    open-pull-requests-limit: 1
+    groups:
+      actions:
+        patterns: ["*"]
+    commit-message:
+      prefix: "ci"
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: monthly
+    open-pull-requests-limit: 1
+    groups:
+      npm:
+        patterns: ["*"]
+    commit-message:
+      prefix: "deps"

@@ -7,7 +7,8 @@
   "scripts": {
     "fetch": "node scripts/fetch.mjs",
     "outputs": "node scripts/build-outputs.mjs",
-    "digest": "node scripts/digest.mjs"
+    "digest": "node scripts/digest.mjs",
+    "test": "bash tests/run.sh"
   },
   "engines": {
     "node": ">=20"

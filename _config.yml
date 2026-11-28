@@ -1,2 +1,4 @@
 # GitHub Pages builds this site with Jekyll, which skips any folder whose name starts with a dot. This line lets it publish /.well-known (security.txt: where to report a security problem).
 include: [".well-known"]
+# The test suites and installed packages are for the build, not the website.
+exclude: ["tests", "node_modules", "package.json", "package-lock.json"]

@@ -12,11 +12,11 @@ jobs:
     timeout-minutes: 10
     steps:
       # the newest commit of the branch, so the brief is made from the newest feed
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: ${{ github.ref_name }}
           persist-credentials: false   # the token is handed to the last step only (scripts/with-token.sh)
-      - uses: actions/setup-node@v7
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with: { node-version: 24, cache: npm }
       - run: npm ci --ignore-scripts
       - run: node scripts/digest.mjs

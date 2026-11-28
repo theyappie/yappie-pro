@@ -1,0 +1,24 @@
+name: tests
+# Runs every test suite (tests/run.sh) on each pull request, such as a Dependabot update, so a change is checked before it is merged.
+# It reads the code and nothing else: no secrets, read-only access, and the suites' made-up sources are served on the runner itself.
+on:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: tests-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      # actions are pinned to an exact commit (the version is in the comment); Dependabot proposes updates monthly
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with: { node-version: 24, cache: npm }
+      - run: npm ci --ignore-scripts
+      - run: npm test

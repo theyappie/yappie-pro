@@ -171,7 +171,10 @@ const routeOf = o => ROUTES.find(r => inList(hostOf(o.u), r.hosts) || pubHosts(o
 const reroute = o => {
   const rk = routeOf(o);
   if (rk) return rk === o.k ? o : { ...o, k: rk };
-  return NEWS_KINDS.has(o.k) && govItem(o) ? { ...o, k: "govstmt", rl: o.rl || relOf(o.h + " " + (o.m ?? "")) || "n" } : o;
+  // A news result on a .gov site becomes a government statement only when its own words name the communities or a related issue: a broad search also turns up pages like a library blog post about an old map, which are not policy.
+  if (!NEWS_KINDS.has(o.k) || !govItem(o)) return o;
+  const rl = o.rl || relOf(o.h + " " + (o.m ?? ""));
+  return rl ? { ...o, k: "govstmt", rl } : o;
 };
 // A story that Google News found with a broad search can share only a word with the communities (a Guam soccer score, a stock ticker), so it is shown only when its headline names the communities (communityPattern) or its publisher is trusted: every source above plus "trustedOutlets".
 const COMMUNITY = new RegExp(cfg.communityPattern ?? AAPI.source, "i");

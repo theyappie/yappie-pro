@@ -1,0 +1,29 @@
+{
+  "name": "The Yappie Pro — Informing and Empowering AAPI Communities",
+  "short_name": "Yappie Pro",
+  "start_url": "/",
+  "scope": "/",
+  "display": "browser",
+  "background_color": "#111525",
+  "theme_color": "#111525",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

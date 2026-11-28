@@ -1,0 +1,70 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//The Yappie Pro//Comment deadlines//EN
+CALSCALE:GREGORIAN
+X-WR-CALNAME:AAPI comment deadlines
+BEGIN:VEVENT
+UID:5ca04f41efe6@yappie-pro
+DTSTAMP:20260928T120000Z
+DTSTART;VALUE=DATE:20261128
+DTEND;VALUE=DATE:20261129
+SUMMARY:Comments due: Notice of Proposed Information Collection Requests: 
+ IMLS Native Hawaiian Library Services Grant Program Notice of Funding Opp
+ ortunity
+URL:https://www.federalregister.gov/documents/2026/09/28/2026-19768/notice
+ -of-proposed-information-collection-requests-imls-native-hawaiian-library
+ -services-grant
+DESCRIPTION:Notice | National Foundation on the Arts and the Humanities / 
+ Institute of Museum and Library Services\nhttps://www.federalregister.gov
+ /documents/2026/09/28/2026-19768/notice-of-proposed-information-collectio
+ n-requests-imls-native-hawaiian-library-services-grant
+END:VEVENT
+BEGIN:VEVENT
+UID:8f11a77aea9f@yappie-pro
+DTSTAMP:20261117T050000Z
+DTSTART;VALUE=DATE:20270119
+DTEND;VALUE=DATE:20270120
+SUMMARY:Comments due: Modernizing the Labor Market Test and Improving Prot
+ ections for U.S. Workers in the Permanent Labor Certification Immigrant V
+ isa Program
+URL:https://www.regulations.gov/document/ETA-2026-0133-0002
+DESCRIPTION:Proposed Rule | ETA\nhttps://www.regulations.gov/document/ETA-
+ 2026-0133-0002
+END:VEVENT
+BEGIN:VEVENT
+UID:ce8ebacc71ff@yappie-pro
+DTSTAMP:20261119T120000Z
+DTSTART;VALUE=DATE:20270119
+DTEND;VALUE=DATE:20270120
+SUMMARY:Comments due: Customer Due Diligence Requirements for Covered Fina
+ ncial Institutions
+URL:https://www.federalregister.gov/documents/2026/11/19/2026-23614/custom
+ er-due-diligence-requirements-for-covered-financial-institutions
+DESCRIPTION:Proposed Rule | Treasury Department / Financial Crimes Enforce
+ ment Network | FinCEN is issuing this proposed rule to strengthen custome
+ r due diligence requirements under the Customer Due Diligence Rule consis
+ tent with the policy goals of\, and as directed by\, Executive Order 1440
+ 6\, Restoring Integrity to America's Financial System.\nhttps://www.feder
+ alregister.gov/documents/2026/11/19/2026-23614/customer-due-diligence-req
+ uirements-for-covered-financial-institutions
+END:VEVENT
+BEGIN:VEVENT
+UID:ceb55449978c@yappie-pro
+DTSTAMP:20261117T120000Z
+DTSTART;VALUE=DATE:20270119
+DTEND;VALUE=DATE:20270120
+SUMMARY:Comments due: Modernizing the Labor Market Test and Improving Prot
+ ections for U.S. Workers in the PERM Immigrant Visa Program
+URL:https://www.federalregister.gov/documents/2026/11/17/2026-23370/modern
+ izing-the-labor-market-test-and-improving-protections-for-us-workers-in-t
+ he-perm-immigrant
+DESCRIPTION:Proposed Rule | Labor Department / Employment and Training Adm
+ inistration | The Department of Labor (Department or DOL) proposes to ame
+ nd its regulations regarding the certification of job opportunities offer
+ ed by employers seeking to employ aliens on a permanent basis in the Unit
+ ed States. S. workers similarly employed in the United States. S. S. S. S
+ .\nhttps://www.federalregister.gov/documents/2026/11/17/2026-23370/modern
+ izing-the-labor-market-test-and-improving-protections-for-us-workers-in-t
+ he-perm-immigrant
+END:VEVENT
+END:VCALENDAR

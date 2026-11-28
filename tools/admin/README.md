@@ -1,0 +1,132 @@
+# Admin dashboard (password-protected)
+
+A private page where you log in and approve, edit, retag, keep or delete anything on The Yappie Pro. It runs as one free Cloudflare Worker. The site itself stays a static site: the dashboard saves your decisions to a **separate private GitHub repository**, and the next update applies them.
+
+**What you can do**
+
+- **Live**: every item on the site (all sections: AAPI Media, Mainstream, Statements, Research, Policy, and so on). Search, filter by source, section, topic, community and state, then edit, move back to the approval queue, keep permanently, or delete. Select many at once to retag, move or delete in bulk.
+- **Waiting for approval**: new stories that you chose to review before they go live. Approve, edit and approve, or delete.
+- **Trash**: deleted items, kept 180 days. Restore any of them. A deleted item is never collected again.
+- **Edit**: headline, summary, source, link, date, section, main topic, extra topics, communities and states. The dashboard remembers what was collected, so "Revert to collected" always works.
+- **Add an item**: for example a story you write yourself. It can have its own story text, author and picture, and opens inside the portal like a Yappie article. The form can also feature it and mark it as breaking news in the same step.
+- **Settings**:
+  - **Approval**: choose whether new stories wait for approval: never, always, or only for the sources and sections you pick.
+  - **Topics** and **Communities**: the built-in ones are listed first as editable names; below them you add your own. Give each some keywords (words or phrases, one per line or separated by commas) and every new story that mentions one is tagged automatically at the next update; stories already on the site are checked too. A topic or community without keywords is given by hand (Edit, or Retag for many at once). Keywords match whole words in any capitals, a plural also matches, and anything you type is taken literally (it is never treated as a pattern). A story that contains one of your topic's keywords goes under your topic instead of a built-in one. Up to 30 of each, 40 keywords each. Removing one takes it off every story.
+  - **Issues**: the Issues tab on the site has one page per issue. The starter issues are listed with how many items each has on the site now and the keywords that put a story in it; press *Hide* on any you do not want (it moves to a Hidden list with a Show button). Under “Your own”, *+ Add an issue* takes a name, an optional one-sentence description and keywords (one per line or separated by commas); an issue needs a name and at least one keyword, and a name already used by another issue is refused. Nothing is saved until you press *Save issues*, and removing one of your own asks first (its stories stay on the site, they just stop being grouped). Changes reach the site at its next update (a few minutes). Issues only collect stories; they never change a story's topic or where it shows.
+  - **Names**: change the name of an issue, a news source, a collected event, a topic, a community, or a section (the News categories, Statements, Research and the Policy types such as Federal legislation). Pick a tab, type the new name next to the old one and press *Rename* (or Enter). *Use original* brings the first name back. A new name is applied to what is already on the site and to everything added later, and appears after the next update. A source's new name is shown on every story, in the Sources filter and in the lists, and anything you decided about the source (blocked, its News category, whether it waits for approval) follows the new name; renaming two sources to one name shows them as one (you are asked first). A collected event's new title also applies to later events with the same title, such as a weekly webinar; events you typed yourself are edited under Events and funding. Names must be different from the other names in the same list. Sections can be renamed but not removed. Issues, topics, communities and categories you added yourself are renamed here too. Organization names are changed under Organizations. Up to 500 renamed sources and 300 renamed events.
+  - **Organizations**: the Organizations tab lists 73 starter organizations (`orgs.json`). Search them, press *Edit* to change any detail (name, website, type, where it works, headquarters, year founded, the states, communities and issues it works on, and the names its news and statements are listed under) or *Hide* to take one off the site (it moves to a *Hidden* filter with a *Show* button; Hide has an Undo). *+ Add an organization* takes a name and an https website and lets you fill in the rest. Organizations you added can be removed (it asks first); a changed starter one has a *Back to the starter version* button. A name that another organization already has is refused. Up to 300 organizations of your own.
+  - **Events and funding**: your own events, hearings and deadlines for the Events tab. *+ Add an event* takes a kind (Hearing, Event or webinar, Funding or fellowship deadline), a title, a date, an optional start and end time (times are in your own time zone and visitors see them in theirs; tick *All day* for a deadline or a multi-day event), a host, a link, a place and a description. Under it, every item the site collected (congressional hearings, federal grants, calendar feeds) is listed with a search box and a *Hide* button (hidden items come back with *Show*); hiding one only removes it from the Events page, and it is never added back by the next update. Nothing is saved until you press *Save events*, and removing one of your own asks first.
+  - **Calendars**: shows whether congressional hearings and federal grants were loaded at the last update (hearings say “skipped: no API key set” until `API_DATA_GOV_KEY` is added as a repository secret, the same free api.data.gov key the Policy tracker uses), and lists the calendar feeds the site follows, each marked *working* or *not working* with the number of events it gave. *Stop following* on a starter feed puts it in a list with a *Follow again* button. Under “Your own”, *+ Add a calendar* takes a name and the `.ics` address of a public calendar (an `https://` or `webcal://` address; addresses pointing to a private network or containing a password are refused). Nothing is saved until you press *Save calendars*. Changes reach the site at its next update; new calendar addresses are read within the hour. Repeating events are listed once, not expanded, and a calendar entry that runs longer than 21 days (a museum exhibition, say) is left out.
+  - **Rename or remove the built-in ones** (topics, communities and News categories): type a new name in the “Built in” list and save, or press Remove. A removed one moves to a “Removed” list with a Restore button, and saving a removal asks first. A removed topic is taken off the site's filters and its stories move to their next best topic (the same keyword rules as before, without it); a removed community is taken off its stories; a removed News category asks where its sources go (the other built-in category or one of yours), and the News page must keep at least one category. Restoring brings it back, and the stories that fit it come back to it automatically. What it does not bring back is a hand choice that was dropped when it was removed (for example an edit that used it, or a source you had put in it). The catch-all topic, Culture, can be renamed but not removed, because it is where stories that fit nothing else go. Typing a built-in's original name again undoes a rename. Names (above) is the quickest way to rename them, and the only place for the Policy types, Statements and Research.
+  - **Blocked sources**: type or choose a source and press *Block this source*. After you confirm, all of that source's stories are taken off the site (they do not go to the Trash) and nothing new is collected from it, however its name is spelled or capitalised. Unblock it to collect it again: new stories return at the next update, and its older stories after the next full scan of the year (GitHub, Actions, update-feed, Run workflow, tick *backfill*). Up to 200 sources.
+  - **Breaking news** and **Featured items**: search for a story on the site and press *Mark…* or *Feature*; the lists show what is marked now, with *End now* and *Remove* buttons.
+  - **News categories** and **News sources**: the News page starts with two categories, AAPI Media and Mainstream (rename or remove either, see above). Add more (for example “Faith media”), then put each source in one of them from the table (search, tick several, move them together). It applies to all of the source's stories, new and old. A story you move by hand with Edit keeps its own choice. Choosing a source's usual category again removes your choice. Statements, Research and the Policy pages are not News categories.
+- **Feature an item** (the Feature button on a row, in the bulk bar, or Settings, Featured items): featured items are shown first on their page with a *Featured* label, the most recently featured first, ahead of the usual order. There is no limit. They are also kept past the usual number of days until you take them off the list. Use the *Show everything* menu, *Featured*, to list them.
+- **Breaking news** (the Breaking… button on a row, in the bulk bar, when adding an item, or Settings, Breaking news): choose a label (*Breaking*, *Urgent* or *Important*) and how long it stays red (2, 6, 12 hours, 1 or 2 days; the server accepts 2 to 72 hours). The shortest is 2 hours so that the item is on the page for at least an hour even after the few minutes the site needs to update. The time counts from the moment you save. On the site the item moves to the top of its page in red with a pulsing label (the label is static for readers who ask their device for reduced motion), and when the time is up the page puts it back in its usual place and look by itself, even on a page that is already open. Visitors with the page open see a new mark within about ten minutes. End one early with *End breaking* or *End now* in Settings. It stays on the site while it is marked even if it is older than the usual number of days. Use *Show everything*, *Breaking now*, to list the active ones.
+- **More than one topic** (Edit, or Retag for many): every story has one main topic and can have up to four extra ones, for example Immigration with Education as an extra. In Edit tick the extra topics under “Also filed under”; in Retag use “Also file under (extra topics)” to add one to every selected item, or remove all of them. On the site the topic filter, the topic counts, search, the topic RSS feeds and the email digest all find the story under each of its topics. Extra topics are only ever set by hand: the automatic keyword tagging still chooses just the main topic. Changing the main topic to one of the extras swaps them. Revert to collected removes the extras again.
+- **Policy relevancy** (Edit, or Retag for many): set a Policy item to *Impacts AAPIs* or *Related issue*. **Research page type** (Edit, or Retag): set an item to *Report*, *Survey* or *Data* (or *Not on the Research page*, or *Automatic*, which reads the headline and summary as before). Revert to collected undoes either.
+- **Activity**: every change made from the dashboard, from the private repository's history.
+
+Changes show on the site after the next update, usually two to three minutes after you save (saving starts one). "Update the site now" starts one by hand.
+
+## Why there are two repositories
+
+`theyappie/yappie-pro` is public, and GitHub Pages publishes everything in it. So anything the dashboard keeps there would be readable by anyone, including stories you have not approved yet. Instead:
+
+| Repository | Visible to | Holds |
+|---|---|---|
+| `theyappie/yappie-pro` (the site) | everyone | the website, the feed, the collector |
+| `theyappie/yappie-pro-admin` (new, **private**) | only you | `admin.json` (your decisions) and `pending.json` (stories waiting for approval) |
+
+It costs nothing: a private repository is free, and the update job still runs in the public repository, which has unlimited free Actions minutes.
+
+## Set up (about 20 minutes, once)
+
+You need the Cloudflare account that already runs the update timer, and the two GitHub repositories.
+
+### 1. The private repository
+GitHub → New repository → Owner `theyappie`, name `yappie-pro-admin`, choose **Private**, tick **Add a README file** (the repository must not be empty), Create.
+
+### 2. Two GitHub tokens
+Each token can do one job in one repository, so neither can change the site's own files. GitHub → your profile photo → Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token, twice:
+
+- **The data token.** Resource owner: `theyappie`. Repository access: Only select repositories → `yappie-pro-admin` (the private one, and only that one). Repository permissions: **Contents: Read and write**. Leave the rest as No access.
+- **The start token.** Resource owner: `theyappie`. Repository access: Only select repositories → `yappie-pro` (the site, and only that one). Repository permissions: **Actions: Read and write**. Leave the rest as No access. If you set up the 10-minute timer (`tools/cloudflare-trigger`), you already have a token exactly like this and can use the same one.
+
+For both, pick an expiry, put the date in your calendar, and copy the token: GitHub shows it once.
+
+Why two: the dashboard needs to write in the private repository, and in the public one it only needs to start an update. One token for both repositories would have to be allowed to write files and start runs in both, so whoever got hold of it could rewrite the site itself. With these two, the worst a stolen data token can do is change your saved decisions, and the worst a stolen start token can do is start an update. (A token can always read public repositories, which is how the dashboard reads the site's files with the data token: [GitHub's page on tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens).)
+
+**If you set this up before 18 Nov 2026** you made one token for both repositories. It still works, but please change over: make the two tokens above; put the data token in `ADMIN_DATA_TOKEN` (step 3) and in the Worker's `GITHUB_TOKEN` (step 5); add the start token to the Worker as `DISPATCH_TOKEN` (step 5); paste the current `worker.js` and deploy; check that the dashboard opens and that **Update now** works; then delete the old token on GitHub (the same Fine-grained tokens page → the old token → Delete).
+
+### 3. Give the update job access to the private repository
+In the **site** repository (`yappie-pro`): Settings → Secrets and variables → Actions → New repository secret. Name `ADMIN_DATA_TOKEN`, value: the **data token** from step 2.
+
+Only if you named the private repository something else: Variables tab → New repository variable → `ADMIN_DATA_REPO` = `owner/name`.
+
+From then on every update fetches your decisions from the private repository and saves the waiting list back to it. Without this secret the update job still runs, but your decisions are not applied (the run log says so), so please add it before using the dashboard. The job also stops with an error if the repository is ever made public by mistake.
+
+### 4. A place to remember logins (free)
+Cloudflare dashboard → Storage & databases → KV → Create a namespace named `yappie-admin`. It remembers wrong-password lockouts and sign-outs. The dashboard works without it, but then those are only remembered by one server at a time, so please add it.
+
+### 5. The Worker
+1. Cloudflare dashboard → Workers & Pages → Create → Create Worker → name it `yappie-admin` → Deploy.
+2. Edit code → delete everything → paste the whole of `tools/admin/worker.js` from this repository → Deploy.
+3. Settings → Bindings → Add → KV namespace → variable name **`KV`** → choose `yappie-admin`.
+4. Settings → Variables and Secrets → Add:
+   - Type **Secret**, name `ADMIN_PASSWORD`: your password. Use at least 12 characters; a long phrase from your password manager is best. (The Worker refuses anything under 10.)
+   - Type **Secret**, name `GITHUB_TOKEN`: the **data token** from step 2.
+   - Type **Secret**, name `DISPATCH_TOKEN`: the **start token** from step 2. (Without it the Worker uses `GITHUB_TOKEN` to start updates too, which only works with the older, broader kind of token.)
+   - Optional, type **Text** (these are the defaults): `GITHUB_REPO` = `theyappie/yappie-pro`, `GITHUB_BRANCH` = `main`, `DATA_REPO` = `theyappie/yappie-pro-admin`, `DATA_BRANCH` = `main`, `WORKFLOW_FILE` = `update.yml`, `SITE_ORIGIN` = `https://pro.theyappie.com`.
+5. Deploy again so the settings apply.
+
+### 6. A web address
+The Worker answers at `yappie-admin.<your-subdomain>.workers.dev`. To use `admin.theyappie.com` instead: the Worker → Settings → Domains & Routes → Add → Custom domain → `admin.theyappie.com`. Cloudflare creates the DNS record itself.
+
+Open the address and log in.
+
+### 7. The site's fonts on the login page (optional)
+The login page uses the same Adobe Fonts as the site (Corsario and Tablet Gothic). Adobe only serves them to addresses on the project's list: fonts.adobe.com → your web project → Domains → add `admin.theyappie.com` (or the `workers.dev` address). If you skip this, the login page still works and falls back to ordinary system fonts.
+
+### 8. A second lock (recommended)
+The login page is on the open internet, so anyone can try passwords on it (five wrong ones from one address lock that address out for 15 minutes). For two-step protection, put Cloudflare Access in front: Zero Trust → Access → Applications → Add → Self-hosted → your admin address → a policy that allows only your email address (one-time PIN by email). It is free for up to 50 users. The password still applies after that.
+
+## Day to day
+
+- **Change the password:** edit the `ADMIN_PASSWORD` secret on the Worker. Everyone is signed out at once.
+- **Sign everyone out:** Account → Log out on every device.
+- **Token expired:** the dashboard says which token GitHub did not accept. When it is the data token, the update job (Actions tab) also fails at "Get the admin data" until you replace it: make a new data token (step 2), then replace `GITHUB_TOKEN` on the Worker and the `ADMIN_DATA_TOKEN` secret on the site repository. When it is the start token, make a new one and replace `DISPATCH_TOKEN` on the Worker (and `GITHUB_TOKEN` on the timer Worker, if both use the same one).
+- **A token may have been seen by someone else:** delete it on GitHub at once (Settings → Developer settings → Fine-grained tokens), then make a new one. Deleting is what stops it; taking it out of a setting does not.
+- **Turn approval on:** Settings tab. Items already on the site stay where they are; only new ones wait.
+
+## How it works
+
+- The Worker serves the login page, the dashboard and a small API from one address. After a correct password it sets a cookie that JavaScript cannot read (HttpOnly, Secure, SameSite=Strict, `__Host-` prefix) valid for 12 hours. Every change also needs a per-session token and a matching Origin, so another web page cannot make changes for you.
+- Five wrong passwords from one address lock it out for 15 minutes. Passwords are compared in constant time and never stored; the session signing key comes from the password, so changing the password invalidates all sessions.
+- Pages are served with a strict Content Security Policy (no outside scripts), no caching, and `noindex`. The login page may also load the site's fonts from Adobe Fonts (`use.typekit.net`, `p.typekit.net`); the dashboard loads nothing from outside.
+- New names (`settings.names`), your organizations and your changes to the starter ones (`settings.orgs`) are part of `admin.json` too. The update job applies new source and event names when it reads each story (so stories already stored change too), and publishes `data/orgs.json` (the starter list with your changes) only while you have changes; the page reads that first and falls back to `orgs.json` in the repository. The feed carries the new source names as `taxo.sn` (original name → shown name) so the page can still find outlets it lists by name.
+- Your own topics, communities and categories, and your renames and removals of the built-in ones, are part of `admin.json`. The Worker never publishes their keywords: the feed (`data/feed.json`) carries only names (`taxo`: your own entries as `t`, `c`, `kl`; renamed built-ins as `rn`; removed ones as `off`), which the public page uses to show the right filters without a new release.
+- The Worker serves the site's own tab icons (`/favicon.ico`, `/favicon-32.png`, `/apple-touch-icon.png`, public, cached for a day) so the dashboard and login page show the same icon as pro.theyappie.com. `build.mjs` embeds them from the repository root.
+- Decisions are saved as commits to **`admin.json`** in the private repository (each says what changed, for example "admin: Approved 3 items"). Items waiting for approval are written by the update job to **`pending.json`** in the same repository.
+- The Worker refuses to read or save anything if the data repository is public or is the same repository as the site. The update job makes the same check.
+- The Worker never writes to the public repository's files. There it reads public files, starts the update and asks how the last one went; with `DISPATCH_TOKEN` set, those last two requests are the only ones that carry that token.
+- `scripts/fetch.mjs` reads `admin.json` on every run and applies it (`scripts/admin.mjs` holds the rules, shared with the Worker). If that file is damaged, the run stops and leaves the site as it was.
+- If two saves land at the same moment, the Worker retries. If the update job's push meets a dashboard save, it pulls and pushes again.
+
+## Good to know
+
+- **Nothing unpublished is on the public site.** Stories waiting for approval, your edits to them, and everything in the Trash live only in the private repository. Once you approve a story, it is published like any other (its headline, link and text are then in the feed).
+- **Free plan limits:** the Worker uses a few milliseconds per save. That is fine for several hundred saved decisions. If saves ever fail with "exceeded CPU", delete old trash items, or switch the Worker to the $5/month Workers plan.
+- **Size:** `admin.json` must stay under 900 KB. Old approvals and trash are forgotten after 180 days. The dashboard tells you if the file gets too large.
+- An item you **keep permanently** is exempt from the 30-day (news) cut-off. Items you add by hand are kept permanently unless you untick that box.
+- The Worker is a single generated file. If you change anything in `src/` or `scripts/admin.mjs`, run `node tools/admin/build.mjs` and paste the new `worker.js` again.
+
+## Files
+
+| File | What it is |
+|---|---|
+| `worker.js` | The file to paste into Cloudflare (generated). |
+| `build.mjs` | Builds `worker.js` from `src/` and `scripts/admin.mjs`. |
+| `src/worker-main.js` | Login, sessions, GitHub access and the API. |
+| `src/login.html`, `src/app.html` | The login page and the dashboard. |
+| `src/yappie-pro-logo.svg` | The wordmark shown on the login page (built into `worker.js`). |

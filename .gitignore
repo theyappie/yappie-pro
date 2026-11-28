@@ -1,0 +1,7 @@
+node_modules
+# This repository is public, and so is every version of every file in it. Files that hold secrets on a developer's machine must never be committed:
+.env
+.env.*
+.dev.vars
+*.pem
+*.key

@@ -213,7 +213,7 @@ async function collectGrants(ctx, prev) {
         const m = /^(\d{2})\/(\d{2})\/(\d{4})$/.exec(String(h?.closeDate ?? "").trim()); if (!m || !h.id || !h.title) continue;
         const close = `${m[3]}-${m[1]}-${m[2]}`; if (close < today || byId.has(String(h.id))) continue;
         const op = /^(\d{2})\/(\d{2})\/(\d{4})$/.exec(String(h.openDate ?? "")), opened = op ? `${op[3]}-${op[1]}-${op[2]}` : "";
-        byId.set(String(h.id), { id: "g" + sha("grant" + h.id).slice(0, 11), k: "funding", sub: "Federal grant", t: clip(String(h.title).replace(/\s+/g, " "), 160), d: close, ad: 1, o: clip(h.agencyName ?? h.agencyCode ?? "", 80), u: `https://www.grants.gov/search-results-detail/${encodeURIComponent(h.id)}`, m: clip(`Closing date for applications. Opportunity ${h.number ?? ""}${opened ? `, open since ${opened}` : ""}${h.oppStatus ? `, ${h.oppStatus}` : ""}.`.replace(/Opportunity ,/, "Opportunity"), 300) });
+        byId.set(String(h.id), { id: "g" + sha("grant" + h.id).slice(0, 11), k: "funding", sub: "Federal grant", t: clip(plain(h.title), 160), d: close, ad: 1, o: clip(plain(h.agencyName ?? h.agencyCode ?? ""), 80), u: `https://www.grants.gov/search-results-detail/${encodeURIComponent(h.id)}`, m: clip(`Closing date for applications. Opportunity ${h.number ?? ""}${opened ? `, open since ${opened}` : ""}${h.oppStatus ? `, ${h.oppStatus}` : ""}.`.replace(/Opportunity ,/, "Opportunity"), 300) });
       }
     }
   } catch (e) { return { at, ok: false, note: e.message, n: prev?.events?.length ?? 0, events: prev?.events ?? [] }; }

@@ -134,6 +134,11 @@ jobs:
         continue-on-error: true
         timeout-minutes: 2
         run: bash scripts/pages.sh .
+      - name: Keep the security contact file valid
+        # .well-known/security.txt says where to report a security problem and must carry an Expires date; an expired one is worse than none, so every update renews it (the date moves once a month). A failure here is only reported.
+        continue-on-error: true
+        timeout-minutes: 1
+        run: node scripts/securitytxt.mjs
       - name: Collect events and funding deadlines
         # hearings (Congress.gov), grant deadlines (Grants.gov), coalition calendars and the owner's own events (scripts/events.mjs). It cannot stop the update or hold it back for long:
         # a source that fails keeps what it returned last time, and a step that fails or runs out of time is skipped (the news collected above is published all the same).
@@ -152,7 +157,9 @@ jobs:
         env:
           PUSH_TOKEN: ${{ github.token }}
         run: |
-          bash scripts/commit-data.sh "feed: $(date -u +%FT%TZ)" data ':(glob)*.html'
+          # .well-known (security.txt) goes in only when the folder exists: git refuses to stage a path that is not there, and that must never stop the news from being published
+          extra=(); [ -d .well-known ] && extra=(.well-known)
+          bash scripts/commit-data.sh "feed: $(date -u +%FT%TZ)" data ':(glob)*.html' "${extra[@]}"
       - name: Save the waiting list to the private repository
         if: steps.admin.outputs.on == 'true'
         timeout-minutes: 3

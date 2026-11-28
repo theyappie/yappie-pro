@@ -1,0 +1,4 @@
+Contact: https://github.com/theyappie/yappie-pro/security/advisories/new
+Expires: 2027-03-01T00:00:00Z
+Preferred-Languages: en
+Canonical: https://pro.theyappie.com/.well-known/security.txt

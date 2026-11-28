@@ -1,0 +1,2 @@
+# GitHub Pages builds this site with Jekyll, which skips any folder whose name starts with a dot. This line lets it publish /.well-known (security.txt: where to report a security problem).
+include: [".well-known"]

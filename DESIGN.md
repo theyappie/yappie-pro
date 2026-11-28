@@ -37,8 +37,8 @@ Amber is only for time pressure. Red is only for breaking news. Neither is used 
 
 Two typefaces, both loaded from Adobe Fonts (the same kit as theyappie.com):
 
-- **Corsario** (`--head`, serif): the date on Today, the lead story's headline, the large issue on Issues, the ranks on the headline list. Never for body text or metadata.
-- **Tablet Gothic** (`--sans`, `--mono` is the same face): everything else.
+- **Corsario** (`--head`, serif): the date on Today, the lead story's headline, the large issue on Issues, the ranks on the headline list, the headline of a statement on Advocacy and the figure on a Research row. Never for body text or metadata.
+- **Tablet Gothic** (`--sans`, `--mono` is the same face): everything else. Tabular figures are switched on only for dates, counts and the closing-day column: with them on, its `%` turns into a stacked "0/0" glyph, so they are never set on body text.
 
 | Use | Size | Weight |
 |---|---|---|
@@ -54,9 +54,9 @@ Metadata is sentence case and 13px or larger. **Capitals are only for section la
 ## Shape and depth
 
 - **One radius: `--r`, 6px.** Cards, buttons, inputs, badges, pictures.
-- Fully round shapes are for three things only: dots, count badges, and the filter and toggle chips (they behave like switches, so they look like them).
+- Fully round shapes are for two things only: dots and count badges. Filters are not pills: type tabs, the Calendar's kind and view choices and the theme switch are text, and the chosen one is underlined. An applied filter is its word with a blue underline and a cross.
 - **No drop shadows.** The only `box-shadow` values are inset bars and rings that mark a state: a 2px blue bar on the selected row, a 3px ink bar on a featured row, a 4px red bar on breaking news, a 2px ring for "today" on the calendar.
-- Depth comes from hairlines (`--ln`) and, once per section, a 2px ink rule above the heaviest section (Featured coverage and Top headlines on Today).
+- Depth comes from hairlines (`--ln`) and, once per section, a 2px ink rule above the heaviest section (From The Yappie and Top headlines on Today).
 
 ## Spacing
 
@@ -66,12 +66,12 @@ Rows have 9–14px of padding; on Today, sections are 26–32px apart and the pa
 
 | Component | What it is | Notes |
 |---|---|---|
-| Header | Logo, section tabs, search, theme switch | Navy on both themes; tabs are Today, News, Policy, Advocacy, Research, Issues, Calendar, Organizations, Saved |
-| Row | Time, source, topic, headline, star | The one list item used on News, Policy, Advocacy, Research, Saved. Selected row: blue bar and tint |
+| Header | Logo, section tabs, search, Light / Dark switch | Navy on both themes; tabs are Today, News, Policy, Advocacy, Research, Issues, Calendar, Organizations, Saved |
+| Row | Time, source, topic, headline, star | The list item used on News, Policy, Research, Saved. Selected row: blue bar and tint. Two sections bend it: Advocacy leads with the group and sets the headline in the serif face; Research sets a figure from the headline (a percentage, a dollar amount, "N million", "1 in 5") large above it |
 | Row badge | A boxed fact that tells rows apart | Bill number (ink border), deadline (ink or amber), related issue (dashed), research type (ink). Everything else on a row is plain muted text |
-| Filter chip | Pill toggle | Type tabs on the tracker, topic and source filters |
+| Type tabs | Text with a 2px underline (blue) under the chosen one | Policy, News and Research types; Calendar kinds and views |
 | Details pane | Right column on wide screens, a sheet on phones | Holds the facts that rows leave out, including why an item is marked relevant |
-| Today sections | Featured coverage (picture lead and three pictured stories), Top headlines (ranked list), Policy watch (table with days left, then a plain list), Coming up (date list), Latest statements, Since your last visit, Issues, Organization spotlight | A section with nothing to show is left out |
+| Today sections | From The Yappie (picture lead and three pictured stories), Top headlines (ranked list), Policy watch (table with days left, then a plain list), Coming up (date list), Latest statements, Since your last visit, Issues, Organization of the day | A section with nothing to show is left out |
 | Issue card | Issue name, its newest headline, its counts | The most active issue spans two columns and is set larger |
 | Calendar | Month grid and list | Event kinds are outlined in ink; amber marks deadlines |
 | Reader | In-portal article view | Links in the body are blue and underlined |
@@ -82,7 +82,9 @@ Rows have 9–14px of padding; on Today, sections are 26–32px apart and the pa
 - A grid of identical boxed cards used as a page layout.
 - The same badge on every row ("Government statement", "Impacts AAPIs"). If it is always there, it is not information.
 - Colour as decoration: a stripe, a wash, a tinted card. Blue is for actions and the selection.
-- Radii above 6px on boxes; drop shadows; gradients; glass or blur; emoji or stock icons.
+- Radii above 6px on boxes; pill-shaped filters or switches; drop shadows; gradients; glass or blur; emoji or stock icons.
+- Arrows or other glyphs on the end of links ("All headlines →"); the link says where it goes. The ↗ that marks a link to another site is the one exception.
+- Stock phrases ("weighed in", "all caught up", "spotlight", "explore", "discover"): say what the thing is.
 - Centered, repeated instruction lines in the middle of a page (they go in the footer).
 - A title bar that repeats the tab above it. The heading stays in the page for screen readers.
 - Metadata in capitals or below 13px.

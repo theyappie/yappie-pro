@@ -1,0 +1,33 @@
+name: squash-history
+# Keeps the repository small (GitHub recommends under 1 GB; every update is a commit). Checked on the 1st of each month: when the log is a year old, or the repository has reached 400 MB, the whole history becomes one commit with
+# exactly the same files. The site and its data do not change. To do it now: Actions, squash-history, Run workflow, type squash. How it works and what is lost: scripts/squash-history.sh and the README ("Repository size").
+on:
+  schedule: [{ cron: "41 5 1 * *" }]
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: "Type squash to squash the history now. It cannot be undone: the log and open pull requests are lost; the files stay."
+        type: string
+        default: ""
+permissions: {}
+concurrency: squash-history
+jobs:
+  squash:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write   # the push
+      actions: read     # to see whether an update is running
+    steps:
+      # the whole history (not one commit): it is what gets counted and summed up in the new commit's message
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
+          persist-credentials: false   # the token is handed to the script, which uses it for the push alone (scripts/with-token.sh)
+      - name: Squash if it is time
+        env:
+          PUSH_TOKEN: ${{ github.token }}
+          EVENT: ${{ github.event_name }}
+          CONFIRM: ${{ inputs.confirm }}
+        run: bash scripts/squash-history.sh

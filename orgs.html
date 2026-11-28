@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <!-- The content of the next tag is written by scripts/pages.sh (run it after every change to this file): the page's own scripts, by fingerprint, are the only scripts the browser will run. -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-7lQepSoHZ58YFcb7ybZj5DAt1gM57mUJXEg9S8JS/cY=' 'sha256-hwXa75AAEue53JwNOnDHuxIDKF4yDFC1BEnJMuOH09U=' 'sha256-LSPAp6EvBLf7+gSYQxpdDD50wHgRbiTlS9B1KcfzuuA=' 'sha256-A+N/OAarmNK8Mvef4evlPvEyQ5ph1h4ZpcPdNms3WjU='; style-src 'unsafe-inline' https://use.typekit.net https://p.typekit.net; font-src https://use.typekit.net; img-src 'self' data: https:; connect-src 'self' https://theyappie.com; manifest-src 'self'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-7lQepSoHZ58YFcb7ybZj5DAt1gM57mUJXEg9S8JS/cY=' 'sha256-hwXa75AAEue53JwNOnDHuxIDKF4yDFC1BEnJMuOH09U=' 'sha256-LSPAp6EvBLf7+gSYQxpdDD50wHgRbiTlS9B1KcfzuuA=' 'sha256-Dbmahf3gJfJoGe6/jrBSUz8YW1j1u9F9qA/xCLNSt5o='; style-src 'unsafe-inline' https://use.typekit.net https://p.typekit.net; font-src https://use.typekit.net; img-src 'self' data: https:; connect-src 'self' https://theyappie.com; manifest-src 'self'; base-uri 'none'; form-action 'none'">
 <meta name="theme-color" content="#111525"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="referrer" content="strict-origin-when-cross-origin">
 <title>The Yappie Pro — Informing and Empowering AAPI Communities</title>
 <meta name="description" content="The Yappie Pro is a free news and policy portal for AAPI communities in the United States: news, a policy tracker, advocacy statements, research and a calendar in one place.">
@@ -178,7 +178,7 @@ body.msheet{overflow:hidden}body.msheet .side{display:block;position:fixed;inset
 .wo,.wh{display:inline;padding:0;border:0;background:none;text-align:left;font:inherit;cursor:pointer}
 .wo{min-height:28px;font-weight:600;color:var(--ac)}.wo:hover,.wh:hover{text-decoration:underline}.wo[aria-pressed="true"]{text-decoration:underline;text-decoration-thickness:2px}
 .wh{color:var(--tx);line-height:1.4}.wc,.wd{color:var(--dm);white-space:nowrap}.wd{text-align:right}
-.wq,.wg{padding:9px 12px;border-top:1px solid var(--ln);font-size:13px;line-height:1.6;color:var(--dm)}.wq b,.wg>b{color:var(--tx);font-weight:700}.wq .wo{min-height:0;font-weight:500}
+.wg{padding:9px 12px;border-top:1px solid var(--ln);font-size:13px;line-height:1.6;color:var(--dm)}.wg>b{color:var(--tx);font-weight:700}
 .wg .wl{margin:6px -12px -9px}.wg .wr:first-child{border-top:1px solid var(--ln)}
 .wmr{padding:6px 12px 8px;border-top:1px solid var(--ln)}.wmr .wo{min-height:28px}
 .wnote{padding:8px 12px 10px;border-top:1px solid var(--ln);font-size:12px;line-height:1.5;color:var(--dm)}
@@ -545,7 +545,7 @@ function wswData(k){const items=hubItems(k),by=new Map(),off=new Map(),orgs=advO
 for(const x of items){if(!isAdv(x))continue;let o=by.get(x.s);if(!o)by.set(x.s,o={s:x.s,n:0,last:x});o.n++}
 for(const x of items){if(x.k!="govstmt"||by.has(x.s))continue;let o=off.get(x.s);if(!o)off.set(x.s,o={s:x.s,n:0,last:x});o.n++}
 const late=(a,b)=>pd(b.last.d)-pd(a.last.d);
-return{said:[...by.values()].sort(late),silent:orgs.filter(n=>!by.has(n)).sort((a,b)=>a.localeCompare(b)),off:[...off.values()].sort(late),total:orgs.length}}
+return{said:[...by.values()].sort(late),off:[...off.values()].sort(late),total:orgs.length}}
 let WSWO=null,WSWM=false;const WSWLIM=5; // WSWO: the reader folded or opened the panel; WSWM: all the groups are listed (otherwise the first 5)
 const wrow=o=>`<div class="wr"><button type="button" class="wo" data-wo="${esc(o.s)}" aria-pressed="${F.s==o.s}" title="${F.s==o.s?"Show everyone again":"Show only "+esc(o.s)+" in this issue"}">${esc(o.s)}</button><span class="wc">${o.n} ${o.n>1?"items":"item"}</span><button type="button" class="wh" data-wopen="${esc(uid(o.last))}">${esc(o.last.h)}</button><span class="wd">${esc(fd(o.last.d))}</span></div>`;
 function renderHubHead(){const el=$("#hubhead"),h=VIEW=="hubs"&&curHub();if(!h){el.hidden=true;el.innerHTML="";return}
@@ -553,7 +553,6 @@ const items=hubItems(h.k),w=wswData(h.k),nn=SINCE!=null?items.filter(x=>msOf(x)>
 el.hidden=false;el.innerHTML=`<a class="hback" href="${hubHref("")}" data-hub="">← All issues</a><div class="hstat"><span><b>${items.length.toLocaleString()}</b> ${items.length==1?"item":"items"}${nn?` (<b>${nn.toLocaleString()}</b> new)`:""}</span><span><b>${w.said.length}</b> of ${w.total} advocacy groups have a statement here</span><span>Latest ${esc(fd(items[0].d))}</span></div>
 ${hubComing(h.k)}<details class="wsw"${open?" open":""}><summary>Who’s saying what<span class="wn">${w.said.length?`${w.said.length} ${w.said.length==1?"group has":"groups have"} weighed in`:"No advocacy group statement collected yet"}</span></summary>
 ${said.length?`<div class="wl">${said.map(wrow).join("")}</div>`:""}
-${w.silent.length?`<div class="wq"><b>No statement collected yet from ${w.silent.length}:</b> ${w.silent.map(n=>esc(n)).join(", ")}</div>`:""}
 ${offs.length?`<div class="wg"><b>Officials and agencies</b><div class="wl">${offs.map(wrow).join("")}</div></div>`:""}
 ${more?`<div class="wmr"><button type="button" class="wo" data-wmore aria-expanded="${WSWM}">${WSWM?"Show fewer":"Show all"+(w.said.length>WSWLIM?` ${w.said.length} groups`:"")+(w.off.length>3?(w.said.length>WSWLIM?" and ":" ")+`${w.off.length} officials and agencies`:"")}</button></div>`:""}
 <div class="wnote">From the statements this site collects from advocacy groups and official .gov pages. A group may have spoken elsewhere (social media, interviews) or under other wording.</div></details>`}
@@ -686,9 +685,6 @@ const a=_tid&&thIdx().get(_tid);
 if(!a){$("#rows").innerHTML=`<div class="empty">This story timeline is not available. Timelines are rebuilt with every news update, so an old link can stop working. <a class="clr" href="${BASE}news" data-go="feed">See the latest news</a></div>`;return}
 const n=thN(a);
 $("#rows").innerHTML=`<div class="rsh"><p><b>${a.length} stories from ${n} outlets</b>, ${esc(thWhen(a))}.</p><p>These stories were grouped automatically because their headlines describe the same event. No editor has checked the grouping, so open each story at its source before relying on it.</p></div><div class="tlw"><ol class="tl">${a.map(x=>thItem(x,0)).join("")}</ol><p class="pwm"><a href="${BASE}news" data-go="feed">← All news</a></p></div>`}
-function hmThreads(){const cut=REF-7*864e5,a=[];for(const t of thIdx().values()){const nw=t.filter(x=>!isP(x)&&!isAdv(x));if(thN(nw)<2||+pd(nw[nw.length-1].d)<cut)continue;a.push({t:nw,n:thN(nw)})}
-a.sort((p,q)=>q.n-p.n||+pd(q.t[q.t.length-1].d)-+pd(p.t[p.t.length-1].d));const top=a.slice(0,4);if(!top.length)return"";
-return hmCard("hmtr","hmthr o5","One story, many outlets",`<ul class="hml">${top.map(({t,n})=>`<li class="hmhl">${hmA(hmU("thread","th="+t[0].th),esc(t[0].h))}<span class="hmm">${n} outlets · ${esc(thWhen(t))}</span></li>`).join("")}</ul>`)}
 // ---- State ballot measures (elections.json): listed on the Policy tab as the "Ballot measures" type ----
 let BM=[],BMDAY="",BMUP="",BMLOAD=0;
 const elHow={"citizen initiative":"Citizen initiative","legislatively referred":"Put on the ballot by the legislature","veto referendum":"Veto referendum","constitutional amendment":"Constitutional amendment"};
@@ -808,7 +804,7 @@ function renderHome(){_orS=null;for(const id of["#vtool","#ptabs","#chips","#nba
 if(!viewing)document.title=baseTitle;
 if(!D.length){$("#rows").innerHTML='<div class="empty">Loading…</div>';return}
 const yap=hmYap(),top=hmTop(new Set(yap));
-$("#rows").innerHTML=`<div class="hm">${hmToday()}${hmFeat(yap)}<div class="hmcols"><div class="hmL">${top.html}${hmPol()}${hmThreads()}${hmStmt()}</div><div class="hmR">${hmSince()}${hmSoon()}${hmHubs()}${hmOrg()}</div></div></div>`;
+$("#rows").innerHTML=`<div class="hm">${hmToday()}${hmFeat(yap)}<div class="hmcols"><div class="hmL">${top.html}${hmPol()}${hmStmt()}</div><div class="hmR">${hmSince()}${hmSoon()}${hmHubs()}${hmOrg()}</div></div></div>`;
 hmKick(yap[0]);
 {let nx=1/0;for(const x of top.items){if(!x.bu)continue;const t=Date.parse(x.bu);if(t>RN&&t<nx)nx=t}if(nx<1/0)brkT=setTimeout(()=>render(),Math.min(nx-Date.now()+500,2e9))}}
 document.addEventListener("click",e=>{const a=e.target.closest&&e.target.closest("a[data-hm]");if(!a||e.defaultPrevented||e.button||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;e.preventDefault();const h=a.getAttribute("href");closeSheet(()=>{F=F0();$("#q").value="";gsel="";sel=0;feedY=0;try{history.pushState(null,"",h)}catch(x){location.href=h;return}readQS();route();window.scrollTo(0,0)})});
